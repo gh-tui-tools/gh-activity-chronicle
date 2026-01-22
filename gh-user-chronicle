@@ -1,0 +1,2175 @@
+#!/usr/bin/env python3
+"""
+gh-user-chronicle — gh CLI extension to document a user’s GitHub activity over time  # nopep8
+
+Generates a comprehensive markdown report of a user's GitHub activity over time.  # nopep8
+
+Usage:
+    gh user-chronicle                              # Last 30 days
+    gh user-chronicle --user USERNAME --days 7     # Last week
+    gh user-chronicle --year                       # Last year
+    gh user-chronicle --since 2024-01-01 --until 2024-03-31
+"""  # nopep8
+
+import subprocess
+import json
+import argparse
+from datetime import datetime, timedelta
+from collections import defaultdict
+from urllib.parse import quote
+import sys
+import os
+import threading
+import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
+
+
+class Colors:
+    """ANSI color codes for terminal output."""
+
+    # Check if colors should be enabled (not piped, and terminal supports it)
+    ENABLED = sys.stderr.isatty() and os.environ.get("NO_COLOR") is None
+
+    # Colors
+    RESET = "\033[0m" if ENABLED else ""
+    BOLD = "\033[1m" if ENABLED else ""
+    DIM = "\033[2m" if ENABLED else ""
+
+    RED = "\033[31m" if ENABLED else ""
+    GREEN = "\033[32m" if ENABLED else ""
+    YELLOW = "\033[33m" if ENABLED else ""
+    BLUE = "\033[34m" if ENABLED else ""
+    MAGENTA = "\033[35m" if ENABLED else ""
+    CYAN = "\033[36m" if ENABLED else ""
+
+    @classmethod
+    def error(cls, text):
+        """Format error text (red)."""
+        return f"{cls.RED}{text}{cls.RESET}"
+
+    @classmethod
+    def warning(cls, text):
+        """Format warning text (yellow)."""
+        return f"{cls.YELLOW}{text}{cls.RESET}"
+
+    @classmethod
+    def success(cls, text):
+        """Format success text (green)."""
+        return f"{cls.GREEN}{text}{cls.RESET}"
+
+    @classmethod
+    def highlight(cls, text):
+        """Format highlighted text (cyan)."""
+        return f"{cls.CYAN}{text}{cls.RESET}"
+
+    @classmethod
+    def bold(cls, text):
+        """Format bold text."""
+        return f"{cls.BOLD}{text}{cls.RESET}"
+
+    @classmethod
+    def dim(cls, text):
+        """Format dimmed text."""
+        return f"{cls.DIM}{text}{cls.RESET}"
+
+
+class ProgressIndicator:
+    """Animated progress indicator for long-running operations."""
+
+    SPINNER = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"]
+
+    def __init__(self):
+        self._status = ""
+        self._running = False
+        self._thread = None
+        self._spinner_idx = 0
+
+    def _animate(self):
+        while self._running:
+            spinner = self.SPINNER[self._spinner_idx % len(self.SPINNER)]
+            # Clear line and show spinner with status
+            colored_spinner = f"{Colors.CYAN}{spinner}{Colors.RESET}"
+            sys.stderr.write(f"\r\033[K{colored_spinner} {self._status}")
+            sys.stderr.flush()
+            self._spinner_idx += 1
+            time.sleep(0.1)
+
+    def start(self, status=""):
+        self._status = status
+        self._running = True
+        self._thread = threading.Thread(target=self._animate, daemon=True)
+        self._thread.start()
+
+    def update(self, status):
+        self._status = status
+
+    def stop(self, final_message=None):
+        self._running = False
+        if self._thread:
+            self._thread.join(timeout=0.2)
+        # Clear the spinner line
+        sys.stderr.write("\r\033[K")
+        if final_message:
+            sys.stderr.write(f"{final_message}\n")
+        sys.stderr.flush()
+
+
+# Global progress indicator
+progress = ProgressIndicator()
+
+
+PROJECT_CATEGORIES = {
+    # Note: Many repos are auto-categorized by org or pattern in get_category()
+    # This dict is for explicit mappings that override or supplement auto-detection  # nopep8
+
+    # === W3C Working Group Areas ===
+    "Accessibility (WAI)": [
+        # Web Accessibility Initiative - WCAG, ARIA, evaluation tools
+        "w3c/wai-website", "w3c/wai-website-theme", "w3c/wcag", "w3c/wcag2ict",
+        "w3c/wai-evaluation-tools-list", "w3c/wai-about-wai",
+        "w3c/wai-std-gl-overview", "w3c/wai-intro-accessibility",
+        "w3c/wai-tutorials", "w3c/wai-aria-practices",
+        "act-rules/act-rules.github.io",
+    ],
+    "Internationalization (i18n)": [
+        # Character encodings, text rendering, locale support
+        "w3c/i18n-drafts", "w3c/i18n-activity", "w3c/charmod-norm",
+        "r12a/scripts", "r12a/c",  # Script/language reference tools
+    ],
+    "Digital Publishing": [
+        # EPUB, audiobooks, publishing standards
+        "w3c/epub-specs", "w3c/epub-tests", "w3c/publ-wg", "w3c/audiobooks",
+    ],
+    "Security": [
+        # Security IG, threat modeling, security specs
+        "w3c/securityig", "w3c-cg/threat-modeling",
+    ],
+    "Privacy": [
+        # Privacy WG, Privacy IG, fingerprinting, tracking protection
+        "w3c/privacywg", "w3c/ping", "w3c/gpc", "w3c/dpv",
+        "w3c/privacy-considerations", "w3c/fingerprinting-guidance",
+        "w3c/differential-privacy-guidance", "w3c/security-questionnaire",
+    ],
+    "Immersive Web (WebXR)": [
+        # Virtual/augmented reality, spatial computing
+        "immersive-web/webxr", "immersive-web/webxr-samples",
+        "immersive-web/webxr-gamepads-module", "immersive-web/homepage",
+    ],
+    "Verifiable Credentials": [
+        # Decentralized identifiers, verifiable credentials
+        "w3c/verifiable-credentials", "w3c/vc-wg", "w3c/vc-use-cases",
+        "w3c/did", "w3c/did-wg", "w3c/did-resolution", "w3c/did-extensions",
+    ],
+    "Web of Things": [
+        # IoT, thing descriptions, WoT protocols
+        "w3c/wot", "w3c/wotwg", "w3c/wot-thing-description",
+        "w3c/wot-architecture", "w3c/wot-discovery", "w3c/wot-scripting-api",
+    ],
+    "Media": [
+        # Media playback, streaming (non-WebRTC)
+        "w3c/media-source", "w3c/encrypted-media", "w3c/mediasession",
+        "w3c/media-capabilities", "w3c/media-wg",
+    ],
+    "WebRTC": [
+        # Real-time communications - WebRTC WG specs
+        "w3c/webrtc-pc", "w3c/webrtc-stats", "w3c/webrtc-encoded-transform",
+        "w3c/webrtc-extensions", "w3c/webrtc-svc", "w3c/webrtc-ice",
+        "w3c/webrtc-rtptransport", "w3c/webrtc-charter",
+        "w3c/mediacapture-main", "w3c/mediacapture-image",
+        "w3c/mediacapture-screen-share", "w3c/mediacapture-record",
+        "w3c/mediacapture-output", "w3c/mediacapture-extensions",
+        "w3c/mediacapture-transform", "w3c/ortc",
+    ],
+    "Web Audio": [
+        # Web Audio API, Web MIDI, Web Speech - W3C Audio WG
+        "WebAudio/web-audio-api", "WebAudio/web-audio-api-v2",
+        "WebAudio/web-midi-api", "WebAudio/web-speech-api",
+        "WebAudio/web-audio-cg", "w3c/audio-session",
+    ],
+    "Devices and Sensors": [
+        # Hardware APIs - sensors, battery, NFC, geolocation
+        "w3c/sensors", "w3c/battery", "w3c/nfc", "w3c/web-nfc",
+        "w3c/geolocation-sensor", "w3c/generic-sensor-demos",
+    ],
+    "Graphics": [
+        # SVG, PNG, WebGPU, canvas
+        "w3c/svgwg", "w3c/png", "w3c/graphics-aria", "w3c/graphics-aam",
+        "w3c/gpuweb-wg",
+    ],
+    "Machine Learning": [
+        # WebNN, ML APIs
+        "webmachinelearning/webnn", "webmachinelearning/model-loader",
+    ],
+    "Semantic Web": [
+        # RDF, JSON-LD, linked data
+        "json-ld/json-ld.org", "json-ld/minutes",
+        "w3c/rdf-star", "w3c/sparql-dev",
+    ],
+    "Sustainability": [
+        # Web sustainability, environmental impact
+        "w3c/sustainableweb-ig", "w3c-cg/sustainability",
+    ],
+    "AI and agents": [
+        # AI protocols, knowledge representation, cognitive AI
+        "w3c-cg/ai-agent-protocol", "w3c-cg/aikr", "w3c/cogai",
+    ],
+    "Payments": [
+        # Web Payments - payment APIs, secure payment confirmation
+        "w3c/payment-request", "w3c/webpayments",
+        "w3c/secure-payment-confirmation", "w3c/payment-handler",
+        "w3c/payment-method-id",
+    ],
+    "Performance": [
+        # Web Performance - timing APIs, metrics, resource hints
+        "w3c/web-performance", "w3c/performance-timeline",
+        "w3c/user-timing", "w3c/navigation-timing",
+        "w3c/resource-timing", "w3c/resource-hints",
+        "w3c/charter-webperf", "w3c/perf-security-privacy",
+    ],
+    "W3C Process": [
+        # W3C operations, governance, events, Advisory Board
+        "w3c/guide", "w3c/initiatives", "w3c/charter-drafts",
+        "w3c/w3process", "w3c/modern-tooling", "w3c/AB-public",
+    ],
+    "W3C TAG": [
+        # W3C Technical Architecture Group - design reviews, principles
+        "w3ctag/design-reviews", "w3ctag/design-principles",
+        "w3ctag/privacy-principles", "w3ctag/societal-impact-questionnaire",
+    ],
+    "W3C Infrastructure": [
+        # W3C website, logos, internal tools
+        "w3c/logos", "w3c/w3c-website-templates-bundle",
+        "w3c/w3c-website-frontend",
+    ],
+    "Specification tooling": [
+        # Tools for authoring, testing, and maintaining specs
+        "w3c/reffy", "w3c/spec-families",
+        "speced/respec", "speced/bikeshed",
+        "nicolo-ribaudo/spec-factory", "nicolo-ribaudo/spec-maintenance",
+        "nicolo-ribaudo/source-map-spec",
+        "jsdom/webidl2js",  # WebIDL bindings generator
+        "w3c/webidl2.js",  # WebIDL parser
+        "microsoft/TypeScript-DOM-lib-generator",  # Generates TS DOM types from WebIDL
+    ],
+    "Standards positions": [
+        # Browser vendor positions on web specs
+        "WebKit/standards-positions", "mozilla/standards-positions",
+    ],
+
+    # === Testing and quality ===
+    "HTML/CSS checking (validation)": [
+        "validator/validator", "w3c/css-validator", "validator/htmlparser",
+    ],
+    "Web Platform Tests": [
+        "web-platform-tests/wpt", "web-platform-tests/wpt-metadata",
+    ],
+    "Interop": [
+        # Cross-browser compatibility initiatives
+        "web-platform-tests/interop", "web-platform-dx/developer-signals",
+        "nicolo-ribaudo/nicolo-ribaudo.github.io",
+    ],
+
+    # === Documentation and education ===
+    "Documentation": [
+        "mdn/content", "mdn/translated-content", "mdn/learning-area",
+        "mdn/interactive-examples",
+    ],
+
+    # === Implementation ===
+    "Browser engines": [
+        "LadybirdBrowser/ladybird", "WebKit/WebKit", "mozilla-firefox/firefox",
+        "servo/servo", "chromium/chromium",
+    ],
+    "Developer tools": [
+        "dlvhdr/gh-dash", "gh-tui-tools/gh-review-conductor", "danobi/prr",
+        "gh-tui-tools/gh-shortlog", "gh-tui-tools/git-gloss",
+        "gh-tui-tools/gh-user-chronicle", "yusukebe/gh-markdown-preview",
+        "zed-industries/zed",  # Code editor
+        "atuinsh/atuin",  # Shell history
+        "GoogleChromeLabs/jsvu",  # JS engine version manager
+    ],
+    "GitHub analytics": [
+        "git-pulse/snapshots", "git-pulse/tools", "git-pulse/gh-pulse",
+    ],
+
+    # === Programming languages and runtimes ===
+    "Programming languages": [
+        "golang/go", "rust-lang/rust", "swiftlang/swift",
+        "JuliaLang/julia", "elixir-lang/elixir",
+        "python/cpython", "ruby/ruby",
+    ],
+    "JavaScript runtimes": [
+        "nodejs/node", "denoland/deno",
+        "nicolo-ribaudo/hermes", "nicolo-ribaudo/babel",
+        "CanadaHonk/porffor",  # JS to WebAssembly compiler
+    ],
+    "TypeScript": [
+        "microsoft/TypeScript", "nicolo-ribaudo/TypeScript",
+    ],
+
+    # === Web frameworks ===
+    "Web frameworks": [
+        # Python
+        "django/django", "pallets/flask", "tiangolo/fastapi",
+        # Ruby
+        "rails/rails", "sinatra/sinatra",
+        # PHP
+        "laravel/framework", "laravel/laravel", "symfony/symfony",
+        # Java/Kotlin
+        "spring-projects/spring-boot", "spring-projects/spring-framework",
+        "spring-projects/spring-security",
+        # Elixir
+        "phoenixframework/phoenix",
+        # Go
+        "gin-gonic/gin", "gofiber/fiber",
+        # Rust
+        "tokio-rs/axum", "actix/actix-web",
+    ],
+    "Frontend frameworks": [
+        # Core frameworks
+        "facebook/react", "vuejs/vue", "vuejs/core", "sveltejs/svelte",
+        "angular/angular", "jquery/jquery",
+        # Meta-frameworks
+        "vercel/next.js", "nuxt/nuxt", "sveltejs/kit",
+        "gatsbyjs/gatsby", "remix-run/remix",
+        # Build tools
+        "vitejs/vite", "webpack/webpack", "parcel-bundler/parcel",
+        "evanw/esbuild", "rollup/rollup",
+    ],
+    "UI component libraries": [
+        "twbs/bootstrap", "mui/material-ui", "tailwindlabs/tailwindcss",
+        "chakra-ui/chakra-ui", "ant-design/ant-design",
+    ],
+    "Mobile development": [
+        "facebook/react-native", "flutter/flutter",
+    ],
+
+    # === Data and ML ===
+    "Data science": [
+        "numpy/numpy", "pandas-dev/pandas", "scipy/scipy",
+        "scikit-learn/scikit-learn", "matplotlib/matplotlib",
+        "tidyverse/ggplot2", "tidyverse/dplyr", "tidyverse/tidyr",
+        "jupyter/notebook", "jupyterlab/jupyterlab",
+    ],
+    "ML frameworks": [
+        "tensorflow/tensorflow", "pytorch/pytorch", "keras-team/keras",
+        "huggingface/transformers", "openai/openai-python",
+    ],
+
+    # === DevOps and Infrastructure ===
+    "DevOps": [
+        "kubernetes/kubernetes", "moby/moby", "docker/cli",
+        "ansible/ansible", "hashicorp/terraform",
+        "pulumi/pulumi", "chef/chef", "puppetlabs/puppet",
+    ],
+    "CI/CD": [
+        "jenkinsci/jenkins", "actions/runner", "circleci/circleci-docs",
+        "travis-ci/travis-ci", "drone/drone",
+    ],
+    "Package managers": [
+        "Homebrew/homebrew-core", "Homebrew/homebrew-cask", "Homebrew/brew",
+        "NixOS/nixpkgs", "NixOS/nix",
+        "npm/cli", "yarnpkg/berry", "pnpm/pnpm",
+        "pypa/pip", "python-poetry/poetry",
+        "rubygems/rubygems", "bundler/bundler",
+        "rust-lang/cargo", "rust-lang/crates.io",
+    ],
+    "Build tools": [
+        "gradle/gradle", "apache/maven", "bazelbuild/bazel",
+        "cmake/cmake",
+    ],
+
+    # === Testing and automation ===
+    "Testing frameworks": [
+        "SeleniumHQ/selenium", "puppeteer/puppeteer", "microsoft/playwright",
+        "cypress-io/cypress", "webdriverio/webdriverio",
+        "jestjs/jest", "mochajs/mocha", "vitest-dev/vitest",
+        "pytest-dev/pytest",
+    ],
+
+    # === Documentation platforms ===
+    "Documentation platforms": [
+        "facebook/docusaurus", "sphinx-doc/sphinx", "mkdocs/mkdocs",
+        "readthedocs/readthedocs.org", "gitbook/gitbook",
+    ],
+
+    # === 3D and graphics (non-standards) ===
+    "3D/WebGL": [
+        "mrdoob/three.js", "BabylonJS/Babylon.js", "pixijs/pixijs",
+        "playcanvas/engine",
+    ],
+
+    # === Home automation and embedded ===
+    "Home automation and Embedded systems": [
+        "home-assistant/core", "home-assistant/home-assistant.io",
+        "esphome/esphome", "Koenkk/zigbee2mqtt",
+        "arduino/Arduino", "raspberrypi/linux", "raspberrypi/firmware",
+        "micropython/micropython", "espressif/esp-idf",
+    ],
+
+    # === Databases ===
+    "Databases": [
+        "mongodb/mongo", "postgres/postgres", "mysql/mysql-server",
+        "redis/redis", "elastic/elasticsearch", "apache/cassandra",
+        "cockroachdb/cockroach", "influxdata/influxdb",
+        "timescale/timescaledb", "sqlite/sqlite", "duckdb/duckdb",
+    ],
+
+    # === Game development ===
+    "Game development": [
+        "godotengine/godot", "bevyengine/bevy", "libgdx/libgdx",
+        "FlaxEngine/FlaxEngine", "defold/defold",
+        # Note: Unity and Unreal are not on GitHub
+    ],
+
+    # === Blockchain ===
+    "Blockchain": [
+        "bitcoin/bitcoin", "ethereum/go-ethereum", "solana-labs/solana",
+        "polkadot-fellows/runtimes", "cosmos/cosmos-sdk",
+        "hyperledger/fabric", "ChainSafe/web3.js",
+    ],
+}
+
+# Topic-to-category mapping for dynamic categorization based on GitHub repo topics  # nopep8
+# Topics are checked in order; first match wins
+TOPIC_CATEGORIES = {
+    # Web standards and specs
+    "w3c": "Web standards and specifications",
+    "whatwg": "Web standards and specifications",
+    "web-standards": "Web standards and specifications",
+    "specification": "Web standards and specifications",
+
+    # Accessibility
+    "accessibility": "Accessibility (WAI)",
+    "a11y": "Accessibility (WAI)",
+    "wcag": "Accessibility (WAI)",
+    "aria": "Accessibility (WAI)",
+
+    # Internationalization
+    "i18n": "Internationalization (i18n)",
+    "internationalization": "Internationalization (i18n)",
+    "localization": "Internationalization (i18n)",
+    "l10n": "Internationalization (i18n)",
+
+    # Security and Privacy
+    "security": "Security",
+    "privacy": "Privacy",
+
+    # WebXR / Immersive
+    "webxr": "Immersive Web (WebXR)",
+    "virtual-reality": "Immersive Web (WebXR)",
+    "augmented-reality": "Immersive Web (WebXR)",
+    "vr": "Immersive Web (WebXR)",
+    "ar": "Immersive Web (WebXR)",
+
+    # WebRTC
+    "webrtc": "WebRTC",
+    "real-time-communication": "WebRTC",
+
+    # Web Audio
+    "webaudio": "Web Audio",
+    "web-audio": "Web Audio",
+    "web-midi": "Web Audio",
+
+    # Graphics
+    "webgl": "Graphics",
+    "webgpu": "Graphics",
+    "svg": "Graphics",
+    "canvas": "Graphics",
+
+    # 3D (non-standards)
+    "threejs": "3D/WebGL",
+    "3d": "3D/WebGL",
+
+    # Programming languages
+    "programming-language": "Programming languages",
+    "compiler": "Programming languages",
+    "language": "Programming languages",
+
+    # JavaScript runtimes
+    "nodejs": "JavaScript runtimes",
+    "deno": "JavaScript runtimes",
+    "javascript-runtime": "JavaScript runtimes",
+
+    # TypeScript
+    "typescript": "TypeScript",
+
+    # Web frameworks
+    "web-framework": "Web frameworks",
+    "django": "Web frameworks",
+    "rails": "Web frameworks",
+    "flask": "Web frameworks",
+    "laravel": "Web frameworks",
+    "spring": "Web frameworks",
+    "spring-boot": "Web frameworks",
+
+    # Frontend frameworks
+    "frontend": "Frontend frameworks",
+    "react": "Frontend frameworks",
+    "vue": "Frontend frameworks",
+    "svelte": "Frontend frameworks",
+    "angular": "Frontend frameworks",
+    "nextjs": "Frontend frameworks",
+    "frontend-framework": "Frontend frameworks",
+
+    # UI libraries
+    "ui-components": "UI component libraries",
+    "component-library": "UI component libraries",
+    "design-system": "UI component libraries",
+    "css-framework": "UI component libraries",
+
+    # Mobile
+    "react-native": "Mobile development",
+    "flutter": "Mobile development",
+    "mobile": "Mobile development",
+    "ios": "Mobile development",
+    "android": "Mobile development",
+    "cross-platform": "Mobile development",
+
+    # Data science
+    "data-science": "Data science",
+    "data-analysis": "Data science",
+    "numpy": "Data science",
+    "pandas": "Data science",
+    "jupyter": "Data science",
+    "scientific-computing": "Data science",
+    "statistics": "Data science",
+
+    # ML frameworks
+    "machine-learning": "ML frameworks",
+    "deep-learning": "ML frameworks",
+    "neural-network": "ML frameworks",
+    "tensorflow": "ML frameworks",
+    "pytorch": "ML frameworks",
+    "artificial-intelligence": "ML frameworks",
+    "ai": "ML frameworks",
+    "ml": "ML frameworks",
+    "nlp": "ML frameworks",
+    "natural-language-processing": "ML frameworks",
+    "computer-vision": "ML frameworks",
+    "image-processing": "ML frameworks",
+
+    # DevOps
+    "devops": "DevOps",
+    "kubernetes": "DevOps",
+    "docker": "DevOps",
+    "containers": "DevOps",
+    "infrastructure": "DevOps",
+    "infrastructure-as-code": "DevOps",
+    "ansible": "DevOps",
+    "terraform": "DevOps",
+    "aws": "DevOps",
+    "azure": "DevOps",
+    "gcp": "DevOps",
+    "cloud": "DevOps",
+    "serverless": "DevOps",
+    "microservices": "DevOps",
+
+    # CI/CD
+    "ci-cd": "CI/CD",
+    "continuous-integration": "CI/CD",
+    "continuous-deployment": "CI/CD",
+    "github-actions": "CI/CD",
+
+    # Package managers
+    "package-manager": "Package managers",
+    "dependency-management": "Package managers",
+    "homebrew": "Package managers",
+    "npm": "Package managers",
+    "pip": "Package managers",
+
+    # Build tools
+    "build-tool": "Build tools",
+    "build-system": "Build tools",
+    "bundler": "Build tools",
+    "webpack": "Build tools",
+
+    # Testing
+    "testing": "Testing frameworks",
+    "testing-tools": "Testing frameworks",
+    "test-automation": "Testing frameworks",
+    "selenium": "Testing frameworks",
+    "e2e-testing": "Testing frameworks",
+    "unit-testing": "Testing frameworks",
+    "test-framework": "Testing frameworks",
+
+    # Documentation
+    "documentation": "Documentation",
+    "docs": "Documentation",
+    "documentation-tool": "Documentation platforms",
+    "static-site-generator": "Documentation platforms",
+
+    # Browser engines
+    "browser": "Browser engines",
+    "browser-engine": "Browser engines",
+    "webkit": "Browser engines",
+    "chromium": "Browser engines",
+
+    # Home automation and Embedded systems
+    "home-automation": "Home automation and Embedded systems",
+    "iot": "Home automation and Embedded systems",
+    "internet-of-things": "Home automation and Embedded systems",
+    "smart-home": "Home automation and Embedded systems",
+    "arduino": "Home automation and Embedded systems",
+    "raspberry-pi": "Home automation and Embedded systems",
+    "embedded": "Home automation and Embedded systems",
+    "embedded-systems": "Home automation and Embedded systems",
+    "microcontroller": "Home automation and Embedded systems",
+    "esp32": "Home automation and Embedded systems",
+    "esp8266": "Home automation and Embedded systems",
+    "stm32": "Home automation and Embedded systems",
+
+    # Databases
+    "database": "Databases",
+    "sql": "Databases",
+    "nosql": "Databases",
+    "mongodb": "Databases",
+    "postgresql": "Databases",
+    "mysql": "Databases",
+    "redis": "Databases",
+    "elasticsearch": "Databases",
+    "sqlite": "Databases",
+    "mariadb": "Databases",
+    "cassandra": "Databases",
+    "graphdb": "Databases",
+    "timeseries": "Databases",
+
+    # Game development
+    "game-development": "Game development",
+    "game-engine": "Game development",
+    "gamedev": "Game development",
+    "unity": "Game development",
+    "unreal-engine": "Game development",
+    "godot": "Game development",
+    "game": "Game development",
+    "2d-game": "Game development",
+    "3d-game": "Game development",
+
+    # Blockchain
+    "blockchain": "Blockchain",
+    "cryptocurrency": "Blockchain",
+    "bitcoin": "Blockchain",
+    "ethereum": "Blockchain",
+    "solana": "Blockchain",
+    "web3": "Blockchain",
+    "smart-contracts": "Blockchain",
+    "defi": "Blockchain",
+    "nft": "Blockchain",
+    "crypto": "Blockchain",
+}
+
+# Cache for repo topics to avoid redundant API calls
+_topics_cache = {}
+
+
+def fetch_repo_topics(repo_name):
+    """Fetch topics for a repository, with caching."""
+    if repo_name in _topics_cache:
+        return _topics_cache[repo_name]
+
+    try:
+        result = subprocess.run(
+            ["gh", "api", f"repos/{repo_name}", "--jq", ".topics // []"],
+            capture_output=True,
+            text=True,
+            check=True
+        )
+        if result.stdout.strip():
+            topics = json.loads(result.stdout)
+            _topics_cache[repo_name] = topics
+            return topics
+    except (subprocess.CalledProcessError, json.JSONDecodeError):
+        pass
+
+    _topics_cache[repo_name] = []
+    return []
+
+
+def get_category_from_topics(topics):
+    """Determine category based on repository topics."""
+    if not topics:
+        return None
+
+    for topic in topics:
+        topic_lower = topic.lower()
+        if topic_lower in TOPIC_CATEGORIES:
+            return TOPIC_CATEGORIES[topic_lower]
+
+    return None
+
+
+def run_gh_command(args, parse_json=True):
+    """Run a GitHub CLI command and return the result."""
+    try:
+        result = subprocess.run(
+            ["gh"] + args,
+            capture_output=True,
+            text=True,
+            check=True
+        )
+        if parse_json and result.stdout.strip():
+            return json.loads(result.stdout)
+        return result.stdout.strip()
+    except subprocess.CalledProcessError as e:
+        print(Colors.error(f"Error running gh command: {e.stderr}"),
+              file=sys.stderr)
+        return None
+    except json.JSONDecodeError:
+        return result.stdout.strip()
+
+
+def run_gh_graphql(query):
+    """Run a GitHub GraphQL query."""
+    result = run_gh_command(["api", "graphql", "-f", f"query={query}"])
+    return result.get("data") if result else None
+
+
+def get_category(repo_name):
+    """Determine the category of a repository."""
+    # Check explicit mappings first
+    for category, repos in PROJECT_CATEGORIES.items():
+        if repo_name in repos:
+            return category
+        # Check if it's a fork of a categorized repo
+        for categorized_repo in repos:
+            if repo_name.endswith("/" + categorized_repo.split("/")[-1]):
+                return category
+
+    # Heuristics for uncategorized repos
+    repo_lower = repo_name.lower()
+    org = repo_name.split("/")[0].lower() if "/" in repo_name else ""
+    repo_base = repo_name.split("/")[1].lower() if "/" in repo_name else repo_lower  # nopep8
+
+    # === Org-based detection (specific orgs with known purposes) ===
+    if org == "immersive-web":
+        return "Immersive Web (WebXR)"
+    if org == "webaudio":
+        return "Web Audio"
+    if org == "webmachinelearning":
+        return "Machine Learning"
+    if org == "json-ld":
+        return "Semantic Web"
+    if org == "act-rules":
+        return "Accessibility (WAI)"
+    if org == "r12a":  # Richard Ishida's i18n tools
+        return "Internationalization (i18n)"
+    if org == "speced":  # Spec tooling (ReSpec, Bikeshed)
+        return "Specification tooling"
+    if org == "jsdom":  # JavaScript DOM implementation tooling
+        return "Specification tooling"
+    if org == "web-platform-dx":  # Developer experience signals
+        return "Browser interop"
+    if org == "w3ctag":  # W3C Technical Architecture Group
+        return "TAG"
+    if org == "w3cping":  # Privacy Interest Group working docs
+        return "Privacy"
+
+    # Standards positions (browser vendor positions on specs)
+    if repo_base == "standards-positions":
+        return "Standards positions"
+
+    # === Pattern-based detection (within standards orgs) ===
+    # w3c-cg = W3C Community Groups
+    standards_orgs = {"w3c", "w3c-cg", "whatwg", "wicg", "tc39",
+                      "webassembly", "khronos-group"}
+
+    if org in standards_orgs:
+        # Accessibility patterns
+        if repo_base.startswith("wai-") or repo_base.startswith("wcag"):
+            return "Accessibility (WAI)"
+        if "aria" in repo_base and "practices" in repo_base:
+            return "Accessibility (WAI)"
+
+        # Internationalization patterns
+        if repo_base.startswith("i18n") or "charmod" in repo_base:
+            return "Internationalization (i18n)"
+
+        # Digital publishing patterns
+        if repo_base.startswith("epub") or repo_base.startswith("audiobook"):
+            return "Digital publishing"
+        if repo_base.startswith("publ-") or repo_base.startswith("dpub"):
+            return "Digital publishing"
+
+        # Security patterns
+        if "security" in repo_base and "privacy" not in repo_base:
+            return "Security"
+
+        # Privacy patterns
+        if "privacy" in repo_base or "fingerprint" in repo_base:
+            return "Privacy"
+        if repo_base in ("ping", "privacywg", "gpc", "dpv"):
+            return "Privacy"
+
+        # Verifiable Credentials / DIDs patterns
+        if repo_base.startswith("vc-") or repo_base.startswith("did"):
+            return "Verifiable Credentials"
+        if "credential" in repo_base or "verifiable" in repo_base:
+            return "Verifiable Credentials"
+
+        # Web of Things patterns
+        if repo_base.startswith("wot") or repo_base == "wotwg":
+            return "Web of Things"
+
+        # WebRTC patterns (check before Media - mediacapture is WebRTC WG)
+        if repo_base.startswith("webrtc") or repo_base.startswith("mediacapture"):  # nopep8
+            return "WebRTC"
+        if repo_base == "ortc":
+            return "WebRTC"
+
+        # Media patterns (non-WebRTC media specs)
+        if repo_base.startswith("media") and not repo_base.startswith("mediacapture"):  # nopep8
+            return "Media"
+        if repo_base in ("encrypted-media", "mediasession"):
+            return "Media"
+
+        # Devices and sensors patterns
+        if "sensor" in repo_base or repo_base in ("battery", "nfc", "web-nfc"):
+            return "Devices and sensors"
+
+        # Graphics patterns
+        if repo_base in ("svgwg", "png", "gpuweb-wg", "fxtf-drafts"):
+            return "Graphics"
+        if repo_base.startswith("graphics-") or repo_base.startswith("svg-"):
+            return "Graphics"
+
+        # Semantic Web patterns
+        if "rdf" in repo_base or "sparql" in repo_base or "shacl" in repo_base:
+            return "Semantic Web"
+
+        # Sustainability patterns
+        if "sustainab" in repo_base:
+            return "Sustainability"
+
+        # AI and agents patterns
+        if "ai-agent" in repo_base or "aikr" in repo_base or "agent-comm" in repo_base:  # nopep8
+            return "AI and agents"
+        if repo_base == "cogai":
+            return "AI and agents"
+
+        # Payments patterns
+        if "payment" in repo_base or repo_base == "webpayments":
+            return "Payments"
+
+        # Performance patterns (timing APIs, metrics)
+        if "performance" in repo_base or repo_base.startswith("perf"):
+            return "Performance"
+        if repo_base in ("resource-hints", "navigation-timing",
+                         "user-timing", "resource-timing"):
+            return "Performance"
+
+        # W3C Process patterns (governance, operations, events, Advisory Board)
+        if repo_base in ("guide", "initiatives", "charter-drafts",
+                         "w3process", "modern-tooling"):
+            return "W3C Process"
+        if repo_base.startswith("tpac") or repo_base.startswith("breakout"):
+            return "W3C Process"
+        if repo_base.startswith("ab-"):  # Advisory Board repos
+            return "W3C Process"
+
+        # W3C Infrastructure patterns (website, logos)
+        if repo_base == "logos" or repo_base.startswith("w3c-website"):
+            return "W3C Infrastructure"
+
+        # Specification tooling patterns
+        if repo_base in ("reffy", "spec-families", "respec", "bikeshed"):
+            return "Specification tooling"
+
+        # Default for standards orgs
+        return "Web standards and specifications"
+
+    # === General pattern-based detection ===
+    # Specification tooling
+    if "spec-factory" in repo_lower or "spec-maintenance" in repo_lower:
+        return "Specification tooling"
+    if repo_base in ("respec", "bikeshed", "reffy"):
+        return "Specification tooling"
+
+    # GitHub analytics and metrics
+    if "analytics" in repo_lower or "metrics" in repo_lower or "statistics" in repo_lower:  # nopep8
+        return "GitHub analytics"
+
+    # Browser interop
+    if repo_base.startswith("interop"):
+        return "Browser interop"
+
+    # Testing and validation
+    if "wpt" in repo_lower:
+        return "Web Platform Tests"
+    if "validator" in repo_lower:
+        return "HTML/CSS checking (validation)"
+
+    # Documentation
+    if org == "mdn" or "mdn" in repo_lower:
+        return "Documentation"
+
+    # Browser engines
+    if "ladybird" in repo_lower:
+        return "Browser engines"
+    if "webkit" in repo_lower:
+        return "Browser engines"
+    if "firefox" in repo_lower:
+        return "Browser engines"
+
+    # === Programming languages and runtimes ===
+    lang_orgs = {"golang", "rust-lang", "swiftlang", "julialang",
+                 "elixir-lang", "python", "ruby"}
+    if org in lang_orgs:
+        return "Programming languages"
+
+    if org in ("nodejs", "denoland"):
+        return "JavaScript runtimes"
+
+    if org == "microsoft" and repo_base == "typescript":
+        return "TypeScript"
+
+    # === Web frameworks ===
+    framework_repos = {
+        # Python
+        "django/django", "pallets/flask", "tiangolo/fastapi",
+        # Ruby
+        "rails/rails", "sinatra/sinatra",
+        # PHP
+        "laravel/framework", "laravel/laravel", "symfony/symfony",
+        # Elixir
+        "phoenixframework/phoenix",
+        # Go
+        "gin-gonic/gin", "gofiber/fiber",
+        # Rust
+        "tokio-rs/axum", "actix/actix-web",
+    }
+    if repo_name.lower() in framework_repos:
+        return "Web frameworks"
+    if org in ("spring-projects", "laravel", "symfony"):
+        return "Web frameworks"
+
+    # === Frontend frameworks ===
+    if org in ("vuejs", "sveltejs", "angular"):
+        return "Frontend frameworks"
+    if repo_name.lower() in ("facebook/react", "vercel/next.js",
+                             "gatsbyjs/gatsby", "remix-run/remix",
+                             "nuxt/nuxt"):
+        return "Frontend frameworks"
+    if org == "vitejs" or repo_base in ("webpack", "esbuild", "rollup",
+                                        "parcel"):
+        return "Frontend frameworks"
+
+    # === UI component libraries ===
+    if repo_name.lower() in ("twbs/bootstrap", "mui/material-ui",
+                             "tailwindlabs/tailwindcss",
+                             "chakra-ui/chakra-ui",
+                             "ant-design/ant-design"):
+        return "UI component libraries"
+
+    # === Mobile development ===
+    if repo_name.lower() in ("facebook/react-native", "flutter/flutter"):
+        return "Mobile development"
+    if org == "flutter":
+        return "Mobile development"
+
+    # === Data science ===
+    if org in ("numpy", "pandas-dev", "scipy", "scikit-learn", "matplotlib",
+               "tidyverse", "jupyter", "jupyterlab"):
+        return "Data science"
+
+    # === ML frameworks ===
+    if org in ("tensorflow", "pytorch", "keras-team", "huggingface", "openai"):
+        return "ML frameworks"
+
+    # === DevOps ===
+    if org in ("kubernetes", "moby", "docker", "ansible", "hashicorp",
+               "pulumi", "chef", "puppetlabs"):
+        return "DevOps"
+
+    # === CI/CD ===
+    if org in ("jenkinsci", "actions", "circleci", "travis-ci", "drone"):
+        return "CI/CD"
+
+    # === Package managers ===
+    if org in ("homebrew", "nixos", "npm", "yarnpkg", "pnpm",
+               "pypa", "python-poetry", "rubygems", "bundler"):
+        return "Package managers"
+    if org == "rust-lang" and repo_base in ("cargo", "crates.io"):
+        return "Package managers"
+
+    # === Build tools ===
+    if org in ("gradle", "bazelbuild", "cmake"):
+        return "Build tools"
+    if repo_name.lower() == "apache/maven":
+        return "Build tools"
+
+    # === Testing frameworks ===
+    if org in ("seleniumhq", "puppeteer", "cypress-io", "webdriverio",
+               "jestjs", "mochajs", "vitest-dev", "pytest-dev",
+               "chaijs", "sinonjs"):
+        return "Testing frameworks"
+    if repo_name.lower() == "microsoft/playwright":
+        return "Testing frameworks"
+
+    # === Documentation platforms ===
+    if repo_name.lower() in ("facebook/docusaurus", "sphinx-doc/sphinx",
+                             "mkdocs/mkdocs",
+                             "readthedocs/readthedocs.org"):
+        return "Documentation platforms"
+
+    # === 3D/WebGL ===
+    if repo_name.lower() in ("mrdoob/three.js", "babylonjs/babylon.js",
+                             "pixijs/pixijs", "playcanvas/engine"):
+        return "3D/WebGL"
+
+    # === Home automation and Embedded systems ===
+    if org in ("home-assistant", "esphome", "arduino", "raspberrypi",
+               "micropython", "espressif", "platformio"):
+        return "Home automation and Embedded systems"
+    if repo_name.lower() == "koenkk/zigbee2mqtt":
+        return "Home automation and Embedded systems"
+
+    # === Databases ===
+    if org in ("mongodb", "postgres", "mysql", "redis", "elastic",
+               "apache", "cockroachdb", "influxdata", "timescale",
+               "duckdb", "clickhouse"):
+        return "Databases"
+
+    # === Game development ===
+    if org in ("godotengine", "bevyengine", "libgdx", "flaxengine",
+               "defold", "phaserjs", "pixijs"):
+        return "Game development"
+
+    # === Blockchain ===
+    if org in ("bitcoin", "ethereum", "solana-labs", "polkadot-fellows",
+               "cosmos", "hyperledger", "chainsafe", "web3", "openzeppelin"):
+        return "Blockchain"
+
+    # === Fallback: check GitHub repo topics ===
+    topics = fetch_repo_topics(repo_name)
+    topic_category = get_category_from_topics(topics)
+    if topic_category:
+        return topic_category
+
+    return "Other"
+
+
+def should_skip_repo(repo_name, repo_info=None, username=None):
+    """Check if a repo should be skipped (private or special profile repo)."""
+    if not repo_name:
+        return True
+    # Skip the user's special profile repo (username/username)
+    # Different from org repos like validator/validator, which are legitimate
+    if username:
+        parts = repo_name.split("/")
+        if len(parts) == 2 and parts[0].lower() == username.lower() and parts[1].lower() == username.lower():  # nopep8
+            return True
+    # Skip private repos if we have repo info
+    if repo_info and repo_info.get("isPrivate"):
+        return True
+
+    repo_lower = repo_name.lower()
+
+    # Skip known project copies
+    if repo_lower in LADYBIRD_COPIES:
+        return True
+    if repo_lower in FIREFOX_COPIES:
+        return True
+    if repo_lower in SERENITY_COPIES:
+        return True
+
+    # Skip any repo with "serenity" in the name
+    if "serenity" in repo_lower:
+        return True
+
+    # Define allowed Ladybird repos
+    allowed_ladybird = {"ladybirdbrowser/ladybird"}
+    if username:
+        allowed_ladybird.add(f"{username.lower()}/ladybird")
+
+    # Skip Ladybird-related repos that aren't the canonical one or user's fork
+    if "lady" in repo_lower and repo_lower not in allowed_ladybird:
+        return True
+
+    # Define allowed Firefox repos
+    allowed_firefox = {"mozilla-firefox/firefox"}
+    if username:
+        allowed_firefox.add(f"{username.lower()}/firefox")
+
+    # Skip repos that are forks/copies of major projects (even if renamed)
+    if repo_info:
+        parent = (repo_info.get("parent") or {}).get("nameWithOwner", "").lower()  # nopep8
+        description = (repo_info.get("description") or "").lower()
+
+        # Check for Ladybird copies
+        if repo_lower not in allowed_ladybird:
+            if parent == "ladybirdbrowser/ladybird":
+                return True
+            if "ladybird" in description:
+                return True
+            if description == "truly independent web browser":
+                return True
+
+        # Check for Firefox copies
+        if repo_lower not in allowed_firefox:
+            if parent == "mozilla-firefox/firefox":
+                return True
+            if description == "the official repository of mozilla's firefox web browser.":  # nopep8
+                return True
+
+    return False
+
+
+# Known Ladybird copies that don't have obvious indicators
+# (repos that copied Ladybird code but changed name/description)
+LADYBIRD_COPIES = {
+    "zechy0055/qosta-broswer",
+    "lucasnascimento667/teste66",
+    "lucas-santos-dev66/teste66",
+    "wycontm/open1",
+    "msicaterina/lb",
+    "mario2412-jpg/lady",
+}
+
+# Known Firefox copies/forks to skip
+FIREFOX_COPIES = {
+    "mozilla/gecko-dev",
+    "mozilla/enterprise-firefox",
+    "mozilla-releng/staging-firefox",
+    "gradykorchinski-ship-it/cryfox",
+    "sfxmm/hoogle",
+    "browserworks/waterfox-android",
+    "guerteltier/firefox",
+    "maya-browser/maya",
+    "sedrico59/index.html.",
+    "jwidar/latencyzerogithub",
+    "browserworks/waterfox",
+    "sap/project-foxhound",  # Firefox security research fork
+}
+
+# Known SerenityOS copies to skip
+SERENITY_COPIES = {
+    "serenityos/serenity",
+    "lezegit/serenityos--os-project",
+    "extr3m3-subs/serenity",
+    "emtee40/serenityos-ancient",
+    "electric-otter/canaos",
+    "cawarus/cawos_serenity",
+}
+
+
+def get_contributions_summary(username, since_date, until_date):
+    """Get GitHub contributions summary via GraphQL.
+
+    Note: GitHub's contributionsCollection only supports a max 1-year span.
+    For longer periods, we'll use the search API instead.
+    """
+    # Parse dates and check span
+    start = datetime.strptime(since_date, "%Y-%m-%d")
+    end = datetime.strptime(until_date, "%Y-%m-%d")
+
+    # If span > 1 year, clamp to 1 year from end date
+    if (end - start).days > 365:
+        start = end - timedelta(days=365)
+        since_date = start.strftime("%Y-%m-%d")
+        print(Colors.warning(f"\nNote: GitHub API limits to 1 year. Using {since_date} as start date."), file=sys.stderr)  # nopep8
+
+    query = f'''
+    {{
+      user(login: "{username}") {{
+        name
+        contributionsCollection(from: "{since_date}T00:00:00Z", to: "{until_date}T23:59:59Z") {{
+          totalCommitContributions
+          totalPullRequestContributions
+          totalPullRequestReviewContributions
+          totalIssueContributions
+          totalRepositoriesWithContributedCommits
+          commitContributionsByRepository(maxRepositories: 100) {{
+            repository {{
+              nameWithOwner
+              description
+              primaryLanguage {{ name }}
+              isFork
+              parent {{ nameWithOwner }}
+            }}
+            contributions {{
+              totalCount
+            }}
+          }}
+          pullRequestContributionsByRepository(maxRepositories: 100) {{
+            repository {{
+              nameWithOwner
+            }}
+            contributions {{
+              totalCount
+            }}
+          }}
+          pullRequestReviewContributionsByRepository(maxRepositories: 100) {{
+            repository {{
+              nameWithOwner
+            }}
+            contributions {{
+              totalCount
+            }}
+          }}
+        }}
+      }}
+    }}
+    '''  # nopep8
+    return run_gh_graphql(query)
+
+
+def get_all_commits(username, since_date, until_date):
+    """Get all commits via search API, paginating through all results.
+
+    Note: GitHub search API limits results to 1000 items.
+    """
+    all_items = []
+    page = 1
+    hit_limit = False
+    while True:
+        # GitHub search API only returns first 1000 results (10 pages of 100)
+        if page > 10:
+            hit_limit = True
+            break
+        result = run_gh_command([
+            "api", "search/commits",
+            "-X", "GET",
+            "-f", f"q=author:{username} author-date:{since_date}..{until_date}",  # nopep8
+            "-f", "per_page=100",
+            "-f", f"page={page}"
+        ])
+        if not result or "items" not in result:
+            break
+        items = result["items"]
+        if not items:
+            break
+        all_items.extend(items)
+        if len(items) < 100:
+            break
+        page += 1
+    if hit_limit:
+        print(Colors.warning("\nNote: Search results limited to 1000 commits by GitHub API."), file=sys.stderr)  # nopep8
+    return {"total_count": len(all_items), "items": all_items}
+
+
+def get_commit_stats(commits_by_repo):
+    """Fetch line stats (additions/deletions) for commits grouped by repo.
+
+    Args:
+        commits_by_repo: dict mapping repo_name -> list of commit SHAs
+
+    Returns:
+        dict mapping repo_name -> {"additions": int, "deletions": int}
+    """
+    repo_stats = defaultdict(lambda: {"additions": 0, "deletions": 0})
+    total_commits = sum(len(shas) for shas in commits_by_repo.values())
+    processed = 0
+
+    for repo_name, shas in commits_by_repo.items():
+        for sha in shas:
+            processed += 1
+            if processed % 10 == 0:
+                progress.update(f"Fetching commit stats ({processed}/{total_commits})...")  # nopep8
+            # Fetch commit details with stats
+            result = run_gh_command([
+                "api", f"repos/{repo_name}/commits/{sha}",
+                "--jq", "{additions: .stats.additions, deletions: .stats.deletions}"  # nopep8
+            ])
+            if result:
+                repo_stats[repo_name]["additions"] += result.get("additions", 0)  # nopep8
+                repo_stats[repo_name]["deletions"] += result.get("deletions", 0)  # nopep8
+
+    return repo_stats
+
+
+def get_user_forks(username):
+    """Get all forks owned by the user with parent info."""
+    forks = []
+    cursor = None
+
+    while True:
+        after_clause = f', after: "{cursor}"' if cursor else ""
+        query = f'''
+        {{
+          user(login: "{username}") {{
+            repositories(first: 100, isFork: true{after_clause}) {{
+              pageInfo {{ hasNextPage endCursor }}
+              nodes {{
+                nameWithOwner
+                description
+                primaryLanguage {{ name }}
+                isFork
+                parent {{ nameWithOwner }}
+              }}
+            }}
+          }}
+        }}
+        '''
+        result = run_gh_graphql(query)
+        if not result or not result.get("user"):
+            break
+
+        repos = result["user"]["repositories"]
+        nodes = repos.get("nodes", [])
+
+        for node in nodes:
+            # Convert to format expected by rest of code
+            forks.append({
+                "full_name": node.get("nameWithOwner"),
+                "description": node.get("description"),
+                "language": (node.get("primaryLanguage") or {}).get("name"),
+                "fork": node.get("isFork"),
+                "parent": {"full_name": node["parent"]["nameWithOwner"]} if node.get("parent") else None  # nopep8
+            })
+
+        page_info = repos.get("pageInfo", {})
+        if not page_info.get("hasNextPage"):
+            break
+        cursor = page_info.get("endCursor")
+
+    return forks
+
+
+def get_fork_commits(username, fork_repo, since_date, until_date):
+    """Get all commits by user from user-created branches of a fork."""
+    # Get branches owned by the user (not synced from upstream)
+    # First, get branches that look like user branches (contain username or common patterns)  # nopep8
+    fork_owner = fork_repo.split("/")[0]
+
+    try:
+        result = subprocess.run(
+            ["gh", "api", f"repos/{fork_repo}/branches", "--paginate",
+             "--jq", ".[].name"],
+            capture_output=True, text=True, check=True
+        )
+        all_branches = [b.strip() for b in result.stdout.strip().split("\n") if b.strip()]  # nopep8
+    except subprocess.CalledProcessError:
+        return []
+
+    if not all_branches:
+        return []
+
+    # Filter to likely user-created branches (not main/master or upstream branches)  # nopep8
+    # User branches often have prefixes like: eng/, fix/, feature/, or contain username  # nopep8
+    user_branch_patterns = [
+        "eng/", "fix/", "feat/", "feature/", "bug/", "test/", "wip/",
+        fork_owner.lower() + "/", fork_owner.lower() + "-"
+    ]
+    upstream_branches = {"main", "master", "develop", "dev", "trunk", "HEAD"}
+
+    user_branches = []
+    for branch in all_branches:
+        branch_lower = branch.lower()
+        # Skip common upstream branch names
+        if branch in upstream_branches:
+            continue
+        # Include if it matches user patterns or doesn't look like an upstream branch  # nopep8
+        if any(branch_lower.startswith(p) for p in user_branch_patterns):
+            user_branches.append(branch)
+        # Also include if branch count is small (likely all user branches)
+        elif len(all_branches) <= 20:
+            user_branches.append(branch)
+
+    # Also always check main/master for user commits
+    for default_branch in ["main", "master"]:
+        if default_branch in all_branches and default_branch not in user_branches:  # nopep8
+            user_branches.append(default_branch)
+
+    # Get commits from each user branch
+    seen_shas = set()
+    commits = []
+
+    for branch_name in user_branches:
+        # Get commits from this branch (use query string, not -f flags for GET)
+        url = (f"repos/{fork_repo}/commits"
+               f"?sha={quote(branch_name, safe='')}"
+               f"&author={username}"
+               f"&since={since_date}T00:00:00Z"
+               f"&until={until_date}T23:59:59Z"
+               f"&per_page=100")
+        result = run_gh_command(["api", url])
+        if result:
+            for commit in result:
+                sha = commit.get("sha", "")
+                if sha and sha not in seen_shas:
+                    seen_shas.add(sha)
+                    commits.append(commit)
+
+    return commits
+
+
+def get_repo_info(repo_names):
+    """Get repository info (fork status, parent, language, description) for multiple repos."""  # nopep8
+    if not repo_names:
+        return {}
+
+    # GitHub GraphQL has limits, so batch in groups of 50
+    repo_info = {}
+    batch_size = 50
+    repo_list = list(repo_names)
+
+    for batch_start in range(0, len(repo_list), batch_size):
+        batch = repo_list[batch_start:batch_start + batch_size]
+        batch_queries = []
+        for i, repo_name in enumerate(batch):
+            owner, name = repo_name.split("/", 1)
+            batch_queries.append(f'''
+            repo{i}: repository(owner: "{owner}", name: "{name}") {{
+                nameWithOwner
+                description
+                primaryLanguage {{ name }}
+                isFork
+                isPrivate
+                parent {{ nameWithOwner }}
+            }}
+            ''')
+
+        query = "{ " + " ".join(batch_queries) + " }"
+        result = run_gh_graphql(query)
+        if result:
+            for i, repo_name in enumerate(batch):
+                repo_data = result.get(f"repo{i}")
+                if repo_data:
+                    repo_info[repo_name] = repo_data
+
+    return repo_info
+
+
+def get_effective_language(repo_name):
+    """Get the effective primary language, preferring C++ if it's significant."""  # nopep8
+    # Fetch language breakdown
+    url = f"repos/{repo_name}/languages"
+    languages = run_gh_command(["api", url])
+    if not languages:
+        return None
+
+    total_bytes = sum(languages.values())
+    if total_bytes == 0:
+        return None
+
+    # If C++ (or Objective-C++) is >= 10% of the codebase, consider it C++
+    cpp_bytes = languages.get("C++", 0) + languages.get("Objective-C++", 0)
+    cpp_percentage = (cpp_bytes / total_bytes) * 100
+
+    if cpp_percentage >= 10:
+        return "C++"
+
+    # Otherwise return the actual top language
+    top_language = max(languages.items(), key=lambda x: x[1])[0]
+    return top_language
+
+
+def get_prs_created(username, since_date):
+    """Get PRs created in the time period."""
+    query = f'''
+    {{
+      search(query: "type:pr author:{username} created:>={since_date}", type: ISSUE, first: 100) {{
+        issueCount
+        nodes {{
+          ... on PullRequest {{
+            title
+            repository {{ nameWithOwner primaryLanguage {{ name }} }}
+            url
+            state
+            merged
+            createdAt
+            additions
+            deletions
+            reviews {{ totalCount }}
+            comments {{ totalCount }}
+          }}
+        }}
+      }}
+    }}
+    '''  # nopep8
+    return run_gh_graphql(query)
+
+
+def get_prs_reviewed(username, since_date, until_date):
+    """Get PRs reviewed in the time period using contributions API.
+
+    Uses contributionsCollection.pullRequestReviewContributions which accurately
+    tracks reviews given within the date range, unlike the search API which only
+    filters by PR update date.
+    """  # nopep8
+    all_reviews = []
+    cursor = None
+
+    # Parse dates and check span (contributionsCollection only supports 1 year)
+    start = datetime.strptime(since_date, "%Y-%m-%d")
+    end = datetime.strptime(until_date, "%Y-%m-%d")
+    if (end - start).days > 365:
+        start = end - timedelta(days=365)
+        since_date = start.strftime("%Y-%m-%d")
+
+    while True:
+        after_clause = f', after: "{cursor}"' if cursor else ""
+        query = f'''
+        {{
+          user(login: "{username}") {{
+            contributionsCollection(from: "{since_date}T00:00:00Z", to: "{until_date}T23:59:59Z") {{
+              pullRequestReviewContributions(first: 100{after_clause}) {{
+                totalCount
+                pageInfo {{ hasNextPage endCursor }}
+                nodes {{
+                  pullRequest {{
+                    title
+                    repository {{ nameWithOwner primaryLanguage {{ name }} }}
+                    author {{ login }}
+                    url
+                    additions
+                    deletions
+                  }}
+                }}
+              }}
+            }}
+          }}
+        }}
+        '''  # nopep8
+        result = run_gh_graphql(query)
+        if not result or not result.get("user"):
+            break
+
+        contrib = result["user"]["contributionsCollection"]
+        review_data = contrib.get("pullRequestReviewContributions", {})
+        nodes = review_data.get("nodes", [])
+
+        # Extract PR data from review contributions
+        for node in nodes:
+            pr = node.get("pullRequest")
+            if pr:
+                all_reviews.append(pr)
+
+        page_info = review_data.get("pageInfo", {})
+        if not page_info.get("hasNextPage"):
+            break
+        cursor = page_info.get("endCursor")
+
+    # Deduplicate by PR URL (user may have multiple reviews on same PR)
+    seen_urls = set()
+    unique_reviews = []
+    for pr in all_reviews:
+        url = pr.get("url")
+        if url and url not in seen_urls:
+            seen_urls.add(url)
+            unique_reviews.append(pr)
+
+    return unique_reviews
+
+
+def get_review_comments_count(username, since_date):
+    """Get count of PR review comments made."""
+    result = run_gh_command([
+        "api", "search/issues",
+        "-X", "GET",
+        "-f", f"q=commenter:{username} type:pr updated:>={since_date}",
+        "-f", "per_page=100",
+        "--jq", ".total_count"
+    ], parse_json=False)
+    return int(result) if result else 0
+
+
+def count_test_related_commits(username, since_date):
+    """Count commits that mention tests."""
+    result = run_gh_command([
+        "api", "search/commits",
+        "-X", "GET",
+        "-f", f'q=author:{username} author-date:>={since_date} "test"',
+        "-f", "per_page=1",
+        "--jq", ".total_count"
+    ], parse_json=False)
+    return int(result) if result else 0
+
+
+def format_number(n):
+    """Format a number with thousands separators."""
+    return f"{n:,}"
+
+
+def generate_report(username, since_date, until_date):
+    """Generate the full user chronicle."""
+    sys.stderr.write(f"Gathering data for {Colors.highlight(username)} ({since_date} to {until_date})\n")  # nopep8
+
+    # Gather all data with progress indicator
+    progress.start("Fetching contribution summary...")
+    contributions = get_contributions_summary(username, since_date, until_date)
+
+    progress.update("Fetching commits...")
+    commits_data = get_all_commits(username, since_date, until_date)
+
+    progress.update("Fetching PRs created...")
+    prs_created = get_prs_created(username, since_date)
+    progress.update("Fetching PRs reviewed...")
+    prs_reviewed = get_prs_reviewed(username, since_date, until_date)
+
+    progress.update("Fetching review comments...")
+    review_comments = get_review_comments_count(username, since_date)
+
+    progress.update("Counting test-related commits...")
+    test_commits = count_test_related_commits(username, since_date)
+
+    progress.stop()
+
+    # Extract key metrics
+    user_data = contributions.get("user", {}) if contributions else {}
+    contrib_collection = user_data.get("contributionsCollection", {})
+    user_real_name = user_data.get("name") or ""
+
+    total_commits_default_branch = contrib_collection.get("totalCommitContributions", 0)  # nopep8
+    total_commits_all = commits_data.get("total_count", 0) if commits_data else 0  # nopep8
+    total_prs = contrib_collection.get("totalPullRequestContributions", 0)
+    total_pr_reviews = contrib_collection.get("totalPullRequestReviewContributions", 0)  # nopep8
+    total_issues = contrib_collection.get("totalIssueContributions", 0)
+    repos_contributed = contrib_collection.get("totalRepositoriesWithContributedCommits", 0)  # nopep8
+
+    # PRs data
+    prs_nodes = prs_created.get("search", {}).get("nodes", []) if prs_created else []  # nopep8
+    total_additions = sum(pr.get("additions", 0) for pr in prs_nodes)
+    total_deletions = sum(pr.get("deletions", 0) for pr in prs_nodes)
+    reviews_received = sum((pr.get("reviews") or {}).get("totalCount", 0) for pr in prs_nodes)  # nopep8
+    pr_comments_received = sum((pr.get("comments") or {}).get("totalCount", 0) for pr in prs_nodes)  # nopep8
+
+    # Reviewed PRs data (get_prs_reviewed now returns a list directly)
+    reviewed_nodes = prs_reviewed if prs_reviewed else []
+    lines_reviewed = sum(pr.get("additions", 0) + pr.get("deletions", 0) for pr in reviewed_nodes)  # nopep8
+
+    # Count commits by repo from search API (includes all branches for non-forks)  # nopep8
+    # Also track SHAs for fetching line stats later
+    commit_counts_by_repo = defaultdict(int)
+    commit_shas_by_repo = defaultdict(list)
+    commit_items = commits_data.get("items", []) if commits_data else []
+    for commit in commit_items:
+        repo_name = commit.get("repository", {}).get("full_name", "")
+        repo_private = commit.get("repository", {}).get("private", False)
+        sha = commit.get("sha", "")
+        # Skip private and special repos
+        if repo_name and not should_skip_repo(repo_name, username=username) and not repo_private:  # nopep8
+            commit_counts_by_repo[repo_name] += 1
+            if sha:
+                commit_shas_by_repo[repo_name].append(sha)
+
+    # Get commits from user's forks (search API doesn't index non-default branches of forks)  # nopep8
+    # Only check forks of categorized repos to avoid slow API calls for all forks  # nopep8
+    categorized_repos = set()
+    for repos in PROJECT_CATEGORIES.values():
+        categorized_repos.update(repos)
+
+    progress.start("Fetching forks...")
+    user_forks = get_user_forks(username)
+
+    # Find forks and their parents
+    fork_to_parent = {}  # fork_name -> parent_name
+    forks_to_check = []
+    for fork in user_forks:
+        fork_name = fork.get("full_name", "")
+        parent_name = (fork.get("parent") or {}).get("full_name")
+        if not fork_name or not parent_name:
+            continue
+        fork_to_parent[fork_name] = parent_name
+        # Only fetch commits from forks of categorized repos
+        if parent_name in categorized_repos:
+            forks_to_check.append(fork_name)
+
+    # Fetch parent repo info to use for forks (better language/description)
+    parent_repos_to_fetch = set(fork_to_parent.values())
+    progress.update(f"Fetching info for {len(parent_repos_to_fetch)} parent repos...")  # nopep8
+    parent_info = get_repo_info(parent_repos_to_fetch) if parent_repos_to_fetch else {}  # nopep8
+
+    # Build fork info using parent's language and description
+    fork_info = {}
+    for fork_name, parent_name in fork_to_parent.items():
+        parent = parent_info.get(parent_name, {})
+        fork_info[fork_name] = {
+            "nameWithOwner": fork_name,
+            "description": parent.get("description") or "",
+            "primaryLanguage": parent.get("primaryLanguage") or {"name": ""},
+            "isFork": True,
+            "parent": {"nameWithOwner": parent_name}
+        }
+
+    # Check each fork for commits
+    for i, fork_name in enumerate(forks_to_check, 1):
+        progress.update(f"Checking fork {i}/{len(forks_to_check)}: {Colors.highlight(fork_name)}")  # nopep8
+        # Get commits from all branches of this fork
+        fork_commits = get_fork_commits(username, fork_name, since_date, until_date)  # nopep8
+        if fork_commits:
+            # Only count commits not already found via search API
+            existing_count = commit_counts_by_repo.get(fork_name, 0)
+            new_count = len(fork_commits)
+            if new_count > existing_count:
+                commit_counts_by_repo[fork_name] = new_count
+                # Update SHAs - replace with full list from fork
+                commit_shas_by_repo[fork_name] = [c.get("sha", "") for c in fork_commits if c.get("sha")]  # nopep8
+
+    # Get repo info (fork status, parent, etc.) for all repos with commits
+    repos_to_lookup = set(commit_counts_by_repo.keys()) - set(fork_info.keys())
+    if repos_to_lookup:
+        progress.start(f"Fetching info for {len(repos_to_lookup)} repositories...")  # nopep8
+        repo_info = get_repo_info(repos_to_lookup)
+        progress.stop()
+    else:
+        repo_info = {}
+    repo_info.update(fork_info)  # Add fork info we already have
+
+    # Aggregate fork commits into parent repos (both counts and SHAs)
+    aggregated_commits = defaultdict(int)
+    aggregated_shas = defaultdict(list)
+    for repo_name, commit_count in commit_counts_by_repo.items():
+        info = repo_info.get(repo_name, {})
+        # Skip private and special repos
+        if should_skip_repo(repo_name, info, username):
+            continue
+        is_fork = info.get("isFork", False)
+        repo_owner = repo_name.split("/")[0] if "/" in repo_name else ""
+        # Skip forks owned by other users (only include user's own forks)
+        if is_fork and repo_owner.lower() != username.lower():
+            continue
+        parent = (info.get("parent") or {}).get("nameWithOwner")
+        # If it's a fork, attribute commits to the parent
+        target_repo = parent if is_fork and parent else repo_name
+        # Also skip if the target repo (parent) should be skipped
+        target_info = repo_info.get(target_repo, {})
+        if should_skip_repo(target_repo, target_info, username):
+            continue
+        aggregated_commits[target_repo] += commit_count
+        # For SHAs, we need to map them to the source repo for API calls
+        # Store as (source_repo, sha) tuples
+        for sha in commit_shas_by_repo.get(repo_name, []):
+            aggregated_shas[target_repo].append((repo_name, sha))
+
+    # Recalculate total commits
+    total_commits_all = sum(aggregated_commits.values())
+
+    # Fetch info for any parent repos we don't have yet
+    missing_repos = set(aggregated_commits.keys()) - set(repo_info.keys())
+    if missing_repos:
+        progress.start(f"Fetching info for {len(missing_repos)} parent repositories...")  # nopep8
+        parent_repo_info = get_repo_info(missing_repos)
+        repo_info.update(parent_repo_info)
+        progress.stop()
+
+    # Fetch commit stats (additions/deletions) for all commits in parallel
+    progress.start("Fetching commit line stats...")
+    repo_line_stats = defaultdict(lambda: {"additions": 0, "deletions": 0})
+
+    # Flatten all (target_repo, source_repo, sha) tuples for parallel fetching
+    all_commits = []
+    for target_repo, sha_tuples in aggregated_shas.items():
+        for source_repo, sha in sha_tuples:
+            all_commits.append((target_repo, source_repo, sha))
+
+    total_shas = len(all_commits)
+    processed = [0]  # Use list to allow mutation in nested function
+    results_lock = threading.Lock()
+
+    def fetch_commit_stats(commit_tuple):
+        target_repo, source_repo, sha = commit_tuple
+        result = run_gh_command([
+            "api", f"repos/{source_repo}/commits/{sha}",
+            "--jq", "{additions: .stats.additions, deletions: .stats.deletions}"  # nopep8
+        ])
+        with results_lock:
+            processed[0] += 1
+            if processed[0] % 20 == 0 or processed[0] == total_shas:
+                progress.update(f"Fetching commit stats ({processed[0]}/{total_shas})...")  # nopep8
+        if result:
+            return (target_repo, result.get("additions") or 0, result.get("deletions") or 0)  # nopep8
+        return (target_repo, 0, 0)
+
+    # Use ThreadPoolExecutor to fetch in parallel (30 concurrent requests)
+    with ThreadPoolExecutor(max_workers=30) as executor:
+        futures = [executor.submit(fetch_commit_stats, c) for c in all_commits]
+        for future in as_completed(futures):
+            target_repo, additions, deletions = future.result()
+            repo_line_stats[target_repo]["additions"] += additions
+            repo_line_stats[target_repo]["deletions"] += deletions
+
+    progress.stop()
+
+    # Categorize commits by repo
+    repos_by_category = defaultdict(list)
+
+    # Languages that often mask C++ due to test files
+    test_file_languages = {"JavaScript", "HTML", "Python", "Shell"}
+
+    # First pass: collect repos that need language checking
+    repos_needing_lang_check = []
+    repos_with_known_lang = []
+
+    for repo_name, commit_count in aggregated_commits.items():
+        info = repo_info.get(repo_name, {})
+        if should_skip_repo(repo_name, info, username):
+            continue
+        reported_language = (info.get("primaryLanguage") or {}).get("name", "")
+
+        if reported_language in test_file_languages:
+            repos_needing_lang_check.append((repo_name, commit_count, info, reported_language))  # nopep8
+        else:
+            repos_with_known_lang.append((repo_name, commit_count, info, reported_language))  # nopep8
+
+    # Fetch effective languages in parallel
+    effective_languages = {}
+    if repos_needing_lang_check:
+        progress.start(f"Checking languages for {len(repos_needing_lang_check)} repos...")  # nopep8
+
+        def fetch_lang(repo_name):
+            return (repo_name, get_effective_language(repo_name))
+
+        with ThreadPoolExecutor(max_workers=10) as executor:
+            futures = [executor.submit(fetch_lang, r[0]) for r in repos_needing_lang_check]  # nopep8
+            for future in as_completed(futures):
+                repo_name, lang = future.result()
+                effective_languages[repo_name] = lang
+
+        progress.stop()
+
+    # Build repos_by_category with resolved languages
+    for repo_name, commit_count, info, reported_language in repos_with_known_lang:  # nopep8
+        category = get_category(repo_name)
+        repos_by_category[category].append({
+            "name": repo_name,
+            "commits": commit_count,
+            "description": info.get("description") or "",
+            "language": reported_language,
+        })
+
+    for repo_name, commit_count, info, reported_language in repos_needing_lang_check:  # nopep8
+        effective_lang = effective_languages.get(repo_name)
+        language = effective_lang if effective_lang else reported_language
+        category = get_category(repo_name)
+        repos_by_category[category].append({
+            "name": repo_name,
+            "commits": commit_count,
+            "description": info.get("description") or "",
+            "language": language,
+        })
+
+    # Build a mapping of repo -> language for use in PR tables
+    repo_languages = {}
+    for category_repos in repos_by_category.values():
+        for repo in category_repos:
+            repo_languages[repo["name"]] = repo.get("language", "")
+
+    progress.start("Generating report...")
+
+    # Sort repos within categories by commit count
+    for category in repos_by_category:
+        repos_by_category[category].sort(key=lambda x: x["commits"], reverse=True)  # nopep8
+
+    # Categorize PRs created
+    prs_by_category = defaultdict(list)
+    for pr in prs_nodes:
+        repo_name = (pr.get("repository") or {}).get("nameWithOwner", "")
+        category = get_category(repo_name)
+        prs_by_category[category].append(pr)
+
+    # Categorize PRs reviewed
+    reviews_by_category = defaultdict(list)
+    for pr in reviewed_nodes:
+        repo_name = (pr.get("repository") or {}).get("nameWithOwner", "")
+        category = get_category(repo_name)
+        reviews_by_category[category].append(pr)
+
+    # Generate markdown report
+    report = []
+    # Build title with hyperlink and optional real name
+    user_link = f"[{username}](https://github.com/{username})"
+    if user_real_name:
+        title = f"# github user chronicle: {user_link} ({user_real_name})"
+    else:
+        title = f"# github user chronicle: {user_link}"
+    report.append(title)
+    report.append("")
+    report.append(f"**Period:** {since_date} to {until_date}")
+    report.append("")
+    report.append("---")
+    report.append("")
+
+    # Notable PRs (first table - most visible)
+    notable_prs = sorted(prs_nodes, key=lambda x: x.get("additions", 0), reverse=True)[:15]  # nopep8
+
+    if notable_prs:
+        report.append("## Notable PRs")
+        report.append("")
+        report.append("| PR | Repository | Language | Lines | Reviews | Status |")  # nopep8
+        report.append("|----|------------|----------|----------:|--------:|--------|")  # nopep8
+
+        for pr in notable_prs:
+            status = "Merged" if pr.get("merged") else pr.get("state", "").capitalize()  # nopep8
+            title = pr.get("title", "")[:60]
+            if len(pr.get("title", "")) > 60:
+                title += "..."
+            additions = pr.get("additions", 0)
+            deletions = pr.get("deletions", 0)
+            reviews = (pr.get("reviews") or {}).get("totalCount", 0)
+            repo_info = pr.get("repository") or {}
+            repo = repo_info.get("nameWithOwner", "")
+            # Use computed language if available; fall back to primaryLanguage
+            language = repo_languages.get(repo) or (repo_info.get("primaryLanguage") or {}).get("name", "")  # nopep8
+            url = pr.get("url", "")
+
+            report.append(f"| [{title}]({url}) | {repo} | {language} | +{additions}/-{deletions} | {reviews} | {status} |")  # nopep8
+
+        report.append("")
+
+    # Projects by category (second section - shows where effort went)
+    report.append("## Projects by category")
+    report.append("")
+
+    # Define display order for categories
+    category_order = [
+        "Web standards and specifications",
+        "Specification maintenance",
+        "Web Platform Tests",
+        "HTML/CSS checking (validation)",
+        "Documentation",
+        "Browser engines",
+        "Developer tools",
+        "GitHub analytics",
+        "Other web projects",
+        "Other"
+    ]
+
+    for category in category_order:
+        repos = repos_by_category.get(category, [])
+        if not repos:
+            continue
+
+        total_cat_commits = sum(r["commits"] for r in repos)
+        report.append(f"### {category}")
+        report.append("")
+        report.append(f"*{len(repos)} repositories, {format_number(total_cat_commits)} commits*")  # nopep8
+        report.append("")
+        report.append("| Repository | Commits | Lines | Language | Description |")  # nopep8
+        report.append("|------------|--------:|----------:|----------|-------------|")  # nopep8
+
+        for repo in repos:
+            desc = repo["description"] or ""
+            desc = desc[:50] + "..." if len(desc) > 50 else desc
+            lines = repo_line_stats.get(repo["name"], {"additions": 0, "deletions": 0})  # nopep8
+            lines_str = f"+{format_number(lines['additions'])}/-{format_number(lines['deletions'])}"  # nopep8
+            report.append(f"| [{repo['name']}](https://github.com/{repo['name']}) | {repo['commits']} | {lines_str} | {repo['language']} | {desc} |")  # nopep8
+
+        report.append("")
+
+    report.append("## Executive summary")
+    report.append("")
+    report.append("| Metric | Count |")
+    report.append("|--------|------:|")
+    report.append(f"| Commits (default branches) | {format_number(total_commits_default_branch)} |")  # nopep8
+    report.append(f"| Commits (all branches) | {format_number(total_commits_all)} |")  # nopep8
+    report.append(f"| PRs created | {format_number(total_prs)} |")
+    report.append(f"| Pull request reviews given | {format_number(total_pr_reviews)} |")  # nopep8
+    report.append(f"| Issues created | {format_number(total_issues)} |")
+    report.append(f"| Repositories contributed to | {format_number(repos_contributed)} |")  # nopep8
+    report.append(f"| Lines added | {format_number(total_additions)} |")
+    report.append(f"| Lines deleted | {format_number(total_deletions)} |")
+    report.append(f"| Test-related commits | {format_number(test_commits)} |")
+    report.append("")
+
+    # Aggregate stats by language (using commit-based line stats)
+    lang_commits = defaultdict(int)
+    lang_additions = defaultdict(int)
+    lang_deletions = defaultdict(int)
+
+    # Get commits and lines by language from repos
+    for category_repos in repos_by_category.values():
+        for repo in category_repos:
+            lang = repo.get("language") or "Unknown"
+            lang_commits[lang] += repo.get("commits", 0)
+            # Get line stats from commit-based stats
+            lines = repo_line_stats.get(repo["name"], {"additions": 0, "deletions": 0})  # nopep8
+            lang_additions[lang] += lines["additions"]
+            lang_deletions[lang] += lines["deletions"]
+
+    # Build language summary table
+    all_languages = set(lang_commits.keys())
+    lang_stats = []
+    for lang in all_languages:
+        lang_stats.append({
+            "language": lang,
+            "commits": lang_commits.get(lang, 0),
+            "additions": lang_additions.get(lang, 0),
+            "deletions": lang_deletions.get(lang, 0),
+        })
+    # Sort by commits descending
+    lang_stats.sort(key=lambda x: x["commits"], reverse=True)
+
+    if lang_stats:
+        report.append("## Languages")
+        report.append("")
+        report.append("| Language | Commits | Lines |")
+        report.append("|----------|--------:|----------:|")
+        for stat in lang_stats:
+            report.append(f"| {stat['language']} | {format_number(stat['commits'])} | +{format_number(stat['additions'])}/-{format_number(stat['deletions'])} |")  # nopep8
+        report.append("")
+
+    report.append("## Code reviews")
+    report.append("")
+    report.append("### Reviews performed")
+    report.append("")
+    report.append("| Metric | Count |")
+    report.append("|--------|------:|")
+    report.append(f"| PRs reviewed | {format_number(len(reviewed_nodes))} |")
+    report.append(f"| Lines of source reviewed | {format_number(lines_reviewed)} |")  # nopep8
+    report.append(f"| PR discussions participated in | {format_number(review_comments)} |")  # nopep8
+    report.append("")
+
+    report.append("### Reviews received (on their PRs)")
+    report.append("")
+    report.append("| Metric | Count |")
+    report.append("|--------|------:|")
+    report.append(f"| Reviews received | {format_number(reviews_received)} |")
+    report.append(f"| Review comments received | {format_number(pr_comments_received)} |")  # nopep8
+    report.append("")
+
+    report.append("## PRs created")
+    report.append("")
+
+    merged_prs = [pr for pr in prs_nodes if pr.get("merged")]
+    open_prs = [pr for pr in prs_nodes if pr.get("state") == "OPEN"]
+    closed_prs = [pr for pr in prs_nodes if pr.get("state") == "CLOSED" and not pr.get("merged")]  # nopep8
+
+    report.append("| Status | Count |")
+    report.append("|--------|------:|")
+    report.append(f"| Merged | {len(merged_prs)} |")
+    report.append(f"| Open | {len(open_prs)} |")
+    report.append(f"| Closed (not merged) | {len(closed_prs)} |")
+    report.append(f"| **Total** | **{len(prs_nodes)}** |")
+    report.append("")
+
+    if reviewed_nodes:
+        report.append("## PRs reviewed")
+        report.append("")
+
+        # Group by repository
+        reviewed_by_repo = defaultdict(list)
+        for pr in reviewed_nodes:
+            repo = (pr.get("repository") or {}).get("nameWithOwner", "")
+            reviewed_by_repo[repo].append(pr)
+
+        report.append("| Repository | Language | PRs Reviewed | Total Lines |")
+        report.append("|------------|----------|-------------:|------------:|")
+
+        for repo, prs in sorted(reviewed_by_repo.items(), key=lambda x: len(x[1]), reverse=True)[:15]:  # nopep8
+            total_lines = sum(pr.get("additions", 0) + pr.get("deletions", 0) for pr in prs)  # nopep8
+            # Use computed language if available; fall back to primaryLanguage
+            language = repo_languages.get(repo) or ((prs[0].get("repository") or {}).get("primaryLanguage") or {}).get("name", "")  # nopep8
+            report.append(f"| {repo} | {language} | {len(prs)} | {format_number(total_lines)} |")  # nopep8
+
+        report.append("")
+
+    # Footer
+    report.append("---")
+    report.append("")
+    report.append(f"*Report generated on {datetime.now().astimezone().strftime('%Y-%m-%d %H:%M:%S %z')}*")  # nopep8
+
+    progress.stop()
+    return "\n".join(report)
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Generate an activity report for a GitHub user over time"  # nopep8
+    )
+    parser.add_argument(
+        "--user", "-u", type=str,
+        help="GitHub username (default: current authenticated user)"
+    )
+    parser.add_argument(
+        "--days", type=int,
+        help="Number of days to look back (default: 30)"
+    )
+    parser.add_argument(
+        "--weeks", type=int,
+        help="Number of weeks to look back"
+    )
+    parser.add_argument(
+        "--months", type=int,
+        help="Number of months to look back"
+    )
+    parser.add_argument(
+        "--year", action="store_true",
+        help="Look back one year (shortcut for --days 365)"
+    )
+    parser.add_argument(
+        "--since", type=str,
+        help="Start date in YYYY-MM-DD format"
+    )
+    parser.add_argument(
+        "--until", type=str,
+        help="End date in YYYY-MM-DD format (default: today)"
+    )
+    parser.add_argument(
+        "--output", "-o", type=str,
+        help="Output file path (default: <username>-<since>-to-<until>.md)"
+    )
+    parser.add_argument(
+        "--stdout", action="store_true",
+        help="Output to stdout instead of file"
+    )
+
+    args = parser.parse_args()
+
+    # Determine username
+    if args.user:
+        username = args.user
+    else:
+        try:
+            result = subprocess.run(
+                ["gh", "api", "user", "--jq", ".login"],
+                capture_output=True, text=True, check=True
+            )
+            username = result.stdout.strip()
+            if not username:
+                raise ValueError("Empty username")
+        except subprocess.CalledProcessError as e:
+            # Check if it's a rate limit error
+            if "rate limit" in e.stderr.lower():
+                # Try to get rate limit reset time
+                try:
+                    rate_result = subprocess.run(
+                        ["gh", "api", "rate_limit", "--jq", ".rate.reset"],
+                        capture_output=True, text=True, check=True
+                    )
+                    reset_timestamp = int(rate_result.stdout.strip())
+                    reset_time = datetime.fromtimestamp(reset_timestamp)
+                    reset_str = reset_time.strftime("%H:%M:%S")
+                    print(Colors.error("Error: GitHub API rate limit exceeded."), file=sys.stderr)  # nopep8
+                    print(Colors.warning(f"Try again after {reset_str} (local time)."), file=sys.stderr)  # nopep8
+                except Exception:
+                    print(Colors.error("Error: GitHub API rate limit exceeded. Try again later."), file=sys.stderr)  # nopep8
+            else:
+                print(Colors.error("Error: Could not detect GitHub username. Please specify with --user USERNAME"), file=sys.stderr)  # nopep8
+            sys.exit(1)
+        except ValueError:
+            print(Colors.error("Error: Could not detect GitHub username. Please specify with --user USERNAME"), file=sys.stderr)  # nopep8
+            sys.exit(1)
+
+    # Determine date range
+    # Priority: --since > --year > --months > --weeks > --days (default 30)
+    if args.since:
+        since_date = args.since
+    elif args.year:
+        since_date = (datetime.now() - timedelta(days=365)).strftime("%Y-%m-%d")  # nopep8
+    elif args.months:
+        since_date = (datetime.now() - timedelta(days=args.months * 30)).strftime("%Y-%m-%d")  # nopep8
+    elif args.weeks:
+        since_date = (datetime.now() - timedelta(weeks=args.weeks)).strftime("%Y-%m-%d")  # nopep8
+    elif args.days:
+        since_date = (datetime.now() - timedelta(days=args.days)).strftime("%Y-%m-%d")  # nopep8
+    else:
+        since_date = (datetime.now() - timedelta(days=30)).strftime("%Y-%m-%d")
+
+    until_date = args.until if args.until else datetime.now().strftime("%Y-%m-%d")  # nopep8
+
+    # Generate report
+    report = generate_report(username, since_date, until_date)
+
+    # Output
+    if args.stdout:
+        print(report)
+    else:
+        output_path = args.output or f"{username}-{since_date}-to-{until_date}.md"  # nopep8
+        with open(output_path, "w") as f:
+            f.write(report)
+        print(f"Report written to {Colors.success(output_path)}", file=sys.stderr)  # nopep8
+
+
+if __name__ == "__main__":
+    main()
