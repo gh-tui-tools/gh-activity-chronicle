@@ -1,0 +1,7719 @@
+# github activity chronicle: [w3c](https://github.com/w3c) (World Wide Web Consortium)
+
+**Period:** 2025-12-27 to 2026-01-26
+
+---
+
+## Notable PRs
+
+| PR | Repository | Language | Lines | Reviews | Status |
+|----|------------|----------|----------:|--------:|--------|
+| [doc(archive): copy changes from staging](https://github.com/apache/cordova-docs/pull/1462) | apache/cordova-docs | JavaScript | +4569537/-272004 | 2 | Merged |
+| [doc(stage-archive): old version English docs](https://github.com/apache/cordova-docs/pull/1454) | apache/cordova-docs | JavaScript | +4568405/-2 | 3 | Merged |
+| [ci](https://github.com/mrhenry/S3-Uploads/pull/2) | mrhenry/S3-Uploads | PHP | +618298/-234201 | 0 | Open |
+| [css_ast: Fixup MediaQueryList & ContainerConditionList to us...](https://github.com/csskit/csskit/pull/795) | csskit/csskit | Rust | +603004/-620224 | 3 | Merged |
+| [Port all compatible pass tests to lit](https://github.com/WebAssembly/binaryen/pull/8185) | WebAssembly/binaryen | WebAssembly | +402324/-310860 | 0 | Closed |
+| [Review Draft Publication: January 2026](https://github.com/whatwg/html/pull/12094) | whatwg/html | HTML | +157691/-1 | 1 | Merged |
+| [doc(archive): add 13.x-2025.11 & more cleanup](https://github.com/apache/cordova-docs/pull/1458) | apache/cordova-docs | JavaScript | +123627/-28731 | 1 | Merged |
+| [v1.1.0 - Provisional Unicode Assignments](https://github.com/athinkra/sheek-bakrii-saphaloo/pull/1) | athinkra/sheek-bakrii-saphaloo | Perl | +80343/-171294 | 0 | Merged |
+| [Types: Bulk conversion to ES6 classes](https://github.com/CesiumGS/cesium/pull/13125) | CesiumGS/cesium | JavaScript | +38331/-38467 | 0 | Open |
+| [Lazy load imagemaps](https://github.com/Favorite-Icons-Of-Internet/favoriteiconsofinternet/pull/19) | Favorite-Icons-Of-Internet/favoriteiconsofinternet | JavaScript | +35741/-28869 | 0 | Merged |
+| [Technical updates](https://github.com/w3c/wai-website/pull/1745) | w3c/wai-website | HTML | +35566/-125 | 0 | Merged |
+| [Update libcxx and libcxxabi from LLVM 20.1.8 to 21.1.8](https://github.com/emscripten-core/emscripten/pull/26058) | emscripten-core/emscripten | C++ | +35091/-12792 | 6 | Merged |
+| [Initial commit](https://github.com/dynatrace-oss/dtctl/pull/1) | dynatrace-oss/dtctl | Go | +34277/-59 | 0 | Merged |
+| [Only generate AcqRel SafeHeap load methods when --relaxed-at...](https://github.com/WebAssembly/binaryen/pull/8193) | WebAssembly/binaryen | WebAssembly | +33694/-3 | 3 | Merged |
+| [Port pass tests that use safe heap + threads to lit](https://github.com/WebAssembly/binaryen/pull/8184) | WebAssembly/binaryen | WebAssembly | +33685/-32869 | 1 | Merged |
+
+## Projects by category
+
+### Accessibility (WAI)
+
+*24 repositories, 105 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-w3c-wai-website"></span>[w3c/wai-website](https://github.com/w3c/wai-website) | [14](#commits-w3c-wai-website) | HTML | This repository hosts the W3C WAI web site. |
+| <span id="row-abra-nl-abra-sdk-ios-package"></span>[abra-nl/abra-sdk-ios-package](https://github.com/abra-nl/abra-sdk-ios-package) | [11](#commits-abra-nl-abra-sdk-ios-package) | Swift | Abra SDK package for iOS |
+| <span id="row-w3c-wai-wcag-em-report-tool"></span>[w3c/wai-wcag-em-report-tool](https://github.com/w3c/wai-wcag-em-report-tool) | [9](#commits-w3c-wai-wcag-em-report-tool) | Svelte | WCAG-EM Report Tool |
+| <span id="row-abra-nl-abra-api-ios-package"></span>[abra-nl/abra-api-ios-package](https://github.com/abra-nl/abra-api-ios-package) | [8](#commits-abra-nl-abra-api-ios-package) | Swift | Abra API package for iOS  |
+| <span id="row-w3c-aria"></span>[w3c/aria](https://github.com/w3c/aria) | [8](#commits-w3c-aria) | HTML | Accessible Rich Internet Applications (WAI-ARIA) |
+| <span id="row-w3c-wai-website-theme"></span>[w3c/wai-website-theme](https://github.com/w3c/wai-website-theme) | [8](#commits-w3c-wai-website-theme) | JavaScript | WAI Website Theme |
+| <span id="row-readium-speech"></span>[readium/speech](https://github.com/readium/speech) | [5](#commits-readium-speech) | TypeScript | 💬 A TypeScript library for implementing read aloud... |
+| <span id="row-w3c-wai-atag-report-tool"></span>[w3c/wai-atag-report-tool](https://github.com/w3c/wai-atag-report-tool) | [5](#commits-w3c-wai-atag-report-tool) | JavaScript | Repository for ATAG Report Tool |
+| <span id="row-w3c-wai-website-plugin"></span>[w3c/wai-website-plugin](https://github.com/w3c/wai-website-plugin) | [5](#commits-w3c-wai-website-plugin) | Ruby |  |
+| <span id="row-jsx-eslint-eslint-plugin-jsx-a11y"></span>[jsx-eslint/eslint-plugin-jsx-a11y](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y) | [5](#commits-jsx-eslint-eslint-plugin-jsx-a11y) | JavaScript | Static AST checker for a11y rules on JSX elements. |
+| <span id="row-airbr-wcag-json-experience"></span>[airbr/WCAG-JSON-experience](https://github.com/airbr/WCAG-JSON-experience) | [4](#commits-airbr-wcag-json-experience) | JavaScript | Updated in Jan 2026. Uses the WCAG JSON with full ... |
+| <span id="row-hadriengardeur-web-speech-recommended-voices"></span>[HadrienGardeur/web-speech-recommended-voices](https://github.com/HadrienGardeur/web-speech-recommended-voices) | [4](#commits-hadriengardeur-web-speech-recommended-voices) |  | A list of recommended voices for the Web Speech AP... |
+| <span id="row-w3c-wcag"></span>[w3c/wcag](https://github.com/w3c/wcag) | [3](#commits-w3c-wcag) | HTML | Web Content Accessibility Guidelines |
+| <span id="row-w3c-wcag-act-rules"></span>[w3c/wcag-act-rules](https://github.com/w3c/wcag-act-rules) | [3](#commits-w3c-wcag-act-rules) | HTML | WCAG Conformance Test Rules |
+| <span id="row-w3c-wai-evaluation-tools-list"></span>[w3c/wai-evaluation-tools-list](https://github.com/w3c/wai-evaluation-tools-list) | [2](#commits-w3c-wai-evaluation-tools-list) | JavaScript | List of Accessibility Evaluation Tools |
+| <span id="row-w3c-wai-statements"></span>[w3c/wai-statements](https://github.com/w3c/wai-statements) | [2](#commits-w3c-wai-statements) | HTML | Accessibility Statements |
+| <span id="row-w3c-wai-website-data"></span>[w3c/wai-website-data](https://github.com/w3c/wai-website-data) | [2](#commits-w3c-wai-website-data) | Ruby | Shared data used for the W3C WAI website |
+| <span id="row-studio24-accessible-forms"></span>[studio24/accessible-forms](https://github.com/studio24/accessible-forms) | [1](#commits-studio24-accessible-forms) | Twig | Create more accessible forms in your PHP apps |
+| <span id="row-w3c-wai-course-list"></span>[w3c/wai-course-list](https://github.com/w3c/wai-course-list) | [1](#commits-w3c-wai-course-list) | JavaScript | List of Courses on Web Accessibility |
+| <span id="row-w3c-wai-wcag-supplemental"></span>[w3c/wai-wcag-supplemental](https://github.com/w3c/wai-wcag-supplemental) | [1](#commits-w3c-wai-wcag-supplemental) | HTML | Repository to display Design Patterns for People w... |
+| <span id="row-w3c-wai-authoring-tools-list"></span>[w3c/wai-authoring-tools-list](https://github.com/w3c/wai-authoring-tools-list) | [1](#commits-w3c-wai-authoring-tools-list) | Liquid | List of Authoring Tools |
+| <span id="row-w3c-wai-resource-template"></span>[w3c/wai-resource-template](https://github.com/w3c/wai-resource-template) | [1](#commits-w3c-wai-resource-template) | Ruby |  |
+| <span id="row-w3c-wai-policies-prototype"></span>[w3c/wai-policies-prototype](https://github.com/w3c/wai-policies-prototype) | [1](#commits-w3c-wai-policies-prototype) | JavaScript | Web Accessibility Laws & Policies |
+| <span id="row-act-rules-act-rules-github-io"></span>[act-rules/act-rules.github.io](https://github.com/act-rules/act-rules.github.io) | [1](#commits-act-rules-act-rules-github-io) | JavaScript | Accessibility conformance testing rules for HTML |
+
+### Internationalization (i18n)
+
+*11 repositories, 61 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-unicode-org-icu4x"></span>[unicode-org/icu4x](https://github.com/unicode-org/icu4x) | [12](#commits-unicode-org-icu4x) | Rust | Solving i18n for client-side and resource-constrai... |
+| <span id="row-projectfluent-python-fluent"></span>[projectfluent/python-fluent](https://github.com/projectfluent/python-fluent) | [11](#commits-projectfluent-python-fluent) | Python | Python implementation of Project Fluent |
+| <span id="row-w3c-i18n-drafts"></span>[w3c/i18n-drafts](https://github.com/w3c/i18n-drafts) | [11](#commits-w3c-i18n-drafts) | HTML | A place to edit articles, tutorials, and the like ... |
+| <span id="row-w3c-clreq"></span>[w3c/clreq](https://github.com/w3c/clreq) | [8](#commits-w3c-clreq) | HTML | Requirements for Chinese Text Layout |
+| <span id="row-projectfluent-fluent-js"></span>[projectfluent/fluent.js](https://github.com/projectfluent/fluent.js) | [7](#commits-projectfluent-fluent-js) | JavaScript | JavaScript implementation of Project Fluent |
+| <span id="row-projectfluent-fluent"></span>[projectfluent/fluent](https://github.com/projectfluent/fluent) | [4](#commits-projectfluent-fluent) | JavaScript | Fluent — planning, spec and documentation |
+| <span id="row-w3c-ruby-tts-req"></span>[w3c/ruby-tts-req](https://github.com/w3c/ruby-tts-req) | [4](#commits-w3c-ruby-tts-req) | HTML | Text to Speech of Electronic Documents Containing ... |
+| <span id="row-w3c-i18n-tests"></span>[w3c/i18n-tests](https://github.com/w3c/i18n-tests) | [1](#commits-w3c-i18n-tests) | HTML | Internationalization tests run with the W3C i18n t... |
+| <span id="row-w3c-i18n-videos"></span>[w3c/i18n-videos](https://github.com/w3c/i18n-videos) | [1](#commits-w3c-i18n-videos) |  | Internationalization-related video metadata and as... |
+| <span id="row-w3c-i18n-activity"></span>[w3c/i18n-activity](https://github.com/w3c/i18n-activity) | [1](#commits-w3c-i18n-activity) | HTML | Home pages, charters, style-guides, and similar do... |
+| <span id="row-w3c-ruby-t2s-req"></span>[w3c/ruby-t2s-req](https://github.com/w3c/ruby-t2s-req) | [1](#commits-w3c-ruby-t2s-req) | HTML | New repository: https://github.com/w3c/ruby-tts-re... |
+
+### Security
+
+*6 repositories, 26 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-socketdev-socket-sdk-js"></span>[SocketDev/socket-sdk-js](https://github.com/SocketDev/socket-sdk-js) | [14](#commits-socketdev-socket-sdk-js) | TypeScript | JavaScript SDK for Socket.dev API |
+| <span id="row-ektrah-libsodium-core"></span>[ektrah/libsodium-core](https://github.com/ektrah/libsodium-core) | [5](#commits-ektrah-libsodium-core) | C# | libsodium for .NET - A secure cryptographic librar... |
+| <span id="row-w3c-webappsec-passkey-endpoints"></span>[w3c/webappsec-passkey-endpoints](https://github.com/w3c/webappsec-passkey-endpoints) | [3](#commits-w3c-webappsec-passkey-endpoints) | Bikeshed | A well-known URL for passkey relying party endpoin... |
+| <span id="row-w3c-security-disclosure"></span>[w3c/security-disclosure](https://github.com/w3c/security-disclosure) | [2](#commits-w3c-security-disclosure) | HTML | W3C Standards Vulnerability Disclosure & Handling ... |
+| <span id="row-grokify-govex"></span>[grokify/govex](https://github.com/grokify/govex) | [1](#commits-grokify-govex) | Go | Vulnerability Reporting Automation |
+| <span id="row-w3c-webappsec-mixed-content"></span>[w3c/webappsec-mixed-content](https://github.com/w3c/webappsec-mixed-content) | [1](#commits-w3c-webappsec-mixed-content) | HTML | WebAppSec Mixed Content |
+
+### Privacy
+
+*2 repositories, 4 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-privacy-tech-lab-gpc-web-crawler"></span>[privacy-tech-lab/gpc-web-crawler](https://github.com/privacy-tech-lab/gpc-web-crawler) | [3](#commits-privacy-tech-lab-gpc-web-crawler) | Python | GPC Web Crawler for detecting websites' compliance... |
+| <span id="row-privacy-tech-lab-privacy-pioneer-web-crawler"></span>[privacy-tech-lab/privacy-pioneer-web-crawler](https://github.com/privacy-tech-lab/privacy-pioneer-web-crawler) | [1](#commits-privacy-tech-lab-privacy-pioneer-web-crawler) | JavaScript | Web crawler for detecting websites' data collectio... |
+
+### Sustainability
+
+*2 repositories, 13 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-w3c-sustainableweb-wsg"></span>[w3c/sustainableweb-wsg](https://github.com/w3c/sustainableweb-wsg) | [11](#commits-w3c-sustainableweb-wsg) | HTML | Web Sustainability Guidelines (WSG) |
+| <span id="row-w3c-sustainableweb-ig"></span>[w3c/sustainableweb-ig](https://github.com/w3c/sustainableweb-ig) | [2](#commits-w3c-sustainableweb-ig) |  | W3C Sustainable Web Interest Group |
+
+### CSS
+
+*1 repository, 17 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-w3c-csswg-drafts"></span>[w3c/csswg-drafts](https://github.com/w3c/csswg-drafts) | [17](#commits-w3c-csswg-drafts) | Bikeshed | CSS Working Group Editor Drafts |
+
+### HTML
+
+*1 repository, 4 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-w3c-html-ruby"></span>[w3c/html-ruby](https://github.com/w3c/html-ruby) | [4](#commits-w3c-html-ruby) | Bikeshed | HTML Ruby Markup Extensions |
+
+### Events
+
+*1 repository, 16 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-w3c-pointereventswg"></span>[w3c/pointereventswg](https://github.com/w3c/pointereventswg) | [16](#commits-w3c-pointereventswg) | HTML | Pointer Events Working Group  |
+
+### Graphics
+
+*4 repositories, 5 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-gfx-rs-wgpu"></span>[gfx-rs/wgpu](https://github.com/gfx-rs/wgpu) | [2](#commits-gfx-rs-wgpu) | Rust | A cross-platform, safe, pure-Rust graphics API. |
+| <span id="row-google-dawn"></span>[google/dawn](https://github.com/google/dawn) | [1](#commits-google-dawn) | C++ | Native WebGPU implementation. Mirror of https://da... |
+| <span id="row-intel-web-ai-showcase"></span>[intel/web-ai-showcase](https://github.com/intel/web-ai-showcase) | [1](#commits-intel-web-ai-showcase) | JavaScript | Web AI Showcase for Web Assembly, WebGPU and WebNN... |
+| <span id="row-svgdotjs-svgdom"></span>[svgdotjs/svgdom](https://github.com/svgdotjs/svgdom) | [1](#commits-svgdotjs-svgdom) | JavaScript | Straightforward DOM implementation to make SVG.js ... |
+
+### Media
+
+*1 repository, 1 commit*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-w3c-media-wg"></span>[w3c/media-wg](https://github.com/w3c/media-wg) | [1](#commits-w3c-media-wg) | HTML | Media Working Group |
+
+### WebRTC
+
+*1 repository, 2 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-w3c-webrtc-pc"></span>[w3c/webrtc-pc](https://github.com/w3c/webrtc-pc) | [2](#commits-w3c-webrtc-pc) | HTML | WebRTC 1.0 API |
+
+### Performance
+
+*2 repositories, 10 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-googlechrome-web-vitals"></span>[GoogleChrome/web-vitals](https://github.com/GoogleChrome/web-vitals) | [7](#commits-googlechrome-web-vitals) | JavaScript | Essential metrics for a healthy site. |
+| <span id="row-w3c-web-performance"></span>[w3c/web-performance](https://github.com/w3c/web-performance) | [3](#commits-w3c-web-performance) | HTML | W3C Web Performance Working Group repo |
+
+### Social Web
+
+*12 repositories, 230 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-snarfed-bridgy-fed"></span>[snarfed/bridgy-fed](https://github.com/snarfed/bridgy-fed) | [121](#commits-snarfed-bridgy-fed) | Python | 🌉 A bridge between decentralized social networks |
+| <span id="row-hackers4peace-sai-js"></span>[hackers4peace/sai-js](https://github.com/hackers4peace/sai-js) | [32](#commits-hackers4peace-sai-js) | TypeScript | Typescript library for Solid Application Interoper... |
+| <span id="row-snarfed-arroba"></span>[snarfed/arroba](https://github.com/snarfed/arroba) | [29](#commits-snarfed-arroba) | Python | Python implementation of Bluesky PDS and AT Protoc... |
+| <span id="row-matrix-org-matrix-rust-sdk"></span>[matrix-org/matrix-rust-sdk](https://github.com/matrix-org/matrix-rust-sdk) | [13](#commits-matrix-org-matrix-rust-sdk) | Rust | Matrix Client-Server SDK for Rust |
+| <span id="row-snarfed-oauth-dropins"></span>[snarfed/oauth-dropins](https://github.com/snarfed/oauth-dropins) | [7](#commits-snarfed-oauth-dropins) | Python | 🔑 Drop-in OAuth client flows for Python on Google ... |
+| <span id="row-snarfed-bounce"></span>[snarfed/bounce](https://github.com/snarfed/bounce) | [6](#commits-snarfed-bounce) | Python | Switch platforms, keep your people |
+| <span id="row-snarfed-granary"></span>[snarfed/granary](https://github.com/snarfed/granary) | [5](#commits-snarfed-granary) | Python | 💬 The social web translator |
+| <span id="row-w3c-socialwg"></span>[w3c/socialwg](https://github.com/w3c/socialwg) | [4](#commits-w3c-socialwg) |  | Social Web Working Group |
+| <span id="row-w3c-activitystreams"></span>[w3c/activitystreams](https://github.com/w3c/activitystreams) | [4](#commits-w3c-activitystreams) | HTML | Activity Streams 2.0 |
+| <span id="row-w3c-websub"></span>[w3c/websub](https://github.com/w3c/websub) | [3](#commits-w3c-websub) | HTML | WebSub Spec in Social Web Working Group |
+| <span id="row-w3c-webmention"></span>[w3c/webmention](https://github.com/w3c/webmention) | [3](#commits-w3c-webmention) | HTML | Webmention spec |
+| <span id="row-w3c-micropub"></span>[w3c/Micropub](https://github.com/w3c/Micropub) | [3](#commits-w3c-micropub) | HTML | The Micropub spec |
+
+### Semantic Web (Linked Data)
+
+*10 repositories, 37 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-w3c-lws-protocol"></span>[w3c/lws-protocol](https://github.com/w3c/lws-protocol) | [9](#commits-w3c-lws-protocol) | HTML | Linked Web Storage Protocol |
+| <span id="row-w3c-cg-solid"></span>[w3c-cg/solid](https://github.com/w3c-cg/solid) | [8](#commits-w3c-cg-solid) | HTML | W3C Solid Community Group |
+| <span id="row-w3c-data-shapes"></span>[w3c/data-shapes](https://github.com/w3c/data-shapes) | [7](#commits-w3c-data-shapes) | HTML | Data Shapes WG repo |
+| <span id="row-w3c-yml2vocab"></span>[w3c/yml2vocab](https://github.com/w3c/yml2vocab) | [3](#commits-w3c-yml2vocab) | HTML | Generate RDFS vocabulary files from YAML |
+| <span id="row-w3c-ldn"></span>[w3c/ldn](https://github.com/w3c/ldn) | [3](#commits-w3c-ldn) | HTML | 🔔 Linked Data Notifications |
+| <span id="row-w3c-json-ld-charter-2025"></span>[w3c/json-ld-charter-2025](https://github.com/w3c/json-ld-charter-2025) | [2](#commits-w3c-json-ld-charter-2025) | HTML | JSON-LD WG charter, 2025 version |
+| <span id="row-w3c-sparql-query"></span>[w3c/sparql-query](https://github.com/w3c/sparql-query) | [2](#commits-w3c-sparql-query) | HTML |  |
+| <span id="row-w3c-rdf-turtle"></span>[w3c/rdf-turtle](https://github.com/w3c/rdf-turtle) | [1](#commits-w3c-rdf-turtle) | HTML |  |
+| <span id="row-w3c-rdf-n-triples"></span>[w3c/rdf-n-triples](https://github.com/w3c/rdf-n-triples) | [1](#commits-w3c-rdf-n-triples) | HTML |  |
+| <span id="row-w3c-rdf-semantics"></span>[w3c/rdf-semantics](https://github.com/w3c/rdf-semantics) | [1](#commits-w3c-rdf-semantics) | HTML |  |
+
+### Digital Publishing
+
+*4 repositories, 45 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-w3c-epub-specs"></span>[w3c/epub-specs](https://github.com/w3c/epub-specs) | [23](#commits-w3c-epub-specs) | HTML | Shared workspace for EPUB 3 specifications. |
+| <span id="row-w3c-epub-tests"></span>[w3c/epub-tests](https://github.com/w3c/epub-tests) | [12](#commits-w3c-epub-tests) | HTML | Test repository for EPUB3, maintained by the EPUB3... |
+| <span id="row-w3c-pm-wg"></span>[w3c/pm-wg](https://github.com/w3c/pm-wg) | [8](#commits-w3c-pm-wg) | HTML | Publishing Maintenance Working Group |
+| <span id="row-w3c-publ-a11y"></span>[w3c/publ-a11y](https://github.com/w3c/publ-a11y) | [2](#commits-w3c-publ-a11y) | HTML | Accessibility related discussions of the Publishin... |
+
+### Immersive Web (WebXR)
+
+*2 repositories, 4 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-immersive-web-layers"></span>[immersive-web/layers](https://github.com/immersive-web/layers) | [2](#commits-immersive-web-layers) | HTML | A feature repo for working on multi-layer support ... |
+| <span id="row-immersive-web-model-element"></span>[immersive-web/model-element](https://github.com/immersive-web/model-element) | [2](#commits-immersive-web-model-element) | HTML | Repository for the <model> tag. Feature leads: Bra... |
+
+### Verifiable Credentials
+
+*9 repositories, 40 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-w3c-did-resolution"></span>[w3c/did-resolution](https://github.com/w3c/did-resolution) | [14](#commits-w3c-did-resolution) | HTML | RELEASED DRAFT: Decentralized Identifier Resolutio... |
+| <span id="row-w3c-vc-charter-2026"></span>[w3c/vc-charter-2026](https://github.com/w3c/vc-charter-2026) | [5](#commits-w3c-vc-charter-2026) | HTML | Charter proposal for the VC WG 2026 |
+| <span id="row-w3c-vc-wg"></span>[w3c/vc-wg](https://github.com/w3c/vc-wg) | [5](#commits-w3c-vc-wg) | HTML | Working home repository of the W3C Verifiable Cred... |
+| <span id="row-w3c-vc-di-bbs-test-suite"></span>[w3c/vc-di-bbs-test-suite](https://github.com/w3c/vc-di-bbs-test-suite) | [5](#commits-w3c-vc-di-bbs-test-suite) | JavaScript | Interoperability Test Suite for Data Integrity BBS... |
+| <span id="row-w3c-did"></span>[w3c/did](https://github.com/w3c/did) | [4](#commits-w3c-did) | HTML | W3C Decentralized Identifier Specification |
+| <span id="row-w3c-vc-di-ecdsa-test-suite"></span>[w3c/vc-di-ecdsa-test-suite](https://github.com/w3c/vc-di-ecdsa-test-suite) | [2](#commits-w3c-vc-di-ecdsa-test-suite) | JavaScript | Interoperability Test Suite for Data Integrity Ecd... |
+| <span id="row-w3c-vc-data-model-2-0-test-suite"></span>[w3c/vc-data-model-2.0-test-suite](https://github.com/w3c/vc-data-model-2.0-test-suite) | [2](#commits-w3c-vc-data-model-2-0-test-suite) | JavaScript | W3C Verifiable Credentials v2.0 test suite |
+| <span id="row-w3c-vc-di-eddsa-test-suite"></span>[w3c/vc-di-eddsa-test-suite](https://github.com/w3c/vc-di-eddsa-test-suite) | [2](#commits-w3c-vc-di-eddsa-test-suite) | JavaScript | Interoperability Test Suite for Data Integrity Edd... |
+| <span id="row-w3c-vc-bitstring-status-list-test-suite"></span>[w3c/vc-bitstring-status-list-test-suite](https://github.com/w3c/vc-bitstring-status-list-test-suite) | [1](#commits-w3c-vc-bitstring-status-list-test-suite) | JavaScript | Bitstring Status List test suite |
+
+### WebAssembly
+
+*4 repositories, 34 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-webassembly-binaryen"></span>[WebAssembly/binaryen](https://github.com/WebAssembly/binaryen) | [27](#commits-webassembly-binaryen) | WebAssembly | Optimizer and compiler/toolchain library for WebAs... |
+| <span id="row-webassembly-meetings"></span>[WebAssembly/meetings](https://github.com/WebAssembly/meetings) | [4](#commits-webassembly-meetings) | HTML | WebAssembly meetings (VC or in-person), agendas, a... |
+| <span id="row-webassembly-website"></span>[WebAssembly/website](https://github.com/WebAssembly/website) | [2](#commits-webassembly-website) | CSS | WebAssembly website |
+| <span id="row-webassembly-proposals"></span>[WebAssembly/proposals](https://github.com/WebAssembly/proposals) | [1](#commits-webassembly-proposals) |  | Tracking WebAssembly proposals |
+
+### Devices and sensors
+
+*3 repositories, 6 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-w3c-generic-sensor-demos"></span>[w3c/generic-sensor-demos](https://github.com/w3c/generic-sensor-demos) | [3](#commits-w3c-generic-sensor-demos) | HTML | Demos for Generic Sensor API |
+| <span id="row-w3c-sensors"></span>[w3c/sensors](https://github.com/w3c/sensors) | [2](#commits-w3c-sensors) | HTML | Generic Sensor API |
+| <span id="row-w3c-geolocation-sensor"></span>[w3c/geolocation-sensor](https://github.com/w3c/geolocation-sensor) | [1](#commits-w3c-geolocation-sensor) | HTML | Geolocation Sensor |
+
+### Machine Learning
+
+*5 repositories, 27 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-webmachinelearning-webnn"></span>[webmachinelearning/webnn](https://github.com/webmachinelearning/webnn) | [12](#commits-webmachinelearning-webnn) | Bikeshed | 🧠 Web Neural Network API |
+| <span id="row-webmachinelearning-webnn-docs"></span>[webmachinelearning/webnn-docs](https://github.com/webmachinelearning/webnn-docs) | [7](#commits-webmachinelearning-webnn-docs) | JavaScript | WebNN Developer Documentation |
+| <span id="row-webmachinelearning-meetings"></span>[webmachinelearning/meetings](https://github.com/webmachinelearning/meetings) | [5](#commits-webmachinelearning-meetings) |  | 🗒 Agendas, minutes and other meeting material |
+| <span id="row-webmachinelearning-webmcp"></span>[webmachinelearning/webmcp](https://github.com/webmachinelearning/webmcp) | [2](#commits-webmachinelearning-webmcp) |  | 🤖 WebMCP 🧪 |
+| <span id="row-webmachinelearning-translation-api"></span>[webmachinelearning/translation-api](https://github.com/webmachinelearning/translation-api) | [1](#commits-webmachinelearning-translation-api) | Bikeshed | 🌏 A proposal for translator and language detector ... |
+
+### AI and agents
+
+*51 repositories, 1,055 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-nicholasgriffintn-sprintjam-co-uk"></span>[nicholasgriffintn/sprintjam.co.uk](https://github.com/nicholasgriffintn/sprintjam.co.uk) | [134](#commits-nicholasgriffintn-sprintjam-co-uk) | TypeScript | Fast, real-time planning poker for distributed tea... |
+| <span id="row-agentplexus-agent-team-release"></span>[agentplexus/agent-team-release](https://github.com/agentplexus/agent-team-release) | [79](#commits-agentplexus-agent-team-release) | Go | Autonomous release preparation six agent team for ... |
+| <span id="row-nicholasgriffintn-fosdem-pwa"></span>[nicholasgriffintn/fosdem-pwa](https://github.com/nicholasgriffintn/fosdem-pwa) | [78](#commits-nicholasgriffintn-fosdem-pwa) | TypeScript | A PWA companion for fosdem |
+| <span id="row-nicholasgriffintn-bitwobbly-com"></span>[nicholasgriffintn/bitwobbly.com](https://github.com/nicholasgriffintn/bitwobbly.com) | [74](#commits-nicholasgriffintn-bitwobbly-com) | TypeScript | Keep calm and check on |
+| <span id="row-agentplexus-assistantkit"></span>[agentplexus/assistantkit](https://github.com/agentplexus/assistantkit) | [68](#commits-agentplexus-assistantkit) | Go | AssistantKit is a Go library for managing configur... |
+| <span id="row-agentplexus-stats-agent-team"></span>[agentplexus/stats-agent-team](https://github.com/agentplexus/stats-agent-team) | [47](#commits-agentplexus-stats-agent-team) | HTML | Multi-agent system to deliver verified statistics ... |
+| <span id="row-langchain-ai-langchainjs"></span>[langchain-ai/langchainjs](https://github.com/langchain-ai/langchainjs) | [43](#commits-langchain-ai-langchainjs) | TypeScript | 🦜🔗 Build context-aware reasoning applications |
+| <span id="row-agentplexus-go-elevenlabs"></span>[agentplexus/go-elevenlabs](https://github.com/agentplexus/go-elevenlabs) | [35](#commits-agentplexus-go-elevenlabs) | Go | Eleven Labs SDK in Go generated from Eleven Labs O... |
+| <span id="row-agentplexus-multi-agent-spec"></span>[agentplexus/multi-agent-spec](https://github.com/agentplexus/multi-agent-spec) | [30](#commits-agentplexus-multi-agent-spec) | Go | A specification for defining multi-agent AI system... |
+| <span id="row-agentplexus-omnivault"></span>[agentplexus/omnivault](https://github.com/agentplexus/omnivault) | [29](#commits-agentplexus-omnivault) | HTML | OmniVault is a unified Go library for secret manag... |
+| <span id="row-agentplexus-omnillm"></span>[agentplexus/omnillm](https://github.com/agentplexus/omnillm) | [29](#commits-agentplexus-omnillm) | Go | Multi-provider abstraction for LLMs including Anth... |
+| <span id="row-agentplexus-mcpkit"></span>[agentplexus/mcpkit](https://github.com/agentplexus/mcpkit) | [25](#commits-agentplexus-mcpkit) | Go | A library-first runtime for building MCP servers w... |
+| <span id="row-agentplexus-agentkit"></span>[agentplexus/agentkit](https://github.com/agentplexus/agentkit) | [25](#commits-agentplexus-agentkit) | Go | A Go library for building AI agent applications. P... |
+| <span id="row-langchain-ai-deepagentsjs"></span>[langchain-ai/deepagentsjs](https://github.com/langchain-ai/deepagentsjs) | [24](#commits-langchain-ai-deepagentsjs) | TypeScript | Deep Agents in JS |
+| <span id="row-agentplexus-omnivoice"></span>[agentplexus/omnivoice](https://github.com/agentplexus/omnivoice) | [24](#commits-agentplexus-omnivoice) | Go | Voice abstraction layer supporting TTS, STT, and V... |
+| <span id="row-nicholasgriffintn-ai-platform"></span>[nicholasgriffintn/ai-platform](https://github.com/nicholasgriffintn/ai-platform) | [23](#commits-nicholasgriffintn-ai-platform) | TypeScript | A multi-model AI chat platform built to be a compl... |
+| <span id="row-agentplexus-go-opik"></span>[agentplexus/go-opik](https://github.com/agentplexus/go-opik) | [22](#commits-agentplexus-go-opik) | Go | Opik SDK for Go. Docs: https://agentplexus.github.... |
+| <span id="row-agentplexus-omniobserve"></span>[agentplexus/omniobserve](https://github.com/agentplexus/omniobserve) | [21](#commits-agentplexus-omniobserve) | Go | Multi-provider abstraction for LLMOps including Co... |
+| <span id="row-langchain-ai-openwork"></span>[langchain-ai/openwork](https://github.com/langchain-ai/openwork) | [17](#commits-langchain-ai-openwork) | TypeScript |  |
+| <span id="row-agentplexus-posture"></span>[agentplexus/posture](https://github.com/agentplexus/posture) | [17](#commits-agentplexus-posture) | Go | A cross-platform security posture assessment tool ... |
+| <span id="row-agentplexus-structured-evaluation"></span>[agentplexus/structured-evaluation](https://github.com/agentplexus/structured-evaluation) | [17](#commits-agentplexus-structured-evaluation) | Go | A reusable evaluation framework for LLM-as-Judge a... |
+| <span id="row-nicholasgriffintn-anyone-can-draw"></span>[nicholasgriffintn/anyone-can-draw](https://github.com/nicholasgriffintn/anyone-can-draw) | [16](#commits-nicholasgriffintn-anyone-can-draw) | TypeScript | A game where you play against others and AI to get... |
+| <span id="row-langchain-ai-langgraphjs"></span>[langchain-ai/langgraphjs](https://github.com/langchain-ai/langgraphjs) | [14](#commits-langchain-ai-langgraphjs) | TypeScript | Framework to build resilient language agents as gr... |
+| <span id="row-agentplexus-omnivoice-deepgram"></span>[agentplexus/omnivoice-deepgram](https://github.com/agentplexus/omnivoice-deepgram) | [14](#commits-agentplexus-omnivoice-deepgram) | Go | OmniVoice provider implementation for Deepgram spe... |
+| <span id="row-agentplexus-omniretrieve"></span>[agentplexus/omniretrieve](https://github.com/agentplexus/omniretrieve) | [13](#commits-agentplexus-omniretrieve) | Go | OmniRetrieve is a unified retrieval library for Go... |
+| <span id="row-agentplexus-omnivoice-twilio"></span>[agentplexus/omnivoice-twilio](https://github.com/agentplexus/omnivoice-twilio) | [13](#commits-agentplexus-omnivoice-twilio) | Go | Twilio provider implementation for OmniVoice - the... |
+| <span id="row-agentplexus-omnivault-onepassword"></span>[agentplexus/omnivault-onepassword](https://github.com/agentplexus/omnivault-onepassword) | [10](#commits-agentplexus-omnivault-onepassword) | Go | OmniVault provider for 1Password using the officia... |
+| <span id="row-agentplexus-agent-team-content"></span>[agentplexus/agent-team-content](https://github.com/agentplexus/agent-team-content) | [9](#commits-agentplexus-agent-team-content) | Go |  |
+| <span id="row-agentplexus-agentcall"></span>[agentplexus/agentcall](https://github.com/agentplexus/agentcall) | [9](#commits-agentplexus-agentcall) | Go | An MCP plugin that enables voice calls via phone f... |
+| <span id="row-agentplexus-omniserp"></span>[agentplexus/omniserp](https://github.com/agentplexus/omniserp) | [8](#commits-agentplexus-omniserp) | Go | Multi-provider abstraction with MCP server for Ser... |
+| <span id="row-agentplexus-omnillm-bedrock"></span>[agentplexus/omnillm-bedrock](https://github.com/agentplexus/omnillm-bedrock) | [8](#commits-agentplexus-omnillm-bedrock) | Go | OmniLLM Provider for AWS Bedrock is an external pr... |
+| <span id="row-agentplexus-go-phoenix"></span>[agentplexus/go-phoenix](https://github.com/agentplexus/go-phoenix) | [8](#commits-agentplexus-go-phoenix) | Go | Go SDK for Arize Phoenix - an open-source observab... |
+| <span id="row-agentplexus-omnivoice-examples"></span>[agentplexus/omnivoice-examples](https://github.com/agentplexus/omnivoice-examples) | [8](#commits-agentplexus-omnivoice-examples) | Go | Integration examples for OmniVoice voice pipelines... |
+| <span id="row-nicholasgriffintn-machine-setup"></span>[nicholasgriffintn/machine-setup](https://github.com/nicholasgriffintn/machine-setup) | [8](#commits-nicholasgriffintn-machine-setup) | Shell | Scripts to run that setup my new macbooks |
+| <span id="row-nicholasgriffintn-website"></span>[nicholasgriffintn/website](https://github.com/nicholasgriffintn/website) | [8](#commits-nicholasgriffintn-website) | TypeScript | The code for my personal website and related stuff... |
+| <span id="row-agentplexus-mcp-confluence"></span>[agentplexus/mcp-confluence](https://github.com/agentplexus/mcp-confluence) | [7](#commits-agentplexus-mcp-confluence) | Go | An MCP server for Confluence with safe handling of... |
+| <span id="row-agentplexus-agentkit-aws-cdk"></span>[agentplexus/agentkit-aws-cdk](https://github.com/agentplexus/agentkit-aws-cdk) | [6](#commits-agentplexus-agentkit-aws-cdk) | Go | AWS CDK constructs for deploying agentkit-based ag... |
+| <span id="row-agentplexus-vaultguard"></span>[agentplexus/vaultguard](https://github.com/agentplexus/vaultguard) | [5](#commits-agentplexus-vaultguard) | HTML | Security-gated credential access for Go applicatio... |
+| <span id="row-agentplexus-ogen-tools"></span>[agentplexus/ogen-tools](https://github.com/agentplexus/ogen-tools) | [4](#commits-agentplexus-ogen-tools) | Go | Ogen toolsA collection of tools to enable ogen to ... |
+| <span id="row-agentplexus-omnivault-aws"></span>[agentplexus/omnivault-aws](https://github.com/agentplexus/omnivault-aws) | [4](#commits-agentplexus-omnivault-aws) | Go | OmniVault provider for AWS |
+| <span id="row-agentplexus-agentplexus"></span>[agentplexus/agentplexus](https://github.com/agentplexus/agentplexus) | [4](#commits-agentplexus-agentplexus) | TypeScript | A visual workflow designer for exploring and manag... |
+| <span id="row-langchain-ai-docs"></span>[langchain-ai/docs](https://github.com/langchain-ai/docs) | [3](#commits-langchain-ai-docs) | MDX | 🦜🔗 Docs for LangChain projects |
+| <span id="row-agentplexus-omnivault-keyring"></span>[agentplexus/omnivault-keyring](https://github.com/agentplexus/omnivault-keyring) | [3](#commits-agentplexus-omnivault-keyring) | Go | Cross-platform OS credential store provider for Om... |
+| <span id="row-agentplexus-agentplexus-github-io"></span>[agentplexus/agentplexus.github.io](https://github.com/agentplexus/agentplexus.github.io) | [3](#commits-agentplexus-agentplexus-github-io) | TypeScript | AgentPlexus website |
+| <span id="row-agentplexus-agentkit-aws-pulumi"></span>[agentplexus/agentkit-aws-pulumi](https://github.com/agentplexus/agentkit-aws-pulumi) | [2](#commits-agentplexus-agentkit-aws-pulumi) | Go | Pulumi components for deploying agentkit-based age... |
+| <span id="row-nicholasgriffintn-starterjam-com"></span>[nicholasgriffintn/starterjam.com](https://github.com/nicholasgriffintn/starterjam.com) | [2](#commits-nicholasgriffintn-starterjam-com) | TypeScript | A starter template for collaboration applications ... |
+| <span id="row-langchain-ai-react-agent-js"></span>[langchain-ai/react-agent-js](https://github.com/langchain-ai/react-agent-js) | [1](#commits-langchain-ai-react-agent-js) | TypeScript |  |
+| <span id="row-langchain-ai-lca-langchainv1-essentials"></span>[langchain-ai/lca-langchainV1-essentials](https://github.com/langchain-ai/lca-langchainV1-essentials) | [1](#commits-langchain-ai-lca-langchainv1-essentials) | Jupyter Notebook |  |
+| <span id="row-agentplexus-agent-team-prd"></span>[agentplexus/agent-team-prd](https://github.com/agentplexus/agent-team-prd) | [1](#commits-agentplexus-agent-team-prd) | Go |  |
+| <span id="row-agentplexus-homebrew-tap"></span>[agentplexus/homebrew-tap](https://github.com/agentplexus/homebrew-tap) | [1](#commits-agentplexus-homebrew-tap) | Ruby |  |
+| <span id="row-w3c-cg-ai-agent-protocol"></span>[w3c-cg/ai-agent-protocol](https://github.com/w3c-cg/ai-agent-protocol) | [1](#commits-w3c-cg-ai-agent-protocol) | HTML | Agent Network Protocol White Paper |
+
+### Web of Things
+
+*3 repositories, 5 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-w3c-wot"></span>[w3c/wot](https://github.com/w3c/wot) | [3](#commits-w3c-wot) | HTML | Web of Things |
+| <span id="row-w3c-wot-thing-description-toolchain-tmp"></span>[w3c/wot-thing-description-toolchain-tmp](https://github.com/w3c/wot-thing-description-toolchain-tmp) | [1](#commits-w3c-wot-thing-description-toolchain-tmp) | Python | work area for WoT Thing Description toolchain |
+| <span id="row-w3c-wot-cg"></span>[w3c/wot-cg](https://github.com/w3c/wot-cg) | [1](#commits-w3c-wot-cg) | JavaScript | Web of Things Community Group |
+
+### W3C process
+
+*6 repositories, 36 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-w3c-charter-drafts"></span>[w3c/charter-drafts](https://github.com/w3c/charter-drafts) | [14](#commits-w3c-charter-drafts) | HTML | Draft W3C WG and CG charters for public review |
+| <span id="row-w3c-guide"></span>[w3c/guide](https://github.com/w3c/guide) | [9](#commits-w3c-guide) | HTML | The Guidebook is the collected wisdom of the W3C G... |
+| <span id="row-w3c-tpac-breakouts"></span>[w3c/tpac-breakouts](https://github.com/w3c/tpac-breakouts) | [6](#commits-w3c-tpac-breakouts) | JavaScript | Documentation and Management of TPAC plenary day b... |
+| <span id="row-w3c-onboarding"></span>[w3c/onboarding](https://github.com/w3c/onboarding) | [4](#commits-w3c-onboarding) | JavaScript | A tool to send the facility map to newcomers in a ... |
+| <span id="row-w3c-breakouts-day-2026"></span>[w3c/breakouts-day-2026](https://github.com/w3c/breakouts-day-2026) | [2](#commits-w3c-breakouts-day-2026) |  |  |
+| <span id="row-w3c-strategy"></span>[w3c/strategy](https://github.com/w3c/strategy) | [1](#commits-w3c-strategy) |  | team-strat, on GitHub, working in public. |
+
+### W3C TAG
+
+*3 repositories, 12 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-w3ctag-meetings"></span>[w3ctag/meetings](https://github.com/w3ctag/meetings) | [6](#commits-w3ctag-meetings) | HTML | Minutes of all TAG Meetings and Calls |
+| <span id="row-w3ctag-user-agents"></span>[w3ctag/user-agents](https://github.com/w3ctag/user-agents) | [5](#commits-w3ctag-user-agents) | Bikeshed | A Draft Finding on User Agents |
+| <span id="row-w3ctag-w3ctagbot"></span>[w3ctag/w3ctagbot](https://github.com/w3ctag/w3ctagbot) | [1](#commits-w3ctag-w3ctagbot) | TypeScript | A github bot and webserver to track and manage TAG... |
+
+### W3C infrastructure
+
+*7 repositories, 20 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-w3c-gargantua"></span>[w3c/gargantua](https://github.com/w3c/gargantua) | [14](#commits-w3c-gargantua) | HTML | API to gather W3C information |
+| <span id="row-w3c-echidna"></span>[w3c/echidna](https://github.com/w3c/echidna) | [1](#commits-w3c-echidna) | HTML | New publication workflow at W3C — main component |
+| <span id="row-w3c-node-w3capi"></span>[w3c/node-w3capi](https://github.com/w3c/node-w3capi) | [1](#commits-w3c-node-w3capi) | JavaScript | A JavaScript client for the W3C API |
+| <span id="row-w3c-publ_ack"></span>[w3c/publ_ack](https://github.com/w3c/publ_ack) | [1](#commits-w3c-publ_ack) | TypeScript | Script to generate the acknowledgement section of ... |
+| <span id="row-w3c-github-cache"></span>[w3c/github-cache](https://github.com/w3c/github-cache) | [1](#commits-w3c-github-cache) | JavaScript | A simple cache for GitHub |
+| <span id="row-w3c-wp-theme-i18n"></span>[w3c/wp-theme-i18n](https://github.com/w3c/wp-theme-i18n) | [1](#commits-w3c-wp-theme-i18n) | PHP |  |
+| <span id="row-w3c-github-notify-ml-config"></span>[w3c/github-notify-ml-config](https://github.com/w3c/github-notify-ml-config) | [1](#commits-w3c-github-notify-ml-config) |  | Configuration for mailing lists using github-notif... |
+
+### IETF/Internet standards
+
+*18 repositories, 238 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-ietf-wg-asdf-instance-information"></span>[ietf-wg-asdf/instance-information](https://github.com/ietf-wg-asdf/instance-information) | [46](#commits-ietf-wg-asdf-instance-information) | Makefile | Discuss Instance Information for SDF |
+| <span id="row-ietf-wg-scone-scone"></span>[ietf-wg-scone/scone](https://github.com/ietf-wg-scone/scone) | [33](#commits-ietf-wg-scone-scone) | Python | Merged Internet-Draft based on the TRAIN and SCONE... |
+| <span id="row-intarchboard-draft-iab-agews-report"></span>[intarchboard/draft-iab-agews-report](https://github.com/intarchboard/draft-iab-agews-report) | [31](#commits-intarchboard-draft-iab-agews-report) | Makefile | Report from the IAB/W3C Workshop on Age-Based Rest... |
+| <span id="row-martinthomson-i-d-template"></span>[martinthomson/i-d-template](https://github.com/martinthomson/i-d-template) | [25](#commits-martinthomson-i-d-template) | Makefile | A template for IETF internet draft git repositorie... |
+| <span id="row-httpwg-http-extensions"></span>[httpwg/http-extensions](https://github.com/httpwg/http-extensions) | [24](#commits-httpwg-http-extensions) | Python | HTTP Extensions in progress |
+| <span id="row-oauth-wg-draft-ietf-oauth-status-list"></span>[oauth-wg/draft-ietf-oauth-status-list](https://github.com/oauth-wg/draft-ietf-oauth-status-list) | [17](#commits-oauth-wg-draft-ietf-oauth-status-list) | Python |  |
+| <span id="row-ietf-wg-spice-draft-ietf-spice-glue-id"></span>[ietf-wg-spice/draft-ietf-spice-glue-id](https://github.com/ietf-wg-spice/draft-ietf-spice-glue-id) | [16](#commits-ietf-wg-spice-draft-ietf-spice-glue-id) | Makefile |  |
+| <span id="row-oauth-wg-oauth-cross-device-security"></span>[oauth-wg/oauth-cross-device-security](https://github.com/oauth-wg/oauth-cross-device-security) | [12](#commits-oauth-wg-oauth-cross-device-security) | Makefile |  |
+| <span id="row-ietf-wg-spice-draft-ietf-spice-sd-cwt"></span>[ietf-wg-spice/draft-ietf-spice-sd-cwt](https://github.com/ietf-wg-spice/draft-ietf-spice-sd-cwt) | [7](#commits-ietf-wg-spice-draft-ietf-spice-sd-cwt) | Makefile | SPICE SD-CWT |
+| <span id="row-ietf-wg-ppm-draft-ietf-ppm-dap-taskprov"></span>[ietf-wg-ppm/draft-ietf-ppm-dap-taskprov](https://github.com/ietf-wg-ppm/draft-ietf-ppm-dap-taskprov) | [7](#commits-ietf-wg-ppm-draft-ietf-ppm-dap-taskprov) | Makefile | Define DAP extension for in-band task provisioning... |
+| <span id="row-mnot-i-d"></span>[mnot/I-D](https://github.com/mnot/I-D) | [4](#commits-mnot-i-d) | HTML | My Internet-Drafts |
+| <span id="row-ietf-github-services-activity-summary"></span>[ietf-github-services/activity-summary](https://github.com/ietf-github-services/activity-summary) | [3](#commits-ietf-github-services-activity-summary) |  | Activity summary e-mails |
+| <span id="row-mozilla-neqo"></span>[mozilla/neqo](https://github.com/mozilla/neqo) | [3](#commits-mozilla-neqo) | Rust | Neqo, the Mozilla Firefox implementation of QUIC i... |
+| <span id="row-ietf-wg-aipref-drafts"></span>[ietf-wg-aipref/drafts](https://github.com/ietf-wg-aipref/drafts) | [3](#commits-ietf-wg-aipref-drafts) | Makefile | AIPREF working drafts |
+| <span id="row-ietf-wg-aipref-wg-materials"></span>[ietf-wg-aipref/wg-materials](https://github.com/ietf-wg-aipref/wg-materials) | [2](#commits-ietf-wg-aipref-wg-materials) | Python | Agendas, minutes, and presentations |
+| <span id="row-httpwg-structured-field-tests"></span>[httpwg/structured-field-tests](https://github.com/httpwg/structured-field-tests) | [2](#commits-httpwg-structured-field-tests) | Python | Tests for HTTP Structured Field Values |
+| <span id="row-httpwg-httpwg-github-io"></span>[httpwg/httpwg.github.io](https://github.com/httpwg/httpwg.github.io) | [2](#commits-httpwg-httpwg-github-io) | HTML | HTTP Home Page |
+| <span id="row-oauth-wg-draft-ietf-oauth-rfc7523bis"></span>[oauth-wg/draft-ietf-oauth-rfc7523bis](https://github.com/oauth-wg/draft-ietf-oauth-rfc7523bis) | [1](#commits-oauth-wg-draft-ietf-oauth-rfc7523bis) | Makefile | Update to RFC 7523: JWT Profile for OAuth 2.0 Clie... |
+
+### Specification tooling
+
+*11 repositories, 87 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-microsoft-typescript-dom-lib-generator"></span>[microsoft/TypeScript-DOM-lib-generator](https://github.com/microsoft/TypeScript-DOM-lib-generator) | [50](#commits-microsoft-typescript-dom-lib-generator) | TypeScript | Tool for generating dom related TypeScript and Jav... |
+| <span id="row-w3c-webref"></span>[w3c/webref](https://github.com/w3c/webref) | [9](#commits-w3c-webref) | JavaScript | Machine-readable references of terms defined in we... |
+| <span id="row-w3c-reffy"></span>[w3c/reffy](https://github.com/w3c/reffy) | [8](#commits-w3c-reffy) | JavaScript | Reffy is a Web spec crawler and analyzer tool. It ... |
+| <span id="row-speced-bikeshed"></span>[speced/bikeshed](https://github.com/speced/bikeshed) | [7](#commits-speced-bikeshed) | HTML | :bike: A preprocessor for anyone writing specifica... |
+| <span id="row-w3c-browser-specs"></span>[w3c/browser-specs](https://github.com/w3c/browser-specs) | [3](#commits-w3c-browser-specs) | JavaScript | A machine-readable list of Web specifications |
+| <span id="row-w3c-spec-prod"></span>[w3c/spec-prod](https://github.com/w3c/spec-prod) | [2](#commits-w3c-spec-prod) | TypeScript | GitHub Action to build ReSpec/Bikeshed specs, vali... |
+| <span id="row-w3c-spec-families"></span>[w3c/spec-families](https://github.com/w3c/spec-families) | [2](#commits-w3c-spec-families) | JavaScript | List of W3C specification families |
+| <span id="row-w3c-strudy"></span>[w3c/strudy](https://github.com/w3c/strudy) | [2](#commits-w3c-strudy) | JavaScript | Strudy is an analysis tool for Web spec crawl repo... |
+| <span id="row-tobie-specref"></span>[tobie/specref](https://github.com/tobie/specref) | [2](#commits-tobie-specref) | JavaScript | An open-source, community-maintained database of W... |
+| <span id="row-w3c-specberus"></span>[w3c/specberus](https://github.com/w3c/specberus) | [1](#commits-w3c-specberus) | HTML | Checker used at W3C to validate the compliance of ... |
+| <span id="row-speced-bikeshed-boilerplate"></span>[speced/bikeshed-boilerplate](https://github.com/speced/bikeshed-boilerplate) | [1](#commits-speced-bikeshed-boilerplate) | Python | Boilerplate files for Bikeshed specs |
+
+### Web Platform Tests
+
+*3 repositories, 106 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-web-platform-tests-wpt"></span>[web-platform-tests/wpt](https://github.com/web-platform-tests/wpt) | [97](#commits-web-platform-tests-wpt) | HTML | Test suites for Web platform specs — including WHA... |
+| <span id="row-mozilla-wpt-sync"></span>[mozilla/wpt-sync](https://github.com/mozilla/wpt-sync) | [5](#commits-mozilla-wpt-sync) | Python | Two-way repository sync between web-platform-tests... |
+| <span id="row-web-platform-tests-wpt-metadata"></span>[web-platform-tests/wpt-metadata](https://github.com/web-platform-tests/wpt-metadata) | [4](#commits-web-platform-tests-wpt-metadata) | Go | Out-of-tree metadata for wpt |
+
+### HTML/CSS checking (validation)
+
+*2 repositories, 117 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-validator-validator"></span>[validator/validator](https://github.com/validator/validator) | [113](#commits-validator-validator) | Java | The Nu Html Checker (vnu) |
+| <span id="row-validator-htmlparser"></span>[validator/htmlparser](https://github.com/validator/htmlparser) | [4](#commits-validator-htmlparser) | Java | The Validator.nu HTML parser https://about.validat... |
+
+### Browser interop
+
+*2 repositories, 34 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-foolip-interop-reactions"></span>[foolip/interop-reactions](https://github.com/foolip/interop-reactions) | [31](#commits-foolip-interop-reactions) | JavaScript | https://foolip.github.io/interop-reactions/ |
+| <span id="row-web-platform-dx-web-features"></span>[web-platform-dx/web-features](https://github.com/web-platform-dx/web-features) | [3](#commits-web-platform-dx-web-features) | YAML | Exploring how to present Web platform features ado... |
+
+### Documentation
+
+*4 repositories, 32 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-mdn-content"></span>[mdn/content](https://github.com/mdn/content) | [21](#commits-mdn-content) | Markdown | The official source for MDN Web Docs content. Home... |
+| <span id="row-mdn-browser-compat-data"></span>[mdn/browser-compat-data](https://github.com/mdn/browser-compat-data) | [6](#commits-mdn-browser-compat-data) | JSON | Browser compatibility data for Web technologies as... |
+| <span id="row-xuri-excelize-doc"></span>[xuri/excelize-doc](https://github.com/xuri/excelize-doc) | [4](#commits-xuri-excelize-doc) | HTML | Docs reference for the Excelize spreadsheet librar... |
+| <span id="row-preactjs-preact-www"></span>[preactjs/preact-www](https://github.com/preactjs/preact-www) | [1](#commits-preactjs-preact-www) | JavaScript | 📖 Preact documentation website. |
+
+### Browser engines
+
+*9 repositories, 357 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-webkit-webkit"></span>[WebKit/WebKit](https://github.com/WebKit/WebKit) | [158](#commits-webkit-webkit) | JavaScript | Home of the WebKit project, the browser engine use... |
+| <span id="row-mozilla-firefox-firefox"></span>[mozilla-firefox/firefox](https://github.com/mozilla-firefox/firefox) | [75](#commits-mozilla-firefox-firefox) | JavaScript | The official repository of Mozilla's Firefox web b... |
+| <span id="row-chromium-chromium"></span>[chromium/chromium](https://github.com/chromium/chromium) | [63](#commits-chromium-chromium) | C++ | The official GitHub mirror of the Chromium source |
+| <span id="row-servo-servo"></span>[servo/servo](https://github.com/servo/servo) | [40](#commits-servo-servo) | Rust | Servo aims to empower developers with a lightweigh... |
+| <span id="row-firefox-devtools-profiler"></span>[firefox-devtools/profiler](https://github.com/firefox-devtools/profiler) | [10](#commits-firefox-devtools-profiler) | TypeScript | Firefox Profiler — Web app for Firefox performance... |
+| <span id="row-ladybirdbrowser-ladybird"></span>[LadybirdBrowser/ladybird](https://github.com/LadybirdBrowser/ladybird) | [5](#commits-ladybirdbrowser-ladybird) | C++ | Truly independent web browser |
+| <span id="row-firefox-devtools-profiler-server"></span>[firefox-devtools/profiler-server](https://github.com/firefox-devtools/profiler-server) | [2](#commits-firefox-devtools-profiler-server) | TypeScript | Firefox Profiler server and data storage infrastru... |
+| <span id="row-panva-oauth4webapi"></span>[panva/oauth4webapi](https://github.com/panva/oauth4webapi) | [2](#commits-panva-oauth4webapi) | TypeScript | Low-Level OAuth 2 / OpenID Connect Client API for ... |
+| <span id="row-panva-jose"></span>[panva/jose](https://github.com/panva/jose) | [2](#commits-panva-jose) | TypeScript | JWA, JWS, JWE, JWT, JWK, JWKS for Node.js, Browser... |
+
+### Browser extensions
+
+*11 repositories, 51 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-googlechrome-chrome-types"></span>[GoogleChrome/chrome-types](https://github.com/GoogleChrome/chrome-types) | [11](#commits-googlechrome-chrome-types) | JavaScript | Code to parse Chrome's internal extension type def... |
+| <span id="row-jimmy-zhening-luo-bookmark"></span>[jimmy-zhening-luo/bookmark](https://github.com/jimmy-zhening-luo/bookmark) | [10](#commits-jimmy-zhening-luo-bookmark) | TypeScript | Chrome extension to canonicalize and bookmark URLs... |
+| <span id="row-nicholasgriffintn-claude-code"></span>[nicholasgriffintn/claude-code](https://github.com/nicholasgriffintn/claude-code) | [9](#commits-nicholasgriffintn-claude-code) | Python | A plugin for use with Claude Code that provides sk... |
+| <span id="row-interledger-web-monetization-extension"></span>[interledger/web-monetization-extension](https://github.com/interledger/web-monetization-extension) | [5](#commits-interledger-web-monetization-extension) | TypeScript | An open-source browser extension that enables Web ... |
+| <span id="row-privacy-tech-lab-gpc-optmeowt"></span>[privacy-tech-lab/gpc-optmeowt](https://github.com/privacy-tech-lab/gpc-optmeowt) | [4](#commits-privacy-tech-lab-gpc-optmeowt) | JavaScript | Privacy browser extension for opting out from web ... |
+| <span id="row-mozilla-addons-linter"></span>[mozilla/addons-linter](https://github.com/mozilla/addons-linter) | [3](#commits-mozilla-addons-linter) | JavaScript | 🔍 Firefox Add-ons linter, written in JavaScript. 👁 |
+| <span id="row-googlechrome-chrome-extensions-samples"></span>[GoogleChrome/chrome-extensions-samples](https://github.com/GoogleChrome/chrome-extensions-samples) | [3](#commits-googlechrome-chrome-extensions-samples) | JavaScript | Chrome Extensions Samples |
+| <span id="row-privacy-tech-lab-privacy-pioneer"></span>[privacy-tech-lab/privacy-pioneer](https://github.com/privacy-tech-lab/privacy-pioneer) | [3](#commits-privacy-tech-lab-privacy-pioneer) | JavaScript | Privacy browser extension for analyzing web traffi... |
+| <span id="row-mozilla-web-ext"></span>[mozilla/web-ext](https://github.com/mozilla/web-ext) | [1](#commits-mozilla-web-ext) | JavaScript | A command line tool to help build, run, and test w... |
+| <span id="row-paulirish-chrome-side-tabs-extension"></span>[paulirish/chrome-side-tabs-extension](https://github.com/paulirish/chrome-side-tabs-extension) | [1](#commits-paulirish-chrome-side-tabs-extension) | JavaScript | Restored source of Adrian Lungu's awesome Chrome S... |
+| <span id="row-kartiktalwar-gmail-js"></span>[KartikTalwar/gmail.js](https://github.com/KartikTalwar/gmail.js) | [1](#commits-kartiktalwar-gmail-js) | JavaScript | Gmail JavaScript API |
+
+### Developer tools
+
+*17 repositories, 304 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-socketdev-socket-cli"></span>[SocketDev/socket-cli](https://github.com/SocketDev/socket-cli) | [70](#commits-socketdev-socket-cli) | TypeScript | The Socket CLI |
+| <span id="row-jimmy-zhening-luo-linted"></span>[jimmy-zhening-luo/linted](https://github.com/jimmy-zhening-luo/linted) | [67](#commits-jimmy-zhening-luo-linted) | TypeScript | ESLint mono-plugin bundler with strict, opinionate... |
+| <span id="row-dynatrace-oss-dtctl"></span>[dynatrace-oss/dtctl](https://github.com/dynatrace-oss/dtctl) | [48](#commits-dynatrace-oss-dtctl) | Go | kubectl-inspired CLI for managing Dynatrace platfo... |
+| <span id="row-gh-tui-tools-gh-activity-chronicle"></span>[gh-tui-tools/gh-activity-chronicle](https://github.com/gh-tui-tools/gh-activity-chronicle) | [36](#commits-gh-tui-tools-gh-activity-chronicle) | Python | ✍️ Chronicle your (or others) GitHub activity over... |
+| <span id="row-gh-tui-tools-gh-review-conductor"></span>[gh-tui-tools/gh-review-conductor](https://github.com/gh-tui-tools/gh-review-conductor) | [28](#commits-gh-tui-tools-gh-review-conductor) | Go | 🎻 Conduct responses to PR review comments — includ... |
+| <span id="row-canova-zsh-jj-prompt"></span>[canova/zsh-jj-prompt](https://github.com/canova/zsh-jj-prompt) | [18](#commits-canova-zsh-jj-prompt) | Shell | A zsh plugin for Jujutsu VCS for providing a promp... |
+| <span id="row-arthursonzogni-ftxui"></span>[ArthurSonzogni/FTXUI](https://github.com/ArthurSonzogni/FTXUI) | [9](#commits-arthursonzogni-ftxui) | C++ | :computer: C++ Functional Terminal User Interface.... |
+| <span id="row-astral-sh-ruff"></span>[astral-sh/ruff](https://github.com/astral-sh/ruff) | [7](#commits-astral-sh-ruff) | Rust | An extremely fast Python linter and code formatter... |
+| <span id="row-dlvhdr-gh-dash"></span>[dlvhdr/gh-dash](https://github.com/dlvhdr/gh-dash) | [6](#commits-dlvhdr-gh-dash) | Go | A rich terminal UI for GitHub that doesn't break y... |
+| <span id="row-benoitzugmeyer-eslint-plugin-html"></span>[BenoitZugmeyer/eslint-plugin-html](https://github.com/BenoitZugmeyer/eslint-plugin-html) | [4](#commits-benoitzugmeyer-eslint-plugin-html) | JavaScript | An ESLint plugin to extract and lint scripts from ... |
+| <span id="row-cs3org-ocm-test-suite"></span>[cs3org/ocm-test-suite](https://github.com/cs3org/ocm-test-suite) | [2](#commits-cs3org-ocm-test-suite) | Shell | A collection of Docker images and scripts designed... |
+| <span id="row-googlechrome-lighthouse"></span>[GoogleChrome/lighthouse](https://github.com/GoogleChrome/lighthouse) | [2](#commits-googlechrome-lighthouse) | JavaScript | Automated auditing, performance metrics, and best ... |
+| <span id="row-stylelint-stylelint"></span>[stylelint/stylelint](https://github.com/stylelint/stylelint) | [2](#commits-stylelint-stylelint) | JavaScript | A mighty CSS linter that helps you avoid errors an... |
+| <span id="row-gh-tui-tools-gh-shortlog"></span>[gh-tui-tools/gh-shortlog](https://github.com/gh-tui-tools/gh-shortlog) | [2](#commits-gh-tui-tools-gh-shortlog) | Go | 🐝 Explore contributor info interactively (gh CLI T... |
+| <span id="row-unibo-prismlab-wam"></span>[UniBO-PRISMLab/wam](https://github.com/UniBO-PRISMLab/wam) | [1](#commits-unibo-prismlab-wam) | TypeScript | WoT Application Manager - a command line interface... |
+| <span id="row-chromedevtools-devtools-frontend"></span>[ChromeDevTools/devtools-frontend](https://github.com/ChromeDevTools/devtools-frontend) | [1](#commits-chromedevtools-devtools-frontend) | TypeScript | The Chrome DevTools UI |
+| <span id="row-import-js-eslint-plugin-import"></span>[import-js/eslint-plugin-import](https://github.com/import-js/eslint-plugin-import) | [1](#commits-import-js-eslint-plugin-import) | JavaScript | ESLint plugin with rules that help validate proper... |
+
+### GitHub analytics
+
+*1 repository, 3 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-httparchive-custom-metrics"></span>[HTTPArchive/custom-metrics](https://github.com/HTTPArchive/custom-metrics) | [3](#commits-httparchive-custom-metrics) | JavaScript | Custom metrics to use with WebPageTest agents |
+
+### HTTP tooling
+
+*7 repositories, 307 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-mnot-httplint"></span>[mnot/httplint](https://github.com/mnot/httplint) | [122](#commits-mnot-httplint) | Python | Python library to lint HTTP messages |
+| <span id="row-mnot-redbot"></span>[mnot/redbot](https://github.com/mnot/redbot) | [117](#commits-mnot-redbot) | Python | REDbot is lint for HTTP resources. |
+| <span id="row-mnot-rfc-fyi"></span>[mnot/rfc.fyi](https://github.com/mnot/rfc.fyi) | [22](#commits-mnot-rfc-fyi) | JavaScript | Browseable, searchable RFC index |
+| <span id="row-mnot-rfc-refs"></span>[mnot/rfc-refs](https://github.com/mnot/rfc-refs) | [21](#commits-mnot-rfc-refs) | Python | References between RFCs in JSON format |
+| <span id="row-http-tests-cache-tests"></span>[http-tests/cache-tests](https://github.com/http-tests/cache-tests) | [13](#commits-http-tests-cache-tests) | XSLT | Tests for HTTP Caches |
+| <span id="row-mnot-http-sf"></span>[mnot/http-sf](https://github.com/mnot/http-sf) | [11](#commits-mnot-http-sf) | Python | HTTP Structured Fields for Python |
+| <span id="row-martinthomson-rfc-css"></span>[martinthomson/rfc-css](https://github.com/martinthomson/rfc-css) | [1](#commits-martinthomson-rfc-css) | CSS | Styles for viewing RFCs |
+
+### RDF/Linked Data tooling
+
+*33 repositories, 338 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-dokieli-dokieli"></span>[dokieli/dokieli](https://github.com/dokieli/dokieli) | [112](#commits-dokieli-dokieli) | JavaScript | :bulb: dokieli is a clientside editor for decentra... |
+| <span id="row-comunica-jquery-widget-js"></span>[comunica/jQuery-Widget.js](https://github.com/comunica/jQuery-Widget.js) | [39](#commits-comunica-jquery-widget-js) | JavaScript | 🖼 A jQuery widget to query heterogeneous interface... |
+| <span id="row-comunica-comunica"></span>[comunica/comunica](https://github.com/comunica/comunica) | [33](#commits-comunica-comunica) | TypeScript | 📬 A knowledge graph querying framework for JavaScr... |
+| <span id="row-rubensworks-workshop-semantics2026-semdev"></span>[rubensworks/Workshop-Semantics2026-SemDev](https://github.com/rubensworks/Workshop-Semantics2026-SemDev) | [14](#commits-rubensworks-workshop-semantics2026-semdev) | SCSS | 🏫 Semantic Web Developers Workshop at Semantics 20... |
+| <span id="row-comunica-comunica-feature-link-traversal"></span>[comunica/comunica-feature-link-traversal](https://github.com/comunica/comunica-feature-link-traversal) | [13](#commits-comunica-comunica-feature-link-traversal) | TypeScript | 📬 Comunica packages for link traversal-based query... |
+| <span id="row-rubensworks-rdf-play-js"></span>[rubensworks/rdf-play.js](https://github.com/rubensworks/rdf-play.js) | [13](#commits-rubensworks-rdf-play-js) | TypeScript | A Web-based tool for performing simple RDF operati... |
+| <span id="row-semiceu-ldes-dcat-ap-feeds"></span>[SEMICeu/LDES-DCAT-AP-feeds](https://github.com/SEMICeu/LDES-DCAT-AP-feeds) | [12](#commits-semiceu-ldes-dcat-ap-feeds) | Bikeshed | This repository will host the ongoing work regardi... |
+| <span id="row-comunica-comunica-feature-hdt"></span>[comunica/comunica-feature-hdt](https://github.com/comunica/comunica-feature-hdt) | [11](#commits-comunica-comunica-feature-hdt) | TypeScript | 📬 Comunica packages for query execution over HDT f... |
+| <span id="row-comunica-comunica-feature-solid"></span>[comunica/comunica-feature-solid](https://github.com/comunica/comunica-feature-solid) | [10](#commits-comunica-comunica-feature-solid) | TypeScript | 📬 Comunica packages for query execution over Solid... |
+| <span id="row-eyereasoner-eye-js"></span>[eyereasoner/eye-js](https://github.com/eyereasoner/eye-js) | [9](#commits-eyereasoner-eye-js) | TypeScript | A distribution of EYE reasoner in the JavaScript e... |
+| <span id="row-rdfjs-n3-js"></span>[rdfjs/N3.js](https://github.com/rdfjs/N3.js) | [8](#commits-rdfjs-n3-js) | JavaScript | Lightning fast, spec-compatible, streaming RDF for... |
+| <span id="row-rubensworks-slides-2026-ugent-knowledgegraphs-querydecentralized"></span>[rubensworks/slides-2026-ugent-knowledgegraphs-querydecentralized](https://github.com/rubensworks/slides-2026-ugent-knowledgegraphs-querydecentralized) | [8](#commits-rubensworks-slides-2026-ugent-knowledgegraphs-querydecentralized) | HTML | Slides for Knowledge Graphs course 2026 on Link Tr... |
+| <span id="row-linkeddatafragments-hdt-node"></span>[LinkedDataFragments/HDT-Node](https://github.com/LinkedDataFragments/HDT-Node) | [7](#commits-linkeddatafragments-hdt-node) | JavaScript | Native bindings for Node.js to access HDT compress... |
+| <span id="row-comunica-website"></span>[comunica/website](https://github.com/comunica/website) | [6](#commits-comunica-website) | JavaScript | 🌍 Source for the Comunica website |
+| <span id="row-rubensworks-rdf-serialize-js"></span>[rubensworks/rdf-serialize.js](https://github.com/rubensworks/rdf-serialize.js) | [6](#commits-rubensworks-rdf-serialize-js) | TypeScript | Serializes RDF to any serialization  |
+| <span id="row-rdfjs-rdfxml-streaming-parser-js"></span>[rdfjs/rdfxml-streaming-parser.js](https://github.com/rdfjs/rdfxml-streaming-parser.js) | [5](#commits-rdfjs-rdfxml-streaming-parser-js) | TypeScript | Streaming RDF/XML parser |
+| <span id="row-rubensworks-slides-2026-ugent-knowledgegraphs-sparqlengines"></span>[rubensworks/slides-2026-ugent-knowledgegraphs-sparqlengines](https://github.com/rubensworks/slides-2026-ugent-knowledgegraphs-sparqlengines) | [4](#commits-rubensworks-slides-2026-ugent-knowledgegraphs-sparqlengines) | HTML | Slides for Knowledge Graphs course 2026 on SPARQL ... |
+| <span id="row-linkedsoftwaredependencies-components-js"></span>[LinkedSoftwareDependencies/Components.js](https://github.com/LinkedSoftwareDependencies/Components.js) | [3](#commits-linkedsoftwaredependencies-components-js) | TypeScript | 🧩 A semantic dependency injection framework |
+| <span id="row-rubensworks-rdf-parse-js"></span>[rubensworks/rdf-parse.js](https://github.com/rubensworks/rdf-parse.js) | [3](#commits-rubensworks-rdf-parse-js) | TypeScript | Parses RDF from any serialization |
+| <span id="row-rubensworks-fetch-sparql-endpoint-js"></span>[rubensworks/fetch-sparql-endpoint.js](https://github.com/rubensworks/fetch-sparql-endpoint.js) | [3](#commits-rubensworks-fetch-sparql-endpoint-js) | TypeScript | A simple, lightweight module to send queries to SP... |
+| <span id="row-comunica-rdf-test-suite-ldf-js"></span>[comunica/rdf-test-suite-ldf.js](https://github.com/comunica/rdf-test-suite-ldf.js) | [3](#commits-comunica-rdf-test-suite-ldf-js) | TypeScript | ✅ Execute engine-test suites on QUERY-engines |
+| <span id="row-cottas-rdf-pycottas"></span>[cottas-rdf/pycottas](https://github.com/cottas-rdf/pycottas) | [2](#commits-cottas-rdf-pycottas) | Python | Python COTTAS library for compressing and querying... |
+| <span id="row-rubensworks-rubensworks-net"></span>[rubensworks/rubensworks.net](https://github.com/rubensworks/rubensworks.net) | [2](#commits-rubensworks-rubensworks-net) | TeX | Personal website |
+| <span id="row-rubensworks-rdf-dereference-js"></span>[rubensworks/rdf-dereference.js](https://github.com/rubensworks/rdf-dereference.js) | [2](#commits-rubensworks-rdf-dereference-js) | TypeScript | Dereference any URL for its RDF contents |
+| <span id="row-rubensworks-rdf-test-suite-js"></span>[rubensworks/rdf-test-suite.js](https://github.com/rubensworks/rdf-test-suite.js) | [2](#commits-rubensworks-rdf-test-suite-js) | TypeScript | Executes the RDF and SPARQL test suites. |
+| <span id="row-professionalwiki-sparql"></span>[ProfessionalWiki/SPARQL](https://github.com/ProfessionalWiki/SPARQL) | [1](#commits-professionalwiki-sparql) | PHP | MediaWiki extension to run SPARQL queries and temp... |
+| <span id="row-rubensworks-graphql-to-sparql-js"></span>[rubensworks/graphql-to-sparql.js](https://github.com/rubensworks/graphql-to-sparql.js) | [1](#commits-rubensworks-graphql-to-sparql-js) | TypeScript | Converts GraphQL queries to SPARQL queries |
+| <span id="row-rubensworks-renovate-presets"></span>[rubensworks/renovate-presets](https://github.com/rubensworks/renovate-presets) | [1](#commits-rubensworks-renovate-presets) |  | My personal Renovate config presets (for JavaScrip... |
+| <span id="row-rubensworks-rdf-stores-js"></span>[rubensworks/rdf-stores.js](https://github.com/rubensworks/rdf-stores.js) | [1](#commits-rubensworks-rdf-stores-js) | TypeScript | A TypeScript/JavaScript implementation of the RDF/... |
+| <span id="row-rubensworks-eslint-config"></span>[rubensworks/eslint-config](https://github.com/rubensworks/eslint-config) | [1](#commits-rubensworks-eslint-config) | JavaScript | My personal ESLint configurations |
+| <span id="row-rubensworks-dotfiles"></span>[rubensworks/dotfiles](https://github.com/rubensworks/dotfiles) | [1](#commits-rubensworks-dotfiles) | Shell | Several personal convenience files and scripts |
+| <span id="row-rubensworks-rdf-12-examples"></span>[rubensworks/rdf-12-examples](https://github.com/rubensworks/rdf-12-examples) | [1](#commits-rubensworks-rdf-12-examples) |  | A collection of RDF 1.2 examples |
+| <span id="row-rubensworks-scholarmarkdown"></span>[rubensworks/ScholarMarkdown](https://github.com/rubensworks/ScholarMarkdown) | [1](#commits-rubensworks-scholarmarkdown) | SCSS | A framework for writing markdown-based scholarly a... |
+
+### Audio/MIDI libraries
+
+*80 repositories, 2,064 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-chrisguttandin-extendable-media-recorder"></span>[chrisguttandin/extendable-media-recorder](https://github.com/chrisguttandin/extendable-media-recorder) | [75](#commits-chrisguttandin-extendable-media-recorder) | JavaScript | An extendable drop-in replacement for the native M... |
+| <span id="row-chrisguttandin-timingsrc"></span>[chrisguttandin/timingsrc](https://github.com/chrisguttandin/timingsrc) | [51](#commits-chrisguttandin-timingsrc) | JavaScript | A library to synchronize a MediaElement with a Tim... |
+| <span id="row-chrisguttandin-json-midi-message-encoder"></span>[chrisguttandin/json-midi-message-encoder](https://github.com/chrisguttandin/json-midi-message-encoder) | [44](#commits-chrisguttandin-json-midi-message-encoder) | TypeScript | This module encodes a JSON representation of a MID... |
+| <span id="row-chrisguttandin-worker-timers-mock"></span>[chrisguttandin/worker-timers-mock](https://github.com/chrisguttandin/worker-timers-mock) | [44](#commits-chrisguttandin-worker-timers-mock) | TypeScript | A mocked version of the worker-timers module. |
+| <span id="row-chrisguttandin-synchsafe"></span>[chrisguttandin/synchsafe](https://github.com/chrisguttandin/synchsafe) | [43](#commits-chrisguttandin-synchsafe) | TypeScript | A module to decode and encode synchsafe integers. |
+| <span id="row-chrisguttandin-vehicles"></span>[chrisguttandin/vehicles](https://github.com/chrisguttandin/vehicles) | [43](#commits-chrisguttandin-vehicles) | JavaScript | A little test utility to travel into the future. |
+| <span id="row-chrisguttandin-multi-buffer-data-view"></span>[chrisguttandin/multi-buffer-data-view](https://github.com/chrisguttandin/multi-buffer-data-view) | [41](#commits-chrisguttandin-multi-buffer-data-view) | JavaScript | A wrapper around the native DataView which can han... |
+| <span id="row-chrisguttandin-automation-events"></span>[chrisguttandin/automation-events](https://github.com/chrisguttandin/automation-events) | [41](#commits-chrisguttandin-automation-events) | JavaScript | A module which provides an implementation of an au... |
+| <span id="row-chrisguttandin-fast-unique-numbers"></span>[chrisguttandin/fast-unique-numbers](https://github.com/chrisguttandin/fast-unique-numbers) | [41](#commits-chrisguttandin-fast-unique-numbers) | JavaScript | A module to create a set of unique numbers as fast... |
+| <span id="row-chrisguttandin-timing-object"></span>[chrisguttandin/timing-object](https://github.com/chrisguttandin/timing-object) | [40](#commits-chrisguttandin-timing-object) | JavaScript | An implementation of the timing object specificati... |
+| <span id="row-chrisguttandin-here-maps-type-guards"></span>[chrisguttandin/here-maps-type-guards](https://github.com/chrisguttandin/here-maps-type-guards) | [37](#commits-chrisguttandin-here-maps-type-guards) | TypeScript | A guarded version of the TypeScript type definitio... |
+| <span id="row-chrisguttandin-recorder-audio-worklet"></span>[chrisguttandin/recorder-audio-worklet](https://github.com/chrisguttandin/recorder-audio-worklet) | [34](#commits-chrisguttandin-recorder-audio-worklet) | JavaScript | This module provides a loader for the RecorderAudi... |
+| <span id="row-chrisguttandin-array-buffer-cache"></span>[chrisguttandin/array-buffer-cache](https://github.com/chrisguttandin/array-buffer-cache) | [30](#commits-chrisguttandin-array-buffer-cache) | JavaScript | This module is providing an asynchronous cache for... |
+| <span id="row-chrisguttandin-web-audio-beat-detector"></span>[chrisguttandin/web-audio-beat-detector](https://github.com/chrisguttandin/web-audio-beat-detector) | [30](#commits-chrisguttandin-web-audio-beat-detector) | JavaScript | A beat detection utility which is using the Web Au... |
+| <span id="row-chrisguttandin-timed-audio-buffer-source-node-audio-worklet"></span>[chrisguttandin/timed-audio-buffer-source-node-audio-worklet](https://github.com/chrisguttandin/timed-audio-buffer-source-node-audio-worklet) | [29](#commits-chrisguttandin-timed-audio-buffer-source-node-audio-worklet) | JavaScript | This module provides a loader for the TimedAudioBu... |
+| <span id="row-chrisguttandin-midi-player"></span>[chrisguttandin/midi-player](https://github.com/chrisguttandin/midi-player) | [29](#commits-chrisguttandin-midi-player) | JavaScript | A MIDI player which sends MIDI messages to connect... |
+| <span id="row-chrisguttandin-video-synchronization-demo"></span>[chrisguttandin/video-synchronization-demo](https://github.com/chrisguttandin/video-synchronization-demo) | [28](#commits-chrisguttandin-video-synchronization-demo) | JavaScript | A website to demo usage of the media-sync package ... |
+| <span id="row-chrisguttandin-array-buffer-cache-broker"></span>[chrisguttandin/array-buffer-cache-broker](https://github.com/chrisguttandin/array-buffer-cache-broker) | [28](#commits-chrisguttandin-array-buffer-cache-broker) | JavaScript | The broker which is used by the array-buffer-cache... |
+| <span id="row-chrisguttandin-worker-timers"></span>[chrisguttandin/worker-timers](https://github.com/chrisguttandin/worker-timers) | [28](#commits-chrisguttandin-worker-timers) | JavaScript | A replacement for setInterval() and setTimeout() w... |
+| <span id="row-chrisguttandin-metadata-detector"></span>[chrisguttandin/metadata-detector](https://github.com/chrisguttandin/metadata-detector) | [28](#commits-chrisguttandin-metadata-detector) | JavaScript | A tool to locate and strip metadata from files. |
+| <span id="row-chrisguttandin-tonejs-synchronization-demo"></span>[chrisguttandin/tonejs-synchronization-demo](https://github.com/chrisguttandin/tonejs-synchronization-demo) | [27](#commits-chrisguttandin-tonejs-synchronization-demo) | JavaScript | A website to demo how to connect Tone.js to a Timi... |
+| <span id="row-chrisguttandin-limiter-audio-worklet"></span>[chrisguttandin/limiter-audio-worklet](https://github.com/chrisguttandin/limiter-audio-worklet) | [27](#commits-chrisguttandin-limiter-audio-worklet) | JavaScript | This module provides a loader for the LimiterAudio... |
+| <span id="row-chrisguttandin-playout-audio-worklet"></span>[chrisguttandin/playout-audio-worklet](https://github.com/chrisguttandin/playout-audio-worklet) | [27](#commits-chrisguttandin-playout-audio-worklet) | JavaScript | This module provides a loader for the PlayoutAudio... |
+| <span id="row-chrisguttandin-worker-timers-broker"></span>[chrisguttandin/worker-timers-broker](https://github.com/chrisguttandin/worker-timers-broker) | [27](#commits-chrisguttandin-worker-timers-broker) | JavaScript | The broker which is used by the worker-timers pack... |
+| <span id="row-chrisguttandin-audio-context-timers"></span>[chrisguttandin/audio-context-timers](https://github.com/chrisguttandin/audio-context-timers) | [26](#commits-chrisguttandin-audio-context-timers) | TypeScript | A replacement for setInterval() and setTimeout() w... |
+| <span id="row-chrisguttandin-media-encoder-host"></span>[chrisguttandin/media-encoder-host](https://github.com/chrisguttandin/media-encoder-host) | [26](#commits-chrisguttandin-media-encoder-host) | TypeScript | This is a module to load and manage media encoders... |
+| <span id="row-chrisguttandin-media-encoder-host-broker"></span>[chrisguttandin/media-encoder-host-broker](https://github.com/chrisguttandin/media-encoder-host-broker) | [26](#commits-chrisguttandin-media-encoder-host-broker) | JavaScript | The broker which is used by the media-encoder-host... |
+| <span id="row-chrisguttandin-extendable-media-recorder-wav-encoder"></span>[chrisguttandin/extendable-media-recorder-wav-encoder](https://github.com/chrisguttandin/extendable-media-recorder-wav-encoder) | [26](#commits-chrisguttandin-extendable-media-recorder-wav-encoder) | JavaScript | A Wave file encoder for the extendable-media-recor... |
+| <span id="row-chrisguttandin-json-midi-encoder-worker"></span>[chrisguttandin/json-midi-encoder-worker](https://github.com/chrisguttandin/json-midi-encoder-worker) | [26](#commits-chrisguttandin-json-midi-encoder-worker) | TypeScript | The worker which is used by the json-midi-encoder ... |
+| <span id="row-chrisguttandin-midi-json-parser"></span>[chrisguttandin/midi-json-parser](https://github.com/chrisguttandin/midi-json-parser) | [26](#commits-chrisguttandin-midi-json-parser) | JavaScript | This module is parsing midi files into a human-rea... |
+| <span id="row-chrisguttandin-json-midi-encoder"></span>[chrisguttandin/json-midi-encoder](https://github.com/chrisguttandin/json-midi-encoder) | [26](#commits-chrisguttandin-json-midi-encoder) | TypeScript | This module encodes a JSON representation of MIDI ... |
+| <span id="row-chrisguttandin-json-midi-encoder-broker"></span>[chrisguttandin/json-midi-encoder-broker](https://github.com/chrisguttandin/json-midi-encoder-broker) | [26](#commits-chrisguttandin-json-midi-encoder-broker) | TypeScript | The broker which is used by the json-midi-encoder ... |
+| <span id="row-chrisguttandin-web-audio-beat-detector-broker"></span>[chrisguttandin/web-audio-beat-detector-broker](https://github.com/chrisguttandin/web-audio-beat-detector-broker) | [26](#commits-chrisguttandin-web-audio-beat-detector-broker) | JavaScript | The broker which is used by the web-audio-beat-det... |
+| <span id="row-chrisguttandin-metadata-detector-worker"></span>[chrisguttandin/metadata-detector-worker](https://github.com/chrisguttandin/metadata-detector-worker) | [26](#commits-chrisguttandin-metadata-detector-worker) | TypeScript | The worker which is used by the metadata-detector ... |
+| <span id="row-chrisguttandin-metadata-detector-broker"></span>[chrisguttandin/metadata-detector-broker](https://github.com/chrisguttandin/metadata-detector-broker) | [26](#commits-chrisguttandin-metadata-detector-broker) | TypeScript | The broker which is used by the metadata-detector ... |
+| <span id="row-chrisguttandin-user-media-audio-visualizer"></span>[chrisguttandin/user-media-audio-visualizer](https://github.com/chrisguttandin/user-media-audio-visualizer) | [25](#commits-chrisguttandin-user-media-audio-visualizer) | JavaScript | A super basic visualizer of user media's audio inp... |
+| <span id="row-chrisguttandin-playout-audio-worklet-processor"></span>[chrisguttandin/playout-audio-worklet-processor](https://github.com/chrisguttandin/playout-audio-worklet-processor) | [25](#commits-chrisguttandin-playout-audio-worklet-processor) | JavaScript | The AudioWorkletProcessor which is used by the pla... |
+| <span id="row-chrisguttandin-media-encoder-host-worker"></span>[chrisguttandin/media-encoder-host-worker](https://github.com/chrisguttandin/media-encoder-host-worker) | [25](#commits-chrisguttandin-media-encoder-host-worker) | JavaScript | The worker which is used by the media-encoder-host... |
+| <span id="row-chrisguttandin-timed-audio-buffer-source-node-audio-worklet-processor"></span>[chrisguttandin/timed-audio-buffer-source-node-audio-worklet-processor](https://github.com/chrisguttandin/timed-audio-buffer-source-node-audio-worklet-processor) | [24](#commits-chrisguttandin-timed-audio-buffer-source-node-audio-worklet-processor) | JavaScript | The AudioWorkletProcessor which is used by the tim... |
+| <span id="row-chrisguttandin-broker-factory"></span>[chrisguttandin/broker-factory](https://github.com/chrisguttandin/broker-factory) | [24](#commits-chrisguttandin-broker-factory) | JavaScript | A little factory function to create a broker for a... |
+| <span id="row-chrisguttandin-web-audio-beat-detector-worker"></span>[chrisguttandin/web-audio-beat-detector-worker](https://github.com/chrisguttandin/web-audio-beat-detector-worker) | [24](#commits-chrisguttandin-web-audio-beat-detector-worker) | TypeScript | The worker which is used by the web-audio-beat-det... |
+| <span id="row-chrisguttandin-extendable-media-recorder-wav-encoder-broker"></span>[chrisguttandin/extendable-media-recorder-wav-encoder-broker](https://github.com/chrisguttandin/extendable-media-recorder-wav-encoder-broker) | [24](#commits-chrisguttandin-extendable-media-recorder-wav-encoder-broker) | JavaScript | The broker which is used by the extendable-media-r... |
+| <span id="row-chrisguttandin-array-buffer-cache-worker"></span>[chrisguttandin/array-buffer-cache-worker](https://github.com/chrisguttandin/array-buffer-cache-worker) | [24](#commits-chrisguttandin-array-buffer-cache-worker) | JavaScript | The worker which is used by the array-buffer-cache... |
+| <span id="row-chrisguttandin-limiter-audio-worklet-processor"></span>[chrisguttandin/limiter-audio-worklet-processor](https://github.com/chrisguttandin/limiter-audio-worklet-processor) | [24](#commits-chrisguttandin-limiter-audio-worklet-processor) | JavaScript | The AudioWorkletProcessor which is used by the lim... |
+| <span id="row-chrisguttandin-midi-json-parser-broker"></span>[chrisguttandin/midi-json-parser-broker](https://github.com/chrisguttandin/midi-json-parser-broker) | [24](#commits-chrisguttandin-midi-json-parser-broker) | TypeScript | The broker which is used by the midi-json-parser p... |
+| <span id="row-chrisguttandin-worker-timers-worker"></span>[chrisguttandin/worker-timers-worker](https://github.com/chrisguttandin/worker-timers-worker) | [23](#commits-chrisguttandin-worker-timers-worker) | JavaScript | The worker which is used by the worker-timers pack... |
+| <span id="row-chrisguttandin-recorder-audio-worklet-processor"></span>[chrisguttandin/recorder-audio-worklet-processor](https://github.com/chrisguttandin/recorder-audio-worklet-processor) | [23](#commits-chrisguttandin-recorder-audio-worklet-processor) | JavaScript | The AudioWorkletProcessor which is used by the rec... |
+| <span id="row-chrisguttandin-worker-factory"></span>[chrisguttandin/worker-factory](https://github.com/chrisguttandin/worker-factory) | [23](#commits-chrisguttandin-worker-factory) | JavaScript | A little factory function to create a JSON-RPC bas... |
+| <span id="row-chrisguttandin-web-timing-demo"></span>[chrisguttandin/web-timing-demo](https://github.com/chrisguttandin/web-timing-demo) | [22](#commits-chrisguttandin-web-timing-demo) | JavaScript | A website to demo the Web Timing Object. |
+| <span id="row-chrisguttandin-web-audio-metronome-demo"></span>[chrisguttandin/web-audio-metronome-demo](https://github.com/chrisguttandin/web-audio-metronome-demo) | [22](#commits-chrisguttandin-web-audio-metronome-demo) | JavaScript | A website to demo a Web Audio metronome connected ... |
+| <span id="row-chrisguttandin-midi-json-parser-worker"></span>[chrisguttandin/midi-json-parser-worker](https://github.com/chrisguttandin/midi-json-parser-worker) | [22](#commits-chrisguttandin-midi-json-parser-worker) | TypeScript | The worker which is used by the midi-json-parser p... |
+| <span id="row-chrisguttandin-midi-file-slicer"></span>[chrisguttandin/midi-file-slicer](https://github.com/chrisguttandin/midi-file-slicer) | [22](#commits-chrisguttandin-midi-file-slicer) | JavaScript | This module is slicing a midi representation into ... |
+| <span id="row-chrisguttandin-dynamo-db-local"></span>[chrisguttandin/dynamo-db-local](https://github.com/chrisguttandin/dynamo-db-local) | [22](#commits-chrisguttandin-dynamo-db-local) | JavaScript | A wrapper around Amazon's DynamoDB Local to start ... |
+| <span id="row-chrisguttandin-extendable-media-recorder-wav-encoder-worker"></span>[chrisguttandin/extendable-media-recorder-wav-encoder-worker](https://github.com/chrisguttandin/extendable-media-recorder-wav-encoder-worker) | [22](#commits-chrisguttandin-extendable-media-recorder-wav-encoder-worker) | JavaScript | The worker which is used by the extendable-media-r... |
+| <span id="row-chrisguttandin-timing-provider"></span>[chrisguttandin/timing-provider](https://github.com/chrisguttandin/timing-provider) | [22](#commits-chrisguttandin-timing-provider) | TypeScript | An implementation of the timing provider specifica... |
+| <span id="row-chrisguttandin-audio-fingerprinting-file-reader"></span>[chrisguttandin/audio-fingerprinting-file-reader](https://github.com/chrisguttandin/audio-fingerprinting-file-reader) | [22](#commits-chrisguttandin-audio-fingerprinting-file-reader) | TypeScript | A reader for files created by audfprint. |
+| <span id="row-chrisguttandin-compilerr"></span>[chrisguttandin/compilerr](https://github.com/chrisguttandin/compilerr) | [21](#commits-chrisguttandin-compilerr) | TypeScript | A kind of templating system to compile errors. |
+| <span id="row-chrisguttandin-unmuted-video-element-test"></span>[chrisguttandin/unmuted-video-element-test](https://github.com/chrisguttandin/unmuted-video-element-test) | [21](#commits-chrisguttandin-unmuted-video-element-test) | JavaScript | A demo to test if an unmuted video element keeps p... |
+| <span id="row-chrisguttandin-metadata-detector-streams"></span>[chrisguttandin/metadata-detector-streams](https://github.com/chrisguttandin/metadata-detector-streams) | [21](#commits-chrisguttandin-metadata-detector-streams) | TypeScript | A tool to locate and strip metadata from files. |
+| <span id="row-chrisguttandin-timing-provider-server"></span>[chrisguttandin/timing-provider-server](https://github.com/chrisguttandin/timing-provider-server) | [21](#commits-chrisguttandin-timing-provider-server) | JavaScript | A command line tool to spin up a server which can ... |
+| <span id="row-chrisguttandin-dynamo-db-provisioner"></span>[chrisguttandin/dynamo-db-provisioner](https://github.com/chrisguttandin/dynamo-db-provisioner) | [20](#commits-chrisguttandin-dynamo-db-provisioner) | JavaScript | A lightweight and promise-based wrapper of the AWS... |
+| <span id="row-chrisguttandin-rxjs-connector"></span>[chrisguttandin/rxjs-connector](https://github.com/chrisguttandin/rxjs-connector) | [20](#commits-chrisguttandin-rxjs-connector) | TypeScript | A module to accept WebRTC DataChannel connections ... |
+| <span id="row-chrisguttandin-standardized-audio-context-demo"></span>[chrisguttandin/standardized-audio-context-demo](https://github.com/chrisguttandin/standardized-audio-context-demo) | [20](#commits-chrisguttandin-standardized-audio-context-demo) | JavaScript | A demo page to show how to use standardized-audio-... |
+| <span id="row-chrisguttandin-aws-client-factories"></span>[chrisguttandin/aws-client-factories](https://github.com/chrisguttandin/aws-client-factories) | [19](#commits-chrisguttandin-aws-client-factories) | JavaScript | A helper to instantiate various AWS clients with e... |
+| <span id="row-chrisguttandin-rxjs-broker"></span>[chrisguttandin/rxjs-broker](https://github.com/chrisguttandin/rxjs-broker) | [19](#commits-chrisguttandin-rxjs-broker) | JavaScript | An RxJS message broker for WebRTC DataChannels and... |
+| <span id="row-chrisguttandin-standardized-audio-context"></span>[chrisguttandin/standardized-audio-context](https://github.com/chrisguttandin/standardized-audio-context) | [18](#commits-chrisguttandin-standardized-audio-context) | JavaScript | A cross-browser wrapper for the Web Audio API whic... |
+| <span id="row-chrisguttandin-angular-prerender"></span>[chrisguttandin/angular-prerender](https://github.com/chrisguttandin/angular-prerender) | [18](#commits-chrisguttandin-angular-prerender) | JavaScript | A command line tool to prerender Angular Apps. |
+| <span id="row-chrisguttandin-dynamo-converters"></span>[chrisguttandin/dynamo-converters](https://github.com/chrisguttandin/dynamo-converters) | [18](#commits-chrisguttandin-dynamo-converters) | JavaScript | A collection of converter functions to get good ol... |
+| <span id="row-chrisguttandin-window-and-worker-timers-test"></span>[chrisguttandin/window-and-worker-timers-test](https://github.com/chrisguttandin/window-and-worker-timers-test) | [17](#commits-chrisguttandin-window-and-worker-timers-test) | JavaScript | A website to test various WindowTimers replacement... |
+| <span id="row-chrisguttandin-web-midi-autoplay-policy-test"></span>[chrisguttandin/web-midi-autoplay-policy-test](https://github.com/chrisguttandin/web-midi-autoplay-policy-test) | [17](#commits-chrisguttandin-web-midi-autoplay-policy-test) | JavaScript | A demo to test the Web MIDI Autoplay Policy. |
+| <span id="row-chrisguttandin-media-session-with-web-audio-test"></span>[chrisguttandin/media-session-with-web-audio-test](https://github.com/chrisguttandin/media-session-with-web-audio-test) | [17](#commits-chrisguttandin-media-session-with-web-audio-test) | JavaScript | A test page for using the Media Session API in com... |
+| <span id="row-chrisguttandin-mse-tests"></span>[chrisguttandin/mse-tests](https://github.com/chrisguttandin/mse-tests) | [17](#commits-chrisguttandin-mse-tests) | JavaScript | A collection of MSE tests. |
+| <span id="row-chrisguttandin-muted-audio-element-test"></span>[chrisguttandin/muted-audio-element-test](https://github.com/chrisguttandin/muted-audio-element-test) | [17](#commits-chrisguttandin-muted-audio-element-test) | JavaScript | A demo to test if a muted audio element can be use... |
+| <span id="row-chrisguttandin-subscribable-things"></span>[chrisguttandin/subscribable-things](https://github.com/chrisguttandin/subscribable-things) | [16](#commits-chrisguttandin-subscribable-things) | JavaScript | A collection of reactive wrappers for various brow... |
+| <span id="row-chrisguttandin-launchpad-detector"></span>[chrisguttandin/launchpad-detector](https://github.com/chrisguttandin/launchpad-detector) | [15](#commits-chrisguttandin-launchpad-detector) | JavaScript | A little tool to detect connected Launchpads. |
+| <span id="row-chrisguttandin-stylelint-config-holy-grail"></span>[chrisguttandin/stylelint-config-holy-grail](https://github.com/chrisguttandin/stylelint-config-holy-grail) | [15](#commits-chrisguttandin-stylelint-config-holy-grail) | JavaScript | This is my personal stylelint configuration. |
+| <span id="row-chrisguttandin-eslint-config-holy-grail"></span>[chrisguttandin/eslint-config-holy-grail](https://github.com/chrisguttandin/eslint-config-holy-grail) | [14](#commits-chrisguttandin-eslint-config-holy-grail) | JavaScript | This is my personal eslint configuration. |
+| <span id="row-chrisguttandin-web-codecs"></span>[chrisguttandin/web-codecs](https://github.com/chrisguttandin/web-codecs) | [13](#commits-chrisguttandin-web-codecs) | JavaScript | A (not yet) extendable and (not yet) complete drop... |
+| <span id="row-chrisguttandin-tslint-config-holy-grail"></span>[chrisguttandin/tslint-config-holy-grail](https://github.com/chrisguttandin/tslint-config-holy-grail) | [12](#commits-chrisguttandin-tslint-config-holy-grail) | JavaScript | This is my personal tslint configuration. |
+| <span id="row-chrisguttandin-tsconfig-holy-grail"></span>[chrisguttandin/tsconfig-holy-grail](https://github.com/chrisguttandin/tsconfig-holy-grail) | [12](#commits-chrisguttandin-tsconfig-holy-grail) | JavaScript | This is my personal collection of tsconfig files. |
+
+### CSS tooling
+
+*8 repositories, 201 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-csstools-postcss-plugins"></span>[csstools/postcss-plugins](https://github.com/csstools/postcss-plugins) | [189](#commits-csstools-postcss-plugins) | CSS | PostCSS Tools and Plugins |
+| <span id="row-csstools-cssdb"></span>[csstools/cssdb](https://github.com/csstools/cssdb) | [2](#commits-csstools-cssdb) | JavaScript | A database of staged CSS features |
+| <span id="row-csstools-stylelint-value-no-unknown-custom-properties"></span>[csstools/stylelint-value-no-unknown-custom-properties](https://github.com/csstools/stylelint-value-no-unknown-custom-properties) | [2](#commits-csstools-stylelint-value-no-unknown-custom-properties) | JavaScript | A stylelint rule to catch usage of unknown custom ... |
+| <span id="row-csstools-tokenizer"></span>[csstools/tokenizer](https://github.com/csstools/tokenizer) | [2](#commits-csstools-tokenizer) | TypeScript | Tokenize CSS according to the CSS Syntax |
+| <span id="row-csstools-postcss-extend-rule"></span>[csstools/postcss-extend-rule](https://github.com/csstools/postcss-extend-rule) | [2](#commits-csstools-postcss-extend-rule) | JavaScript | Use the extend at-rule and functional selectors in... |
+| <span id="row-stylelint-stylelint-ecosystem-tester"></span>[stylelint/stylelint-ecosystem-tester](https://github.com/stylelint/stylelint-ecosystem-tester) | [2](#commits-stylelint-stylelint-ecosystem-tester) | JavaScript | A comprehensive test suite for Stylelint ecosystem... |
+| <span id="row-mrhenry-stylelint-mrhenry"></span>[mrhenry/stylelint-mrhenry](https://github.com/mrhenry/stylelint-mrhenry) | [1](#commits-mrhenry-stylelint-mrhenry) | JavaScript | Write CSS following Mr. Henry's conventions |
+| <span id="row-stylelint-less-stylelint-less"></span>[stylelint-less/stylelint-less](https://github.com/stylelint-less/stylelint-less) | [1](#commits-stylelint-less-stylelint-less) | JavaScript | LESS specific linting rules and configuration for ... |
+
+### ES shims and polyfills
+
+*67 repositories, 175 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-leaverou-proposal-composable-value-accessors"></span>[LeaVerou/proposal-composable-value-accessors](https://github.com/LeaVerou/proposal-composable-value-accessors) | [25](#commits-leaverou-proposal-composable-value-accessors) | HTML | A TC39 proposal to make it easy for classes to def... |
+| <span id="row-es-shims-promise-try"></span>[es-shims/Promise.try](https://github.com/es-shims/Promise.try) | [11](#commits-es-shims-promise-try) | JavaScript | ES Proposal spec-compliant shim for Promise.try |
+| <span id="row-es-shims-number-isfinite"></span>[es-shims/Number.isFinite](https://github.com/es-shims/Number.isFinite) | [10](#commits-es-shims-number-isfinite) | JavaScript | An ES-spec-compliant Number.isFinite shim/polyfill... |
+| <span id="row-inspect-js-node-exports-info"></span>[inspect-js/node-exports-info](https://github.com/inspect-js/node-exports-info) | [10](#commits-inspect-js-node-exports-info) | JavaScript | Info about node `exports` field support: version r... |
+| <span id="row-es-shims-number-isinteger"></span>[es-shims/Number.isInteger](https://github.com/es-shims/Number.isInteger) | [9](#commits-es-shims-number-isinteger) | JavaScript | An ES-spec-compliant Number.isInteger shim/polyfil... |
+| <span id="row-es-shims-promise-withresolvers"></span>[es-shims/Promise.withResolvers](https://github.com/es-shims/Promise.withResolvers) | [9](#commits-es-shims-promise-withresolvers) | JavaScript | ES Proposal spec-compliant shim for Promise.withRe... |
+| <span id="row-es-shims-number-parseint"></span>[es-shims/Number.parseInt](https://github.com/es-shims/Number.parseInt) | [7](#commits-es-shims-number-parseint) | JavaScript | An ES-spec-compliant Number.parseInt shim/polyfill... |
+| <span id="row-inspect-js-is-registered-symbol"></span>[inspect-js/is-registered-symbol](https://github.com/inspect-js/is-registered-symbol) | [6](#commits-inspect-js-is-registered-symbol) | JavaScript | Is this value a Symbol stored in the global cross-... |
+| <span id="row-es-shims-reflect-ownkeys"></span>[es-shims/Reflect.ownKeys](https://github.com/es-shims/Reflect.ownKeys) | [6](#commits-es-shims-reflect-ownkeys) | JavaScript | ES2015 spec-compliant shim for Reflect.ownKeys |
+| <span id="row-es-shims-map-prototype-getorinsertcomputed"></span>[es-shims/Map.prototype.getOrInsertComputed](https://github.com/es-shims/Map.prototype.getOrInsertComputed) | [5](#commits-es-shims-map-prototype-getorinsertcomputed) | JavaScript | ES Proposal spec-compliant shim for Map.prototype.... |
+| <span id="row-es-shims-es-arraybuffer-base64"></span>[es-shims/es-arraybuffer-base64](https://github.com/es-shims/es-arraybuffer-base64) | [5](#commits-es-shims-es-arraybuffer-base64) | JavaScript | An ES-spec-compliant shim/polyfill/replacement for... |
+| <span id="row-inspect-js-which-typed-array"></span>[inspect-js/which-typed-array](https://github.com/inspect-js/which-typed-array) | [4](#commits-inspect-js-which-typed-array) | JavaScript | Which kind of Typed Array is this JavaScript value... |
+| <span id="row-es-shims-object-getownpropertydescriptors"></span>[es-shims/Object.getOwnPropertyDescriptors](https://github.com/es-shims/Object.getOwnPropertyDescriptors) | [4](#commits-es-shims-object-getownpropertydescriptors) | JavaScript | Spec-compliant shim for `Object.getOwnPropertyDesc... |
+| <span id="row-inspect-js-typed-array-buffer"></span>[inspect-js/typed-array-buffer](https://github.com/inspect-js/typed-array-buffer) | [3](#commits-inspect-js-typed-array-buffer) | JavaScript | Get the ArrayBuffer out of a TypedArray, robustly. |
+| <span id="row-es-shims-iterator-helpers"></span>[es-shims/iterator-helpers](https://github.com/es-shims/iterator-helpers) | [3](#commits-es-shims-iterator-helpers) | JavaScript | An ESnext spec-compliant iterator helpers shim/pol... |
+| <span id="row-inspect-js-is-weakref"></span>[inspect-js/is-weakref](https://github.com/inspect-js/is-weakref) | [3](#commits-inspect-js-is-weakref) | JavaScript | Is this value a JS WeakRef? This module works cros... |
+| <span id="row-inspect-js-array-buffer-byte-length"></span>[inspect-js/array-buffer-byte-length](https://github.com/inspect-js/array-buffer-byte-length) | [3](#commits-inspect-js-array-buffer-byte-length) | JavaScript | Get the byte length of an ArrayBuffer, even in eng... |
+| <span id="row-es-shims-set-prototype-intersection"></span>[es-shims/Set.prototype.intersection](https://github.com/es-shims/Set.prototype.intersection) | [2](#commits-es-shims-set-prototype-intersection) | JavaScript | An ESnext spec-compliant `Set.prototype.intersecti... |
+| <span id="row-es-shims-math-clz32"></span>[es-shims/Math.clz32](https://github.com/es-shims/Math.clz32) | [2](#commits-es-shims-math-clz32) | JavaScript | An ES-spec-compliant Math.clz32 shim/polyfill/repl... |
+| <span id="row-es-shims-string-prototype-padend"></span>[es-shims/String.prototype.padEnd](https://github.com/es-shims/String.prototype.padEnd) | [1](#commits-es-shims-string-prototype-padend) | JavaScript | ES spec-compliant shim for String.prototype.padEnd |
+| <span id="row-es-shims-string-prototype-trim"></span>[es-shims/String.prototype.trim](https://github.com/es-shims/String.prototype.trim) | [1](#commits-es-shims-string-prototype-trim) | JavaScript | ES5 spec-compliant shim for String.prototype.trim |
+| <span id="row-inspect-js-is-descriptor"></span>[inspect-js/is-descriptor](https://github.com/inspect-js/is-descriptor) | [1](#commits-inspect-js-is-descriptor) | JavaScript | Returns true if a value has the characteristics of... |
+| <span id="row-es-shims-string-prototype-trimright"></span>[es-shims/String.prototype.trimRight](https://github.com/es-shims/String.prototype.trimRight) | [1](#commits-es-shims-string-prototype-trimright) | JavaScript | ES2019 spec-compliant shim for String.prototype.tr... |
+| <span id="row-es-shims-regexp-escape"></span>[es-shims/RegExp.escape](https://github.com/es-shims/RegExp.escape) | [1](#commits-es-shims-regexp-escape) | JavaScript | An ESnext spec-compliant `RegExp.escape` shim/poly... |
+| <span id="row-ljharb-es-to-primitive"></span>[ljharb/es-to-primitive](https://github.com/ljharb/es-to-primitive) | [1](#commits-ljharb-es-to-primitive) | JavaScript | ECMAScript "ToPrimitive" algorithm. Provides ES5 a... |
+| <span id="row-inspect-js-is-callable"></span>[inspect-js/is-callable](https://github.com/inspect-js/is-callable) | [1](#commits-inspect-js-is-callable) | JavaScript | Is this JS value callable? Works with Functions an... |
+| <span id="row-inspect-js-is-string"></span>[inspect-js/is-string](https://github.com/inspect-js/is-string) | [1](#commits-inspect-js-is-string) | JavaScript | Is this value a JS String object or primitive? Thi... |
+| <span id="row-inspect-js-is-number-object"></span>[inspect-js/is-number-object](https://github.com/inspect-js/is-number-object) | [1](#commits-inspect-js-is-number-object) | JavaScript | Is this value a JS Number object? This module work... |
+| <span id="row-inspect-js-is-date-object"></span>[inspect-js/is-date-object](https://github.com/inspect-js/is-date-object) | [1](#commits-inspect-js-is-date-object) | JavaScript | Is this value a JS Date object? This module works ... |
+| <span id="row-inspect-js-is-symbol"></span>[inspect-js/is-symbol](https://github.com/inspect-js/is-symbol) | [1](#commits-inspect-js-is-symbol) | JavaScript | Is this an ES6 Symbol value? |
+| <span id="row-inspect-js-is-core-module"></span>[inspect-js/is-core-module](https://github.com/inspect-js/is-core-module) | [1](#commits-inspect-js-is-core-module) | JavaScript | Is this specifier a node.js core module? |
+| <span id="row-inspect-js-is-object"></span>[inspect-js/is-object](https://github.com/inspect-js/is-object) | [1](#commits-inspect-js-is-object) | JavaScript | Checks whether a value is an object, because typeo... |
+| <span id="row-ljharb-unbox-primitive"></span>[ljharb/unbox-primitive](https://github.com/ljharb/unbox-primitive) | [1](#commits-ljharb-unbox-primitive) | JavaScript | Unbox a boxed JS primitive value. |
+| <span id="row-inspect-js-functions-have-names"></span>[inspect-js/functions-have-names](https://github.com/inspect-js/functions-have-names) | [1](#commits-inspect-js-functions-have-names) | JavaScript | Does this JS environment support the `name` proper... |
+| <span id="row-es-shims-promise-allsettled"></span>[es-shims/Promise.allSettled](https://github.com/es-shims/Promise.allSettled) | [1](#commits-es-shims-promise-allsettled) | JavaScript | ES Proposal spec-compliant shim for Promise.allSet... |
+| <span id="row-inspect-js-is-bigint"></span>[inspect-js/is-bigint](https://github.com/inspect-js/is-bigint) | [1](#commits-inspect-js-is-bigint) | JavaScript | Is this an ES BigInt value? |
+| <span id="row-inspect-js-is-boxed-primitive"></span>[inspect-js/is-boxed-primitive](https://github.com/inspect-js/is-boxed-primitive) | [1](#commits-inspect-js-is-boxed-primitive) | JavaScript | Polyfill/shim for node's `util.types.isBoxedPrimit... |
+| <span id="row-es-shims-object-fromentries"></span>[es-shims/Object.fromEntries](https://github.com/es-shims/Object.fromEntries) | [1](#commits-es-shims-object-fromentries) | JavaScript | Official ES spec-compliant polyfill for Object.fro... |
+| <span id="row-inspect-js-has-template-literals"></span>[inspect-js/has-template-literals](https://github.com/inspect-js/has-template-literals) | [1](#commits-inspect-js-has-template-literals) | JavaScript | Determine if the JS environment has template liter... |
+| <span id="row-es-shims-string-prototype-matchall"></span>[es-shims/String.prototype.matchAll](https://github.com/es-shims/String.prototype.matchAll) | [1](#commits-es-shims-string-prototype-matchall) | JavaScript | Spec-compliant polyfill for String.prototype.match... |
+| <span id="row-inspect-js-has-symbols"></span>[inspect-js/has-symbols](https://github.com/inspect-js/has-symbols) | [1](#commits-inspect-js-has-symbols) | JavaScript | Determine if the JS environment has Symbol support... |
+| <span id="row-es-shims-promise-prototype-finally"></span>[es-shims/Promise.prototype.finally](https://github.com/es-shims/Promise.prototype.finally) | [1](#commits-es-shims-promise-prototype-finally) | JavaScript | ES Proposal spec-compliant shim for Promise.protot... |
+| <span id="row-inspect-js-has-bigints"></span>[inspect-js/has-bigints](https://github.com/inspect-js/has-bigints) | [1](#commits-inspect-js-has-bigints) | JavaScript | Determine if the JS environment has BigInt support... |
+| <span id="row-inspect-js-is-array-buffer"></span>[inspect-js/is-array-buffer](https://github.com/inspect-js/is-array-buffer) | [1](#commits-inspect-js-is-array-buffer) | JavaScript | Is this value a JS ArrayBuffer? This module works ... |
+| <span id="row-inspect-js-is-typed-array"></span>[inspect-js/is-typed-array](https://github.com/inspect-js/is-typed-array) | [1](#commits-inspect-js-is-typed-array) | JavaScript | Is this value a JS Typed Array? This module works ... |
+| <span id="row-es-shims-object-values"></span>[es-shims/Object.values](https://github.com/es-shims/Object.values) | [1](#commits-es-shims-object-values) | JavaScript | ES2017 spec-compliant shim for Object.values |
+| <span id="row-inspect-js-is-data-descriptor"></span>[inspect-js/is-data-descriptor](https://github.com/inspect-js/is-data-descriptor) | [1](#commits-inspect-js-is-data-descriptor) | JavaScript | Returns true if a value has the characteristics of... |
+| <span id="row-inspect-js-is-accessor-descriptor"></span>[inspect-js/is-accessor-descriptor](https://github.com/inspect-js/is-accessor-descriptor) | [1](#commits-inspect-js-is-accessor-descriptor) | JavaScript | Returns true if a value has the characteristics of... |
+| <span id="row-inspect-js-is-negative-zero"></span>[inspect-js/is-negative-zero](https://github.com/inspect-js/is-negative-zero) | [1](#commits-inspect-js-is-negative-zero) | JavaScript | Is this value negative zero? === will lie to you. |
+| <span id="row-es-shims-array-prototype-flatmap"></span>[es-shims/Array.prototype.flatMap](https://github.com/es-shims/Array.prototype.flatMap) | [1](#commits-es-shims-array-prototype-flatmap) | JavaScript | An ESnext spec-compliant `Array.prototype.flatMap`... |
+| <span id="row-es-shims-array-prototype-every"></span>[es-shims/Array.prototype.every](https://github.com/es-shims/Array.prototype.every) | [1](#commits-es-shims-array-prototype-every) | JavaScript | Array.prototype.every spec-compliant polyfill |
+| <span id="row-es-shims-globalthis"></span>[es-shims/globalThis](https://github.com/es-shims/globalThis) | [1](#commits-es-shims-globalthis) | JavaScript | ECMAScript spec-compliant polyfill/shim for `globa... |
+| <span id="row-es-shims-object-entries"></span>[es-shims/Object.entries](https://github.com/es-shims/Object.entries) | [1](#commits-es-shims-object-entries) | JavaScript | ES2017 spec-compliant shim for Object.entries |
+| <span id="row-es-shims-math-sign"></span>[es-shims/Math.sign](https://github.com/es-shims/Math.sign) | [1](#commits-es-shims-math-sign) | JavaScript | An ES-spec-compliant Math.sign shim/polyfill/repla... |
+| <span id="row-es-shims-es-shim-api"></span>[es-shims/es-shim-api](https://github.com/es-shims/es-shim-api) | [1](#commits-es-shims-es-shim-api) | JavaScript | API contract, and rudimentary tests, for modules t... |
+| <span id="row-es-shims-string-prototype-padstart"></span>[es-shims/String.prototype.padStart](https://github.com/es-shims/String.prototype.padStart) | [1](#commits-es-shims-string-prototype-padstart) | JavaScript | ES spec-compliant shim for String.prototype.padSta... |
+| <span id="row-inspect-js-is-async-function"></span>[inspect-js/is-async-function](https://github.com/inspect-js/is-async-function) | [1](#commits-inspect-js-is-async-function) | JavaScript | Is this a native `async function`? |
+| <span id="row-inspect-js-is-boolean-object"></span>[inspect-js/is-boolean-object](https://github.com/inspect-js/is-boolean-object) | [1](#commits-inspect-js-is-boolean-object) | JavaScript | Is this value a JS Boolean? This module works cros... |
+| <span id="row-es-shims-array-includes"></span>[es-shims/array-includes](https://github.com/es-shims/array-includes) | [1](#commits-es-shims-array-includes) | JavaScript | Array.prototype.includes spec-compliant polyfill |
+| <span id="row-jsx-eslint-eslint-plugin-react"></span>[jsx-eslint/eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) | [1](#commits-jsx-eslint-eslint-plugin-react) | JavaScript | React-specific linting rules for ESLint |
+| <span id="row-es-shims-object-getprototypeof"></span>[es-shims/Object.getPrototypeOf](https://github.com/es-shims/Object.getPrototypeOf) | [1](#commits-es-shims-object-getprototypeof) | JavaScript | An ES5 mostly-spec-compliant `Object.getPrototypeO... |
+| <span id="row-es-shims-number-isnan"></span>[es-shims/Number.isNaN](https://github.com/es-shims/Number.isNaN) | [1](#commits-es-shims-number-isnan) | JavaScript | A `Number.isNaN` polyfill, based on the ECMAScript... |
+| <span id="row-es-shims-object-is"></span>[es-shims/object-is](https://github.com/es-shims/object-is) | [1](#commits-es-shims-object-is) | JavaScript | ES6-compliant shim for Object.is - differentiates ... |
+| <span id="row-inspect-js-is-generator-function"></span>[inspect-js/is-generator-function](https://github.com/inspect-js/is-generator-function) | [1](#commits-inspect-js-is-generator-function) | JavaScript | Is this an ES6 generator function? |
+| <span id="row-es-shims-is-nan"></span>[es-shims/is-nan](https://github.com/es-shims/is-nan) | [1](#commits-es-shims-is-nan) | JavaScript | ES6-compliant shim for Number.isNaN - the global i... |
+| <span id="row-inspect-js-object-inspect"></span>[inspect-js/object-inspect](https://github.com/inspect-js/object-inspect) | [1](#commits-inspect-js-object-inspect) | JavaScript | string representations of objects in node and the ... |
+| <span id="row-ljharb-object-keys"></span>[ljharb/object-keys](https://github.com/ljharb/object-keys) | [1](#commits-ljharb-object-keys) | JavaScript | Object.keys shim |
+
+### Passkeys/WebAuthn
+
+*4 repositories, 38 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-passkeydeveloper-tools-passkeys-dev"></span>[passkeydeveloper/tools.passkeys.dev](https://github.com/passkeydeveloper/tools.passkeys.dev) | [26](#commits-passkeydeveloper-tools-passkeys-dev) | HTML | Developer tools for passkeys and WebAuthn |
+| <span id="row-passkeydeveloper-passkeys-dev"></span>[passkeydeveloper/passkeys.dev](https://github.com/passkeydeveloper/passkeys.dev) | [8](#commits-passkeydeveloper-passkeys-dev) | HTML | source for the passkeys.dev developer site |
+| <span id="row-yubico-java-webauthn-server"></span>[Yubico/java-webauthn-server](https://github.com/Yubico/java-webauthn-server) | [3](#commits-yubico-java-webauthn-server) | Scala | Server-side Web Authentication library for Java ht... |
+| <span id="row-passkeydeveloper-featuredetect-passkeys-dev"></span>[passkeydeveloper/featuredetect.passkeys.dev](https://github.com/passkeydeveloper/featuredetect.passkeys.dev) | [1](#commits-passkeydeveloper-featuredetect-passkeys-dev) | HTML | WebAuthn feature detection site |
+
+### Observability and tracing
+
+*12 repositories, 164 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-jaegertracing-jaeger-ui"></span>[jaegertracing/jaeger-ui](https://github.com/jaegertracing/jaeger-ui) | [67](#commits-jaegertracing-jaeger-ui) | JavaScript | Web UI for Jaeger |
+| <span id="row-jaegertracing-jaeger"></span>[jaegertracing/jaeger](https://github.com/jaegertracing/jaeger) | [42](#commits-jaegertracing-jaeger) | Go | CNCF Jaeger, a Distributed Tracing Platform |
+| <span id="row-jaegertracing-helm-charts"></span>[jaegertracing/helm-charts](https://github.com/jaegertracing/helm-charts) | [14](#commits-jaegertracing-helm-charts) | Mustache | Helm Charts for Jaeger backend |
+| <span id="row-jaegertracing-spark-dependencies"></span>[jaegertracing/spark-dependencies](https://github.com/jaegertracing/spark-dependencies) | [12](#commits-jaegertracing-spark-dependencies) | Java | Spark job for dependency links |
+| <span id="row-datadog-browser-sdk"></span>[DataDog/browser-sdk](https://github.com/DataDog/browser-sdk) | [8](#commits-datadog-browser-sdk) | TypeScript | Datadog Browser SDK |
+| <span id="row-jaegertracing-base-image-with-debugger"></span>[jaegertracing/base-image-with-debugger](https://github.com/jaegertracing/base-image-with-debugger) | [8](#commits-jaegertracing-base-image-with-debugger) | Dockerfile | Base container image with Go Delve debugger binary |
+| <span id="row-jaegertracing-documentation"></span>[jaegertracing/documentation](https://github.com/jaegertracing/documentation) | [4](#commits-jaegertracing-documentation) | TypeScript | Documentation/website for the Jaeger Distributed T... |
+| <span id="row-jaegertracing-jaeger-idl"></span>[jaegertracing/jaeger-idl](https://github.com/jaegertracing/jaeger-idl) | [3](#commits-jaegertracing-jaeger-idl) | Go | A set of shared data model definitions used by Jae... |
+| <span id="row-jaegertracing-docker-protobuf"></span>[jaegertracing/docker-protobuf](https://github.com/jaegertracing/docker-protobuf) | [2](#commits-jaegertracing-docker-protobuf) | Dockerfile |  An all-inclusive protoc Docker image for the Jaeg... |
+| <span id="row-jaegertracing--github"></span>[jaegertracing/.github](https://github.com/jaegertracing/.github) | [2](#commits-jaegertracing--github) |  | Repository containing default community health fil... |
+| <span id="row-dynatrace-dynatrace-otel-collector"></span>[Dynatrace/dynatrace-otel-collector](https://github.com/Dynatrace/dynatrace-otel-collector) | [1](#commits-dynatrace-dynatrace-otel-collector) | Go | Dynatrace distribution of the OpenTelemetry Collec... |
+| <span id="row-paulirish-trace-cafe"></span>[paulirish/trace.cafe](https://github.com/paulirish/trace.cafe) | [1](#commits-paulirish-trace-cafe) | JavaScript | easy webperf trace sharing |
+
+### Compilers and toolchains
+
+*5 repositories, 37 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-emscripten-core-emscripten"></span>[emscripten-core/emscripten](https://github.com/emscripten-core/emscripten) | [21](#commits-emscripten-core-emscripten) | C++ | Emscripten: An LLVM-to-WebAssembly Compiler |
+| <span id="row-llvm-llvm-project"></span>[llvm/llvm-project](https://github.com/llvm/llvm-project) | [9](#commits-llvm-llvm-project) | LLVM | The LLVM Project is a collection of modular and re... |
+| <span id="row-rust-diplomat-diplomat"></span>[rust-diplomat/diplomat](https://github.com/rust-diplomat/diplomat) | [4](#commits-rust-diplomat-diplomat) | Rust | Rust tool for generating FFI definitions allowing ... |
+| <span id="row-swi-prolog-npm-swipl-wasm"></span>[SWI-Prolog/npm-swipl-wasm](https://github.com/SWI-Prolog/npm-swipl-wasm) | [2](#commits-swi-prolog-npm-swipl-wasm) | JavaScript | SWI-Prolog WebAssembly build as a NPM package |
+| <span id="row-bytecodealliance-wasm-tools"></span>[bytecodealliance/wasm-tools](https://github.com/bytecodealliance/wasm-tools) | [1](#commits-bytecodealliance-wasm-tools) | Rust |  CLI and Rust libraries for low-level manipulation... |
+
+### Reference management
+
+*4 repositories, 31 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-zotero-translators"></span>[zotero/translators](https://github.com/zotero/translators) | [12](#commits-zotero-translators) | JavaScript | Zotero Translators |
+| <span id="row-zotero-reader"></span>[zotero/reader](https://github.com/zotero/reader) | [10](#commits-zotero-reader) | JavaScript | PDF/EPUB/HTML reader for Zotero |
+| <span id="row-zotero-zotero"></span>[zotero/zotero](https://github.com/zotero/zotero) | [8](#commits-zotero-zotero) | JavaScript | Zotero is a free, easy-to-use tool to help you col... |
+| <span id="row-zotero-zotero-connectors"></span>[zotero/zotero-connectors](https://github.com/zotero/zotero-connectors) | [1](#commits-zotero-zotero-connectors) | JavaScript | Chrome, Firefox, Edge, and Safari extensions for Z... |
+
+### Web standards and specifications
+
+*21 repositories, 76 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-w3c-fedid-digital-credentials"></span>[w3c-fedid/digital-credentials](https://github.com/w3c-fedid/digital-credentials) | [13](#commits-w3c-fedid-digital-credentials) | HTML | Digital Credentials API |
+| <span id="row-readium-webpub-manifest"></span>[readium/webpub-manifest](https://github.com/readium/webpub-manifest) | [7](#commits-readium-webpub-manifest) | HTML | 📜 A JSON based Web Publication Manifest format use... |
+| <span id="row-w3c-webtransport"></span>[w3c/webtransport](https://github.com/w3c/webtransport) | [7](#commits-w3c-webtransport) | Bikeshed | WebTransport is a web API for flexible data transp... |
+| <span id="row-solid-solid-oidc"></span>[solid/solid-oidc](https://github.com/solid/solid-oidc) | [5](#commits-solid-solid-oidc) | Bikeshed | The repository for the Solid OIDC authentication s... |
+| <span id="row-w3c-reporting"></span>[w3c/reporting](https://github.com/w3c/reporting) | [5](#commits-w3c-reporting) | Bikeshed | Reporting API |
+| <span id="row-gpuweb-gpuweb"></span>[gpuweb/gpuweb](https://github.com/gpuweb/gpuweb) | [5](#commits-gpuweb-gpuweb) | Bikeshed | Where the GPU for the Web work happens! |
+| <span id="row-webview-cg-compatibility-data-project"></span>[WebView-CG/Compatibility-Data-Project](https://github.com/WebView-CG/Compatibility-Data-Project) | [5](#commits-webview-cg-compatibility-data-project) | HTML | We are driving an initiative to measure compatibil... |
+| <span id="row-solid-specification"></span>[solid/specification](https://github.com/solid/specification) | [4](#commits-solid-specification) | HTML | Solid Technical Reports |
+| <span id="row-w3c-attribution"></span>[w3c/attribution](https://github.com/w3c/attribution) | [4](#commits-w3c-attribution) | Bikeshed | Attribution API |
+| <span id="row-ecma-tc54-tg4"></span>[Ecma-TC54/tg4](https://github.com/Ecma-TC54/tg4) | [3](#commits-ecma-tc54-tg4) |  | TC54-TG4: OSS Sustainability |
+| <span id="row-w3c-webdriver-bidi"></span>[w3c/webdriver-bidi](https://github.com/w3c/webdriver-bidi) | [3](#commits-w3c-webdriver-bidi) | Bikeshed | Bidirectional WebDriver protocol for browser autom... |
+| <span id="row-w3c-lws-ucs"></span>[w3c/lws-ucs](https://github.com/w3c/lws-ucs) | [2](#commits-w3c-lws-ucs) | HTML | Use-cases for the Linked Web Storage Protocol |
+| <span id="row-w3c-patwg"></span>[w3c/patwg](https://github.com/w3c/patwg) | [2](#commits-w3c-patwg) |  | Private Advertising Technology Working Group |
+| <span id="row-w3c-device-memory"></span>[w3c/device-memory](https://github.com/w3c/device-memory) | [2](#commits-w3c-device-memory) | Bikeshed | Device Memory |
+| <span id="row-w3c-sdw"></span>[w3c/sdw](https://github.com/w3c/sdw) | [2](#commits-w3c-sdw) | HTML | Repository for the Spatial Data on the Web Working... |
+| <span id="row-w3c-paint-timing"></span>[w3c/paint-timing](https://github.com/w3c/paint-timing) | [2](#commits-w3c-paint-timing) | Bikeshed | Paint Timing |
+| <span id="row-w3c-cg-atag"></span>[w3c-cg/atag](https://github.com/w3c-cg/atag) | [1](#commits-w3c-cg-atag) | HTML | Home of the ATAG CG documents, minutes, and group ... |
+| <span id="row-w3c-matf"></span>[w3c/matf](https://github.com/w3c/matf) | [1](#commits-w3c-matf) | HTML | Guidance from the Mobile Accessibility Task Force ... |
+| <span id="row-w3c-a11y-discov-vocab"></span>[w3c/a11y-discov-vocab](https://github.com/w3c/a11y-discov-vocab) | [1](#commits-w3c-a11y-discov-vocab) | HTML | Repository for the maintenance of the schema.org a... |
+| <span id="row-openui-open-ui"></span>[openui/open-ui](https://github.com/openui/open-ui) | [1](#commits-openui-open-ui) | MDX | Maintain an open standard for UI and promote its a... |
+| <span id="row-w3c-webextensions"></span>[w3c/webextensions](https://github.com/w3c/webextensions) | [1](#commits-w3c-webextensions) | Bikeshed | Charter and administrivia for the WebExtensions Co... |
+
+### Personal projects
+
+*28 repositories, 1,084 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-thiagowfx-thiagowfx-github-io"></span>[thiagowfx/thiagowfx.github.io](https://github.com/thiagowfx/thiagowfx.github.io) | [947](#commits-thiagowfx-thiagowfx-github-io) | HTML | My 'Not Just Serendipity' blog, built with Hugo. |
+| <span id="row-kinow-kinoshita-eti-br"></span>[kinow/kinoshita.eti.br](https://github.com/kinow/kinoshita.eti.br) | [22](#commits-kinow-kinoshita-eti-br) | Jupyter Notebook | kinow website |
+| <span id="row-gfx-rs-wgpu-rs-github-io"></span>[gfx-rs/wgpu-rs.github.io](https://github.com/gfx-rs/wgpu-rs.github.io) | [17](#commits-gfx-rs-wgpu-rs-github-io) | HTML | Hosting for wgpu.rs website |
+| <span id="row-adamj-adamj-github-io"></span>[AdamJ/AdamJ.github.io](https://github.com/AdamJ/AdamJ.github.io) | [11](#commits-adamj-adamj-github-io) | HTML | The repository for my personal website and portfol... |
+| <span id="row-logonoff-logonoff-github-io"></span>[logonoff/logonoff.github.io](https://github.com/logonoff/logonoff.github.io) | [11](#commits-logonoff-logonoff-github-io) | HTML |   my website and stuff  |
+| <span id="row-grokify-grokify-github-io"></span>[grokify/grokify.github.io](https://github.com/grokify/grokify.github.io) | [10](#commits-grokify-grokify-github-io) |  | A collection of info |
+| <span id="row-domfarolino-domfarolino-github-io"></span>[domfarolino/domfarolino.github.io](https://github.com/domfarolino/domfarolino.github.io) | [8](#commits-domfarolino-domfarolino-github-io) | JavaScript | Personal website |
+| <span id="row-timcappalli-blog-timcappalli-me"></span>[timcappalli/blog.timcappalli.me](https://github.com/timcappalli/blog.timcappalli.me) | [8](#commits-timcappalli-blog-timcappalli-me) | HTML | Hugo source for blog.timcappalli.me |
+| <span id="row-hayatoito-hayatoito-github-io"></span>[hayatoito/hayatoito.github.io](https://github.com/hayatoito/hayatoito.github.io) | [7](#commits-hayatoito-hayatoito-github-io) | HTML |  |
+| <span id="row-claucece-claucece-github-io"></span>[claucece/claucece.github.io](https://github.com/claucece/claucece.github.io) | [6](#commits-claucece-claucece-github-io) | HTML | My dear personal website: https://sofiaceli.com/ <... |
+| <span id="row-mp4ra-mp4ra-github-io"></span>[mp4ra/mp4ra.github.io](https://github.com/mp4ra/mp4ra.github.io) | [5](#commits-mp4ra-mp4ra-github-io) | TypeScript | MPEG-4 Registration Authority Web Site |
+| <span id="row-adamj-blog"></span>[AdamJ/blog](https://github.com/AdamJ/blog) | [4](#commits-adamj-blog) | CSS | A blog built on 11ty-libdoc |
+| <span id="row-comandeer-blog"></span>[Comandeer/blog](https://github.com/Comandeer/blog) | [3](#commits-comandeer-blog) | JavaScript | Just a simple blog |
+| <span id="row-bonds-tw-bonds-tw-github-io"></span>[bonds-tw/bonds-tw.github.io](https://github.com/bonds-tw/bonds-tw.github.io) | [3](#commits-bonds-tw-bonds-tw-github-io) | HTML | Redirection based on iOS Universal Links |
+| <span id="row-hiroya-uga-hiroya-uga-github-io"></span>[hiroya-uga/hiroya-uga.github.io](https://github.com/hiroya-uga/hiroya-uga.github.io) | [3](#commits-hiroya-uga-hiroya-uga-github-io) | TypeScript | My personal website like a shed. |
+| <span id="row-hajekj-blog"></span>[hajekj/blog](https://github.com/hajekj/blog) | [3](#commits-hajekj-blog) | HTML | Honza's Blarg - Things that didn't fit elsewhere..... |
+| <span id="row-product-designs-productdesigns-github-io"></span>[Product-Designs/productdesigns.github.io](https://github.com/Product-Designs/productdesigns.github.io) | [2](#commits-product-designs-productdesigns-github-io) | SCSS | The homepage for Product Designs dot net |
+| <span id="row-aramzs-aramzs-github-io"></span>[AramZS/aramzs.github.io](https://github.com/AramZS/aramzs.github.io) | [2](#commits-aramzs-aramzs-github-io) | HTML |  |
+| <span id="row-fabdaotw-fabdaotw-github-io"></span>[FABDAOtw/FABDAOtw.github.io](https://github.com/FABDAOtw/FABDAOtw.github.io) | [2](#commits-fabdaotw-fabdaotw-github-io) | TypeScript |  |
+| <span id="row-graphql-graphql-github-io"></span>[graphql/graphql.github.io](https://github.com/graphql/graphql.github.io) | [2](#commits-graphql-graphql-github-io) | TypeScript | GraphQL Documentation at graphql.org |
+| <span id="row-aamuley-aamuley-github-io"></span>[aamuley/aamuley.github.io](https://github.com/aamuley/aamuley.github.io) | [1](#commits-aamuley-aamuley-github-io) | HTML |  |
+| <span id="row-davidsgrogan-davidsgrogan-github-io"></span>[davidsgrogan/davidsgrogan.github.io](https://github.com/davidsgrogan/davidsgrogan.github.io) | [1](#commits-davidsgrogan-davidsgrogan-github-io) | HTML |  |
+| <span id="row-withastro-astro"></span>[withastro/astro](https://github.com/withastro/astro) | [1](#commits-withastro-astro) | TypeScript | The web framework for content-driven websites. ⭐️ ... |
+| <span id="row-accessiblecommunity-accessiblecommunity-github-io"></span>[accessiblecommunity/accessiblecommunity.github.io](https://github.com/accessiblecommunity/accessiblecommunity.github.io) | [1](#commits-accessiblecommunity-accessiblecommunity-github-io) | HTML | Main website |
+| <span id="row-migueldemoura-migueldemoura-com"></span>[migueldemoura/migueldemoura.com](https://github.com/migueldemoura/migueldemoura.com) | [1](#commits-migueldemoura-migueldemoura-com) | HTML | Personal Blog - Projects, Security & Privacy |
+| <span id="row-muan-site"></span>[muan/site](https://github.com/muan/site) | [1](#commits-muan-site) | HTML | My personal site ✌🏼. |
+| <span id="row-shivamidow-shivamidow-github-io"></span>[shivamidow/shivamidow.github.io](https://github.com/shivamidow/shivamidow.github.io) | [1](#commits-shivamidow-shivamidow-github-io) | HTML |  |
+| <span id="row-triazbalfolk-triaz-github-io"></span>[TriazBalfolk/triaz.github.io](https://github.com/TriazBalfolk/triaz.github.io) | [1](#commits-triazbalfolk-triaz-github-io) | HTML | Website for Triaz |
+
+### Other
+
+*541 repositories, 7,819 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-socketdev-socket-btm"></span>[SocketDev/socket-btm](https://github.com/SocketDev/socket-btm) | [823](#commits-socketdev-socket-btm) | JavaScript |  |
+| <span id="row-ruby2js-ruby2js"></span>[ruby2js/ruby2js](https://github.com/ruby2js/ruby2js) | [744](#commits-ruby2js-ruby2js) | Ruby | Ruby to JavaScript conversion |
+| <span id="row-jimmy-zhening-luo-pwsh"></span>[jimmy-zhening-luo/pwsh](https://github.com/jimmy-zhening-luo/pwsh) | [676](#commits-jimmy-zhening-luo-pwsh) | C# | PowerShell profile |
+| <span id="row-berlysia-agent-orchestrator"></span>[berlysia/agent-orchestrator](https://github.com/berlysia/agent-orchestrator) | [301](#commits-berlysia-agent-orchestrator) | TypeScript |  |
+| <span id="row-christian-bromann-langchain-references"></span>[christian-bromann/langchain-references](https://github.com/christian-bromann/langchain-references) | [206](#commits-christian-bromann-langchain-references) | TypeScript | Unified API reference documentation platform for L... |
+| <span id="row-biosky-pending-name-biosky"></span>[biosky-pending-name/biosky](https://github.com/biosky-pending-name/biosky) | [199](#commits-biosky-pending-name-biosky) | TypeScript | A decentralized biodiversity observation platform ... |
+| <span id="row-berlysia-structured-text-data-converter"></span>[berlysia/structured-text-data-converter](https://github.com/berlysia/structured-text-data-converter) | [171](#commits-berlysia-structured-text-data-converter) | MoonBit |  |
+| <span id="row-nudeps-nudeps"></span>[nudeps/nudeps](https://github.com/nudeps/nudeps) | [124](#commits-nudeps-nudeps) | JavaScript | A work in progress. Move along, or try out the pro... |
+| <span id="row-fec-fukuoka-frontend-conf-fukuoka-jp"></span>[fec-fukuoka/frontend-conf.fukuoka.jp](https://github.com/fec-fukuoka/frontend-conf.fukuoka.jp) | [116](#commits-fec-fukuoka-frontend-conf-fukuoka-jp) | Astro | Frontend Conference Fukuoka Official Website |
+| <span id="row-surma-nixenv"></span>[surma/nixenv](https://github.com/surma/nixenv) | [112](#commits-surma-nixenv) | Nix |  |
+| <span id="row-socketdev-socket-lib"></span>[SocketDev/socket-lib](https://github.com/SocketDev/socket-lib) | [110](#commits-socketdev-socket-lib) | TypeScript | Core library for Socket.dev tools |
+| <span id="row-a2stuff-a2d"></span>[a2stuff/a2d](https://github.com/a2stuff/a2d) | [102](#commits-a2stuff-a2d) | Assembly | Disassembly of the Apple II Desktop - ProDOS GUI |
+| <span id="row-frewsxcv-citizen-science-bioregionalization"></span>[frewsxcv/citizen-science-bioregionalization](https://github.com/frewsxcv/citizen-science-bioregionalization) | [97](#commits-frewsxcv-citizen-science-bioregionalization) | Python |  |
+| <span id="row-httparchive-almanac-httparchive-org"></span>[HTTPArchive/almanac.httparchive.org](https://github.com/HTTPArchive/almanac.httparchive.org) | [83](#commits-httparchive-almanac-httparchive-org) | HTML | HTTP Archive's annual "State of the Web" report ma... |
+| <span id="row-web-platform-tests-results-analysis"></span>[web-platform-tests/results-analysis](https://github.com/web-platform-tests/results-analysis) | [83](#commits-web-platform-tests-results-analysis) | JavaScript | Metrics generation for wpt.fyi |
+| <span id="row-favorite-icons-of-internet-favoriteiconsofinternet"></span>[Favorite-Icons-Of-Internet/favoriteiconsofinternet](https://github.com/Favorite-Icons-Of-Internet/favoriteiconsofinternet) | [79](#commits-favorite-icons-of-internet-favoriteiconsofinternet) | JavaScript | Favorite Icons Of Internet |
+| <span id="row-reprogistry-reprogistry"></span>[reprogistry/reprogistry](https://github.com/reprogistry/reprogistry) | [78](#commits-reprogistry-reprogistry) | JavaScript | registry of reproduction results from the npm regi... |
+| <span id="row-thiagowfx-pancake"></span>[thiagowfx/pancake](https://github.com/thiagowfx/pancake) | [76](#commits-thiagowfx-pancake) | Shell | A potpourri of sweet ingredients – miscellaneous u... |
+| <span id="row-aramzs-aramzs-xyz"></span>[AramZS/aramzs.xyz](https://github.com/AramZS/aramzs.xyz) | [72](#commits-aramzs-aramzs-xyz) | HTML |  |
+| <span id="row-grokify-structured-changelog"></span>[grokify/structured-changelog](https://github.com/grokify/structured-changelog) | [72](#commits-grokify-structured-changelog) | Go | Structured Changelog provides a machine-readable J... |
+| <span id="row-libapps-libapps-mirror"></span>[libapps/libapps-mirror](https://github.com/libapps/libapps-mirror) | [68](#commits-libapps-libapps-mirror) | JavaScript | Mirror of the official libapps repo from https://c... |
+| <span id="row-sublimator-xahaud-scripts"></span>[sublimator/xahaud-scripts](https://github.com/sublimator/xahaud-scripts) | [67](#commits-sublimator-xahaud-scripts) | Python |  |
+| <span id="row-cyclopsmc-integratedcrafting"></span>[CyclopsMC/IntegratedCrafting](https://github.com/CyclopsMC/IntegratedCrafting) | [67](#commits-cyclopsmc-integratedcrafting) | Java | Craft stuff in Integrated Dynamics networks |
+| <span id="row-jimmy-zhening-luo-dprint"></span>[jimmy-zhening-luo/dprint](https://github.com/jimmy-zhening-luo/dprint) | [66](#commits-jimmy-zhening-luo-dprint) |  | dprint config json schemata |
+| <span id="row-theodi-volunteer-profile-manager"></span>[theodi/volunteer-profile-manager](https://github.com/theodi/volunteer-profile-manager) | [62](#commits-theodi-volunteer-profile-manager) | TypeScript | A profile manager for volunteers |
+| <span id="row-cyclopsmc-integrateddynamics"></span>[CyclopsMC/IntegratedDynamics](https://github.com/CyclopsMC/IntegratedDynamics) | [59](#commits-cyclopsmc-integrateddynamics) | Java | A Minecraft mod to take full and automated control... |
+| <span id="row-ecomfe-tempad-dev"></span>[ecomfe/tempad-dev](https://github.com/ecomfe/tempad-dev) | [55](#commits-ecomfe-tempad-dev) | TypeScript | Inspect panel on Figma, for everyone. |
+| <span id="row-dzearing-ai-experiments"></span>[dzearing/ai-experiments](https://github.com/dzearing/ai-experiments) | [49](#commits-dzearing-ai-experiments) | TypeScript |  |
+| <span id="row-jimmy-zhening-luo-linted-defaults"></span>[jimmy-zhening-luo/linted-defaults](https://github.com/jimmy-zhening-luo/linted-defaults) | [46](#commits-jimmy-zhening-luo-linted-defaults) | TypeScript | Default config for `linted` |
+| <span id="row-servo-servo-org"></span>[servo/servo.org](https://github.com/servo/servo.org) | [46](#commits-servo-servo-org) | HTML | Servo project website |
+| <span id="row-ljharb-list-exports"></span>[ljharb/list-exports](https://github.com/ljharb/list-exports) | [43](#commits-ljharb-list-exports) | JavaScript | Given a package name and a version number, or a pa... |
+| <span id="row-andeya-gust"></span>[andeya/gust](https://github.com/andeya/gust) | [37](#commits-andeya-gust) | Go | A production-ready library that makes error handli... |
+| <span id="row-grokify-gogithub"></span>[grokify/gogithub](https://github.com/grokify/gogithub) | [36](#commits-grokify-gogithub) | Go | gogithub is a high-level Go module for interacting... |
+| <span id="row-grokify-omnistorage"></span>[grokify/omnistorage](https://github.com/grokify/omnistorage) | [34](#commits-grokify-omnistorage) | Go | OmniStorage is a unified storage abstraction layer... |
+| <span id="row-rreverser-ascom-alpaca-rs"></span>[RReverser/ascom-alpaca-rs](https://github.com/RReverser/ascom-alpaca-rs) | [34](#commits-rreverser-ascom-alpaca-rs) | Rust | Cross-platform Rust library for the ASCOM Alpaca A... |
+| <span id="row-stackia-rtp2httpd"></span>[stackia/rtp2httpd](https://github.com/stackia/rtp2httpd) | [33](#commits-stackia-rtp2httpd) | C | Multicast RTP/RTSP to Unicast HTTP stream converte... |
+| <span id="row-dcthetall-ttfp"></span>[DCtheTall/ttfp](https://github.com/DCtheTall/ttfp) | [32](#commits-dcthetall-ttfp) | Python | Automating solutions decidable problems in Type Th... |
+| <span id="row-jimmy-zhening-luo-function"></span>[jimmy-zhening-luo/function](https://github.com/jimmy-zhening-luo/function) | [32](#commits-jimmy-zhening-luo-function) | TypeScript | My Azure Functions for scheduled automations |
+| <span id="row-paulirish-markpaste"></span>[paulirish/markpaste](https://github.com/paulirish/markpaste) | [32](#commits-paulirish-markpaste) | JavaScript | Select stuff in the browser, copy, paste it here, ... |
+| <span id="row-christianliebel-paint"></span>[christianliebel/paint](https://github.com/christianliebel/paint) | [31](#commits-christianliebel-paint) | TypeScript | Open source, Web Components-based remake of MS Pai... |
+| <span id="row-jimmy-zhening-luo-gsuite"></span>[jimmy-zhening-luo/gsuite](https://github.com/jimmy-zhening-luo/gsuite) | [31](#commits-jimmy-zhening-luo-gsuite) | TypeScript | Google Apps Script scripts for Google Apps. |
+| <span id="row-jimmy-zhening-luo-linted-core"></span>[jimmy-zhening-luo/linted-core](https://github.com/jimmy-zhening-luo/linted-core) | [31](#commits-jimmy-zhening-luo-linted-core) | TypeScript | Internal core for npm package `linted`, responsibl... |
+| <span id="row-foolip-day-to-day"></span>[foolip/day-to-day](https://github.com/foolip/day-to-day) | [30](#commits-foolip-day-to-day) | JavaScript | Visualizing the day-to-day work in specs and tests |
+| <span id="row-mehm8128-mehm8128-portfolio"></span>[mehm8128/mehm8128-portfolio](https://github.com/mehm8128/mehm8128-portfolio) | [30](#commits-mehm8128-mehm8128-portfolio) | Astro | mehm8128 portfolio. |
+| <span id="row-openshift-console"></span>[openshift/console](https://github.com/openshift/console) | [30](#commits-openshift-console) | TypeScript | OpenShift Cluster Console UI |
+| <span id="row-jimmy-zhening-luo-gptool"></span>[jimmy-zhening-luo/gptool](https://github.com/jimmy-zhening-luo/gptool) | [29](#commits-jimmy-zhening-luo-gptool) |  | OpenAI responses model tools |
+| <span id="row-grokify-brandkit"></span>[grokify/brandkit](https://github.com/grokify/brandkit) | [29](#commits-grokify-brandkit) | Go | A Go toolkit for processing brand icons — analyzin... |
+| <span id="row-cyclopsmc-integratedterminals"></span>[CyclopsMC/IntegratedTerminals](https://github.com/CyclopsMC/IntegratedTerminals) | [29](#commits-cyclopsmc-integratedterminals) | Java | Terminals for managing and overviewing Integrated ... |
+| <span id="row-cyclopsmc-packtests"></span>[CyclopsMC/packtests](https://github.com/CyclopsMC/packtests) | [29](#commits-cyclopsmc-packtests) | Shell | Workflows to test full modpacks in production envi... |
+| <span id="row-pzrsa-parsam-io"></span>[pzrsa/parsam.io](https://github.com/pzrsa/parsam.io) | [28](#commits-pzrsa-parsam-io) | Astro | my personal website built with Astro, hosted on Ve... |
+| <span id="row-fumedpodcast-fumed"></span>[fumedpodcast/fumed](https://github.com/fumedpodcast/fumed) | [27](#commits-fumedpodcast-fumed) | JavaScript |  |
+| <span id="row-grokify-structured-roadmap"></span>[grokify/structured-roadmap](https://github.com/grokify/structured-roadmap) | [27](#commits-grokify-structured-roadmap) | Go | Structured Roadmap provides a machine-readable JSO... |
+| <span id="row-startupapi-startup-api-cloudflare"></span>[StartupAPI/startup-api-cloudflare](https://github.com/StartupAPI/startup-api-cloudflare) | [26](#commits-startupapi-startup-api-cloudflare) | TypeScript | Implementation of Startup API on Cloudflare Develo... |
+| <span id="row-sergeychernyshev-asymmetric-tic-tac-toe"></span>[sergeychernyshev/asymmetric-tic-tac-toe](https://github.com/sergeychernyshev/asymmetric-tic-tac-toe) | [26](#commits-sergeychernyshev-asymmetric-tic-tac-toe) | TypeScript | Multi-player Tic-Tac-Toe game |
+| <span id="row-arthursonzogni-committracker"></span>[ArthurSonzogni/CommitTracker](https://github.com/ArthurSonzogni/CommitTracker) | [25](#commits-arthursonzogni-committracker) | Vue | A D3 visualisations of web browsers commits |
+| <span id="row-libre-fm-libre-fm-templates"></span>[libre-fm/libre-fm-templates](https://github.com/libre-fm/libre-fm-templates) | [25](#commits-libre-fm-libre-fm-templates) | Smarty | Final theme for Nixtape |
+| <span id="row-ljharb-html-element-map"></span>[ljharb/html-element-map](https://github.com/ljharb/html-element-map) | [25](#commits-ljharb-html-element-map) | JavaScript | Look up HTML tag names via HTML Element constructo... |
+| <span id="row-fserb-substrate"></span>[fserb/substrate](https://github.com/fserb/substrate) | [24](#commits-fserb-substrate) | Go |  |
+| <span id="row-ereslibre-homelab"></span>[ereslibre/homelab](https://github.com/ereslibre/homelab) | [23](#commits-ereslibre-homelab) | Nix | ❄️ Nixified ❄️ homelab |
+| <span id="row-johntitor-www-2k36-org"></span>[JohnTitor/www.2k36.org](https://github.com/JohnTitor/www.2k36.org) | [23](#commits-johntitor-www-2k36-org) | Astro | My website |
+| <span id="row-nudeps-nudeps-demos"></span>[nudeps/nudeps-demos](https://github.com/nudeps/nudeps-demos) | [23](#commits-nudeps-nudeps-demos) | JavaScript | Demos showcasing how Nudeps works with various typ... |
+| <span id="row-animenl-volunteer-manager"></span>[AnimeNL/volunteer-manager](https://github.com/AnimeNL/volunteer-manager) | [22](#commits-animenl-volunteer-manager) | TypeScript | Volunteer Managing environment for AnimeCon |
+| <span id="row-canova-searchfox-mcp"></span>[canova/searchfox-mcp](https://github.com/canova/searchfox-mcp) | [22](#commits-canova-searchfox-mcp) | TypeScript |  |
+| <span id="row-discostu105-dynatrace-astroshop-app"></span>[discostu105/dynatrace-astroshop-app](https://github.com/discostu105/dynatrace-astroshop-app) | [22](#commits-discostu105-dynatrace-astroshop-app) | TypeScript | Dynatrace App for OTel Astroshop |
+| <span id="row-rubys-showcase"></span>[rubys/showcase](https://github.com/rubys/showcase) | [22](#commits-rubys-showcase) | Ruby | Ballroom Dance Showcase Scheduler |
+| <span id="row-jeswr-sparql_noir"></span>[jeswr/sparql_noir](https://github.com/jeswr/sparql_noir) | [21](#commits-jeswr-sparql_noir) | TypeScript | Clean implementation of SPARQL prover in NOIR |
+| <span id="row-niklasmerz-cordova-plugin-servo-webview"></span>[NiklasMerz/cordova-plugin-servo-webview](https://github.com/NiklasMerz/cordova-plugin-servo-webview) | [21](#commits-niklasmerz-cordova-plugin-servo-webview) | Java | SeroView instead of Android WebView for Cordova |
+| <span id="row-youtube-cobalt"></span>[youtube/cobalt](https://github.com/youtube/cobalt) | [20](#commits-youtube-cobalt) |  | Cobalt is a lightweight HTML5 application containe... |
+| <span id="row-seiry-use-mmdb-vanilla"></span>[seiry/use-mmdb-vanilla](https://github.com/seiry/use-mmdb-vanilla) | [20](#commits-seiry-use-mmdb-vanilla) | TypeScript |  |
+| <span id="row-johntitor-activity-2k36-org"></span>[JohnTitor/activity.2k36.org](https://github.com/JohnTitor/activity.2k36.org) | [19](#commits-johntitor-activity-2k36-org) | TypeScript | GitHub Activity of @JohnTitor |
+| <span id="row-grokify-go-v2mom"></span>[grokify/go-v2mom](https://github.com/grokify/go-v2mom) | [19](#commits-grokify-go-v2mom) | Go | A Go library and CLI tool for managing V2MOM (Visi... |
+| <span id="row-digitalbazaar-canivc"></span>[digitalbazaar/canivc](https://github.com/digitalbazaar/canivc) | [18](#commits-digitalbazaar-canivc) | JavaScript | Community compatibility dashboard for the Verifiab... |
+| <span id="row-grokify-traffic2openapi"></span>[grokify/traffic2openapi](https://github.com/grokify/traffic2openapi) | [18](#commits-grokify-traffic2openapi) | Go | Traffic2OpenAPI captures HTTP request/response tra... |
+| <span id="row-jeswr-noir_xpath"></span>[jeswr/noir_XPath](https://github.com/jeswr/noir_XPath) | [18](#commits-jeswr-noir_xpath) | Noir | XPath 2.0 Functions and Operations implemented for... |
+| <span id="row-berlysia-slides-for-vertical-writing"></span>[berlysia/slides-for-vertical-writing](https://github.com/berlysia/slides-for-vertical-writing) | [17](#commits-berlysia-slides-for-vertical-writing) | MDX |  |
+| <span id="row-ibelem-webnn-text-generation-nextjs"></span>[ibelem/webnn-text-generation-nextjs](https://github.com/ibelem/webnn-text-generation-nextjs) | [17](#commits-ibelem-webnn-text-generation-nextjs) | TypeScript |  |
+| <span id="row-socketdev-socket-registry"></span>[SocketDev/socket-registry](https://github.com/SocketDev/socket-registry) | [17](#commits-socketdev-socket-registry) | JavaScript | Socket.dev optimized 📦 overrides✨ |
+| <span id="row-tddworks-claudebar"></span>[tddworks/ClaudeBar](https://github.com/tddworks/ClaudeBar) | [16](#commits-tddworks-claudebar) | Swift | A macOS menu bar application that monitors AI codi... |
+| <span id="row-frosne-manifest-parser"></span>[Frosne/manifest-parser](https://github.com/Frosne/manifest-parser) | [15](#commits-frosne-manifest-parser) | Rust |  |
+| <span id="row-grokify-structured-requirements"></span>[grokify/structured-requirements](https://github.com/grokify/structured-requirements) | [15](#commits-grokify-structured-requirements) | Go | A structured format for requirements documents wit... |
+| <span id="row-jeswr-shaclc-writer"></span>[jeswr/shaclc-writer](https://github.com/jeswr/shaclc-writer) | [15](#commits-jeswr-shaclc-writer) | TypeScript |  |
+| <span id="row-timcappalli-nhl-goal-announce"></span>[timcappalli/nhl-goal-announce](https://github.com/timcappalli/nhl-goal-announce) | [15](#commits-timcappalli-nhl-goal-announce) | JavaScript |  |
+| <span id="row-aramzs-devblog"></span>[AramZS/devblog](https://github.com/AramZS/devblog) | [14](#commits-aramzs-devblog) | JavaScript | The source code for Fight With Tools Dev - my deve... |
+| <span id="row-jan-ivar-dummy"></span>[jan-ivar/dummy](https://github.com/jan-ivar/dummy) | [14](#commits-jan-ivar-dummy) | HTML |  |
+| <span id="row-grokify-slidekit"></span>[grokify/slidekit](https://github.com/grokify/slidekit) | [14](#commits-grokify-slidekit) | Go |  |
+| <span id="row-grokify-omnistorage-github"></span>[grokify/omnistorage-github](https://github.com/grokify/omnistorage-github) | [14](#commits-grokify-omnistorage-github) | Go | GitHub repository backend for OmniStorage. |
+| <span id="row-sideshowbarker-social-media-cleanser"></span>[sideshowbarker/social-media-cleanser](https://github.com/sideshowbarker/social-media-cleanser) | [14](#commits-sideshowbarker-social-media-cleanser) | JavaScript | 🧼 Cleanse web pages of social media links and icon... |
+| <span id="row-timcappalli-explainers"></span>[timcappalli/explainers](https://github.com/timcappalli/explainers) | [14](#commits-timcappalli-explainers) |  | standards explainers |
+| <span id="row-jzni-schema"></span>[jzni/schema](https://github.com/jzni/schema) | [13](#commits-jzni-schema) | JavaScript | Schemata |
+| <span id="row-w3c-ccg-w3c-ccg-archiver"></span>[w3c-ccg/w3c-ccg-archiver](https://github.com/w3c-ccg/w3c-ccg-archiver) | [13](#commits-w3c-ccg-w3c-ccg-archiver) | JavaScript | W3C Credentials CG Meeting Archival Tool |
+| <span id="row-neovateai-agent-skill-npm-boilerplate"></span>[neovateai/agent-skill-npm-boilerplate](https://github.com/neovateai/agent-skill-npm-boilerplate) | [13](#commits-neovateai-agent-skill-npm-boilerplate) | Shell | A template for creating and publishing Claude Code... |
+| <span id="row-mrhenry-s3-uploads"></span>[mrhenry/S3-Uploads](https://github.com/mrhenry/S3-Uploads) | [13](#commits-mrhenry-s3-uploads) | PHP |  |
+| <span id="row-underoot-ruble-roller-coaster"></span>[underoot/ruble-roller-coaster](https://github.com/underoot/ruble-roller-coaster) | [13](#commits-underoot-ruble-roller-coaster) | TypeScript |  |
+| <span id="row-ibelem-webnn-hf-spaces"></span>[ibelem/webnn-hf-spaces](https://github.com/ibelem/webnn-hf-spaces) | [12](#commits-ibelem-webnn-hf-spaces) | JavaScript | WebNN Examples for https://huggingface.co/webnn/sp... |
+| <span id="row-l-xiaoshen-unocss-svelte"></span>[l-xiaoshen/unocss-svelte](https://github.com/l-xiaoshen/unocss-svelte) | [12](#commits-l-xiaoshen-unocss-svelte) | TypeScript |  |
+| <span id="row-grokify-oscompat"></span>[grokify/oscompat](https://github.com/grokify/oscompat) | [12](#commits-grokify-oscompat) | Go | Cross-platform OS compatibility utilities for Go. ... |
+| <span id="row-grokify-goauth"></span>[grokify/goauth](https://github.com/grokify/goauth) | [12](#commits-grokify-goauth) | Go | Utility libraries for Go (aka Golang) API auth inc... |
+| <span id="row-ostafinskim-attendance-tracker"></span>[ostafinskim/attendance-tracker](https://github.com/ostafinskim/attendance-tracker) | [12](#commits-ostafinskim-attendance-tracker) | TypeScript | This application was built with Next.js, React, an... |
+| <span id="row-paulirish-trace-stuff"></span>[paulirish/trace-stuff](https://github.com/paulirish/trace-stuff) | [12](#commits-paulirish-trace-stuff) | JavaScript | my personal dumping ground of trace utility files.... |
+| <span id="row-thiagowfx-pre-commit-hooks"></span>[thiagowfx/pre-commit-hooks](https://github.com/thiagowfx/pre-commit-hooks) | [12](#commits-thiagowfx-pre-commit-hooks) | Shell | A collection of useful hooks for pre-commit |
+| <span id="row-ljharb-purl"></span>[ljharb/purl](https://github.com/ljharb/purl) | [12](#commits-ljharb-purl) | JavaScript | a PURL parser and serializer  |
+| <span id="row-chunminchang-triage-wizard"></span>[ChunMinChang/triage-wizard](https://github.com/ChunMinChang/triage-wizard) | [11](#commits-chunminchang-triage-wizard) | JavaScript | triage helper for Mozilla developers |
+| <span id="row-eerii-conflores"></span>[eerii/conflores](https://github.com/eerii/conflores) | [11](#commits-eerii-conflores) | JavaScript | technical blog |
+| <span id="row-kgraney-dune_container"></span>[kgraney/dune_container](https://github.com/kgraney/dune_container) | [11](#commits-kgraney-dune_container) | Dockerfile |  |
+| <span id="row-kong-public-ui-components"></span>[Kong/public-ui-components](https://github.com/Kong/public-ui-components) | [11](#commits-kong-public-ui-components) | TypeScript | Kong open-source UI components and associated pack... |
+| <span id="row-mozillasecurity-webcompatmanager"></span>[MozillaSecurity/WebCompatManager](https://github.com/MozillaSecurity/WebCompatManager) | [11](#commits-mozillasecurity-webcompatmanager) | Python | A WebCompat management tools collection |
+| <span id="row-grokify-omnistorage-google"></span>[grokify/omnistorage-google](https://github.com/grokify/omnistorage-google) | [11](#commits-grokify-omnistorage-google) | Go | Google Cloud backends for OmniStorage - Google Dri... |
+| <span id="row-mehm8128-storycatalog"></span>[mehm8128/storycatalog](https://github.com/mehm8128/storycatalog) | [11](#commits-mehm8128-storycatalog) | TypeScript | Storybook-like component catalog |
+| <span id="row-mardi4nfdi-docker-wikibase"></span>[MaRDI4NFDI/docker-wikibase](https://github.com/MaRDI4NFDI/docker-wikibase) | [11](#commits-mardi4nfdi-docker-wikibase) | PHP | Wikibase Docker image with preinstalled extensions... |
+| <span id="row-raohai-claudequant"></span>[RaoHai/ClaudeQuant](https://github.com/RaoHai/ClaudeQuant) | [11](#commits-raohai-claudequant) | Python | 🤖 AI-powered Chinese A-share stock analyzer built ... |
+| <span id="row-cyclopsmc-versions"></span>[CyclopsMC/Versions](https://github.com/CyclopsMC/Versions) | [11](#commits-cyclopsmc-versions) | Shell | Version repository for all Cyclops mods |
+| <span id="row-httparchive-wappalyzer"></span>[HTTPArchive/wappalyzer](https://github.com/HTTPArchive/wappalyzer) | [11](#commits-httparchive-wappalyzer) | JavaScript | HTTP Archive fork of Wappalyzer |
+| <span id="row-alexnj-android-webviews"></span>[alexnj/android-webviews](https://github.com/alexnj/android-webviews) | [10](#commits-alexnj-android-webviews) | Java | Test project for Android WebViews |
+| <span id="row-product-designs-basketball-scorekeeper"></span>[Product-Designs/basketball-scorekeeper](https://github.com/Product-Designs/basketball-scorekeeper) | [10](#commits-product-designs-basketball-scorekeeper) | JavaScript | A simple basketball scorekeeping app. |
+| <span id="row-cottas-rdf--github"></span>[cottas-rdf/.github](https://github.com/cottas-rdf/.github) | [10](#commits-cottas-rdf--github) |  |  |
+| <span id="row-dontcallmedom-ie-dashboard"></span>[dontcallmedom/ie-dashboard](https://github.com/dontcallmedom/ie-dashboard) | [10](#commits-dontcallmedom-ie-dashboard) | JavaScript | http://dontcallmedom.github.io/ie-dashboard/ |
+| <span id="row-jeffcarp-ml-hyperpolyglot"></span>[jeffcarp/ml-hyperpolyglot](https://github.com/jeffcarp/ml-hyperpolyglot) | [10](#commits-jeffcarp-ml-hyperpolyglot) | CSS |  |
+| <span id="row-mozilla-docker-etl"></span>[mozilla/docker-etl](https://github.com/mozilla/docker-etl) | [10](#commits-mozilla-docker-etl) | Python | Collection of dockerized ETL jobs managed by data ... |
+| <span id="row-grokify-structured-goals"></span>[grokify/structured-goals](https://github.com/grokify/structured-goals) | [10](#commits-grokify-structured-goals) | Go | A Go library and CLI tool for managing V2MOM (Visi... |
+| <span id="row-lukewarlow-dbus4k"></span>[lukewarlow/dbus4k](https://github.com/lukewarlow/dbus4k) | [10](#commits-lukewarlow-dbus4k) | Kotlin | Kotlin/Native D-Bus Client |
+| <span id="row-logonoff-obsidian-inline-spoilers"></span>[logonoff/obsidian-inline-spoilers](https://github.com/logonoff/obsidian-inline-spoilers) | [10](#commits-logonoff-obsidian-inline-spoilers) | TypeScript | Adds Discord-like syntax for inline spoilers. |
+| <span id="row-amermathsoc-texml-to-html"></span>[AmerMathSoc/texml-to-html](https://github.com/AmerMathSoc/texml-to-html) | [10](#commits-amermathsoc-texml-to-html) | HTML | Converting AmerMathSoc/texml output to raw HTML |
+| <span id="row-rinchen-ghostty-config"></span>[rinchen/ghostty-config](https://github.com/rinchen/ghostty-config) | [10](#commits-rinchen-ghostty-config) |  | Joey's Ghostty Config |
+| <span id="row-digitalbazaar-html-render-method-test"></span>[digitalbazaar/html-render-method-test](https://github.com/digitalbazaar/html-render-method-test) | [9](#commits-digitalbazaar-html-render-method-test) | HTML | For testing HTML TemplateRenderMethod |
+| <span id="row-athinkra-sheek-bakrii-saphaloo"></span>[athinkra/sheek-bakrii-saphaloo](https://github.com/athinkra/sheek-bakrii-saphaloo) | [9](#commits-athinkra-sheek-bakrii-saphaloo) | Perl | The Athinkra Sheek Bakrii Saphaloo Typeface |
+| <span id="row-hbz-lobid-gnd-ui"></span>[hbz/lobid-gnd-ui](https://github.com/hbz/lobid-gnd-ui) | [9](#commits-hbz-lobid-gnd-ui) | Java | Prototype for a lobid-gnd UI implementation based ... |
+| <span id="row-grokify-chathub"></span>[grokify/chathub](https://github.com/grokify/chathub) | [9](#commits-grokify-chathub) | Go | ChatHub is an MCP (Model Context Protocol) server ... |
+| <span id="row-leaverou-blog"></span>[LeaVerou/blog](https://github.com/LeaVerou/blog) | [9](#commits-leaverou-blog) | JavaScript | Content for my personal blog. Found a bug? Send a ... |
+| <span id="row-presbrey-lightymux"></span>[presbrey/lightymux](https://github.com/presbrey/lightymux) | [9](#commits-presbrey-lightymux) | Go | A lightweight (1 file), dynamic reverse proxy serv... |
+| <span id="row-wikimedia-mediawiki-extensions"></span>[wikimedia/mediawiki-extensions](https://github.com/wikimedia/mediawiki-extensions) | [9](#commits-wikimedia-mediawiki-extensions) | Python | GitHub mirror of the mediawiki/extensions reposito... |
+| <span id="row-sakupi01-sakupi01-com"></span>[sakupi01/sakupi01.com](https://github.com/sakupi01/sakupi01.com) | [9](#commits-sakupi01-sakupi01-com) | HTML | Home sweet home. |
+| <span id="row-ljharb-repo-report"></span>[ljharb/repo-report](https://github.com/ljharb/repo-report) | [9](#commits-ljharb-repo-report) | JavaScript | CLI to list all repos a user has access to, and re... |
+| <span id="row-httparchive-httparchive-org"></span>[HTTPArchive/httparchive.org](https://github.com/HTTPArchive/httparchive.org) | [9](#commits-httparchive-httparchive-org) | JavaScript | The HTTP Archive website hosted on App Engine |
+| <span id="row-adamj-soccergametracker"></span>[AdamJ/SoccerGameTracker](https://github.com/AdamJ/SoccerGameTracker) | [8](#commits-adamj-soccergametracker) | Swift | Tracking soccer game statistics for your team |
+| <span id="row-aramzs-songobsessed"></span>[AramZS/songobsessed](https://github.com/AramZS/songobsessed) | [8](#commits-aramzs-songobsessed) | JavaScript | A website for song obsessions |
+| <span id="row-chinmaygarde-buildkite_sandbox"></span>[chinmaygarde/buildkite_sandbox](https://github.com/chinmaygarde/buildkite_sandbox) | [8](#commits-chinmaygarde-buildkite_sandbox) | CMake | Tinkering around with BuildKite |
+| <span id="row-berlysia-eslint-config"></span>[berlysia/eslint-config](https://github.com/berlysia/eslint-config) | [8](#commits-berlysia-eslint-config) | TypeScript |  |
+| <span id="row-berlysia-slide-system-for-vertical-writing"></span>[berlysia/slide-system-for-vertical-writing](https://github.com/berlysia/slide-system-for-vertical-writing) | [8](#commits-berlysia-slide-system-for-vertical-writing) | TypeScript |  |
+| <span id="row-daidr-demiurge"></span>[daidr/demiurge](https://github.com/daidr/demiurge) | [8](#commits-daidr-demiurge) | Vue | All-in-one JSON processing assistant |
+| <span id="row-dyacob-ethiop-nextgen"></span>[dyacob/ethiop-nextgen](https://github.com/dyacob/ethiop-nextgen) | [8](#commits-dyacob-ethiop-nextgen) | Python |  |
+| <span id="row-huyprowow-vulkan_practice"></span>[huyprowow/Vulkan_practice](https://github.com/huyprowow/Vulkan_practice) | [8](#commits-huyprowow-vulkan_practice) | CMake |  |
+| <span id="row-eemeli-make-plural"></span>[eemeli/make-plural](https://github.com/eemeli/make-plural) | [8](#commits-eemeli-make-plural) | JavaScript | Translates Unicode CLDR pluralization rules to exe... |
+| <span id="row-igrigorik-agentboard"></span>[igrigorik/AgentBoard](https://github.com/igrigorik/AgentBoard) | [8](#commits-igrigorik-agentboard) | TypeScript | A switchboard for AI in your browser: wire in any ... |
+| <span id="row-grokify-schemago"></span>[grokify/schemago](https://github.com/grokify/schemago) | [8](#commits-grokify-schemago) | Go | JSON Schema to Go code generator with first-class ... |
+| <span id="row-grokify-structureddocs"></span>[grokify/structureddocs](https://github.com/grokify/structureddocs) | [8](#commits-grokify-structureddocs) | Go | Shared utilities for structured document projects.... |
+| <span id="row-grokify-gitscan"></span>[grokify/gitscan](https://github.com/grokify/gitscan) | [8](#commits-grokify-gitscan) | Go | A CLI tool to scan multiple Git repositories and i... |
+| <span id="row-tanainc-tana-import-tools"></span>[tanainc/tana-import-tools](https://github.com/tanainc/tana-import-tools) | [8](#commits-tanainc-tana-import-tools) | TypeScript | A set of tools to get various data formats into Ta... |
+| <span id="row-logonoff-guestbook"></span>[logonoff/guestbook](https://github.com/logonoff/guestbook) | [8](#commits-logonoff-guestbook) | Svelte | guestbook frontend |
+| <span id="row-martinthomson-tmi"></span>[martinthomson/tmi](https://github.com/martinthomson/tmi) | [8](#commits-martinthomson-tmi) | Makefile | Too Much Intermediation |
+| <span id="row-pkra-peterkrautzberger-org"></span>[pkra/peterkrautzberger.org](https://github.com/pkra/peterkrautzberger.org) | [8](#commits-pkra-peterkrautzberger-org) | JavaScript | A new home. |
+| <span id="row-mardi4nfdi-portal-compose"></span>[MaRDI4NFDI/portal-compose](https://github.com/MaRDI4NFDI/portal-compose) | [8](#commits-mardi4nfdi-portal-compose) | PHP | docker-composer repo for mardi |
+| <span id="row-underoot-cvetok"></span>[underoot/cvetok](https://github.com/underoot/cvetok) | [8](#commits-underoot-cvetok) | JavaScript | Artful site of my wife |
+| <span id="row-ljharb-unused-files"></span>[ljharb/unused-files](https://github.com/ljharb/unused-files) | [8](#commits-ljharb-unused-files) | JavaScript | List unused files in your package. |
+| <span id="row-dbrant-qicstreamreader"></span>[dbrant/QICStreamReader](https://github.com/dbrant/QICStreamReader) | [7](#commits-dbrant-qicstreamreader) | C# | Decoders for disk and tape images from ancient sto... |
+| <span id="row-hanguokai-text-autospace"></span>[hanguokai/text-autospace](https://github.com/hanguokai/text-autospace) | [7](#commits-hanguokai-text-autospace) | CSS | add "text-autospace: normal" to all websites |
+| <span id="row-hbz-rpb"></span>[hbz/rpb](https://github.com/hbz/rpb) | [7](#commits-hbz-rpb) | Java | Die Rheinland-Pfälzische Bibliographie |
+| <span id="row-hbz-lbz-vocabs"></span>[hbz/lbz-vocabs](https://github.com/hbz/lbz-vocabs) | [7](#commits-hbz-lbz-vocabs) | Python | SKOS-Vokabulare des Landesbibliothekszentrums Rhei... |
+| <span id="row-eemeli-yaml-loader"></span>[eemeli/yaml-loader](https://github.com/eemeli/yaml-loader) | [7](#commits-eemeli-yaml-loader) | JavaScript | YAML loader for webpack |
+| <span id="row-iherman-ea-vocabulary"></span>[iherman/ea-vocabulary](https://github.com/iherman/ea-vocabulary) | [7](#commits-iherman-ea-vocabulary) | HTML | Temporary repo for the EPUB Annotation vocabulary |
+| <span id="row-grokify-spectrum"></span>[grokify/spectrum](https://github.com/grokify/spectrum) | [7](#commits-grokify-spectrum) | Go | OpenAPI Spec SDK and Converter for OpenAPI 3.0 and... |
+| <span id="row-grokify-omniproxy"></span>[grokify/omniproxy](https://github.com/grokify/omniproxy) | [7](#commits-grokify-omniproxy) | Go | Universal HTTP/HTTPS proxy with MITM support for t... |
+| <span id="row-grokify-chathooks"></span>[grokify/chathooks](https://github.com/grokify/chathooks) | [7](#commits-grokify-chathooks) | Go | Service to convert webhook messages to your favori... |
+| <span id="row-w3c-ccg-vcalm"></span>[w3c-ccg/vcalm](https://github.com/w3c-ccg/vcalm) | [7](#commits-w3c-ccg-vcalm) | HTML | An HTTP API for performing credential lifecycle ma... |
+| <span id="row-ostafinskim-node-password-manager"></span>[ostafinskim/node-password-manager](https://github.com/ostafinskim/node-password-manager) | [7](#commits-ostafinskim-node-password-manager) | JavaScript |  |
+| <span id="row-black-forest-community-slotlist-reboot"></span>[Black-Forest-Community/slotlist-reboot](https://github.com/Black-Forest-Community/slotlist-reboot) | [7](#commits-black-forest-community-slotlist-reboot) | Vue | New backend, old frontend with tweaks, all vibes |
+| <span id="row-rob--w-proxy-from-env"></span>[Rob--W/proxy-from-env](https://github.com/Rob--W/proxy-from-env) | [7](#commits-rob--w-proxy-from-env) | JavaScript | A Node.js library to get the proxy URL for a given... |
+| <span id="row-seiry-astro-blog-release"></span>[seiry/astro-blog-release](https://github.com/seiry/astro-blog-release) | [7](#commits-seiry-astro-blog-release) |  |  |
+| <span id="row-snarfed-webutil"></span>[snarfed/webutil](https://github.com/snarfed/webutil) | [7](#commits-snarfed-webutil) | Python | Common utilities and handler code for Python webap... |
+| <span id="row-alexanderwillner-pretix-partial-cancellation"></span>[AlexanderWillner/pretix-partial-cancellation](https://github.com/AlexanderWillner/pretix-partial-cancellation) | [6](#commits-alexanderwillner-pretix-partial-cancellation) | Python |  |
+| <span id="row-ckolderup-secret-choir-octobug"></span>[ckolderup/secret-choir-octobug](https://github.com/ckolderup/secret-choir-octobug) | [6](#commits-ckolderup-secret-choir-octobug) | JavaScript |  |
+| <span id="row-berlysia-imas-idollist-analyze"></span>[berlysia/imas-idollist-analyze](https://github.com/berlysia/imas-idollist-analyze) | [6](#commits-berlysia-imas-idollist-analyze) | TypeScript |  |
+| <span id="row-canonical-nemotron-3-nano-snap"></span>[canonical/nemotron-3-nano-snap](https://github.com/canonical/nemotron-3-nano-snap) | [6](#commits-canonical-nemotron-3-nano-snap) | Shell | WIP: Inference snap for the Nemotron 3 Nano model  |
+| <span id="row-universal-commerce-protocol-ucp"></span>[Universal-Commerce-Protocol/ucp](https://github.com/Universal-Commerce-Protocol/ucp) | [6](#commits-universal-commerce-protocol-ucp) | Python | Specification and documentation for the Universal ... |
+| <span id="row-jimmy-zhening-luo-textastic"></span>[jimmy-zhening-luo/Textastic](https://github.com/jimmy-zhening-luo/Textastic) | [6](#commits-jimmy-zhening-luo-textastic) |  | Textastic custom completions and TextMate syntaxes |
+| <span id="row-grokify-gocharts"></span>[grokify/gocharts](https://github.com/grokify/gocharts) | [6](#commits-grokify-gocharts) | Go | Go code to help create various charts, e.g. C3, D3... |
+| <span id="row-grokify-mogo"></span>[grokify/mogo](https://github.com/grokify/mogo) | [6](#commits-grokify-mogo) | Go | A collection of small DRY Go utilities to make lif... |
+| <span id="row-grokify-go-wordpressxml"></span>[grokify/go-wordpressxml](https://github.com/grokify/go-wordpressxml) | [6](#commits-grokify-go-wordpressxml) | Go | WordPress XML export parser in Go |
+| <span id="row-kinow-dork-scripts"></span>[kinow/dork-scripts](https://github.com/kinow/dork-scripts) | [6](#commits-kinow-dork-scripts) | Python | Dork scripts |
+| <span id="row-keithamus-sort-object-keys"></span>[keithamus/sort-object-keys](https://github.com/keithamus/sort-object-keys) | [6](#commits-keithamus-sort-object-keys) | JavaScript | Sort an object's keys, including an optional key l... |
+| <span id="row-niklasmerz-talks"></span>[NiklasMerz/talks](https://github.com/NiklasMerz/talks) | [6](#commits-niklasmerz-talks) | HTML | Talk notes and slides |
+| <span id="row-niklasmerz-cordova-servo-test-app"></span>[NiklasMerz/cordova-servo-test-app](https://github.com/NiklasMerz/cordova-servo-test-app) | [6](#commits-niklasmerz-cordova-servo-test-app) | Java | Hacking app to test Servo plugin |
+| <span id="row-startupapi-startup-api-demo-origin"></span>[StartupAPI/startup-api-demo-origin](https://github.com/StartupAPI/startup-api-demo-origin) | [6](#commits-startupapi-startup-api-demo-origin) | HTML |  |
+| <span id="row-gerritcodereview-git-repo"></span>[GerritCodeReview/git-repo](https://github.com/GerritCodeReview/git-repo) | [6](#commits-gerritcodereview-git-repo) | Python | repo - The Multiple Git Repository Tool - (mirror ... |
+| <span id="row-airbr-wsg"></span>[airbr/wsg](https://github.com/airbr/wsg) | [5](#commits-airbr-wsg) | JavaScript | Get a Web Sustainability Guideline! 📦 https://wsg-... |
+| <span id="row-morph-kgc--github"></span>[morph-kgc/.github](https://github.com/morph-kgc/.github) | [5](#commits-morph-kgc--github) |  |  |
+| <span id="row-discostu105-linzstrom-consumption"></span>[discostu105/linzstrom-consumption](https://github.com/discostu105/linzstrom-consumption) | [5](#commits-discostu105-linzstrom-consumption) | HTML |  |
+| <span id="row-eemeli-prettier-plugin-properties"></span>[eemeli/prettier-plugin-properties](https://github.com/eemeli/prettier-plugin-properties) | [5](#commits-eemeli-prettier-plugin-properties) | JavaScript | Prettier plugin for .properties files |
+| <span id="row-eemeli-dot-properties"></span>[eemeli/dot-properties](https://github.com/eemeli/dot-properties) | [5](#commits-eemeli-dot-properties) | JavaScript | Parse & stringify .properties files in JavaScript |
+| <span id="row-mehm8128-rehype-toc"></span>[mehm8128/rehype-toc](https://github.com/mehm8128/rehype-toc) | [5](#commits-mehm8128-rehype-toc) | TypeScript | rehype plugin to generate a table of contents from... |
+| <span id="row-panva-hpke"></span>[panva/hpke](https://github.com/panva/hpke) | [5](#commits-panva-hpke) | TypeScript | Hybrid Public Key Encryption (HPKE) for Node.js, B... |
+| <span id="row-ruby2js-juntos"></span>[ruby2js/juntos](https://github.com/ruby2js/juntos) | [5](#commits-ruby2js-juntos) | JavaScript | Rails patterns, JavaScript runtimes |
+| <span id="row-timcappalli-caddy-docker-proxy-azcf"></span>[timcappalli/caddy-docker-proxy-azcf](https://github.com/timcappalli/caddy-docker-proxy-azcf) | [5](#commits-timcappalli-caddy-docker-proxy-azcf) | Dockerfile | Caddy Docker Proxy with Azure DNS and Cloudflare D... |
+| <span id="row-perma-id-w3id-org"></span>[perma-id/w3id.org](https://github.com/perma-id/w3id.org) | [5](#commits-perma-id-w3id-org) | HTML | Website source code for w3id.org. |
+| <span id="row-woutslabbinck-odrl-evaluator-demo"></span>[woutslabbinck/ODRL-Evaluator-Demo](https://github.com/woutslabbinck/ODRL-Evaluator-Demo) | [5](#commits-woutslabbinck-odrl-evaluator-demo) | JavaScript | A live demonstrator of the ODRL Evaluator |
+| <span id="row-ljharb-safe-regex-test"></span>[ljharb/safe-regex-test](https://github.com/ljharb/safe-regex-test) | [5](#commits-ljharb-safe-regex-test) | JavaScript | Give a regex, get a robust predicate function that... |
+| <span id="row-nvm-sh-nvmrc"></span>[nvm-sh/nvmrc](https://github.com/nvm-sh/nvmrc) | [5](#commits-nvm-sh-nvmrc) | JavaScript | command-line tool to validate a `.nvmrc` file |
+| <span id="row-cyclopsmc-everlastingabilities"></span>[CyclopsMC/EverlastingAbilities](https://github.com/CyclopsMC/EverlastingAbilities) | [5](#commits-cyclopsmc-everlastingabilities) | Java | Entry for The Modding Trials 2016 |
+| <span id="row-ajs6f-githubclasstest"></span>[ajs6f/GithubClassTest](https://github.com/ajs6f/GithubClassTest) | [4](#commits-ajs6f-githubclasstest) |  |  |
+| <span id="row-brebeuf-hx-brebeufhx-site"></span>[brebeuf-hx/brebeufhx-site](https://github.com/brebeuf-hx/brebeufhx-site) | [4](#commits-brebeuf-hx-brebeufhx-site) | HTML |  |
+| <span id="row-airbr-wsg-facts"></span>[airbr/wsg-facts](https://github.com/airbr/wsg-facts) | [4](#commits-airbr-wsg-facts) | HTML | Some facts about the WSG's in HTML form |
+| <span id="row-aaronpk-scim-cloud"></span>[aaronpk/scim.cloud](https://github.com/aaronpk/scim.cloud) | [4](#commits-aaronpk-scim-cloud) | HTML | SCIM Community Website |
+| <span id="row-adamj-11ty-template"></span>[AdamJ/11ty-template](https://github.com/AdamJ/11ty-template) | [4](#commits-adamj-11ty-template) | SCSS | A basic template for an 11ty site using Vite. |
+| <span id="row-microsoft-fluidframework"></span>[microsoft/FluidFramework](https://github.com/microsoft/FluidFramework) | [4](#commits-microsoft-fluidframework) | TypeScript | Library for building distributed, real-time collab... |
+| <span id="row-berlysia-berlysia-net"></span>[berlysia/berlysia.net](https://github.com/berlysia/berlysia.net) | [4](#commits-berlysia-berlysia-net) | TypeScript | My Private Site |
+| <span id="row-netrisse-netrisse"></span>[netrisse/netrisse](https://github.com/netrisse/netrisse) | [4](#commits-netrisse-netrisse) | JavaScript | a network version of tetris for the console/termin... |
+| <span id="row-donmccurdy-zstddec-wasm"></span>[donmccurdy/zstddec-wasm](https://github.com/donmccurdy/zstddec-wasm) | [4](#commits-donmccurdy-zstddec-wasm) | TypeScript | ZSTD (Zstandard) decoder for Web and Node.js, usin... |
+| <span id="row-frosne-waict_server"></span>[Frosne/waict_server](https://github.com/Frosne/waict_server) | [4](#commits-frosne-waict_server) | JavaScript |  |
+| <span id="row-haltersweb-numismatica"></span>[haltersweb/numismatica](https://github.com/haltersweb/numismatica) | [4](#commits-haltersweb-numismatica) | CSS | a site for numismatists, namely ancient coin colle... |
+| <span id="row-l-xiaoshen-drizzle-orm-cloudflare"></span>[l-xiaoshen/drizzle-orm-cloudflare](https://github.com/l-xiaoshen/drizzle-orm-cloudflare) | [4](#commits-l-xiaoshen-drizzle-orm-cloudflare) | TypeScript |  |
+| <span id="row-johntitor-mach2"></span>[JohnTitor/mach2](https://github.com/JohnTitor/mach2) | [4](#commits-johntitor-mach2) | Rust |  |
+| <span id="row-jeswr-noir_ieee754"></span>[jeswr/noir_IEEE754](https://github.com/jeswr/noir_IEEE754) | [4](#commits-jeswr-noir_ieee754) | Noir | IEEE 754 compliant floating-point arithmetic libra... |
+| <span id="row-nudeps-cjs-browser-shim"></span>[nudeps/cjs-browser-shim](https://github.com/nudeps/cjs-browser-shim) | [4](#commits-nudeps-cjs-browser-shim) | JavaScript | A lightweight shim for CommonJS (CJS) modules in t... |
+| <span id="row-dmitrysharabin-jspm-test"></span>[DmitrySharabin/jspm-test](https://github.com/DmitrySharabin/jspm-test) | [4](#commits-dmitrysharabin-jspm-test) | HTML |  |
+| <span id="row-utmgdsc-website"></span>[utmgdsc/website](https://github.com/utmgdsc/website) | [4](#commits-utmgdsc-website) | TypeScript | Official GDSC UTM Website |
+| <span id="row-openshift-dynamic-plugin-sdk"></span>[openshift/dynamic-plugin-sdk](https://github.com/openshift/dynamic-plugin-sdk) | [4](#commits-openshift-dynamic-plugin-sdk) | TypeScript | Provides the plugin API, types and utilities used ... |
+| <span id="row-martinthomson-dap-attribution"></span>[martinthomson/dap-attribution](https://github.com/martinthomson/dap-attribution) | [4](#commits-martinthomson-dap-attribution) | Makefile | DAP extensions to support the Attribution API |
+| <span id="row-ntindle-governance-md"></span>[ntindle/governance.md](https://github.com/ntindle/governance.md) | [4](#commits-ntindle-governance-md) | TypeScript |  |
+| <span id="row-ostafinskim-next-better-auth"></span>[ostafinskim/next-better-auth](https://github.com/ostafinskim/next-better-auth) | [4](#commits-ostafinskim-next-better-auth) | TypeScript |  |
+| <span id="row-ostafinskim-issue-tracker"></span>[ostafinskim/issue-tracker](https://github.com/ostafinskim/issue-tracker) | [4](#commits-ostafinskim-issue-tracker) | TypeScript |  |
+| <span id="row-keithamus-test"></span>[keithamus/test](https://github.com/keithamus/test) | [4](#commits-keithamus-test) | JavaScript |  |
+| <span id="row-punkeel-hysystemdnotifier"></span>[punkeel/HySystemdNotifier](https://github.com/punkeel/HySystemdNotifier) | [4](#commits-punkeel-hysystemdnotifier) | Java |  |
+| <span id="row-neovateai-agentskill-installer"></span>[neovateai/agentskill-installer](https://github.com/neovateai/agentskill-installer) | [4](#commits-neovateai-agentskill-installer) | JavaScript | CLI tool for installing and managing AI agent skil... |
+| <span id="row-manishearth-triomphe"></span>[Manishearth/triomphe](https://github.com/Manishearth/triomphe) | [4](#commits-manishearth-triomphe) | Rust | Fork of std::sync::Arc with lots of utilities usef... |
+| <span id="row-snarfed-snarfed-org"></span>[snarfed/snarfed.org](https://github.com/snarfed/snarfed.org) | [4](#commits-snarfed-snarfed-org) | HTML | My web site |
+| <span id="row-sublimator-projected-source"></span>[sublimator/projected-source](https://github.com/sublimator/projected-source) | [4](#commits-sublimator-projected-source) | Python |  |
+| <span id="row-solidlabresearch-odrl-evaluator"></span>[SolidLabResearch/ODRL-Evaluator](https://github.com/SolidLabResearch/ODRL-Evaluator) | [4](#commits-solidlabresearch-odrl-evaluator) | TypeScript | An open implementation of an ODRL Evaluator that e... |
+| <span id="row-duckduckgo-tracker-radar-wiki"></span>[duckduckgo/tracker-radar-wiki](https://github.com/duckduckgo/tracker-radar-wiki) | [4](#commits-duckduckgo-tracker-radar-wiki) | JavaScript | Generation scripts and source for Tracker Radar Wi... |
+| <span id="row-dcslab-bc-scriptlessfp"></span>[dcslab-bc/scriptlessFP](https://github.com/dcslab-bc/scriptlessFP) | [3](#commits-dcslab-bc-scriptlessfp) |  | CSS Fingerprinting tracker |
+| <span id="row-alexdawsonuk-alexanderdawson"></span>[AlexDawsonUK/AlexanderDawson](https://github.com/AlexDawsonUK/AlexanderDawson) | [3](#commits-alexdawsonuk-alexanderdawson) | HTML | My Website. |
+| <span id="row-alphagov-govuk-brand-guidelines"></span>[alphagov/govuk-brand-guidelines](https://github.com/alphagov/govuk-brand-guidelines) | [3](#commits-alphagov-govuk-brand-guidelines) | JavaScript |  |
+| <span id="row-product-designs-ocr-template-creator"></span>[Product-Designs/ocr-template-creator](https://github.com/Product-Designs/ocr-template-creator) | [3](#commits-product-designs-ocr-template-creator) | HTML | Create an OCR template directly from a PDF for imp... |
+| <span id="row-product-designs-design-showcase-landing"></span>[Product-Designs/design-showcase-landing](https://github.com/Product-Designs/design-showcase-landing) | [3](#commits-product-designs-design-showcase-landing) | CSS |  |
+| <span id="row-c00kiemon5ter-presentation-tnc19-identitypython-eduteams"></span>[c00kiemon5ter/presentation-tnc19-identitypython-eduteams](https://github.com/c00kiemon5ter/presentation-tnc19-identitypython-eduteams) | [3](#commits-c00kiemon5ter-presentation-tnc19-identitypython-eduteams) | JavaScript | Presentation for TNC19 - IdentityPython and eduTEA... |
+| <span id="row-aramzs-context-center"></span>[AramZS/context-center](https://github.com/AramZS/context-center) | [3](#commits-aramzs-context-center) | JavaScript | A central website for introducing context to multi... |
+| <span id="row-crazyurus-automap-activate"></span>[crazyurus/automap-activate](https://github.com/crazyurus/automap-activate) | [3](#commits-crazyurus-automap-activate) | TypeScript | 查询高德地图定制版的激活状态 |
+| <span id="row-berlysia-renovate-config"></span>[berlysia/renovate-config](https://github.com/berlysia/renovate-config) | [3](#commits-berlysia-renovate-config) | JavaScript |  |
+| <span id="row-nss-dev-nss"></span>[nss-dev/nss](https://github.com/nss-dev/nss) | [3](#commits-nss-dev-nss) | C | Network Security Services (NSS) |
+| <span id="row-hax-kotlin-java-mapped-types"></span>[hax/kotlin-java-mapped-types](https://github.com/hax/kotlin-java-mapped-types) | [3](#commits-hax-kotlin-java-mapped-types) | TypeScript |  |
+| <span id="row-talxis-client-metadata"></span>[TALXIS/client-metadata](https://github.com/TALXIS/client-metadata) | [3](#commits-talxis-client-metadata) | TypeScript | @talxis/metadata NPM package |
+| <span id="row-hbz-lobid-extra-holdings"></span>[hbz/lobid-extra-holdings](https://github.com/hbz/lobid-extra-holdings) | [3](#commits-hbz-lobid-extra-holdings) | FLUX | Non-Alma holdings for lobid-resources (currently o... |
+| <span id="row-hsivonen-normalizer_bench"></span>[hsivonen/normalizer_bench](https://github.com/hsivonen/normalizer_bench) | [3](#commits-hsivonen-normalizer_bench) | HTML | Bencher for the JavaScript String.prototype.normal... |
+| <span id="row-canonical-inference-snaps-cli"></span>[canonical/inference-snaps-cli](https://github.com/canonical/inference-snaps-cli) | [3](#commits-canonical-inference-snaps-cli) | Go | The standard CLI of every Inference Snap |
+| <span id="row-graphql-graphql-landscape"></span>[graphql/graphql-landscape](https://github.com/graphql/graphql-landscape) | [3](#commits-graphql-graphql-landscape) |  | 🌄Landscape for the GraphQL ecosystem |
+| <span id="row-kurtextrem-awesome-performance-patches"></span>[kurtextrem/awesome-performance-patches](https://github.com/kurtextrem/awesome-performance-patches) | [3](#commits-kurtextrem-awesome-performance-patches) |  | 🚀⚡ Awesome list about performance related patches/... |
+| <span id="row-kdenhartog-feature-bounty"></span>[kdenhartog/feature-bounty](https://github.com/kdenhartog/feature-bounty) | [3](#commits-kdenhartog-feature-bounty) | TypeScript |  |
+| <span id="row-lecepin-height-cut"></span>[lecepin/height-cut](https://github.com/lecepin/height-cut) | [3](#commits-lecepin-height-cut) | HTML |  |
+| <span id="row-kizu-kizu-blog"></span>[kizu/kizu-blog](https://github.com/kizu/kizu-blog) | [3](#commits-kizu-kizu-blog) | MDX | My more personal blog (or maybe just less technica... |
+| <span id="row-grokify-homebrew-tap"></span>[grokify/homebrew-tap](https://github.com/grokify/homebrew-tap) | [3](#commits-grokify-homebrew-tap) | Ruby |  |
+| <span id="row-grokify-stratosforce"></span>[grokify/stratosforce](https://github.com/grokify/stratosforce) | [3](#commits-grokify-stratosforce) | Go |  |
+| <span id="row-solid-webid-search"></span>[solid/webid-search](https://github.com/solid/webid-search) | [3](#commits-solid-webid-search) | TypeScript | An index of WebIDs, search API and search interfac... |
+| <span id="row-jeswr-shaclcjs"></span>[jeswr/shaclcjs](https://github.com/jeswr/shaclcjs) | [3](#commits-jeswr-shaclcjs) | Yacc | A parser for files written with SHACL compact synt... |
+| <span id="row-kinow-protobuf-uml-diagram"></span>[kinow/protobuf-uml-diagram](https://github.com/kinow/protobuf-uml-diagram) | [3](#commits-kinow-protobuf-uml-diagram) | Jupyter Notebook | Create UML diagrams from Protobuf compiled .proto ... |
+| <span id="row-mehm8128-zenn-articles"></span>[mehm8128/zenn-articles](https://github.com/mehm8128/zenn-articles) | [3](#commits-mehm8128-zenn-articles) |  |  |
+| <span id="row-wikimedia-mediawiki-libs-iputils"></span>[wikimedia/mediawiki-libs-IPUtils](https://github.com/wikimedia/mediawiki-libs-IPUtils) | [3](#commits-wikimedia-mediawiki-libs-iputils) | PHP | Mirror from https://gerrit.wikimedia.org/g/mediawi... |
+| <span id="row-qunitjs-jekyll-theme-amethyst"></span>[qunitjs/jekyll-theme-amethyst](https://github.com/qunitjs/jekyll-theme-amethyst) | [3](#commits-qunitjs-jekyll-theme-amethyst) | HTML |  |
+| <span id="row-wikimedia-cloud-instance-puppet"></span>[wikimedia/cloud-instance-puppet](https://github.com/wikimedia/cloud-instance-puppet) | [3](#commits-wikimedia-cloud-instance-puppet) |  | This is a mirror from https://gerrit.wikimedia.org... |
+| <span id="row-mrego-servo-toys"></span>[mrego/servo-toys](https://github.com/mrego/servo-toys) | [3](#commits-mrego-servo-toys) | Shell | Random toy experiments with Servo |
+| <span id="row-govuk-digital-backbone-ukps-domains"></span>[govuk-digital-backbone/ukps-domains](https://github.com/govuk-digital-backbone/ukps-domains) | [3](#commits-govuk-digital-backbone-ukps-domains) | Python | A public, machine-readable list of UK public secto... |
+| <span id="row-eu-digital-identity-wallet-eudi-doc-architecture-and-reference-framework"></span>[eu-digital-identity-wallet/eudi-doc-architecture-and-reference-framework](https://github.com/eu-digital-identity-wallet/eudi-doc-architecture-and-reference-framework) | [3](#commits-eu-digital-identity-wallet-eudi-doc-architecture-and-reference-framework) | Jinja | The European Digital Identity Wallet |
+| <span id="row-utmrobotics-website"></span>[utmrobotics/website](https://github.com/utmrobotics/website) | [3](#commits-utmrobotics-website) | Svelte | UTM Robotics Club Website |
+| <span id="row-ostafinskim-bun-neon-better-auth"></span>[ostafinskim/bun-neon-better-auth](https://github.com/ostafinskim/bun-neon-better-auth) | [3](#commits-ostafinskim-bun-neon-better-auth) | TypeScript |  |
+| <span id="row-keithamus-invokers-polyfill"></span>[keithamus/invokers-polyfill](https://github.com/keithamus/invokers-polyfill) | [3](#commits-keithamus-invokers-polyfill) | JavaScript |  |
+| <span id="row-panva-openid-client"></span>[panva/openid-client](https://github.com/panva/openid-client) | [3](#commits-panva-openid-client) | TypeScript | OAuth 2 / OpenID Connect Client API for JavaScript... |
+| <span id="row-babel-babel-polyfills"></span>[babel/babel-polyfills](https://github.com/babel/babel-polyfills) | [3](#commits-babel-babel-polyfills) | TypeScript | A set of Babel plugins that enable injecting diffe... |
+| <span id="row-ember-cli-babel-remove-types"></span>[ember-cli/babel-remove-types](https://github.com/ember-cli/babel-remove-types) | [3](#commits-ember-cli-babel-remove-types) | TypeScript |  |
+| <span id="row-romandev-chail"></span>[romandev/chail](https://github.com/romandev/chail) | [3](#commits-romandev-chail) | HTML |  |
+| <span id="row-wikimedia-mediawiki-extensions-math"></span>[wikimedia/mediawiki-extensions-Math](https://github.com/wikimedia/mediawiki-extensions-Math) | [3](#commits-wikimedia-mediawiki-extensions-math) | PHP | Github mirror of MediaWiki extension Math - our ac... |
+| <span id="row-wikimedia-mediawiki-extensions-mathsearch"></span>[wikimedia/mediawiki-extensions-MathSearch](https://github.com/wikimedia/mediawiki-extensions-MathSearch) | [3](#commits-wikimedia-mediawiki-extensions-mathsearch) | PHP | Github mirror of MediaWiki extension MathSearch - ... |
+| <span id="row-yaahc-displaydoc"></span>[yaahc/displaydoc](https://github.com/yaahc/displaydoc) | [3](#commits-yaahc-displaydoc) | Rust | A derive macro for implementing the display Trait ... |
+| <span id="row-momijizukamori-bookbinder-js"></span>[momijizukamori/bookbinder-js](https://github.com/momijizukamori/bookbinder-js) | [3](#commits-momijizukamori-bookbinder-js) | JavaScript | A JS application to format PDFs for bookbinding. |
+| <span id="row-inclusio-community-json-image-metadata"></span>[Inclusio-Community/json-image-metadata](https://github.com/Inclusio-Community/json-image-metadata) | [3](#commits-inclusio-community-json-image-metadata) | HTML | A specifiction for expressing technical image meta... |
+| <span id="row-rdf-connect-replication-processor-ts"></span>[rdf-connect/replication-processor-ts](https://github.com/rdf-connect/replication-processor-ts) | [3](#commits-rdf-connect-replication-processor-ts) | TypeScript | A processor for the RDF-Connect framework that wri... |
+| <span id="row-toji-toji-dev"></span>[toji/toji.dev](https://github.com/toji/toji.dev) | [3](#commits-toji-toji-dev) | HTML | Personal "About Me" website. |
+| <span id="row-wacky6-deb-verify"></span>[wacky6/deb-verify](https://github.com/wacky6/deb-verify) | [3](#commits-wacky6-deb-verify) | Python | Verify (mirrored) Debian repository integrity; Vib... |
+| <span id="row-digitalcredentialsdev-digitalcredentials-dev"></span>[digitalcredentialsdev/digitalcredentials.dev](https://github.com/digitalcredentialsdev/digitalcredentials.dev) | [3](#commits-digitalcredentialsdev-digitalcredentials-dev) | JavaScript | source for digitalcredentials.dev |
+| <span id="row-underoot-game-of-life"></span>[underoot/game-of-life](https://github.com/underoot/game-of-life) | [3](#commits-underoot-game-of-life) | TypeScript | Naive and simple implementation of Conway's Game O... |
+| <span id="row-youtube-cobalt_sandbox"></span>[youtube/cobalt_sandbox](https://github.com/youtube/cobalt_sandbox) | [3](#commits-youtube-cobalt_sandbox) |  | Cobalt dev workflow sandbox - this repo exists onl... |
+| <span id="row-ljharb-pargs"></span>[ljharb/pargs](https://github.com/ljharb/pargs) | [3](#commits-ljharb-pargs) | JavaScript | a useful wrapper for `util.parseArgs` |
+| <span id="row-albertofdr-ctf"></span>[AlbertoFDR/CTF](https://github.com/AlbertoFDR/CTF) | [2](#commits-albertofdr-ctf) | Python | This repo includes challs I made or CTF solutions ... |
+| <span id="row-aaronpk-oauth-net"></span>[aaronpk/oauth.net](https://github.com/aaronpk/oauth.net) | [2](#commits-aaronpk-oauth-net) | PHP | :lock: The oauth.net website. Feel free to send pu... |
+| <span id="row-secur-dev-web"></span>[Secur-Dev/web](https://github.com/Secur-Dev/web) | [2](#commits-secur-dev-web) |  | Privacy Policy |
+| <span id="row-assuncaocharles-eslint-plugin-exceptions"></span>[assuncaocharles/eslint-plugin-exceptions](https://github.com/assuncaocharles/eslint-plugin-exceptions) | [2](#commits-assuncaocharles-eslint-plugin-exceptions) | JavaScript |  |
+| <span id="row-proyectopionera-mapping-editor"></span>[ProyectoPIONERA/mapping-editor](https://github.com/ProyectoPIONERA/mapping-editor) | [2](#commits-proyectopionera-mapping-editor) | Python | Editor de reglas de mapeo |
+| <span id="row-aramzs-backpocket-archiving-tools"></span>[AramZS/backpocket-archiving-tools](https://github.com/AramZS/backpocket-archiving-tools) | [2](#commits-aramzs-backpocket-archiving-tools) | Shell | Archiving tools for my regular activities, little ... |
+| <span id="row-w3c-ccg-vp-request-spec"></span>[w3c-ccg/vp-request-spec](https://github.com/w3c-ccg/vp-request-spec) | [2](#commits-w3c-ccg-vp-request-spec) | HTML | Specification for a query language to request Veri... |
+| <span id="row-ldproxy-ldproxy"></span>[ldproxy/ldproxy](https://github.com/ldproxy/ldproxy) | [2](#commits-ldproxy-ldproxy) | Java | Share geospatial data via modern Web APIs |
+| <span id="row-darobin-dasl-ing"></span>[darobin/dasl.ing](https://github.com/darobin/dasl.ing) | [2](#commits-darobin-dasl-ing) | HTML | DASL — Data-Addressed Structures & Links |
+| <span id="row-explainers-by-googlers-related-website-partition-api"></span>[explainers-by-googlers/related-website-partition-api](https://github.com/explainers-by-googlers/related-website-partition-api) | [2](#commits-explainers-by-googlers-related-website-partition-api) |  | The Related Website Partition API is a novel way f... |
+| <span id="row-bonds-tw-backuptw-ios"></span>[bonds-tw/backupTW-iOS](https://github.com/bonds-tw/backupTW-iOS) | [2](#commits-bonds-tw-backuptw-ios) | Swift |  |
+| <span id="row-tobie-pr-preview"></span>[tobie/pr-preview](https://github.com/tobie/pr-preview) | [2](#commits-tobie-pr-preview) | JavaScript | Adds preview and diff to spec pull requests. |
+| <span id="row-dret-lectures"></span>[dret/lectures](https://github.com/dret/lectures) | [2](#commits-dret-lectures) | HTML | University courses and other presentations, mostly... |
+| <span id="row-netrisse-netrisse-server"></span>[netrisse/netrisse-server](https://github.com/netrisse/netrisse-server) | [2](#commits-netrisse-netrisse-server) | JavaScript | server to support multiplayer netrisse |
+| <span id="row-openjs-foundation-cross-project-council"></span>[openjs-foundation/cross-project-council](https://github.com/openjs-foundation/cross-project-council) | [2](#commits-openjs-foundation-cross-project-council) |  | OpenJS Foundation Cross Project Council |
+| <span id="row-google-quiche"></span>[google/quiche](https://github.com/google/quiche) | [2](#commits-google-quiche) | C++ |  |
+| <span id="row-saucelabs-sauce-docs"></span>[saucelabs/sauce-docs](https://github.com/saucelabs/sauce-docs) | [2](#commits-saucelabs-sauce-docs) | JavaScript | Documentation for the Sauce Labs Platform |
+| <span id="row-athinkra-mwangwego-book"></span>[athinkra/mwangwego-book](https://github.com/athinkra/mwangwego-book) | [2](#commits-athinkra-mwangwego-book) | Perl | The Athinkra Mwangwego Book Typeface |
+| <span id="row-microsoftdocs-power-platform"></span>[MicrosoftDocs/power-platform](https://github.com/MicrosoftDocs/power-platform) | [2](#commits-microsoftdocs-power-platform) | PowerShell | Documentation for Microsoft Power Platform |
+| <span id="row-gdgbeijing-gdghub"></span>[gdgbeijing/gdghub](https://github.com/gdgbeijing/gdghub) | [2](#commits-gdgbeijing-gdghub) |  | GDG 社区组织与协作 |
+| <span id="row-brave-brave-core"></span>[brave/brave-core](https://github.com/brave/brave-core) | [2](#commits-brave-brave-core) | C++ | Core engine for the Brave browser for mobile and d... |
+| <span id="row-frewsxcv-crs-definitions"></span>[frewsxcv/crs-definitions](https://github.com/frewsxcv/crs-definitions) | [2](#commits-frewsxcv-crs-definitions) | Rust | Rust crate containing CRS definitions |
+| <span id="row-talxis-ubml"></span>[TALXIS/ubml](https://github.com/TALXIS/ubml) | [2](#commits-talxis-ubml) | TypeScript | UBML - Unified Business Modeling Language |
+| <span id="row-hbz-strapi-rpb"></span>[hbz/strapi-rpb](https://github.com/hbz/strapi-rpb) | [2](#commits-hbz-strapi-rpb) | JavaScript | strapi instance |
+| <span id="row-canonical-deepseek-r1-snap"></span>[canonical/deepseek-r1-snap](https://github.com/canonical/deepseek-r1-snap) | [2](#commits-canonical-deepseek-r1-snap) | Shell | Reasoning large language model |
+| <span id="row-canonical-gemma3-snap"></span>[canonical/gemma3-snap](https://github.com/canonical/gemma3-snap) | [2](#commits-canonical-gemma3-snap) | Shell | Inference snap for the Gemma 3 model |
+| <span id="row-figuresout-baseboard-cable-management"></span>[figuresout/baseboard-cable-management](https://github.com/figuresout/baseboard-cable-management) | [2](#commits-figuresout-baseboard-cable-management) | G-code | 3D printing project for cable management along bas... |
+| <span id="row-unicode-org-message-format-wg"></span>[unicode-org/message-format-wg](https://github.com/unicode-org/message-format-wg) | [2](#commits-unicode-org-message-format-wg) | JavaScript | Developing a standard for localizable message stri... |
+| <span id="row-eemeli-intl-pluralrules"></span>[eemeli/intl-pluralrules](https://github.com/eemeli/intl-pluralrules) | [2](#commits-eemeli-intl-pluralrules) | TypeScript | Polyfill for Intl.PluralRules |
+| <span id="row-jnjaeschke-specmonkey"></span>[jnjaeschke/specmonkey](https://github.com/jnjaeschke/specmonkey) | [2](#commits-jnjaeschke-specmonkey) | JavaScript |  |
+| <span id="row-iherman-preview"></span>[iherman/preview](https://github.com/iherman/preview) | [2](#commits-iherman-preview) | TypeScript | Simple tool to create pr preview and diff URLs |
+| <span id="row-shopify-ucp-proxy"></span>[Shopify/ucp-proxy](https://github.com/Shopify/ucp-proxy) | [2](#commits-shopify-ucp-proxy) | Go | UCP proxy |
+| <span id="row-qxracademy-codigodeconducta"></span>[QXRacademy/CodigoDeConducta](https://github.com/QXRacademy/CodigoDeConducta) | [2](#commits-qxracademy-codigodeconducta) |  |  |
+| <span id="row-publicaudiovisualxr--github"></span>[PublicAudiovisualXR/.github](https://github.com/PublicAudiovisualXR/.github) | [2](#commits-publicaudiovisualxr--github) |  |  |
+| <span id="row-kaluaim-resume"></span>[kaluaim/resume](https://github.com/kaluaim/resume) | [2](#commits-kaluaim-resume) |  | My Resume |
+| <span id="row-kaelig-docs"></span>[kaelig/docs](https://github.com/kaelig/docs) | [2](#commits-kaelig-docs) | MDX |  |
+| <span id="row-lidaron-cmu-f15-upsa"></span>[Lidaron/CMU-F15-UPSA](https://github.com/Lidaron/CMU-F15-UPSA) | [2](#commits-lidaron-cmu-f15-upsa) | JavaScript | Term Project for Ubiquitous Personal Smart Agents ... |
+| <span id="row-lfai-model_openness_tool"></span>[lfai/model_openness_tool](https://github.com/lfai/model_openness_tool) | [2](#commits-lfai-model_openness_tool) | PHP | Model Openness Tool |
+| <span id="row-cs3org-ocm-sta"></span>[cs3org/OCM-STA](https://github.com/cs3org/OCM-STA) | [2](#commits-cs3org-ocm-sta) |  | Project management for the SovereignTech funded ac... |
+| <span id="row-semver-semver-org"></span>[semver/semver.org](https://github.com/semver/semver.org) | [2](#commits-semver-semver-org) | SCSS | Semantic Versioning spec and website |
+| <span id="row-johntitor-butlers"></span>[JohnTitor/butlers](https://github.com/JohnTitor/butlers) | [2](#commits-johntitor-butlers) | Rust |  |
+| <span id="row-grokify-awsgo"></span>[grokify/awsgo](https://github.com/grokify/awsgo) | [2](#commits-grokify-awsgo) | Go | Various helpers to simplify using AWS. |
+| <span id="row-solidos-issue-pane"></span>[SolidOS/issue-pane](https://github.com/SolidOS/issue-pane) | [2](#commits-solidos-issue-pane) | JavaScript | Issue tracker and bug editor pane, very configurab... |
+| <span id="row-kinow-slidev-theme-bsc"></span>[kinow/slidev-theme-bsc](https://github.com/kinow/slidev-theme-bsc) | [2](#commits-kinow-slidev-theme-bsc) | CSS | Slidev theme for Barcelona Supercomputing Center C... |
+| <span id="row-color-js-color-js"></span>[color-js/color.js](https://github.com/color-js/color.js) | [2](#commits-color-js-color-js) | JavaScript | Color conversion & manipulation library by the edi... |
+| <span id="row-ua-parser-uap-core"></span>[ua-parser/uap-core](https://github.com/ua-parser/uap-core) | [2](#commits-ua-parser-uap-core) | JavaScript | The regex file necessary to build language ports o... |
+| <span id="row-mehmetoguzderin-gradio-contrast"></span>[mehmetoguzderin/gradio-contrast](https://github.com/mehmetoguzderin/gradio-contrast) | [2](#commits-mehmetoguzderin-gradio-contrast) | Python |  |
+| <span id="row-gpuweb-gpuweb-pr-previews"></span>[gpuweb/gpuweb-pr-previews](https://github.com/gpuweb/gpuweb-pr-previews) | [2](#commits-gpuweb-gpuweb-pr-previews) | HTML | Pull request previews for gpuweb/gpuweb specificat... |
+| <span id="row-wikimedia-mediawiki"></span>[wikimedia/mediawiki](https://github.com/wikimedia/mediawiki) | [2](#commits-wikimedia-mediawiki) | PHP | 🌻 The collaborative editing software that runs Wik... |
+| <span id="row-jquery-themeroller-jquerymobile-com"></span>[jquery/themeroller.jquerymobile.com](https://github.com/jquery/themeroller.jquerymobile.com) | [2](#commits-jquery-themeroller-jquerymobile-com) | CSS | ThemeRoller site for jQuery Mobile |
+| <span id="row-jquery-codeorigin-jquery-com"></span>[jquery/codeorigin.jquery.com](https://github.com/jquery/codeorigin.jquery.com) | [2](#commits-jquery-codeorigin-jquery-com) | JavaScript | jQuery CDN |
+| <span id="row-wikimedia-mediawiki-libs-minify"></span>[wikimedia/mediawiki-libs-Minify](https://github.com/wikimedia/mediawiki-libs-Minify) | [2](#commits-wikimedia-mediawiki-libs-minify) | PHP | Mirror of https://gerrit.wikimedia.org/g/mediawiki... |
+| <span id="row-mnot-thor"></span>[mnot/thor](https://github.com/mnot/thor) | [2](#commits-mnot-thor) | Python | Easy Evented Intermediation |
+| <span id="row-servo-project"></span>[servo/project](https://github.com/servo/project) | [2](#commits-servo-project) |  | A repo for the Servo Project |
+| <span id="row-igalia-webengineshackfest"></span>[Igalia/webengineshackfest](https://github.com/Igalia/webengineshackfest) | [2](#commits-igalia-webengineshackfest) | JavaScript | Web Engines Hackfest |
+| <span id="row-tiktok-jest-bdd-generator"></span>[tiktok/jest-bdd-generator](https://github.com/tiktok/jest-bdd-generator) | [2](#commits-tiktok-jest-bdd-generator) | TypeScript |  |
+| <span id="row-martinthomson-internet-draft-template"></span>[martinthomson/internet-draft-template](https://github.com/martinthomson/internet-draft-template) | [2](#commits-martinthomson-internet-draft-template) |  | A template repository for Internet-Draft managemen... |
+| <span id="row-martinthomson-aasvg"></span>[martinthomson/aasvg](https://github.com/martinthomson/aasvg) | [2](#commits-martinthomson-aasvg) | JavaScript | Turn ASCII art into SVG |
+| <span id="row-panva-node-oidc-provider"></span>[panva/node-oidc-provider](https://github.com/panva/node-oidc-provider) | [2](#commits-panva-node-oidc-provider) | JavaScript | OpenID Certified™ OAuth 2.0 Authorization Server i... |
+| <span id="row-robertlong-pop-up-salon"></span>[robertlong/pop-up-salon](https://github.com/robertlong/pop-up-salon) | [2](#commits-robertlong-pop-up-salon) | TypeScript |  |
+| <span id="row-raohai-agent-meta-skill"></span>[RaoHai/agent-meta-skill](https://github.com/RaoHai/agent-meta-skill) | [2](#commits-raohai-agent-meta-skill) | JavaScript | "元skill" - 用来创建 skills 的 skill！ |
+| <span id="row-manishearth-rust-gc"></span>[Manishearth/rust-gc](https://github.com/Manishearth/rust-gc) | [2](#commits-manishearth-rust-gc) | Rust | Simple tracing (mark and sweep) garbage collector ... |
+| <span id="row-rinchen-rad-enable-repo"></span>[rinchen/rad-enable-repo](https://github.com/rinchen/rad-enable-repo) | [2](#commits-rinchen-rad-enable-repo) | Shell | Script to enable radicle on a GitHub repo so when ... |
+| <span id="row-rmham-nextcloud-utils"></span>[RMHAM/nextcloud-utils](https://github.com/RMHAM/nextcloud-utils) | [2](#commits-rmham-nextcloud-utils) | Shell | Handy utilities for managing our Nextcloud instanc... |
+| <span id="row-nemikor-solutions-usaw-owlcms"></span>[nemikor-solutions/usaw-owlcms](https://github.com/nemikor-solutions/usaw-owlcms) | [2](#commits-nemikor-solutions-usaw-owlcms) | CSS | USAW resources for owlcms |
+| <span id="row-inisis-onnxslim"></span>[inisis/OnnxSlim](https://github.com/inisis/OnnxSlim) | [2](#commits-inisis-onnxslim) | Python | A Toolkit to Help Optimize Onnx Model |
+| <span id="row-globalprivacycontrol-landing-page"></span>[globalprivacycontrol/landing-page](https://github.com/globalprivacycontrol/landing-page) | [2](#commits-globalprivacycontrol-landing-page) | JavaScript | Landing page for Global Privacy Control (GPC)  |
+| <span id="row-shopify-shadowenv"></span>[Shopify/shadowenv](https://github.com/Shopify/shadowenv) | [2](#commits-shopify-shadowenv) | Rust | reversible directory-local environment variable ma... |
+| <span id="row-cloudflare-telescope"></span>[cloudflare/telescope](https://github.com/cloudflare/telescope) | [2](#commits-cloudflare-telescope) | Astro | Cross-browser web performance testing agent |
+| <span id="row-toji-webgpu-metaballs"></span>[toji/webgpu-metaballs](https://github.com/toji/webgpu-metaballs) | [2](#commits-toji-webgpu-metaballs) | JavaScript | Metaballs rendered in WebGPU |
+| <span id="row-toji-spookyball"></span>[toji/spookyball](https://github.com/toji/spookyball) | [2](#commits-toji-spookyball) | JavaScript | WebGPU-powered, Halloween-themed breakout game |
+| <span id="row-wincent-cv"></span>[wincent/cv](https://github.com/wincent/cv) | [2](#commits-wincent-cv) | JavaScript | 📜Curriculum vitae |
+| <span id="row-xfq-zhuangxiu"></span>[xfq/zhuangxiu](https://github.com/xfq/zhuangxiu) | [2](#commits-xfq-zhuangxiu) | HTML | 装修指南 |
+| <span id="row-ljharb-lockfile-tools"></span>[ljharb/lockfile-tools](https://github.com/ljharb/lockfile-tools) | [2](#commits-ljharb-lockfile-tools) | JavaScript | Tools to validate and secure your npm ecosystem lo... |
+| <span id="row-ljharb-object-assign"></span>[ljharb/object.assign](https://github.com/ljharb/object.assign) | [2](#commits-ljharb-object-assign) | JavaScript | ES6 spec-compliant Object.assign shim. From https:... |
+| <span id="row-ljharb-travis-ci"></span>[ljharb/travis-ci](https://github.com/ljharb/travis-ci) | [2](#commits-ljharb-travis-ci) | JavaScript | Shared travis-ci configs. |
+| <span id="row-cyclopsmc-evilcraft"></span>[CyclopsMC/EvilCraft](https://github.com/CyclopsMC/EvilCraft) | [2](#commits-cyclopsmc-evilcraft) | Java | An evil mod for Minecraft. |
+| <span id="row-duckduckgo-tracker-radar"></span>[duckduckgo/tracker-radar](https://github.com/duckduckgo/tracker-radar) | [2](#commits-duckduckgo-tracker-radar) | JavaScript | Data set of top third party web domains with rich ... |
+| <span id="row-httparchive-bigquery"></span>[HTTPArchive/bigquery](https://github.com/HTTPArchive/bigquery) | [2](#commits-httparchive-bigquery) | Jupyter Notebook | BigQuery import and processing pipelines |
+| <span id="row-cncf-mentoring"></span>[cncf/mentoring](https://github.com/cncf/mentoring) | [2](#commits-cncf-mentoring) |  | 👩🏿‍🎓👨🏽‍🎓👩🏻‍🎓CNCF Mentoring + CommunityBridge + Sum... |
+| <span id="row-andreubotella-andreubotella-com"></span>[andreubotella/andreubotella.com](https://github.com/andreubotella/andreubotella.com) | [1](#commits-andreubotella-andreubotella-com) | CSS |  |
+| <span id="row-aaronpk-indienews"></span>[aaronpk/IndieNews](https://github.com/aaronpk/IndieNews) | [1](#commits-aaronpk-indienews) | PHP | 📰 News aggregator for IndieWeb-related posts |
+| <span id="row-matter-js-python-matter-server"></span>[matter-js/python-matter-server](https://github.com/matter-js/python-matter-server) | [1](#commits-matter-js-python-matter-server) | TypeScript | Python server to interact with Matter |
+| <span id="row-alphagov-govuk-frontend-docs"></span>[alphagov/govuk-frontend-docs](https://github.com/alphagov/govuk-frontend-docs) | [1](#commits-alphagov-govuk-frontend-docs) | HTML | Technical documentation for GOV.UK Frontend |
+| <span id="row-intel-generic-sensor-demos"></span>[intel/generic-sensor-demos](https://github.com/intel/generic-sensor-demos) | [1](#commits-intel-generic-sensor-demos) | HTML |  |
+| <span id="row-arthursonzogni-partitionalloc"></span>[ArthurSonzogni/PartitionAlloc](https://github.com/ArthurSonzogni/PartitionAlloc) | [1](#commits-arthursonzogni-partitionalloc) | C++ | Mirror of the chromium partition_alloc repository.... |
+| <span id="row-arthursonzogni-vincentarnould"></span>[ArthurSonzogni/vincentarnould](https://github.com/ArthurSonzogni/vincentarnould) | [1](#commits-arthursonzogni-vincentarnould) | Vue |  |
+| <span id="row-inrupt-rdf-wrapping-java"></span>[inrupt/rdf-wrapping-java](https://github.com/inrupt/rdf-wrapping-java) | [1](#commits-inrupt-rdf-wrapping-java) | Java | An RDF Wrapping library for working with domain mo... |
+| <span id="row-adamj-themagiccollection"></span>[AdamJ/TheMagicCollection](https://github.com/AdamJ/TheMagicCollection) | [1](#commits-adamj-themagiccollection) | Swift | A card collection app for Magic: The Gathering |
+| <span id="row-c00kiemon5ter-presentation-tiime2020-idpy-governance"></span>[c00kiemon5ter/presentation-tiime2020-idpy-governance](https://github.com/c00kiemon5ter/presentation-tiime2020-idpy-governance) | [1](#commits-c00kiemon5ter-presentation-tiime2020-idpy-governance) | HTML | Presentation for TIIME 2020 - IdPy Governance |
+| <span id="row-c00kiemon5ter-presentation-ntw19-identitypython-satosa-demo"></span>[c00kiemon5ter/presentation-ntw19-identitypython-satosa-demo](https://github.com/c00kiemon5ter/presentation-ntw19-identitypython-satosa-demo) | [1](#commits-c00kiemon5ter-presentation-ntw19-identitypython-satosa-demo) | JavaScript | Presentation for NTW19 - IdentityPython and SATOSA |
+| <span id="row-c00kiemon5ter-presentation-eosc19-identitypython-satosa"></span>[c00kiemon5ter/presentation-eosc19-identitypython-satosa](https://github.com/c00kiemon5ter/presentation-eosc19-identitypython-satosa) | [1](#commits-c00kiemon5ter-presentation-eosc19-identitypython-satosa) | JavaScript | Presentation for the EOSC meeting Oct.2019 at AMS ... |
+| <span id="row-kresusapp-kresus"></span>[kresusapp/kresus](https://github.com/kresusapp/kresus) | [1](#commits-kresusapp-kresus) | TypeScript | Get rich, or die codin' |
+| <span id="row-morph-kgc-morph-kgc-docs"></span>[morph-kgc/morph-kgc-docs](https://github.com/morph-kgc/morph-kgc-docs) | [1](#commits-morph-kgc-morph-kgc-docs) |  | https://morph-kgc.readthedocs.io/ |
+| <span id="row-aramzs-links"></span>[AramZS/links](https://github.com/AramZS/links) | [1](#commits-aramzs-links) | HTML | Link in Glitch / Link in Bio |
+| <span id="row-cmfcmf-docusaurus-search-local"></span>[cmfcmf/docusaurus-search-local](https://github.com/cmfcmf/docusaurus-search-local) | [1](#commits-cmfcmf-docusaurus-search-local) | JavaScript | Offline / Local Search for Docusaurus v3. Try it l... |
+| <span id="row-cynthia-iamf-exp"></span>[cynthia/iamf-exp](https://github.com/cynthia/iamf-exp) | [1](#commits-cynthia-iamf-exp) | C++ | Nothing to see here |
+| <span id="row-crazyurus-bydota-code"></span>[crazyurus/bydota-code](https://github.com/crazyurus/bydota-code) | [1](#commits-crazyurus-bydota-code) | TypeScript | 比亚迪 OTA 验证码计算工具 |
+| <span id="row-open-telemetry-opentelemetry-browser"></span>[open-telemetry/opentelemetry-browser](https://github.com/open-telemetry/opentelemetry-browser) | [1](#commits-open-telemetry-opentelemetry-browser) | TypeScript |  |
+| <span id="row-open-telemetry-opentelemetry-js-contrib"></span>[open-telemetry/opentelemetry-js-contrib](https://github.com/open-telemetry/opentelemetry-js-contrib) | [1](#commits-open-telemetry-opentelemetry-js-contrib) | TypeScript | OpenTelemetry instrumentation for JavaScript modul... |
+| <span id="row-berlysia-blog-berlysia-net"></span>[berlysia/blog.berlysia.net](https://github.com/berlysia/blog.berlysia.net) | [1](#commits-berlysia-blog-berlysia-net) | TypeScript |  |
+| <span id="row-ldproxy-xtraplatform-spatial"></span>[ldproxy/xtraplatform-spatial](https://github.com/ldproxy/xtraplatform-spatial) | [1](#commits-ldproxy-xtraplatform-spatial) | Java | Spatial modules for xtraplatform |
+| <span id="row-opengeospatial-ogcapi-features"></span>[opengeospatial/ogcapi-features](https://github.com/opengeospatial/ogcapi-features) | [1](#commits-opengeospatial-ogcapi-features) | CSS | An open standard for querying geospatial informati... |
+| <span id="row-okturtles-chel"></span>[okTurtles/chel](https://github.com/okTurtles/chel) | [1](#commits-okturtles-chel) | TypeScript | The Chelonia command line utility. |
+| <span id="row-okturtles-libcheloniajs"></span>[okTurtles/libcheloniajs](https://github.com/okTurtles/libcheloniajs) | [1](#commits-okturtles-libcheloniajs) | TypeScript | Chelonia Core Library |
+| <span id="row-darobin-wise-choice"></span>[darobin/wise-choice](https://github.com/darobin/wise-choice) | [1](#commits-darobin-wise-choice) | CSS | Standard choice screens for WISE |
+| <span id="row-darobin-webtil-es"></span>[darobin/webtil.es](https://github.com/darobin/webtil.es) | [1](#commits-darobin-webtil-es) | HTML | The tiles site |
+| <span id="row-mozilla-layout-triage"></span>[mozilla/layout-triage](https://github.com/mozilla/layout-triage) | [1](#commits-mozilla-layout-triage) | JavaScript | Script for auto-generating Firefox Layout team bug... |
+| <span id="row-mozilla-addons"></span>[mozilla/addons](https://github.com/mozilla/addons) | [1](#commits-mozilla-addons) | Shell | ☂ Umbrella repository for Mozilla Addons ✨ |
+| <span id="row-mozilla-foundation-security-advisories"></span>[mozilla/foundation-security-advisories](https://github.com/mozilla/foundation-security-advisories) | [1](#commits-mozilla-foundation-security-advisories) | Python | Canonical source for Mozilla Foundation Security A... |
+| <span id="row-netrisse-netrisse-lib"></span>[netrisse/netrisse-lib](https://github.com/netrisse/netrisse-lib) | [1](#commits-netrisse-netrisse-lib) | JavaScript | shared library for netrisse client and server |
+| <span id="row-ctcpip-eslint-config-ultra-mega"></span>[ctcpip/eslint-config-ultra-mega](https://github.com/ctcpip/eslint-config-ultra-mega) | [1](#commits-ctcpip-eslint-config-ultra-mega) | JavaScript | the best eslint config 🔧🔥⚙️ |
+| <span id="row-envoyproxy-envoy"></span>[envoyproxy/envoy](https://github.com/envoyproxy/envoy) | [1](#commits-envoyproxy-envoy) | C++ | Cloud-native high-performance edge/middle/service ... |
+| <span id="row-category-labs-monad"></span>[category-labs/monad](https://github.com/category-labs/monad) | [1](#commits-category-labs-monad) | C++ |  |
+| <span id="row-dyladan-component-owners"></span>[dyladan/component-owners](https://github.com/dyladan/component-owners) | [1](#commits-dyladan-component-owners) | TypeScript | Automatically add component owners as assignees an... |
+| <span id="row-clifhouck-unified"></span>[ClifHouck/unified](https://github.com/ClifHouck/unified) | [1](#commits-clifhouck-unified) | Go | An Unofficial UniFi Network & Protect API Client &... |
+| <span id="row-xdesro-personalsit-es"></span>[xdesro/personalsit.es](https://github.com/xdesro/personalsit.es) | [1](#commits-xdesro-personalsit-es) | Nunjucks | 📇 A little directory of people's personal sites |
+| <span id="row-edent-3d-uk-money"></span>[edent/3D-UK-Money](https://github.com/edent/3D-UK-Money) | [1](#commits-edent-3d-uk-money) | OpenSCAD | OpenSCAD and STL files to 3D print UK coins. Inclu... |
+| <span id="row-brickschema-brick"></span>[BrickSchema/Brick](https://github.com/BrickSchema/Brick) | [1](#commits-brickschema-brick) | Python | Uniform metadata schema for buildings |
+| <span id="row-transcend-io-airgap-js-types"></span>[transcend-io/airgap.js-types](https://github.com/transcend-io/airgap.js-types) | [1](#commits-transcend-io-airgap-js-types) | TypeScript |  |
+| <span id="row-wwwallet-wallet-docs"></span>[wwWallet/wallet-docs](https://github.com/wwWallet/wallet-docs) | [1](#commits-wwwallet-wallet-docs) | SCSS |  |
+| <span id="row-francescofugazzi-3dgsconverter"></span>[francescofugazzi/3dgsconverter](https://github.com/francescofugazzi/3dgsconverter) | [1](#commits-francescofugazzi-3dgsconverter) | Python | A Python command-line utility for converting and p... |
+| <span id="row-eliemichel-babylon-rigged-gsplat"></span>[eliemichel/Babylon-Rigged-GSplat](https://github.com/eliemichel/Babylon-Rigged-GSplat) | [1](#commits-eliemichel-babylon-rigged-gsplat) | TypeScript | Demo that use multiple Gaussian Splatting objects ... |
+| <span id="row-microsoft-json-schemas"></span>[microsoft/json-schemas](https://github.com/microsoft/json-schemas) | [1](#commits-microsoft-json-schemas) | Python | Publishing repository for different schemas used b... |
+| <span id="row-garykac-ashlar"></span>[garykac/ashlar](https://github.com/garykac/ashlar) | [1](#commits-garykac-ashlar) |  |  |
+| <span id="row-js-org-js-org"></span>[js-org/js.org](https://github.com/js-org/js.org) | [1](#commits-js-org-js-org) | JavaScript | Dedicated to JavaScript and its awesome community ... |
+| <span id="row-flpm-oakwood"></span>[flpm/oakwood](https://github.com/flpm/oakwood) | [1](#commits-flpm-oakwood) | Python | A book catalogue for your personal library. |
+| <span id="row-hayatoito-elpa"></span>[hayatoito/elpa](https://github.com/hayatoito/elpa) | [1](#commits-hayatoito-elpa) | Emacs Lisp |  |
+| <span id="row-edrlab-thorium-locales"></span>[edrlab/thorium-locales](https://github.com/edrlab/thorium-locales) | [1](#commits-edrlab-thorium-locales) |  | 🌍 Shared locales between Thorium products |
+| <span id="row-tailscale-tailscale"></span>[tailscale/tailscale](https://github.com/tailscale/tailscale) | [1](#commits-tailscale-tailscale) | Go | The easiest, most secure way to use WireGuard and ... |
+| <span id="row-brave-install-sh"></span>[brave/install.sh](https://github.com/brave/install.sh) | [1](#commits-brave-install-sh) | Shell |  |
+| <span id="row-brave-accounts"></span>[brave/accounts](https://github.com/brave/accounts) | [1](#commits-brave-accounts) | Go | Brave Accounts backend |
+| <span id="row-fmarier-feeding-cloud-geek-nz"></span>[fmarier/feeding.cloud.geek.nz](https://github.com/fmarier/feeding.cloud.geek.nz) | [1](#commits-fmarier-feeding-cloud-geek-nz) | CSS | Read-only mirror of blog titled Feeding the Cloud |
+| <span id="row-faire-sqldelight-cockroachdb-dialect"></span>[Faire/sqldelight-cockroachdb-dialect](https://github.com/Faire/sqldelight-cockroachdb-dialect) | [1](#commits-faire-sqldelight-cockroachdb-dialect) | Kotlin | SQLDelight Dialect for CockroachDB |
+| <span id="row-rust-fuzz-trophy-case"></span>[rust-fuzz/trophy-case](https://github.com/rust-fuzz/trophy-case) | [1](#commits-rust-fuzz-trophy-case) |  | 🏆 Collection of bugs uncovered by fuzzing Rust cod... |
+| <span id="row-inaturalist-inaturalistreactnative"></span>[inaturalist/iNaturalistReactNative](https://github.com/inaturalist/iNaturalistReactNative) | [1](#commits-inaturalist-inaturalistreactnative) | Fluent | Cross-platform version of the iNat mobile app |
+| <span id="row-3liz-proj4rs"></span>[3liz/proj4rs](https://github.com/3liz/proj4rs) | [1](#commits-3liz-proj4rs) | Rust | Rust adaptation of Proj4 |
+| <span id="row-networg-dns-redirect"></span>[NETWORG/dns-redirect](https://github.com/NETWORG/dns-redirect) | [1](#commits-networg-dns-redirect) | TypeScript | DNS-based redirector in Cloudflare Workers. |
+| <span id="row-huyprowow-portfolio"></span>[huyprowow/portfolio](https://github.com/huyprowow/portfolio) | [1](#commits-huyprowow-portfolio) | TypeScript | portfolio |
+| <span id="row-hbz-lobid-gnd"></span>[hbz/lobid-gnd](https://github.com/hbz/lobid-gnd) | [1](#commits-hbz-lobid-gnd) | JavaScript | UI and API to the Integrated Authority File (Gemei... |
+| <span id="row-jpm-canonical-llama-cpp-builds"></span>[jpm-canonical/llama.cpp-builds](https://github.com/jpm-canonical/llama.cpp-builds) | [1](#commits-jpm-canonical-llama-cpp-builds) |  |  |
+| <span id="row-canonical-inference-snaps-dev"></span>[canonical/inference-snaps-dev](https://github.com/canonical/inference-snaps-dev) | [1](#commits-canonical-inference-snaps-dev) | Shell | Developer tools for Inference Snaps |
+| <span id="row-canonical-inference-snaps"></span>[canonical/inference-snaps](https://github.com/canonical/inference-snaps) | [1](#commits-canonical-inference-snaps) |  |  |
+| <span id="row-canonical-qwen-vl-snap"></span>[canonical/qwen-vl-snap](https://github.com/canonical/qwen-vl-snap) | [1](#commits-canonical-qwen-vl-snap) | Shell | Multimodal large language model |
+| <span id="row-figuresout-end-table-drawer-organizer"></span>[figuresout/end-table-drawer-organizer](https://github.com/figuresout/end-table-drawer-organizer) | [1](#commits-figuresout-end-table-drawer-organizer) | G-code | 3D printing project for an end tables drawer. |
+| <span id="row-figuresout-wall-decorations"></span>[figuresout/wall-decorations](https://github.com/figuresout/wall-decorations) | [1](#commits-figuresout-wall-decorations) | G-code | 3D printing project for all of the decorations in ... |
+| <span id="row-unicode-org-cldr"></span>[unicode-org/cldr](https://github.com/unicode-org/cldr) | [1](#commits-unicode-org-cldr) | Java | The home of the Unicode Common Locale Data Reposit... |
+| <span id="row-mozilla-moz-l10n"></span>[mozilla/moz-l10n](https://github.com/mozilla/moz-l10n) | [1](#commits-mozilla-moz-l10n) | Python | Python and JavaScript tools for working with Mozil... |
+| <span id="row-eemeli-message-resource-wg"></span>[eemeli/message-resource-wg](https://github.com/eemeli/message-resource-wg) | [1](#commits-eemeli-message-resource-wg) |  | Developing a standard for Unicode MessageFormat 2 ... |
+| <span id="row-iherman-rdfjs-di-tester"></span>[iherman/rdfjs-di-tester](https://github.com/iherman/rdfjs-di-tester) | [1](#commits-iherman-rdfjs-di-tester) | TypeScript | Minor applications on top of rdfjs-di, mostly for ... |
+| <span id="row-iherman-misc-notes"></span>[iherman/misc-notes](https://github.com/iherman/misc-notes) | [1](#commits-iherman-misc-notes) | HTML | Collection of short notes that may not be relevant... |
+| <span id="row-joeyparrish-pybricksmenu"></span>[joeyparrish/pybricksmenu](https://github.com/joeyparrish/pybricksmenu) | [1](#commits-joeyparrish-pybricksmenu) | Python | Main menu for pybricks |
+| <span id="row-qxracademy--github"></span>[QXRacademy/.github](https://github.com/QXRacademy/.github) | [1](#commits-qxracademy--github) |  | Herramientas para "AlquimisTech's" |
+| <span id="row-trustknots-vcknots"></span>[trustknots/vcknots](https://github.com/trustknots/vcknots) | [1](#commits-trustknots-vcknots) | Go | Pluggable framework for building Verifiable Creden... |
+| <span id="row-unicode-org-last-resort-font"></span>[unicode-org/last-resort-font](https://github.com/unicode-org/last-resort-font) | [1](#commits-unicode-org-last-resort-font) | Python | Last Resort Font |
+| <span id="row-khushalsagar-webmcp-demo"></span>[khushalsagar/webmcp-demo](https://github.com/khushalsagar/webmcp-demo) | [1](#commits-khushalsagar-webmcp-demo) | JavaScript |  |
+| <span id="row-lodash-lodash"></span>[lodash/lodash](https://github.com/lodash/lodash) | [1](#commits-lodash-lodash) | JavaScript | A modern JavaScript utility library delivering mod... |
+| <span id="row-levithomason-grok"></span>[levithomason/grok](https://github.com/levithomason/grok) | [1](#commits-levithomason-grok) | Shell | Machine config I can grok. |
+| <span id="row-mozilla-bugbot"></span>[mozilla/bugbot](https://github.com/mozilla/bugbot) | [1](#commits-mozilla-bugbot) | Python | A Mozilla release management tool to send reminder... |
+| <span id="row-declanchidlow-techconf-directory"></span>[DeclanChidlow/techconf.directory](https://github.com/DeclanChidlow/techconf.directory) | [1](#commits-declanchidlow-techconf-directory) | CSS | A listing of technology conferences. |
+| <span id="row-jimmy-zhening-luo-schema"></span>[jimmy-zhening-luo/schema](https://github.com/jimmy-zhening-luo/schema) | [1](#commits-jimmy-zhening-luo-schema) | JavaScript | Schemata |
+| <span id="row-ossf-tac"></span>[ossf/tac](https://github.com/ossf/tac) | [1](#commits-ossf-tac) |  | Technical Advisory Council |
+| <span id="row-libre-fm-libre-fm"></span>[libre-fm/libre-fm](https://github.com/libre-fm/libre-fm) | [1](#commits-libre-fm-libre-fm) |  | The Hacienda must be built |
+| <span id="row-grokify-sogo"></span>[grokify/sogo](https://github.com/grokify/sogo) | [1](#commits-grokify-sogo) | Go | Wrapper code for generically useful Go modules. |
+| <span id="row-solidos-contacts-pane"></span>[SolidOS/contacts-pane](https://github.com/SolidOS/contacts-pane) | [1](#commits-solidos-contacts-pane) | JavaScript | Contact management: AddressBooks, Groups, Individu... |
+| <span id="row-bsc-es-autosubmit"></span>[BSC-ES/autosubmit](https://github.com/BSC-ES/autosubmit) | [1](#commits-bsc-es-autosubmit) | Python |  |
+| <span id="row-googlechromelabs-web-ai-demos"></span>[GoogleChromeLabs/web-ai-demos](https://github.com/GoogleChromeLabs/web-ai-demos) | [1](#commits-googlechromelabs-web-ai-demos) | JavaScript |  |
+| <span id="row-jsebrech-tiny-signals"></span>[jsebrech/tiny-signals](https://github.com/jsebrech/tiny-signals) | [1](#commits-jsebrech-tiny-signals) | JavaScript | The tiniest implementation of signals, ideal for v... |
+| <span id="row-nudeui-element"></span>[nudeui/element](https://github.com/nudeui/element) | [1](#commits-nudeui-element) | JavaScript | Composable web component helpers for creating reac... |
+| <span id="row-lukewarlow-neard4k"></span>[lukewarlow/neard4k](https://github.com/lukewarlow/neard4k) | [1](#commits-lukewarlow-neard4k) |  | A Kotlin/Native wrapper around the neard (Linux NF... |
+| <span id="row-mehmetoguzderin-triton-windowing"></span>[mehmetoguzderin/triton-windowing](https://github.com/mehmetoguzderin/triton-windowing) | [1](#commits-mehmetoguzderin-triton-windowing) | Python |  |
+| <span id="row-mehm8128-vite-react-template"></span>[mehm8128/vite-react-template](https://github.com/mehm8128/vite-react-template) | [1](#commits-mehm8128-vite-react-template) | TypeScript | Simple React template with Vite.  |
+| <span id="row-jquery-infrastructure-puppet"></span>[jquery/infrastructure-puppet](https://github.com/jquery/infrastructure-puppet) | [1](#commits-jquery-infrastructure-puppet) | HTML | Puppet configuration for jQuery Infrastructure ser... |
+| <span id="row-jquery-jquery-com"></span>[jquery/jquery.com](https://github.com/jquery/jquery.com) | [1](#commits-jquery-jquery-com) | HTML | jQuery web site content |
+| <span id="row-jquery-jquery"></span>[jquery/jquery](https://github.com/jquery/jquery) | [1](#commits-jquery-jquery) | JavaScript | jQuery JavaScript Library |
+| <span id="row-wikimedia-relpath"></span>[wikimedia/RelPath](https://github.com/wikimedia/RelPath) | [1](#commits-wikimedia-relpath) | PHP | Mirror from https://gerrit.wikimedia.org/g/RelPath... |
+| <span id="row-wikimedia-mediawiki-vendor"></span>[wikimedia/mediawiki-vendor](https://github.com/wikimedia/mediawiki-vendor) | [1](#commits-wikimedia-mediawiki-vendor) | PHP | Mirror of https://gerrit.wikimedia.org/g/mediawiki... |
+| <span id="row-wikimedia-less-php"></span>[wikimedia/less.php](https://github.com/wikimedia/less.php) | [1](#commits-wikimedia-less-php) | PHP | Less.js ported to PHP. Mirrored from https://gerri... |
+| <span id="row-mnot-public-resolver-errors"></span>[mnot/public-resolver-errors](https://github.com/mnot/public-resolver-errors) | [1](#commits-mnot-public-resolver-errors) | Makefile |  |
+| <span id="row-igalia-explainers"></span>[Igalia/explainers](https://github.com/Igalia/explainers) | [1](#commits-igalia-explainers) | JavaScript | Igalia Explainers |
+| <span id="row-w3c-ccg-cg-archiver"></span>[w3c-ccg/cg-archiver](https://github.com/w3c-ccg/cg-archiver) | [1](#commits-w3c-ccg-cg-archiver) | JavaScript | Archives meetings for a W3C Community Group |
+| <span id="row-gds-tech-and-security-aws-user-management-account"></span>[gds-tech-and-security/aws-user-management-account](https://github.com/gds-tech-and-security/aws-user-management-account) | [1](#commits-gds-tech-and-security-aws-user-management-account) | HCL | IAM Users call sts:AssumeRole from the AWS account... |
+| <span id="row-martinthomson-rfc-extract"></span>[martinthomson/rfc-extract](https://github.com/martinthomson/rfc-extract) | [1](#commits-martinthomson-rfc-extract) | Python | Extract content from RFC or internet-draft source |
+| <span id="row-tlswg-sslkeylogfile"></span>[tlswg/sslkeylogfile](https://github.com/tlswg/sslkeylogfile) | [1](#commits-tlswg-sslkeylogfile) | Makefile | Formally document the SSLKEYLOGFILE format |
+| <span id="row-koenkk-zigbee-herdsman-converters"></span>[Koenkk/zigbee-herdsman-converters](https://github.com/Koenkk/zigbee-herdsman-converters) | [1](#commits-koenkk-zigbee-herdsman-converters) | TypeScript | Collection of device converters to be used with zi... |
+| <span id="row-webcomponentsguide-webcomponents-guide"></span>[WebComponentsGuide/webcomponents.guide](https://github.com/WebComponentsGuide/webcomponents.guide) | [1](#commits-webcomponentsguide-webcomponents-guide) | CSS | Supercharge your Web Platform knowledge |
+| <span id="row-presbrey-cmd"></span>[presbrey/cmd](https://github.com/presbrey/cmd) | [1](#commits-presbrey-cmd) | Go |  |
+| <span id="row-niklasmerz-wlp"></span>[NiklasMerz/wlp](https://github.com/NiklasMerz/wlp) | [1](#commits-niklasmerz-wlp) | HTML | WebView Landing Page |
+| <span id="row-webview-cg--github"></span>[WebView-CG/.github](https://github.com/WebView-CG/.github) | [1](#commits-webview-cg--github) |  | GitHub Homepage |
+| <span id="row-bbc-imager-js"></span>[bbc/Imager.js](https://github.com/bbc/Imager.js) | [1](#commits-bbc-imager-js) | JavaScript | Responsive images while we wait for srcset to fini... |
+| <span id="row-bbc-wraith"></span>[bbc/wraith](https://github.com/bbc/wraith) | [1](#commits-bbc-wraith) | Ruby | Wraith — A responsive screenshot comparison tool |
+| <span id="row-rakuco-h5vcc-scraps"></span>[rakuco/h5vcc-scraps](https://github.com/rakuco/h5vcc-scraps) | [1](#commits-rakuco-h5vcc-scraps) | HTML |  |
+| <span id="row-manishearth-elsa"></span>[Manishearth/elsa](https://github.com/Manishearth/elsa) | [1](#commits-manishearth-elsa) | Rust | Append-only collections for Rust where borrows to ... |
+| <span id="row-boa-dev-temporal"></span>[boa-dev/temporal](https://github.com/boa-dev/temporal) | [1](#commits-boa-dev-temporal) | Rust | A Rust implementation of ECMAScript's Temporal API |
+| <span id="row-servo-rust-url"></span>[servo/rust-url](https://github.com/servo/rust-url) | [1](#commits-servo-rust-url) | Rust | URL parser for Rust |
+| <span id="row-unicode-rs-unicode-security"></span>[unicode-rs/unicode-security](https://github.com/unicode-rs/unicode-security) | [1](#commits-unicode-rs-unicode-security) | Rust | Detect possible security problems with Unicode usa... |
+| <span id="row-rinchen-radicle-links"></span>[rinchen/radicle-links](https://github.com/rinchen/radicle-links) | [1](#commits-rinchen-radicle-links) |  | Radicle.xyz links to my GitHub repositories |
+| <span id="row-rinchen-decentralized-manifesto"></span>[rinchen/decentralized-manifesto](https://github.com/rinchen/decentralized-manifesto) | [1](#commits-rinchen-decentralized-manifesto) |  | A vision for the future |
+| <span id="row-eclipse-thingweb-td-code"></span>[eclipse-thingweb/td-code](https://github.com/eclipse-thingweb/td-code) | [1](#commits-eclipse-thingweb-td-code) | TypeScript | VS Code extension for validating and designing W3C... |
+| <span id="row-nvidia-nemo-nemo"></span>[NVIDIA-NeMo/NeMo](https://github.com/NVIDIA-NeMo/NeMo) | [1](#commits-nvidia-nemo-nemo) | Python | A scalable generative AI framework built for resea... |
+| <span id="row-mozilla-node-fx-runner"></span>[mozilla/node-fx-runner](https://github.com/mozilla/node-fx-runner) | [1](#commits-mozilla-node-fx-runner) | JavaScript | Node API to control Firefox |
+| <span id="row-mozilla-conduit-lando"></span>[mozilla-conduit/lando](https://github.com/mozilla-conduit/lando) | [1](#commits-mozilla-conduit-lando) | Python | Lando is an application that applies patches and p... |
+| <span id="row-stasinos-mycontent"></span>[stasinos/mycontent](https://github.com/stasinos/mycontent) | [1](#commits-stasinos-mycontent) |  |  |
+| <span id="row-privacy-tech-lab-gpc-web-ui"></span>[privacy-tech-lab/gpc-web-ui](https://github.com/privacy-tech-lab/gpc-web-ui) | [1](#commits-privacy-tech-lab-gpc-web-ui) | JavaScript | Code for showing GPC crawl results in an interacti... |
+| <span id="row-rdf-connect-js-runner"></span>[rdf-connect/js-runner](https://github.com/rdf-connect/js-runner) | [1](#commits-rdf-connect-js-runner) | TypeScript |  |
+| <span id="row-snarfed-lexrpc"></span>[snarfed/lexrpc](https://github.com/snarfed/lexrpc) | [1](#commits-snarfed-lexrpc) | Python | Python client and server for Bluesky/AT Protocol's... |
+| <span id="row-interledger-publisher-tools"></span>[interledger/publisher-tools](https://github.com/interledger/publisher-tools) | [1](#commits-interledger-publisher-tools) | TypeScript |  |
+| <span id="row-linkease-istore-repo"></span>[linkease/istore-repo](https://github.com/linkease/istore-repo) | [1](#commits-linkease-istore-repo) | Shell | iStore的ipk仓库，存放已编译的ipk文件 |
+| <span id="row-linkease-openwrt-app-meta"></span>[linkease/openwrt-app-meta](https://github.com/linkease/openwrt-app-meta) | [1](#commits-linkease-openwrt-app-meta) | Makefile | ipk元数据，用于istore的软件列表 |
+| <span id="row-xahau-xahaud"></span>[Xahau/xahaud](https://github.com/Xahau/xahaud) | [1](#commits-xahau-xahaud) | C++ | Codebase for Xahaud - The consensus, RPC & blockch... |
+| <span id="row-bytecodealliance-wac"></span>[bytecodealliance/wac](https://github.com/bytecodealliance/wac) | [1](#commits-bytecodealliance-wac) | Rust | WebAssembly Composition (WAC) tooling |
+| <span id="row-mrhenry-web-tests"></span>[mrhenry/web-tests](https://github.com/mrhenry/web-tests) | [1](#commits-mrhenry-web-tests) | JavaScript | Testing web features in a way that represents real... |
+| <span id="row-mrhenry-polyfill-library"></span>[mrhenry/polyfill-library](https://github.com/mrhenry/polyfill-library) | [1](#commits-mrhenry-polyfill-library) | JavaScript |  |
+| <span id="row-sergeychernyshev-vibe-coding"></span>[sergeychernyshev/vibe-coding](https://github.com/sergeychernyshev/vibe-coding) | [1](#commits-sergeychernyshev-vibe-coding) | JavaScript |  |
+| <span id="row-favorite-icons-of-internet--github"></span>[Favorite-Icons-Of-Internet/.github](https://github.com/Favorite-Icons-Of-Internet/.github) | [1](#commits-favorite-icons-of-internet--github) |  | Favorite Icons Of Internet organization repo |
+| <span id="row-orcwg-cra-orcwg-org"></span>[orcwg/cra.orcwg.org](https://github.com/orcwg/cra.orcwg.org) | [1](#commits-orcwg-cra-orcwg-org) | JavaScript | CRA FAQ |
+| <span id="row-tidoust-mdn-webref"></span>[tidoust/mdn-webref](https://github.com/tidoust/mdn-webref) | [1](#commits-tidoust-mdn-webref) | JavaScript | Comparing data in MDN data and Webref |
+| <span id="row-toji-webgpu-test"></span>[toji/webgpu-test](https://github.com/toji/webgpu-test) | [1](#commits-toji-webgpu-test) | JavaScript | Testing WebGPU |
+| <span id="row-bytecodealliance-governance"></span>[bytecodealliance/governance](https://github.com/bytecodealliance/governance) | [1](#commits-bytecodealliance-governance) |  | Documents related to Bytecode Alliance governance ... |
+| <span id="row-bytecodealliance-meetings"></span>[bytecodealliance/meetings](https://github.com/bytecodealliance/meetings) | [1](#commits-bytecodealliance-meetings) | Python |  |
+| <span id="row-shapesecurity-cla"></span>[shapesecurity/CLA](https://github.com/shapesecurity/CLA) | [1](#commits-shapesecurity-cla) | Shell | Contributor License Agreements for Shape related p... |
+| <span id="row-google-breakpad"></span>[google/breakpad](https://github.com/google/breakpad) | [1](#commits-google-breakpad) | C++ | Mirror of Google Breakpad project |
+| <span id="row-timcappalli-raycast-scripts"></span>[timcappalli/raycast-scripts](https://github.com/timcappalli/raycast-scripts) | [1](#commits-timcappalli-raycast-scripts) | Shell | Raycast Script Commands |
+| <span id="row-mapbox-mapbox-gl-geocoder"></span>[mapbox/mapbox-gl-geocoder](https://github.com/mapbox/mapbox-gl-geocoder) | [1](#commits-mapbox-mapbox-gl-geocoder) | JavaScript | Geocoder control for mapbox-gl-js using Mapbox Geo... |
+| <span id="row-wincent-vim-university"></span>[wincent/vim-university](https://github.com/wincent/vim-university) | [1](#commits-wincent-vim-university) | Shell | A curriculum for leveling up your Vim |
+| <span id="row-wincent-command-t"></span>[wincent/command-t](https://github.com/wincent/command-t) | [1](#commits-wincent-command-t) | Lua | ⌨️ Fast file navigation for Neovim and Vim |
+| <span id="row-wincent-git-cipher"></span>[wincent/git-cipher](https://github.com/wincent/git-cipher) | [1](#commits-wincent-git-cipher) | TypeScript | 🔐 Tools for storing encrypted content in Git |
+| <span id="row-upsuper-my-daily-notes"></span>[upsuper/my-daily-notes](https://github.com/upsuper/my-daily-notes) | [1](#commits-upsuper-my-daily-notes) | TypeScript | Personal daily notes plugin for Obsidian |
+| <span id="row-upsuper-raid-rebuild-success-rate"></span>[upsuper/raid-rebuild-success-rate](https://github.com/upsuper/raid-rebuild-success-rate) | [1](#commits-upsuper-raid-rebuild-success-rate) | Rust |  |
+| <span id="row-nivenly-securing-open-source-communities-wg"></span>[nivenly/securing-open-source-communities-wg](https://github.com/nivenly/securing-open-source-communities-wg) | [1](#commits-nivenly-securing-open-source-communities-wg) |  | Securing Open Source Communities Working Group |
+| <span id="row-xfq-glossary"></span>[xfq/glossary](https://github.com/xfq/glossary) | [1](#commits-xfq-glossary) | HTML | Glossaries for personal use |
+| <span id="row-ljharb-global-cache"></span>[ljharb/global-cache](https://github.com/ljharb/global-cache) | [1](#commits-ljharb-global-cache) | JavaScript | Sometimes you have to do horrible things, like use... |
+| <span id="row-jonschlinkert-parse-github-url"></span>[jonschlinkert/parse-github-url](https://github.com/jonschlinkert/parse-github-url) | [1](#commits-jonschlinkert-parse-github-url) | JavaScript | Parse a Github URL into an object. Supports a wide... |
+| <span id="row-ljharb-define-properties"></span>[ljharb/define-properties](https://github.com/ljharb/define-properties) | [1](#commits-ljharb-define-properties) | JavaScript | Define multiple non-enumerable properties at once.... |
+| <span id="row-ljharb-set-function-name"></span>[ljharb/set-function-name](https://github.com/ljharb/set-function-name) | [1](#commits-ljharb-set-function-name) | JavaScript | Set a function's name property |
+| <span id="row-ljharb-make-async-function"></span>[ljharb/make-async-function](https://github.com/ljharb/make-async-function) | [1](#commits-ljharb-make-async-function) | JavaScript | Function that returns an arbitrary `async function... |
+| <span id="row-ljharb-prop-types-exact"></span>[ljharb/prop-types-exact](https://github.com/ljharb/prop-types-exact) | [1](#commits-ljharb-prop-types-exact) | JavaScript | For use with React PropTypes. Will error on any pr... |
+| <span id="row-ljharb-prop-types-tools"></span>[ljharb/prop-types-tools](https://github.com/ljharb/prop-types-tools) | [1](#commits-ljharb-prop-types-tools) | JavaScript | Custom React PropType validators |
+| <span id="row-ljharb-eslint-config"></span>[ljharb/eslint-config](https://github.com/ljharb/eslint-config) | [1](#commits-ljharb-eslint-config) | JavaScript | My shareable `eslint` config. |
+| <span id="row-ljharb-async-function"></span>[ljharb/async-function](https://github.com/ljharb/async-function) | [1](#commits-ljharb-async-function) | JavaScript | A function that returns the normally hidden `Async... |
+| <span id="row-jsx-eslint-jsx-ast-utils"></span>[jsx-eslint/jsx-ast-utils](https://github.com/jsx-eslint/jsx-ast-utils) | [1](#commits-jsx-eslint-jsx-ast-utils) | JavaScript | AST utility module for statically analyzing JSX |
+| <span id="row-browserify-to-buffer"></span>[browserify/to-buffer](https://github.com/browserify/to-buffer) | [1](#commits-browserify-to-buffer) | JavaScript | Pass in a string, get a buffer back. Pass in a buf... |
+| <span id="row-ljharb-make-generator-function"></span>[ljharb/make-generator-function](https://github.com/ljharb/make-generator-function) | [1](#commits-ljharb-make-generator-function) | JavaScript | Returns an arbitrary generator function, or undefi... |
+| <span id="row-browserify-pbkdf2"></span>[browserify/pbkdf2](https://github.com/browserify/pbkdf2) | [1](#commits-browserify-pbkdf2) | JavaScript | PBKDF2 with any supported hashing algorithm in Nod... |
+| <span id="row-ljharb-json-file-plus"></span>[ljharb/json-file-plus](https://github.com/ljharb/json-file-plus) | [1](#commits-ljharb-json-file-plus) | JavaScript | Read from and write to a JSON file, minimizing dif... |
+| <span id="row-cyclopsmc-iconexporter"></span>[CyclopsMC/IconExporter](https://github.com/CyclopsMC/IconExporter) | [1](#commits-cyclopsmc-iconexporter) | Java | Exports item and block icons to files |
+| <span id="row-cyclopsmc-flopper"></span>[CyclopsMC/Flopper](https://github.com/CyclopsMC/Flopper) | [1](#commits-cyclopsmc-flopper) | Java | A hopper for transferring fluids |
+| <span id="row-cyclopsmc-integratedrest"></span>[CyclopsMC/IntegratedREST](https://github.com/CyclopsMC/IntegratedREST) | [1](#commits-cyclopsmc-integratedrest) | Java | Expose Integrated Dynamics networks as a REST API |
+| <span id="row-cyclopsmc-cyclopscore"></span>[CyclopsMC/CyclopsCore](https://github.com/CyclopsMC/CyclopsCore) | [1](#commits-cyclopsmc-cyclopscore) | Java | Minecraft library mod for EvilCraft, Integrated Dy... |
+| <span id="row-cyclopsmc-structuredcrafting"></span>[CyclopsMC/StructuredCrafting](https://github.com/CyclopsMC/StructuredCrafting) | [1](#commits-cyclopsmc-structuredcrafting) | Java | Craft stuff in your world, automatically. |
+| <span id="row-cyclopsmc-colossalchests"></span>[CyclopsMC/ColossalChests](https://github.com/CyclopsMC/ColossalChests) | [1](#commits-cyclopsmc-colossalchests) | Java | For when regular chests are too small. |
+| <span id="row-cyclopsmc-energeticsheep"></span>[CyclopsMC/EnergeticSheep](https://github.com/CyclopsMC/EnergeticSheep) | [1](#commits-cyclopsmc-energeticsheep) | Java | Sheep that generate energy |
+| <span id="row-cyclopsmc-commoncapabilities"></span>[CyclopsMC/CommonCapabilities](https://github.com/CyclopsMC/CommonCapabilities) | [1](#commits-cyclopsmc-commoncapabilities) | Java | Forge Capabilities that can be shared by multiple ... |
+| <span id="row-cyclopsmc-capabilityproxy"></span>[CyclopsMC/CapabilityProxy](https://github.com/CyclopsMC/CapabilityProxy) | [1](#commits-cyclopsmc-capabilityproxy) | Java | Access block capabilities from multiple sides |
+| <span id="row-cyclopsmc-integratedtunnels"></span>[CyclopsMC/IntegratedTunnels](https://github.com/CyclopsMC/IntegratedTunnels) | [1](#commits-cyclopsmc-integratedtunnels) | Java | Transfer other energy, items and fluids over Integ... |
+| <span id="row-cyclopsmc-integratedscripting"></span>[CyclopsMC/IntegratedScripting](https://github.com/CyclopsMC/IntegratedScripting) | [1](#commits-cyclopsmc-integratedscripting) | Java | Create scripts for handling complex operations in ... |
+| <span id="row-cyclopsmc-integrateddynamics-compat"></span>[CyclopsMC/IntegratedDynamics-Compat](https://github.com/CyclopsMC/IntegratedDynamics-Compat) | [1](#commits-cyclopsmc-integrateddynamics-compat) | Java | Integrated Dynamics compatibility with other mods. |
+| <span id="row-servo-mozjs"></span>[servo/mozjs](https://github.com/servo/mozjs) | [1](#commits-servo-mozjs) | Rust | Servo's SpiderMonkey fork |
+| <span id="row-duckduckgo-privacy-configuration"></span>[duckduckgo/privacy-configuration](https://github.com/duckduckgo/privacy-configuration) | [1](#commits-duckduckgo-privacy-configuration) | JavaScript | 🎛 Configuration files used by DuckDuckGo's apps an... |
+| <span id="row-httparchive-dataform"></span>[HTTPArchive/dataform](https://github.com/HTTPArchive/dataform) | [1](#commits-httparchive-dataform) | JavaScript | The data pipeline for HTTP Archive orchestrated by... |
+| <span id="row-httparchive-har-fyi"></span>[HTTPArchive/har.fyi](https://github.com/HTTPArchive/har.fyi) | [1](#commits-httparchive-har-fyi) | Jupyter Notebook |  |
+| <span id="row-httparchive-tech-report-apis"></span>[HTTPArchive/tech-report-apis](https://github.com/HTTPArchive/tech-report-apis) | [1](#commits-httparchive-tech-report-apis) | JavaScript | APIs for the HTTP Archive Technology Report |
+| <span id="row-googlechrome-webstatus-dev"></span>[GoogleChrome/webstatus.dev](https://github.com/GoogleChrome/webstatus.dev) | [1](#commits-googlechrome-webstatus-dev) | Go | A tool to monitor and track the status of all Web ... |
+
+### 3D/WebGL
+
+*6 repositories, 20 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-donmccurdy-gltf-transform"></span>[donmccurdy/glTF-Transform](https://github.com/donmccurdy/glTF-Transform) | [9](#commits-donmccurdy-gltf-transform) | TypeScript | glTF 2.0 SDK for JavaScript and TypeScript, on Web... |
+| <span id="row-mapbox-mapbox-gl-js"></span>[mapbox/mapbox-gl-js](https://github.com/mapbox/mapbox-gl-js) | [4](#commits-mapbox-mapbox-gl-js) | TypeScript | Interactive, thoroughly customizable maps in the b... |
+| <span id="row-mrdoob-three-js"></span>[mrdoob/three.js](https://github.com/mrdoob/three.js) | [2](#commits-mrdoob-three-js) | JavaScript | JavaScript 3D Library. |
+| <span id="row-cesiumgs-cesium"></span>[CesiumGS/cesium](https://github.com/CesiumGS/cesium) | [2](#commits-cesiumgs-cesium) | JavaScript | An open-source JavaScript library for world-class ... |
+| <span id="row-babylonjs-babylon-js"></span>[BabylonJS/Babylon.js](https://github.com/BabylonJS/Babylon.js) | [2](#commits-babylonjs-babylon-js) | TypeScript | Babylon.js is a powerful, beautiful, simple, and o... |
+| <span id="row-chinmaygarde-sft"></span>[chinmaygarde/sft](https://github.com/chinmaygarde/sft) | [1](#commits-chinmaygarde-sft) | C++ | A software renderer. |
+
+### Blockchain
+
+*2 repositories, 13 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-ektrah-nsec"></span>[ektrah/nsec](https://github.com/ektrah/nsec) | [7](#commits-ektrah-nsec) | C# | A modern and easy-to-use cryptographic library for... |
+| <span id="row-ipfs-ipfs-blog"></span>[ipfs/ipfs-blog](https://github.com/ipfs/ipfs-blog) | [6](#commits-ipfs-ipfs-blog) | Vue | IPFS Blog & News |
+
+### Build tools
+
+*1 repository, 53 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-csskit-csskit"></span>[csskit/csskit](https://github.com/csskit/csskit) | [53](#commits-csskit-csskit) | Rust | Refreshing CSS |
+
+### CI/CD
+
+*2 repositories, 28 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-johntitor-cargo-semver-checks"></span>[JohnTitor/cargo-semver-checks](https://github.com/JohnTitor/cargo-semver-checks) | [26](#commits-johntitor-cargo-semver-checks) | TypeScript | A GitHub Action to check semver violations on Rust... |
+| <span id="row-niklasmerz-github-deployment-action"></span>[NiklasMerz/github-deployment-action](https://github.com/NiklasMerz/github-deployment-action) | [2](#commits-niklasmerz-github-deployment-action) | JavaScript | Create deployments on Github with actions |
+
+### Data science
+
+*2 repositories, 3 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-rreverser-serde-ndim"></span>[RReverser/serde-ndim](https://github.com/RReverser/serde-ndim) | [2](#commits-rreverser-serde-ndim) | Rust | Serde support for n-dimensional arrays from self-d... |
+| <span id="row-xuri-excelize-py"></span>[xuri/excelize-py](https://github.com/xuri/excelize-py) | [1](#commits-xuri-excelize-py) | Python | Excelize is a Python port of Go Excelize library t... |
+
+### Databases
+
+*4 repositories, 17 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-morph-kgc-morph-kgc"></span>[morph-kgc/morph-kgc](https://github.com/morph-kgc/morph-kgc) | [10](#commits-morph-kgc-morph-kgc) | Python | Powerful RDF Knowledge Graph Generation with RML M... |
+| <span id="row-morph-kgc-3xtudio"></span>[morph-kgc/3xtudio](https://github.com/morph-kgc/3xtudio) | [4](#commits-morph-kgc-3xtudio) | Python | 3xtudio is a web-based visual editor for RML mappi... |
+| <span id="row-apache-cordova-docs"></span>[apache/cordova-docs](https://github.com/apache/cordova-docs) | [2](#commits-apache-cordova-docs) | JavaScript | Apache Cordova Documentation |
+| <span id="row-apache-cordova-eslint"></span>[apache/cordova-eslint](https://github.com/apache/cordova-eslint) | [1](#commits-apache-cordova-eslint) | JavaScript | Apache Cordova - ESLint |
+
+### DevOps
+
+*14 repositories, 49 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-mardi4nfdi-portal-k8s"></span>[MaRDI4NFDI/portal-k8s](https://github.com/MaRDI4NFDI/portal-k8s) | [17](#commits-mardi4nfdi-portal-k8s) | YAML | Kubernetes repository for the MaRDI portal |
+| <span id="row-strata-io-helm-charts"></span>[strata-io/helm-charts](https://github.com/strata-io/helm-charts) | [6](#commits-strata-io-helm-charts) | Smarty | The official Helm Charts for Maverics |
+| <span id="row-wacky6-ok-deploy"></span>[wacky6/ok-deploy](https://github.com/wacky6/ok-deploy) | [5](#commits-wacky6-ok-deploy) | Shell | Composable One-Key Deploy Scripts for Ubuntu Serve... |
+| <span id="row-hashicorp-design-system"></span>[hashicorp/design-system](https://github.com/hashicorp/design-system) | [4](#commits-hashicorp-design-system) | TypeScript | Helios Design System |
+| <span id="row-utmgdsc-hacklab-booking"></span>[utmgdsc/hacklab-booking](https://github.com/utmgdsc/hacklab-booking) | [4](#commits-utmgdsc-hacklab-booking) | TypeScript | MCS Project with Prof. Liut and Aameri |
+| <span id="row-backstage-community-plugins"></span>[backstage/community-plugins](https://github.com/backstage/community-plugins) | [3](#commits-backstage-community-plugins) | TypeScript | Community plugins for Backstage |
+| <span id="row-bbc-sqs-producer"></span>[bbc/sqs-producer](https://github.com/bbc/sqs-producer) | [3](#commits-bbc-sqs-producer) | TypeScript | Simple scaffolding for applications that produce S... |
+| <span id="row-kubernetes-test-infra"></span>[kubernetes/test-infra](https://github.com/kubernetes/test-infra) | [1](#commits-kubernetes-test-infra) | Go | Test infrastructure for the Kubernetes project. |
+| <span id="row-oneinfra-console"></span>[oneinfra/console](https://github.com/oneinfra/console) | [1](#commits-oneinfra-console) | CSS | oneinfra web console |
+| <span id="row-related-sciences-gce-github-runner"></span>[related-sciences/gce-github-runner](https://github.com/related-sciences/gce-github-runner) | [1](#commits-related-sciences-gce-github-runner) | Shell | Ephemeral GCE/GCP GitHub self-hosted runner |
+| <span id="row-thenetworg-oauth2-azure"></span>[TheNetworg/oauth2-azure](https://github.com/TheNetworg/oauth2-azure) | [1](#commits-thenetworg-oauth2-azure) | PHP | Azure AD provider for the OAuth 2.0 Client. |
+| <span id="row-bbc-sqs-consumer"></span>[bbc/sqs-consumer](https://github.com/bbc/sqs-consumer) | [1](#commits-bbc-sqs-consumer) | TypeScript | Build Amazon Simple Queue Service (SQS) based appl... |
+| <span id="row-kubernetes-enhancements"></span>[kubernetes/enhancements](https://github.com/kubernetes/enhancements) | [1](#commits-kubernetes-enhancements) | Go | Enhancements tracking repo for Kubernetes |
+| <span id="row-kubernetes-sigs-cri-tools"></span>[kubernetes-sigs/cri-tools](https://github.com/kubernetes-sigs/cri-tools) | [1](#commits-kubernetes-sigs-cri-tools) | Go | CLI and validation tools for Kubelet Container Run... |
+
+### Documentation platforms
+
+*1 repository, 1 commit*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-comandeer-comandeers-homepage"></span>[Comandeer/comandeers-homepage](https://github.com/Comandeer/comandeers-homepage) | [1](#commits-comandeer-comandeers-homepage) | JavaScript |  |
+
+### Dotfiles
+
+*10 repositories, 364 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-thiagowfx--dotfiles"></span>[thiagowfx/.dotfiles](https://github.com/thiagowfx/.dotfiles) | [189](#commits-thiagowfx--dotfiles) | Shell | My dotfiles, managed with GNU stow. |
+| <span id="row-berlysia-dotfiles"></span>[berlysia/dotfiles](https://github.com/berlysia/dotfiles) | [118](#commits-berlysia-dotfiles) | TypeScript |  |
+| <span id="row-paulirish-dotfiles"></span>[paulirish/dotfiles](https://github.com/paulirish/dotfiles) | [15](#commits-paulirish-dotfiles) | Shell | paul's fish, bash, git, etc config files. good stu... |
+| <span id="row-chunminchang-dotfiles"></span>[ChunMinChang/dotfiles](https://github.com/ChunMinChang/dotfiles) | [14](#commits-chunminchang-dotfiles) | Python | Personal environment settings |
+| <span id="row-o-y-dotfiles"></span>[o-y/dotfiles](https://github.com/o-y/dotfiles) | [13](#commits-o-y-dotfiles) | Shell |  |
+| <span id="row-keithamus-dotfiles"></span>[keithamus/dotfiles](https://github.com/keithamus/dotfiles) | [8](#commits-keithamus-dotfiles) | Shell | ⚫ These are my dotfiles. There are many like it bu... |
+| <span id="row-herocc-dotfiles"></span>[HeroCC/dotfiles](https://github.com/HeroCC/dotfiles) | [2](#commits-herocc-dotfiles) | Shell | Collection of Shell program configurations, prefer... |
+| <span id="row-iamnewton-dotfiles"></span>[iamnewton/dotfiles](https://github.com/iamnewton/dotfiles) | [2](#commits-iamnewton-dotfiles) | Shell | UNIX-based system configuration for software devel... |
+| <span id="row-rubenverborgh-dotfiles"></span>[RubenVerborgh/dotfiles](https://github.com/RubenVerborgh/dotfiles) | [2](#commits-rubenverborgh-dotfiles) | Shell | Ruben Verborgh's dotfiles |
+| <span id="row-bigbluehat-dotfiles"></span>[BigBlueHat/dotfiles](https://github.com/BigBlueHat/dotfiles) | [1](#commits-bigbluehat-dotfiles) | Vim Script | a keep for my home files |
+
+### Frontend frameworks
+
+*7 repositories, 49 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-ecomfe-vue-echarts"></span>[ecomfe/vue-echarts](https://github.com/ecomfe/vue-echarts) | [16](#commits-ecomfe-vue-echarts) | TypeScript | Vue.js component for Apache ECharts™. |
+| <span id="row-edrlab-thorium-reader"></span>[edrlab/thorium-reader](https://github.com/edrlab/thorium-reader) | [12](#commits-edrlab-thorium-reader) | TypeScript | A cross platform desktop reading app, based on the... |
+| <span id="row-tupilabs-vue-lumino"></span>[tupilabs/vue-lumino](https://github.com/tupilabs/vue-lumino) | [8](#commits-tupilabs-vue-lumino) | JavaScript | A component to use Vue.js with Jupyter Lumino (Pho... |
+| <span id="row-crazyurus-bydstore"></span>[crazyurus/bydstore](https://github.com/crazyurus/bydstore) | [7](#commits-crazyurus-bydstore) | TypeScript | BYD 应用/主题/壁纸市场 |
+| <span id="row-adamj-timetrackerpro"></span>[AdamJ/TimeTrackerPro](https://github.com/AdamJ/TimeTrackerPro) | [4](#commits-adamj-timetrackerpro) | TypeScript | A modern, feature-rich time tracking application b... |
+| <span id="row-microsoft-fluentui"></span>[microsoft/fluentui](https://github.com/microsoft/fluentui) | [1](#commits-microsoft-fluentui) | TypeScript | Fluent UI web represents a collection of utilities... |
+| <span id="row-microsoft-griffel"></span>[microsoft/griffel](https://github.com/microsoft/griffel) | [1](#commits-microsoft-griffel) | TypeScript | CSS-in-JS with ahead-of-time compilation ⚡️ |
+
+### Game development
+
+*1 repository, 8 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-daidr-dualsense-tester"></span>[daidr/dualsense-tester](https://github.com/daidr/dualsense-tester) | [8](#commits-daidr-dualsense-tester) | Vue | 🎮 Test your DualSense (and Edge) or DualShock 4 in... |
+
+### Home automation and embedded systems
+
+*3 repositories, 9 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-eclipse-thingweb-node-wot"></span>[eclipse-thingweb/node-wot](https://github.com/eclipse-thingweb/node-wot) | [6](#commits-eclipse-thingweb-node-wot) | TypeScript | A fast and extensible framework to connect any dev... |
+| <span id="row-home-assistant-core"></span>[home-assistant/core](https://github.com/home-assistant/core) | [2](#commits-home-assistant-core) | Python | :house_with_garden: Open source home automation th... |
+| <span id="row-eclipse-thingweb-website"></span>[eclipse-thingweb/website](https://github.com/eclipse-thingweb/website) | [1](#commits-eclipse-thingweb-website) | JavaScript | Homepage for Eclipse Thingweb, thingweb.io |
+
+### JavaScript runtimes
+
+*9 repositories, 68 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-jimmy-zhening-luo-template"></span>[jimmy-zhening-luo/template](https://github.com/jimmy-zhening-luo/template) | [41](#commits-jimmy-zhening-luo-template) | JavaScript | Repo/project template for TypeScript (+Svelte) pro... |
+| <span id="row-babel-babel"></span>[babel/babel](https://github.com/babel/babel) | [9](#commits-babel-babel) | TypeScript | 🐠 Babel is a compiler for writing next generation ... |
+| <span id="row-nodejs-node"></span>[nodejs/node](https://github.com/nodejs/node) | [7](#commits-nodejs-node) | JavaScript | Node.js JavaScript runtime ✨🐢🚀✨ |
+| <span id="row-ljharb-qs"></span>[ljharb/qs](https://github.com/ljharb/qs) | [4](#commits-ljharb-qs) | JavaScript | A querystring parser and serializer with nesting s... |
+| <span id="row-canadahonk-porffor"></span>[CanadaHonk/porffor](https://github.com/CanadaHonk/porffor) | [2](#commits-canadahonk-porffor) | JavaScript | An ahead-of-time JavaScript compiler |
+| <span id="row-nvm-sh-nvm"></span>[nvm-sh/nvm](https://github.com/nvm-sh/nvm) | [2](#commits-nvm-sh-nvm) | Shell | Node Version Manager - POSIX-compliant bash script... |
+| <span id="row-nodejs-admin"></span>[nodejs/admin](https://github.com/nodejs/admin) | [1](#commits-nodejs-admin) | JavaScript | Administrative space for policies of the TSC |
+| <span id="row-nodejs-node-gyp"></span>[nodejs/node-gyp](https://github.com/nodejs/node-gyp) | [1](#commits-nodejs-node-gyp) | Python | Node.js native addon build tool |
+| <span id="row-jpmonette-feed"></span>[jpmonette/feed](https://github.com/jpmonette/feed) | [1](#commits-jpmonette-feed) | TypeScript | A RSS, Atom and JSON Feed generator for Node.js, m... |
+
+### ML frameworks
+
+*10 repositories, 66 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-significant-gravitas-autogpt"></span>[Significant-Gravitas/AutoGPT](https://github.com/Significant-Gravitas/AutoGPT) | [18](#commits-significant-gravitas-autogpt) | Python | AutoGPT is the vision of accessible AI for everyon... |
+| <span id="row-endorhq-rover"></span>[endorhq/rover](https://github.com/endorhq/rover) | [11](#commits-endorhq-rover) | TypeScript | A manager for AI coding agents that works with Cla... |
+| <span id="row-ibelem-web-ai-test"></span>[ibelem/web-ai-test](https://github.com/ibelem/web-ai-test) | [10](#commits-ibelem-web-ai-test) | JavaScript | Web AI |
+| <span id="row-xuri-excelize-cs"></span>[xuri/excelize-cs](https://github.com/xuri/excelize-cs) | [8](#commits-xuri-excelize-cs) | C# | Excelize is a C# port of Go Excelize library that ... |
+| <span id="row-qax-os-excelize"></span>[qax-os/excelize](https://github.com/qax-os/excelize) | [7](#commits-qax-os-excelize) | Go | Go language library for reading and writing Micros... |
+| <span id="row-vercel-ai"></span>[vercel/ai](https://github.com/vercel/ai) | [4](#commits-vercel-ai) | TypeScript | The AI Toolkit for TypeScript. From the creators o... |
+| <span id="row-rishikanthc-scriberr"></span>[rishikanthc/Scriberr](https://github.com/rishikanthc/Scriberr) | [4](#commits-rishikanthc-scriberr) | Go | Self-hosted AI audio transcription |
+| <span id="row-ibelem-webnn-code-generator"></span>[ibelem/webnn-code-generator](https://github.com/ibelem/webnn-code-generator) | [2](#commits-ibelem-webnn-code-generator) | JavaScript | Generate Web Neural Network (WebNN) API vanilla Ja... |
+| <span id="row-leofan90-awesome-world-models"></span>[leofan90/Awesome-World-Models](https://github.com/leofan90/Awesome-World-Models) | [1](#commits-leofan90-awesome-world-models) |  | A comprehensive list of papers for the definition ... |
+| <span id="row-keras-team-keras-io"></span>[keras-team/keras-io](https://github.com/keras-team/keras-io) | [1](#commits-keras-team-keras-io) | Jupyter Notebook | Keras documentation, hosted live at keras.io |
+
+### Mobile development
+
+*6 repositories, 140 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-jimmy-zhening-luo-scriptable"></span>[jimmy-zhening-luo/scriptable](https://github.com/jimmy-zhening-luo/scriptable) | [91](#commits-jimmy-zhening-luo-scriptable) | TypeScript | Write type-safe, concise, continuously-deployed Sc... |
+| <span id="row-wikimedia-apps-android-wikipedia"></span>[wikimedia/apps-android-wikipedia](https://github.com/wikimedia/apps-android-wikipedia) | [22](#commits-wikimedia-apps-android-wikipedia) | Kotlin |  📱The official Wikipedia app for Android! |
+| <span id="row-notify-rs-notify"></span>[notify-rs/notify](https://github.com/notify-rs/notify) | [16](#commits-notify-rs-notify) | Rust | 🔭 Cross-platform filesystem notification library f... |
+| <span id="row-lynx-family-lynx-website"></span>[lynx-family/lynx-website](https://github.com/lynx-family/lynx-website) | [8](#commits-lynx-family-lynx-website) | TypeScript | Official Website of the Lynx Family |
+| <span id="row-flutter-flutter"></span>[flutter/flutter](https://github.com/flutter/flutter) | [2](#commits-flutter-flutter) | Dart | Flutter makes it easy and fast to build beautiful ... |
+| <span id="row-lynx-family-lynx"></span>[lynx-family/lynx](https://github.com/lynx-family/lynx) | [1](#commits-lynx-family-lynx) | C++ | Empower the Web community and invite more to build... |
+
+### Package managers
+
+*4 repositories, 9 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-rinchen-mac-shell-scripts"></span>[rinchen/mac-shell-scripts](https://github.com/rinchen/mac-shell-scripts) | [6](#commits-rinchen-mac-shell-scripts) | Shell | Joey's Mac shell scripts |
+| <span id="row-homebrew-homebrew-cask"></span>[Homebrew/homebrew-cask](https://github.com/Homebrew/homebrew-cask) | [1](#commits-homebrew-homebrew-cask) | Ruby | 🍻 A CLI workflow for the administration of macOS a... |
+| <span id="row-nixos-nixpkgs"></span>[NixOS/nixpkgs](https://github.com/NixOS/nixpkgs) | [1](#commits-nixos-nixpkgs) | Nix | Nix Packages collection & NixOS |
+| <span id="row-ljharb-npm-lockfile"></span>[ljharb/npm-lockfile](https://github.com/ljharb/npm-lockfile) | [1](#commits-ljharb-npm-lockfile) | JavaScript | Safely generate an npm lockfile and output it to t... |
+
+### Programming languages
+
+*3 repositories, 4 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-rust-lang-www-rust-lang-org"></span>[rust-lang/www.rust-lang.org](https://github.com/rust-lang/www.rust-lang.org) | [2](#commits-rust-lang-www-rust-lang-org) | Fluent | The home of the Rust website |
+| <span id="row-rust-lang-rustc-dev-guide"></span>[rust-lang/rustc-dev-guide](https://github.com/rust-lang/rustc-dev-guide) | [1](#commits-rust-lang-rustc-dev-guide) | HTML | A guide to how rustc works and how to contribute t... |
+| <span id="row-rust-lang-team"></span>[rust-lang/team](https://github.com/rust-lang/team) | [1](#commits-rust-lang-team) | Rust | Rust teams structure |
+
+### TC39
+
+*14 repositories, 73 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-tc39-agendas"></span>[tc39/agendas](https://github.com/tc39/agendas) | [18](#commits-tc39-agendas) | JavaScript | TC39 meeting agendas |
+| <span id="row-tc39-proposal-deferred-reexports"></span>[tc39/proposal-deferred-reexports](https://github.com/tc39/proposal-deferred-reexports) | [9](#commits-tc39-proposal-deferred-reexports) |  |  |
+| <span id="row-tc39-proposals"></span>[tc39/proposals](https://github.com/tc39/proposals) | [9](#commits-tc39-proposals) |  | Tracking ECMAScript Proposals |
+| <span id="row-tc39-proposal-async-context"></span>[tc39/proposal-async-context](https://github.com/tc39/proposal-async-context) | [7](#commits-tc39-proposal-async-context) | HTML | Async Context for JavaScript |
+| <span id="row-tc39-proposal-first-class-protocols"></span>[tc39/proposal-first-class-protocols](https://github.com/tc39/proposal-first-class-protocols) | [7](#commits-tc39-proposal-first-class-protocols) | JavaScript | a proposal to bring protocol-based interfaces to E... |
+| <span id="row-tc39-proposal-composable-accessors"></span>[tc39/proposal-composable-accessors](https://github.com/tc39/proposal-composable-accessors) | [5](#commits-tc39-proposal-composable-accessors) |  | Incrementally add functionality to accessors via b... |
+| <span id="row-tc39-proposal-amount"></span>[tc39/proposal-amount](https://github.com/tc39/proposal-amount) | [5](#commits-tc39-proposal-amount) | HTML | Numbers with precision and a unit for JavaScript |
+| <span id="row-tc39-proposal-alias-accessors"></span>[tc39/proposal-alias-accessors](https://github.com/tc39/proposal-alias-accessors) | [4](#commits-tc39-proposal-alias-accessors) |  |  |
+| <span id="row-tc39-proposal-intl-unit-format"></span>[tc39/proposal-intl-unit-format](https://github.com/tc39/proposal-intl-unit-format) | [2](#commits-tc39-proposal-intl-unit-format) | HTML | `Intl.UnitFormat` specification [draft] |
+| <span id="row-tc39-proposal-defer-import-eval"></span>[tc39/proposal-defer-import-eval](https://github.com/tc39/proposal-defer-import-eval) | [2](#commits-tc39-proposal-defer-import-eval) | HTML | A proposal for introducing a way to defer evaluate... |
+| <span id="row-tc39-proposal-intl-era-monthcode"></span>[tc39/proposal-intl-era-monthcode](https://github.com/tc39/proposal-intl-era-monthcode) | [2](#commits-tc39-proposal-intl-era-monthcode) | HTML | To specify necessary details about era, eraYear an... |
+| <span id="row-tc39-notes"></span>[tc39/notes](https://github.com/tc39/notes) | [1](#commits-tc39-notes) | JavaScript | TC39 meeting notes |
+| <span id="row-tc39-proposal-error-stacks"></span>[tc39/proposal-error-stacks](https://github.com/tc39/proposal-error-stacks) | [1](#commits-tc39-proposal-error-stacks) | HTML | ECMAScript Proposal, specs, and reference implemen... |
+| <span id="row-tc39-test262"></span>[tc39/test262](https://github.com/tc39/test262) | [1](#commits-tc39-test262) | JavaScript | Official ECMAScript Conformance Test Suite |
+
+### Testing frameworks
+
+*27 repositories, 103 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-saucelabs-training-demo-csharp"></span>[saucelabs-training/demo-csharp](https://github.com/saucelabs-training/demo-csharp) | [36](#commits-saucelabs-training-demo-csharp) | C# | A repository containing all C# examples for Sauce |
+| <span id="row-qunitjs-qunit"></span>[qunitjs/qunit](https://github.com/qunitjs/qunit) | [9](#commits-qunitjs-qunit) | JavaScript | 🔮 An easy-to-use JavaScript unit testing framework... |
+| <span id="row-saucelabs-training-demo-js"></span>[saucelabs-training/demo-js](https://github.com/saucelabs-training/demo-js) | [7](#commits-saucelabs-training-demo-js) | JavaScript | A repository containing examples using NodeJS with... |
+| <span id="row-webdriverio-community-wdio-camera-service"></span>[webdriverio-community/wdio-camera-service](https://github.com/webdriverio-community/wdio-camera-service) | [7](#commits-webdriverio-community-wdio-camera-service) | TypeScript | WebdriverIO Service to mock camera input for Chrom... |
+| <span id="row-saucelabs-training-demo-python"></span>[saucelabs-training/demo-python](https://github.com/saucelabs-training/demo-python) | [5](#commits-saucelabs-training-demo-python) | Python | A repository containing all Python examples for Sa... |
+| <span id="row-webdriverio-community-node-edgedriver"></span>[webdriverio-community/node-edgedriver](https://github.com/webdriverio-community/node-edgedriver) | [4](#commits-webdriverio-community-node-edgedriver) | TypeScript | Microsofts' EdgeDriver for Node.js |
+| <span id="row-saucelabs-training-demo-java"></span>[saucelabs-training/demo-java](https://github.com/saucelabs-training/demo-java) | [3](#commits-saucelabs-training-demo-java) | Java | A repository containing examples using Java with S... |
+| <span id="row-webdriverio-webdriverio"></span>[webdriverio/webdriverio](https://github.com/webdriverio/webdriverio) | [3](#commits-webdriverio-webdriverio) | TypeScript | Next-gen browser and mobile automation test framew... |
+| <span id="row-puppeteer-puppeteer"></span>[puppeteer/puppeteer](https://github.com/puppeteer/puppeteer) | [2](#commits-puppeteer-puppeteer) | TypeScript | JavaScript API for Chrome and Firefox |
+| <span id="row-seleniumhq-selenium"></span>[SeleniumHQ/selenium](https://github.com/SeleniumHQ/selenium) | [2](#commits-seleniumhq-selenium) | Java | A browser automation framework and ecosystem. |
+| <span id="row-webdriverio-community-node-geckodriver"></span>[webdriverio-community/node-geckodriver](https://github.com/webdriverio-community/node-geckodriver) | [2](#commits-webdriverio-community-node-geckodriver) | TypeScript | Mozilla's Geckodriver for Node.js |
+| <span id="row-webdriverio-community-node-safaridriver"></span>[webdriverio-community/node-safaridriver](https://github.com/webdriverio-community/node-safaridriver) | [2](#commits-webdriverio-community-node-safaridriver) | TypeScript | An NPM wrapper for Safaridriver binary on MacOS |
+| <span id="row-webdriverio-community-wdio-vite-service"></span>[webdriverio-community/wdio-vite-service](https://github.com/webdriverio-community/wdio-vite-service) | [2](#commits-webdriverio-community-wdio-vite-service) | TypeScript | A service to launch applications build with Vite |
+| <span id="row-webdriverio-community-wdio-next-service"></span>[webdriverio-community/wdio-next-service](https://github.com/webdriverio-community/wdio-next-service) | [2](#commits-webdriverio-community-wdio-next-service) | TypeScript | This service helps you to launch your application ... |
+| <span id="row-webdriverio-expect-webdriverio"></span>[webdriverio/expect-webdriverio](https://github.com/webdriverio/expect-webdriverio) | [2](#commits-webdriverio-expect-webdriverio) | TypeScript | WebdriverIO Assertion Library |
+| <span id="row-codetierlist-codetierlist"></span>[codetierlist/codetierlist](https://github.com/codetierlist/codetierlist) | [2](#commits-codetierlist-codetierlist) | TypeScript | A Gamified Test-Driven Environment for Computing S... |
+| <span id="row-chaijs-pathval"></span>[chaijs/pathval](https://github.com/chaijs/pathval) | [2](#commits-chaijs-pathval) | JavaScript | Object value retrieval given a string path |
+| <span id="row-chaijs-deep-eql"></span>[chaijs/deep-eql](https://github.com/chaijs/deep-eql) | [2](#commits-chaijs-deep-eql) | JavaScript | Improved deep equality testing for Node.js and the... |
+| <span id="row-seleniumhq-seleniumhq-github-io"></span>[SeleniumHQ/seleniumhq.github.io](https://github.com/SeleniumHQ/seleniumhq.github.io) | [1](#commits-seleniumhq-seleniumhq-github-io) | HTML | Official Selenium website and documentation |
+| <span id="row-webdriverio-desktop-mobile"></span>[webdriverio/desktop-mobile](https://github.com/webdriverio/desktop-mobile) | [1](#commits-webdriverio-desktop-mobile) | TypeScript | Integration services for cross-platform testing wi... |
+| <span id="row-webdriverio-expense-action"></span>[webdriverio/expense-action](https://github.com/webdriverio/expense-action) | [1](#commits-webdriverio-expense-action) | TypeScript | GitHub Action that enables WebdriverIO's expense w... |
+| <span id="row-webdriverio-i18n"></span>[webdriverio/i18n](https://github.com/webdriverio/i18n) | [1](#commits-webdriverio-i18n) | TypeScript | Translation files for the WebdriverIO documentatio... |
+| <span id="row-chaijs-loupe"></span>[chaijs/loupe](https://github.com/chaijs/loupe) | [1](#commits-chaijs-loupe) | JavaScript | Inspect utility for Node.js and browsers |
+| <span id="row-chaijs-assertion-error"></span>[chaijs/assertion-error](https://github.com/chaijs/assertion-error) | [1](#commits-chaijs-assertion-error) | TypeScript | Error constructor for test and validation framewor... |
+| <span id="row-chaijs-chai-as-promised"></span>[chaijs/chai-as-promised](https://github.com/chaijs/chai-as-promised) | [1](#commits-chaijs-chai-as-promised) | JavaScript | Extends Chai with assertions about promises. |
+| <span id="row-chaijs-chai-http"></span>[chaijs/chai-http](https://github.com/chaijs/chai-http) | [1](#commits-chaijs-chai-http) | JavaScript | HTTP Response assertions for the Chai Assertion Li... |
+| <span id="row-chaijs-chai"></span>[chaijs/chai](https://github.com/chaijs/chai) | [1](#commits-chaijs-chai) | JavaScript | BDD / TDD assertion framework for node.js and the ... |
+
+### TypeScript
+
+*3 repositories, 65 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-jimmy-zhening-luo-jimmy"></span>[jimmy-zhening-luo/jimmy](https://github.com/jimmy-zhening-luo/jimmy) | [61](#commits-jimmy-zhening-luo-jimmy) | CSS | This repository contains Jimmy Luo's personal webs... |
+| <span id="row-solidos-solid-ui"></span>[SolidOS/solid-ui](https://github.com/SolidOS/solid-ui) | [3](#commits-solidos-solid-ui) | TypeScript | User Interface widgets and utilities for Solid |
+| <span id="row-eggjs-tegg"></span>[eggjs/tegg](https://github.com/eggjs/tegg) | [1](#commits-eggjs-tegg) | TypeScript | Strong Type framework with eggjs. |
+
+### UI component libraries
+
+*5 repositories, 21 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-alphagov-govuk-frontend"></span>[alphagov/govuk-frontend](https://github.com/alphagov/govuk-frontend) | [10](#commits-alphagov-govuk-frontend) | JavaScript | GOV.UK Frontend contains the code you need to star... |
+| <span id="row-alphagov-govuk-prototype-kit"></span>[alphagov/govuk-prototype-kit](https://github.com/alphagov/govuk-prototype-kit) | [6](#commits-alphagov-govuk-prototype-kit) | JavaScript | Rapidly create HTML prototypes of GOV.UK services |
+| <span id="row-alphagov-govuk-design-system"></span>[alphagov/govuk-design-system](https://github.com/alphagov/govuk-design-system) | [2](#commits-alphagov-govuk-design-system) | Nunjucks | One place for service teams to find styles, compon... |
+| <span id="row-design-tokens-community-group"></span>[design-tokens/community-group](https://github.com/design-tokens/community-group) | [2](#commits-design-tokens-community-group) | HTML | This is the official DTCG repository for the desig... |
+| <span id="row-ant-design-ant-design"></span>[ant-design/ant-design](https://github.com/ant-design/ant-design) | [1](#commits-ant-design-ant-design) | TypeScript | An enterprise-class UI design language and React U... |
+
+### WHATWG
+
+*10 repositories, 19 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-whatwg-html"></span>[whatwg/html](https://github.com/whatwg/html) | [6](#commits-whatwg-html) | HTML | HTML Standard |
+| <span id="row-whatwg-cookiestore"></span>[whatwg/cookiestore](https://github.com/whatwg/cookiestore) | [3](#commits-whatwg-cookiestore) | HTML | Asynchronous access to cookies from JavaScript |
+| <span id="row-whatwg-participant-data"></span>[whatwg/participant-data](https://github.com/whatwg/participant-data) | [3](#commits-whatwg-participant-data) |  | How we track participants in the WHATWG |
+| <span id="row-whatwg-infra"></span>[whatwg/infra](https://github.com/whatwg/infra) | [1](#commits-whatwg-infra) | HTML | Infra Standard |
+| <span id="row-whatwg-notifications"></span>[whatwg/notifications](https://github.com/whatwg/notifications) | [1](#commits-whatwg-notifications) | HTML | Notifications API Standard |
+| <span id="row-whatwg-mimesniff"></span>[whatwg/mimesniff](https://github.com/whatwg/mimesniff) | [1](#commits-whatwg-mimesniff) | HTML | MIME Sniffing Standard |
+| <span id="row-whatwg-fullscreen"></span>[whatwg/fullscreen](https://github.com/whatwg/fullscreen) | [1](#commits-whatwg-fullscreen) | HTML | Fullscreen API Standard |
+| <span id="row-whatwg-fetch"></span>[whatwg/fetch](https://github.com/whatwg/fetch) | [1](#commits-whatwg-fetch) | HTML | Fetch Standard |
+| <span id="row-whatwg-dom"></span>[whatwg/dom](https://github.com/whatwg/dom) | [1](#commits-whatwg-dom) | HTML | DOM Standard |
+| <span id="row-whatwg-url"></span>[whatwg/url](https://github.com/whatwg/url) | [1](#commits-whatwg-url) | HTML | URL Standard |
+
+### WICG
+
+*7 repositories, 63 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-wicg-wicg-io"></span>[WICG/wicg.io](https://github.com/WICG/wicg.io) | [31](#commits-wicg-wicg-io) | HTML | Repository for the website: https://wicg.io (stagi... |
+| <span id="row-wicg-pepc"></span>[WICG/PEPC](https://github.com/WICG/PEPC) | [14](#commits-wicg-pepc) | HTML | Explainer for the PEPC feature |
+| <span id="row-wicg-declarative-partial-updates"></span>[WICG/declarative-partial-updates](https://github.com/WICG/declarative-partial-updates) | [7](#commits-wicg-declarative-partial-updates) | Bikeshed |  |
+| <span id="row-wicg-wicg-github-io"></span>[WICG/wicg.github.io](https://github.com/WICG/wicg.github.io) | [4](#commits-wicg-wicg-github-io) | HTML |  |
+| <span id="row-wicg-webmonetization"></span>[WICG/webmonetization](https://github.com/WICG/webmonetization) | [3](#commits-wicg-webmonetization) | HTML | Proposed Web Monetization standard |
+| <span id="row-wicg-ua-client-hints"></span>[WICG/ua-client-hints](https://github.com/WICG/ua-client-hints) | [2](#commits-wicg-ua-client-hints) | Bikeshed | Wouldn't it be nice if `User-Agent` was a (set of)... |
+| <span id="row-wicg-web-smart-card"></span>[WICG/web-smart-card](https://github.com/WICG/web-smart-card) | [2](#commits-wicg-web-smart-card) | HTML | Repository for the Web Smart Card Explainer |
+
+### Web frameworks
+
+*8 repositories, 43 commits*
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-actix-actix-extras"></span>[actix/actix-extras](https://github.com/actix/actix-extras) | [15](#commits-actix-actix-extras) | Rust | A collection of additional crates supporting the a... |
+| <span id="row-actix-examples"></span>[actix/examples](https://github.com/actix/examples) | [7](#commits-actix-examples) | Rust | Community showcase and examples of Actix Web ecosy... |
+| <span id="row-actix-actix-net"></span>[actix/actix-net](https://github.com/actix/actix-net) | [6](#commits-actix-actix-net) | Rust | A collection of lower-level libraries for composab... |
+| <span id="row-fitzwilliammuseum-fitz-main-website"></span>[FitzwilliamMuseum/fitz-main-website](https://github.com/FitzwilliamMuseum/fitz-main-website) | [5](#commits-fitzwilliammuseum-fitz-main-website) | Blade | A simple Laravel front end for the production vers... |
+| <span id="row-actix-actix-web"></span>[actix/actix-web](https://github.com/actix/actix-web) | [4](#commits-actix-actix-web) | Rust | Actix Web is a powerful, pragmatic, and extremely ... |
+| <span id="row-fitzwilliammuseum-fitz-collection-online"></span>[FitzwilliamMuseum/fitz-collection-online](https://github.com/FitzwilliamMuseum/fitz-collection-online) | [3](#commits-fitzwilliammuseum-fitz-collection-online) | PHP | A repository to hold the code for the front end/AP... |
+| <span id="row-mozilla-pontoon"></span>[mozilla/pontoon](https://github.com/mozilla/pontoon) | [2](#commits-mozilla-pontoon) | Python | Mozilla's Localization Platform |
+| <span id="row-flarum-framework"></span>[flarum/framework](https://github.com/flarum/framework) | [1](#commits-flarum-framework) | PHP | Simple forum software for building great communiti... |
+
+## Executive summary
+
+| Metric | Count |
+|--------|------:|
+| Commits (default branches) | 17,065 |
+| Commits (all branches) | 16,766 |
+| PRs created | 1,914 |
+| PR reviews given | 2,624 |
+| Issues created | 831 |
+| Repositories contributed to | 1,222 |
+
+## Languages
+
+| Language | Commits | Repos |
+|----------|--------:|------:|
+| <span id="row-lang-javascript"></span>JavaScript | [4,473](#lang-javascript) | 357 |
+| <span id="row-lang-typescript"></span>TypeScript | [3,383](#lang-typescript) | 197 |
+| <span id="row-lang-html"></span>HTML | [2,041](#lang-html) | 160 |
+| <span id="row-lang-go"></span>Go | [1,150](#lang-go) | 81 |
+| <span id="row-lang-python"></span>Python | [961](#lang-python) | 69 |
+| <span id="row-lang-ruby"></span>Ruby | [780](#lang-ruby) | 9 |
+| <span id="row-lang-csharp"></span>C# | [739](#lang-csharp) | 6 |
+| <span id="row-lang-shell"></span>Shell | [443](#lang-shell) | 36 |
+| <span id="row-lang-java"></span>Java | [370](#lang-java) | 32 |
+| <span id="row-lang-unknown"></span>Unknown | [305](#lang-unknown) | 68 |
+| <span id="row-lang-css"></span>CSS | [294](#lang-css) | 19 |
+| <span id="row-lang-rust"></span>Rust | [262](#lang-rust) | 33 |
+| <span id="row-lang-astro"></span>Astro | [199](#lang-astro) | 5 |
+| <span id="row-lang-moonbit"></span>MoonBit | [171](#lang-moonbit) | 1 |
+| <span id="row-lang-makefile"></span>Makefile | [163](#lang-makefile) | 14 |
+| <span id="row-lang-nix"></span>Nix | [136](#lang-nix) | 3 |
+| <span id="row-lang-cplusplus"></span>C++ | [111](#lang-cplusplus) | 15 |
+| <span id="row-lang-assembly"></span>Assembly | [102](#lang-assembly) | 1 |
+| <span id="row-lang-bikeshed"></span>Bikeshed | [97](#lang-bikeshed) | 18 |
+| <span id="row-lang-php"></span>PHP | [60](#lang-php) | 19 |
+| <span id="row-lang-vue"></span>Vue | [55](#lang-vue) | 6 |
+| <span id="row-lang-swift"></span>Swift | [46](#lang-swift) | 6 |
+| <span id="row-lang-c"></span>C | [36](#lang-c) | 2 |
+| <span id="row-lang-kotlin"></span>Kotlin | [33](#lang-kotlin) | 3 |
+| <span id="row-lang-smarty"></span>Smarty | [31](#lang-smarty) | 2 |
+| <span id="row-lang-jupyter-notebook"></span>Jupyter Notebook | [30](#lang-jupyter-notebook) | 6 |
+| <span id="row-lang-webassembly"></span>WebAssembly | [27](#lang-webassembly) | 1 |
+| <span id="row-lang-mdx"></span>MDX | [26](#lang-mdx) | 5 |
+| <span id="row-lang-dockerfile"></span>Dockerfile | [26](#lang-dockerfile) | 4 |
+| <span id="row-lang-scss"></span>SCSS | [24](#lang-scss) | 6 |
+| <span id="row-lang-noir"></span>Noir | [22](#lang-noir) | 2 |
+| <span id="row-lang-markdown"></span>Markdown | [21](#lang-markdown) | 1 |
+| <span id="row-lang-yaml"></span>YAML | [20](#lang-yaml) | 2 |
+| <span id="row-lang-svelte"></span>Svelte | [20](#lang-svelte) | 3 |
+| <span id="row-lang-cmake"></span>CMake | [16](#lang-cmake) | 2 |
+| <span id="row-lang-mustache"></span>Mustache | [14](#lang-mustache) | 1 |
+| <span id="row-lang-xslt"></span>XSLT | [13](#lang-xslt) | 1 |
+| <span id="row-lang-perl"></span>Perl | [11](#lang-perl) | 2 |
+| <span id="row-lang-llvm"></span>LLVM | [9](#lang-llvm) | 1 |
+| <span id="row-lang-json"></span>JSON | [6](#lang-json) | 1 |
+| <span id="row-lang-blade"></span>Blade | [5](#lang-blade) | 1 |
+| <span id="row-lang-g-code"></span>G-code | [4](#lang-g-code) | 3 |
+| <span id="row-lang-flux"></span>FLUX | [3](#lang-flux) | 1 |
+| <span id="row-lang-scala"></span>Scala | [3](#lang-scala) | 1 |
+| <span id="row-lang-fluent"></span>Fluent | [3](#lang-fluent) | 2 |
+| <span id="row-lang-nunjucks"></span>Nunjucks | [3](#lang-nunjucks) | 2 |
+| <span id="row-lang-jinja"></span>Jinja | [3](#lang-jinja) | 1 |
+| <span id="row-lang-yacc"></span>Yacc | [3](#lang-yacc) | 1 |
+| <span id="row-lang-tex"></span>TeX | [2](#lang-tex) | 1 |
+| <span id="row-lang-dart"></span>Dart | [2](#lang-dart) | 1 |
+| <span id="row-lang-powershell"></span>PowerShell | [2](#lang-powershell) | 1 |
+| <span id="row-lang-hcl"></span>HCL | [1](#lang-hcl) | 1 |
+| <span id="row-lang-vim-script"></span>Vim Script | [1](#lang-vim-script) | 1 |
+| <span id="row-lang-liquid"></span>Liquid | [1](#lang-liquid) | 1 |
+| <span id="row-lang-openscad"></span>OpenSCAD | [1](#lang-openscad) | 1 |
+| <span id="row-lang-lua"></span>Lua | [1](#lang-lua) | 1 |
+| <span id="row-lang-twig"></span>Twig | [1](#lang-twig) | 1 |
+| <span id="row-lang-emacs-lisp"></span>Emacs Lisp | [1](#lang-emacs-lisp) | 1 |
+
+## PRs reviewed
+
+| Repository | Language | PRs Reviewed | Total Lines |
+|------------|----------|-------------:|------------:|
+| web-platform-tests/wpt | HTML | 139 | 5,623 |
+| WebKit/WebKit | JavaScript | 116 | 29,694 |
+| unicode-org/icu4x | Rust | 63 | 41,414 |
+| jaegertracing/jaeger | Go | 57 | 34,341 |
+| kubernetes/kubernetes | Go | 51 | 6,700 |
+| servo/servo | Rust | 49 | 7,675 |
+| mdn/content | Markdown | 46 | 2,445 |
+| nodejs/node | JavaScript | 43 | 1,039,436 |
+| jaegertracing/jaeger-ui | JavaScript | 42 | 13,316 |
+| HTTPArchive/almanac.httparchive.org | HTML | 40 | 30,599 |
+| webdriverio/webdriverio | TypeScript | 40 | 10,065 |
+| Significant-Gravitas/AutoGPT | Python | 27 | 30,211 |
+| youtube/cobalt |  | 27 | 2,178 |
+| firefox-devtools/profiler | TypeScript | 24 | 5,526 |
+| langchain-ai/langchainjs | TypeScript | 24 | 8,380 |
+
+## PRs created
+
+| Status | Count |
+|--------|------:|
+| Merged | 1408 |
+| Open | 379 |
+| Closed (not merged) | 103 |
+| **Total** | **1890** |
+
+### Reviews received (on created PRs)
+
+| Metric | Count |
+|--------|------:|
+| Reviews received | 3,044 |
+| Review comments received | 2,851 |
+
+## Commit details by repository
+
+### <a id="commits-thiagowfx-thiagowfx-github-io" href="https://github.com/thiagowfx/thiagowfx.github.io">thiagowfx/thiagowfx.github.io</a> (947 commits) [↩](#row-thiagowfx-thiagowfx-github-io)
+
+- [Thiago Perrotta](https://github.com/thiagowfx): [947](https://github.com/search?q=repo%3Athiagowfx/thiagowfx.github.io%20author%3Athiagowfx%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-socketdev-socket-btm" href="https://github.com/SocketDev/socket-btm">SocketDev/socket-btm</a> (823 commits) [↩](#row-socketdev-socket-btm)
+
+- [John-David Dalton](https://github.com/jdalton): [823](https://github.com/search?q=repo%3ASocketDev/socket-btm%20author%3Ajdalton%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ruby2js-ruby2js" href="https://github.com/ruby2js/ruby2js">ruby2js/ruby2js</a> (744 commits) [↩](#row-ruby2js-ruby2js)
+
+- [Sam Ruby](https://github.com/rubys): [744](https://github.com/search?q=repo%3Aruby2js/ruby2js%20author%3Arubys%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-jimmy-zhening-luo-pwsh" href="https://github.com/jimmy-zhening-luo/pwsh">jimmy-zhening-luo/pwsh</a> (676 commits) [↩](#row-jimmy-zhening-luo-pwsh)
+
+- [Jimmy Zhening Luo](https://github.com/jimmy-zhening-luo): [676](https://github.com/search?q=repo%3Ajimmy-zhening-luo/pwsh%20author%3Ajimmy-zhening-luo%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-berlysia-agent-orchestrator" href="https://github.com/berlysia/agent-orchestrator">berlysia/agent-orchestrator</a> (301 commits) [↩](#row-berlysia-agent-orchestrator)
+
+- [berlysia](https://github.com/berlysia): [301](https://github.com/search?q=repo%3Aberlysia/agent-orchestrator%20author%3Aberlysia%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-christian-bromann-langchain-references" href="https://github.com/christian-bromann/langchain-references">christian-bromann/langchain-references</a> (206 commits) [↩](#row-christian-bromann-langchain-references)
+
+- [Christian Bromann](https://github.com/christian-bromann): [206](https://github.com/search?q=repo%3Achristian-bromann/langchain-references%20author%3Achristian-bromann%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-biosky-pending-name-biosky" href="https://github.com/biosky-pending-name/biosky">biosky-pending-name/biosky</a> (199 commits) [↩](#row-biosky-pending-name-biosky)
+
+- [Corey Farwell](https://github.com/frewsxcv): [199](https://github.com/search?q=repo%3Abiosky-pending-name/biosky%20author%3Afrewsxcv%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-csstools-postcss-plugins" href="https://github.com/csstools/postcss-plugins">csstools/postcss-plugins</a> (189 commits) [↩](#row-csstools-postcss-plugins)
+
+- [Romain Menke](https://github.com/romainmenke): [189](https://github.com/search?q=repo%3Acsstools/postcss-plugins%20author%3Aromainmenke%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-thiagowfx--dotfiles" href="https://github.com/thiagowfx/.dotfiles">thiagowfx/.dotfiles</a> (189 commits) [↩](#row-thiagowfx--dotfiles)
+
+- [Thiago Perrotta](https://github.com/thiagowfx): [189](https://github.com/search?q=repo%3Athiagowfx/.dotfiles%20author%3Athiagowfx%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-berlysia-structured-text-data-converter" href="https://github.com/berlysia/structured-text-data-converter">berlysia/structured-text-data-converter</a> (171 commits) [↩](#row-berlysia-structured-text-data-converter)
+
+- [berlysia](https://github.com/berlysia): [171](https://github.com/search?q=repo%3Aberlysia/structured-text-data-converter%20author%3Aberlysia%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-webkit-webkit" href="https://github.com/WebKit/WebKit">WebKit/WebKit</a> (158 commits) [↩](#row-webkit-webkit)
+
+- [Anne van Kesteren](https://github.com/annevk): [117](https://github.com/search?q=repo%3AWebKit/WebKit%20author%3Aannevk%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Marcos Cáceres](https://github.com/marcoscaceres): [12](https://github.com/search?q=repo%3AWebKit/WebKit%20author%3Amarcoscaceres%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Sam Sneddon](https://github.com/gsnedders): [6](https://github.com/search?q=repo%3AWebKit/WebKit%20author%3Agsnedders%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Fady Farag](https://github.com/iidmsa): [6](https://github.com/search?q=repo%3AWebKit/WebKit%20author%3Aiidmsa%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Tim Nguyen](https://github.com/nt1m): [5](https://github.com/search?q=repo%3AWebKit/WebKit%20author%3Ant1m%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Jean-Yves Avenard](https://github.com/jyavenard): [4](https://github.com/search?q=repo%3AWebKit/WebKit%20author%3Ajyavenard%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [eri](https://github.com/eerii): [3](https://github.com/search?q=repo%3AWebKit/WebKit%20author%3Aeerii%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Karl Dubost](https://github.com/karlcow): [2](https://github.com/search?q=repo%3AWebKit/WebKit%20author%3Akarlcow%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Luke Warlow](https://github.com/lukewarlow): [2](https://github.com/search?q=repo%3AWebKit/WebKit%20author%3Alukewarlow%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Devin Rousso](https://github.com/dcrousso): [1](https://github.com/search?q=repo%3AWebKit/WebKit%20author%3Adcrousso%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-nicholasgriffintn-sprintjam-co-uk" href="https://github.com/nicholasgriffintn/sprintjam.co.uk">nicholasgriffintn/sprintjam.co.uk</a> (134 commits) [↩](#row-nicholasgriffintn-sprintjam-co-uk)
+
+- [Nicholas Griffin](https://github.com/nicholasgriffintn): [134](https://github.com/search?q=repo%3Anicholasgriffintn/sprintjam.co.uk%20author%3Anicholasgriffintn%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-nudeps-nudeps" href="https://github.com/nudeps/nudeps">nudeps/nudeps</a> (124 commits) [↩](#row-nudeps-nudeps)
+
+- [Lea Verou](https://github.com/LeaVerou): [124](https://github.com/search?q=repo%3Anudeps/nudeps%20author%3ALeaVerou%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-mnot-httplint" href="https://github.com/mnot/httplint">mnot/httplint</a> (122 commits) [↩](#row-mnot-httplint)
+
+- [Mark Nottingham](https://github.com/mnot): [122](https://github.com/search?q=repo%3Amnot/httplint%20author%3Amnot%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-snarfed-bridgy-fed" href="https://github.com/snarfed/bridgy-fed">snarfed/bridgy-fed</a> (121 commits) [↩](#row-snarfed-bridgy-fed)
+
+- [Ryan Barrett](https://github.com/snarfed): [121](https://github.com/search?q=repo%3Asnarfed/bridgy-fed%20author%3Asnarfed%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-berlysia-dotfiles" href="https://github.com/berlysia/dotfiles">berlysia/dotfiles</a> (118 commits) [↩](#row-berlysia-dotfiles)
+
+- [berlysia](https://github.com/berlysia): [118](https://github.com/search?q=repo%3Aberlysia/dotfiles%20author%3Aberlysia%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-mnot-redbot" href="https://github.com/mnot/redbot">mnot/redbot</a> (117 commits) [↩](#row-mnot-redbot)
+
+- [Mark Nottingham](https://github.com/mnot): [117](https://github.com/search?q=repo%3Amnot/redbot%20author%3Amnot%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-fec-fukuoka-frontend-conf-fukuoka-jp" href="https://github.com/fec-fukuoka/frontend-conf.fukuoka.jp">fec-fukuoka/frontend-conf.fukuoka.jp</a> (116 commits) [↩](#row-fec-fukuoka-frontend-conf-fukuoka-jp)
+
+- [saku](https://github.com/sakupi01): [116](https://github.com/search?q=repo%3Afec-fukuoka/frontend-conf.fukuoka.jp%20author%3Asakupi01%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-validator-validator" href="https://github.com/validator/validator">validator/validator</a> (113 commits) [↩](#row-validator-validator)
+
+- [sideshowbarker](https://github.com/sideshowbarker): [113](https://github.com/search?q=repo%3Avalidator/validator%20author%3Asideshowbarker%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-dokieli-dokieli" href="https://github.com/dokieli/dokieli">dokieli/dokieli</a> (112 commits) [↩](#row-dokieli-dokieli)
+
+- [Sarven Capadisli](https://github.com/csarven): [112](https://github.com/search?q=repo%3Adokieli/dokieli%20author%3Acsarven%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-surma-nixenv" href="https://github.com/surma/nixenv">surma/nixenv</a> (112 commits) [↩](#row-surma-nixenv)
+
+- [Surma](https://github.com/surma): [112](https://github.com/search?q=repo%3Asurma/nixenv%20author%3Asurma%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-socketdev-socket-lib" href="https://github.com/SocketDev/socket-lib">SocketDev/socket-lib</a> (110 commits) [↩](#row-socketdev-socket-lib)
+
+- [John-David Dalton](https://github.com/jdalton): [110](https://github.com/search?q=repo%3ASocketDev/socket-lib%20author%3Ajdalton%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-a2stuff-a2d" href="https://github.com/a2stuff/a2d">a2stuff/a2d</a> (102 commits) [↩](#row-a2stuff-a2d)
+
+- [Joshua Bell](https://github.com/inexorabletash): [102](https://github.com/search?q=repo%3Aa2stuff/a2d%20author%3Ainexorabletash%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-web-platform-tests-wpt" href="https://github.com/web-platform-tests/wpt">web-platform-tests/wpt</a> (97 commits) [↩](#row-web-platform-tests-wpt)
+
+- [Philip Jägenstedt](https://github.com/foolip): [19](https://github.com/search?q=repo%3Aweb-platform-tests/wpt%20author%3Afoolip%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Rune Lillesveen](https://github.com/lilles): [11](https://github.com/search?q=repo%3Aweb-platform-tests/wpt%20author%3Alilles%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Euclid Ye](https://github.com/yezhizhen): [10](https://github.com/search?q=repo%3Aweb-platform-tests/wpt%20author%3Ayezhizhen%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [jgraham](https://github.com/jgraham): [9](https://github.com/search?q=repo%3Aweb-platform-tests/wpt%20author%3Ajgraham%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Alexandra Borovova](https://github.com/lutien): [8](https://github.com/search?q=repo%3Aweb-platform-tests/wpt%20author%3Alutien%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Daniel Holbert](https://github.com/dholbert): [5](https://github.com/search?q=repo%3Aweb-platform-tests/wpt%20author%3Adholbert%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [L. David Baron](https://github.com/dbaron): [4](https://github.com/search?q=repo%3Aweb-platform-tests/wpt%20author%3Adbaron%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Tim Nguyen](https://github.com/nt1m): [4](https://github.com/search?q=repo%3Aweb-platform-tests/wpt%20author%3Ant1m%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Anne van Kesteren](https://github.com/annevk): [3](https://github.com/search?q=repo%3Aweb-platform-tests/wpt%20author%3Aannevk%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Sam Sneddon](https://github.com/gsnedders): [3](https://github.com/search?q=repo%3Aweb-platform-tests/wpt%20author%3Agsnedders%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Jan-Ivar Bruaroey](https://github.com/jan-ivar): [3](https://github.com/search?q=repo%3Aweb-platform-tests/wpt%20author%3Ajan-ivar%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Luke Warlow](https://github.com/lukewarlow): [3](https://github.com/search?q=repo%3Aweb-platform-tests/wpt%20author%3Alukewarlow%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Kagami Sascha Rosylight](https://github.com/saschanaz): [3](https://github.com/search?q=repo%3Aweb-platform-tests/wpt%20author%3Asaschanaz%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Marcos Cáceres](https://github.com/marcoscaceres): [2](https://github.com/search?q=repo%3Aweb-platform-tests/wpt%20author%3Amarcoscaceres%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Anusha Muley](https://github.com/aamuley): [1](https://github.com/search?q=repo%3Aweb-platform-tests/wpt%20author%3Aaamuley%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [andruud](https://github.com/andruud): [1](https://github.com/search?q=repo%3Aweb-platform-tests/wpt%20author%3Aandruud%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Andreu Botella](https://github.com/andreubotella): [1](https://github.com/search?q=repo%3Aweb-platform-tests/wpt%20author%3Aandreubotella%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [davidsgrogan](https://github.com/davidsgrogan): [1](https://github.com/search?q=repo%3Aweb-platform-tests/wpt%20author%3Adavidsgrogan%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Dominic Farolino](https://github.com/domfarolino): [1](https://github.com/search?q=repo%3Aweb-platform-tests/wpt%20author%3Adomfarolino%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Mustaq Ahmed](https://github.com/mustaqahmed): [1](https://github.com/search?q=repo%3Aweb-platform-tests/wpt%20author%3Amustaqahmed%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [mehm8128](https://github.com/mehm8128): [1](https://github.com/search?q=repo%3Aweb-platform-tests/wpt%20author%3Amehm8128%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Daniel Vogelheim](https://github.com/otherdaniel): [1](https://github.com/search?q=repo%3Aweb-platform-tests/wpt%20author%3Aotherdaniel%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [vmpstr](https://github.com/vmpstr): [1](https://github.com/search?q=repo%3Aweb-platform-tests/wpt%20author%3Avmpstr%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Barry Pollard](https://github.com/tunetheweb): [1](https://github.com/search?q=repo%3Aweb-platform-tests/wpt%20author%3Atunetheweb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-frewsxcv-citizen-science-bioregionalization" href="https://github.com/frewsxcv/citizen-science-bioregionalization">frewsxcv/citizen-science-bioregionalization</a> (97 commits) [↩](#row-frewsxcv-citizen-science-bioregionalization)
+
+- [Corey Farwell](https://github.com/frewsxcv): [97](https://github.com/search?q=repo%3Afrewsxcv/citizen-science-bioregionalization%20author%3Afrewsxcv%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-jimmy-zhening-luo-scriptable" href="https://github.com/jimmy-zhening-luo/scriptable">jimmy-zhening-luo/scriptable</a> (91 commits) [↩](#row-jimmy-zhening-luo-scriptable)
+
+- [Jimmy Zhening Luo](https://github.com/jimmy-zhening-luo): [91](https://github.com/search?q=repo%3Ajimmy-zhening-luo/scriptable%20author%3Ajimmy-zhening-luo%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-httparchive-almanac-httparchive-org" href="https://github.com/HTTPArchive/almanac.httparchive.org">HTTPArchive/almanac.httparchive.org</a> (83 commits) [↩](#row-httparchive-almanac-httparchive-org)
+
+- [Barry Pollard](https://github.com/tunetheweb): [78](https://github.com/search?q=repo%3AHTTPArchive/almanac.httparchive.org%20author%3Atunetheweb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Christian Liebel](https://github.com/christianliebel): [4](https://github.com/search?q=repo%3AHTTPArchive/almanac.httparchive.org%20author%3Achristianliebel%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Diego Gonzalez](https://github.com/diekus): [1](https://github.com/search?q=repo%3AHTTPArchive/almanac.httparchive.org%20author%3Adiekus%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-web-platform-tests-results-analysis" href="https://github.com/web-platform-tests/results-analysis">web-platform-tests/results-analysis</a> (83 commits) [↩](#row-web-platform-tests-results-analysis)
+
+- [Philip Jägenstedt](https://github.com/foolip): [83](https://github.com/search?q=repo%3Aweb-platform-tests/results-analysis%20author%3Afoolip%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-agentplexus-agent-team-release" href="https://github.com/agentplexus/agent-team-release">agentplexus/agent-team-release</a> (79 commits) [↩](#row-agentplexus-agent-team-release)
+
+- [John Wang](https://github.com/grokify): [79](https://github.com/search?q=repo%3Aagentplexus/agent-team-release%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-favorite-icons-of-internet-favoriteiconsofinternet" href="https://github.com/Favorite-Icons-Of-Internet/favoriteiconsofinternet">Favorite-Icons-Of-Internet/favoriteiconsofinternet</a> (79 commits) [↩](#row-favorite-icons-of-internet-favoriteiconsofinternet)
+
+- [Sergey Chernyshev](https://github.com/sergeychernyshev): [79](https://github.com/search?q=repo%3AFavorite-Icons-Of-Internet/favoriteiconsofinternet%20author%3Asergeychernyshev%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-nicholasgriffintn-fosdem-pwa" href="https://github.com/nicholasgriffintn/fosdem-pwa">nicholasgriffintn/fosdem-pwa</a> (78 commits) [↩](#row-nicholasgriffintn-fosdem-pwa)
+
+- [Nicholas Griffin](https://github.com/nicholasgriffintn): [78](https://github.com/search?q=repo%3Anicholasgriffintn/fosdem-pwa%20author%3Anicholasgriffintn%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-reprogistry-reprogistry" href="https://github.com/reprogistry/reprogistry">reprogistry/reprogistry</a> (78 commits) [↩](#row-reprogistry-reprogistry)
+
+- [Jordan Harband](https://github.com/ljharb): [78](https://github.com/search?q=repo%3Areprogistry/reprogistry%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-thiagowfx-pancake" href="https://github.com/thiagowfx/pancake">thiagowfx/pancake</a> (76 commits) [↩](#row-thiagowfx-pancake)
+
+- [Thiago Perrotta](https://github.com/thiagowfx): [76](https://github.com/search?q=repo%3Athiagowfx/pancake%20author%3Athiagowfx%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-mozilla-firefox-firefox" href="https://github.com/mozilla-firefox/firefox">mozilla-firefox/firefox</a> (75 commits) [↩](#row-mozilla-firefox-firefox)
+
+- [Nazım Can Altınova](https://github.com/canova): [24](https://github.com/search?q=repo%3Amozilla-firefox/firefox%20author%3Acanova%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Kagami Sascha Rosylight](https://github.com/saschanaz): [14](https://github.com/search?q=repo%3Amozilla-firefox/firefox%20author%3Asaschanaz%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Jan Jaeschke](https://github.com/jnjaeschke): [13](https://github.com/search?q=repo%3Amozilla-firefox/firefox%20author%3Ajnjaeschke%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Teodor Tanasoaia](https://github.com/teoxoy): [9](https://github.com/search?q=repo%3Amozilla-firefox/firefox%20author%3Ateoxoy%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Chun-Min Chang](https://github.com/ChunMinChang): [5](https://github.com/search?q=repo%3Amozilla-firefox/firefox%20author%3AChunMinChang%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Brian Grinstead](https://github.com/bgrins): [4](https://github.com/search?q=repo%3Amozilla-firefox/firefox%20author%3Abgrins%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Luke Warlow](https://github.com/lukewarlow): [3](https://github.com/search?q=repo%3Amozilla-firefox/firefox%20author%3Alukewarlow%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Gregory Pappas](https://github.com/gregorypappas): [2](https://github.com/search?q=repo%3Amozilla-firefox/firefox%20author%3Agregorypappas%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Keith Cirkel](https://github.com/keithamus): [1](https://github.com/search?q=repo%3Amozilla-firefox/firefox%20author%3Akeithamus%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-extendable-media-recorder" href="https://github.com/chrisguttandin/extendable-media-recorder">chrisguttandin/extendable-media-recorder</a> (75 commits) [↩](#row-chrisguttandin-extendable-media-recorder)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [75](https://github.com/search?q=repo%3Achrisguttandin/extendable-media-recorder%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-nicholasgriffintn-bitwobbly-com" href="https://github.com/nicholasgriffintn/bitwobbly.com">nicholasgriffintn/bitwobbly.com</a> (74 commits) [↩](#row-nicholasgriffintn-bitwobbly-com)
+
+- [Nicholas Griffin](https://github.com/nicholasgriffintn): [74](https://github.com/search?q=repo%3Anicholasgriffintn/bitwobbly.com%20author%3Anicholasgriffintn%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-aramzs-aramzs-xyz" href="https://github.com/AramZS/aramzs.xyz">AramZS/aramzs.xyz</a> (72 commits) [↩](#row-aramzs-aramzs-xyz)
+
+- [Aram Zucker-Scharff](https://github.com/AramZS): [72](https://github.com/search?q=repo%3AAramZS/aramzs.xyz%20author%3AAramZS%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-grokify-structured-changelog" href="https://github.com/grokify/structured-changelog">grokify/structured-changelog</a> (72 commits) [↩](#row-grokify-structured-changelog)
+
+- [John Wang](https://github.com/grokify): [72](https://github.com/search?q=repo%3Agrokify/structured-changelog%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-socketdev-socket-cli" href="https://github.com/SocketDev/socket-cli">SocketDev/socket-cli</a> (70 commits) [↩](#row-socketdev-socket-cli)
+
+- [John-David Dalton](https://github.com/jdalton): [70](https://github.com/search?q=repo%3ASocketDev/socket-cli%20author%3Ajdalton%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-agentplexus-assistantkit" href="https://github.com/agentplexus/assistantkit">agentplexus/assistantkit</a> (68 commits) [↩](#row-agentplexus-assistantkit)
+
+- [John Wang](https://github.com/grokify): [68](https://github.com/search?q=repo%3Aagentplexus/assistantkit%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-libapps-libapps-mirror" href="https://github.com/libapps/libapps-mirror">libapps/libapps-mirror</a> (68 commits) [↩](#row-libapps-libapps-mirror)
+
+- [Mike Frysinger](https://github.com/vapier): [68](https://github.com/search?q=repo%3Alibapps/libapps-mirror%20author%3Avapier%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-jimmy-zhening-luo-linted" href="https://github.com/jimmy-zhening-luo/linted">jimmy-zhening-luo/linted</a> (67 commits) [↩](#row-jimmy-zhening-luo-linted)
+
+- [Jimmy Zhening Luo](https://github.com/jimmy-zhening-luo): [67](https://github.com/search?q=repo%3Ajimmy-zhening-luo/linted%20author%3Ajimmy-zhening-luo%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-sublimator-xahaud-scripts" href="https://github.com/sublimator/xahaud-scripts">sublimator/xahaud-scripts</a> (67 commits) [↩](#row-sublimator-xahaud-scripts)
+
+- [Niq Dudfield](https://github.com/sublimator): [67](https://github.com/search?q=repo%3Asublimator/xahaud-scripts%20author%3Asublimator%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-cyclopsmc-integratedcrafting" href="https://github.com/CyclopsMC/IntegratedCrafting">CyclopsMC/IntegratedCrafting</a> (67 commits) [↩](#row-cyclopsmc-integratedcrafting)
+
+- [Ruben Taelman](https://github.com/rubensworks): [67](https://github.com/search?q=repo%3ACyclopsMC/IntegratedCrafting%20author%3Arubensworks%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-jaegertracing-jaeger-ui" href="https://github.com/jaegertracing/jaeger-ui">jaegertracing/jaeger-ui</a> (67 commits) [↩](#row-jaegertracing-jaeger-ui)
+
+- [Yuri Shkuro](https://github.com/yurishkuro): [67](https://github.com/search?q=repo%3Ajaegertracing/jaeger-ui%20author%3Ayurishkuro%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-jimmy-zhening-luo-dprint" href="https://github.com/jimmy-zhening-luo/dprint">jimmy-zhening-luo/dprint</a> (66 commits) [↩](#row-jimmy-zhening-luo-dprint)
+
+- [Jimmy Zhening Luo](https://github.com/jimmy-zhening-luo): [66](https://github.com/search?q=repo%3Ajimmy-zhening-luo/dprint%20author%3Ajimmy-zhening-luo%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chromium-chromium" href="https://github.com/chromium/chromium">chromium/chromium</a> (63 commits) [↩](#row-chromium-chromium)
+
+- [Lei Mingyu](https://github.com/lozy219): [20](https://github.com/search?q=repo%3Achromium/chromium%20author%3Alozy219%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Hayato Ito](https://github.com/hayatoito): [11](https://github.com/search?q=repo%3Achromium/chromium%20author%3Ahayatoito%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Kevin Graney](https://github.com/kgraney): [8](https://github.com/search?q=repo%3Achromium/chromium%20author%3Akgraney%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Anton Bershanskiy](https://github.com/bershanskiy): [6](https://github.com/search?q=repo%3Achromium/chromium%20author%3Abershanskiy%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [vmpstr](https://github.com/vmpstr): [6](https://github.com/search?q=repo%3Achromium/chromium%20author%3Avmpstr%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Maksim Sisov](https://github.com/msisov): [4](https://github.com/search?q=repo%3Achromium/chromium%20author%3Amsisov%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [davidsgrogan](https://github.com/davidsgrogan): [3](https://github.com/search?q=repo%3Achromium/chromium%20author%3Adavidsgrogan%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Anusha Muley](https://github.com/aamuley): [2](https://github.com/search?q=repo%3Achromium/chromium%20author%3Aaamuley%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Mike Taylor](https://github.com/miketaylr): [2](https://github.com/search?q=repo%3Achromium/chromium%20author%3Amiketaylr%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Ben Kelly](https://github.com/wanderview): [1](https://github.com/search?q=repo%3Achromium/chromium%20author%3Awanderview%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-theodi-volunteer-profile-manager" href="https://github.com/theodi/volunteer-profile-manager">theodi/volunteer-profile-manager</a> (62 commits) [↩](#row-theodi-volunteer-profile-manager)
+
+- [Jesse Wright](https://github.com/jeswr): [62](https://github.com/search?q=repo%3Atheodi/volunteer-profile-manager%20author%3Ajeswr%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-jimmy-zhening-luo-jimmy" href="https://github.com/jimmy-zhening-luo/jimmy">jimmy-zhening-luo/jimmy</a> (61 commits) [↩](#row-jimmy-zhening-luo-jimmy)
+
+- [Jimmy Zhening Luo](https://github.com/jimmy-zhening-luo): [61](https://github.com/search?q=repo%3Ajimmy-zhening-luo/jimmy%20author%3Ajimmy-zhening-luo%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-cyclopsmc-integrateddynamics" href="https://github.com/CyclopsMC/IntegratedDynamics">CyclopsMC/IntegratedDynamics</a> (59 commits) [↩](#row-cyclopsmc-integrateddynamics)
+
+- [Ruben Taelman](https://github.com/rubensworks): [59](https://github.com/search?q=repo%3ACyclopsMC/IntegratedDynamics%20author%3Arubensworks%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ecomfe-tempad-dev" href="https://github.com/ecomfe/tempad-dev">ecomfe/tempad-dev</a> (55 commits) [↩](#row-ecomfe-tempad-dev)
+
+- [GU Yiling](https://github.com/Justineo): [55](https://github.com/search?q=repo%3Aecomfe/tempad-dev%20author%3AJustineo%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-csskit-csskit" href="https://github.com/csskit/csskit">csskit/csskit</a> (53 commits) [↩](#row-csskit-csskit)
+
+- [Keith Cirkel](https://github.com/keithamus): [51](https://github.com/search?q=repo%3Acsskit/csskit%20author%3Akeithamus%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Marais Rossouw](https://github.com/maraisr): [2](https://github.com/search?q=repo%3Acsskit/csskit%20author%3Amaraisr%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-timingsrc" href="https://github.com/chrisguttandin/timingsrc">chrisguttandin/timingsrc</a> (51 commits) [↩](#row-chrisguttandin-timingsrc)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [51](https://github.com/search?q=repo%3Achrisguttandin/timingsrc%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-microsoft-typescript-dom-lib-generator" href="https://github.com/microsoft/TypeScript-DOM-lib-generator">microsoft/TypeScript-DOM-lib-generator</a> (50 commits) [↩](#row-microsoft-typescript-dom-lib-generator)
+
+- [Kagami Sascha Rosylight](https://github.com/saschanaz): [50](https://github.com/search?q=repo%3Amicrosoft/TypeScript-DOM-lib-generator%20author%3Asaschanaz%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-dzearing-ai-experiments" href="https://github.com/dzearing/ai-experiments">dzearing/ai-experiments</a> (49 commits) [↩](#row-dzearing-ai-experiments)
+
+- [David Zearing](https://github.com/dzearing): [49](https://github.com/search?q=repo%3Adzearing/ai-experiments%20author%3Adzearing%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-dynatrace-oss-dtctl" href="https://github.com/dynatrace-oss/dtctl">dynatrace-oss/dtctl</a> (48 commits) [↩](#row-dynatrace-oss-dtctl)
+
+- [Christoph Neumüller](https://github.com/discostu105): [48](https://github.com/search?q=repo%3Adynatrace-oss/dtctl%20author%3Adiscostu105%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-agentplexus-stats-agent-team" href="https://github.com/agentplexus/stats-agent-team">agentplexus/stats-agent-team</a> (47 commits) [↩](#row-agentplexus-stats-agent-team)
+
+- [John Wang](https://github.com/grokify): [47](https://github.com/search?q=repo%3Aagentplexus/stats-agent-team%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ietf-wg-asdf-instance-information" href="https://github.com/ietf-wg-asdf/instance-information">ietf-wg-asdf/instance-information</a> (46 commits) [↩](#row-ietf-wg-asdf-instance-information)
+
+- [Jan Romann](https://github.com/JKRhb): [46](https://github.com/search?q=repo%3Aietf-wg-asdf/instance-information%20author%3AJKRhb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-jimmy-zhening-luo-linted-defaults" href="https://github.com/jimmy-zhening-luo/linted-defaults">jimmy-zhening-luo/linted-defaults</a> (46 commits) [↩](#row-jimmy-zhening-luo-linted-defaults)
+
+- [Jimmy Zhening Luo](https://github.com/jimmy-zhening-luo): [46](https://github.com/search?q=repo%3Ajimmy-zhening-luo/linted-defaults%20author%3Ajimmy-zhening-luo%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-servo-servo-org" href="https://github.com/servo/servo.org">servo/servo.org</a> (46 commits) [↩](#row-servo-servo-org)
+
+- [Manuel Rego](https://github.com/mrego): [45](https://github.com/search?q=repo%3Aservo/servo.org%20author%3Amrego%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Niklas Merz](https://github.com/NiklasMerz): [1](https://github.com/search?q=repo%3Aservo/servo.org%20author%3ANiklasMerz%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-json-midi-message-encoder" href="https://github.com/chrisguttandin/json-midi-message-encoder">chrisguttandin/json-midi-message-encoder</a> (44 commits) [↩](#row-chrisguttandin-json-midi-message-encoder)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [44](https://github.com/search?q=repo%3Achrisguttandin/json-midi-message-encoder%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-worker-timers-mock" href="https://github.com/chrisguttandin/worker-timers-mock">chrisguttandin/worker-timers-mock</a> (44 commits) [↩](#row-chrisguttandin-worker-timers-mock)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [44](https://github.com/search?q=repo%3Achrisguttandin/worker-timers-mock%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-synchsafe" href="https://github.com/chrisguttandin/synchsafe">chrisguttandin/synchsafe</a> (43 commits) [↩](#row-chrisguttandin-synchsafe)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [43](https://github.com/search?q=repo%3Achrisguttandin/synchsafe%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-vehicles" href="https://github.com/chrisguttandin/vehicles">chrisguttandin/vehicles</a> (43 commits) [↩](#row-chrisguttandin-vehicles)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [43](https://github.com/search?q=repo%3Achrisguttandin/vehicles%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-langchain-ai-langchainjs" href="https://github.com/langchain-ai/langchainjs">langchain-ai/langchainjs</a> (43 commits) [↩](#row-langchain-ai-langchainjs)
+
+- [Christian Bromann](https://github.com/christian-bromann): [43](https://github.com/search?q=repo%3Alangchain-ai/langchainjs%20author%3Achristian-bromann%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ljharb-list-exports" href="https://github.com/ljharb/list-exports">ljharb/list-exports</a> (43 commits) [↩](#row-ljharb-list-exports)
+
+- [Jordan Harband](https://github.com/ljharb): [43](https://github.com/search?q=repo%3Aljharb/list-exports%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-jaegertracing-jaeger" href="https://github.com/jaegertracing/jaeger">jaegertracing/jaeger</a> (42 commits) [↩](#row-jaegertracing-jaeger)
+
+- [Yuri Shkuro](https://github.com/yurishkuro): [42](https://github.com/search?q=repo%3Ajaegertracing/jaeger%20author%3Ayurishkuro%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-multi-buffer-data-view" href="https://github.com/chrisguttandin/multi-buffer-data-view">chrisguttandin/multi-buffer-data-view</a> (41 commits) [↩](#row-chrisguttandin-multi-buffer-data-view)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [41](https://github.com/search?q=repo%3Achrisguttandin/multi-buffer-data-view%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-automation-events" href="https://github.com/chrisguttandin/automation-events">chrisguttandin/automation-events</a> (41 commits) [↩](#row-chrisguttandin-automation-events)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [41](https://github.com/search?q=repo%3Achrisguttandin/automation-events%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-fast-unique-numbers" href="https://github.com/chrisguttandin/fast-unique-numbers">chrisguttandin/fast-unique-numbers</a> (41 commits) [↩](#row-chrisguttandin-fast-unique-numbers)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [41](https://github.com/search?q=repo%3Achrisguttandin/fast-unique-numbers%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-jimmy-zhening-luo-template" href="https://github.com/jimmy-zhening-luo/template">jimmy-zhening-luo/template</a> (41 commits) [↩](#row-jimmy-zhening-luo-template)
+
+- [Jimmy Zhening Luo](https://github.com/jimmy-zhening-luo): [41](https://github.com/search?q=repo%3Ajimmy-zhening-luo/template%20author%3Ajimmy-zhening-luo%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-timing-object" href="https://github.com/chrisguttandin/timing-object">chrisguttandin/timing-object</a> (40 commits) [↩](#row-chrisguttandin-timing-object)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [40](https://github.com/search?q=repo%3Achrisguttandin/timing-object%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-servo-servo" href="https://github.com/servo/servo">servo/servo</a> (40 commits) [↩](#row-servo-servo)
+
+- [Euclid Ye](https://github.com/yezhizhen): [24](https://github.com/search?q=repo%3Aservo/servo%20author%3Ayezhizhen%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [eri](https://github.com/eerii): [14](https://github.com/search?q=repo%3Aservo/servo%20author%3Aeerii%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Luke Warlow](https://github.com/lukewarlow): [1](https://github.com/search?q=repo%3Aservo/servo%20author%3Alukewarlow%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Niklas Merz](https://github.com/NiklasMerz): [1](https://github.com/search?q=repo%3Aservo/servo%20author%3ANiklasMerz%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-comunica-jquery-widget-js" href="https://github.com/comunica/jQuery-Widget.js">comunica/jQuery-Widget.js</a> (39 commits) [↩](#row-comunica-jquery-widget-js)
+
+- [Ruben Taelman](https://github.com/rubensworks): [39](https://github.com/search?q=repo%3Acomunica/jQuery-Widget.js%20author%3Arubensworks%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-andeya-gust" href="https://github.com/andeya/gust">andeya/gust</a> (37 commits) [↩](#row-andeya-gust)
+
+- [Andeya](https://github.com/andeya): [37](https://github.com/search?q=repo%3Aandeya/gust%20author%3Aandeya%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-here-maps-type-guards" href="https://github.com/chrisguttandin/here-maps-type-guards">chrisguttandin/here-maps-type-guards</a> (37 commits) [↩](#row-chrisguttandin-here-maps-type-guards)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [37](https://github.com/search?q=repo%3Achrisguttandin/here-maps-type-guards%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-saucelabs-training-demo-csharp" href="https://github.com/saucelabs-training/demo-csharp">saucelabs-training/demo-csharp</a> (36 commits) [↩](#row-saucelabs-training-demo-csharp)
+
+- [Diego Molina](https://github.com/diemol): [36](https://github.com/search?q=repo%3Asaucelabs-training/demo-csharp%20author%3Adiemol%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-grokify-gogithub" href="https://github.com/grokify/gogithub">grokify/gogithub</a> (36 commits) [↩](#row-grokify-gogithub)
+
+- [John Wang](https://github.com/grokify): [36](https://github.com/search?q=repo%3Agrokify/gogithub%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-gh-tui-tools-gh-activity-chronicle" href="https://github.com/gh-tui-tools/gh-activity-chronicle">gh-tui-tools/gh-activity-chronicle</a> (36 commits) [↩](#row-gh-tui-tools-gh-activity-chronicle)
+
+- [sideshowbarker](https://github.com/sideshowbarker): [36](https://github.com/search?q=repo%3Agh-tui-tools/gh-activity-chronicle%20author%3Asideshowbarker%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-agentplexus-go-elevenlabs" href="https://github.com/agentplexus/go-elevenlabs">agentplexus/go-elevenlabs</a> (35 commits) [↩](#row-agentplexus-go-elevenlabs)
+
+- [John Wang](https://github.com/grokify): [35](https://github.com/search?q=repo%3Aagentplexus/go-elevenlabs%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-recorder-audio-worklet" href="https://github.com/chrisguttandin/recorder-audio-worklet">chrisguttandin/recorder-audio-worklet</a> (34 commits) [↩](#row-chrisguttandin-recorder-audio-worklet)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [34](https://github.com/search?q=repo%3Achrisguttandin/recorder-audio-worklet%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-grokify-omnistorage" href="https://github.com/grokify/omnistorage">grokify/omnistorage</a> (34 commits) [↩](#row-grokify-omnistorage)
+
+- [John Wang](https://github.com/grokify): [34](https://github.com/search?q=repo%3Agrokify/omnistorage%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-rreverser-ascom-alpaca-rs" href="https://github.com/RReverser/ascom-alpaca-rs">RReverser/ascom-alpaca-rs</a> (34 commits) [↩](#row-rreverser-ascom-alpaca-rs)
+
+- [Ingvar Stepanyan](https://github.com/RReverser): [34](https://github.com/search?q=repo%3ARReverser/ascom-alpaca-rs%20author%3ARReverser%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ietf-wg-scone-scone" href="https://github.com/ietf-wg-scone/scone">ietf-wg-scone/scone</a> (33 commits) [↩](#row-ietf-wg-scone-scone)
+
+- [Martin Thomson](https://github.com/martinthomson): [33](https://github.com/search?q=repo%3Aietf-wg-scone/scone%20author%3Amartinthomson%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-stackia-rtp2httpd" href="https://github.com/stackia/rtp2httpd">stackia/rtp2httpd</a> (33 commits) [↩](#row-stackia-rtp2httpd)
+
+- [Stackie Jia](https://github.com/stackia): [33](https://github.com/search?q=repo%3Astackia/rtp2httpd%20author%3Astackia%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-comunica-comunica" href="https://github.com/comunica/comunica">comunica/comunica</a> (33 commits) [↩](#row-comunica-comunica)
+
+- [Ruben Taelman](https://github.com/rubensworks): [33](https://github.com/search?q=repo%3Acomunica/comunica%20author%3Arubensworks%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-dcthetall-ttfp" href="https://github.com/DCtheTall/ttfp">DCtheTall/ttfp</a> (32 commits) [↩](#row-dcthetall-ttfp)
+
+- [Dylan Cutler](https://github.com/DCtheTall): [32](https://github.com/search?q=repo%3ADCtheTall/ttfp%20author%3ADCtheTall%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-hackers4peace-sai-js" href="https://github.com/hackers4peace/sai-js">hackers4peace/sai-js</a> (32 commits) [↩](#row-hackers4peace-sai-js)
+
+- [elf Pavlik](https://github.com/elf-pavlik): [32](https://github.com/search?q=repo%3Ahackers4peace/sai-js%20author%3Aelf-pavlik%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-jimmy-zhening-luo-function" href="https://github.com/jimmy-zhening-luo/function">jimmy-zhening-luo/function</a> (32 commits) [↩](#row-jimmy-zhening-luo-function)
+
+- [Jimmy Zhening Luo](https://github.com/jimmy-zhening-luo): [32](https://github.com/search?q=repo%3Ajimmy-zhening-luo/function%20author%3Ajimmy-zhening-luo%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-paulirish-markpaste" href="https://github.com/paulirish/markpaste">paulirish/markpaste</a> (32 commits) [↩](#row-paulirish-markpaste)
+
+- [Paul Irish](https://github.com/paulirish): [32](https://github.com/search?q=repo%3Apaulirish/markpaste%20author%3Apaulirish%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-christianliebel-paint" href="https://github.com/christianliebel/paint">christianliebel/paint</a> (31 commits) [↩](#row-christianliebel-paint)
+
+- [Christian Liebel](https://github.com/christianliebel): [31](https://github.com/search?q=repo%3Achristianliebel/paint%20author%3Achristianliebel%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-foolip-interop-reactions" href="https://github.com/foolip/interop-reactions">foolip/interop-reactions</a> (31 commits) [↩](#row-foolip-interop-reactions)
+
+- [Philip Jägenstedt](https://github.com/foolip): [31](https://github.com/search?q=repo%3Afoolip/interop-reactions%20author%3Afoolip%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-jimmy-zhening-luo-gsuite" href="https://github.com/jimmy-zhening-luo/gsuite">jimmy-zhening-luo/gsuite</a> (31 commits) [↩](#row-jimmy-zhening-luo-gsuite)
+
+- [Jimmy Zhening Luo](https://github.com/jimmy-zhening-luo): [31](https://github.com/search?q=repo%3Ajimmy-zhening-luo/gsuite%20author%3Ajimmy-zhening-luo%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-jimmy-zhening-luo-linted-core" href="https://github.com/jimmy-zhening-luo/linted-core">jimmy-zhening-luo/linted-core</a> (31 commits) [↩](#row-jimmy-zhening-luo-linted-core)
+
+- [Jimmy Zhening Luo](https://github.com/jimmy-zhening-luo): [31](https://github.com/search?q=repo%3Ajimmy-zhening-luo/linted-core%20author%3Ajimmy-zhening-luo%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-wicg-wicg-io" href="https://github.com/WICG/wicg.io">WICG/wicg.io</a> (31 commits) [↩](#row-wicg-wicg-io)
+
+- [Marcos Cáceres](https://github.com/marcoscaceres): [31](https://github.com/search?q=repo%3AWICG/wicg.io%20author%3Amarcoscaceres%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-intarchboard-draft-iab-agews-report" href="https://github.com/intarchboard/draft-iab-agews-report">intarchboard/draft-iab-agews-report</a> (31 commits) [↩](#row-intarchboard-draft-iab-agews-report)
+
+- [Mark Nottingham](https://github.com/mnot): [21](https://github.com/search?q=repo%3Aintarchboard/draft-iab-agews-report%20author%3Amnot%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Martin Thomson](https://github.com/martinthomson): [10](https://github.com/search?q=repo%3Aintarchboard/draft-iab-agews-report%20author%3Amartinthomson%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-array-buffer-cache" href="https://github.com/chrisguttandin/array-buffer-cache">chrisguttandin/array-buffer-cache</a> (30 commits) [↩](#row-chrisguttandin-array-buffer-cache)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [30](https://github.com/search?q=repo%3Achrisguttandin/array-buffer-cache%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-web-audio-beat-detector" href="https://github.com/chrisguttandin/web-audio-beat-detector">chrisguttandin/web-audio-beat-detector</a> (30 commits) [↩](#row-chrisguttandin-web-audio-beat-detector)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [30](https://github.com/search?q=repo%3Achrisguttandin/web-audio-beat-detector%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-foolip-day-to-day" href="https://github.com/foolip/day-to-day">foolip/day-to-day</a> (30 commits) [↩](#row-foolip-day-to-day)
+
+- [Philip Jägenstedt](https://github.com/foolip): [30](https://github.com/search?q=repo%3Afoolip/day-to-day%20author%3Afoolip%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-agentplexus-multi-agent-spec" href="https://github.com/agentplexus/multi-agent-spec">agentplexus/multi-agent-spec</a> (30 commits) [↩](#row-agentplexus-multi-agent-spec)
+
+- [John Wang](https://github.com/grokify): [30](https://github.com/search?q=repo%3Aagentplexus/multi-agent-spec%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-mehm8128-mehm8128-portfolio" href="https://github.com/mehm8128/mehm8128-portfolio">mehm8128/mehm8128-portfolio</a> (30 commits) [↩](#row-mehm8128-mehm8128-portfolio)
+
+- [mehm8128](https://github.com/mehm8128): [30](https://github.com/search?q=repo%3Amehm8128/mehm8128-portfolio%20author%3Amehm8128%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-openshift-console" href="https://github.com/openshift/console">openshift/console</a> (30 commits) [↩](#row-openshift-console)
+
+- [logonoff](https://github.com/logonoff): [30](https://github.com/search?q=repo%3Aopenshift/console%20author%3Alogonoff%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-timed-audio-buffer-source-node-audio-worklet" href="https://github.com/chrisguttandin/timed-audio-buffer-source-node-audio-worklet">chrisguttandin/timed-audio-buffer-source-node-audio-worklet</a> (29 commits) [↩](#row-chrisguttandin-timed-audio-buffer-source-node-audio-worklet)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [29](https://github.com/search?q=repo%3Achrisguttandin/timed-audio-buffer-source-node-audio-worklet%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-midi-player" href="https://github.com/chrisguttandin/midi-player">chrisguttandin/midi-player</a> (29 commits) [↩](#row-chrisguttandin-midi-player)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [29](https://github.com/search?q=repo%3Achrisguttandin/midi-player%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-jimmy-zhening-luo-gptool" href="https://github.com/jimmy-zhening-luo/gptool">jimmy-zhening-luo/gptool</a> (29 commits) [↩](#row-jimmy-zhening-luo-gptool)
+
+- [Jimmy Zhening Luo](https://github.com/jimmy-zhening-luo): [29](https://github.com/search?q=repo%3Ajimmy-zhening-luo/gptool%20author%3Ajimmy-zhening-luo%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-agentplexus-omnivault" href="https://github.com/agentplexus/omnivault">agentplexus/omnivault</a> (29 commits) [↩](#row-agentplexus-omnivault)
+
+- [John Wang](https://github.com/grokify): [29](https://github.com/search?q=repo%3Aagentplexus/omnivault%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-agentplexus-omnillm" href="https://github.com/agentplexus/omnillm">agentplexus/omnillm</a> (29 commits) [↩](#row-agentplexus-omnillm)
+
+- [John Wang](https://github.com/grokify): [29](https://github.com/search?q=repo%3Aagentplexus/omnillm%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-grokify-brandkit" href="https://github.com/grokify/brandkit">grokify/brandkit</a> (29 commits) [↩](#row-grokify-brandkit)
+
+- [John Wang](https://github.com/grokify): [29](https://github.com/search?q=repo%3Agrokify/brandkit%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-snarfed-arroba" href="https://github.com/snarfed/arroba">snarfed/arroba</a> (29 commits) [↩](#row-snarfed-arroba)
+
+- [Ryan Barrett](https://github.com/snarfed): [29](https://github.com/search?q=repo%3Asnarfed/arroba%20author%3Asnarfed%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-cyclopsmc-integratedterminals" href="https://github.com/CyclopsMC/IntegratedTerminals">CyclopsMC/IntegratedTerminals</a> (29 commits) [↩](#row-cyclopsmc-integratedterminals)
+
+- [Ruben Taelman](https://github.com/rubensworks): [29](https://github.com/search?q=repo%3ACyclopsMC/IntegratedTerminals%20author%3Arubensworks%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-cyclopsmc-packtests" href="https://github.com/CyclopsMC/packtests">CyclopsMC/packtests</a> (29 commits) [↩](#row-cyclopsmc-packtests)
+
+- [Ruben Taelman](https://github.com/rubensworks): [29](https://github.com/search?q=repo%3ACyclopsMC/packtests%20author%3Arubensworks%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-video-synchronization-demo" href="https://github.com/chrisguttandin/video-synchronization-demo">chrisguttandin/video-synchronization-demo</a> (28 commits) [↩](#row-chrisguttandin-video-synchronization-demo)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [28](https://github.com/search?q=repo%3Achrisguttandin/video-synchronization-demo%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-array-buffer-cache-broker" href="https://github.com/chrisguttandin/array-buffer-cache-broker">chrisguttandin/array-buffer-cache-broker</a> (28 commits) [↩](#row-chrisguttandin-array-buffer-cache-broker)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [28](https://github.com/search?q=repo%3Achrisguttandin/array-buffer-cache-broker%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-worker-timers" href="https://github.com/chrisguttandin/worker-timers">chrisguttandin/worker-timers</a> (28 commits) [↩](#row-chrisguttandin-worker-timers)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [28](https://github.com/search?q=repo%3Achrisguttandin/worker-timers%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-metadata-detector" href="https://github.com/chrisguttandin/metadata-detector">chrisguttandin/metadata-detector</a> (28 commits) [↩](#row-chrisguttandin-metadata-detector)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [28](https://github.com/search?q=repo%3Achrisguttandin/metadata-detector%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-pzrsa-parsam-io" href="https://github.com/pzrsa/parsam.io">pzrsa/parsam.io</a> (28 commits) [↩](#row-pzrsa-parsam-io)
+
+- [parsa](https://github.com/pzrsa): [28](https://github.com/search?q=repo%3Apzrsa/parsam.io%20author%3Apzrsa%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-gh-tui-tools-gh-review-conductor" href="https://github.com/gh-tui-tools/gh-review-conductor">gh-tui-tools/gh-review-conductor</a> (28 commits) [↩](#row-gh-tui-tools-gh-review-conductor)
+
+- [sideshowbarker](https://github.com/sideshowbarker): [28](https://github.com/search?q=repo%3Agh-tui-tools/gh-review-conductor%20author%3Asideshowbarker%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-fumedpodcast-fumed" href="https://github.com/fumedpodcast/fumed">fumedpodcast/fumed</a> (27 commits) [↩](#row-fumedpodcast-fumed)
+
+- [Aram Zucker-Scharff](https://github.com/AramZS): [27](https://github.com/search?q=repo%3Afumedpodcast/fumed%20author%3AAramZS%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-tonejs-synchronization-demo" href="https://github.com/chrisguttandin/tonejs-synchronization-demo">chrisguttandin/tonejs-synchronization-demo</a> (27 commits) [↩](#row-chrisguttandin-tonejs-synchronization-demo)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [27](https://github.com/search?q=repo%3Achrisguttandin/tonejs-synchronization-demo%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-limiter-audio-worklet" href="https://github.com/chrisguttandin/limiter-audio-worklet">chrisguttandin/limiter-audio-worklet</a> (27 commits) [↩](#row-chrisguttandin-limiter-audio-worklet)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [27](https://github.com/search?q=repo%3Achrisguttandin/limiter-audio-worklet%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-playout-audio-worklet" href="https://github.com/chrisguttandin/playout-audio-worklet">chrisguttandin/playout-audio-worklet</a> (27 commits) [↩](#row-chrisguttandin-playout-audio-worklet)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [27](https://github.com/search?q=repo%3Achrisguttandin/playout-audio-worklet%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-worker-timers-broker" href="https://github.com/chrisguttandin/worker-timers-broker">chrisguttandin/worker-timers-broker</a> (27 commits) [↩](#row-chrisguttandin-worker-timers-broker)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [27](https://github.com/search?q=repo%3Achrisguttandin/worker-timers-broker%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-webassembly-binaryen" href="https://github.com/WebAssembly/binaryen">WebAssembly/binaryen</a> (27 commits) [↩](#row-webassembly-binaryen)
+
+- [Steven Fontanella](https://github.com/stevenfontanella): [22](https://github.com/search?q=repo%3AWebAssembly/binaryen%20author%3Astevenfontanella%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Derek Schuff](https://github.com/dschuff): [5](https://github.com/search?q=repo%3AWebAssembly/binaryen%20author%3Adschuff%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-grokify-structured-roadmap" href="https://github.com/grokify/structured-roadmap">grokify/structured-roadmap</a> (27 commits) [↩](#row-grokify-structured-roadmap)
+
+- [John Wang](https://github.com/grokify): [27](https://github.com/search?q=repo%3Agrokify/structured-roadmap%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-audio-context-timers" href="https://github.com/chrisguttandin/audio-context-timers">chrisguttandin/audio-context-timers</a> (26 commits) [↩](#row-chrisguttandin-audio-context-timers)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [26](https://github.com/search?q=repo%3Achrisguttandin/audio-context-timers%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-media-encoder-host" href="https://github.com/chrisguttandin/media-encoder-host">chrisguttandin/media-encoder-host</a> (26 commits) [↩](#row-chrisguttandin-media-encoder-host)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [26](https://github.com/search?q=repo%3Achrisguttandin/media-encoder-host%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-media-encoder-host-broker" href="https://github.com/chrisguttandin/media-encoder-host-broker">chrisguttandin/media-encoder-host-broker</a> (26 commits) [↩](#row-chrisguttandin-media-encoder-host-broker)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [26](https://github.com/search?q=repo%3Achrisguttandin/media-encoder-host-broker%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-extendable-media-recorder-wav-encoder" href="https://github.com/chrisguttandin/extendable-media-recorder-wav-encoder">chrisguttandin/extendable-media-recorder-wav-encoder</a> (26 commits) [↩](#row-chrisguttandin-extendable-media-recorder-wav-encoder)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [26](https://github.com/search?q=repo%3Achrisguttandin/extendable-media-recorder-wav-encoder%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-json-midi-encoder-worker" href="https://github.com/chrisguttandin/json-midi-encoder-worker">chrisguttandin/json-midi-encoder-worker</a> (26 commits) [↩](#row-chrisguttandin-json-midi-encoder-worker)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [26](https://github.com/search?q=repo%3Achrisguttandin/json-midi-encoder-worker%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-midi-json-parser" href="https://github.com/chrisguttandin/midi-json-parser">chrisguttandin/midi-json-parser</a> (26 commits) [↩](#row-chrisguttandin-midi-json-parser)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [26](https://github.com/search?q=repo%3Achrisguttandin/midi-json-parser%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-json-midi-encoder" href="https://github.com/chrisguttandin/json-midi-encoder">chrisguttandin/json-midi-encoder</a> (26 commits) [↩](#row-chrisguttandin-json-midi-encoder)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [26](https://github.com/search?q=repo%3Achrisguttandin/json-midi-encoder%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-json-midi-encoder-broker" href="https://github.com/chrisguttandin/json-midi-encoder-broker">chrisguttandin/json-midi-encoder-broker</a> (26 commits) [↩](#row-chrisguttandin-json-midi-encoder-broker)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [26](https://github.com/search?q=repo%3Achrisguttandin/json-midi-encoder-broker%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-web-audio-beat-detector-broker" href="https://github.com/chrisguttandin/web-audio-beat-detector-broker">chrisguttandin/web-audio-beat-detector-broker</a> (26 commits) [↩](#row-chrisguttandin-web-audio-beat-detector-broker)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [26](https://github.com/search?q=repo%3Achrisguttandin/web-audio-beat-detector-broker%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-metadata-detector-worker" href="https://github.com/chrisguttandin/metadata-detector-worker">chrisguttandin/metadata-detector-worker</a> (26 commits) [↩](#row-chrisguttandin-metadata-detector-worker)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [26](https://github.com/search?q=repo%3Achrisguttandin/metadata-detector-worker%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-metadata-detector-broker" href="https://github.com/chrisguttandin/metadata-detector-broker">chrisguttandin/metadata-detector-broker</a> (26 commits) [↩](#row-chrisguttandin-metadata-detector-broker)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [26](https://github.com/search?q=repo%3Achrisguttandin/metadata-detector-broker%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-johntitor-cargo-semver-checks" href="https://github.com/JohnTitor/cargo-semver-checks">JohnTitor/cargo-semver-checks</a> (26 commits) [↩](#row-johntitor-cargo-semver-checks)
+
+- [Yuki Okushi](https://github.com/JohnTitor): [26](https://github.com/search?q=repo%3AJohnTitor/cargo-semver-checks%20author%3AJohnTitor%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-startupapi-startup-api-cloudflare" href="https://github.com/StartupAPI/startup-api-cloudflare">StartupAPI/startup-api-cloudflare</a> (26 commits) [↩](#row-startupapi-startup-api-cloudflare)
+
+- [Sergey Chernyshev](https://github.com/sergeychernyshev): [26](https://github.com/search?q=repo%3AStartupAPI/startup-api-cloudflare%20author%3Asergeychernyshev%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-sergeychernyshev-asymmetric-tic-tac-toe" href="https://github.com/sergeychernyshev/asymmetric-tic-tac-toe">sergeychernyshev/asymmetric-tic-tac-toe</a> (26 commits) [↩](#row-sergeychernyshev-asymmetric-tic-tac-toe)
+
+- [Sergey Chernyshev](https://github.com/sergeychernyshev): [26](https://github.com/search?q=repo%3Asergeychernyshev/asymmetric-tic-tac-toe%20author%3Asergeychernyshev%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-passkeydeveloper-tools-passkeys-dev" href="https://github.com/passkeydeveloper/tools.passkeys.dev">passkeydeveloper/tools.passkeys.dev</a> (26 commits) [↩](#row-passkeydeveloper-tools-passkeys-dev)
+
+- [Tim Cappalli](https://github.com/timcappalli): [26](https://github.com/search?q=repo%3Apasskeydeveloper/tools.passkeys.dev%20author%3Atimcappalli%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-arthursonzogni-committracker" href="https://github.com/ArthurSonzogni/CommitTracker">ArthurSonzogni/CommitTracker</a> (25 commits) [↩](#row-arthursonzogni-committracker)
+
+- [Arthur Sonzogni](https://github.com/ArthurSonzogni): [25](https://github.com/search?q=repo%3AArthurSonzogni/CommitTracker%20author%3AArthurSonzogni%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-user-media-audio-visualizer" href="https://github.com/chrisguttandin/user-media-audio-visualizer">chrisguttandin/user-media-audio-visualizer</a> (25 commits) [↩](#row-chrisguttandin-user-media-audio-visualizer)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [25](https://github.com/search?q=repo%3Achrisguttandin/user-media-audio-visualizer%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-playout-audio-worklet-processor" href="https://github.com/chrisguttandin/playout-audio-worklet-processor">chrisguttandin/playout-audio-worklet-processor</a> (25 commits) [↩](#row-chrisguttandin-playout-audio-worklet-processor)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [25](https://github.com/search?q=repo%3Achrisguttandin/playout-audio-worklet-processor%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-media-encoder-host-worker" href="https://github.com/chrisguttandin/media-encoder-host-worker">chrisguttandin/media-encoder-host-worker</a> (25 commits) [↩](#row-chrisguttandin-media-encoder-host-worker)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [25](https://github.com/search?q=repo%3Achrisguttandin/media-encoder-host-worker%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-libre-fm-libre-fm-templates" href="https://github.com/libre-fm/libre-fm-templates">libre-fm/libre-fm-templates</a> (25 commits) [↩](#row-libre-fm-libre-fm-templates)
+
+- [Dr. Matt Lee](https://github.com/mattl): [25](https://github.com/search?q=repo%3Alibre-fm/libre-fm-templates%20author%3Amattl%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-agentplexus-mcpkit" href="https://github.com/agentplexus/mcpkit">agentplexus/mcpkit</a> (25 commits) [↩](#row-agentplexus-mcpkit)
+
+- [John Wang](https://github.com/grokify): [25](https://github.com/search?q=repo%3Aagentplexus/mcpkit%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-agentplexus-agentkit" href="https://github.com/agentplexus/agentkit">agentplexus/agentkit</a> (25 commits) [↩](#row-agentplexus-agentkit)
+
+- [John Wang](https://github.com/grokify): [25](https://github.com/search?q=repo%3Aagentplexus/agentkit%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-leaverou-proposal-composable-value-accessors" href="https://github.com/LeaVerou/proposal-composable-value-accessors">LeaVerou/proposal-composable-value-accessors</a> (25 commits) [↩](#row-leaverou-proposal-composable-value-accessors)
+
+- [Lea Verou](https://github.com/LeaVerou): [25](https://github.com/search?q=repo%3ALeaVerou/proposal-composable-value-accessors%20author%3ALeaVerou%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-martinthomson-i-d-template" href="https://github.com/martinthomson/i-d-template">martinthomson/i-d-template</a> (25 commits) [↩](#row-martinthomson-i-d-template)
+
+- [Martin Thomson](https://github.com/martinthomson): [25](https://github.com/search?q=repo%3Amartinthomson/i-d-template%20author%3Amartinthomson%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ljharb-html-element-map" href="https://github.com/ljharb/html-element-map">ljharb/html-element-map</a> (25 commits) [↩](#row-ljharb-html-element-map)
+
+- [Jordan Harband](https://github.com/ljharb): [25](https://github.com/search?q=repo%3Aljharb/html-element-map%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-timed-audio-buffer-source-node-audio-worklet-processor" href="https://github.com/chrisguttandin/timed-audio-buffer-source-node-audio-worklet-processor">chrisguttandin/timed-audio-buffer-source-node-audio-worklet-processor</a> (24 commits) [↩](#row-chrisguttandin-timed-audio-buffer-source-node-audio-worklet-processor)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [24](https://github.com/search?q=repo%3Achrisguttandin/timed-audio-buffer-source-node-audio-worklet-processor%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-broker-factory" href="https://github.com/chrisguttandin/broker-factory">chrisguttandin/broker-factory</a> (24 commits) [↩](#row-chrisguttandin-broker-factory)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [24](https://github.com/search?q=repo%3Achrisguttandin/broker-factory%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-web-audio-beat-detector-worker" href="https://github.com/chrisguttandin/web-audio-beat-detector-worker">chrisguttandin/web-audio-beat-detector-worker</a> (24 commits) [↩](#row-chrisguttandin-web-audio-beat-detector-worker)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [24](https://github.com/search?q=repo%3Achrisguttandin/web-audio-beat-detector-worker%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-extendable-media-recorder-wav-encoder-broker" href="https://github.com/chrisguttandin/extendable-media-recorder-wav-encoder-broker">chrisguttandin/extendable-media-recorder-wav-encoder-broker</a> (24 commits) [↩](#row-chrisguttandin-extendable-media-recorder-wav-encoder-broker)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [24](https://github.com/search?q=repo%3Achrisguttandin/extendable-media-recorder-wav-encoder-broker%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-array-buffer-cache-worker" href="https://github.com/chrisguttandin/array-buffer-cache-worker">chrisguttandin/array-buffer-cache-worker</a> (24 commits) [↩](#row-chrisguttandin-array-buffer-cache-worker)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [24](https://github.com/search?q=repo%3Achrisguttandin/array-buffer-cache-worker%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-limiter-audio-worklet-processor" href="https://github.com/chrisguttandin/limiter-audio-worklet-processor">chrisguttandin/limiter-audio-worklet-processor</a> (24 commits) [↩](#row-chrisguttandin-limiter-audio-worklet-processor)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [24](https://github.com/search?q=repo%3Achrisguttandin/limiter-audio-worklet-processor%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-midi-json-parser-broker" href="https://github.com/chrisguttandin/midi-json-parser-broker">chrisguttandin/midi-json-parser-broker</a> (24 commits) [↩](#row-chrisguttandin-midi-json-parser-broker)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [24](https://github.com/search?q=repo%3Achrisguttandin/midi-json-parser-broker%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-fserb-substrate" href="https://github.com/fserb/substrate">fserb/substrate</a> (24 commits) [↩](#row-fserb-substrate)
+
+- [Fernando Serboncini](https://github.com/fserb): [24](https://github.com/search?q=repo%3Afserb/substrate%20author%3Afserb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-langchain-ai-deepagentsjs" href="https://github.com/langchain-ai/deepagentsjs">langchain-ai/deepagentsjs</a> (24 commits) [↩](#row-langchain-ai-deepagentsjs)
+
+- [Christian Bromann](https://github.com/christian-bromann): [24](https://github.com/search?q=repo%3Alangchain-ai/deepagentsjs%20author%3Achristian-bromann%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-httpwg-http-extensions" href="https://github.com/httpwg/http-extensions">httpwg/http-extensions</a> (24 commits) [↩](#row-httpwg-http-extensions)
+
+- [Nidhi Jaju](https://github.com/nidhijaju): [21](https://github.com/search?q=repo%3Ahttpwg/http-extensions%20author%3Anidhijaju%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Johann Hofmann](https://github.com/johannhof): [1](https://github.com/search?q=repo%3Ahttpwg/http-extensions%20author%3Ajohannhof%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Mike West](https://github.com/mikewest): [1](https://github.com/search?q=repo%3Ahttpwg/http-extensions%20author%3Amikewest%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Mark Nottingham](https://github.com/mnot): [1](https://github.com/search?q=repo%3Ahttpwg/http-extensions%20author%3Amnot%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-agentplexus-omnivoice" href="https://github.com/agentplexus/omnivoice">agentplexus/omnivoice</a> (24 commits) [↩](#row-agentplexus-omnivoice)
+
+- [John Wang](https://github.com/grokify): [24](https://github.com/search?q=repo%3Aagentplexus/omnivoice%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-worker-timers-worker" href="https://github.com/chrisguttandin/worker-timers-worker">chrisguttandin/worker-timers-worker</a> (23 commits) [↩](#row-chrisguttandin-worker-timers-worker)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [23](https://github.com/search?q=repo%3Achrisguttandin/worker-timers-worker%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-recorder-audio-worklet-processor" href="https://github.com/chrisguttandin/recorder-audio-worklet-processor">chrisguttandin/recorder-audio-worklet-processor</a> (23 commits) [↩](#row-chrisguttandin-recorder-audio-worklet-processor)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [23](https://github.com/search?q=repo%3Achrisguttandin/recorder-audio-worklet-processor%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-worker-factory" href="https://github.com/chrisguttandin/worker-factory">chrisguttandin/worker-factory</a> (23 commits) [↩](#row-chrisguttandin-worker-factory)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [23](https://github.com/search?q=repo%3Achrisguttandin/worker-factory%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ereslibre-homelab" href="https://github.com/ereslibre/homelab">ereslibre/homelab</a> (23 commits) [↩](#row-ereslibre-homelab)
+
+- [Rafael Fernández López](https://github.com/ereslibre): [23](https://github.com/search?q=repo%3Aereslibre/homelab%20author%3Aereslibre%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-epub-specs" href="https://github.com/w3c/epub-specs">w3c/epub-specs</a> (23 commits) [↩](#row-w3c-epub-specs)
+
+- [Matt Garrish](https://github.com/mattgarrish): [16](https://github.com/search?q=repo%3Aw3c/epub-specs%20author%3Amattgarrish%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Ivan Herman](https://github.com/iherman): [7](https://github.com/search?q=repo%3Aw3c/epub-specs%20author%3Aiherman%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-johntitor-www-2k36-org" href="https://github.com/JohnTitor/www.2k36.org">JohnTitor/www.2k36.org</a> (23 commits) [↩](#row-johntitor-www-2k36-org)
+
+- [Yuki Okushi](https://github.com/JohnTitor): [23](https://github.com/search?q=repo%3AJohnTitor/www.2k36.org%20author%3AJohnTitor%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-nudeps-nudeps-demos" href="https://github.com/nudeps/nudeps-demos">nudeps/nudeps-demos</a> (23 commits) [↩](#row-nudeps-nudeps-demos)
+
+- [Lea Verou](https://github.com/LeaVerou): [23](https://github.com/search?q=repo%3Anudeps/nudeps-demos%20author%3ALeaVerou%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-nicholasgriffintn-ai-platform" href="https://github.com/nicholasgriffintn/ai-platform">nicholasgriffintn/ai-platform</a> (23 commits) [↩](#row-nicholasgriffintn-ai-platform)
+
+- [Nicholas Griffin](https://github.com/nicholasgriffintn): [23](https://github.com/search?q=repo%3Anicholasgriffintn/ai-platform%20author%3Anicholasgriffintn%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-animenl-volunteer-manager" href="https://github.com/AnimeNL/volunteer-manager">AnimeNL/volunteer-manager</a> (22 commits) [↩](#row-animenl-volunteer-manager)
+
+- [Peter Beverloo](https://github.com/beverloo): [22](https://github.com/search?q=repo%3AAnimeNL/volunteer-manager%20author%3Abeverloo%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-canova-searchfox-mcp" href="https://github.com/canova/searchfox-mcp">canova/searchfox-mcp</a> (22 commits) [↩](#row-canova-searchfox-mcp)
+
+- [Nazım Can Altınova](https://github.com/canova): [22](https://github.com/search?q=repo%3Acanova/searchfox-mcp%20author%3Acanova%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-web-timing-demo" href="https://github.com/chrisguttandin/web-timing-demo">chrisguttandin/web-timing-demo</a> (22 commits) [↩](#row-chrisguttandin-web-timing-demo)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [22](https://github.com/search?q=repo%3Achrisguttandin/web-timing-demo%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-web-audio-metronome-demo" href="https://github.com/chrisguttandin/web-audio-metronome-demo">chrisguttandin/web-audio-metronome-demo</a> (22 commits) [↩](#row-chrisguttandin-web-audio-metronome-demo)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [22](https://github.com/search?q=repo%3Achrisguttandin/web-audio-metronome-demo%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-midi-json-parser-worker" href="https://github.com/chrisguttandin/midi-json-parser-worker">chrisguttandin/midi-json-parser-worker</a> (22 commits) [↩](#row-chrisguttandin-midi-json-parser-worker)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [22](https://github.com/search?q=repo%3Achrisguttandin/midi-json-parser-worker%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-midi-file-slicer" href="https://github.com/chrisguttandin/midi-file-slicer">chrisguttandin/midi-file-slicer</a> (22 commits) [↩](#row-chrisguttandin-midi-file-slicer)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [22](https://github.com/search?q=repo%3Achrisguttandin/midi-file-slicer%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-dynamo-db-local" href="https://github.com/chrisguttandin/dynamo-db-local">chrisguttandin/dynamo-db-local</a> (22 commits) [↩](#row-chrisguttandin-dynamo-db-local)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [22](https://github.com/search?q=repo%3Achrisguttandin/dynamo-db-local%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-extendable-media-recorder-wav-encoder-worker" href="https://github.com/chrisguttandin/extendable-media-recorder-wav-encoder-worker">chrisguttandin/extendable-media-recorder-wav-encoder-worker</a> (22 commits) [↩](#row-chrisguttandin-extendable-media-recorder-wav-encoder-worker)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [22](https://github.com/search?q=repo%3Achrisguttandin/extendable-media-recorder-wav-encoder-worker%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-timing-provider" href="https://github.com/chrisguttandin/timing-provider">chrisguttandin/timing-provider</a> (22 commits) [↩](#row-chrisguttandin-timing-provider)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [22](https://github.com/search?q=repo%3Achrisguttandin/timing-provider%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-audio-fingerprinting-file-reader" href="https://github.com/chrisguttandin/audio-fingerprinting-file-reader">chrisguttandin/audio-fingerprinting-file-reader</a> (22 commits) [↩](#row-chrisguttandin-audio-fingerprinting-file-reader)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [22](https://github.com/search?q=repo%3Achrisguttandin/audio-fingerprinting-file-reader%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-wikimedia-apps-android-wikipedia" href="https://github.com/wikimedia/apps-android-wikipedia">wikimedia/apps-android-wikipedia</a> (22 commits) [↩](#row-wikimedia-apps-android-wikipedia)
+
+- [Dmitry Brant](https://github.com/dbrant): [22](https://github.com/search?q=repo%3Awikimedia/apps-android-wikipedia%20author%3Adbrant%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-discostu105-dynatrace-astroshop-app" href="https://github.com/discostu105/dynatrace-astroshop-app">discostu105/dynatrace-astroshop-app</a> (22 commits) [↩](#row-discostu105-dynatrace-astroshop-app)
+
+- [Christoph Neumüller](https://github.com/discostu105): [22](https://github.com/search?q=repo%3Adiscostu105/dynatrace-astroshop-app%20author%3Adiscostu105%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-agentplexus-go-opik" href="https://github.com/agentplexus/go-opik">agentplexus/go-opik</a> (22 commits) [↩](#row-agentplexus-go-opik)
+
+- [John Wang](https://github.com/grokify): [22](https://github.com/search?q=repo%3Aagentplexus/go-opik%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-kinow-kinoshita-eti-br" href="https://github.com/kinow/kinoshita.eti.br">kinow/kinoshita.eti.br</a> (22 commits) [↩](#row-kinow-kinoshita-eti-br)
+
+- [Bruno P. Kinoshita](https://github.com/kinow): [22](https://github.com/search?q=repo%3Akinow/kinoshita.eti.br%20author%3Akinow%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-mnot-rfc-fyi" href="https://github.com/mnot/rfc.fyi">mnot/rfc.fyi</a> (22 commits) [↩](#row-mnot-rfc-fyi)
+
+- [Mark Nottingham](https://github.com/mnot): [22](https://github.com/search?q=repo%3Amnot/rfc.fyi%20author%3Amnot%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-rubys-showcase" href="https://github.com/rubys/showcase">rubys/showcase</a> (22 commits) [↩](#row-rubys-showcase)
+
+- [Sam Ruby](https://github.com/rubys): [22](https://github.com/search?q=repo%3Arubys/showcase%20author%3Arubys%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-emscripten-core-emscripten" href="https://github.com/emscripten-core/emscripten">emscripten-core/emscripten</a> (21 commits) [↩](#row-emscripten-core-emscripten)
+
+- [Heejin Ahn](https://github.com/aheejin): [19](https://github.com/search?q=repo%3Aemscripten-core/emscripten%20author%3Aaheejin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Derek Schuff](https://github.com/dschuff): [2](https://github.com/search?q=repo%3Aemscripten-core/emscripten%20author%3Adschuff%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-compilerr" href="https://github.com/chrisguttandin/compilerr">chrisguttandin/compilerr</a> (21 commits) [↩](#row-chrisguttandin-compilerr)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [21](https://github.com/search?q=repo%3Achrisguttandin/compilerr%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-unmuted-video-element-test" href="https://github.com/chrisguttandin/unmuted-video-element-test">chrisguttandin/unmuted-video-element-test</a> (21 commits) [↩](#row-chrisguttandin-unmuted-video-element-test)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [21](https://github.com/search?q=repo%3Achrisguttandin/unmuted-video-element-test%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-metadata-detector-streams" href="https://github.com/chrisguttandin/metadata-detector-streams">chrisguttandin/metadata-detector-streams</a> (21 commits) [↩](#row-chrisguttandin-metadata-detector-streams)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [21](https://github.com/search?q=repo%3Achrisguttandin/metadata-detector-streams%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-timing-provider-server" href="https://github.com/chrisguttandin/timing-provider-server">chrisguttandin/timing-provider-server</a> (21 commits) [↩](#row-chrisguttandin-timing-provider-server)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [21](https://github.com/search?q=repo%3Achrisguttandin/timing-provider-server%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-mdn-content" href="https://github.com/mdn/content">mdn/content</a> (21 commits) [↩](#row-mdn-content)
+
+- [Estelle Weyl](https://github.com/estelle): [16](https://github.com/search?q=repo%3Amdn/content%20author%3Aestelle%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Rob Wu](https://github.com/Rob--W): [2](https://github.com/search?q=repo%3Amdn/content%20author%3ARob--W%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Eric A. Meyer](https://github.com/meyerweb): [1](https://github.com/search?q=repo%3Amdn/content%20author%3Ameyerweb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [sideshowbarker](https://github.com/sideshowbarker): [1](https://github.com/search?q=repo%3Amdn/content%20author%3Asideshowbarker%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Barry Pollard](https://github.com/tunetheweb): [1](https://github.com/search?q=repo%3Amdn/content%20author%3Atunetheweb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-agentplexus-omniobserve" href="https://github.com/agentplexus/omniobserve">agentplexus/omniobserve</a> (21 commits) [↩](#row-agentplexus-omniobserve)
+
+- [John Wang](https://github.com/grokify): [21](https://github.com/search?q=repo%3Aagentplexus/omniobserve%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-jeswr-sparql_noir" href="https://github.com/jeswr/sparql_noir">jeswr/sparql_noir</a> (21 commits) [↩](#row-jeswr-sparql_noir)
+
+- [Jesse Wright](https://github.com/jeswr): [21](https://github.com/search?q=repo%3Ajeswr/sparql_noir%20author%3Ajeswr%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-mnot-rfc-refs" href="https://github.com/mnot/rfc-refs">mnot/rfc-refs</a> (21 commits) [↩](#row-mnot-rfc-refs)
+
+- [Mark Nottingham](https://github.com/mnot): [21](https://github.com/search?q=repo%3Amnot/rfc-refs%20author%3Amnot%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-niklasmerz-cordova-plugin-servo-webview" href="https://github.com/NiklasMerz/cordova-plugin-servo-webview">NiklasMerz/cordova-plugin-servo-webview</a> (21 commits) [↩](#row-niklasmerz-cordova-plugin-servo-webview)
+
+- [Niklas Merz](https://github.com/NiklasMerz): [21](https://github.com/search?q=repo%3ANiklasMerz/cordova-plugin-servo-webview%20author%3ANiklasMerz%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-dynamo-db-provisioner" href="https://github.com/chrisguttandin/dynamo-db-provisioner">chrisguttandin/dynamo-db-provisioner</a> (20 commits) [↩](#row-chrisguttandin-dynamo-db-provisioner)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [20](https://github.com/search?q=repo%3Achrisguttandin/dynamo-db-provisioner%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-rxjs-connector" href="https://github.com/chrisguttandin/rxjs-connector">chrisguttandin/rxjs-connector</a> (20 commits) [↩](#row-chrisguttandin-rxjs-connector)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [20](https://github.com/search?q=repo%3Achrisguttandin/rxjs-connector%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-standardized-audio-context-demo" href="https://github.com/chrisguttandin/standardized-audio-context-demo">chrisguttandin/standardized-audio-context-demo</a> (20 commits) [↩](#row-chrisguttandin-standardized-audio-context-demo)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [20](https://github.com/search?q=repo%3Achrisguttandin/standardized-audio-context-demo%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-youtube-cobalt" href="https://github.com/youtube/cobalt">youtube/cobalt</a> (20 commits) [↩](#row-youtube-cobalt)
+
+- [Raphael Kubo da Costa](https://github.com/rakuco): [18](https://github.com/search?q=repo%3Ayoutube/cobalt%20author%3Arakuco%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Miguel Casas](https://github.com/yell0wd0g): [2](https://github.com/search?q=repo%3Ayoutube/cobalt%20author%3Ayell0wd0g%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-seiry-use-mmdb-vanilla" href="https://github.com/seiry/use-mmdb-vanilla">seiry/use-mmdb-vanilla</a> (20 commits) [↩](#row-seiry-use-mmdb-vanilla)
+
+- [Seiry Yu](https://github.com/seiry): [20](https://github.com/search?q=repo%3Aseiry/use-mmdb-vanilla%20author%3Aseiry%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-aws-client-factories" href="https://github.com/chrisguttandin/aws-client-factories">chrisguttandin/aws-client-factories</a> (19 commits) [↩](#row-chrisguttandin-aws-client-factories)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [19](https://github.com/search?q=repo%3Achrisguttandin/aws-client-factories%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-rxjs-broker" href="https://github.com/chrisguttandin/rxjs-broker">chrisguttandin/rxjs-broker</a> (19 commits) [↩](#row-chrisguttandin-rxjs-broker)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [19](https://github.com/search?q=repo%3Achrisguttandin/rxjs-broker%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-johntitor-activity-2k36-org" href="https://github.com/JohnTitor/activity.2k36.org">JohnTitor/activity.2k36.org</a> (19 commits) [↩](#row-johntitor-activity-2k36-org)
+
+- [Yuki Okushi](https://github.com/JohnTitor): [19](https://github.com/search?q=repo%3AJohnTitor/activity.2k36.org%20author%3AJohnTitor%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-grokify-go-v2mom" href="https://github.com/grokify/go-v2mom">grokify/go-v2mom</a> (19 commits) [↩](#row-grokify-go-v2mom)
+
+- [John Wang](https://github.com/grokify): [19](https://github.com/search?q=repo%3Agrokify/go-v2mom%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-digitalbazaar-canivc" href="https://github.com/digitalbazaar/canivc">digitalbazaar/canivc</a> (18 commits) [↩](#row-digitalbazaar-canivc)
+
+- [BigBlueHat](https://github.com/BigBlueHat): [18](https://github.com/search?q=repo%3Adigitalbazaar/canivc%20author%3ABigBlueHat%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-canova-zsh-jj-prompt" href="https://github.com/canova/zsh-jj-prompt">canova/zsh-jj-prompt</a> (18 commits) [↩](#row-canova-zsh-jj-prompt)
+
+- [Nazım Can Altınova](https://github.com/canova): [18](https://github.com/search?q=repo%3Acanova/zsh-jj-prompt%20author%3Acanova%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-standardized-audio-context" href="https://github.com/chrisguttandin/standardized-audio-context">chrisguttandin/standardized-audio-context</a> (18 commits) [↩](#row-chrisguttandin-standardized-audio-context)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [18](https://github.com/search?q=repo%3Achrisguttandin/standardized-audio-context%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-angular-prerender" href="https://github.com/chrisguttandin/angular-prerender">chrisguttandin/angular-prerender</a> (18 commits) [↩](#row-chrisguttandin-angular-prerender)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [18](https://github.com/search?q=repo%3Achrisguttandin/angular-prerender%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-dynamo-converters" href="https://github.com/chrisguttandin/dynamo-converters">chrisguttandin/dynamo-converters</a> (18 commits) [↩](#row-chrisguttandin-dynamo-converters)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [18](https://github.com/search?q=repo%3Achrisguttandin/dynamo-converters%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-tc39-agendas" href="https://github.com/tc39/agendas">tc39/agendas</a> (18 commits) [↩](#row-tc39-agendas)
+
+- [Chris de Almeida](https://github.com/ctcpip): [7](https://github.com/search?q=repo%3Atc39/agendas%20author%3Actcpip%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Jordan Harband](https://github.com/ljharb): [5](https://github.com/search?q=repo%3Atc39/agendas%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Lea Verou](https://github.com/LeaVerou): [3](https://github.com/search?q=repo%3Atc39/agendas%20author%3ALeaVerou%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Nicolò Ribaudo](https://github.com/nicolo-ribaudo): [2](https://github.com/search?q=repo%3Atc39/agendas%20author%3Anicolo-ribaudo%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Eemeli Aro](https://github.com/eemeli): [1](https://github.com/search?q=repo%3Atc39/agendas%20author%3Aeemeli%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-grokify-traffic2openapi" href="https://github.com/grokify/traffic2openapi">grokify/traffic2openapi</a> (18 commits) [↩](#row-grokify-traffic2openapi)
+
+- [John Wang](https://github.com/grokify): [18](https://github.com/search?q=repo%3Agrokify/traffic2openapi%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-jeswr-noir_xpath" href="https://github.com/jeswr/noir_XPath">jeswr/noir_XPath</a> (18 commits) [↩](#row-jeswr-noir_xpath)
+
+- [Jesse Wright](https://github.com/jeswr): [18](https://github.com/search?q=repo%3Ajeswr/noir_XPath%20author%3Ajeswr%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-significant-gravitas-autogpt" href="https://github.com/Significant-Gravitas/AutoGPT">Significant-Gravitas/AutoGPT</a> (18 commits) [↩](#row-significant-gravitas-autogpt)
+
+- [Nicholas Tindle](https://github.com/ntindle): [18](https://github.com/search?q=repo%3ASignificant-Gravitas/AutoGPT%20author%3Antindle%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-csswg-drafts" href="https://github.com/w3c/csswg-drafts">w3c/csswg-drafts</a> (17 commits) [↩](#row-w3c-csswg-drafts)
+
+- [L. David Baron](https://github.com/dbaron): [4](https://github.com/search?q=repo%3Aw3c/csswg-drafts%20author%3Adbaron%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Tab Atkins Jr.](https://github.com/tabatkins): [3](https://github.com/search?q=repo%3Aw3c/csswg-drafts%20author%3Atabatkins%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [François Daoust](https://github.com/tidoust): [3](https://github.com/search?q=repo%3Aw3c/csswg-drafts%20author%3Atidoust%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [davidsgrogan](https://github.com/davidsgrogan): [2](https://github.com/search?q=repo%3Aw3c/csswg-drafts%20author%3Adavidsgrogan%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Luke Warlow](https://github.com/lukewarlow): [2](https://github.com/search?q=repo%3Aw3c/csswg-drafts%20author%3Alukewarlow%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [andruud](https://github.com/andruud): [1](https://github.com/search?q=repo%3Aw3c/csswg-drafts%20author%3Aandruud%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Tim Nguyen](https://github.com/nt1m): [1](https://github.com/search?q=repo%3Aw3c/csswg-drafts%20author%3Ant1m%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [vmpstr](https://github.com/vmpstr): [1](https://github.com/search?q=repo%3Aw3c/csswg-drafts%20author%3Avmpstr%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-oauth-wg-draft-ietf-oauth-status-list" href="https://github.com/oauth-wg/draft-ietf-oauth-status-list">oauth-wg/draft-ietf-oauth-status-list</a> (17 commits) [↩](#row-oauth-wg-draft-ietf-oauth-status-list)
+
+- [Christian Bormann](https://github.com/c2bo): [17](https://github.com/search?q=repo%3Aoauth-wg/draft-ietf-oauth-status-list%20author%3Ac2bo%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-window-and-worker-timers-test" href="https://github.com/chrisguttandin/window-and-worker-timers-test">chrisguttandin/window-and-worker-timers-test</a> (17 commits) [↩](#row-chrisguttandin-window-and-worker-timers-test)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [17](https://github.com/search?q=repo%3Achrisguttandin/window-and-worker-timers-test%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-web-midi-autoplay-policy-test" href="https://github.com/chrisguttandin/web-midi-autoplay-policy-test">chrisguttandin/web-midi-autoplay-policy-test</a> (17 commits) [↩](#row-chrisguttandin-web-midi-autoplay-policy-test)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [17](https://github.com/search?q=repo%3Achrisguttandin/web-midi-autoplay-policy-test%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-media-session-with-web-audio-test" href="https://github.com/chrisguttandin/media-session-with-web-audio-test">chrisguttandin/media-session-with-web-audio-test</a> (17 commits) [↩](#row-chrisguttandin-media-session-with-web-audio-test)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [17](https://github.com/search?q=repo%3Achrisguttandin/media-session-with-web-audio-test%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-mse-tests" href="https://github.com/chrisguttandin/mse-tests">chrisguttandin/mse-tests</a> (17 commits) [↩](#row-chrisguttandin-mse-tests)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [17](https://github.com/search?q=repo%3Achrisguttandin/mse-tests%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-muted-audio-element-test" href="https://github.com/chrisguttandin/muted-audio-element-test">chrisguttandin/muted-audio-element-test</a> (17 commits) [↩](#row-chrisguttandin-muted-audio-element-test)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [17](https://github.com/search?q=repo%3Achrisguttandin/muted-audio-element-test%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-berlysia-slides-for-vertical-writing" href="https://github.com/berlysia/slides-for-vertical-writing">berlysia/slides-for-vertical-writing</a> (17 commits) [↩](#row-berlysia-slides-for-vertical-writing)
+
+- [berlysia](https://github.com/berlysia): [17](https://github.com/search?q=repo%3Aberlysia/slides-for-vertical-writing%20author%3Aberlysia%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-langchain-ai-openwork" href="https://github.com/langchain-ai/openwork">langchain-ai/openwork</a> (17 commits) [↩](#row-langchain-ai-openwork)
+
+- [Christian Bromann](https://github.com/christian-bromann): [17](https://github.com/search?q=repo%3Alangchain-ai/openwork%20author%3Achristian-bromann%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ibelem-webnn-text-generation-nextjs" href="https://github.com/ibelem/webnn-text-generation-nextjs">ibelem/webnn-text-generation-nextjs</a> (17 commits) [↩](#row-ibelem-webnn-text-generation-nextjs)
+
+- [Belem Zhang](https://github.com/ibelem): [17](https://github.com/search?q=repo%3Aibelem/webnn-text-generation-nextjs%20author%3Aibelem%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-socketdev-socket-registry" href="https://github.com/SocketDev/socket-registry">SocketDev/socket-registry</a> (17 commits) [↩](#row-socketdev-socket-registry)
+
+- [John-David Dalton](https://github.com/jdalton): [17](https://github.com/search?q=repo%3ASocketDev/socket-registry%20author%3Ajdalton%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-agentplexus-posture" href="https://github.com/agentplexus/posture">agentplexus/posture</a> (17 commits) [↩](#row-agentplexus-posture)
+
+- [John Wang](https://github.com/grokify): [17](https://github.com/search?q=repo%3Aagentplexus/posture%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-agentplexus-structured-evaluation" href="https://github.com/agentplexus/structured-evaluation">agentplexus/structured-evaluation</a> (17 commits) [↩](#row-agentplexus-structured-evaluation)
+
+- [John Wang](https://github.com/grokify): [17](https://github.com/search?q=repo%3Aagentplexus/structured-evaluation%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-mardi4nfdi-portal-k8s" href="https://github.com/MaRDI4NFDI/portal-k8s">MaRDI4NFDI/portal-k8s</a> (17 commits) [↩](#row-mardi4nfdi-portal-k8s)
+
+- [Moritz Schubotz](https://github.com/physikerwelt): [17](https://github.com/search?q=repo%3AMaRDI4NFDI/portal-k8s%20author%3Aphysikerwelt%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-gfx-rs-wgpu-rs-github-io" href="https://github.com/gfx-rs/wgpu-rs.github.io">gfx-rs/wgpu-rs.github.io</a> (17 commits) [↩](#row-gfx-rs-wgpu-rs-github-io)
+
+- [Teodor Tanasoaia](https://github.com/teoxoy): [17](https://github.com/search?q=repo%3Agfx-rs/wgpu-rs.github.io%20author%3Ateoxoy%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-tddworks-claudebar" href="https://github.com/tddworks/ClaudeBar">tddworks/ClaudeBar</a> (16 commits) [↩](#row-tddworks-claudebar)
+
+- [Alex](https://github.com/AlexanderWillner): [16](https://github.com/search?q=repo%3Atddworks/ClaudeBar%20author%3AAlexanderWillner%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ietf-wg-spice-draft-ietf-spice-glue-id" href="https://github.com/ietf-wg-spice/draft-ietf-spice-glue-id">ietf-wg-spice/draft-ietf-spice-glue-id</a> (16 commits) [↩](#row-ietf-wg-spice-draft-ietf-spice-glue-id)
+
+- [Brent Zundel](https://github.com/brentzundel): [16](https://github.com/search?q=repo%3Aietf-wg-spice/draft-ietf-spice-glue-id%20author%3Abrentzundel%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-subscribable-things" href="https://github.com/chrisguttandin/subscribable-things">chrisguttandin/subscribable-things</a> (16 commits) [↩](#row-chrisguttandin-subscribable-things)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [16](https://github.com/search?q=repo%3Achrisguttandin/subscribable-things%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ecomfe-vue-echarts" href="https://github.com/ecomfe/vue-echarts">ecomfe/vue-echarts</a> (16 commits) [↩](#row-ecomfe-vue-echarts)
+
+- [GU Yiling](https://github.com/Justineo): [16](https://github.com/search?q=repo%3Aecomfe/vue-echarts%20author%3AJustineo%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-notify-rs-notify" href="https://github.com/notify-rs/notify">notify-rs/notify</a> (16 commits) [↩](#row-notify-rs-notify)
+
+- [Yuki Okushi](https://github.com/JohnTitor): [16](https://github.com/search?q=repo%3Anotify-rs/notify%20author%3AJohnTitor%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-pointereventswg" href="https://github.com/w3c/pointereventswg">w3c/pointereventswg</a> (16 commits) [↩](#row-w3c-pointereventswg)
+
+- [Philippe Le Hegaret](https://github.com/plehegar): [16](https://github.com/search?q=repo%3Aw3c/pointereventswg%20author%3Aplehegar%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-nicholasgriffintn-anyone-can-draw" href="https://github.com/nicholasgriffintn/anyone-can-draw">nicholasgriffintn/anyone-can-draw</a> (16 commits) [↩](#row-nicholasgriffintn-anyone-can-draw)
+
+- [Nicholas Griffin](https://github.com/nicholasgriffintn): [16](https://github.com/search?q=repo%3Anicholasgriffintn/anyone-can-draw%20author%3Anicholasgriffintn%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-launchpad-detector" href="https://github.com/chrisguttandin/launchpad-detector">chrisguttandin/launchpad-detector</a> (15 commits) [↩](#row-chrisguttandin-launchpad-detector)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [15](https://github.com/search?q=repo%3Achrisguttandin/launchpad-detector%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-stylelint-config-holy-grail" href="https://github.com/chrisguttandin/stylelint-config-holy-grail">chrisguttandin/stylelint-config-holy-grail</a> (15 commits) [↩](#row-chrisguttandin-stylelint-config-holy-grail)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [15](https://github.com/search?q=repo%3Achrisguttandin/stylelint-config-holy-grail%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-frosne-manifest-parser" href="https://github.com/Frosne/manifest-parser">Frosne/manifest-parser</a> (15 commits) [↩](#row-frosne-manifest-parser)
+
+- [Anna Weine](https://github.com/Frosne): [15](https://github.com/search?q=repo%3AFrosne/manifest-parser%20author%3AFrosne%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-actix-actix-extras" href="https://github.com/actix/actix-extras">actix/actix-extras</a> (15 commits) [↩](#row-actix-actix-extras)
+
+- [Yuki Okushi](https://github.com/JohnTitor): [15](https://github.com/search?q=repo%3Aactix/actix-extras%20author%3AJohnTitor%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-grokify-structured-requirements" href="https://github.com/grokify/structured-requirements">grokify/structured-requirements</a> (15 commits) [↩](#row-grokify-structured-requirements)
+
+- [John Wang](https://github.com/grokify): [15](https://github.com/search?q=repo%3Agrokify/structured-requirements%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-jeswr-shaclc-writer" href="https://github.com/jeswr/shaclc-writer">jeswr/shaclc-writer</a> (15 commits) [↩](#row-jeswr-shaclc-writer)
+
+- [Jesse Wright](https://github.com/jeswr): [15](https://github.com/search?q=repo%3Ajeswr/shaclc-writer%20author%3Ajeswr%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-paulirish-dotfiles" href="https://github.com/paulirish/dotfiles">paulirish/dotfiles</a> (15 commits) [↩](#row-paulirish-dotfiles)
+
+- [Paul Irish](https://github.com/paulirish): [15](https://github.com/search?q=repo%3Apaulirish/dotfiles%20author%3Apaulirish%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-timcappalli-nhl-goal-announce" href="https://github.com/timcappalli/nhl-goal-announce">timcappalli/nhl-goal-announce</a> (15 commits) [↩](#row-timcappalli-nhl-goal-announce)
+
+- [Tim Cappalli](https://github.com/timcappalli): [15](https://github.com/search?q=repo%3Atimcappalli/nhl-goal-announce%20author%3Atimcappalli%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-charter-drafts" href="https://github.com/w3c/charter-drafts">w3c/charter-drafts</a> (14 commits) [↩](#row-w3c-charter-drafts)
+
+- [Philippe Le Hegaret](https://github.com/plehegar): [5](https://github.com/search?q=repo%3Aw3c/charter-drafts%20author%3Aplehegar%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [caribouW3](https://github.com/caribouW3): [3](https://github.com/search?q=repo%3Aw3c/charter-drafts%20author%3AcaribouW3%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [sideshowbarker](https://github.com/sideshowbarker): [2](https://github.com/search?q=repo%3Aw3c/charter-drafts%20author%3Asideshowbarker%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Simeon Vincent](https://github.com/dotproto): [1](https://github.com/search?q=repo%3Aw3c/charter-drafts%20author%3Adotproto%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Hidde de Vries](https://github.com/hidde): [1](https://github.com/search?q=repo%3Aw3c/charter-drafts%20author%3Ahidde%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Patrick H. Lauke](https://github.com/patrickhlauke): [1](https://github.com/search?q=repo%3Aw3c/charter-drafts%20author%3Apatrickhlauke%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Rob Wu](https://github.com/Rob--W): [1](https://github.com/search?q=repo%3Aw3c/charter-drafts%20author%3ARob--W%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-aramzs-devblog" href="https://github.com/AramZS/devblog">AramZS/devblog</a> (14 commits) [↩](#row-aramzs-devblog)
+
+- [Aram Zucker-Scharff](https://github.com/AramZS): [14](https://github.com/search?q=repo%3AAramZS/devblog%20author%3AAramZS%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chunminchang-dotfiles" href="https://github.com/ChunMinChang/dotfiles">ChunMinChang/dotfiles</a> (14 commits) [↩](#row-chunminchang-dotfiles)
+
+- [Chun-Min Chang](https://github.com/ChunMinChang): [14](https://github.com/search?q=repo%3AChunMinChang/dotfiles%20author%3AChunMinChang%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-eslint-config-holy-grail" href="https://github.com/chrisguttandin/eslint-config-holy-grail">chrisguttandin/eslint-config-holy-grail</a> (14 commits) [↩](#row-chrisguttandin-eslint-config-holy-grail)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [14](https://github.com/search?q=repo%3Achrisguttandin/eslint-config-holy-grail%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-langchain-ai-langgraphjs" href="https://github.com/langchain-ai/langgraphjs">langchain-ai/langgraphjs</a> (14 commits) [↩](#row-langchain-ai-langgraphjs)
+
+- [Christian Bromann](https://github.com/christian-bromann): [14](https://github.com/search?q=repo%3Alangchain-ai/langgraphjs%20author%3Achristian-bromann%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-jan-ivar-dummy" href="https://github.com/jan-ivar/dummy">jan-ivar/dummy</a> (14 commits) [↩](#row-jan-ivar-dummy)
+
+- [Jan-Ivar Bruaroey](https://github.com/jan-ivar): [14](https://github.com/search?q=repo%3Ajan-ivar/dummy%20author%3Ajan-ivar%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-socketdev-socket-sdk-js" href="https://github.com/SocketDev/socket-sdk-js">SocketDev/socket-sdk-js</a> (14 commits) [↩](#row-socketdev-socket-sdk-js)
+
+- [John-David Dalton](https://github.com/jdalton): [14](https://github.com/search?q=repo%3ASocketDev/socket-sdk-js%20author%3Ajdalton%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-agentplexus-omnivoice-deepgram" href="https://github.com/agentplexus/omnivoice-deepgram">agentplexus/omnivoice-deepgram</a> (14 commits) [↩](#row-agentplexus-omnivoice-deepgram)
+
+- [John Wang](https://github.com/grokify): [14](https://github.com/search?q=repo%3Aagentplexus/omnivoice-deepgram%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-grokify-slidekit" href="https://github.com/grokify/slidekit">grokify/slidekit</a> (14 commits) [↩](#row-grokify-slidekit)
+
+- [John Wang](https://github.com/grokify): [14](https://github.com/search?q=repo%3Agrokify/slidekit%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-grokify-omnistorage-github" href="https://github.com/grokify/omnistorage-github">grokify/omnistorage-github</a> (14 commits) [↩](#row-grokify-omnistorage-github)
+
+- [John Wang](https://github.com/grokify): [14](https://github.com/search?q=repo%3Agrokify/omnistorage-github%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-did-resolution" href="https://github.com/w3c/did-resolution">w3c/did-resolution</a> (14 commits) [↩](#row-w3c-did-resolution)
+
+- [Manu Sporny](https://github.com/msporny): [9](https://github.com/search?q=repo%3Aw3c/did-resolution%20author%3Amsporny%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Ted Thibodeau Jr](https://github.com/TallTed): [5](https://github.com/search?q=repo%3Aw3c/did-resolution%20author%3ATallTed%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-wicg-pepc" href="https://github.com/WICG/PEPC">WICG/PEPC</a> (14 commits) [↩](#row-wicg-pepc)
+
+- [Daniel Vogelheim](https://github.com/otherdaniel): [14](https://github.com/search?q=repo%3AWICG/PEPC%20author%3Aotherdaniel%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-gargantua" href="https://github.com/w3c/gargantua">w3c/gargantua</a> (14 commits) [↩](#row-w3c-gargantua)
+
+- [Philippe Le Hegaret](https://github.com/plehegar): [14](https://github.com/search?q=repo%3Aw3c/gargantua%20author%3Aplehegar%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-wai-website" href="https://github.com/w3c/wai-website">w3c/wai-website</a> (14 commits) [↩](#row-w3c-wai-website)
+
+- [Rémi Bétin](https://github.com/remibetin): [14](https://github.com/search?q=repo%3Aw3c/wai-website%20author%3Aremibetin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-sideshowbarker-social-media-cleanser" href="https://github.com/sideshowbarker/social-media-cleanser">sideshowbarker/social-media-cleanser</a> (14 commits) [↩](#row-sideshowbarker-social-media-cleanser)
+
+- [sideshowbarker](https://github.com/sideshowbarker): [14](https://github.com/search?q=repo%3Asideshowbarker/social-media-cleanser%20author%3Asideshowbarker%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-timcappalli-explainers" href="https://github.com/timcappalli/explainers">timcappalli/explainers</a> (14 commits) [↩](#row-timcappalli-explainers)
+
+- [Tim Cappalli](https://github.com/timcappalli): [14](https://github.com/search?q=repo%3Atimcappalli/explainers%20author%3Atimcappalli%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-rubensworks-workshop-semantics2026-semdev" href="https://github.com/rubensworks/Workshop-Semantics2026-SemDev">rubensworks/Workshop-Semantics2026-SemDev</a> (14 commits) [↩](#row-rubensworks-workshop-semantics2026-semdev)
+
+- [Ruben Taelman](https://github.com/rubensworks): [14](https://github.com/search?q=repo%3Arubensworks/Workshop-Semantics2026-SemDev%20author%3Arubensworks%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-jaegertracing-helm-charts" href="https://github.com/jaegertracing/helm-charts">jaegertracing/helm-charts</a> (14 commits) [↩](#row-jaegertracing-helm-charts)
+
+- [Yuri Shkuro](https://github.com/yurishkuro): [14](https://github.com/search?q=repo%3Ajaegertracing/helm-charts%20author%3Ayurishkuro%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-matrix-org-matrix-rust-sdk" href="https://github.com/matrix-org/matrix-rust-sdk">matrix-org/matrix-rust-sdk</a> (13 commits) [↩](#row-matrix-org-matrix-rust-sdk)
+
+- [Benjamin Bouvier](https://github.com/bnjbvr): [13](https://github.com/search?q=repo%3Amatrix-org/matrix-rust-sdk%20author%3Abnjbvr%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-web-codecs" href="https://github.com/chrisguttandin/web-codecs">chrisguttandin/web-codecs</a> (13 commits) [↩](#row-chrisguttandin-web-codecs)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [13](https://github.com/search?q=repo%3Achrisguttandin/web-codecs%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-jzni-schema" href="https://github.com/jzni/schema">jzni/schema</a> (13 commits) [↩](#row-jzni-schema)
+
+- [Jimmy Zhening Luo](https://github.com/jimmy-zhening-luo): [13](https://github.com/search?q=repo%3Ajzni/schema%20author%3Ajimmy-zhening-luo%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-agentplexus-omniretrieve" href="https://github.com/agentplexus/omniretrieve">agentplexus/omniretrieve</a> (13 commits) [↩](#row-agentplexus-omniretrieve)
+
+- [John Wang](https://github.com/grokify): [13](https://github.com/search?q=repo%3Aagentplexus/omniretrieve%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-agentplexus-omnivoice-twilio" href="https://github.com/agentplexus/omnivoice-twilio">agentplexus/omnivoice-twilio</a> (13 commits) [↩](#row-agentplexus-omnivoice-twilio)
+
+- [John Wang](https://github.com/grokify): [13](https://github.com/search?q=repo%3Aagentplexus/omnivoice-twilio%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-fedid-digital-credentials" href="https://github.com/w3c-fedid/digital-credentials">w3c-fedid/digital-credentials</a> (13 commits) [↩](#row-w3c-fedid-digital-credentials)
+
+- [Marcos Cáceres](https://github.com/marcoscaceres): [13](https://github.com/search?q=repo%3Aw3c-fedid/digital-credentials%20author%3Amarcoscaceres%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-http-tests-cache-tests" href="https://github.com/http-tests/cache-tests">http-tests/cache-tests</a> (13 commits) [↩](#row-http-tests-cache-tests)
+
+- [Mark Nottingham](https://github.com/mnot): [13](https://github.com/search?q=repo%3Ahttp-tests/cache-tests%20author%3Amnot%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-o-y-dotfiles" href="https://github.com/o-y/dotfiles">o-y/dotfiles</a> (13 commits) [↩](#row-o-y-dotfiles)
+
+- [zv](https://github.com/o-y): [13](https://github.com/search?q=repo%3Ao-y/dotfiles%20author%3Ao-y%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-ccg-w3c-ccg-archiver" href="https://github.com/w3c-ccg/w3c-ccg-archiver">w3c-ccg/w3c-ccg-archiver</a> (13 commits) [↩](#row-w3c-ccg-w3c-ccg-archiver)
+
+- [Manu Sporny](https://github.com/msporny): [13](https://github.com/search?q=repo%3Aw3c-ccg/w3c-ccg-archiver%20author%3Amsporny%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-neovateai-agent-skill-npm-boilerplate" href="https://github.com/neovateai/agent-skill-npm-boilerplate">neovateai/agent-skill-npm-boilerplate</a> (13 commits) [↩](#row-neovateai-agent-skill-npm-boilerplate)
+
+- [Hai Rao](https://github.com/RaoHai): [13](https://github.com/search?q=repo%3Aneovateai/agent-skill-npm-boilerplate%20author%3ARaoHai%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-mrhenry-s3-uploads" href="https://github.com/mrhenry/S3-Uploads">mrhenry/S3-Uploads</a> (13 commits) [↩](#row-mrhenry-s3-uploads)
+
+- [Romain Menke](https://github.com/romainmenke): [13](https://github.com/search?q=repo%3Amrhenry/S3-Uploads%20author%3Aromainmenke%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-underoot-ruble-roller-coaster" href="https://github.com/underoot/ruble-roller-coaster">underoot/ruble-roller-coaster</a> (13 commits) [↩](#row-underoot-ruble-roller-coaster)
+
+- [Aleksandr Shoronov](https://github.com/underoot): [13](https://github.com/search?q=repo%3Aunderoot/ruble-roller-coaster%20author%3Aunderoot%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-comunica-comunica-feature-link-traversal" href="https://github.com/comunica/comunica-feature-link-traversal">comunica/comunica-feature-link-traversal</a> (13 commits) [↩](#row-comunica-comunica-feature-link-traversal)
+
+- [Ruben Taelman](https://github.com/rubensworks): [13](https://github.com/search?q=repo%3Acomunica/comunica-feature-link-traversal%20author%3Arubensworks%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-rubensworks-rdf-play-js" href="https://github.com/rubensworks/rdf-play.js">rubensworks/rdf-play.js</a> (13 commits) [↩](#row-rubensworks-rdf-play-js)
+
+- [Ruben Taelman](https://github.com/rubensworks): [13](https://github.com/search?q=repo%3Arubensworks/rdf-play.js%20author%3Arubensworks%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-zotero-translators" href="https://github.com/zotero/translators">zotero/translators</a> (12 commits) [↩](#row-zotero-translators)
+
+- [Abe Jellinek](https://github.com/AbeJellinek): [12](https://github.com/search?q=repo%3Azotero/translators%20author%3AAbeJellinek%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-webmachinelearning-webnn" href="https://github.com/webmachinelearning/webnn">webmachinelearning/webnn</a> (12 commits) [↩](#row-webmachinelearning-webnn)
+
+- [Dominique Hazael-Massieux](https://github.com/dontcallmedom): [9](https://github.com/search?q=repo%3Awebmachinelearning/webnn%20author%3Adontcallmedom%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Anssi Kostiainen](https://github.com/anssiko): [3](https://github.com/search?q=repo%3Awebmachinelearning/webnn%20author%3Aanssiko%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-tslint-config-holy-grail" href="https://github.com/chrisguttandin/tslint-config-holy-grail">chrisguttandin/tslint-config-holy-grail</a> (12 commits) [↩](#row-chrisguttandin-tslint-config-holy-grail)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [12](https://github.com/search?q=repo%3Achrisguttandin/tslint-config-holy-grail%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chrisguttandin-tsconfig-holy-grail" href="https://github.com/chrisguttandin/tsconfig-holy-grail">chrisguttandin/tsconfig-holy-grail</a> (12 commits) [↩](#row-chrisguttandin-tsconfig-holy-grail)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): [12](https://github.com/search?q=repo%3Achrisguttandin/tsconfig-holy-grail%20author%3Achrisguttandin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-edrlab-thorium-reader" href="https://github.com/edrlab/thorium-reader">edrlab/thorium-reader</a> (12 commits) [↩](#row-edrlab-thorium-reader)
+
+- [Daniel Weck](https://github.com/danielweck): [12](https://github.com/search?q=repo%3Aedrlab/thorium-reader%20author%3Adanielweck%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-epub-tests" href="https://github.com/w3c/epub-tests">w3c/epub-tests</a> (12 commits) [↩](#row-w3c-epub-tests)
+
+- [Ivan Herman](https://github.com/iherman): [10](https://github.com/search?q=repo%3Aw3c/epub-tests%20author%3Aiherman%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Matt Garrish](https://github.com/mattgarrish): [2](https://github.com/search?q=repo%3Aw3c/epub-tests%20author%3Amattgarrish%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ibelem-webnn-hf-spaces" href="https://github.com/ibelem/webnn-hf-spaces">ibelem/webnn-hf-spaces</a> (12 commits) [↩](#row-ibelem-webnn-hf-spaces)
+
+- [Belem Zhang](https://github.com/ibelem): [12](https://github.com/search?q=repo%3Aibelem/webnn-hf-spaces%20author%3Aibelem%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-l-xiaoshen-unocss-svelte" href="https://github.com/l-xiaoshen/unocss-svelte">l-xiaoshen/unocss-svelte</a> (12 commits) [↩](#row-l-xiaoshen-unocss-svelte)
+
+- [Xiaoshen X](https://github.com/l-xiaoshen): [12](https://github.com/search?q=repo%3Al-xiaoshen/unocss-svelte%20author%3Al-xiaoshen%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-grokify-oscompat" href="https://github.com/grokify/oscompat">grokify/oscompat</a> (12 commits) [↩](#row-grokify-oscompat)
+
+- [John Wang](https://github.com/grokify): [12](https://github.com/search?q=repo%3Agrokify/oscompat%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-grokify-goauth" href="https://github.com/grokify/goauth">grokify/goauth</a> (12 commits) [↩](#row-grokify-goauth)
+
+- [John Wang](https://github.com/grokify): [12](https://github.com/search?q=repo%3Agrokify/goauth%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ostafinskim-attendance-tracker" href="https://github.com/ostafinskim/attendance-tracker">ostafinskim/attendance-tracker</a> (12 commits) [↩](#row-ostafinskim-attendance-tracker)
+
+- [Miro Ostafinski](https://github.com/ostafinskim): [12](https://github.com/search?q=repo%3Aostafinskim/attendance-tracker%20author%3Aostafinskim%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-oauth-wg-oauth-cross-device-security" href="https://github.com/oauth-wg/oauth-cross-device-security">oauth-wg/oauth-cross-device-security</a> (12 commits) [↩](#row-oauth-wg-oauth-cross-device-security)
+
+- [Filip Skokan](https://github.com/panva): [12](https://github.com/search?q=repo%3Aoauth-wg/oauth-cross-device-security%20author%3Apanva%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-unicode-org-icu4x" href="https://github.com/unicode-org/icu4x">unicode-org/icu4x</a> (12 commits) [↩](#row-unicode-org-icu4x)
+
+- [Manish Goregaokar](https://github.com/Manishearth): [12](https://github.com/search?q=repo%3Aunicode-org/icu4x%20author%3AManishearth%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-paulirish-trace-stuff" href="https://github.com/paulirish/trace-stuff">paulirish/trace-stuff</a> (12 commits) [↩](#row-paulirish-trace-stuff)
+
+- [Paul Irish](https://github.com/paulirish): [12](https://github.com/search?q=repo%3Apaulirish/trace-stuff%20author%3Apaulirish%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-semiceu-ldes-dcat-ap-feeds" href="https://github.com/SEMICeu/LDES-DCAT-AP-feeds">SEMICeu/LDES-DCAT-AP-feeds</a> (12 commits) [↩](#row-semiceu-ldes-dcat-ap-feeds)
+
+- [Ieben Smessaert](https://github.com/smessie): [12](https://github.com/search?q=repo%3ASEMICeu/LDES-DCAT-AP-feeds%20author%3Asmessie%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-thiagowfx-pre-commit-hooks" href="https://github.com/thiagowfx/pre-commit-hooks">thiagowfx/pre-commit-hooks</a> (12 commits) [↩](#row-thiagowfx-pre-commit-hooks)
+
+- [Thiago Perrotta](https://github.com/thiagowfx): [12](https://github.com/search?q=repo%3Athiagowfx/pre-commit-hooks%20author%3Athiagowfx%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ljharb-purl" href="https://github.com/ljharb/purl">ljharb/purl</a> (12 commits) [↩](#row-ljharb-purl)
+
+- [Jordan Harband](https://github.com/ljharb): [12](https://github.com/search?q=repo%3Aljharb/purl%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-jaegertracing-spark-dependencies" href="https://github.com/jaegertracing/spark-dependencies">jaegertracing/spark-dependencies</a> (12 commits) [↩](#row-jaegertracing-spark-dependencies)
+
+- [Yuri Shkuro](https://github.com/yurishkuro): [12](https://github.com/search?q=repo%3Ajaegertracing/spark-dependencies%20author%3Ayurishkuro%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-sustainableweb-wsg" href="https://github.com/w3c/sustainableweb-wsg">w3c/sustainableweb-wsg</a> (11 commits) [↩](#row-w3c-sustainableweb-wsg)
+
+- [Alexander Dawson](https://github.com/AlexDawsonUK): [10](https://github.com/search?q=repo%3Aw3c/sustainableweb-wsg%20author%3AAlexDawsonUK%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Jeffrey Yasskin](https://github.com/jyasskin): [1](https://github.com/search?q=repo%3Aw3c/sustainableweb-wsg%20author%3Ajyasskin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-adamj-adamj-github-io" href="https://github.com/AdamJ/AdamJ.github.io">AdamJ/AdamJ.github.io</a> (11 commits) [↩](#row-adamj-adamj-github-io)
+
+- [Adam Jolicoeur](https://github.com/AdamJ): [11](https://github.com/search?q=repo%3AAdamJ/AdamJ.github.io%20author%3AAdamJ%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chunminchang-triage-wizard" href="https://github.com/ChunMinChang/triage-wizard">ChunMinChang/triage-wizard</a> (11 commits) [↩](#row-chunminchang-triage-wizard)
+
+- [Chun-Min Chang](https://github.com/ChunMinChang): [11](https://github.com/search?q=repo%3AChunMinChang/triage-wizard%20author%3AChunMinChang%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-eerii-conflores" href="https://github.com/eerii/conflores">eerii/conflores</a> (11 commits) [↩](#row-eerii-conflores)
+
+- [eri](https://github.com/eerii): [11](https://github.com/search?q=repo%3Aeerii/conflores%20author%3Aeerii%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-endorhq-rover" href="https://github.com/endorhq/rover">endorhq/rover</a> (11 commits) [↩](#row-endorhq-rover)
+
+- [Rafael Fernández López](https://github.com/ereslibre): [11](https://github.com/search?q=repo%3Aendorhq/rover%20author%3Aereslibre%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-projectfluent-python-fluent" href="https://github.com/projectfluent/python-fluent">projectfluent/python-fluent</a> (11 commits) [↩](#row-projectfluent-python-fluent)
+
+- [Eemeli Aro](https://github.com/eemeli): [11](https://github.com/search?q=repo%3Aprojectfluent/python-fluent%20author%3Aeemeli%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-abra-nl-abra-sdk-ios-package" href="https://github.com/abra-nl/abra-sdk-ios-package">abra-nl/abra-sdk-ios-package</a> (11 commits) [↩](#row-abra-nl-abra-sdk-ios-package)
+
+- [Jan Jaap de Groot](https://github.com/JJdeGroot): [11](https://github.com/search?q=repo%3Aabra-nl/abra-sdk-ios-package%20author%3AJJdeGroot%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-kgraney-dune_container" href="https://github.com/kgraney/dune_container">kgraney/dune_container</a> (11 commits) [↩](#row-kgraney-dune_container)
+
+- [Kevin Graney](https://github.com/kgraney): [11](https://github.com/search?q=repo%3Akgraney/dune_container%20author%3Akgraney%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-kong-public-ui-components" href="https://github.com/Kong/public-ui-components">Kong/public-ui-components</a> (11 commits) [↩](#row-kong-public-ui-components)
+
+- [GU Yiling](https://github.com/Justineo): [11](https://github.com/search?q=repo%3AKong/public-ui-components%20author%3AJustineo%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-mozillasecurity-webcompatmanager" href="https://github.com/MozillaSecurity/WebCompatManager">MozillaSecurity/WebCompatManager</a> (11 commits) [↩](#row-mozillasecurity-webcompatmanager)
+
+- [jgraham](https://github.com/jgraham): [11](https://github.com/search?q=repo%3AMozillaSecurity/WebCompatManager%20author%3Ajgraham%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-grokify-omnistorage-google" href="https://github.com/grokify/omnistorage-google">grokify/omnistorage-google</a> (11 commits) [↩](#row-grokify-omnistorage-google)
+
+- [John Wang](https://github.com/grokify): [11](https://github.com/search?q=repo%3Agrokify/omnistorage-google%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-mehm8128-storycatalog" href="https://github.com/mehm8128/storycatalog">mehm8128/storycatalog</a> (11 commits) [↩](#row-mehm8128-storycatalog)
+
+- [mehm8128](https://github.com/mehm8128): [11](https://github.com/search?q=repo%3Amehm8128/storycatalog%20author%3Amehm8128%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-mnot-http-sf" href="https://github.com/mnot/http-sf">mnot/http-sf</a> (11 commits) [↩](#row-mnot-http-sf)
+
+- [Mark Nottingham](https://github.com/mnot): [11](https://github.com/search?q=repo%3Amnot/http-sf%20author%3Amnot%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-googlechrome-chrome-types" href="https://github.com/GoogleChrome/chrome-types">GoogleChrome/chrome-types</a> (11 commits) [↩](#row-googlechrome-chrome-types)
+
+- [Oliver Dunk](https://github.com/oliverdunk): [11](https://github.com/search?q=repo%3AGoogleChrome/chrome-types%20author%3Aoliverdunk%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-logonoff-logonoff-github-io" href="https://github.com/logonoff/logonoff.github.io">logonoff/logonoff.github.io</a> (11 commits) [↩](#row-logonoff-logonoff-github-io)
+
+- [logonoff](https://github.com/logonoff): [11](https://github.com/search?q=repo%3Alogonoff/logonoff.github.io%20author%3Alogonoff%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-mardi4nfdi-docker-wikibase" href="https://github.com/MaRDI4NFDI/docker-wikibase">MaRDI4NFDI/docker-wikibase</a> (11 commits) [↩](#row-mardi4nfdi-docker-wikibase)
+
+- [Moritz Schubotz](https://github.com/physikerwelt): [11](https://github.com/search?q=repo%3AMaRDI4NFDI/docker-wikibase%20author%3Aphysikerwelt%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-raohai-claudequant" href="https://github.com/RaoHai/ClaudeQuant">RaoHai/ClaudeQuant</a> (11 commits) [↩](#row-raohai-claudequant)
+
+- [Hai Rao](https://github.com/RaoHai): [11](https://github.com/search?q=repo%3ARaoHai/ClaudeQuant%20author%3ARaoHai%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-i18n-drafts" href="https://github.com/w3c/i18n-drafts">w3c/i18n-drafts</a> (11 commits) [↩](#row-w3c-i18n-drafts)
+
+- [Fuqiao Xue](https://github.com/xfq): [11](https://github.com/search?q=repo%3Aw3c/i18n-drafts%20author%3Axfq%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-es-shims-promise-try" href="https://github.com/es-shims/Promise.try">es-shims/Promise.try</a> (11 commits) [↩](#row-es-shims-promise-try)
+
+- [Jordan Harband](https://github.com/ljharb): [11](https://github.com/search?q=repo%3Aes-shims/Promise.try%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-cyclopsmc-versions" href="https://github.com/CyclopsMC/Versions">CyclopsMC/Versions</a> (11 commits) [↩](#row-cyclopsmc-versions)
+
+- [Ruben Taelman](https://github.com/rubensworks): [11](https://github.com/search?q=repo%3ACyclopsMC/Versions%20author%3Arubensworks%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-comunica-comunica-feature-hdt" href="https://github.com/comunica/comunica-feature-hdt">comunica/comunica-feature-hdt</a> (11 commits) [↩](#row-comunica-comunica-feature-hdt)
+
+- [Ruben Taelman](https://github.com/rubensworks): [11](https://github.com/search?q=repo%3Acomunica/comunica-feature-hdt%20author%3Arubensworks%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-httparchive-wappalyzer" href="https://github.com/HTTPArchive/wappalyzer">HTTPArchive/wappalyzer</a> (11 commits) [↩](#row-httparchive-wappalyzer)
+
+- [Barry Pollard](https://github.com/tunetheweb): [11](https://github.com/search?q=repo%3AHTTPArchive/wappalyzer%20author%3Atunetheweb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-zotero-reader" href="https://github.com/zotero/reader">zotero/reader</a> (10 commits) [↩](#row-zotero-reader)
+
+- [Abe Jellinek](https://github.com/AbeJellinek): [10](https://github.com/search?q=repo%3Azotero/reader%20author%3AAbeJellinek%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-alexnj-android-webviews" href="https://github.com/alexnj/android-webviews">alexnj/android-webviews</a> (10 commits) [↩](#row-alexnj-android-webviews)
+
+- [Alex N. Jose](https://github.com/alexnj): [10](https://github.com/search?q=repo%3Aalexnj/android-webviews%20author%3Aalexnj%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-alphagov-govuk-frontend" href="https://github.com/alphagov/govuk-frontend">alphagov/govuk-frontend</a> (10 commits) [↩](#row-alphagov-govuk-frontend)
+
+- [Oliver Byford](https://github.com/36degrees): [10](https://github.com/search?q=repo%3Aalphagov/govuk-frontend%20author%3A36degrees%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-product-designs-basketball-scorekeeper" href="https://github.com/Product-Designs/basketball-scorekeeper">Product-Designs/basketball-scorekeeper</a> (10 commits) [↩](#row-product-designs-basketball-scorekeeper)
+
+- [Adam Jolicoeur](https://github.com/AdamJ): [10](https://github.com/search?q=repo%3AProduct-Designs/basketball-scorekeeper%20author%3AAdamJ%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-morph-kgc-morph-kgc" href="https://github.com/morph-kgc/morph-kgc">morph-kgc/morph-kgc</a> (10 commits) [↩](#row-morph-kgc-morph-kgc)
+
+- [Julián Arenas Guerrero](https://github.com/arenas-guerrero-julian): [10](https://github.com/search?q=repo%3Amorph-kgc/morph-kgc%20author%3Aarenas-guerrero-julian%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-cottas-rdf--github" href="https://github.com/cottas-rdf/.github">cottas-rdf/.github</a> (10 commits) [↩](#row-cottas-rdf--github)
+
+- [Julián Arenas Guerrero](https://github.com/arenas-guerrero-julian): [10](https://github.com/search?q=repo%3Acottas-rdf/.github%20author%3Aarenas-guerrero-julian%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-firefox-devtools-profiler" href="https://github.com/firefox-devtools/profiler">firefox-devtools/profiler</a> (10 commits) [↩](#row-firefox-devtools-profiler)
+
+- [Nazım Can Altınova](https://github.com/canova): [10](https://github.com/search?q=repo%3Afirefox-devtools/profiler%20author%3Acanova%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-dontcallmedom-ie-dashboard" href="https://github.com/dontcallmedom/ie-dashboard">dontcallmedom/ie-dashboard</a> (10 commits) [↩](#row-dontcallmedom-ie-dashboard)
+
+- [Dominique Hazael-Massieux](https://github.com/dontcallmedom): [10](https://github.com/search?q=repo%3Adontcallmedom/ie-dashboard%20author%3Adontcallmedom%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-jeffcarp-ml-hyperpolyglot" href="https://github.com/jeffcarp/ml-hyperpolyglot">jeffcarp/ml-hyperpolyglot</a> (10 commits) [↩](#row-jeffcarp-ml-hyperpolyglot)
+
+- [Jeff Carpenter](https://github.com/jeffcarp): [10](https://github.com/search?q=repo%3Ajeffcarp/ml-hyperpolyglot%20author%3Ajeffcarp%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ibelem-web-ai-test" href="https://github.com/ibelem/web-ai-test">ibelem/web-ai-test</a> (10 commits) [↩](#row-ibelem-web-ai-test)
+
+- [Belem Zhang](https://github.com/ibelem): [10](https://github.com/search?q=repo%3Aibelem/web-ai-test%20author%3Aibelem%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-mozilla-docker-etl" href="https://github.com/mozilla/docker-etl">mozilla/docker-etl</a> (10 commits) [↩](#row-mozilla-docker-etl)
+
+- [jgraham](https://github.com/jgraham): [10](https://github.com/search?q=repo%3Amozilla/docker-etl%20author%3Ajgraham%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-jimmy-zhening-luo-bookmark" href="https://github.com/jimmy-zhening-luo/bookmark">jimmy-zhening-luo/bookmark</a> (10 commits) [↩](#row-jimmy-zhening-luo-bookmark)
+
+- [Jimmy Zhening Luo](https://github.com/jimmy-zhening-luo): [10](https://github.com/search?q=repo%3Ajimmy-zhening-luo/bookmark%20author%3Ajimmy-zhening-luo%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-agentplexus-omnivault-onepassword" href="https://github.com/agentplexus/omnivault-onepassword">agentplexus/omnivault-onepassword</a> (10 commits) [↩](#row-agentplexus-omnivault-onepassword)
+
+- [John Wang](https://github.com/grokify): [10](https://github.com/search?q=repo%3Aagentplexus/omnivault-onepassword%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-grokify-structured-goals" href="https://github.com/grokify/structured-goals">grokify/structured-goals</a> (10 commits) [↩](#row-grokify-structured-goals)
+
+- [John Wang](https://github.com/grokify): [10](https://github.com/search?q=repo%3Agrokify/structured-goals%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-grokify-grokify-github-io" href="https://github.com/grokify/grokify.github.io">grokify/grokify.github.io</a> (10 commits) [↩](#row-grokify-grokify-github-io)
+
+- [John Wang](https://github.com/grokify): [10](https://github.com/search?q=repo%3Agrokify/grokify.github.io%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-lukewarlow-dbus4k" href="https://github.com/lukewarlow/dbus4k">lukewarlow/dbus4k</a> (10 commits) [↩](#row-lukewarlow-dbus4k)
+
+- [Luke Warlow](https://github.com/lukewarlow): [10](https://github.com/search?q=repo%3Alukewarlow/dbus4k%20author%3Alukewarlow%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-logonoff-obsidian-inline-spoilers" href="https://github.com/logonoff/obsidian-inline-spoilers">logonoff/obsidian-inline-spoilers</a> (10 commits) [↩](#row-logonoff-obsidian-inline-spoilers)
+
+- [logonoff](https://github.com/logonoff): [10](https://github.com/search?q=repo%3Alogonoff/obsidian-inline-spoilers%20author%3Alogonoff%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-amermathsoc-texml-to-html" href="https://github.com/AmerMathSoc/texml-to-html">AmerMathSoc/texml-to-html</a> (10 commits) [↩](#row-amermathsoc-texml-to-html)
+
+- [Peter Krautzberger](https://github.com/pkra): [10](https://github.com/search?q=repo%3AAmerMathSoc/texml-to-html%20author%3Apkra%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-rinchen-ghostty-config" href="https://github.com/rinchen/ghostty-config">rinchen/ghostty-config</a> (10 commits) [↩](#row-rinchen-ghostty-config)
+
+- [J✪ΞY STANFORD](https://github.com/rinchen): [10](https://github.com/search?q=repo%3Arinchen/ghostty-config%20author%3Arinchen%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-es-shims-number-isfinite" href="https://github.com/es-shims/Number.isFinite">es-shims/Number.isFinite</a> (10 commits) [↩](#row-es-shims-number-isfinite)
+
+- [Jordan Harband](https://github.com/ljharb): [10](https://github.com/search?q=repo%3Aes-shims/Number.isFinite%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-inspect-js-node-exports-info" href="https://github.com/inspect-js/node-exports-info">inspect-js/node-exports-info</a> (10 commits) [↩](#row-inspect-js-node-exports-info)
+
+- [Jordan Harband](https://github.com/ljharb): [10](https://github.com/search?q=repo%3Ainspect-js/node-exports-info%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-comunica-comunica-feature-solid" href="https://github.com/comunica/comunica-feature-solid">comunica/comunica-feature-solid</a> (10 commits) [↩](#row-comunica-comunica-feature-solid)
+
+- [Ruben Taelman](https://github.com/rubensworks): [10](https://github.com/search?q=repo%3Acomunica/comunica-feature-solid%20author%3Arubensworks%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-llvm-llvm-project" href="https://github.com/llvm/llvm-project">llvm/llvm-project</a> (9 commits) [↩](#row-llvm-llvm-project)
+
+- [Fady Farag](https://github.com/iidmsa): [4](https://github.com/search?q=repo%3Allvm/llvm-project%20author%3Aiidmsa%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Derek Schuff](https://github.com/dschuff): [3](https://github.com/search?q=repo%3Allvm/llvm-project%20author%3Adschuff%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Heejin Ahn](https://github.com/aheejin): [1](https://github.com/search?q=repo%3Allvm/llvm-project%20author%3Aaheejin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Dan Gohman](https://github.com/sunfishcode): [1](https://github.com/search?q=repo%3Allvm/llvm-project%20author%3Asunfishcode%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-arthursonzogni-ftxui" href="https://github.com/ArthurSonzogni/FTXUI">ArthurSonzogni/FTXUI</a> (9 commits) [↩](#row-arthursonzogni-ftxui)
+
+- [Arthur Sonzogni](https://github.com/ArthurSonzogni): [9](https://github.com/search?q=repo%3AArthurSonzogni/FTXUI%20author%3AArthurSonzogni%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-lws-protocol" href="https://github.com/w3c/lws-protocol">w3c/lws-protocol</a> (9 commits) [↩](#row-w3c-lws-protocol)
+
+- [Aaron Coburn](https://github.com/acoburn): [7](https://github.com/search?q=repo%3Aw3c/lws-protocol%20author%3Aacoburn%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Ted Thibodeau Jr](https://github.com/TallTed): [2](https://github.com/search?q=repo%3Aw3c/lws-protocol%20author%3ATallTed%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-digitalbazaar-html-render-method-test" href="https://github.com/digitalbazaar/html-render-method-test">digitalbazaar/html-render-method-test</a> (9 commits) [↩](#row-digitalbazaar-html-render-method-test)
+
+- [BigBlueHat](https://github.com/BigBlueHat): [9](https://github.com/search?q=repo%3Adigitalbazaar/html-render-method-test%20author%3ABigBlueHat%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-athinkra-sheek-bakrii-saphaloo" href="https://github.com/athinkra/sheek-bakrii-saphaloo">athinkra/sheek-bakrii-saphaloo</a> (9 commits) [↩](#row-athinkra-sheek-bakrii-saphaloo)
+
+- [Daniel Yacob](https://github.com/dyacob): [9](https://github.com/search?q=repo%3Aathinkra/sheek-bakrii-saphaloo%20author%3Adyacob%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-donmccurdy-gltf-transform" href="https://github.com/donmccurdy/glTF-Transform">donmccurdy/glTF-Transform</a> (9 commits) [↩](#row-donmccurdy-gltf-transform)
+
+- [Don McCurdy](https://github.com/donmccurdy): [9](https://github.com/search?q=repo%3Adonmccurdy/glTF-Transform%20author%3Adonmccurdy%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-wai-wcag-em-report-tool" href="https://github.com/w3c/wai-wcag-em-report-tool">w3c/wai-wcag-em-report-tool</a> (9 commits) [↩](#row-w3c-wai-wcag-em-report-tool)
+
+- [Rémi Bétin](https://github.com/remibetin): [8](https://github.com/search?q=repo%3Aw3c/wai-wcag-em-report-tool%20author%3Aremibetin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Hidde de Vries](https://github.com/hidde): [1](https://github.com/search?q=repo%3Aw3c/wai-wcag-em-report-tool%20author%3Ahidde%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-hbz-lobid-gnd-ui" href="https://github.com/hbz/lobid-gnd-ui">hbz/lobid-gnd-ui</a> (9 commits) [↩](#row-hbz-lobid-gnd-ui)
+
+- [Fabian Steeg](https://github.com/fsteeg): [9](https://github.com/search?q=repo%3Ahbz/lobid-gnd-ui%20author%3Afsteeg%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-agentplexus-agent-team-content" href="https://github.com/agentplexus/agent-team-content">agentplexus/agent-team-content</a> (9 commits) [↩](#row-agentplexus-agent-team-content)
+
+- [John Wang](https://github.com/grokify): [9](https://github.com/search?q=repo%3Aagentplexus/agent-team-content%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-agentplexus-agentcall" href="https://github.com/agentplexus/agentcall">agentplexus/agentcall</a> (9 commits) [↩](#row-agentplexus-agentcall)
+
+- [John Wang](https://github.com/grokify): [9](https://github.com/search?q=repo%3Aagentplexus/agentcall%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-grokify-chathub" href="https://github.com/grokify/chathub">grokify/chathub</a> (9 commits) [↩](#row-grokify-chathub)
+
+- [John Wang](https://github.com/grokify): [9](https://github.com/search?q=repo%3Agrokify/chathub%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-eyereasoner-eye-js" href="https://github.com/eyereasoner/eye-js">eyereasoner/eye-js</a> (9 commits) [↩](#row-eyereasoner-eye-js)
+
+- [Jesse Wright](https://github.com/jeswr): [9](https://github.com/search?q=repo%3Aeyereasoner/eye-js%20author%3Ajeswr%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-leaverou-blog" href="https://github.com/LeaVerou/blog">LeaVerou/blog</a> (9 commits) [↩](#row-leaverou-blog)
+
+- [Lea Verou](https://github.com/LeaVerou): [9](https://github.com/search?q=repo%3ALeaVerou/blog%20author%3ALeaVerou%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-qunitjs-qunit" href="https://github.com/qunitjs/qunit">qunitjs/qunit</a> (9 commits) [↩](#row-qunitjs-qunit)
+
+- [Timo Tijhof](https://github.com/Krinkle): [9](https://github.com/search?q=repo%3Aqunitjs/qunit%20author%3AKrinkle%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-guide" href="https://github.com/w3c/guide">w3c/guide</a> (9 commits) [↩](#row-w3c-guide)
+
+- [Philippe Le Hegaret](https://github.com/plehegar): [3](https://github.com/search?q=repo%3Aw3c/guide%20author%3Aplehegar%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [François Daoust](https://github.com/tidoust): [2](https://github.com/search?q=repo%3Aw3c/guide%20author%3Atidoust%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Ted Thibodeau Jr](https://github.com/TallTed): [2](https://github.com/search?q=repo%3Aw3c/guide%20author%3ATallTed%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Fuqiao Xue](https://github.com/xfq): [2](https://github.com/search?q=repo%3Aw3c/guide%20author%3Axfq%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-presbrey-lightymux" href="https://github.com/presbrey/lightymux">presbrey/lightymux</a> (9 commits) [↩](#row-presbrey-lightymux)
+
+- [presbrey](https://github.com/presbrey): [9](https://github.com/search?q=repo%3Apresbrey/lightymux%20author%3Apresbrey%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-babel-babel" href="https://github.com/babel/babel">babel/babel</a> (9 commits) [↩](#row-babel-babel)
+
+- [Nicolò Ribaudo](https://github.com/nicolo-ribaudo): [9](https://github.com/search?q=repo%3Ababel/babel%20author%3Anicolo-ribaudo%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-tc39-proposal-deferred-reexports" href="https://github.com/tc39/proposal-deferred-reexports">tc39/proposal-deferred-reexports</a> (9 commits) [↩](#row-tc39-proposal-deferred-reexports)
+
+- [Nicolò Ribaudo](https://github.com/nicolo-ribaudo): [9](https://github.com/search?q=repo%3Atc39/proposal-deferred-reexports%20author%3Anicolo-ribaudo%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-nicholasgriffintn-claude-code" href="https://github.com/nicholasgriffintn/claude-code">nicholasgriffintn/claude-code</a> (9 commits) [↩](#row-nicholasgriffintn-claude-code)
+
+- [Nicholas Griffin](https://github.com/nicholasgriffintn): [9](https://github.com/search?q=repo%3Anicholasgriffintn/claude-code%20author%3Anicholasgriffintn%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-wikimedia-mediawiki-extensions" href="https://github.com/wikimedia/mediawiki-extensions">wikimedia/mediawiki-extensions</a> (9 commits) [↩](#row-wikimedia-mediawiki-extensions)
+
+- [Moritz Schubotz](https://github.com/physikerwelt): [9](https://github.com/search?q=repo%3Awikimedia/mediawiki-extensions%20author%3Aphysikerwelt%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-sakupi01-sakupi01-com" href="https://github.com/sakupi01/sakupi01.com">sakupi01/sakupi01.com</a> (9 commits) [↩](#row-sakupi01-sakupi01-com)
+
+- [saku](https://github.com/sakupi01): [9](https://github.com/search?q=repo%3Asakupi01/sakupi01.com%20author%3Asakupi01%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-webref" href="https://github.com/w3c/webref">w3c/webref</a> (9 commits) [↩](#row-w3c-webref)
+
+- [François Daoust](https://github.com/tidoust): [8](https://github.com/search?q=repo%3Aw3c/webref%20author%3Atidoust%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Romain Menke](https://github.com/romainmenke): [1](https://github.com/search?q=repo%3Aw3c/webref%20author%3Aromainmenke%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ljharb-repo-report" href="https://github.com/ljharb/repo-report">ljharb/repo-report</a> (9 commits) [↩](#row-ljharb-repo-report)
+
+- [Jordan Harband](https://github.com/ljharb): [9](https://github.com/search?q=repo%3Aljharb/repo-report%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-es-shims-number-isinteger" href="https://github.com/es-shims/Number.isInteger">es-shims/Number.isInteger</a> (9 commits) [↩](#row-es-shims-number-isinteger)
+
+- [Jordan Harband](https://github.com/ljharb): [9](https://github.com/search?q=repo%3Aes-shims/Number.isInteger%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-es-shims-promise-withresolvers" href="https://github.com/es-shims/Promise.withResolvers">es-shims/Promise.withResolvers</a> (9 commits) [↩](#row-es-shims-promise-withresolvers)
+
+- [Jordan Harband](https://github.com/ljharb): [9](https://github.com/search?q=repo%3Aes-shims/Promise.withResolvers%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-tc39-proposals" href="https://github.com/tc39/proposals">tc39/proposals</a> (9 commits) [↩](#row-tc39-proposals)
+
+- [Jordan Harband](https://github.com/ljharb): [9](https://github.com/search?q=repo%3Atc39/proposals%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-httparchive-httparchive-org" href="https://github.com/HTTPArchive/httparchive.org">HTTPArchive/httparchive.org</a> (9 commits) [↩](#row-httparchive-httparchive-org)
+
+- [Barry Pollard](https://github.com/tunetheweb): [9](https://github.com/search?q=repo%3AHTTPArchive/httparchive.org%20author%3Atunetheweb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-zotero-zotero" href="https://github.com/zotero/zotero">zotero/zotero</a> (8 commits) [↩](#row-zotero-zotero)
+
+- [Abe Jellinek](https://github.com/AbeJellinek): [8](https://github.com/search?q=repo%3Azotero/zotero%20author%3AAbeJellinek%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-adamj-soccergametracker" href="https://github.com/AdamJ/SoccerGameTracker">AdamJ/SoccerGameTracker</a> (8 commits) [↩](#row-adamj-soccergametracker)
+
+- [Adam Jolicoeur](https://github.com/AdamJ): [8](https://github.com/search?q=repo%3AAdamJ/SoccerGameTracker%20author%3AAdamJ%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-aramzs-songobsessed" href="https://github.com/AramZS/songobsessed">AramZS/songobsessed</a> (8 commits) [↩](#row-aramzs-songobsessed)
+
+- [Aram Zucker-Scharff](https://github.com/AramZS): [8](https://github.com/search?q=repo%3AAramZS/songobsessed%20author%3AAramZS%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chinmaygarde-buildkite_sandbox" href="https://github.com/chinmaygarde/buildkite_sandbox">chinmaygarde/buildkite_sandbox</a> (8 commits) [↩](#row-chinmaygarde-buildkite_sandbox)
+
+- [Chinmay Garde](https://github.com/chinmaygarde): [8](https://github.com/search?q=repo%3Achinmaygarde/buildkite_sandbox%20author%3Achinmaygarde%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-datadog-browser-sdk" href="https://github.com/DataDog/browser-sdk">DataDog/browser-sdk</a> (8 commits) [↩](#row-datadog-browser-sdk)
+
+- [Benoît](https://github.com/BenoitZugmeyer): [8](https://github.com/search?q=repo%3ADataDog/browser-sdk%20author%3ABenoitZugmeyer%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-berlysia-eslint-config" href="https://github.com/berlysia/eslint-config">berlysia/eslint-config</a> (8 commits) [↩](#row-berlysia-eslint-config)
+
+- [berlysia](https://github.com/berlysia): [8](https://github.com/search?q=repo%3Aberlysia/eslint-config%20author%3Aberlysia%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-berlysia-slide-system-for-vertical-writing" href="https://github.com/berlysia/slide-system-for-vertical-writing">berlysia/slide-system-for-vertical-writing</a> (8 commits) [↩](#row-berlysia-slide-system-for-vertical-writing)
+
+- [berlysia](https://github.com/berlysia): [8](https://github.com/search?q=repo%3Aberlysia/slide-system-for-vertical-writing%20author%3Aberlysia%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-daidr-dualsense-tester" href="https://github.com/daidr/dualsense-tester">daidr/dualsense-tester</a> (8 commits) [↩](#row-daidr-dualsense-tester)
+
+- [Xuezhou Dai](https://github.com/daidr): [8](https://github.com/search?q=repo%3Adaidr/dualsense-tester%20author%3Adaidr%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-daidr-demiurge" href="https://github.com/daidr/demiurge">daidr/demiurge</a> (8 commits) [↩](#row-daidr-demiurge)
+
+- [Xuezhou Dai](https://github.com/daidr): [8](https://github.com/search?q=repo%3Adaidr/demiurge%20author%3Adaidr%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-domfarolino-domfarolino-github-io" href="https://github.com/domfarolino/domfarolino.github.io">domfarolino/domfarolino.github.io</a> (8 commits) [↩](#row-domfarolino-domfarolino-github-io)
+
+- [Dominic Farolino](https://github.com/domfarolino): [8](https://github.com/search?q=repo%3Adomfarolino/domfarolino.github.io%20author%3Adomfarolino%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-dyacob-ethiop-nextgen" href="https://github.com/dyacob/ethiop-nextgen">dyacob/ethiop-nextgen</a> (8 commits) [↩](#row-dyacob-ethiop-nextgen)
+
+- [Daniel Yacob](https://github.com/dyacob): [8](https://github.com/search?q=repo%3Adyacob/ethiop-nextgen%20author%3Adyacob%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-cg-solid" href="https://github.com/w3c-cg/solid">w3c-cg/solid</a> (8 commits) [↩](#row-w3c-cg-solid)
+
+- [elf Pavlik](https://github.com/elf-pavlik): [7](https://github.com/search?q=repo%3Aw3c-cg/solid%20author%3Aelf-pavlik%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Ted Thibodeau Jr](https://github.com/TallTed): [1](https://github.com/search?q=repo%3Aw3c-cg/solid%20author%3ATallTed%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-huyprowow-vulkan_practice" href="https://github.com/huyprowow/Vulkan_practice">huyprowow/Vulkan_practice</a> (8 commits) [↩](#row-huyprowow-vulkan_practice)
+
+- [Huy](https://github.com/huyprowow): [8](https://github.com/search?q=repo%3Ahuyprowow/Vulkan_practice%20author%3Ahuyprowow%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-lynx-family-lynx-website" href="https://github.com/lynx-family/lynx-website">lynx-family/lynx-website</a> (8 commits) [↩](#row-lynx-family-lynx-website)
+
+- [Xuan Huang (黄玄)](https://github.com/Huxpro): [8](https://github.com/search?q=repo%3Alynx-family/lynx-website%20author%3AHuxpro%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-eemeli-make-plural" href="https://github.com/eemeli/make-plural">eemeli/make-plural</a> (8 commits) [↩](#row-eemeli-make-plural)
+
+- [Eemeli Aro](https://github.com/eemeli): [8](https://github.com/search?q=repo%3Aeemeli/make-plural%20author%3Aeemeli%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-abra-nl-abra-api-ios-package" href="https://github.com/abra-nl/abra-api-ios-package">abra-nl/abra-api-ios-package</a> (8 commits) [↩](#row-abra-nl-abra-api-ios-package)
+
+- [Jan Jaap de Groot](https://github.com/JJdeGroot): [8](https://github.com/search?q=repo%3Aabra-nl/abra-api-ios-package%20author%3AJJdeGroot%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-pm-wg" href="https://github.com/w3c/pm-wg">w3c/pm-wg</a> (8 commits) [↩](#row-w3c-pm-wg)
+
+- [Ivan Herman](https://github.com/iherman): [8](https://github.com/search?q=repo%3Aw3c/pm-wg%20author%3Aiherman%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-igrigorik-agentboard" href="https://github.com/igrigorik/AgentBoard">igrigorik/AgentBoard</a> (8 commits) [↩](#row-igrigorik-agentboard)
+
+- [Ilya Grigorik](https://github.com/igrigorik): [8](https://github.com/search?q=repo%3Aigrigorik/AgentBoard%20author%3Aigrigorik%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-agentplexus-omniserp" href="https://github.com/agentplexus/omniserp">agentplexus/omniserp</a> (8 commits) [↩](#row-agentplexus-omniserp)
+
+- [John Wang](https://github.com/grokify): [8](https://github.com/search?q=repo%3Aagentplexus/omniserp%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-agentplexus-omnillm-bedrock" href="https://github.com/agentplexus/omnillm-bedrock">agentplexus/omnillm-bedrock</a> (8 commits) [↩](#row-agentplexus-omnillm-bedrock)
+
+- [John Wang](https://github.com/grokify): [8](https://github.com/search?q=repo%3Aagentplexus/omnillm-bedrock%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-agentplexus-go-phoenix" href="https://github.com/agentplexus/go-phoenix">agentplexus/go-phoenix</a> (8 commits) [↩](#row-agentplexus-go-phoenix)
+
+- [John Wang](https://github.com/grokify): [8](https://github.com/search?q=repo%3Aagentplexus/go-phoenix%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-agentplexus-omnivoice-examples" href="https://github.com/agentplexus/omnivoice-examples">agentplexus/omnivoice-examples</a> (8 commits) [↩](#row-agentplexus-omnivoice-examples)
+
+- [John Wang](https://github.com/grokify): [8](https://github.com/search?q=repo%3Aagentplexus/omnivoice-examples%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-grokify-schemago" href="https://github.com/grokify/schemago">grokify/schemago</a> (8 commits) [↩](#row-grokify-schemago)
+
+- [John Wang](https://github.com/grokify): [8](https://github.com/search?q=repo%3Agrokify/schemago%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-grokify-structureddocs" href="https://github.com/grokify/structureddocs">grokify/structureddocs</a> (8 commits) [↩](#row-grokify-structureddocs)
+
+- [John Wang](https://github.com/grokify): [8](https://github.com/search?q=repo%3Agrokify/structureddocs%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-grokify-gitscan" href="https://github.com/grokify/gitscan">grokify/gitscan</a> (8 commits) [↩](#row-grokify-gitscan)
+
+- [John Wang](https://github.com/grokify): [8](https://github.com/search?q=repo%3Agrokify/gitscan%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-rdfjs-n3-js" href="https://github.com/rdfjs/N3.js">rdfjs/N3.js</a> (8 commits) [↩](#row-rdfjs-n3-js)
+
+- [Ruben Taelman](https://github.com/rubensworks): [7](https://github.com/search?q=repo%3Ardfjs/N3.js%20author%3Arubensworks%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Jesse Wright](https://github.com/jeswr): [1](https://github.com/search?q=repo%3Ardfjs/N3.js%20author%3Ajeswr%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-tupilabs-vue-lumino" href="https://github.com/tupilabs/vue-lumino">tupilabs/vue-lumino</a> (8 commits) [↩](#row-tupilabs-vue-lumino)
+
+- [Bruno P. Kinoshita](https://github.com/kinow): [8](https://github.com/search?q=repo%3Atupilabs/vue-lumino%20author%3Akinow%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-tanainc-tana-import-tools" href="https://github.com/tanainc/tana-import-tools">tanainc/tana-import-tools</a> (8 commits) [↩](#row-tanainc-tana-import-tools)
+
+- [Odin Hørthe-Omdal Urdland](https://github.com/odinho): [8](https://github.com/search?q=repo%3Atanainc/tana-import-tools%20author%3Aodinho%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-logonoff-guestbook" href="https://github.com/logonoff/guestbook">logonoff/guestbook</a> (8 commits) [↩](#row-logonoff-guestbook)
+
+- [logonoff](https://github.com/logonoff): [8](https://github.com/search?q=repo%3Alogonoff/guestbook%20author%3Alogonoff%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-martinthomson-tmi" href="https://github.com/martinthomson/tmi">martinthomson/tmi</a> (8 commits) [↩](#row-martinthomson-tmi)
+
+- [Martin Thomson](https://github.com/martinthomson): [8](https://github.com/search?q=repo%3Amartinthomson/tmi%20author%3Amartinthomson%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-pkra-peterkrautzberger-org" href="https://github.com/pkra/peterkrautzberger.org">pkra/peterkrautzberger.org</a> (8 commits) [↩](#row-pkra-peterkrautzberger-org)
+
+- [Peter Krautzberger](https://github.com/pkra): [8](https://github.com/search?q=repo%3Apkra/peterkrautzberger.org%20author%3Apkra%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-aria" href="https://github.com/w3c/aria">w3c/aria</a> (8 commits) [↩](#row-w3c-aria)
+
+- [Peter Krautzberger](https://github.com/pkra): [6](https://github.com/search?q=repo%3Aw3c/aria%20author%3Apkra%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [sideshowbarker](https://github.com/sideshowbarker): [2](https://github.com/search?q=repo%3Aw3c/aria%20author%3Asideshowbarker%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-keithamus-dotfiles" href="https://github.com/keithamus/dotfiles">keithamus/dotfiles</a> (8 commits) [↩](#row-keithamus-dotfiles)
+
+- [Keith Cirkel](https://github.com/keithamus): [8](https://github.com/search?q=repo%3Akeithamus/dotfiles%20author%3Akeithamus%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-nicholasgriffintn-machine-setup" href="https://github.com/nicholasgriffintn/machine-setup">nicholasgriffintn/machine-setup</a> (8 commits) [↩](#row-nicholasgriffintn-machine-setup)
+
+- [Nicholas Griffin](https://github.com/nicholasgriffintn): [8](https://github.com/search?q=repo%3Anicholasgriffintn/machine-setup%20author%3Anicholasgriffintn%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-nicholasgriffintn-website" href="https://github.com/nicholasgriffintn/website">nicholasgriffintn/website</a> (8 commits) [↩](#row-nicholasgriffintn-website)
+
+- [Nicholas Griffin](https://github.com/nicholasgriffintn): [8](https://github.com/search?q=repo%3Anicholasgriffintn/website%20author%3Anicholasgriffintn%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-mardi4nfdi-portal-compose" href="https://github.com/MaRDI4NFDI/portal-compose">MaRDI4NFDI/portal-compose</a> (8 commits) [↩](#row-mardi4nfdi-portal-compose)
+
+- [Moritz Schubotz](https://github.com/physikerwelt): [8](https://github.com/search?q=repo%3AMaRDI4NFDI/portal-compose%20author%3Aphysikerwelt%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-wai-website-theme" href="https://github.com/w3c/wai-website-theme">w3c/wai-website-theme</a> (8 commits) [↩](#row-w3c-wai-website-theme)
+
+- [Rémi Bétin](https://github.com/remibetin): [8](https://github.com/search?q=repo%3Aw3c/wai-website-theme%20author%3Aremibetin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-reffy" href="https://github.com/w3c/reffy">w3c/reffy</a> (8 commits) [↩](#row-w3c-reffy)
+
+- [François Daoust](https://github.com/tidoust): [8](https://github.com/search?q=repo%3Aw3c/reffy%20author%3Atidoust%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-passkeydeveloper-passkeys-dev" href="https://github.com/passkeydeveloper/passkeys.dev">passkeydeveloper/passkeys.dev</a> (8 commits) [↩](#row-passkeydeveloper-passkeys-dev)
+
+- [Tim Cappalli](https://github.com/timcappalli): [8](https://github.com/search?q=repo%3Apasskeydeveloper/passkeys.dev%20author%3Atimcappalli%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-timcappalli-blog-timcappalli-me" href="https://github.com/timcappalli/blog.timcappalli.me">timcappalli/blog.timcappalli.me</a> (8 commits) [↩](#row-timcappalli-blog-timcappalli-me)
+
+- [Tim Cappalli](https://github.com/timcappalli): [8](https://github.com/search?q=repo%3Atimcappalli/blog.timcappalli.me%20author%3Atimcappalli%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-underoot-cvetok" href="https://github.com/underoot/cvetok">underoot/cvetok</a> (8 commits) [↩](#row-underoot-cvetok)
+
+- [Aleksandr Shoronov](https://github.com/underoot): [8](https://github.com/search?q=repo%3Aunderoot/cvetok%20author%3Aunderoot%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-clreq" href="https://github.com/w3c/clreq">w3c/clreq</a> (8 commits) [↩](#row-w3c-clreq)
+
+- [Fuqiao Xue](https://github.com/xfq): [8](https://github.com/search?q=repo%3Aw3c/clreq%20author%3Axfq%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ljharb-unused-files" href="https://github.com/ljharb/unused-files">ljharb/unused-files</a> (8 commits) [↩](#row-ljharb-unused-files)
+
+- [Jordan Harband](https://github.com/ljharb): [8](https://github.com/search?q=repo%3Aljharb/unused-files%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-xuri-excelize-cs" href="https://github.com/xuri/excelize-cs">xuri/excelize-cs</a> (8 commits) [↩](#row-xuri-excelize-cs)
+
+- [xuri](https://github.com/xuri): [8](https://github.com/search?q=repo%3Axuri/excelize-cs%20author%3Axuri%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-rubensworks-slides-2026-ugent-knowledgegraphs-querydecentralized" href="https://github.com/rubensworks/slides-2026-ugent-knowledgegraphs-querydecentralized">rubensworks/slides-2026-ugent-knowledgegraphs-querydecentralized</a> (8 commits) [↩](#row-rubensworks-slides-2026-ugent-knowledgegraphs-querydecentralized)
+
+- [Ruben Taelman](https://github.com/rubensworks): [8](https://github.com/search?q=repo%3Arubensworks/slides-2026-ugent-knowledgegraphs-querydecentralized%20author%3Arubensworks%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-jaegertracing-base-image-with-debugger" href="https://github.com/jaegertracing/base-image-with-debugger">jaegertracing/base-image-with-debugger</a> (8 commits) [↩](#row-jaegertracing-base-image-with-debugger)
+
+- [Yuri Shkuro](https://github.com/yurishkuro): [8](https://github.com/search?q=repo%3Ajaegertracing/base-image-with-debugger%20author%3Ayurishkuro%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-tc39-proposal-async-context" href="https://github.com/tc39/proposal-async-context">tc39/proposal-async-context</a> (7 commits) [↩](#row-tc39-proposal-async-context)
+
+- [Chengzhong Wu](https://github.com/legendecas): [4](https://github.com/search?q=repo%3Atc39/proposal-async-context%20author%3Alegendecas%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Andreu Botella](https://github.com/andreubotella): [2](https://github.com/search?q=repo%3Atc39/proposal-async-context%20author%3Aandreubotella%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Nicolò Ribaudo](https://github.com/nicolo-ribaudo): [1](https://github.com/search?q=repo%3Atc39/proposal-async-context%20author%3Anicolo-ribaudo%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-data-shapes" href="https://github.com/w3c/data-shapes">w3c/data-shapes</a> (7 commits) [↩](#row-w3c-data-shapes)
+
+- [caribouW3](https://github.com/caribouW3): [5](https://github.com/search?q=repo%3Aw3c/data-shapes%20author%3AcaribouW3%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Ted Thibodeau Jr](https://github.com/TallTed): [2](https://github.com/search?q=repo%3Aw3c/data-shapes%20author%3ATallTed%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-crazyurus-bydstore" href="https://github.com/crazyurus/bydstore">crazyurus/bydstore</a> (7 commits) [↩](#row-crazyurus-bydstore)
+
+- [Cr4zy Uru5](https://github.com/crazyurus): [7](https://github.com/search?q=repo%3Acrazyurus/bydstore%20author%3Acrazyurus%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-dbrant-qicstreamreader" href="https://github.com/dbrant/QICStreamReader">dbrant/QICStreamReader</a> (7 commits) [↩](#row-dbrant-qicstreamreader)
+
+- [Dmitry Brant](https://github.com/dbrant): [7](https://github.com/search?q=repo%3Adbrant/QICStreamReader%20author%3Adbrant%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-astral-sh-ruff" href="https://github.com/astral-sh/ruff">astral-sh/ruff</a> (7 commits) [↩](#row-astral-sh-ruff)
+
+- [Douglas Creager](https://github.com/dcreager): [7](https://github.com/search?q=repo%3Aastral-sh/ruff%20author%3Adcreager%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-saucelabs-training-demo-js" href="https://github.com/saucelabs-training/demo-js">saucelabs-training/demo-js</a> (7 commits) [↩](#row-saucelabs-training-demo-js)
+
+- [Diego Molina](https://github.com/diemol): [7](https://github.com/search?q=repo%3Asaucelabs-training/demo-js%20author%3Adiemol%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ektrah-nsec" href="https://github.com/ektrah/nsec">ektrah/nsec</a> (7 commits) [↩](#row-ektrah-nsec)
+
+- [ektrah](https://github.com/ektrah): [7](https://github.com/search?q=repo%3Aektrah/nsec%20author%3Aektrah%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-webdriverio-community-wdio-camera-service" href="https://github.com/webdriverio-community/wdio-camera-service">webdriverio-community/wdio-camera-service</a> (7 commits) [↩](#row-webdriverio-community-wdio-camera-service)
+
+- [Christian Bromann](https://github.com/christian-bromann): [7](https://github.com/search?q=repo%3Awebdriverio-community/wdio-camera-service%20author%3Achristian-bromann%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-hayatoito-hayatoito-github-io" href="https://github.com/hayatoito/hayatoito.github.io">hayatoito/hayatoito.github.io</a> (7 commits) [↩](#row-hayatoito-hayatoito-github-io)
+
+- [Hayato Ito](https://github.com/hayatoito): [7](https://github.com/search?q=repo%3Ahayatoito/hayatoito.github.io%20author%3Ahayatoito%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-hanguokai-text-autospace" href="https://github.com/hanguokai/text-autospace">hanguokai/text-autospace</a> (7 commits) [↩](#row-hanguokai-text-autospace)
+
+- [Jackie(Guokai) Han](https://github.com/hanguokai): [7](https://github.com/search?q=repo%3Ahanguokai/text-autospace%20author%3Ahanguokai%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-readium-webpub-manifest" href="https://github.com/readium/webpub-manifest">readium/webpub-manifest</a> (7 commits) [↩](#row-readium-webpub-manifest)
+
+- [Hadrien Gardeur](https://github.com/HadrienGardeur): [7](https://github.com/search?q=repo%3Areadium/webpub-manifest%20author%3AHadrienGardeur%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-hbz-rpb" href="https://github.com/hbz/rpb">hbz/rpb</a> (7 commits) [↩](#row-hbz-rpb)
+
+- [Fabian Steeg](https://github.com/fsteeg): [7](https://github.com/search?q=repo%3Ahbz/rpb%20author%3Afsteeg%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-hbz-lbz-vocabs" href="https://github.com/hbz/lbz-vocabs">hbz/lbz-vocabs</a> (7 commits) [↩](#row-hbz-lbz-vocabs)
+
+- [Fabian Steeg](https://github.com/fsteeg): [7](https://github.com/search?q=repo%3Ahbz/lbz-vocabs%20author%3Afsteeg%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-projectfluent-fluent-js" href="https://github.com/projectfluent/fluent.js">projectfluent/fluent.js</a> (7 commits) [↩](#row-projectfluent-fluent-js)
+
+- [Eemeli Aro](https://github.com/eemeli): [7](https://github.com/search?q=repo%3Aprojectfluent/fluent.js%20author%3Aeemeli%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-eemeli-yaml-loader" href="https://github.com/eemeli/yaml-loader">eemeli/yaml-loader</a> (7 commits) [↩](#row-eemeli-yaml-loader)
+
+- [Eemeli Aro](https://github.com/eemeli): [7](https://github.com/search?q=repo%3Aeemeli/yaml-loader%20author%3Aeemeli%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-iherman-ea-vocabulary" href="https://github.com/iherman/ea-vocabulary">iherman/ea-vocabulary</a> (7 commits) [↩](#row-iherman-ea-vocabulary)
+
+- [Ivan Herman](https://github.com/iherman): [7](https://github.com/search?q=repo%3Aiherman/ea-vocabulary%20author%3Aiherman%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-webmachinelearning-webnn-docs" href="https://github.com/webmachinelearning/webnn-docs">webmachinelearning/webnn-docs</a> (7 commits) [↩](#row-webmachinelearning-webnn-docs)
+
+- [Belem Zhang](https://github.com/ibelem): [7](https://github.com/search?q=repo%3Awebmachinelearning/webnn-docs%20author%3Aibelem%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-webtransport" href="https://github.com/w3c/webtransport">w3c/webtransport</a> (7 commits) [↩](#row-w3c-webtransport)
+
+- [Jan-Ivar Bruaroey](https://github.com/jan-ivar): [7](https://github.com/search?q=repo%3Aw3c/webtransport%20author%3Ajan-ivar%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-wicg-declarative-partial-updates" href="https://github.com/WICG/declarative-partial-updates">WICG/declarative-partial-updates</a> (7 commits) [↩](#row-wicg-declarative-partial-updates)
+
+- [Philip Jägenstedt](https://github.com/foolip): [7](https://github.com/search?q=repo%3AWICG/declarative-partial-updates%20author%3Afoolip%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-nodejs-node" href="https://github.com/nodejs/node">nodejs/node</a> (7 commits) [↩](#row-nodejs-node)
+
+- [Chengzhong Wu](https://github.com/legendecas): [6](https://github.com/search?q=repo%3Anodejs/node%20author%3Alegendecas%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Filip Skokan](https://github.com/panva): [1](https://github.com/search?q=repo%3Anodejs/node%20author%3Apanva%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-actix-examples" href="https://github.com/actix/examples">actix/examples</a> (7 commits) [↩](#row-actix-examples)
+
+- [Yuki Okushi](https://github.com/JohnTitor): [7](https://github.com/search?q=repo%3Aactix/examples%20author%3AJohnTitor%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-agentplexus-mcp-confluence" href="https://github.com/agentplexus/mcp-confluence">agentplexus/mcp-confluence</a> (7 commits) [↩](#row-agentplexus-mcp-confluence)
+
+- [John Wang](https://github.com/grokify): [7](https://github.com/search?q=repo%3Aagentplexus/mcp-confluence%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-grokify-spectrum" href="https://github.com/grokify/spectrum">grokify/spectrum</a> (7 commits) [↩](#row-grokify-spectrum)
+
+- [John Wang](https://github.com/grokify): [7](https://github.com/search?q=repo%3Agrokify/spectrum%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-grokify-omniproxy" href="https://github.com/grokify/omniproxy">grokify/omniproxy</a> (7 commits) [↩](#row-grokify-omniproxy)
+
+- [John Wang](https://github.com/grokify): [7](https://github.com/search?q=repo%3Agrokify/omniproxy%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-grokify-chathooks" href="https://github.com/grokify/chathooks">grokify/chathooks</a> (7 commits) [↩](#row-grokify-chathooks)
+
+- [John Wang](https://github.com/grokify): [7](https://github.com/search?q=repo%3Agrokify/chathooks%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-tc39-proposal-first-class-protocols" href="https://github.com/tc39/proposal-first-class-protocols">tc39/proposal-first-class-protocols</a> (7 commits) [↩](#row-tc39-proposal-first-class-protocols)
+
+- [Lea Verou](https://github.com/LeaVerou): [7](https://github.com/search?q=repo%3Atc39/proposal-first-class-protocols%20author%3ALeaVerou%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-ccg-vcalm" href="https://github.com/w3c-ccg/vcalm">w3c-ccg/vcalm</a> (7 commits) [↩](#row-w3c-ccg-vcalm)
+
+- [Ted Thibodeau Jr](https://github.com/TallTed): [5](https://github.com/search?q=repo%3Aw3c-ccg/vcalm%20author%3ATallTed%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Manu Sporny](https://github.com/msporny): [2](https://github.com/search?q=repo%3Aw3c-ccg/vcalm%20author%3Amsporny%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-googlechrome-web-vitals" href="https://github.com/GoogleChrome/web-vitals">GoogleChrome/web-vitals</a> (7 commits) [↩](#row-googlechrome-web-vitals)
+
+- [Barry Pollard](https://github.com/tunetheweb): [6](https://github.com/search?q=repo%3AGoogleChrome/web-vitals%20author%3Atunetheweb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Philip Walton](https://github.com/philipwalton): [1](https://github.com/search?q=repo%3AGoogleChrome/web-vitals%20author%3Aphilipwalton%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ietf-wg-spice-draft-ietf-spice-sd-cwt" href="https://github.com/ietf-wg-spice/draft-ietf-spice-sd-cwt">ietf-wg-spice/draft-ietf-spice-sd-cwt</a> (7 commits) [↩](#row-ietf-wg-spice-draft-ietf-spice-sd-cwt)
+
+- [Martin Thomson](https://github.com/martinthomson): [7](https://github.com/search?q=repo%3Aietf-wg-spice/draft-ietf-spice-sd-cwt%20author%3Amartinthomson%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ietf-wg-ppm-draft-ietf-ppm-dap-taskprov" href="https://github.com/ietf-wg-ppm/draft-ietf-ppm-dap-taskprov">ietf-wg-ppm/draft-ietf-ppm-dap-taskprov</a> (7 commits) [↩](#row-ietf-wg-ppm-draft-ietf-ppm-dap-taskprov)
+
+- [Martin Thomson](https://github.com/martinthomson): [7](https://github.com/search?q=repo%3Aietf-wg-ppm/draft-ietf-ppm-dap-taskprov%20author%3Amartinthomson%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ostafinskim-node-password-manager" href="https://github.com/ostafinskim/node-password-manager">ostafinskim/node-password-manager</a> (7 commits) [↩](#row-ostafinskim-node-password-manager)
+
+- [Miro Ostafinski](https://github.com/ostafinskim): [7](https://github.com/search?q=repo%3Aostafinskim/node-password-manager%20author%3Aostafinskim%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-black-forest-community-slotlist-reboot" href="https://github.com/Black-Forest-Community/slotlist-reboot">Black-Forest-Community/slotlist-reboot</a> (7 commits) [↩](#row-black-forest-community-slotlist-reboot)
+
+- [Niklas Merz](https://github.com/NiklasMerz): [7](https://github.com/search?q=repo%3ABlack-Forest-Community/slotlist-reboot%20author%3ANiklasMerz%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-rob--w-proxy-from-env" href="https://github.com/Rob--W/proxy-from-env">Rob--W/proxy-from-env</a> (7 commits) [↩](#row-rob--w-proxy-from-env)
+
+- [Rob Wu](https://github.com/Rob--W): [7](https://github.com/search?q=repo%3ARob--W/proxy-from-env%20author%3ARob--W%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-seiry-astro-blog-release" href="https://github.com/seiry/astro-blog-release">seiry/astro-blog-release</a> (7 commits) [↩](#row-seiry-astro-blog-release)
+
+- [Seiry Yu](https://github.com/seiry): [7](https://github.com/search?q=repo%3Aseiry/astro-blog-release%20author%3Aseiry%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-speced-bikeshed" href="https://github.com/speced/bikeshed">speced/bikeshed</a> (7 commits) [↩](#row-speced-bikeshed)
+
+- [Tab Atkins Jr.](https://github.com/tabatkins): [7](https://github.com/search?q=repo%3Aspeced/bikeshed%20author%3Atabatkins%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-snarfed-oauth-dropins" href="https://github.com/snarfed/oauth-dropins">snarfed/oauth-dropins</a> (7 commits) [↩](#row-snarfed-oauth-dropins)
+
+- [Ryan Barrett](https://github.com/snarfed): [7](https://github.com/search?q=repo%3Asnarfed/oauth-dropins%20author%3Asnarfed%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-snarfed-webutil" href="https://github.com/snarfed/webutil">snarfed/webutil</a> (7 commits) [↩](#row-snarfed-webutil)
+
+- [Ryan Barrett](https://github.com/snarfed): [7](https://github.com/search?q=repo%3Asnarfed/webutil%20author%3Asnarfed%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-es-shims-number-parseint" href="https://github.com/es-shims/Number.parseInt">es-shims/Number.parseInt</a> (7 commits) [↩](#row-es-shims-number-parseint)
+
+- [Jordan Harband](https://github.com/ljharb): [7](https://github.com/search?q=repo%3Aes-shims/Number.parseInt%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-qax-os-excelize" href="https://github.com/qax-os/excelize">qax-os/excelize</a> (7 commits) [↩](#row-qax-os-excelize)
+
+- [xuri](https://github.com/xuri): [7](https://github.com/search?q=repo%3Aqax-os/excelize%20author%3Axuri%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-linkeddatafragments-hdt-node" href="https://github.com/LinkedDataFragments/HDT-Node">LinkedDataFragments/HDT-Node</a> (7 commits) [↩](#row-linkeddatafragments-hdt-node)
+
+- [Ruben Taelman](https://github.com/rubensworks): [7](https://github.com/search?q=repo%3ALinkedDataFragments/HDT-Node%20author%3Arubensworks%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-alexanderwillner-pretix-partial-cancellation" href="https://github.com/AlexanderWillner/pretix-partial-cancellation">AlexanderWillner/pretix-partial-cancellation</a> (6 commits) [↩](#row-alexanderwillner-pretix-partial-cancellation)
+
+- [Alex](https://github.com/AlexanderWillner): [6](https://github.com/search?q=repo%3AAlexanderWillner/pretix-partial-cancellation%20author%3AAlexanderWillner%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-alphagov-govuk-prototype-kit" href="https://github.com/alphagov/govuk-prototype-kit">alphagov/govuk-prototype-kit</a> (6 commits) [↩](#row-alphagov-govuk-prototype-kit)
+
+- [Oliver Byford](https://github.com/36degrees): [6](https://github.com/search?q=repo%3Aalphagov/govuk-prototype-kit%20author%3A36degrees%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-claucece-claucece-github-io" href="https://github.com/claucece/claucece.github.io">claucece/claucece.github.io</a> (6 commits) [↩](#row-claucece-claucece-github-io)
+
+- [Sofía Celi](https://github.com/claucece): [6](https://github.com/search?q=repo%3Aclaucece/claucece.github.io%20author%3Aclaucece%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ckolderup-secret-choir-octobug" href="https://github.com/ckolderup/secret-choir-octobug">ckolderup/secret-choir-octobug</a> (6 commits) [↩](#row-ckolderup-secret-choir-octobug)
+
+- [Casey Kolderup](https://github.com/ckolderup): [6](https://github.com/search?q=repo%3Ackolderup/secret-choir-octobug%20author%3Ackolderup%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-berlysia-imas-idollist-analyze" href="https://github.com/berlysia/imas-idollist-analyze">berlysia/imas-idollist-analyze</a> (6 commits) [↩](#row-berlysia-imas-idollist-analyze)
+
+- [berlysia](https://github.com/berlysia): [6](https://github.com/search?q=repo%3Aberlysia/imas-idollist-analyze%20author%3Aberlysia%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ipfs-ipfs-blog" href="https://github.com/ipfs/ipfs-blog">ipfs/ipfs-blog</a> (6 commits) [↩](#row-ipfs-ipfs-blog)
+
+- [Robin Berjon](https://github.com/darobin): [6](https://github.com/search?q=repo%3Aipfs/ipfs-blog%20author%3Adarobin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-whatwg-html" href="https://github.com/whatwg/html">whatwg/html</a> (6 commits) [↩](#row-whatwg-html)
+
+- [Anne van Kesteren](https://github.com/annevk): [4](https://github.com/search?q=repo%3Awhatwg/html%20author%3Aannevk%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Nicolò Ribaudo](https://github.com/nicolo-ribaudo): [1](https://github.com/search?q=repo%3Awhatwg/html%20author%3Anicolo-ribaudo%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Kagami Sascha Rosylight](https://github.com/saschanaz): [1](https://github.com/search?q=repo%3Awhatwg/html%20author%3Asaschanaz%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3ctag-meetings" href="https://github.com/w3ctag/meetings">w3ctag/meetings</a> (6 commits) [↩](#row-w3ctag-meetings)
+
+- [Jeffrey Yasskin](https://github.com/jyasskin): [5](https://github.com/search?q=repo%3Aw3ctag/meetings%20author%3Ajyasskin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Hadley Beeman](https://github.com/hadleybeeman): [1](https://github.com/search?q=repo%3Aw3ctag/meetings%20author%3Ahadleybeeman%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-strata-io-helm-charts" href="https://github.com/strata-io/helm-charts">strata-io/helm-charts</a> (6 commits) [↩](#row-strata-io-helm-charts)
+
+- [Granville Schmidt](https://github.com/gramidt): [6](https://github.com/search?q=repo%3Astrata-io/helm-charts%20author%3Agramidt%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-canonical-nemotron-3-nano-snap" href="https://github.com/canonical/nemotron-3-nano-snap">canonical/nemotron-3-nano-snap</a> (6 commits) [↩](#row-canonical-nemotron-3-nano-snap)
+
+- [Farshid Tavakolizadeh](https://github.com/farshidtz): [6](https://github.com/search?q=repo%3Acanonical/nemotron-3-nano-snap%20author%3Afarshidtz%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-universal-commerce-protocol-ucp" href="https://github.com/Universal-Commerce-Protocol/ucp">Universal-Commerce-Protocol/ucp</a> (6 commits) [↩](#row-universal-commerce-protocol-ucp)
+
+- [Ilya Grigorik](https://github.com/igrigorik): [6](https://github.com/search?q=repo%3AUniversal-Commerce-Protocol/ucp%20author%3Aigrigorik%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-jimmy-zhening-luo-textastic" href="https://github.com/jimmy-zhening-luo/Textastic">jimmy-zhening-luo/Textastic</a> (6 commits) [↩](#row-jimmy-zhening-luo-textastic)
+
+- [Jimmy Zhening Luo](https://github.com/jimmy-zhening-luo): [6](https://github.com/search?q=repo%3Ajimmy-zhening-luo/Textastic%20author%3Ajimmy-zhening-luo%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-mdn-browser-compat-data" href="https://github.com/mdn/browser-compat-data">mdn/browser-compat-data</a> (6 commits) [↩](#row-mdn-browser-compat-data)
+
+- [Rob Wu](https://github.com/Rob--W): [3](https://github.com/search?q=repo%3Amdn/browser-compat-data%20author%3ARob--W%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Eric A. Meyer](https://github.com/meyerweb): [1](https://github.com/search?q=repo%3Amdn/browser-compat-data%20author%3Ameyerweb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Luke Warlow](https://github.com/lukewarlow): [1](https://github.com/search?q=repo%3Amdn/browser-compat-data%20author%3Alukewarlow%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Barry Pollard](https://github.com/tunetheweb): [1](https://github.com/search?q=repo%3Amdn/browser-compat-data%20author%3Atunetheweb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-actix-actix-net" href="https://github.com/actix/actix-net">actix/actix-net</a> (6 commits) [↩](#row-actix-actix-net)
+
+- [Yuki Okushi](https://github.com/JohnTitor): [6](https://github.com/search?q=repo%3Aactix/actix-net%20author%3AJohnTitor%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-agentplexus-agentkit-aws-cdk" href="https://github.com/agentplexus/agentkit-aws-cdk">agentplexus/agentkit-aws-cdk</a> (6 commits) [↩](#row-agentplexus-agentkit-aws-cdk)
+
+- [John Wang](https://github.com/grokify): [6](https://github.com/search?q=repo%3Aagentplexus/agentkit-aws-cdk%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-grokify-gocharts" href="https://github.com/grokify/gocharts">grokify/gocharts</a> (6 commits) [↩](#row-grokify-gocharts)
+
+- [John Wang](https://github.com/grokify): [6](https://github.com/search?q=repo%3Agrokify/gocharts%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-grokify-mogo" href="https://github.com/grokify/mogo">grokify/mogo</a> (6 commits) [↩](#row-grokify-mogo)
+
+- [John Wang](https://github.com/grokify): [6](https://github.com/search?q=repo%3Agrokify/mogo%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-grokify-go-wordpressxml" href="https://github.com/grokify/go-wordpressxml">grokify/go-wordpressxml</a> (6 commits) [↩](#row-grokify-go-wordpressxml)
+
+- [John Wang](https://github.com/grokify): [6](https://github.com/search?q=repo%3Agrokify/go-wordpressxml%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-kinow-dork-scripts" href="https://github.com/kinow/dork-scripts">kinow/dork-scripts</a> (6 commits) [↩](#row-kinow-dork-scripts)
+
+- [Bruno P. Kinoshita](https://github.com/kinow): [6](https://github.com/search?q=repo%3Akinow/dork-scripts%20author%3Akinow%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-keithamus-sort-object-keys" href="https://github.com/keithamus/sort-object-keys">keithamus/sort-object-keys</a> (6 commits) [↩](#row-keithamus-sort-object-keys)
+
+- [Keith Cirkel](https://github.com/keithamus): [6](https://github.com/search?q=repo%3Akeithamus/sort-object-keys%20author%3Akeithamus%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-niklasmerz-talks" href="https://github.com/NiklasMerz/talks">NiklasMerz/talks</a> (6 commits) [↩](#row-niklasmerz-talks)
+
+- [Niklas Merz](https://github.com/NiklasMerz): [6](https://github.com/search?q=repo%3ANiklasMerz/talks%20author%3ANiklasMerz%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-niklasmerz-cordova-servo-test-app" href="https://github.com/NiklasMerz/cordova-servo-test-app">NiklasMerz/cordova-servo-test-app</a> (6 commits) [↩](#row-niklasmerz-cordova-servo-test-app)
+
+- [Niklas Merz](https://github.com/NiklasMerz): [6](https://github.com/search?q=repo%3ANiklasMerz/cordova-servo-test-app%20author%3ANiklasMerz%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-rinchen-mac-shell-scripts" href="https://github.com/rinchen/mac-shell-scripts">rinchen/mac-shell-scripts</a> (6 commits) [↩](#row-rinchen-mac-shell-scripts)
+
+- [J✪ΞY STANFORD](https://github.com/rinchen): [6](https://github.com/search?q=repo%3Arinchen/mac-shell-scripts%20author%3Arinchen%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-eclipse-thingweb-node-wot" href="https://github.com/eclipse-thingweb/node-wot">eclipse-thingweb/node-wot</a> (6 commits) [↩](#row-eclipse-thingweb-node-wot)
+
+- [Cristiano Aguzzi](https://github.com/relu91): [6](https://github.com/search?q=repo%3Aeclipse-thingweb/node-wot%20author%3Arelu91%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-snarfed-bounce" href="https://github.com/snarfed/bounce">snarfed/bounce</a> (6 commits) [↩](#row-snarfed-bounce)
+
+- [Ryan Barrett](https://github.com/snarfed): [6](https://github.com/search?q=repo%3Asnarfed/bounce%20author%3Asnarfed%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-startupapi-startup-api-demo-origin" href="https://github.com/StartupAPI/startup-api-demo-origin">StartupAPI/startup-api-demo-origin</a> (6 commits) [↩](#row-startupapi-startup-api-demo-origin)
+
+- [Sergey Chernyshev](https://github.com/sergeychernyshev): [6](https://github.com/search?q=repo%3AStartupAPI/startup-api-demo-origin%20author%3Asergeychernyshev%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-tpac-breakouts" href="https://github.com/w3c/tpac-breakouts">w3c/tpac-breakouts</a> (6 commits) [↩](#row-w3c-tpac-breakouts)
+
+- [François Daoust](https://github.com/tidoust): [6](https://github.com/search?q=repo%3Aw3c/tpac-breakouts%20author%3Atidoust%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-dlvhdr-gh-dash" href="https://github.com/dlvhdr/gh-dash">dlvhdr/gh-dash</a> (6 commits) [↩](#row-dlvhdr-gh-dash)
+
+- [sideshowbarker](https://github.com/sideshowbarker): [6](https://github.com/search?q=repo%3Adlvhdr/gh-dash%20author%3Asideshowbarker%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-gerritcodereview-git-repo" href="https://github.com/GerritCodeReview/git-repo">GerritCodeReview/git-repo</a> (6 commits) [↩](#row-gerritcodereview-git-repo)
+
+- [Mike Frysinger](https://github.com/vapier): [6](https://github.com/search?q=repo%3AGerritCodeReview/git-repo%20author%3Avapier%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-inspect-js-is-registered-symbol" href="https://github.com/inspect-js/is-registered-symbol">inspect-js/is-registered-symbol</a> (6 commits) [↩](#row-inspect-js-is-registered-symbol)
+
+- [Jordan Harband](https://github.com/ljharb): [6](https://github.com/search?q=repo%3Ainspect-js/is-registered-symbol%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-es-shims-reflect-ownkeys" href="https://github.com/es-shims/Reflect.ownKeys">es-shims/Reflect.ownKeys</a> (6 commits) [↩](#row-es-shims-reflect-ownkeys)
+
+- [Jordan Harband](https://github.com/ljharb): [6](https://github.com/search?q=repo%3Aes-shims/Reflect.ownKeys%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-comunica-website" href="https://github.com/comunica/website">comunica/website</a> (6 commits) [↩](#row-comunica-website)
+
+- [Ruben Taelman](https://github.com/rubensworks): [6](https://github.com/search?q=repo%3Acomunica/website%20author%3Arubensworks%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-rubensworks-rdf-serialize-js" href="https://github.com/rubensworks/rdf-serialize.js">rubensworks/rdf-serialize.js</a> (6 commits) [↩](#row-rubensworks-rdf-serialize-js)
+
+- [Ruben Taelman](https://github.com/rubensworks): [6](https://github.com/search?q=repo%3Arubensworks/rdf-serialize.js%20author%3Arubensworks%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-airbr-wsg" href="https://github.com/airbr/wsg">airbr/wsg</a> (5 commits) [↩](#row-airbr-wsg)
+
+- [Morgan Murrah](https://github.com/airbr): [5](https://github.com/search?q=repo%3Aairbr/wsg%20author%3Aairbr%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-webmachinelearning-meetings" href="https://github.com/webmachinelearning/meetings">webmachinelearning/meetings</a> (5 commits) [↩](#row-webmachinelearning-meetings)
+
+- [Anssi Kostiainen](https://github.com/anssiko): [5](https://github.com/search?q=repo%3Awebmachinelearning/meetings%20author%3Aanssiko%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-solid-solid-oidc" href="https://github.com/solid/solid-oidc">solid/solid-oidc</a> (5 commits) [↩](#row-solid-solid-oidc)
+
+- [elf Pavlik](https://github.com/elf-pavlik): [3](https://github.com/search?q=repo%3Asolid/solid-oidc%20author%3Aelf-pavlik%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Aaron Coburn](https://github.com/acoburn): [2](https://github.com/search?q=repo%3Asolid/solid-oidc%20author%3Aacoburn%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-morph-kgc--github" href="https://github.com/morph-kgc/.github">morph-kgc/.github</a> (5 commits) [↩](#row-morph-kgc--github)
+
+- [Julián Arenas Guerrero](https://github.com/arenas-guerrero-julian): [5](https://github.com/search?q=repo%3Amorph-kgc/.github%20author%3Aarenas-guerrero-julian%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-reporting" href="https://github.com/w3c/reporting">w3c/reporting</a> (5 commits) [↩](#row-w3c-reporting)
+
+- [Dominic Farolino](https://github.com/domfarolino): [5](https://github.com/search?q=repo%3Aw3c/reporting%20author%3Adomfarolino%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-discostu105-linzstrom-consumption" href="https://github.com/discostu105/linzstrom-consumption">discostu105/linzstrom-consumption</a> (5 commits) [↩](#row-discostu105-linzstrom-consumption)
+
+- [Christoph Neumüller](https://github.com/discostu105): [5](https://github.com/search?q=repo%3Adiscostu105/linzstrom-consumption%20author%3Adiscostu105%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-saucelabs-training-demo-python" href="https://github.com/saucelabs-training/demo-python">saucelabs-training/demo-python</a> (5 commits) [↩](#row-saucelabs-training-demo-python)
+
+- [Diego Molina](https://github.com/diemol): [5](https://github.com/search?q=repo%3Asaucelabs-training/demo-python%20author%3Adiemol%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ektrah-libsodium-core" href="https://github.com/ektrah/libsodium-core">ektrah/libsodium-core</a> (5 commits) [↩](#row-ektrah-libsodium-core)
+
+- [ektrah](https://github.com/ektrah): [5](https://github.com/search?q=repo%3Aektrah/libsodium-core%20author%3Aektrah%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-readium-speech" href="https://github.com/readium/speech">readium/speech</a> (5 commits) [↩](#row-readium-speech)
+
+- [Hadrien Gardeur](https://github.com/HadrienGardeur): [5](https://github.com/search?q=repo%3Areadium/speech%20author%3AHadrienGardeur%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-eemeli-prettier-plugin-properties" href="https://github.com/eemeli/prettier-plugin-properties">eemeli/prettier-plugin-properties</a> (5 commits) [↩](#row-eemeli-prettier-plugin-properties)
+
+- [Eemeli Aro](https://github.com/eemeli): [5](https://github.com/search?q=repo%3Aeemeli/prettier-plugin-properties%20author%3Aeemeli%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-eemeli-dot-properties" href="https://github.com/eemeli/dot-properties">eemeli/dot-properties</a> (5 commits) [↩](#row-eemeli-dot-properties)
+
+- [Eemeli Aro](https://github.com/eemeli): [5](https://github.com/search?q=repo%3Aeemeli/dot-properties%20author%3Aeemeli%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-vc-charter-2026" href="https://github.com/w3c/vc-charter-2026">w3c/vc-charter-2026</a> (5 commits) [↩](#row-w3c-vc-charter-2026)
+
+- [Ivan Herman](https://github.com/iherman): [5](https://github.com/search?q=repo%3Aw3c/vc-charter-2026%20author%3Aiherman%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-vc-wg" href="https://github.com/w3c/vc-wg">w3c/vc-wg</a> (5 commits) [↩](#row-w3c-vc-wg)
+
+- [Ivan Herman](https://github.com/iherman): [5](https://github.com/search?q=repo%3Aw3c/vc-wg%20author%3Aiherman%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3ctag-user-agents" href="https://github.com/w3ctag/user-agents">w3ctag/user-agents</a> (5 commits) [↩](#row-w3ctag-user-agents)
+
+- [Jeffrey Yasskin](https://github.com/jyasskin): [2](https://github.com/search?q=repo%3Aw3ctag/user-agents%20author%3Ajyasskin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Marcos Cáceres](https://github.com/marcoscaceres): [2](https://github.com/search?q=repo%3Aw3ctag/user-agents%20author%3Amarcoscaceres%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Martin Thomson](https://github.com/martinthomson): [1](https://github.com/search?q=repo%3Aw3ctag/user-agents%20author%3Amartinthomson%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-mozilla-wpt-sync" href="https://github.com/mozilla/wpt-sync">mozilla/wpt-sync</a> (5 commits) [↩](#row-mozilla-wpt-sync)
+
+- [Alexandra Borovova](https://github.com/lutien): [5](https://github.com/search?q=repo%3Amozilla/wpt-sync%20author%3Alutien%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-agentplexus-vaultguard" href="https://github.com/agentplexus/vaultguard">agentplexus/vaultguard</a> (5 commits) [↩](#row-agentplexus-vaultguard)
+
+- [John Wang](https://github.com/grokify): [5](https://github.com/search?q=repo%3Aagentplexus/vaultguard%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-tc39-proposal-composable-accessors" href="https://github.com/tc39/proposal-composable-accessors">tc39/proposal-composable-accessors</a> (5 commits) [↩](#row-tc39-proposal-composable-accessors)
+
+- [Lea Verou](https://github.com/LeaVerou): [5](https://github.com/search?q=repo%3Atc39/proposal-composable-accessors%20author%3ALeaVerou%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-gpuweb-gpuweb" href="https://github.com/gpuweb/gpuweb">gpuweb/gpuweb</a> (5 commits) [↩](#row-gpuweb-gpuweb)
+
+- [Mehmet Oguz Derin](https://github.com/mehmetoguzderin): [5](https://github.com/search?q=repo%3Agpuweb/gpuweb%20author%3Amehmetoguzderin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-mehm8128-rehype-toc" href="https://github.com/mehm8128/rehype-toc">mehm8128/rehype-toc</a> (5 commits) [↩](#row-mehm8128-rehype-toc)
+
+- [mehm8128](https://github.com/mehm8128): [5](https://github.com/search?q=repo%3Amehm8128/rehype-toc%20author%3Amehm8128%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-vc-di-bbs-test-suite" href="https://github.com/w3c/vc-di-bbs-test-suite">w3c/vc-di-bbs-test-suite</a> (5 commits) [↩](#row-w3c-vc-di-bbs-test-suite)
+
+- [Manu Sporny](https://github.com/msporny): [5](https://github.com/search?q=repo%3Aw3c/vc-di-bbs-test-suite%20author%3Amsporny%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-mp4ra-mp4ra-github-io" href="https://github.com/mp4ra/mp4ra.github.io">mp4ra/mp4ra.github.io</a> (5 commits) [↩](#row-mp4ra-mp4ra-github-io)
+
+- [Dimitri Podborski](https://github.com/podborski): [5](https://github.com/search?q=repo%3Amp4ra/mp4ra.github.io%20author%3Apodborski%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-webview-cg-compatibility-data-project" href="https://github.com/WebView-CG/Compatibility-Data-Project">WebView-CG/Compatibility-Data-Project</a> (5 commits) [↩](#row-webview-cg-compatibility-data-project)
+
+- [Niklas Merz](https://github.com/NiklasMerz): [5](https://github.com/search?q=repo%3AWebView-CG/Compatibility-Data-Project%20author%3ANiklasMerz%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-panva-hpke" href="https://github.com/panva/hpke">panva/hpke</a> (5 commits) [↩](#row-panva-hpke)
+
+- [Filip Skokan](https://github.com/panva): [5](https://github.com/search?q=repo%3Apanva/hpke%20author%3Apanva%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ruby2js-juntos" href="https://github.com/ruby2js/juntos">ruby2js/juntos</a> (5 commits) [↩](#row-ruby2js-juntos)
+
+- [Sam Ruby](https://github.com/rubys): [5](https://github.com/search?q=repo%3Aruby2js/juntos%20author%3Arubys%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-fitzwilliammuseum-fitz-main-website" href="https://github.com/FitzwilliamMuseum/fitz-main-website">FitzwilliamMuseum/fitz-main-website</a> (5 commits) [↩](#row-fitzwilliammuseum-fitz-main-website)
+
+- [Sean Dunwoody](https://github.com/sean-dunwoody): [5](https://github.com/search?q=repo%3AFitzwilliamMuseum/fitz-main-website%20author%3Asean-dunwoody%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-wai-atag-report-tool" href="https://github.com/w3c/wai-atag-report-tool">w3c/wai-atag-report-tool</a> (5 commits) [↩](#row-w3c-wai-atag-report-tool)
+
+- [Rémi Bétin](https://github.com/remibetin): [5](https://github.com/search?q=repo%3Aw3c/wai-atag-report-tool%20author%3Aremibetin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-wai-website-plugin" href="https://github.com/w3c/wai-website-plugin">w3c/wai-website-plugin</a> (5 commits) [↩](#row-w3c-wai-website-plugin)
+
+- [Rémi Bétin](https://github.com/remibetin): [5](https://github.com/search?q=repo%3Aw3c/wai-website-plugin%20author%3Aremibetin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-snarfed-granary" href="https://github.com/snarfed/granary">snarfed/granary</a> (5 commits) [↩](#row-snarfed-granary)
+
+- [Ryan Barrett](https://github.com/snarfed): [5](https://github.com/search?q=repo%3Asnarfed/granary%20author%3Asnarfed%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-interledger-web-monetization-extension" href="https://github.com/interledger/web-monetization-extension">interledger/web-monetization-extension</a> (5 commits) [↩](#row-interledger-web-monetization-extension)
+
+- [Sid Vishnoi](https://github.com/sidvishnoi): [5](https://github.com/search?q=repo%3Ainterledger/web-monetization-extension%20author%3Asidvishnoi%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-wacky6-ok-deploy" href="https://github.com/wacky6/ok-deploy">wacky6/ok-deploy</a> (5 commits) [↩](#row-wacky6-ok-deploy)
+
+- [Jiewei Qian](https://github.com/wacky6): [5](https://github.com/search?q=repo%3Awacky6/ok-deploy%20author%3Awacky6%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ladybirdbrowser-ladybird" href="https://github.com/LadybirdBrowser/ladybird">LadybirdBrowser/ladybird</a> (5 commits) [↩](#row-ladybirdbrowser-ladybird)
+
+- [sideshowbarker](https://github.com/sideshowbarker): [5](https://github.com/search?q=repo%3ALadybirdBrowser/ladybird%20author%3Asideshowbarker%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-timcappalli-caddy-docker-proxy-azcf" href="https://github.com/timcappalli/caddy-docker-proxy-azcf">timcappalli/caddy-docker-proxy-azcf</a> (5 commits) [↩](#row-timcappalli-caddy-docker-proxy-azcf)
+
+- [Tim Cappalli](https://github.com/timcappalli): [5](https://github.com/search?q=repo%3Atimcappalli/caddy-docker-proxy-azcf%20author%3Atimcappalli%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-perma-id-w3id-org" href="https://github.com/perma-id/w3id.org">perma-id/w3id.org</a> (5 commits) [↩](#row-perma-id-w3id-org)
+
+- [Ted Thibodeau Jr](https://github.com/TallTed): [5](https://github.com/search?q=repo%3Aperma-id/w3id.org%20author%3ATallTed%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-woutslabbinck-odrl-evaluator-demo" href="https://github.com/woutslabbinck/ODRL-Evaluator-Demo">woutslabbinck/ODRL-Evaluator-Demo</a> (5 commits) [↩](#row-woutslabbinck-odrl-evaluator-demo)
+
+- [Wout Slabbinck](https://github.com/woutslabbinck): [5](https://github.com/search?q=repo%3Awoutslabbinck/ODRL-Evaluator-Demo%20author%3Awoutslabbinck%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ljharb-safe-regex-test" href="https://github.com/ljharb/safe-regex-test">ljharb/safe-regex-test</a> (5 commits) [↩](#row-ljharb-safe-regex-test)
+
+- [Jordan Harband](https://github.com/ljharb): [5](https://github.com/search?q=repo%3Aljharb/safe-regex-test%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-nvm-sh-nvmrc" href="https://github.com/nvm-sh/nvmrc">nvm-sh/nvmrc</a> (5 commits) [↩](#row-nvm-sh-nvmrc)
+
+- [Jordan Harband](https://github.com/ljharb): [5](https://github.com/search?q=repo%3Anvm-sh/nvmrc%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-es-shims-map-prototype-getorinsertcomputed" href="https://github.com/es-shims/Map.prototype.getOrInsertComputed">es-shims/Map.prototype.getOrInsertComputed</a> (5 commits) [↩](#row-es-shims-map-prototype-getorinsertcomputed)
+
+- [Jordan Harband](https://github.com/ljharb): [5](https://github.com/search?q=repo%3Aes-shims/Map.prototype.getOrInsertComputed%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-es-shims-es-arraybuffer-base64" href="https://github.com/es-shims/es-arraybuffer-base64">es-shims/es-arraybuffer-base64</a> (5 commits) [↩](#row-es-shims-es-arraybuffer-base64)
+
+- [Jordan Harband](https://github.com/ljharb): [5](https://github.com/search?q=repo%3Aes-shims/es-arraybuffer-base64%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-tc39-proposal-amount" href="https://github.com/tc39/proposal-amount">tc39/proposal-amount</a> (5 commits) [↩](#row-tc39-proposal-amount)
+
+- [Jordan Harband](https://github.com/ljharb): [5](https://github.com/search?q=repo%3Atc39/proposal-amount%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-jsx-eslint-eslint-plugin-jsx-a11y" href="https://github.com/jsx-eslint/eslint-plugin-jsx-a11y">jsx-eslint/eslint-plugin-jsx-a11y</a> (5 commits) [↩](#row-jsx-eslint-eslint-plugin-jsx-a11y)
+
+- [Jordan Harband](https://github.com/ljharb): [5](https://github.com/search?q=repo%3Ajsx-eslint/eslint-plugin-jsx-a11y%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-cyclopsmc-everlastingabilities" href="https://github.com/CyclopsMC/EverlastingAbilities">CyclopsMC/EverlastingAbilities</a> (5 commits) [↩](#row-cyclopsmc-everlastingabilities)
+
+- [Ruben Taelman](https://github.com/rubensworks): [5](https://github.com/search?q=repo%3ACyclopsMC/EverlastingAbilities%20author%3Arubensworks%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-rdfjs-rdfxml-streaming-parser-js" href="https://github.com/rdfjs/rdfxml-streaming-parser.js">rdfjs/rdfxml-streaming-parser.js</a> (5 commits) [↩](#row-rdfjs-rdfxml-streaming-parser-js)
+
+- [Ruben Taelman](https://github.com/rubensworks): [5](https://github.com/search?q=repo%3Ardfjs/rdfxml-streaming-parser.js%20author%3Arubensworks%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ajs6f-githubclasstest" href="https://github.com/ajs6f/GithubClassTest">ajs6f/GithubClassTest</a> (4 commits) [↩](#row-ajs6f-githubclasstest)
+
+- [A. Soroka](https://github.com/ajs6f): [4](https://github.com/search?q=repo%3Aajs6f/GithubClassTest%20author%3Aajs6f%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-brebeuf-hx-brebeufhx-site" href="https://github.com/brebeuf-hx/brebeufhx-site">brebeuf-hx/brebeufhx-site</a> (4 commits) [↩](#row-brebeuf-hx-brebeufhx-site)
+
+- [Adnan Aidan T.](https://github.com/adntaha): [4](https://github.com/search?q=repo%3Abrebeuf-hx/brebeufhx-site%20author%3Aadntaha%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-airbr-wsg-facts" href="https://github.com/airbr/wsg-facts">airbr/wsg-facts</a> (4 commits) [↩](#row-airbr-wsg-facts)
+
+- [Morgan Murrah](https://github.com/airbr): [4](https://github.com/search?q=repo%3Aairbr/wsg-facts%20author%3Aairbr%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-airbr-wcag-json-experience" href="https://github.com/airbr/WCAG-JSON-experience">airbr/WCAG-JSON-experience</a> (4 commits) [↩](#row-airbr-wcag-json-experience)
+
+- [Morgan Murrah](https://github.com/airbr): [4](https://github.com/search?q=repo%3Aairbr/WCAG-JSON-experience%20author%3Aairbr%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-aaronpk-scim-cloud" href="https://github.com/aaronpk/scim.cloud">aaronpk/scim.cloud</a> (4 commits) [↩](#row-aaronpk-scim-cloud)
+
+- [Aaron Parecki](https://github.com/aaronpk): [4](https://github.com/search?q=repo%3Aaaronpk/scim.cloud%20author%3Aaaronpk%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-hashicorp-design-system" href="https://github.com/hashicorp/design-system">hashicorp/design-system</a> (4 commits) [↩](#row-hashicorp-design-system)
+
+- [Alex](https://github.com/alex-ju): [4](https://github.com/search?q=repo%3Ahashicorp/design-system%20author%3Aalex-ju%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-onboarding" href="https://github.com/w3c/onboarding">w3c/onboarding</a> (4 commits) [↩](#row-w3c-onboarding)
+
+- [Fuqiao Xue](https://github.com/xfq): [3](https://github.com/search?q=repo%3Aw3c/onboarding%20author%3Axfq%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [caribouW3](https://github.com/caribouW3): [1](https://github.com/search?q=repo%3Aw3c/onboarding%20author%3AcaribouW3%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-adamj-blog" href="https://github.com/AdamJ/blog">AdamJ/blog</a> (4 commits) [↩](#row-adamj-blog)
+
+- [Adam Jolicoeur](https://github.com/AdamJ): [4](https://github.com/search?q=repo%3AAdamJ/blog%20author%3AAdamJ%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-adamj-11ty-template" href="https://github.com/AdamJ/11ty-template">AdamJ/11ty-template</a> (4 commits) [↩](#row-adamj-11ty-template)
+
+- [Adam Jolicoeur](https://github.com/AdamJ): [4](https://github.com/search?q=repo%3AAdamJ/11ty-template%20author%3AAdamJ%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-adamj-timetrackerpro" href="https://github.com/AdamJ/TimeTrackerPro">AdamJ/TimeTrackerPro</a> (4 commits) [↩](#row-adamj-timetrackerpro)
+
+- [Adam Jolicoeur](https://github.com/AdamJ): [4](https://github.com/search?q=repo%3AAdamJ/TimeTrackerPro%20author%3AAdamJ%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-morph-kgc-3xtudio" href="https://github.com/morph-kgc/3xtudio">morph-kgc/3xtudio</a> (4 commits) [↩](#row-morph-kgc-3xtudio)
+
+- [Julián Arenas Guerrero](https://github.com/arenas-guerrero-julian): [4](https://github.com/search?q=repo%3Amorph-kgc/3xtudio%20author%3Aarenas-guerrero-julian%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-microsoft-fluidframework" href="https://github.com/microsoft/FluidFramework">microsoft/FluidFramework</a> (4 commits) [↩](#row-microsoft-fluidframework)
+
+- [Matt Rakow](https://github.com/ChumpChief): [4](https://github.com/search?q=repo%3Amicrosoft/FluidFramework%20author%3AChumpChief%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-benoitzugmeyer-eslint-plugin-html" href="https://github.com/BenoitZugmeyer/eslint-plugin-html">BenoitZugmeyer/eslint-plugin-html</a> (4 commits) [↩](#row-benoitzugmeyer-eslint-plugin-html)
+
+- [Benoît](https://github.com/BenoitZugmeyer): [4](https://github.com/search?q=repo%3ABenoitZugmeyer/eslint-plugin-html%20author%3ABenoitZugmeyer%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-berlysia-berlysia-net" href="https://github.com/berlysia/berlysia.net">berlysia/berlysia.net</a> (4 commits) [↩](#row-berlysia-berlysia-net)
+
+- [berlysia](https://github.com/berlysia): [4](https://github.com/search?q=repo%3Aberlysia/berlysia.net%20author%3Aberlysia%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-web-platform-tests-wpt-metadata" href="https://github.com/web-platform-tests/wpt-metadata">web-platform-tests/wpt-metadata</a> (4 commits) [↩](#row-web-platform-tests-wpt-metadata)
+
+- [Daniel Holbert](https://github.com/dholbert): [2](https://github.com/search?q=repo%3Aweb-platform-tests/wpt-metadata%20author%3Adholbert%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Sam Sneddon](https://github.com/gsnedders): [2](https://github.com/search?q=repo%3Aweb-platform-tests/wpt-metadata%20author%3Agsnedders%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-netrisse-netrisse" href="https://github.com/netrisse/netrisse">netrisse/netrisse</a> (4 commits) [↩](#row-netrisse-netrisse)
+
+- [Chris de Almeida](https://github.com/ctcpip): [4](https://github.com/search?q=repo%3Anetrisse/netrisse%20author%3Actcpip%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-donmccurdy-zstddec-wasm" href="https://github.com/donmccurdy/zstddec-wasm">donmccurdy/zstddec-wasm</a> (4 commits) [↩](#row-donmccurdy-zstddec-wasm)
+
+- [Don McCurdy](https://github.com/donmccurdy): [4](https://github.com/search?q=repo%3Adonmccurdy/zstddec-wasm%20author%3Adonmccurdy%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-webassembly-meetings" href="https://github.com/WebAssembly/meetings">WebAssembly/meetings</a> (4 commits) [↩](#row-webassembly-meetings)
+
+- [Derek Schuff](https://github.com/dschuff): [4](https://github.com/search?q=repo%3AWebAssembly/meetings%20author%3Adschuff%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-solid-specification" href="https://github.com/solid/specification">solid/specification</a> (4 commits) [↩](#row-solid-specification)
+
+- [elf Pavlik](https://github.com/elf-pavlik): [2](https://github.com/search?q=repo%3Asolid/specification%20author%3Aelf-pavlik%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Christoph Braun](https://github.com/uvdsl): [1](https://github.com/search?q=repo%3Asolid/specification%20author%3Auvdsl%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Ted Thibodeau Jr](https://github.com/TallTed): [1](https://github.com/search?q=repo%3Asolid/specification%20author%3ATallTed%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-frosne-waict_server" href="https://github.com/Frosne/waict_server">Frosne/waict_server</a> (4 commits) [↩](#row-frosne-waict_server)
+
+- [Anna Weine](https://github.com/Frosne): [4](https://github.com/search?q=repo%3AFrosne/waict_server%20author%3AFrosne%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-webdriverio-community-node-edgedriver" href="https://github.com/webdriverio-community/node-edgedriver">webdriverio-community/node-edgedriver</a> (4 commits) [↩](#row-webdriverio-community-node-edgedriver)
+
+- [Christian Bromann](https://github.com/christian-bromann): [4](https://github.com/search?q=repo%3Awebdriverio-community/node-edgedriver%20author%3Achristian-bromann%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-vercel-ai" href="https://github.com/vercel/ai">vercel/ai</a> (4 commits) [↩](#row-vercel-ai)
+
+- [Christian Bromann](https://github.com/christian-bromann): [4](https://github.com/search?q=repo%3Avercel/ai%20author%3Achristian-bromann%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-haltersweb-numismatica" href="https://github.com/haltersweb/numismatica">haltersweb/numismatica</a> (4 commits) [↩](#row-haltersweb-numismatica)
+
+- [Adina](https://github.com/haltersweb): [4](https://github.com/search?q=repo%3Ahaltersweb/numismatica%20author%3Ahaltersweb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-hadriengardeur-web-speech-recommended-voices" href="https://github.com/HadrienGardeur/web-speech-recommended-voices">HadrienGardeur/web-speech-recommended-voices</a> (4 commits) [↩](#row-hadriengardeur-web-speech-recommended-voices)
+
+- [Hadrien Gardeur](https://github.com/HadrienGardeur): [4](https://github.com/search?q=repo%3AHadrienGardeur/web-speech-recommended-voices%20author%3AHadrienGardeur%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-projectfluent-fluent" href="https://github.com/projectfluent/fluent">projectfluent/fluent</a> (4 commits) [↩](#row-projectfluent-fluent)
+
+- [Eemeli Aro](https://github.com/eemeli): [4](https://github.com/search?q=repo%3Aprojectfluent/fluent%20author%3Aeemeli%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-l-xiaoshen-drizzle-orm-cloudflare" href="https://github.com/l-xiaoshen/drizzle-orm-cloudflare">l-xiaoshen/drizzle-orm-cloudflare</a> (4 commits) [↩](#row-l-xiaoshen-drizzle-orm-cloudflare)
+
+- [Xiaoshen X](https://github.com/l-xiaoshen): [4](https://github.com/search?q=repo%3Al-xiaoshen/drizzle-orm-cloudflare%20author%3Al-xiaoshen%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-johntitor-mach2" href="https://github.com/JohnTitor/mach2">JohnTitor/mach2</a> (4 commits) [↩](#row-johntitor-mach2)
+
+- [Yuki Okushi](https://github.com/JohnTitor): [4](https://github.com/search?q=repo%3AJohnTitor/mach2%20author%3AJohnTitor%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-actix-actix-web" href="https://github.com/actix/actix-web">actix/actix-web</a> (4 commits) [↩](#row-actix-actix-web)
+
+- [Yuki Okushi](https://github.com/JohnTitor): [4](https://github.com/search?q=repo%3Aactix/actix-web%20author%3AJohnTitor%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-agentplexus-ogen-tools" href="https://github.com/agentplexus/ogen-tools">agentplexus/ogen-tools</a> (4 commits) [↩](#row-agentplexus-ogen-tools)
+
+- [John Wang](https://github.com/grokify): [4](https://github.com/search?q=repo%3Aagentplexus/ogen-tools%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-agentplexus-omnivault-aws" href="https://github.com/agentplexus/omnivault-aws">agentplexus/omnivault-aws</a> (4 commits) [↩](#row-agentplexus-omnivault-aws)
+
+- [John Wang](https://github.com/grokify): [4](https://github.com/search?q=repo%3Aagentplexus/omnivault-aws%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-agentplexus-agentplexus" href="https://github.com/agentplexus/agentplexus">agentplexus/agentplexus</a> (4 commits) [↩](#row-agentplexus-agentplexus)
+
+- [John Wang](https://github.com/grokify): [4](https://github.com/search?q=repo%3Aagentplexus/agentplexus%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-jeswr-noir_ieee754" href="https://github.com/jeswr/noir_IEEE754">jeswr/noir_IEEE754</a> (4 commits) [↩](#row-jeswr-noir_ieee754)
+
+- [Jesse Wright](https://github.com/jeswr): [4](https://github.com/search?q=repo%3Ajeswr/noir_IEEE754%20author%3Ajeswr%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-nudeps-cjs-browser-shim" href="https://github.com/nudeps/cjs-browser-shim">nudeps/cjs-browser-shim</a> (4 commits) [↩](#row-nudeps-cjs-browser-shim)
+
+- [Lea Verou](https://github.com/LeaVerou): [4](https://github.com/search?q=repo%3Anudeps/cjs-browser-shim%20author%3ALeaVerou%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-dmitrysharabin-jspm-test" href="https://github.com/DmitrySharabin/jspm-test">DmitrySharabin/jspm-test</a> (4 commits) [↩](#row-dmitrysharabin-jspm-test)
+
+- [Lea Verou](https://github.com/LeaVerou): [4](https://github.com/search?q=repo%3ADmitrySharabin/jspm-test%20author%3ALeaVerou%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-tc39-proposal-alias-accessors" href="https://github.com/tc39/proposal-alias-accessors">tc39/proposal-alias-accessors</a> (4 commits) [↩](#row-tc39-proposal-alias-accessors)
+
+- [Lea Verou](https://github.com/LeaVerou): [4](https://github.com/search?q=repo%3Atc39/proposal-alias-accessors%20author%3ALeaVerou%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-mnot-i-d" href="https://github.com/mnot/I-D">mnot/I-D</a> (4 commits) [↩](#row-mnot-i-d)
+
+- [Mark Nottingham](https://github.com/mnot): [4](https://github.com/search?q=repo%3Amnot/I-D%20author%3Amnot%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-did" href="https://github.com/w3c/did">w3c/did</a> (4 commits) [↩](#row-w3c-did)
+
+- [Manu Sporny](https://github.com/msporny): [3](https://github.com/search?q=repo%3Aw3c/did%20author%3Amsporny%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Ted Thibodeau Jr](https://github.com/TallTed): [1](https://github.com/search?q=repo%3Aw3c/did%20author%3ATallTed%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-utmgdsc-website" href="https://github.com/utmgdsc/website">utmgdsc/website</a> (4 commits) [↩](#row-utmgdsc-website)
+
+- [logonoff](https://github.com/logonoff): [4](https://github.com/search?q=repo%3Autmgdsc/website%20author%3Alogonoff%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-openshift-dynamic-plugin-sdk" href="https://github.com/openshift/dynamic-plugin-sdk">openshift/dynamic-plugin-sdk</a> (4 commits) [↩](#row-openshift-dynamic-plugin-sdk)
+
+- [logonoff](https://github.com/logonoff): [4](https://github.com/search?q=repo%3Aopenshift/dynamic-plugin-sdk%20author%3Alogonoff%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-utmgdsc-hacklab-booking" href="https://github.com/utmgdsc/hacklab-booking">utmgdsc/hacklab-booking</a> (4 commits) [↩](#row-utmgdsc-hacklab-booking)
+
+- [logonoff](https://github.com/logonoff): [4](https://github.com/search?q=repo%3Autmgdsc/hacklab-booking%20author%3Alogonoff%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-martinthomson-dap-attribution" href="https://github.com/martinthomson/dap-attribution">martinthomson/dap-attribution</a> (4 commits) [↩](#row-martinthomson-dap-attribution)
+
+- [Martin Thomson](https://github.com/martinthomson): [4](https://github.com/search?q=repo%3Amartinthomson/dap-attribution%20author%3Amartinthomson%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-attribution" href="https://github.com/w3c/attribution">w3c/attribution</a> (4 commits) [↩](#row-w3c-attribution)
+
+- [Martin Thomson](https://github.com/martinthomson): [4](https://github.com/search?q=repo%3Aw3c/attribution%20author%3Amartinthomson%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ntindle-governance-md" href="https://github.com/ntindle/governance.md">ntindle/governance.md</a> (4 commits) [↩](#row-ntindle-governance-md)
+
+- [Nicholas Tindle](https://github.com/ntindle): [4](https://github.com/search?q=repo%3Antindle/governance.md%20author%3Antindle%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ostafinskim-next-better-auth" href="https://github.com/ostafinskim/next-better-auth">ostafinskim/next-better-auth</a> (4 commits) [↩](#row-ostafinskim-next-better-auth)
+
+- [Miro Ostafinski](https://github.com/ostafinskim): [4](https://github.com/search?q=repo%3Aostafinskim/next-better-auth%20author%3Aostafinskim%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ostafinskim-issue-tracker" href="https://github.com/ostafinskim/issue-tracker">ostafinskim/issue-tracker</a> (4 commits) [↩](#row-ostafinskim-issue-tracker)
+
+- [Miro Ostafinski](https://github.com/ostafinskim): [4](https://github.com/search?q=repo%3Aostafinskim/issue-tracker%20author%3Aostafinskim%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-wicg-wicg-github-io" href="https://github.com/WICG/wicg.github.io">WICG/wicg.github.io</a> (4 commits) [↩](#row-wicg-wicg-github-io)
+
+- [Philippe Le Hegaret](https://github.com/plehegar): [4](https://github.com/search?q=repo%3AWICG/wicg.github.io%20author%3Aplehegar%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-socialwg" href="https://github.com/w3c/socialwg">w3c/socialwg</a> (4 commits) [↩](#row-w3c-socialwg)
+
+- [Philippe Le Hegaret](https://github.com/plehegar): [4](https://github.com/search?q=repo%3Aw3c/socialwg%20author%3Aplehegar%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-activitystreams" href="https://github.com/w3c/activitystreams">w3c/activitystreams</a> (4 commits) [↩](#row-w3c-activitystreams)
+
+- [Philippe Le Hegaret](https://github.com/plehegar): [4](https://github.com/search?q=repo%3Aw3c/activitystreams%20author%3Aplehegar%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-keithamus-test" href="https://github.com/keithamus/test">keithamus/test</a> (4 commits) [↩](#row-keithamus-test)
+
+- [Keith Cirkel](https://github.com/keithamus): [4](https://github.com/search?q=repo%3Akeithamus/test%20author%3Akeithamus%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-punkeel-hysystemdnotifier" href="https://github.com/punkeel/HySystemdNotifier">punkeel/HySystemdNotifier</a> (4 commits) [↩](#row-punkeel-hysystemdnotifier)
+
+- [Maxime Guerreiro](https://github.com/punkeel): [4](https://github.com/search?q=repo%3Apunkeel/HySystemdNotifier%20author%3Apunkeel%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-neovateai-agentskill-installer" href="https://github.com/neovateai/agentskill-installer">neovateai/agentskill-installer</a> (4 commits) [↩](#row-neovateai-agentskill-installer)
+
+- [Hai Rao](https://github.com/RaoHai): [4](https://github.com/search?q=repo%3Aneovateai/agentskill-installer%20author%3ARaoHai%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-rust-diplomat-diplomat" href="https://github.com/rust-diplomat/diplomat">rust-diplomat/diplomat</a> (4 commits) [↩](#row-rust-diplomat-diplomat)
+
+- [Manish Goregaokar](https://github.com/Manishearth): [4](https://github.com/search?q=repo%3Arust-diplomat/diplomat%20author%3AManishearth%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-manishearth-triomphe" href="https://github.com/Manishearth/triomphe">Manishearth/triomphe</a> (4 commits) [↩](#row-manishearth-triomphe)
+
+- [Manish Goregaokar](https://github.com/Manishearth): [4](https://github.com/search?q=repo%3AManishearth/triomphe%20author%3AManishearth%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-rishikanthc-scriberr" href="https://github.com/rishikanthc/Scriberr">rishikanthc/Scriberr</a> (4 commits) [↩](#row-rishikanthc-scriberr)
+
+- [Paul Irish](https://github.com/paulirish): [4](https://github.com/search?q=repo%3Arishikanthc/Scriberr%20author%3Apaulirish%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-privacy-tech-lab-gpc-optmeowt" href="https://github.com/privacy-tech-lab/gpc-optmeowt">privacy-tech-lab/gpc-optmeowt</a> (4 commits) [↩](#row-privacy-tech-lab-gpc-optmeowt)
+
+- [Sebastian Zimmeck](https://github.com/SebastianZimmeck): [4](https://github.com/search?q=repo%3Aprivacy-tech-lab/gpc-optmeowt%20author%3ASebastianZimmeck%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-snarfed-snarfed-org" href="https://github.com/snarfed/snarfed.org">snarfed/snarfed.org</a> (4 commits) [↩](#row-snarfed-snarfed-org)
+
+- [Ryan Barrett](https://github.com/snarfed): [4](https://github.com/search?q=repo%3Asnarfed/snarfed.org%20author%3Asnarfed%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-sublimator-projected-source" href="https://github.com/sublimator/projected-source">sublimator/projected-source</a> (4 commits) [↩](#row-sublimator-projected-source)
+
+- [Niq Dudfield](https://github.com/sublimator): [4](https://github.com/search?q=repo%3Asublimator/projected-source%20author%3Asublimator%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-validator-htmlparser" href="https://github.com/validator/htmlparser">validator/htmlparser</a> (4 commits) [↩](#row-validator-htmlparser)
+
+- [sideshowbarker](https://github.com/sideshowbarker): [4](https://github.com/search?q=repo%3Avalidator/htmlparser%20author%3Asideshowbarker%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-solidlabresearch-odrl-evaluator" href="https://github.com/SolidLabResearch/ODRL-Evaluator">SolidLabResearch/ODRL-Evaluator</a> (4 commits) [↩](#row-solidlabresearch-odrl-evaluator)
+
+- [Wout Slabbinck](https://github.com/woutslabbinck): [4](https://github.com/search?q=repo%3ASolidLabResearch/ODRL-Evaluator%20author%3Awoutslabbinck%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-mapbox-mapbox-gl-js" href="https://github.com/mapbox/mapbox-gl-js">mapbox/mapbox-gl-js</a> (4 commits) [↩](#row-mapbox-mapbox-gl-js)
+
+- [Aleksandr Shoronov](https://github.com/underoot): [4](https://github.com/search?q=repo%3Amapbox/mapbox-gl-js%20author%3Aunderoot%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-ruby-tts-req" href="https://github.com/w3c/ruby-tts-req">w3c/ruby-tts-req</a> (4 commits) [↩](#row-w3c-ruby-tts-req)
+
+- [Fuqiao Xue](https://github.com/xfq): [4](https://github.com/search?q=repo%3Aw3c/ruby-tts-req%20author%3Axfq%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-html-ruby" href="https://github.com/w3c/html-ruby">w3c/html-ruby</a> (4 commits) [↩](#row-w3c-html-ruby)
+
+- [Fuqiao Xue](https://github.com/xfq): [4](https://github.com/search?q=repo%3Aw3c/html-ruby%20author%3Axfq%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-inspect-js-which-typed-array" href="https://github.com/inspect-js/which-typed-array">inspect-js/which-typed-array</a> (4 commits) [↩](#row-inspect-js-which-typed-array)
+
+- [Jordan Harband](https://github.com/ljharb): [4](https://github.com/search?q=repo%3Ainspect-js/which-typed-array%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-es-shims-object-getownpropertydescriptors" href="https://github.com/es-shims/Object.getOwnPropertyDescriptors">es-shims/Object.getOwnPropertyDescriptors</a> (4 commits) [↩](#row-es-shims-object-getownpropertydescriptors)
+
+- [Jordan Harband](https://github.com/ljharb): [4](https://github.com/search?q=repo%3Aes-shims/Object.getOwnPropertyDescriptors%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ljharb-qs" href="https://github.com/ljharb/qs">ljharb/qs</a> (4 commits) [↩](#row-ljharb-qs)
+
+- [Jordan Harband](https://github.com/ljharb): [4](https://github.com/search?q=repo%3Aljharb/qs%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-xuri-excelize-doc" href="https://github.com/xuri/excelize-doc">xuri/excelize-doc</a> (4 commits) [↩](#row-xuri-excelize-doc)
+
+- [xuri](https://github.com/xuri): [4](https://github.com/search?q=repo%3Axuri/excelize-doc%20author%3Axuri%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-rubensworks-slides-2026-ugent-knowledgegraphs-sparqlengines" href="https://github.com/rubensworks/slides-2026-ugent-knowledgegraphs-sparqlengines">rubensworks/slides-2026-ugent-knowledgegraphs-sparqlengines</a> (4 commits) [↩](#row-rubensworks-slides-2026-ugent-knowledgegraphs-sparqlengines)
+
+- [Ruben Taelman](https://github.com/rubensworks): [4](https://github.com/search?q=repo%3Arubensworks/slides-2026-ugent-knowledgegraphs-sparqlengines%20author%3Arubensworks%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-duckduckgo-tracker-radar-wiki" href="https://github.com/duckduckgo/tracker-radar-wiki">duckduckgo/tracker-radar-wiki</a> (4 commits) [↩](#row-duckduckgo-tracker-radar-wiki)
+
+- [David Harbage](https://github.com/dharb): [4](https://github.com/search?q=repo%3Aduckduckgo/tracker-radar-wiki%20author%3Adharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-jaegertracing-documentation" href="https://github.com/jaegertracing/documentation">jaegertracing/documentation</a> (4 commits) [↩](#row-jaegertracing-documentation)
+
+- [Yuri Shkuro](https://github.com/yurishkuro): [4](https://github.com/search?q=repo%3Ajaegertracing/documentation%20author%3Ayurishkuro%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-whatwg-cookiestore" href="https://github.com/whatwg/cookiestore">whatwg/cookiestore</a> (3 commits) [↩](#row-whatwg-cookiestore)
+
+- [Anusha Muley](https://github.com/aamuley): [3](https://github.com/search?q=repo%3Awhatwg/cookiestore%20author%3Aaamuley%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-dcslab-bc-scriptlessfp" href="https://github.com/dcslab-bc/scriptlessFP">dcslab-bc/scriptlessFP</a> (3 commits) [↩](#row-dcslab-bc-scriptlessfp)
+
+- [hyojin](https://github.com/anawhj): [3](https://github.com/search?q=repo%3Adcslab-bc/scriptlessFP%20author%3Aanawhj%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-alexdawsonuk-alexanderdawson" href="https://github.com/AlexDawsonUK/AlexanderDawson">AlexDawsonUK/AlexanderDawson</a> (3 commits) [↩](#row-alexdawsonuk-alexanderdawson)
+
+- [Alexander Dawson](https://github.com/AlexDawsonUK): [3](https://github.com/search?q=repo%3AAlexDawsonUK/AlexanderDawson%20author%3AAlexDawsonUK%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-wcag" href="https://github.com/w3c/wcag">w3c/wcag</a> (3 commits) [↩](#row-w3c-wcag)
+
+- [Adam Page](https://github.com/adampage): [1](https://github.com/search?q=repo%3Aw3c/wcag%20author%3Aadampage%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Patrick H. Lauke](https://github.com/patrickhlauke): [1](https://github.com/search?q=repo%3Aw3c/wcag%20author%3Apatrickhlauke%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Rémi Bétin](https://github.com/remibetin): [1](https://github.com/search?q=repo%3Aw3c/wcag%20author%3Aremibetin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-alphagov-govuk-brand-guidelines" href="https://github.com/alphagov/govuk-brand-guidelines">alphagov/govuk-brand-guidelines</a> (3 commits) [↩](#row-alphagov-govuk-brand-guidelines)
+
+- [Oliver Byford](https://github.com/36degrees): [3](https://github.com/search?q=repo%3Aalphagov/govuk-brand-guidelines%20author%3A36degrees%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-generic-sensor-demos" href="https://github.com/w3c/generic-sensor-demos">w3c/generic-sensor-demos</a> (3 commits) [↩](#row-w3c-generic-sensor-demos)
+
+- [Anssi Kostiainen](https://github.com/anssiko): [3](https://github.com/search?q=repo%3Aw3c/generic-sensor-demos%20author%3Aanssiko%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-product-designs-ocr-template-creator" href="https://github.com/Product-Designs/ocr-template-creator">Product-Designs/ocr-template-creator</a> (3 commits) [↩](#row-product-designs-ocr-template-creator)
+
+- [Adam Jolicoeur](https://github.com/AdamJ): [3](https://github.com/search?q=repo%3AProduct-Designs/ocr-template-creator%20author%3AAdamJ%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-product-designs-design-showcase-landing" href="https://github.com/Product-Designs/design-showcase-landing">Product-Designs/design-showcase-landing</a> (3 commits) [↩](#row-product-designs-design-showcase-landing)
+
+- [Adam Jolicoeur](https://github.com/AdamJ): [3](https://github.com/search?q=repo%3AProduct-Designs/design-showcase-landing%20author%3AAdamJ%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ietf-github-services-activity-summary" href="https://github.com/ietf-github-services/activity-summary">ietf-github-services/activity-summary</a> (3 commits) [↩](#row-ietf-github-services-activity-summary)
+
+- [Mark Nottingham](https://github.com/mnot): [2](https://github.com/search?q=repo%3Aietf-github-services/activity-summary%20author%3Amnot%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Brent Zundel](https://github.com/brentzundel): [1](https://github.com/search?q=repo%3Aietf-github-services/activity-summary%20author%3Abrentzundel%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-c00kiemon5ter-presentation-tnc19-identitypython-eduteams" href="https://github.com/c00kiemon5ter/presentation-tnc19-identitypython-eduteams">c00kiemon5ter/presentation-tnc19-identitypython-eduteams</a> (3 commits) [↩](#row-c00kiemon5ter-presentation-tnc19-identitypython-eduteams)
+
+- [Ivan Kanakarakis](https://github.com/c00kiemon5ter): [3](https://github.com/search?q=repo%3Ac00kiemon5ter/presentation-tnc19-identitypython-eduteams%20author%3Ac00kiemon5ter%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-aramzs-context-center" href="https://github.com/AramZS/context-center">AramZS/context-center</a> (3 commits) [↩](#row-aramzs-context-center)
+
+- [Aram Zucker-Scharff](https://github.com/AramZS): [3](https://github.com/search?q=repo%3AAramZS/context-center%20author%3AAramZS%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-comandeer-blog" href="https://github.com/Comandeer/blog">Comandeer/blog</a> (3 commits) [↩](#row-comandeer-blog)
+
+- [Tomasz Jakut](https://github.com/Comandeer): [3](https://github.com/search?q=repo%3AComandeer/blog%20author%3AComandeer%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-crazyurus-automap-activate" href="https://github.com/crazyurus/automap-activate">crazyurus/automap-activate</a> (3 commits) [↩](#row-crazyurus-automap-activate)
+
+- [Cr4zy Uru5](https://github.com/crazyurus): [3](https://github.com/search?q=repo%3Acrazyurus/automap-activate%20author%3Acrazyurus%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-berlysia-renovate-config" href="https://github.com/berlysia/renovate-config">berlysia/renovate-config</a> (3 commits) [↩](#row-berlysia-renovate-config)
+
+- [berlysia](https://github.com/berlysia): [3](https://github.com/search?q=repo%3Aberlysia/renovate-config%20author%3Aberlysia%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-bonds-tw-bonds-tw-github-io" href="https://github.com/bonds-tw/bonds-tw.github.io">bonds-tw/bonds-tw.github.io</a> (3 commits) [↩](#row-bonds-tw-bonds-tw-github-io)
+
+- [denkeni](https://github.com/denkeni): [3](https://github.com/search?q=repo%3Abonds-tw/bonds-tw.github.io%20author%3Adenkeni%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-mozilla-addons-linter" href="https://github.com/mozilla/addons-linter">mozilla/addons-linter</a> (3 commits) [↩](#row-mozilla-addons-linter)
+
+- [Luca Greco](https://github.com/rpl): [2](https://github.com/search?q=repo%3Amozilla/addons-linter%20author%3Arpl%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Simeon Vincent](https://github.com/dotproto): [1](https://github.com/search?q=repo%3Amozilla/addons-linter%20author%3Adotproto%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ecma-tc54-tg4" href="https://github.com/Ecma-TC54/tg4">Ecma-TC54/tg4</a> (3 commits) [↩](#row-ecma-tc54-tg4)
+
+- [Chris de Almeida](https://github.com/ctcpip): [3](https://github.com/search?q=repo%3AEcma-TC54/tg4%20author%3Actcpip%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-saucelabs-training-demo-java" href="https://github.com/saucelabs-training/demo-java">saucelabs-training/demo-java</a> (3 commits) [↩](#row-saucelabs-training-demo-java)
+
+- [Diego Molina](https://github.com/diemol): [3](https://github.com/search?q=repo%3Asaucelabs-training/demo-java%20author%3Adiemol%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-yubico-java-webauthn-server" href="https://github.com/Yubico/java-webauthn-server">Yubico/java-webauthn-server</a> (3 commits) [↩](#row-yubico-java-webauthn-server)
+
+- [Emil Lundberg](https://github.com/emlun): [3](https://github.com/search?q=repo%3AYubico/java-webauthn-server%20author%3Aemlun%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-whatwg-participant-data" href="https://github.com/whatwg/participant-data">whatwg/participant-data</a> (3 commits) [↩](#row-whatwg-participant-data)
+
+- [Anne van Kesteren](https://github.com/annevk): [2](https://github.com/search?q=repo%3Awhatwg/participant-data%20author%3Aannevk%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Theresa O’Connor](https://github.com/hober): [1](https://github.com/search?q=repo%3Awhatwg/participant-data%20author%3Ahober%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-nss-dev-nss" href="https://github.com/nss-dev/nss">nss-dev/nss</a> (3 commits) [↩](#row-nss-dev-nss)
+
+- [Anna Weine](https://github.com/Frosne): [3](https://github.com/search?q=repo%3Anss-dev/nss%20author%3AFrosne%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-langchain-ai-docs" href="https://github.com/langchain-ai/docs">langchain-ai/docs</a> (3 commits) [↩](#row-langchain-ai-docs)
+
+- [Christian Bromann](https://github.com/christian-bromann): [3](https://github.com/search?q=repo%3Alangchain-ai/docs%20author%3Achristian-bromann%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-webdriverio-webdriverio" href="https://github.com/webdriverio/webdriverio">webdriverio/webdriverio</a> (3 commits) [↩](#row-webdriverio-webdriverio)
+
+- [Christian Bromann](https://github.com/christian-bromann): [3](https://github.com/search?q=repo%3Awebdriverio/webdriverio%20author%3Achristian-bromann%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-hax-kotlin-java-mapped-types" href="https://github.com/hax/kotlin-java-mapped-types">hax/kotlin-java-mapped-types</a> (3 commits) [↩](#row-hax-kotlin-java-mapped-types)
+
+- [HE Shi-Jun](https://github.com/hax): [3](https://github.com/search?q=repo%3Ahax/kotlin-java-mapped-types%20author%3Ahax%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-hiroya-uga-hiroya-uga-github-io" href="https://github.com/hiroya-uga/hiroya-uga.github.io">hiroya-uga/hiroya-uga.github.io</a> (3 commits) [↩](#row-hiroya-uga-hiroya-uga-github-io)
+
+- [Hiroya UGA](https://github.com/hiroya-uga): [3](https://github.com/search?q=repo%3Ahiroya-uga/hiroya-uga.github.io%20author%3Ahiroya-uga%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-hajekj-blog" href="https://github.com/hajekj/blog">hajekj/blog</a> (3 commits) [↩](#row-hajekj-blog)
+
+- [Jan Hajek](https://github.com/hajekj): [3](https://github.com/search?q=repo%3Ahajekj/blog%20author%3Ahajekj%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-talxis-client-metadata" href="https://github.com/TALXIS/client-metadata">TALXIS/client-metadata</a> (3 commits) [↩](#row-talxis-client-metadata)
+
+- [Jan Hajek](https://github.com/hajekj): [3](https://github.com/search?q=repo%3ATALXIS/client-metadata%20author%3Ahajekj%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-hbz-lobid-extra-holdings" href="https://github.com/hbz/lobid-extra-holdings">hbz/lobid-extra-holdings</a> (3 commits) [↩](#row-hbz-lobid-extra-holdings)
+
+- [Fabian Steeg](https://github.com/fsteeg): [3](https://github.com/search?q=repo%3Ahbz/lobid-extra-holdings%20author%3Afsteeg%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-hsivonen-normalizer_bench" href="https://github.com/hsivonen/normalizer_bench">hsivonen/normalizer_bench</a> (3 commits) [↩](#row-hsivonen-normalizer_bench)
+
+- [Henri Sivonen](https://github.com/hsivonen): [3](https://github.com/search?q=repo%3Ahsivonen/normalizer_bench%20author%3Ahsivonen%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-canonical-inference-snaps-cli" href="https://github.com/canonical/inference-snaps-cli">canonical/inference-snaps-cli</a> (3 commits) [↩](#row-canonical-inference-snaps-cli)
+
+- [Farshid Tavakolizadeh](https://github.com/farshidtz): [3](https://github.com/search?q=repo%3Acanonical/inference-snaps-cli%20author%3Afarshidtz%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-yml2vocab" href="https://github.com/w3c/yml2vocab">w3c/yml2vocab</a> (3 commits) [↩](#row-w3c-yml2vocab)
+
+- [Ivan Herman](https://github.com/iherman): [3](https://github.com/search?q=repo%3Aw3c/yml2vocab%20author%3Aiherman%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-web-platform-dx-web-features" href="https://github.com/web-platform-dx/web-features">web-platform-dx/web-features</a> (3 commits) [↩](#row-web-platform-dx-web-features)
+
+- [Philip Jägenstedt](https://github.com/foolip): [3](https://github.com/search?q=repo%3Aweb-platform-dx/web-features%20author%3Afoolip%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-graphql-graphql-landscape" href="https://github.com/graphql/graphql-landscape">graphql/graphql-landscape</a> (3 commits) [↩](#row-graphql-graphql-landscape)
+
+- [Jory Burson](https://github.com/jorydotcom): [3](https://github.com/search?q=repo%3Agraphql/graphql-landscape%20author%3Ajorydotcom%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-kurtextrem-awesome-performance-patches" href="https://github.com/kurtextrem/awesome-performance-patches">kurtextrem/awesome-performance-patches</a> (3 commits) [↩](#row-kurtextrem-awesome-performance-patches)
+
+- [Jacob Groß](https://github.com/kurtextrem): [3](https://github.com/search?q=repo%3Akurtextrem/awesome-performance-patches%20author%3Akurtextrem%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-kdenhartog-feature-bounty" href="https://github.com/kdenhartog/feature-bounty">kdenhartog/feature-bounty</a> (3 commits) [↩](#row-kdenhartog-feature-bounty)
+
+- [Kyle Den Hartog](https://github.com/kdenhartog): [3](https://github.com/search?q=repo%3Akdenhartog/feature-bounty%20author%3Akdenhartog%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-lecepin-height-cut" href="https://github.com/lecepin/height-cut">lecepin/height-cut</a> (3 commits) [↩](#row-lecepin-height-cut)
+
+- [乐平](https://github.com/lecepin): [3](https://github.com/search?q=repo%3Alecepin/height-cut%20author%3Alecepin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-webdriver-bidi" href="https://github.com/w3c/webdriver-bidi">w3c/webdriver-bidi</a> (3 commits) [↩](#row-w3c-webdriver-bidi)
+
+- [Alexandra Borovova](https://github.com/lutien): [2](https://github.com/search?q=repo%3Aw3c/webdriver-bidi%20author%3Alutien%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [jgraham](https://github.com/jgraham): [1](https://github.com/search?q=repo%3Aw3c/webdriver-bidi%20author%3Ajgraham%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-kizu-kizu-blog" href="https://github.com/kizu/kizu-blog">kizu/kizu-blog</a> (3 commits) [↩](#row-kizu-kizu-blog)
+
+- [Roman Komarov](https://github.com/kizu): [3](https://github.com/search?q=repo%3Akizu/kizu-blog%20author%3Akizu%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-agentplexus-omnivault-keyring" href="https://github.com/agentplexus/omnivault-keyring">agentplexus/omnivault-keyring</a> (3 commits) [↩](#row-agentplexus-omnivault-keyring)
+
+- [John Wang](https://github.com/grokify): [3](https://github.com/search?q=repo%3Aagentplexus/omnivault-keyring%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-agentplexus-agentplexus-github-io" href="https://github.com/agentplexus/agentplexus.github.io">agentplexus/agentplexus.github.io</a> (3 commits) [↩](#row-agentplexus-agentplexus-github-io)
+
+- [John Wang](https://github.com/grokify): [3](https://github.com/search?q=repo%3Aagentplexus/agentplexus.github.io%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-grokify-homebrew-tap" href="https://github.com/grokify/homebrew-tap">grokify/homebrew-tap</a> (3 commits) [↩](#row-grokify-homebrew-tap)
+
+- [John Wang](https://github.com/grokify): [3](https://github.com/search?q=repo%3Agrokify/homebrew-tap%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-grokify-stratosforce" href="https://github.com/grokify/stratosforce">grokify/stratosforce</a> (3 commits) [↩](#row-grokify-stratosforce)
+
+- [John Wang](https://github.com/grokify): [3](https://github.com/search?q=repo%3Agrokify/stratosforce%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-solid-webid-search" href="https://github.com/solid/webid-search">solid/webid-search</a> (3 commits) [↩](#row-solid-webid-search)
+
+- [Jesse Wright](https://github.com/jeswr): [3](https://github.com/search?q=repo%3Asolid/webid-search%20author%3Ajeswr%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-jeswr-shaclcjs" href="https://github.com/jeswr/shaclcjs">jeswr/shaclcjs</a> (3 commits) [↩](#row-jeswr-shaclcjs)
+
+- [Jesse Wright](https://github.com/jeswr): [3](https://github.com/search?q=repo%3Ajeswr/shaclcjs%20author%3Ajeswr%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-solidos-solid-ui" href="https://github.com/SolidOS/solid-ui">SolidOS/solid-ui</a> (3 commits) [↩](#row-solidos-solid-ui)
+
+- [Jesse Wright](https://github.com/jeswr): [3](https://github.com/search?q=repo%3ASolidOS/solid-ui%20author%3Ajeswr%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-kinow-protobuf-uml-diagram" href="https://github.com/kinow/protobuf-uml-diagram">kinow/protobuf-uml-diagram</a> (3 commits) [↩](#row-kinow-protobuf-uml-diagram)
+
+- [Bruno P. Kinoshita](https://github.com/kinow): [3](https://github.com/search?q=repo%3Akinow/protobuf-uml-diagram%20author%3Akinow%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-googlechrome-chrome-extensions-samples" href="https://github.com/GoogleChrome/chrome-extensions-samples">GoogleChrome/chrome-extensions-samples</a> (3 commits) [↩](#row-googlechrome-chrome-extensions-samples)
+
+- [Oliver Dunk](https://github.com/oliverdunk): [2](https://github.com/search?q=repo%3AGoogleChrome/chrome-extensions-samples%20author%3Aoliverdunk%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Mike Wasserman](https://github.com/michaelwasserman): [1](https://github.com/search?q=repo%3AGoogleChrome/chrome-extensions-samples%20author%3Amichaelwasserman%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-wicg-webmonetization" href="https://github.com/WICG/webmonetization">WICG/webmonetization</a> (3 commits) [↩](#row-wicg-webmonetization)
+
+- [Sid Vishnoi](https://github.com/sidvishnoi): [2](https://github.com/search?q=repo%3AWICG/webmonetization%20author%3Asidvishnoi%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Luke Warlow](https://github.com/lukewarlow): [1](https://github.com/search?q=repo%3AWICG/webmonetization%20author%3Alukewarlow%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-mehm8128-zenn-articles" href="https://github.com/mehm8128/zenn-articles">mehm8128/zenn-articles</a> (3 commits) [↩](#row-mehm8128-zenn-articles)
+
+- [mehm8128](https://github.com/mehm8128): [3](https://github.com/search?q=repo%3Amehm8128/zenn-articles%20author%3Amehm8128%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-wikimedia-mediawiki-libs-iputils" href="https://github.com/wikimedia/mediawiki-libs-IPUtils">wikimedia/mediawiki-libs-IPUtils</a> (3 commits) [↩](#row-wikimedia-mediawiki-libs-iputils)
+
+- [Timo Tijhof](https://github.com/Krinkle): [3](https://github.com/search?q=repo%3Awikimedia/mediawiki-libs-IPUtils%20author%3AKrinkle%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-qunitjs-jekyll-theme-amethyst" href="https://github.com/qunitjs/jekyll-theme-amethyst">qunitjs/jekyll-theme-amethyst</a> (3 commits) [↩](#row-qunitjs-jekyll-theme-amethyst)
+
+- [Timo Tijhof](https://github.com/Krinkle): [3](https://github.com/search?q=repo%3Aqunitjs/jekyll-theme-amethyst%20author%3AKrinkle%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-wikimedia-cloud-instance-puppet" href="https://github.com/wikimedia/cloud-instance-puppet">wikimedia/cloud-instance-puppet</a> (3 commits) [↩](#row-wikimedia-cloud-instance-puppet)
+
+- [Moritz Schubotz](https://github.com/physikerwelt): [2](https://github.com/search?q=repo%3Awikimedia/cloud-instance-puppet%20author%3Aphysikerwelt%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Timo Tijhof](https://github.com/Krinkle): [1](https://github.com/search?q=repo%3Awikimedia/cloud-instance-puppet%20author%3AKrinkle%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-mrego-servo-toys" href="https://github.com/mrego/servo-toys">mrego/servo-toys</a> (3 commits) [↩](#row-mrego-servo-toys)
+
+- [Manuel Rego](https://github.com/mrego): [3](https://github.com/search?q=repo%3Amrego/servo-toys%20author%3Amrego%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-govuk-digital-backbone-ukps-domains" href="https://github.com/govuk-digital-backbone/ukps-domains">govuk-digital-backbone/ukps-domains</a> (3 commits) [↩](#row-govuk-digital-backbone-ukps-domains)
+
+- [OllieJC](https://github.com/OllieJC): [3](https://github.com/search?q=repo%3Agovuk-digital-backbone/ukps-domains%20author%3AOllieJC%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-eu-digital-identity-wallet-eudi-doc-architecture-and-reference-framework" href="https://github.com/eu-digital-identity-wallet/eudi-doc-architecture-and-reference-framework">eu-digital-identity-wallet/eudi-doc-architecture-and-reference-framework</a> (3 commits) [↩](#row-eu-digital-identity-wallet-eudi-doc-architecture-and-reference-framework)
+
+- [Paolo De Rosa](https://github.com/paolo-de-rosa): [3](https://github.com/search?q=repo%3Aeu-digital-identity-wallet/eudi-doc-architecture-and-reference-framework%20author%3Apaolo-de-rosa%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-utmrobotics-website" href="https://github.com/utmrobotics/website">utmrobotics/website</a> (3 commits) [↩](#row-utmrobotics-website)
+
+- [logonoff](https://github.com/logonoff): [3](https://github.com/search?q=repo%3Autmrobotics/website%20author%3Alogonoff%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-backstage-community-plugins" href="https://github.com/backstage/community-plugins">backstage/community-plugins</a> (3 commits) [↩](#row-backstage-community-plugins)
+
+- [logonoff](https://github.com/logonoff): [3](https://github.com/search?q=repo%3Abackstage/community-plugins%20author%3Alogonoff%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-mozilla-neqo" href="https://github.com/mozilla/neqo">mozilla/neqo</a> (3 commits) [↩](#row-mozilla-neqo)
+
+- [Martin Thomson](https://github.com/martinthomson): [3](https://github.com/search?q=repo%3Amozilla/neqo%20author%3Amartinthomson%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ietf-wg-aipref-drafts" href="https://github.com/ietf-wg-aipref/drafts">ietf-wg-aipref/drafts</a> (3 commits) [↩](#row-ietf-wg-aipref-drafts)
+
+- [Martin Thomson](https://github.com/martinthomson): [3](https://github.com/search?q=repo%3Aietf-wg-aipref/drafts%20author%3Amartinthomson%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ostafinskim-bun-neon-better-auth" href="https://github.com/ostafinskim/bun-neon-better-auth">ostafinskim/bun-neon-better-auth</a> (3 commits) [↩](#row-ostafinskim-bun-neon-better-auth)
+
+- [Miro Ostafinski](https://github.com/ostafinskim): [3](https://github.com/search?q=repo%3Aostafinskim/bun-neon-better-auth%20author%3Aostafinskim%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-websub" href="https://github.com/w3c/websub">w3c/websub</a> (3 commits) [↩](#row-w3c-websub)
+
+- [Philippe Le Hegaret](https://github.com/plehegar): [3](https://github.com/search?q=repo%3Aw3c/websub%20author%3Aplehegar%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-webmention" href="https://github.com/w3c/webmention">w3c/webmention</a> (3 commits) [↩](#row-w3c-webmention)
+
+- [Philippe Le Hegaret](https://github.com/plehegar): [3](https://github.com/search?q=repo%3Aw3c/webmention%20author%3Aplehegar%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-micropub" href="https://github.com/w3c/Micropub">w3c/Micropub</a> (3 commits) [↩](#row-w3c-micropub)
+
+- [Philippe Le Hegaret](https://github.com/plehegar): [3](https://github.com/search?q=repo%3Aw3c/Micropub%20author%3Aplehegar%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-web-performance" href="https://github.com/w3c/web-performance">w3c/web-performance</a> (3 commits) [↩](#row-w3c-web-performance)
+
+- [Philippe Le Hegaret](https://github.com/plehegar): [3](https://github.com/search?q=repo%3Aw3c/web-performance%20author%3Aplehegar%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-ldn" href="https://github.com/w3c/ldn">w3c/ldn</a> (3 commits) [↩](#row-w3c-ldn)
+
+- [Philippe Le Hegaret](https://github.com/plehegar): [3](https://github.com/search?q=repo%3Aw3c/ldn%20author%3Aplehegar%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-keithamus-invokers-polyfill" href="https://github.com/keithamus/invokers-polyfill">keithamus/invokers-polyfill</a> (3 commits) [↩](#row-keithamus-invokers-polyfill)
+
+- [Keith Cirkel](https://github.com/keithamus): [3](https://github.com/search?q=repo%3Akeithamus/invokers-polyfill%20author%3Akeithamus%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-panva-openid-client" href="https://github.com/panva/openid-client">panva/openid-client</a> (3 commits) [↩](#row-panva-openid-client)
+
+- [Filip Skokan](https://github.com/panva): [3](https://github.com/search?q=repo%3Apanva/openid-client%20author%3Apanva%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-babel-babel-polyfills" href="https://github.com/babel/babel-polyfills">babel/babel-polyfills</a> (3 commits) [↩](#row-babel-babel-polyfills)
+
+- [Nicolò Ribaudo](https://github.com/nicolo-ribaudo): [3](https://github.com/search?q=repo%3Ababel/babel-polyfills%20author%3Anicolo-ribaudo%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ember-cli-babel-remove-types" href="https://github.com/ember-cli/babel-remove-types">ember-cli/babel-remove-types</a> (3 commits) [↩](#row-ember-cli-babel-remove-types)
+
+- [Nicolò Ribaudo](https://github.com/nicolo-ribaudo): [3](https://github.com/search?q=repo%3Aember-cli/babel-remove-types%20author%3Anicolo-ribaudo%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-bbc-sqs-producer" href="https://github.com/bbc/sqs-producer">bbc/sqs-producer</a> (3 commits) [↩](#row-bbc-sqs-producer)
+
+- [Nicholas Griffin](https://github.com/nicholasgriffintn): [3](https://github.com/search?q=repo%3Abbc/sqs-producer%20author%3Anicholasgriffintn%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-romandev-chail" href="https://github.com/romandev/chail">romandev/chail</a> (3 commits) [↩](#row-romandev-chail)
+
+- [Jinho Bang](https://github.com/romandev): [3](https://github.com/search?q=repo%3Aromandev/chail%20author%3Aromandev%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-wikimedia-mediawiki-extensions-math" href="https://github.com/wikimedia/mediawiki-extensions-Math">wikimedia/mediawiki-extensions-Math</a> (3 commits) [↩](#row-wikimedia-mediawiki-extensions-math)
+
+- [Moritz Schubotz](https://github.com/physikerwelt): [3](https://github.com/search?q=repo%3Awikimedia/mediawiki-extensions-Math%20author%3Aphysikerwelt%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-wikimedia-mediawiki-extensions-mathsearch" href="https://github.com/wikimedia/mediawiki-extensions-MathSearch">wikimedia/mediawiki-extensions-MathSearch</a> (3 commits) [↩](#row-wikimedia-mediawiki-extensions-mathsearch)
+
+- [Moritz Schubotz](https://github.com/physikerwelt): [3](https://github.com/search?q=repo%3Awikimedia/mediawiki-extensions-MathSearch%20author%3Aphysikerwelt%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-yaahc-displaydoc" href="https://github.com/yaahc/displaydoc">yaahc/displaydoc</a> (3 commits) [↩](#row-yaahc-displaydoc)
+
+- [Manish Goregaokar](https://github.com/Manishearth): [3](https://github.com/search?q=repo%3Ayaahc/displaydoc%20author%3AManishearth%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-momijizukamori-bookbinder-js" href="https://github.com/momijizukamori/bookbinder-js">momijizukamori/bookbinder-js</a> (3 commits) [↩](#row-momijizukamori-bookbinder-js)
+
+- [Manish Goregaokar](https://github.com/Manishearth): [3](https://github.com/search?q=repo%3Amomijizukamori/bookbinder-js%20author%3AManishearth%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-fitzwilliammuseum-fitz-collection-online" href="https://github.com/FitzwilliamMuseum/fitz-collection-online">FitzwilliamMuseum/fitz-collection-online</a> (3 commits) [↩](#row-fitzwilliammuseum-fitz-collection-online)
+
+- [Sean Dunwoody](https://github.com/sean-dunwoody): [3](https://github.com/search?q=repo%3AFitzwilliamMuseum/fitz-collection-online%20author%3Asean-dunwoody%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-inclusio-community-json-image-metadata" href="https://github.com/Inclusio-Community/json-image-metadata">Inclusio-Community/json-image-metadata</a> (3 commits) [↩](#row-inclusio-community-json-image-metadata)
+
+- [Doug Schepers](https://github.com/shepazu): [3](https://github.com/search?q=repo%3AInclusio-Community/json-image-metadata%20author%3Ashepazu%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-wcag-act-rules" href="https://github.com/w3c/wcag-act-rules">w3c/wcag-act-rules</a> (3 commits) [↩](#row-w3c-wcag-act-rules)
+
+- [Rémi Bétin](https://github.com/remibetin): [2](https://github.com/search?q=repo%3Aw3c/wcag-act-rules%20author%3Aremibetin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Sasha](https://github.com/zlayaAvocado): [1](https://github.com/search?q=repo%3Aw3c/wcag-act-rules%20author%3AzlayaAvocado%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-privacy-tech-lab-privacy-pioneer" href="https://github.com/privacy-tech-lab/privacy-pioneer">privacy-tech-lab/privacy-pioneer</a> (3 commits) [↩](#row-privacy-tech-lab-privacy-pioneer)
+
+- [Sebastian Zimmeck](https://github.com/SebastianZimmeck): [3](https://github.com/search?q=repo%3Aprivacy-tech-lab/privacy-pioneer%20author%3ASebastianZimmeck%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-privacy-tech-lab-gpc-web-crawler" href="https://github.com/privacy-tech-lab/gpc-web-crawler">privacy-tech-lab/gpc-web-crawler</a> (3 commits) [↩](#row-privacy-tech-lab-gpc-web-crawler)
+
+- [Sebastian Zimmeck](https://github.com/SebastianZimmeck): [3](https://github.com/search?q=repo%3Aprivacy-tech-lab/gpc-web-crawler%20author%3ASebastianZimmeck%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-rdf-connect-replication-processor-ts" href="https://github.com/rdf-connect/replication-processor-ts">rdf-connect/replication-processor-ts</a> (3 commits) [↩](#row-rdf-connect-replication-processor-ts)
+
+- [Ieben Smessaert](https://github.com/smessie): [3](https://github.com/search?q=repo%3Ardf-connect/replication-processor-ts%20author%3Asmessie%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-browser-specs" href="https://github.com/w3c/browser-specs">w3c/browser-specs</a> (3 commits) [↩](#row-w3c-browser-specs)
+
+- [François Daoust](https://github.com/tidoust): [3](https://github.com/search?q=repo%3Aw3c/browser-specs%20author%3Atidoust%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-toji-toji-dev" href="https://github.com/toji/toji.dev">toji/toji.dev</a> (3 commits) [↩](#row-toji-toji-dev)
+
+- [Brandon Jones](https://github.com/toji): [3](https://github.com/search?q=repo%3Atoji/toji.dev%20author%3Atoji%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-wacky6-deb-verify" href="https://github.com/wacky6/deb-verify">wacky6/deb-verify</a> (3 commits) [↩](#row-wacky6-deb-verify)
+
+- [Jiewei Qian](https://github.com/wacky6): [3](https://github.com/search?q=repo%3Awacky6/deb-verify%20author%3Awacky6%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-digitalcredentialsdev-digitalcredentials-dev" href="https://github.com/digitalcredentialsdev/digitalcredentials.dev">digitalcredentialsdev/digitalcredentials.dev</a> (3 commits) [↩](#row-digitalcredentialsdev-digitalcredentials-dev)
+
+- [Tim Cappalli](https://github.com/timcappalli): [3](https://github.com/search?q=repo%3Adigitalcredentialsdev/digitalcredentials.dev%20author%3Atimcappalli%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-webappsec-passkey-endpoints" href="https://github.com/w3c/webappsec-passkey-endpoints">w3c/webappsec-passkey-endpoints</a> (3 commits) [↩](#row-w3c-webappsec-passkey-endpoints)
+
+- [Tim Cappalli](https://github.com/timcappalli): [3](https://github.com/search?q=repo%3Aw3c/webappsec-passkey-endpoints%20author%3Atimcappalli%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-wot" href="https://github.com/w3c/wot">w3c/wot</a> (3 commits) [↩](#row-w3c-wot)
+
+- [Ted Thibodeau Jr](https://github.com/TallTed): [3](https://github.com/search?q=repo%3Aw3c/wot%20author%3ATallTed%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-underoot-game-of-life" href="https://github.com/underoot/game-of-life">underoot/game-of-life</a> (3 commits) [↩](#row-underoot-game-of-life)
+
+- [Aleksandr Shoronov](https://github.com/underoot): [3](https://github.com/search?q=repo%3Aunderoot/game-of-life%20author%3Aunderoot%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-youtube-cobalt_sandbox" href="https://github.com/youtube/cobalt_sandbox">youtube/cobalt_sandbox</a> (3 commits) [↩](#row-youtube-cobalt_sandbox)
+
+- [Miguel Casas](https://github.com/yell0wd0g): [3](https://github.com/search?q=repo%3Ayoutube/cobalt_sandbox%20author%3Ayell0wd0g%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ljharb-pargs" href="https://github.com/ljharb/pargs">ljharb/pargs</a> (3 commits) [↩](#row-ljharb-pargs)
+
+- [Jordan Harband](https://github.com/ljharb): [3](https://github.com/search?q=repo%3Aljharb/pargs%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-inspect-js-typed-array-buffer" href="https://github.com/inspect-js/typed-array-buffer">inspect-js/typed-array-buffer</a> (3 commits) [↩](#row-inspect-js-typed-array-buffer)
+
+- [Jordan Harband](https://github.com/ljharb): [3](https://github.com/search?q=repo%3Ainspect-js/typed-array-buffer%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-es-shims-iterator-helpers" href="https://github.com/es-shims/iterator-helpers">es-shims/iterator-helpers</a> (3 commits) [↩](#row-es-shims-iterator-helpers)
+
+- [Jordan Harband](https://github.com/ljharb): [3](https://github.com/search?q=repo%3Aes-shims/iterator-helpers%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-inspect-js-is-weakref" href="https://github.com/inspect-js/is-weakref">inspect-js/is-weakref</a> (3 commits) [↩](#row-inspect-js-is-weakref)
+
+- [Jordan Harband](https://github.com/ljharb): [3](https://github.com/search?q=repo%3Ainspect-js/is-weakref%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-inspect-js-array-buffer-byte-length" href="https://github.com/inspect-js/array-buffer-byte-length">inspect-js/array-buffer-byte-length</a> (3 commits) [↩](#row-inspect-js-array-buffer-byte-length)
+
+- [Jordan Harband](https://github.com/ljharb): [3](https://github.com/search?q=repo%3Ainspect-js/array-buffer-byte-length%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-linkedsoftwaredependencies-components-js" href="https://github.com/LinkedSoftwareDependencies/Components.js">LinkedSoftwareDependencies/Components.js</a> (3 commits) [↩](#row-linkedsoftwaredependencies-components-js)
+
+- [Ruben Taelman](https://github.com/rubensworks): [3](https://github.com/search?q=repo%3ALinkedSoftwareDependencies/Components.js%20author%3Arubensworks%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-rubensworks-rdf-parse-js" href="https://github.com/rubensworks/rdf-parse.js">rubensworks/rdf-parse.js</a> (3 commits) [↩](#row-rubensworks-rdf-parse-js)
+
+- [Ruben Taelman](https://github.com/rubensworks): [3](https://github.com/search?q=repo%3Arubensworks/rdf-parse.js%20author%3Arubensworks%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-rubensworks-fetch-sparql-endpoint-js" href="https://github.com/rubensworks/fetch-sparql-endpoint.js">rubensworks/fetch-sparql-endpoint.js</a> (3 commits) [↩](#row-rubensworks-fetch-sparql-endpoint-js)
+
+- [Ruben Taelman](https://github.com/rubensworks): [3](https://github.com/search?q=repo%3Arubensworks/fetch-sparql-endpoint.js%20author%3Arubensworks%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-comunica-rdf-test-suite-ldf-js" href="https://github.com/comunica/rdf-test-suite-ldf.js">comunica/rdf-test-suite-ldf.js</a> (3 commits) [↩](#row-comunica-rdf-test-suite-ldf-js)
+
+- [Ruben Taelman](https://github.com/rubensworks): [3](https://github.com/search?q=repo%3Acomunica/rdf-test-suite-ldf.js%20author%3Arubensworks%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-httparchive-custom-metrics" href="https://github.com/HTTPArchive/custom-metrics">HTTPArchive/custom-metrics</a> (3 commits) [↩](#row-httparchive-custom-metrics)
+
+- [Barry Pollard](https://github.com/tunetheweb): [3](https://github.com/search?q=repo%3AHTTPArchive/custom-metrics%20author%3Atunetheweb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-jaegertracing-jaeger-idl" href="https://github.com/jaegertracing/jaeger-idl">jaegertracing/jaeger-idl</a> (3 commits) [↩](#row-jaegertracing-jaeger-idl)
+
+- [Yuri Shkuro](https://github.com/yurishkuro): [3](https://github.com/search?q=repo%3Ajaegertracing/jaeger-idl%20author%3Ayurishkuro%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-albertofdr-ctf" href="https://github.com/AlbertoFDR/CTF">AlbertoFDR/CTF</a> (2 commits) [↩](#row-albertofdr-ctf)
+
+- [bubu](https://github.com/AlbertoFDR): [2](https://github.com/search?q=repo%3AAlbertoFDR/CTF%20author%3AAlbertoFDR%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-sustainableweb-ig" href="https://github.com/w3c/sustainableweb-ig">w3c/sustainableweb-ig</a> (2 commits) [↩](#row-w3c-sustainableweb-ig)
+
+- [Alexander Dawson](https://github.com/AlexDawsonUK): [2](https://github.com/search?q=repo%3Aw3c/sustainableweb-ig%20author%3AAlexDawsonUK%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-aaronpk-oauth-net" href="https://github.com/aaronpk/oauth.net">aaronpk/oauth.net</a> (2 commits) [↩](#row-aaronpk-oauth-net)
+
+- [Aaron Parecki](https://github.com/aaronpk): [2](https://github.com/search?q=repo%3Aaaronpk/oauth.net%20author%3Aaaronpk%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-wicg-ua-client-hints" href="https://github.com/WICG/ua-client-hints">WICG/ua-client-hints</a> (2 commits) [↩](#row-wicg-ua-client-hints)
+
+- [Ari Chivukula](https://github.com/arichiv): [2](https://github.com/search?q=repo%3AWICG/ua-client-hints%20author%3Aarichiv%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-secur-dev-web" href="https://github.com/Secur-Dev/web">Secur-Dev/web</a> (2 commits) [↩](#row-secur-dev-web)
+
+- [Aref Z.](https://github.com/arefz): [2](https://github.com/search?q=repo%3ASecur-Dev/web%20author%3Aarefz%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-puppeteer-puppeteer" href="https://github.com/puppeteer/puppeteer">puppeteer/puppeteer</a> (2 commits) [↩](#row-puppeteer-puppeteer)
+
+- [Anton Bershanskiy](https://github.com/bershanskiy): [1](https://github.com/search?q=repo%3Apuppeteer/puppeteer%20author%3Abershanskiy%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Oliver Dunk](https://github.com/oliverdunk): [1](https://github.com/search?q=repo%3Apuppeteer/puppeteer%20author%3Aoliverdunk%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-alphagov-govuk-design-system" href="https://github.com/alphagov/govuk-design-system">alphagov/govuk-design-system</a> (2 commits) [↩](#row-alphagov-govuk-design-system)
+
+- [Oliver Byford](https://github.com/36degrees): [2](https://github.com/search?q=repo%3Aalphagov/govuk-design-system%20author%3A36degrees%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-assuncaocharles-eslint-plugin-exceptions" href="https://github.com/assuncaocharles/eslint-plugin-exceptions">assuncaocharles/eslint-plugin-exceptions</a> (2 commits) [↩](#row-assuncaocharles-eslint-plugin-exceptions)
+
+- [Charles Assunção](https://github.com/assuncaocharles): [2](https://github.com/search?q=repo%3Aassuncaocharles/eslint-plugin-exceptions%20author%3Aassuncaocharles%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-sensors" href="https://github.com/w3c/sensors">w3c/sensors</a> (2 commits) [↩](#row-w3c-sensors)
+
+- [Anssi Kostiainen](https://github.com/anssiko): [2](https://github.com/search?q=repo%3Aw3c/sensors%20author%3Aanssiko%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-spec-prod" href="https://github.com/w3c/spec-prod">w3c/spec-prod</a> (2 commits) [↩](#row-w3c-spec-prod)
+
+- [Anssi Kostiainen](https://github.com/anssiko): [1](https://github.com/search?q=repo%3Aw3c/spec-prod%20author%3Aanssiko%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Denis Ah-Kang](https://github.com/deniak): [1](https://github.com/search?q=repo%3Aw3c/spec-prod%20author%3Adeniak%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-immersive-web-layers" href="https://github.com/immersive-web/layers">immersive-web/layers</a> (2 commits) [↩](#row-immersive-web-layers)
+
+- [Rik Cabanier](https://github.com/cabanier): [2](https://github.com/search?q=repo%3Aimmersive-web/layers%20author%3Acabanier%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-lws-ucs" href="https://github.com/w3c/lws-ucs">w3c/lws-ucs</a> (2 commits) [↩](#row-w3c-lws-ucs)
+
+- [Aaron Coburn](https://github.com/acoburn): [1](https://github.com/search?q=repo%3Aw3c/lws-ucs%20author%3Aacoburn%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Ted Thibodeau Jr](https://github.com/TallTed): [1](https://github.com/search?q=repo%3Aw3c/lws-ucs%20author%3ATallTed%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-product-designs-productdesigns-github-io" href="https://github.com/Product-Designs/productdesigns.github.io">Product-Designs/productdesigns.github.io</a> (2 commits) [↩](#row-product-designs-productdesigns-github-io)
+
+- [Adam Jolicoeur](https://github.com/AdamJ): [2](https://github.com/search?q=repo%3AProduct-Designs/productdesigns.github.io%20author%3AAdamJ%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-proyectopionera-mapping-editor" href="https://github.com/ProyectoPIONERA/mapping-editor">ProyectoPIONERA/mapping-editor</a> (2 commits) [↩](#row-proyectopionera-mapping-editor)
+
+- [Julián Arenas Guerrero](https://github.com/arenas-guerrero-julian): [2](https://github.com/search?q=repo%3AProyectoPIONERA/mapping-editor%20author%3Aarenas-guerrero-julian%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-cottas-rdf-pycottas" href="https://github.com/cottas-rdf/pycottas">cottas-rdf/pycottas</a> (2 commits) [↩](#row-cottas-rdf-pycottas)
+
+- [Julián Arenas Guerrero](https://github.com/arenas-guerrero-julian): [2](https://github.com/search?q=repo%3Acottas-rdf/pycottas%20author%3Aarenas-guerrero-julian%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-aramzs-backpocket-archiving-tools" href="https://github.com/AramZS/backpocket-archiving-tools">AramZS/backpocket-archiving-tools</a> (2 commits) [↩](#row-aramzs-backpocket-archiving-tools)
+
+- [Aram Zucker-Scharff](https://github.com/AramZS): [2](https://github.com/search?q=repo%3AAramZS/backpocket-archiving-tools%20author%3AAramZS%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-aramzs-aramzs-github-io" href="https://github.com/AramZS/aramzs.github.io">AramZS/aramzs.github.io</a> (2 commits) [↩](#row-aramzs-aramzs-github-io)
+
+- [Aram Zucker-Scharff](https://github.com/AramZS): [2](https://github.com/search?q=repo%3AAramZS/aramzs.github.io%20author%3AAramZS%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-patwg" href="https://github.com/w3c/patwg">w3c/patwg</a> (2 commits) [↩](#row-w3c-patwg)
+
+- [Aram Zucker-Scharff](https://github.com/AramZS): [2](https://github.com/search?q=repo%3Aw3c/patwg%20author%3AAramZS%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-ccg-vp-request-spec" href="https://github.com/w3c-ccg/vp-request-spec">w3c-ccg/vp-request-spec</a> (2 commits) [↩](#row-w3c-ccg-vp-request-spec)
+
+- [BigBlueHat](https://github.com/BigBlueHat): [2](https://github.com/search?q=repo%3Aw3c-ccg/vp-request-spec%20author%3ABigBlueHat%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-vc-di-ecdsa-test-suite" href="https://github.com/w3c/vc-di-ecdsa-test-suite">w3c/vc-di-ecdsa-test-suite</a> (2 commits) [↩](#row-w3c-vc-di-ecdsa-test-suite)
+
+- [BigBlueHat](https://github.com/BigBlueHat): [2](https://github.com/search?q=repo%3Aw3c/vc-di-ecdsa-test-suite%20author%3ABigBlueHat%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-vc-data-model-2-0-test-suite" href="https://github.com/w3c/vc-data-model-2.0-test-suite">w3c/vc-data-model-2.0-test-suite</a> (2 commits) [↩](#row-w3c-vc-data-model-2-0-test-suite)
+
+- [BigBlueHat](https://github.com/BigBlueHat): [2](https://github.com/search?q=repo%3Aw3c/vc-data-model-2.0-test-suite%20author%3ABigBlueHat%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-vc-di-eddsa-test-suite" href="https://github.com/w3c/vc-di-eddsa-test-suite">w3c/vc-di-eddsa-test-suite</a> (2 commits) [↩](#row-w3c-vc-di-eddsa-test-suite)
+
+- [BigBlueHat](https://github.com/BigBlueHat): [2](https://github.com/search?q=repo%3Aw3c/vc-di-eddsa-test-suite%20author%3ABigBlueHat%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-flutter-flutter" href="https://github.com/flutter/flutter">flutter/flutter</a> (2 commits) [↩](#row-flutter-flutter)
+
+- [Chinmay Garde](https://github.com/chinmaygarde): [2](https://github.com/search?q=repo%3Aflutter/flutter%20author%3Achinmaygarde%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-firefox-devtools-profiler-server" href="https://github.com/firefox-devtools/profiler-server">firefox-devtools/profiler-server</a> (2 commits) [↩](#row-firefox-devtools-profiler-server)
+
+- [Nazım Can Altınova](https://github.com/canova): [2](https://github.com/search?q=repo%3Afirefox-devtools/profiler-server%20author%3Acanova%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ldproxy-ldproxy" href="https://github.com/ldproxy/ldproxy">ldproxy/ldproxy</a> (2 commits) [↩](#row-ldproxy-ldproxy)
+
+- [Clemens Portele](https://github.com/cportele): [2](https://github.com/search?q=repo%3Aldproxy/ldproxy%20author%3Acportele%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-darobin-dasl-ing" href="https://github.com/darobin/dasl.ing">darobin/dasl.ing</a> (2 commits) [↩](#row-darobin-dasl-ing)
+
+- [Robin Berjon](https://github.com/darobin): [2](https://github.com/search?q=repo%3Adarobin/dasl.ing%20author%3Adarobin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-explainers-by-googlers-related-website-partition-api" href="https://github.com/explainers-by-googlers/related-website-partition-api">explainers-by-googlers/related-website-partition-api</a> (2 commits) [↩](#row-explainers-by-googlers-related-website-partition-api)
+
+- [Dylan Cutler](https://github.com/DCtheTall): [2](https://github.com/search?q=repo%3Aexplainers-by-googlers/related-website-partition-api%20author%3ADCtheTall%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-fabdaotw-fabdaotw-github-io" href="https://github.com/FABDAOtw/FABDAOtw.github.io">FABDAOtw/FABDAOtw.github.io</a> (2 commits) [↩](#row-fabdaotw-fabdaotw-github-io)
+
+- [denkeni](https://github.com/denkeni): [2](https://github.com/search?q=repo%3AFABDAOtw/FABDAOtw.github.io%20author%3Adenkeni%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-bonds-tw-backuptw-ios" href="https://github.com/bonds-tw/backupTW-iOS">bonds-tw/backupTW-iOS</a> (2 commits) [↩](#row-bonds-tw-backuptw-ios)
+
+- [denkeni](https://github.com/denkeni): [2](https://github.com/search?q=repo%3Abonds-tw/backupTW-iOS%20author%3Adenkeni%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-spec-families" href="https://github.com/w3c/spec-families">w3c/spec-families</a> (2 commits) [↩](#row-w3c-spec-families)
+
+- [Denis Ah-Kang](https://github.com/deniak): [2](https://github.com/search?q=repo%3Aw3c/spec-families%20author%3Adeniak%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-tobie-pr-preview" href="https://github.com/tobie/pr-preview">tobie/pr-preview</a> (2 commits) [↩](#row-tobie-pr-preview)
+
+- [Denis Ah-Kang](https://github.com/deniak): [1](https://github.com/search?q=repo%3Atobie/pr-preview%20author%3Adeniak%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Tobie Langel](https://github.com/tobie): [1](https://github.com/search?q=repo%3Atobie/pr-preview%20author%3Atobie%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-dret-lectures" href="https://github.com/dret/lectures">dret/lectures</a> (2 commits) [↩](#row-dret-lectures)
+
+- [Erik Wilde](https://github.com/dret): [2](https://github.com/search?q=repo%3Adret/lectures%20author%3Adret%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-tc39-proposal-intl-unit-format" href="https://github.com/tc39/proposal-intl-unit-format">tc39/proposal-intl-unit-format</a> (2 commits) [↩](#row-tc39-proposal-intl-unit-format)
+
+- [Chris de Almeida](https://github.com/ctcpip): [2](https://github.com/search?q=repo%3Atc39/proposal-intl-unit-format%20author%3Actcpip%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-netrisse-netrisse-server" href="https://github.com/netrisse/netrisse-server">netrisse/netrisse-server</a> (2 commits) [↩](#row-netrisse-netrisse-server)
+
+- [Chris de Almeida](https://github.com/ctcpip): [2](https://github.com/search?q=repo%3Anetrisse/netrisse-server%20author%3Actcpip%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-openjs-foundation-cross-project-council" href="https://github.com/openjs-foundation/cross-project-council">openjs-foundation/cross-project-council</a> (2 commits) [↩](#row-openjs-foundation-cross-project-council)
+
+- [Chris de Almeida](https://github.com/ctcpip): [1](https://github.com/search?q=repo%3Aopenjs-foundation/cross-project-council%20author%3Actcpip%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Tobie Langel](https://github.com/tobie): [1](https://github.com/search?q=repo%3Aopenjs-foundation/cross-project-council%20author%3Atobie%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-google-quiche" href="https://github.com/google/quiche">google/quiche</a> (2 commits) [↩](#row-google-quiche)
+
+- [Dan McArdle](https://github.com/dmcardle): [2](https://github.com/search?q=repo%3Agoogle/quiche%20author%3Admcardle%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-webrtc-pc" href="https://github.com/w3c/webrtc-pc">w3c/webrtc-pc</a> (2 commits) [↩](#row-w3c-webrtc-pc)
+
+- [Dominique Hazael-Massieux](https://github.com/dontcallmedom): [2](https://github.com/search?q=repo%3Aw3c/webrtc-pc%20author%3Adontcallmedom%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-strudy" href="https://github.com/w3c/strudy">w3c/strudy</a> (2 commits) [↩](#row-w3c-strudy)
+
+- [Dominique Hazael-Massieux](https://github.com/dontcallmedom): [2](https://github.com/search?q=repo%3Aw3c/strudy%20author%3Adontcallmedom%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-seleniumhq-selenium" href="https://github.com/SeleniumHQ/selenium">SeleniumHQ/selenium</a> (2 commits) [↩](#row-seleniumhq-selenium)
+
+- [Diego Molina](https://github.com/diemol): [2](https://github.com/search?q=repo%3ASeleniumHQ/selenium%20author%3Adiemol%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-saucelabs-sauce-docs" href="https://github.com/saucelabs/sauce-docs">saucelabs/sauce-docs</a> (2 commits) [↩](#row-saucelabs-sauce-docs)
+
+- [Diego Molina](https://github.com/diemol): [2](https://github.com/search?q=repo%3Asaucelabs/sauce-docs%20author%3Adiemol%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-athinkra-mwangwego-book" href="https://github.com/athinkra/mwangwego-book">athinkra/mwangwego-book</a> (2 commits) [↩](#row-athinkra-mwangwego-book)
+
+- [Daniel Yacob](https://github.com/dyacob): [2](https://github.com/search?q=repo%3Aathinkra/mwangwego-book%20author%3Adyacob%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-mrdoob-three-js" href="https://github.com/mrdoob/three.js">mrdoob/three.js</a> (2 commits) [↩](#row-mrdoob-three-js)
+
+- [Don McCurdy](https://github.com/donmccurdy): [2](https://github.com/search?q=repo%3Amrdoob/three.js%20author%3Adonmccurdy%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-cesiumgs-cesium" href="https://github.com/CesiumGS/cesium">CesiumGS/cesium</a> (2 commits) [↩](#row-cesiumgs-cesium)
+
+- [Don McCurdy](https://github.com/donmccurdy): [2](https://github.com/search?q=repo%3ACesiumGS/cesium%20author%3Adonmccurdy%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-webassembly-website" href="https://github.com/WebAssembly/website">WebAssembly/website</a> (2 commits) [↩](#row-webassembly-website)
+
+- [Derek Schuff](https://github.com/dschuff): [2](https://github.com/search?q=repo%3AWebAssembly/website%20author%3Adschuff%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-babylonjs-babylon-js" href="https://github.com/BabylonJS/Babylon.js">BabylonJS/Babylon.js</a> (2 commits) [↩](#row-babylonjs-babylon-js)
+
+- [Elie Michel](https://github.com/eliemichel): [2](https://github.com/search?q=repo%3ABabylonJS/Babylon.js%20author%3Aeliemichel%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-microsoftdocs-power-platform" href="https://github.com/MicrosoftDocs/power-platform">MicrosoftDocs/power-platform</a> (2 commits) [↩](#row-microsoftdocs-power-platform)
+
+- [Erika Doyle Navara](https://github.com/erikadoyle): [2](https://github.com/search?q=repo%3AMicrosoftDocs/power-platform%20author%3Aerikadoyle%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-apache-cordova-docs" href="https://github.com/apache/cordova-docs">apache/cordova-docs</a> (2 commits) [↩](#row-apache-cordova-docs)
+
+- [エリス](https://github.com/erisu): [2](https://github.com/search?q=repo%3Aapache/cordova-docs%20author%3Aerisu%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-device-memory" href="https://github.com/w3c/device-memory">w3c/device-memory</a> (2 commits) [↩](#row-w3c-device-memory)
+
+- [Guohui Deng](https://github.com/guohuideng2024): [1](https://github.com/search?q=repo%3Aw3c/device-memory%20author%3Aguohuideng2024%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [Barry Pollard](https://github.com/tunetheweb): [1](https://github.com/search?q=repo%3Aw3c/device-memory%20author%3Atunetheweb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-webdriverio-community-node-geckodriver" href="https://github.com/webdriverio-community/node-geckodriver">webdriverio-community/node-geckodriver</a> (2 commits) [↩](#row-webdriverio-community-node-geckodriver)
+
+- [Christian Bromann](https://github.com/christian-bromann): [2](https://github.com/search?q=repo%3Awebdriverio-community/node-geckodriver%20author%3Achristian-bromann%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-webdriverio-community-node-safaridriver" href="https://github.com/webdriverio-community/node-safaridriver">webdriverio-community/node-safaridriver</a> (2 commits) [↩](#row-webdriverio-community-node-safaridriver)
+
+- [Christian Bromann](https://github.com/christian-bromann): [2](https://github.com/search?q=repo%3Awebdriverio-community/node-safaridriver%20author%3Achristian-bromann%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-webdriverio-community-wdio-vite-service" href="https://github.com/webdriverio-community/wdio-vite-service">webdriverio-community/wdio-vite-service</a> (2 commits) [↩](#row-webdriverio-community-wdio-vite-service)
+
+- [Christian Bromann](https://github.com/christian-bromann): [2](https://github.com/search?q=repo%3Awebdriverio-community/wdio-vite-service%20author%3Achristian-bromann%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-webdriverio-community-wdio-next-service" href="https://github.com/webdriverio-community/wdio-next-service">webdriverio-community/wdio-next-service</a> (2 commits) [↩](#row-webdriverio-community-wdio-next-service)
+
+- [Christian Bromann](https://github.com/christian-bromann): [2](https://github.com/search?q=repo%3Awebdriverio-community/wdio-next-service%20author%3Achristian-bromann%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-webdriverio-expect-webdriverio" href="https://github.com/webdriverio/expect-webdriverio">webdriverio/expect-webdriverio</a> (2 commits) [↩](#row-webdriverio-expect-webdriverio)
+
+- [Christian Bromann](https://github.com/christian-bromann): [2](https://github.com/search?q=repo%3Awebdriverio/expect-webdriverio%20author%3Achristian-bromann%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-herocc-dotfiles" href="https://github.com/HeroCC/dotfiles">HeroCC/dotfiles</a> (2 commits) [↩](#row-herocc-dotfiles)
+
+- [HeroCC](https://github.com/HeroCC): [2](https://github.com/search?q=repo%3AHeroCC/dotfiles%20author%3AHeroCC%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-gdgbeijing-gdghub" href="https://github.com/gdgbeijing/gdghub">gdgbeijing/gdghub</a> (2 commits) [↩](#row-gdgbeijing-gdghub)
+
+- [Jackie(Guokai) Han](https://github.com/hanguokai): [2](https://github.com/search?q=repo%3Agdgbeijing/gdghub%20author%3Ahanguokai%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-brave-brave-core" href="https://github.com/brave/brave-core">brave/brave-core</a> (2 commits) [↩](#row-brave-brave-core)
+
+- [Francois Marier](https://github.com/fmarier): [2](https://github.com/search?q=repo%3Abrave/brave-core%20author%3Afmarier%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-frewsxcv-crs-definitions" href="https://github.com/frewsxcv/crs-definitions">frewsxcv/crs-definitions</a> (2 commits) [↩](#row-frewsxcv-crs-definitions)
+
+- [Corey Farwell](https://github.com/frewsxcv): [2](https://github.com/search?q=repo%3Afrewsxcv/crs-definitions%20author%3Afrewsxcv%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-talxis-ubml" href="https://github.com/TALXIS/ubml">TALXIS/ubml</a> (2 commits) [↩](#row-talxis-ubml)
+
+- [Jan Hajek](https://github.com/hajekj): [2](https://github.com/search?q=repo%3ATALXIS/ubml%20author%3Ahajekj%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-hbz-strapi-rpb" href="https://github.com/hbz/strapi-rpb">hbz/strapi-rpb</a> (2 commits) [↩](#row-hbz-strapi-rpb)
+
+- [Fabian Steeg](https://github.com/fsteeg): [2](https://github.com/search?q=repo%3Ahbz/strapi-rpb%20author%3Afsteeg%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-canonical-deepseek-r1-snap" href="https://github.com/canonical/deepseek-r1-snap">canonical/deepseek-r1-snap</a> (2 commits) [↩](#row-canonical-deepseek-r1-snap)
+
+- [Farshid Tavakolizadeh](https://github.com/farshidtz): [2](https://github.com/search?q=repo%3Acanonical/deepseek-r1-snap%20author%3Afarshidtz%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-canonical-gemma3-snap" href="https://github.com/canonical/gemma3-snap">canonical/gemma3-snap</a> (2 commits) [↩](#row-canonical-gemma3-snap)
+
+- [Farshid Tavakolizadeh](https://github.com/farshidtz): [2](https://github.com/search?q=repo%3Acanonical/gemma3-snap%20author%3Afarshidtz%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-figuresout-baseboard-cable-management" href="https://github.com/figuresout/baseboard-cable-management">figuresout/baseboard-cable-management</a> (2 commits) [↩](#row-figuresout-baseboard-cable-management)
+
+- [Newton](https://github.com/iamnewton): [2](https://github.com/search?q=repo%3Afiguresout/baseboard-cable-management%20author%3Aiamnewton%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-iamnewton-dotfiles" href="https://github.com/iamnewton/dotfiles">iamnewton/dotfiles</a> (2 commits) [↩](#row-iamnewton-dotfiles)
+
+- [Newton](https://github.com/iamnewton): [2](https://github.com/search?q=repo%3Aiamnewton/dotfiles%20author%3Aiamnewton%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-unicode-org-message-format-wg" href="https://github.com/unicode-org/message-format-wg">unicode-org/message-format-wg</a> (2 commits) [↩](#row-unicode-org-message-format-wg)
+
+- [Eemeli Aro](https://github.com/eemeli): [2](https://github.com/search?q=repo%3Aunicode-org/message-format-wg%20author%3Aeemeli%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-eemeli-intl-pluralrules" href="https://github.com/eemeli/intl-pluralrules">eemeli/intl-pluralrules</a> (2 commits) [↩](#row-eemeli-intl-pluralrules)
+
+- [Eemeli Aro](https://github.com/eemeli): [2](https://github.com/search?q=repo%3Aeemeli/intl-pluralrules%20author%3Aeemeli%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-mozilla-pontoon" href="https://github.com/mozilla/pontoon">mozilla/pontoon</a> (2 commits) [↩](#row-mozilla-pontoon)
+
+- [Eemeli Aro](https://github.com/eemeli): [2](https://github.com/search?q=repo%3Amozilla/pontoon%20author%3Aeemeli%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-jnjaeschke-specmonkey" href="https://github.com/jnjaeschke/specmonkey">jnjaeschke/specmonkey</a> (2 commits) [↩](#row-jnjaeschke-specmonkey)
+
+- [Jan Jaeschke](https://github.com/jnjaeschke): [2](https://github.com/search?q=repo%3Ajnjaeschke/specmonkey%20author%3Ajnjaeschke%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-iherman-preview" href="https://github.com/iherman/preview">iherman/preview</a> (2 commits) [↩](#row-iherman-preview)
+
+- [Ivan Herman](https://github.com/iherman): [2](https://github.com/search?q=repo%3Aiherman/preview%20author%3Aiherman%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-json-ld-charter-2025" href="https://github.com/w3c/json-ld-charter-2025">w3c/json-ld-charter-2025</a> (2 commits) [↩](#row-w3c-json-ld-charter-2025)
+
+- [Ivan Herman](https://github.com/iherman): [2](https://github.com/search?q=repo%3Aw3c/json-ld-charter-2025%20author%3Aiherman%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-shopify-ucp-proxy" href="https://github.com/Shopify/ucp-proxy">Shopify/ucp-proxy</a> (2 commits) [↩](#row-shopify-ucp-proxy)
+
+- [Ilya Grigorik](https://github.com/igrigorik): [2](https://github.com/search?q=repo%3AShopify/ucp-proxy%20author%3Aigrigorik%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ibelem-webnn-code-generator" href="https://github.com/ibelem/webnn-code-generator">ibelem/webnn-code-generator</a> (2 commits) [↩](#row-ibelem-webnn-code-generator)
+
+- [Belem Zhang](https://github.com/ibelem): [2](https://github.com/search?q=repo%3Aibelem/webnn-code-generator%20author%3Aibelem%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-qxracademy-codigodeconducta" href="https://github.com/QXRacademy/CodigoDeConducta">QXRacademy/CodigoDeConducta</a> (2 commits) [↩](#row-qxracademy-codigodeconducta)
+
+- [Jordi Martos](https://github.com/jordimartos): [2](https://github.com/search?q=repo%3AQXRacademy/CodigoDeConducta%20author%3Ajordimartos%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-publicaudiovisualxr--github" href="https://github.com/PublicAudiovisualXR/.github">PublicAudiovisualXR/.github</a> (2 commits) [↩](#row-publicaudiovisualxr--github)
+
+- [Jordi Martos](https://github.com/jordimartos): [2](https://github.com/search?q=repo%3APublicAudiovisualXR/.github%20author%3Ajordimartos%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-kaluaim-resume" href="https://github.com/kaluaim/resume">kaluaim/resume</a> (2 commits) [↩](#row-kaluaim-resume)
+
+- [Khalid Alnuaim](https://github.com/kaluaim): [2](https://github.com/search?q=repo%3Akaluaim/resume%20author%3Akaluaim%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-graphql-graphql-github-io" href="https://github.com/graphql/graphql.github.io">graphql/graphql.github.io</a> (2 commits) [↩](#row-graphql-graphql-github-io)
+
+- [Jory Burson](https://github.com/jorydotcom): [2](https://github.com/search?q=repo%3Agraphql/graphql.github.io%20author%3Ajorydotcom%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-webmachinelearning-webmcp" href="https://github.com/webmachinelearning/webmcp">webmachinelearning/webmcp</a> (2 commits) [↩](#row-webmachinelearning-webmcp)
+
+- [Khushal Sagar](https://github.com/khushalsagar): [2](https://github.com/search?q=repo%3Awebmachinelearning/webmcp%20author%3Akhushalsagar%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-design-tokens-community-group" href="https://github.com/design-tokens/community-group">design-tokens/community-group</a> (2 commits) [↩](#row-design-tokens-community-group)
+
+- [Kaelig Deloumeau-Prigent](https://github.com/kaelig): [2](https://github.com/search?q=repo%3Adesign-tokens/community-group%20author%3Akaelig%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-kaelig-docs" href="https://github.com/kaelig/docs">kaelig/docs</a> (2 commits) [↩](#row-kaelig-docs)
+
+- [Kaelig Deloumeau-Prigent](https://github.com/kaelig): [2](https://github.com/search?q=repo%3Akaelig/docs%20author%3Akaelig%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-lidaron-cmu-f15-upsa" href="https://github.com/Lidaron/CMU-F15-UPSA">Lidaron/CMU-F15-UPSA</a> (2 commits) [↩](#row-lidaron-cmu-f15-upsa)
+
+- [Brian Liu Xu](https://github.com/Lidaron): [2](https://github.com/search?q=repo%3ALidaron/CMU-F15-UPSA%20author%3ALidaron%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-lfai-model_openness_tool" href="https://github.com/lfai/model_openness_tool">lfai/model_openness_tool</a> (2 commits) [↩](#row-lfai-model_openness_tool)
+
+- [Arnaud J Le Hors](https://github.com/lehors): [2](https://github.com/search?q=repo%3Alfai/model_openness_tool%20author%3Alehors%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-cs3org-ocm-sta" href="https://github.com/cs3org/OCM-STA">cs3org/OCM-STA</a> (2 commits) [↩](#row-cs3org-ocm-sta)
+
+- [Mahdi Baghbani](https://github.com/MahdiBaghbani): [2](https://github.com/search?q=repo%3Acs3org/OCM-STA%20author%3AMahdiBaghbani%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-cs3org-ocm-test-suite" href="https://github.com/cs3org/ocm-test-suite">cs3org/ocm-test-suite</a> (2 commits) [↩](#row-cs3org-ocm-test-suite)
+
+- [Mahdi Baghbani](https://github.com/MahdiBaghbani): [2](https://github.com/search?q=repo%3Acs3org/ocm-test-suite%20author%3AMahdiBaghbani%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-publ-a11y" href="https://github.com/w3c/publ-a11y">w3c/publ-a11y</a> (2 commits) [↩](#row-w3c-publ-a11y)
+
+- [Matt Garrish](https://github.com/mattgarrish): [2](https://github.com/search?q=repo%3Aw3c/publ-a11y%20author%3Amattgarrish%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-semver-semver-org" href="https://github.com/semver/semver.org">semver/semver.org</a> (2 commits) [↩](#row-semver-semver-org)
+
+- [Yuki Okushi](https://github.com/JohnTitor): [2](https://github.com/search?q=repo%3Asemver/semver.org%20author%3AJohnTitor%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-johntitor-butlers" href="https://github.com/JohnTitor/butlers">JohnTitor/butlers</a> (2 commits) [↩](#row-johntitor-butlers)
+
+- [Yuki Okushi](https://github.com/JohnTitor): [2](https://github.com/search?q=repo%3AJohnTitor/butlers%20author%3AJohnTitor%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-agentplexus-agentkit-aws-pulumi" href="https://github.com/agentplexus/agentkit-aws-pulumi">agentplexus/agentkit-aws-pulumi</a> (2 commits) [↩](#row-agentplexus-agentkit-aws-pulumi)
+
+- [John Wang](https://github.com/grokify): [2](https://github.com/search?q=repo%3Aagentplexus/agentkit-aws-pulumi%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-grokify-awsgo" href="https://github.com/grokify/awsgo">grokify/awsgo</a> (2 commits) [↩](#row-grokify-awsgo)
+
+- [John Wang](https://github.com/grokify): [2](https://github.com/search?q=repo%3Agrokify/awsgo%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-solidos-issue-pane" href="https://github.com/SolidOS/issue-pane">SolidOS/issue-pane</a> (2 commits) [↩](#row-solidos-issue-pane)
+
+- [Jesse Wright](https://github.com/jeswr): [2](https://github.com/search?q=repo%3ASolidOS/issue-pane%20author%3Ajeswr%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-swi-prolog-npm-swipl-wasm" href="https://github.com/SWI-Prolog/npm-swipl-wasm">SWI-Prolog/npm-swipl-wasm</a> (2 commits) [↩](#row-swi-prolog-npm-swipl-wasm)
+
+- [Jesse Wright](https://github.com/jeswr): [2](https://github.com/search?q=repo%3ASWI-Prolog/npm-swipl-wasm%20author%3Ajeswr%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-kinow-slidev-theme-bsc" href="https://github.com/kinow/slidev-theme-bsc">kinow/slidev-theme-bsc</a> (2 commits) [↩](#row-kinow-slidev-theme-bsc)
+
+- [Bruno P. Kinoshita](https://github.com/kinow): [2](https://github.com/search?q=repo%3Akinow/slidev-theme-bsc%20author%3Akinow%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-color-js-color-js" href="https://github.com/color-js/color.js">color-js/color.js</a> (2 commits) [↩](#row-color-js-color-js)
+
+- [Lea Verou](https://github.com/LeaVerou): [2](https://github.com/search?q=repo%3Acolor-js/color.js%20author%3ALeaVerou%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ua-parser-uap-core" href="https://github.com/ua-parser/uap-core">ua-parser/uap-core</a> (2 commits) [↩](#row-ua-parser-uap-core)
+
+- [Miguel de Moura](https://github.com/migueldemoura): [2](https://github.com/search?q=repo%3Aua-parser/uap-core%20author%3Amigueldemoura%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-mehmetoguzderin-gradio-contrast" href="https://github.com/mehmetoguzderin/gradio-contrast">mehmetoguzderin/gradio-contrast</a> (2 commits) [↩](#row-mehmetoguzderin-gradio-contrast)
+
+- [Mehmet Oguz Derin](https://github.com/mehmetoguzderin): [2](https://github.com/search?q=repo%3Amehmetoguzderin/gradio-contrast%20author%3Amehmetoguzderin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-gpuweb-gpuweb-pr-previews" href="https://github.com/gpuweb/gpuweb-pr-previews">gpuweb/gpuweb-pr-previews</a> (2 commits) [↩](#row-gpuweb-gpuweb-pr-previews)
+
+- [Mehmet Oguz Derin](https://github.com/mehmetoguzderin): [2](https://github.com/search?q=repo%3Agpuweb/gpuweb-pr-previews%20author%3Amehmetoguzderin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-wikimedia-mediawiki" href="https://github.com/wikimedia/mediawiki">wikimedia/mediawiki</a> (2 commits) [↩](#row-wikimedia-mediawiki)
+
+- [Timo Tijhof](https://github.com/Krinkle): [2](https://github.com/search?q=repo%3Awikimedia/mediawiki%20author%3AKrinkle%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-jquery-themeroller-jquerymobile-com" href="https://github.com/jquery/themeroller.jquerymobile.com">jquery/themeroller.jquerymobile.com</a> (2 commits) [↩](#row-jquery-themeroller-jquerymobile-com)
+
+- [Timo Tijhof](https://github.com/Krinkle): [2](https://github.com/search?q=repo%3Ajquery/themeroller.jquerymobile.com%20author%3AKrinkle%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-jquery-codeorigin-jquery-com" href="https://github.com/jquery/codeorigin.jquery.com">jquery/codeorigin.jquery.com</a> (2 commits) [↩](#row-jquery-codeorigin-jquery-com)
+
+- [Timo Tijhof](https://github.com/Krinkle): [2](https://github.com/search?q=repo%3Ajquery/codeorigin.jquery.com%20author%3AKrinkle%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-wikimedia-mediawiki-libs-minify" href="https://github.com/wikimedia/mediawiki-libs-Minify">wikimedia/mediawiki-libs-Minify</a> (2 commits) [↩](#row-wikimedia-mediawiki-libs-minify)
+
+- [Timo Tijhof](https://github.com/Krinkle): [2](https://github.com/search?q=repo%3Awikimedia/mediawiki-libs-Minify%20author%3AKrinkle%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ietf-wg-aipref-wg-materials" href="https://github.com/ietf-wg-aipref/wg-materials">ietf-wg-aipref/wg-materials</a> (2 commits) [↩](#row-ietf-wg-aipref-wg-materials)
+
+- [Mark Nottingham](https://github.com/mnot): [2](https://github.com/search?q=repo%3Aietf-wg-aipref/wg-materials%20author%3Amnot%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-httpwg-structured-field-tests" href="https://github.com/httpwg/structured-field-tests">httpwg/structured-field-tests</a> (2 commits) [↩](#row-httpwg-structured-field-tests)
+
+- [Mark Nottingham](https://github.com/mnot): [2](https://github.com/search?q=repo%3Ahttpwg/structured-field-tests%20author%3Amnot%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-httpwg-httpwg-github-io" href="https://github.com/httpwg/httpwg.github.io">httpwg/httpwg.github.io</a> (2 commits) [↩](#row-httpwg-httpwg-github-io)
+
+- [Mark Nottingham](https://github.com/mnot): [2](https://github.com/search?q=repo%3Ahttpwg/httpwg.github.io%20author%3Amnot%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-mnot-thor" href="https://github.com/mnot/thor">mnot/thor</a> (2 commits) [↩](#row-mnot-thor)
+
+- [Mark Nottingham](https://github.com/mnot): [2](https://github.com/search?q=repo%3Amnot/thor%20author%3Amnot%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-servo-project" href="https://github.com/servo/project">servo/project</a> (2 commits) [↩](#row-servo-project)
+
+- [Manuel Rego](https://github.com/mrego): [2](https://github.com/search?q=repo%3Aservo/project%20author%3Amrego%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-igalia-webengineshackfest" href="https://github.com/Igalia/webengineshackfest">Igalia/webengineshackfest</a> (2 commits) [↩](#row-igalia-webengineshackfest)
+
+- [Manuel Rego](https://github.com/mrego): [2](https://github.com/search?q=repo%3AIgalia/webengineshackfest%20author%3Amrego%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-canadahonk-porffor" href="https://github.com/CanadaHonk/porffor">CanadaHonk/porffor</a> (2 commits) [↩](#row-canadahonk-porffor)
+
+- [Nolan Lawson](https://github.com/nolanlawson): [2](https://github.com/search?q=repo%3ACanadaHonk/porffor%20author%3Anolanlawson%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-tiktok-jest-bdd-generator" href="https://github.com/tiktok/jest-bdd-generator">tiktok/jest-bdd-generator</a> (2 commits) [↩](#row-tiktok-jest-bdd-generator)
+
+- [Pete Gonzalez](https://github.com/octogonz): [2](https://github.com/search?q=repo%3Atiktok/jest-bdd-generator%20author%3Aoctogonz%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-codetierlist-codetierlist" href="https://github.com/codetierlist/codetierlist">codetierlist/codetierlist</a> (2 commits) [↩](#row-codetierlist-codetierlist)
+
+- [logonoff](https://github.com/logonoff): [2](https://github.com/search?q=repo%3Acodetierlist/codetierlist%20author%3Alogonoff%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-martinthomson-internet-draft-template" href="https://github.com/martinthomson/internet-draft-template">martinthomson/internet-draft-template</a> (2 commits) [↩](#row-martinthomson-internet-draft-template)
+
+- [Martin Thomson](https://github.com/martinthomson): [2](https://github.com/search?q=repo%3Amartinthomson/internet-draft-template%20author%3Amartinthomson%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-martinthomson-aasvg" href="https://github.com/martinthomson/aasvg">martinthomson/aasvg</a> (2 commits) [↩](#row-martinthomson-aasvg)
+
+- [Martin Thomson](https://github.com/martinthomson): [2](https://github.com/search?q=repo%3Amartinthomson/aasvg%20author%3Amartinthomson%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-security-disclosure" href="https://github.com/w3c/security-disclosure">w3c/security-disclosure</a> (2 commits) [↩](#row-w3c-security-disclosure)
+
+- [Philippe Le Hegaret](https://github.com/plehegar): [2](https://github.com/search?q=repo%3Aw3c/security-disclosure%20author%3Aplehegar%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chaijs-pathval" href="https://github.com/chaijs/pathval">chaijs/pathval</a> (2 commits) [↩](#row-chaijs-pathval)
+
+- [Keith Cirkel](https://github.com/keithamus): [2](https://github.com/search?q=repo%3Achaijs/pathval%20author%3Akeithamus%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chaijs-deep-eql" href="https://github.com/chaijs/deep-eql">chaijs/deep-eql</a> (2 commits) [↩](#row-chaijs-deep-eql)
+
+- [Keith Cirkel](https://github.com/keithamus): [2](https://github.com/search?q=repo%3Achaijs/deep-eql%20author%3Akeithamus%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-niklasmerz-github-deployment-action" href="https://github.com/NiklasMerz/github-deployment-action">NiklasMerz/github-deployment-action</a> (2 commits) [↩](#row-niklasmerz-github-deployment-action)
+
+- [Niklas Merz](https://github.com/NiklasMerz): [2](https://github.com/search?q=repo%3ANiklasMerz/github-deployment-action%20author%3ANiklasMerz%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-panva-node-oidc-provider" href="https://github.com/panva/node-oidc-provider">panva/node-oidc-provider</a> (2 commits) [↩](#row-panva-node-oidc-provider)
+
+- [Filip Skokan](https://github.com/panva): [2](https://github.com/search?q=repo%3Apanva/node-oidc-provider%20author%3Apanva%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-panva-oauth4webapi" href="https://github.com/panva/oauth4webapi">panva/oauth4webapi</a> (2 commits) [↩](#row-panva-oauth4webapi)
+
+- [Filip Skokan](https://github.com/panva): [2](https://github.com/search?q=repo%3Apanva/oauth4webapi%20author%3Apanva%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-panva-jose" href="https://github.com/panva/jose">panva/jose</a> (2 commits) [↩](#row-panva-jose)
+
+- [Filip Skokan](https://github.com/panva): [2](https://github.com/search?q=repo%3Apanva/jose%20author%3Apanva%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-sdw" href="https://github.com/w3c/sdw">w3c/sdw</a> (2 commits) [↩](#row-w3c-sdw)
+
+- [Rob Smith](https://github.com/rjksmith): [2](https://github.com/search?q=repo%3Aw3c/sdw%20author%3Arjksmith%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-tc39-proposal-defer-import-eval" href="https://github.com/tc39/proposal-defer-import-eval">tc39/proposal-defer-import-eval</a> (2 commits) [↩](#row-tc39-proposal-defer-import-eval)
+
+- [Nicolò Ribaudo](https://github.com/nicolo-ribaudo): [2](https://github.com/search?q=repo%3Atc39/proposal-defer-import-eval%20author%3Anicolo-ribaudo%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-rubenverborgh-dotfiles" href="https://github.com/RubenVerborgh/dotfiles">RubenVerborgh/dotfiles</a> (2 commits) [↩](#row-rubenverborgh-dotfiles)
+
+- [Ruben Verborgh](https://github.com/RubenVerborgh): [2](https://github.com/search?q=repo%3ARubenVerborgh/dotfiles%20author%3ARubenVerborgh%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-wicg-web-smart-card" href="https://github.com/WICG/web-smart-card">WICG/web-smart-card</a> (2 commits) [↩](#row-wicg-web-smart-card)
+
+- [Reilly Grant](https://github.com/reillyeon): [2](https://github.com/search?q=repo%3AWICG/web-smart-card%20author%3Areillyeon%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-tobie-specref" href="https://github.com/tobie/specref">tobie/specref</a> (2 commits) [↩](#row-tobie-specref)
+
+- [Reilly Grant](https://github.com/reillyeon): [1](https://github.com/search?q=repo%3Atobie/specref%20author%3Areillyeon%20author-date%3A2025-12-27..2026-01-26&type=commits)
+- [François Daoust](https://github.com/tidoust): [1](https://github.com/search?q=repo%3Atobie/specref%20author%3Atidoust%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-nicholasgriffintn-starterjam-com" href="https://github.com/nicholasgriffintn/starterjam.com">nicholasgriffintn/starterjam.com</a> (2 commits) [↩](#row-nicholasgriffintn-starterjam-com)
+
+- [Nicholas Griffin](https://github.com/nicholasgriffintn): [2](https://github.com/search?q=repo%3Anicholasgriffintn/starterjam.com%20author%3Anicholasgriffintn%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-robertlong-pop-up-salon" href="https://github.com/robertlong/pop-up-salon">robertlong/pop-up-salon</a> (2 commits) [↩](#row-robertlong-pop-up-salon)
+
+- [Robert Long](https://github.com/robertlong): [2](https://github.com/search?q=repo%3Arobertlong/pop-up-salon%20author%3Arobertlong%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-raohai-agent-meta-skill" href="https://github.com/RaoHai/agent-meta-skill">RaoHai/agent-meta-skill</a> (2 commits) [↩](#row-raohai-agent-meta-skill)
+
+- [Hai Rao](https://github.com/RaoHai): [2](https://github.com/search?q=repo%3ARaoHai/agent-meta-skill%20author%3ARaoHai%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-manishearth-rust-gc" href="https://github.com/Manishearth/rust-gc">Manishearth/rust-gc</a> (2 commits) [↩](#row-manishearth-rust-gc)
+
+- [Manish Goregaokar](https://github.com/Manishearth): [2](https://github.com/search?q=repo%3AManishearth/rust-gc%20author%3AManishearth%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-rust-lang-www-rust-lang-org" href="https://github.com/rust-lang/www.rust-lang.org">rust-lang/www.rust-lang.org</a> (2 commits) [↩](#row-rust-lang-www-rust-lang-org)
+
+- [Manish Goregaokar](https://github.com/Manishearth): [2](https://github.com/search?q=repo%3Arust-lang/www.rust-lang.org%20author%3AManishearth%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-tc39-proposal-intl-era-monthcode" href="https://github.com/tc39/proposal-intl-era-monthcode">tc39/proposal-intl-era-monthcode</a> (2 commits) [↩](#row-tc39-proposal-intl-era-monthcode)
+
+- [Manish Goregaokar](https://github.com/Manishearth): [2](https://github.com/search?q=repo%3Atc39/proposal-intl-era-monthcode%20author%3AManishearth%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-rinchen-rad-enable-repo" href="https://github.com/rinchen/rad-enable-repo">rinchen/rad-enable-repo</a> (2 commits) [↩](#row-rinchen-rad-enable-repo)
+
+- [J✪ΞY STANFORD](https://github.com/rinchen): [2](https://github.com/search?q=repo%3Arinchen/rad-enable-repo%20author%3Arinchen%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-rmham-nextcloud-utils" href="https://github.com/RMHAM/nextcloud-utils">RMHAM/nextcloud-utils</a> (2 commits) [↩](#row-rmham-nextcloud-utils)
+
+- [J✪ΞY STANFORD](https://github.com/rinchen): [2](https://github.com/search?q=repo%3ARMHAM/nextcloud-utils%20author%3Arinchen%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-googlechrome-lighthouse" href="https://github.com/GoogleChrome/lighthouse">GoogleChrome/lighthouse</a> (2 commits) [↩](#row-googlechrome-lighthouse)
+
+- [Paul Irish](https://github.com/paulirish): [2](https://github.com/search?q=repo%3AGoogleChrome/lighthouse%20author%3Apaulirish%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-nemikor-solutions-usaw-owlcms" href="https://github.com/nemikor-solutions/usaw-owlcms">nemikor-solutions/usaw-owlcms</a> (2 commits) [↩](#row-nemikor-solutions-usaw-owlcms)
+
+- [Scott González](https://github.com/scottgonzalez): [2](https://github.com/search?q=repo%3Anemikor-solutions/usaw-owlcms%20author%3Ascottgonzalez%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-inisis-onnxslim" href="https://github.com/inisis/OnnxSlim">inisis/OnnxSlim</a> (2 commits) [↩](#row-inisis-onnxslim)
+
+- [Ingvar Stepanyan](https://github.com/RReverser): [2](https://github.com/search?q=repo%3Ainisis/OnnxSlim%20author%3ARReverser%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-rreverser-serde-ndim" href="https://github.com/RReverser/serde-ndim">RReverser/serde-ndim</a> (2 commits) [↩](#row-rreverser-serde-ndim)
+
+- [Ingvar Stepanyan](https://github.com/RReverser): [2](https://github.com/search?q=repo%3ARReverser/serde-ndim%20author%3ARReverser%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-wai-evaluation-tools-list" href="https://github.com/w3c/wai-evaluation-tools-list">w3c/wai-evaluation-tools-list</a> (2 commits) [↩](#row-w3c-wai-evaluation-tools-list)
+
+- [Rémi Bétin](https://github.com/remibetin): [2](https://github.com/search?q=repo%3Aw3c/wai-evaluation-tools-list%20author%3Aremibetin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-wai-statements" href="https://github.com/w3c/wai-statements">w3c/wai-statements</a> (2 commits) [↩](#row-w3c-wai-statements)
+
+- [Rémi Bétin](https://github.com/remibetin): [2](https://github.com/search?q=repo%3Aw3c/wai-statements%20author%3Aremibetin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-wai-website-data" href="https://github.com/w3c/wai-website-data">w3c/wai-website-data</a> (2 commits) [↩](#row-w3c-wai-website-data)
+
+- [Rémi Bétin](https://github.com/remibetin): [2](https://github.com/search?q=repo%3Aw3c/wai-website-data%20author%3Aremibetin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-globalprivacycontrol-landing-page" href="https://github.com/globalprivacycontrol/landing-page">globalprivacycontrol/landing-page</a> (2 commits) [↩](#row-globalprivacycontrol-landing-page)
+
+- [Sebastian Zimmeck](https://github.com/SebastianZimmeck): [2](https://github.com/search?q=repo%3Aglobalprivacycontrol/landing-page%20author%3ASebastianZimmeck%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-shopify-shadowenv" href="https://github.com/Shopify/shadowenv">Shopify/shadowenv</a> (2 commits) [↩](#row-shopify-shadowenv)
+
+- [Surma](https://github.com/surma): [2](https://github.com/search?q=repo%3AShopify/shadowenv%20author%3Asurma%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-gfx-rs-wgpu" href="https://github.com/gfx-rs/wgpu">gfx-rs/wgpu</a> (2 commits) [↩](#row-gfx-rs-wgpu)
+
+- [Teodor Tanasoaia](https://github.com/teoxoy): [2](https://github.com/search?q=repo%3Agfx-rs/wgpu%20author%3Ateoxoy%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-csstools-cssdb" href="https://github.com/csstools/cssdb">csstools/cssdb</a> (2 commits) [↩](#row-csstools-cssdb)
+
+- [Romain Menke](https://github.com/romainmenke): [2](https://github.com/search?q=repo%3Acsstools/cssdb%20author%3Aromainmenke%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-csstools-stylelint-value-no-unknown-custom-properties" href="https://github.com/csstools/stylelint-value-no-unknown-custom-properties">csstools/stylelint-value-no-unknown-custom-properties</a> (2 commits) [↩](#row-csstools-stylelint-value-no-unknown-custom-properties)
+
+- [Romain Menke](https://github.com/romainmenke): [2](https://github.com/search?q=repo%3Acsstools/stylelint-value-no-unknown-custom-properties%20author%3Aromainmenke%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-csstools-tokenizer" href="https://github.com/csstools/tokenizer">csstools/tokenizer</a> (2 commits) [↩](#row-csstools-tokenizer)
+
+- [Romain Menke](https://github.com/romainmenke): [2](https://github.com/search?q=repo%3Acsstools/tokenizer%20author%3Aromainmenke%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-csstools-postcss-extend-rule" href="https://github.com/csstools/postcss-extend-rule">csstools/postcss-extend-rule</a> (2 commits) [↩](#row-csstools-postcss-extend-rule)
+
+- [Romain Menke](https://github.com/romainmenke): [2](https://github.com/search?q=repo%3Acsstools/postcss-extend-rule%20author%3Aromainmenke%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-stylelint-stylelint-ecosystem-tester" href="https://github.com/stylelint/stylelint-ecosystem-tester">stylelint/stylelint-ecosystem-tester</a> (2 commits) [↩](#row-stylelint-stylelint-ecosystem-tester)
+
+- [Romain Menke](https://github.com/romainmenke): [2](https://github.com/search?q=repo%3Astylelint/stylelint-ecosystem-tester%20author%3Aromainmenke%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-stylelint-stylelint" href="https://github.com/stylelint/stylelint">stylelint/stylelint</a> (2 commits) [↩](#row-stylelint-stylelint)
+
+- [Romain Menke](https://github.com/romainmenke): [2](https://github.com/search?q=repo%3Astylelint/stylelint%20author%3Aromainmenke%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-cloudflare-telescope" href="https://github.com/cloudflare/telescope">cloudflare/telescope</a> (2 commits) [↩](#row-cloudflare-telescope)
+
+- [Sergey Chernyshev](https://github.com/sergeychernyshev): [2](https://github.com/search?q=repo%3Acloudflare/telescope%20author%3Asergeychernyshev%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-breakouts-day-2026" href="https://github.com/w3c/breakouts-day-2026">w3c/breakouts-day-2026</a> (2 commits) [↩](#row-w3c-breakouts-day-2026)
+
+- [François Daoust](https://github.com/tidoust): [2](https://github.com/search?q=repo%3Aw3c/breakouts-day-2026%20author%3Atidoust%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-immersive-web-model-element" href="https://github.com/immersive-web/model-element">immersive-web/model-element</a> (2 commits) [↩](#row-immersive-web-model-element)
+
+- [François Daoust](https://github.com/tidoust): [2](https://github.com/search?q=repo%3Aimmersive-web/model-element%20author%3Atidoust%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-toji-webgpu-metaballs" href="https://github.com/toji/webgpu-metaballs">toji/webgpu-metaballs</a> (2 commits) [↩](#row-toji-webgpu-metaballs)
+
+- [Brandon Jones](https://github.com/toji): [2](https://github.com/search?q=repo%3Atoji/webgpu-metaballs%20author%3Atoji%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-toji-spookyball" href="https://github.com/toji/spookyball">toji/spookyball</a> (2 commits) [↩](#row-toji-spookyball)
+
+- [Brandon Jones](https://github.com/toji): [2](https://github.com/search?q=repo%3Atoji/spookyball%20author%3Atoji%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-gh-tui-tools-gh-shortlog" href="https://github.com/gh-tui-tools/gh-shortlog">gh-tui-tools/gh-shortlog</a> (2 commits) [↩](#row-gh-tui-tools-gh-shortlog)
+
+- [sideshowbarker](https://github.com/sideshowbarker): [2](https://github.com/search?q=repo%3Agh-tui-tools/gh-shortlog%20author%3Asideshowbarker%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-sparql-query" href="https://github.com/w3c/sparql-query">w3c/sparql-query</a> (2 commits) [↩](#row-w3c-sparql-query)
+
+- [Ted Thibodeau Jr](https://github.com/TallTed): [2](https://github.com/search?q=repo%3Aw3c/sparql-query%20author%3ATallTed%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-wincent-cv" href="https://github.com/wincent/cv">wincent/cv</a> (2 commits) [↩](#row-wincent-cv)
+
+- [Greg Hurrell](https://github.com/wincent): [2](https://github.com/search?q=repo%3Awincent/cv%20author%3Awincent%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-home-assistant-core" href="https://github.com/home-assistant/core">home-assistant/core</a> (2 commits) [↩](#row-home-assistant-core)
+
+- [Xidorn Quan](https://github.com/upsuper): [2](https://github.com/search?q=repo%3Ahome-assistant/core%20author%3Aupsuper%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-xfq-zhuangxiu" href="https://github.com/xfq/zhuangxiu">xfq/zhuangxiu</a> (2 commits) [↩](#row-xfq-zhuangxiu)
+
+- [Fuqiao Xue](https://github.com/xfq): [2](https://github.com/search?q=repo%3Axfq/zhuangxiu%20author%3Axfq%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ljharb-lockfile-tools" href="https://github.com/ljharb/lockfile-tools">ljharb/lockfile-tools</a> (2 commits) [↩](#row-ljharb-lockfile-tools)
+
+- [Jordan Harband](https://github.com/ljharb): [2](https://github.com/search?q=repo%3Aljharb/lockfile-tools%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ljharb-object-assign" href="https://github.com/ljharb/object.assign">ljharb/object.assign</a> (2 commits) [↩](#row-ljharb-object-assign)
+
+- [Jordan Harband](https://github.com/ljharb): [2](https://github.com/search?q=repo%3Aljharb/object.assign%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ljharb-travis-ci" href="https://github.com/ljharb/travis-ci">ljharb/travis-ci</a> (2 commits) [↩](#row-ljharb-travis-ci)
+
+- [Jordan Harband](https://github.com/ljharb): [2](https://github.com/search?q=repo%3Aljharb/travis-ci%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-es-shims-set-prototype-intersection" href="https://github.com/es-shims/Set.prototype.intersection">es-shims/Set.prototype.intersection</a> (2 commits) [↩](#row-es-shims-set-prototype-intersection)
+
+- [Jordan Harband](https://github.com/ljharb): [2](https://github.com/search?q=repo%3Aes-shims/Set.prototype.intersection%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-es-shims-math-clz32" href="https://github.com/es-shims/Math.clz32">es-shims/Math.clz32</a> (2 commits) [↩](#row-es-shims-math-clz32)
+
+- [Jordan Harband](https://github.com/ljharb): [2](https://github.com/search?q=repo%3Aes-shims/Math.clz32%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-nvm-sh-nvm" href="https://github.com/nvm-sh/nvm">nvm-sh/nvm</a> (2 commits) [↩](#row-nvm-sh-nvm)
+
+- [Jordan Harband](https://github.com/ljharb): [2](https://github.com/search?q=repo%3Anvm-sh/nvm%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-cyclopsmc-evilcraft" href="https://github.com/CyclopsMC/EvilCraft">CyclopsMC/EvilCraft</a> (2 commits) [↩](#row-cyclopsmc-evilcraft)
+
+- [Ruben Taelman](https://github.com/rubensworks): [2](https://github.com/search?q=repo%3ACyclopsMC/EvilCraft%20author%3Arubensworks%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-rubensworks-rubensworks-net" href="https://github.com/rubensworks/rubensworks.net">rubensworks/rubensworks.net</a> (2 commits) [↩](#row-rubensworks-rubensworks-net)
+
+- [Ruben Taelman](https://github.com/rubensworks): [2](https://github.com/search?q=repo%3Arubensworks/rubensworks.net%20author%3Arubensworks%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-rubensworks-rdf-dereference-js" href="https://github.com/rubensworks/rdf-dereference.js">rubensworks/rdf-dereference.js</a> (2 commits) [↩](#row-rubensworks-rdf-dereference-js)
+
+- [Ruben Taelman](https://github.com/rubensworks): [2](https://github.com/search?q=repo%3Arubensworks/rdf-dereference.js%20author%3Arubensworks%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-rubensworks-rdf-test-suite-js" href="https://github.com/rubensworks/rdf-test-suite.js">rubensworks/rdf-test-suite.js</a> (2 commits) [↩](#row-rubensworks-rdf-test-suite-js)
+
+- [Ruben Taelman](https://github.com/rubensworks): [2](https://github.com/search?q=repo%3Arubensworks/rdf-test-suite.js%20author%3Arubensworks%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-duckduckgo-tracker-radar" href="https://github.com/duckduckgo/tracker-radar">duckduckgo/tracker-radar</a> (2 commits) [↩](#row-duckduckgo-tracker-radar)
+
+- [David Harbage](https://github.com/dharb): [2](https://github.com/search?q=repo%3Aduckduckgo/tracker-radar%20author%3Adharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-httparchive-bigquery" href="https://github.com/HTTPArchive/bigquery">HTTPArchive/bigquery</a> (2 commits) [↩](#row-httparchive-bigquery)
+
+- [Barry Pollard](https://github.com/tunetheweb): [2](https://github.com/search?q=repo%3AHTTPArchive/bigquery%20author%3Atunetheweb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-paint-timing" href="https://github.com/w3c/paint-timing">w3c/paint-timing</a> (2 commits) [↩](#row-w3c-paint-timing)
+
+- [Barry Pollard](https://github.com/tunetheweb): [2](https://github.com/search?q=repo%3Aw3c/paint-timing%20author%3Atunetheweb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-jaegertracing-docker-protobuf" href="https://github.com/jaegertracing/docker-protobuf">jaegertracing/docker-protobuf</a> (2 commits) [↩](#row-jaegertracing-docker-protobuf)
+
+- [Yuri Shkuro](https://github.com/yurishkuro): [2](https://github.com/search?q=repo%3Ajaegertracing/docker-protobuf%20author%3Ayurishkuro%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-jaegertracing--github" href="https://github.com/jaegertracing/.github">jaegertracing/.github</a> (2 commits) [↩](#row-jaegertracing--github)
+
+- [Yuri Shkuro](https://github.com/yurishkuro): [2](https://github.com/search?q=repo%3Ajaegertracing/.github%20author%3Ayurishkuro%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-cncf-mentoring" href="https://github.com/cncf/mentoring">cncf/mentoring</a> (2 commits) [↩](#row-cncf-mentoring)
+
+- [Yuri Shkuro](https://github.com/yurishkuro): [2](https://github.com/search?q=repo%3Acncf/mentoring%20author%3Ayurishkuro%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-aamuley-aamuley-github-io" href="https://github.com/aamuley/aamuley.github.io">aamuley/aamuley.github.io</a> (1 commits) [↩](#row-aamuley-aamuley-github-io)
+
+- [Anusha Muley](https://github.com/aamuley): [1](https://github.com/search?q=repo%3Aaamuley/aamuley.github.io%20author%3Aaamuley%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-zotero-zotero-connectors" href="https://github.com/zotero/zotero-connectors">zotero/zotero-connectors</a> (1 commits) [↩](#row-zotero-zotero-connectors)
+
+- [Abe Jellinek](https://github.com/AbeJellinek): [1](https://github.com/search?q=repo%3Azotero/zotero-connectors%20author%3AAbeJellinek%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-andreubotella-andreubotella-com" href="https://github.com/andreubotella/andreubotella.com">andreubotella/andreubotella.com</a> (1 commits) [↩](#row-andreubotella-andreubotella-com)
+
+- [Andreu Botella](https://github.com/andreubotella): [1](https://github.com/search?q=repo%3Aandreubotella/andreubotella.com%20author%3Aandreubotella%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-aaronpk-indienews" href="https://github.com/aaronpk/IndieNews">aaronpk/IndieNews</a> (1 commits) [↩](#row-aaronpk-indienews)
+
+- [Aaron Parecki](https://github.com/aaronpk): [1](https://github.com/search?q=repo%3Aaaronpk/IndieNews%20author%3Aaaronpk%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-homebrew-homebrew-cask" href="https://github.com/Homebrew/homebrew-cask">Homebrew/homebrew-cask</a> (1 commits) [↩](#row-homebrew-homebrew-cask)
+
+- [Alex](https://github.com/AlexanderWillner): [1](https://github.com/search?q=repo%3AHomebrew/homebrew-cask%20author%3AAlexanderWillner%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-matter-js-python-matter-server" href="https://github.com/matter-js/python-matter-server">matter-js/python-matter-server</a> (1 commits) [↩](#row-matter-js-python-matter-server)
+
+- [Oliver Byford](https://github.com/36degrees): [1](https://github.com/search?q=repo%3Amatter-js/python-matter-server%20author%3A36degrees%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-alphagov-govuk-frontend-docs" href="https://github.com/alphagov/govuk-frontend-docs">alphagov/govuk-frontend-docs</a> (1 commits) [↩](#row-alphagov-govuk-frontend-docs)
+
+- [Oliver Byford](https://github.com/36degrees): [1](https://github.com/search?q=repo%3Aalphagov/govuk-frontend-docs%20author%3A36degrees%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-webmachinelearning-translation-api" href="https://github.com/webmachinelearning/translation-api">webmachinelearning/translation-api</a> (1 commits) [↩](#row-webmachinelearning-translation-api)
+
+- [Anssi Kostiainen](https://github.com/anssiko): [1](https://github.com/search?q=repo%3Awebmachinelearning/translation-api%20author%3Aanssiko%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-geolocation-sensor" href="https://github.com/w3c/geolocation-sensor">w3c/geolocation-sensor</a> (1 commits) [↩](#row-w3c-geolocation-sensor)
+
+- [Anssi Kostiainen](https://github.com/anssiko): [1](https://github.com/search?q=repo%3Aw3c/geolocation-sensor%20author%3Aanssiko%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-intel-generic-sensor-demos" href="https://github.com/intel/generic-sensor-demos">intel/generic-sensor-demos</a> (1 commits) [↩](#row-intel-generic-sensor-demos)
+
+- [Anssi Kostiainen](https://github.com/anssiko): [1](https://github.com/search?q=repo%3Aintel/generic-sensor-demos%20author%3Aanssiko%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-arthursonzogni-partitionalloc" href="https://github.com/ArthurSonzogni/PartitionAlloc">ArthurSonzogni/PartitionAlloc</a> (1 commits) [↩](#row-arthursonzogni-partitionalloc)
+
+- [Arthur Sonzogni](https://github.com/ArthurSonzogni): [1](https://github.com/search?q=repo%3AArthurSonzogni/PartitionAlloc%20author%3AArthurSonzogni%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-arthursonzogni-vincentarnould" href="https://github.com/ArthurSonzogni/vincentarnould">ArthurSonzogni/vincentarnould</a> (1 commits) [↩](#row-arthursonzogni-vincentarnould)
+
+- [Arthur Sonzogni](https://github.com/ArthurSonzogni): [1](https://github.com/search?q=repo%3AArthurSonzogni/vincentarnould%20author%3AArthurSonzogni%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-dynatrace-dynatrace-otel-collector" href="https://github.com/Dynatrace/dynatrace-otel-collector">Dynatrace/dynatrace-otel-collector</a> (1 commits) [↩](#row-dynatrace-dynatrace-otel-collector)
+
+- [Armin Ruech](https://github.com/arminru): [1](https://github.com/search?q=repo%3ADynatrace/dynatrace-otel-collector%20author%3Aarminru%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-inrupt-rdf-wrapping-java" href="https://github.com/inrupt/rdf-wrapping-java">inrupt/rdf-wrapping-java</a> (1 commits) [↩](#row-inrupt-rdf-wrapping-java)
+
+- [Aaron Coburn](https://github.com/acoburn): [1](https://github.com/search?q=repo%3Ainrupt/rdf-wrapping-java%20author%3Aacoburn%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-media-wg" href="https://github.com/w3c/media-wg">w3c/media-wg</a> (1 commits) [↩](#row-w3c-media-wg)
+
+- [Chris Needham](https://github.com/chrisn): [1](https://github.com/search?q=repo%3Aw3c/media-wg%20author%3Achrisn%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-adamj-themagiccollection" href="https://github.com/AdamJ/TheMagicCollection">AdamJ/TheMagicCollection</a> (1 commits) [↩](#row-adamj-themagiccollection)
+
+- [Adam Jolicoeur](https://github.com/AdamJ): [1](https://github.com/search?q=repo%3AAdamJ/TheMagicCollection%20author%3AAdamJ%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-c00kiemon5ter-presentation-tiime2020-idpy-governance" href="https://github.com/c00kiemon5ter/presentation-tiime2020-idpy-governance">c00kiemon5ter/presentation-tiime2020-idpy-governance</a> (1 commits) [↩](#row-c00kiemon5ter-presentation-tiime2020-idpy-governance)
+
+- [Ivan Kanakarakis](https://github.com/c00kiemon5ter): [1](https://github.com/search?q=repo%3Ac00kiemon5ter/presentation-tiime2020-idpy-governance%20author%3Ac00kiemon5ter%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-c00kiemon5ter-presentation-ntw19-identitypython-satosa-demo" href="https://github.com/c00kiemon5ter/presentation-ntw19-identitypython-satosa-demo">c00kiemon5ter/presentation-ntw19-identitypython-satosa-demo</a> (1 commits) [↩](#row-c00kiemon5ter-presentation-ntw19-identitypython-satosa-demo)
+
+- [Ivan Kanakarakis](https://github.com/c00kiemon5ter): [1](https://github.com/search?q=repo%3Ac00kiemon5ter/presentation-ntw19-identitypython-satosa-demo%20author%3Ac00kiemon5ter%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-c00kiemon5ter-presentation-eosc19-identitypython-satosa" href="https://github.com/c00kiemon5ter/presentation-eosc19-identitypython-satosa">c00kiemon5ter/presentation-eosc19-identitypython-satosa</a> (1 commits) [↩](#row-c00kiemon5ter-presentation-eosc19-identitypython-satosa)
+
+- [Ivan Kanakarakis](https://github.com/c00kiemon5ter): [1](https://github.com/search?q=repo%3Ac00kiemon5ter/presentation-eosc19-identitypython-satosa%20author%3Ac00kiemon5ter%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-kresusapp-kresus" href="https://github.com/kresusapp/kresus">kresusapp/kresus</a> (1 commits) [↩](#row-kresusapp-kresus)
+
+- [Benjamin Bouvier](https://github.com/bnjbvr): [1](https://github.com/search?q=repo%3Akresusapp/kresus%20author%3Abnjbvr%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-morph-kgc-morph-kgc-docs" href="https://github.com/morph-kgc/morph-kgc-docs">morph-kgc/morph-kgc-docs</a> (1 commits) [↩](#row-morph-kgc-morph-kgc-docs)
+
+- [Julián Arenas Guerrero](https://github.com/arenas-guerrero-julian): [1](https://github.com/search?q=repo%3Amorph-kgc/morph-kgc-docs%20author%3Aarenas-guerrero-julian%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-aramzs-links" href="https://github.com/AramZS/links">AramZS/links</a> (1 commits) [↩](#row-aramzs-links)
+
+- [Aram Zucker-Scharff](https://github.com/AramZS): [1](https://github.com/search?q=repo%3AAramZS/links%20author%3AAramZS%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-cmfcmf-docusaurus-search-local" href="https://github.com/cmfcmf/docusaurus-search-local">cmfcmf/docusaurus-search-local</a> (1 commits) [↩](#row-cmfcmf-docusaurus-search-local)
+
+- [Christian Flach](https://github.com/cmfcmf): [1](https://github.com/search?q=repo%3Acmfcmf/docusaurus-search-local%20author%3Acmfcmf%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-cynthia-iamf-exp" href="https://github.com/cynthia/iamf-exp">cynthia/iamf-exp</a> (1 commits) [↩](#row-cynthia-iamf-exp)
+
+- [Sangwhan "fish" Moon](https://github.com/cynthia): [1](https://github.com/search?q=repo%3Acynthia/iamf-exp%20author%3Acynthia%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-comandeer-comandeers-homepage" href="https://github.com/Comandeer/comandeers-homepage">Comandeer/comandeers-homepage</a> (1 commits) [↩](#row-comandeer-comandeers-homepage)
+
+- [Tomasz Jakut](https://github.com/Comandeer): [1](https://github.com/search?q=repo%3AComandeer/comandeers-homepage%20author%3AComandeer%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-vc-bitstring-status-list-test-suite" href="https://github.com/w3c/vc-bitstring-status-list-test-suite">w3c/vc-bitstring-status-list-test-suite</a> (1 commits) [↩](#row-w3c-vc-bitstring-status-list-test-suite)
+
+- [BigBlueHat](https://github.com/BigBlueHat): [1](https://github.com/search?q=repo%3Aw3c/vc-bitstring-status-list-test-suite%20author%3ABigBlueHat%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-bigbluehat-dotfiles" href="https://github.com/BigBlueHat/dotfiles">BigBlueHat/dotfiles</a> (1 commits) [↩](#row-bigbluehat-dotfiles)
+
+- [BigBlueHat](https://github.com/BigBlueHat): [1](https://github.com/search?q=repo%3ABigBlueHat/dotfiles%20author%3ABigBlueHat%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chinmaygarde-sft" href="https://github.com/chinmaygarde/sft">chinmaygarde/sft</a> (1 commits) [↩](#row-chinmaygarde-sft)
+
+- [Chinmay Garde](https://github.com/chinmaygarde): [1](https://github.com/search?q=repo%3Achinmaygarde/sft%20author%3Achinmaygarde%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-crazyurus-bydota-code" href="https://github.com/crazyurus/bydota-code">crazyurus/bydota-code</a> (1 commits) [↩](#row-crazyurus-bydota-code)
+
+- [Cr4zy Uru5](https://github.com/crazyurus): [1](https://github.com/search?q=repo%3Acrazyurus/bydota-code%20author%3Acrazyurus%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-open-telemetry-opentelemetry-browser" href="https://github.com/open-telemetry/opentelemetry-browser">open-telemetry/opentelemetry-browser</a> (1 commits) [↩](#row-open-telemetry-opentelemetry-browser)
+
+- [Benoît](https://github.com/BenoitZugmeyer): [1](https://github.com/search?q=repo%3Aopen-telemetry/opentelemetry-browser%20author%3ABenoitZugmeyer%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-open-telemetry-opentelemetry-js-contrib" href="https://github.com/open-telemetry/opentelemetry-js-contrib">open-telemetry/opentelemetry-js-contrib</a> (1 commits) [↩](#row-open-telemetry-opentelemetry-js-contrib)
+
+- [Benoît](https://github.com/BenoitZugmeyer): [1](https://github.com/search?q=repo%3Aopen-telemetry/opentelemetry-js-contrib%20author%3ABenoitZugmeyer%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-davidsgrogan-davidsgrogan-github-io" href="https://github.com/davidsgrogan/davidsgrogan.github.io">davidsgrogan/davidsgrogan.github.io</a> (1 commits) [↩](#row-davidsgrogan-davidsgrogan-github-io)
+
+- [davidsgrogan](https://github.com/davidsgrogan): [1](https://github.com/search?q=repo%3Adavidsgrogan/davidsgrogan.github.io%20author%3Adavidsgrogan%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-berlysia-blog-berlysia-net" href="https://github.com/berlysia/blog.berlysia.net">berlysia/blog.berlysia.net</a> (1 commits) [↩](#row-berlysia-blog-berlysia-net)
+
+- [berlysia](https://github.com/berlysia): [1](https://github.com/search?q=repo%3Aberlysia/blog.berlysia.net%20author%3Aberlysia%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ldproxy-xtraplatform-spatial" href="https://github.com/ldproxy/xtraplatform-spatial">ldproxy/xtraplatform-spatial</a> (1 commits) [↩](#row-ldproxy-xtraplatform-spatial)
+
+- [Clemens Portele](https://github.com/cportele): [1](https://github.com/search?q=repo%3Aldproxy/xtraplatform-spatial%20author%3Acportele%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-opengeospatial-ogcapi-features" href="https://github.com/opengeospatial/ogcapi-features">opengeospatial/ogcapi-features</a> (1 commits) [↩](#row-opengeospatial-ogcapi-features)
+
+- [Clemens Portele](https://github.com/cportele): [1](https://github.com/search?q=repo%3Aopengeospatial/ogcapi-features%20author%3Acportele%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-okturtles-chel" href="https://github.com/okTurtles/chel">okTurtles/chel</a> (1 commits) [↩](#row-okturtles-chel)
+
+- [Ricardo Iván Vieitez Parra](https://github.com/corrideat): [1](https://github.com/search?q=repo%3AokTurtles/chel%20author%3Acorrideat%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-okturtles-libcheloniajs" href="https://github.com/okTurtles/libcheloniajs">okTurtles/libcheloniajs</a> (1 commits) [↩](#row-okturtles-libcheloniajs)
+
+- [Ricardo Iván Vieitez Parra](https://github.com/corrideat): [1](https://github.com/search?q=repo%3AokTurtles/libcheloniajs%20author%3Acorrideat%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-darobin-wise-choice" href="https://github.com/darobin/wise-choice">darobin/wise-choice</a> (1 commits) [↩](#row-darobin-wise-choice)
+
+- [Robin Berjon](https://github.com/darobin): [1](https://github.com/search?q=repo%3Adarobin/wise-choice%20author%3Adarobin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-darobin-webtil-es" href="https://github.com/darobin/webtil.es">darobin/webtil.es</a> (1 commits) [↩](#row-darobin-webtil-es)
+
+- [Robin Berjon](https://github.com/darobin): [1](https://github.com/search?q=repo%3Adarobin/webtil.es%20author%3Adarobin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-specberus" href="https://github.com/w3c/specberus">w3c/specberus</a> (1 commits) [↩](#row-w3c-specberus)
+
+- [Denis Ah-Kang](https://github.com/deniak): [1](https://github.com/search?q=repo%3Aw3c/specberus%20author%3Adeniak%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-echidna" href="https://github.com/w3c/echidna">w3c/echidna</a> (1 commits) [↩](#row-w3c-echidna)
+
+- [Denis Ah-Kang](https://github.com/deniak): [1](https://github.com/search?q=repo%3Aw3c/echidna%20author%3Adeniak%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-node-w3capi" href="https://github.com/w3c/node-w3capi">w3c/node-w3capi</a> (1 commits) [↩](#row-w3c-node-w3capi)
+
+- [Denis Ah-Kang](https://github.com/deniak): [1](https://github.com/search?q=repo%3Aw3c/node-w3capi%20author%3Adeniak%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-mozilla-layout-triage" href="https://github.com/mozilla/layout-triage">mozilla/layout-triage</a> (1 commits) [↩](#row-mozilla-layout-triage)
+
+- [Daniel Holbert](https://github.com/dholbert): [1](https://github.com/search?q=repo%3Amozilla/layout-triage%20author%3Adholbert%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-mozilla-addons" href="https://github.com/mozilla/addons">mozilla/addons</a> (1 commits) [↩](#row-mozilla-addons)
+
+- [Simeon Vincent](https://github.com/dotproto): [1](https://github.com/search?q=repo%3Amozilla/addons%20author%3Adotproto%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-mozilla-foundation-security-advisories" href="https://github.com/mozilla/foundation-security-advisories">mozilla/foundation-security-advisories</a> (1 commits) [↩](#row-mozilla-foundation-security-advisories)
+
+- [Daniel Veditz](https://github.com/dveditz): [1](https://github.com/search?q=repo%3Amozilla/foundation-security-advisories%20author%3Adveditz%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-tc39-notes" href="https://github.com/tc39/notes">tc39/notes</a> (1 commits) [↩](#row-tc39-notes)
+
+- [Chris de Almeida](https://github.com/ctcpip): [1](https://github.com/search?q=repo%3Atc39/notes%20author%3Actcpip%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-netrisse-netrisse-lib" href="https://github.com/netrisse/netrisse-lib">netrisse/netrisse-lib</a> (1 commits) [↩](#row-netrisse-netrisse-lib)
+
+- [Chris de Almeida](https://github.com/ctcpip): [1](https://github.com/search?q=repo%3Anetrisse/netrisse-lib%20author%3Actcpip%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ctcpip-eslint-config-ultra-mega" href="https://github.com/ctcpip/eslint-config-ultra-mega">ctcpip/eslint-config-ultra-mega</a> (1 commits) [↩](#row-ctcpip-eslint-config-ultra-mega)
+
+- [Chris de Almeida](https://github.com/ctcpip): [1](https://github.com/search?q=repo%3Actcpip/eslint-config-ultra-mega%20author%3Actcpip%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-envoyproxy-envoy" href="https://github.com/envoyproxy/envoy">envoyproxy/envoy</a> (1 commits) [↩](#row-envoyproxy-envoy)
+
+- [Dan McArdle](https://github.com/dmcardle): [1](https://github.com/search?q=repo%3Aenvoyproxy/envoy%20author%3Admcardle%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-bytecodealliance-wasm-tools" href="https://github.com/bytecodealliance/wasm-tools">bytecodealliance/wasm-tools</a> (1 commits) [↩](#row-bytecodealliance-wasm-tools)
+
+- [Daniel Hillerström](https://github.com/dhil): [1](https://github.com/search?q=repo%3Abytecodealliance/wasm-tools%20author%3Adhil%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-category-labs-monad" href="https://github.com/category-labs/monad">category-labs/monad</a> (1 commits) [↩](#row-category-labs-monad)
+
+- [Daniel Hillerström](https://github.com/dhil): [1](https://github.com/search?q=repo%3Acategory-labs/monad%20author%3Adhil%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-dyladan-component-owners" href="https://github.com/dyladan/component-owners">dyladan/component-owners</a> (1 commits) [↩](#row-dyladan-component-owners)
+
+- [Daniel Dyla](https://github.com/dyladan): [1](https://github.com/search?q=repo%3Adyladan/component-owners%20author%3Adyladan%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-clifhouck-unified" href="https://github.com/ClifHouck/unified">ClifHouck/unified</a> (1 commits) [↩](#row-clifhouck-unified)
+
+- [Christoph Neumüller](https://github.com/discostu105): [1](https://github.com/search?q=repo%3AClifHouck/unified%20author%3Adiscostu105%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-xdesro-personalsit-es" href="https://github.com/xdesro/personalsit.es">xdesro/personalsit.es</a> (1 commits) [↩](#row-xdesro-personalsit-es)
+
+- [Terence Eden](https://github.com/edent): [1](https://github.com/search?q=repo%3Axdesro/personalsit.es%20author%3Aedent%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-edent-3d-uk-money" href="https://github.com/edent/3D-UK-Money">edent/3D-UK-Money</a> (1 commits) [↩](#row-edent-3d-uk-money)
+
+- [Terence Eden](https://github.com/edent): [1](https://github.com/search?q=repo%3Aedent/3D-UK-Money%20author%3Aedent%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-seleniumhq-seleniumhq-github-io" href="https://github.com/SeleniumHQ/seleniumhq.github.io">SeleniumHQ/seleniumhq.github.io</a> (1 commits) [↩](#row-seleniumhq-seleniumhq-github-io)
+
+- [Diego Molina](https://github.com/diemol): [1](https://github.com/search?q=repo%3ASeleniumHQ/seleniumhq.github.io%20author%3Adiemol%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-brickschema-brick" href="https://github.com/BrickSchema/Brick">BrickSchema/Brick</a> (1 commits) [↩](#row-brickschema-brick)
+
+- [ektrah](https://github.com/ektrah): [1](https://github.com/search?q=repo%3ABrickSchema/Brick%20author%3Aektrah%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-kubernetes-test-infra" href="https://github.com/kubernetes/test-infra">kubernetes/test-infra</a> (1 commits) [↩](#row-kubernetes-test-infra)
+
+- [Mo Khan](https://github.com/enj): [1](https://github.com/search?q=repo%3Akubernetes/test-infra%20author%3Aenj%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-webassembly-proposals" href="https://github.com/WebAssembly/proposals">WebAssembly/proposals</a> (1 commits) [↩](#row-webassembly-proposals)
+
+- [Derek Schuff](https://github.com/dschuff): [1](https://github.com/search?q=repo%3AWebAssembly/proposals%20author%3Adschuff%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-transcend-io-airgap-js-types" href="https://github.com/transcend-io/airgap.js-types">transcend-io/airgap.js-types</a> (1 commits) [↩](#row-transcend-io-airgap-js-types)
+
+- [Eli Grey](https://github.com/eligrey): [1](https://github.com/search?q=repo%3Atranscend-io/airgap.js-types%20author%3Aeligrey%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-wwwallet-wallet-docs" href="https://github.com/wwWallet/wallet-docs">wwWallet/wallet-docs</a> (1 commits) [↩](#row-wwwallet-wallet-docs)
+
+- [Emil Lundberg](https://github.com/emlun): [1](https://github.com/search?q=repo%3AwwWallet/wallet-docs%20author%3Aemlun%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-leofan90-awesome-world-models" href="https://github.com/leofan90/Awesome-World-Models">leofan90/Awesome-World-Models</a> (1 commits) [↩](#row-leofan90-awesome-world-models)
+
+- [Elie Michel](https://github.com/eliemichel): [1](https://github.com/search?q=repo%3Aleofan90/Awesome-World-Models%20author%3Aeliemichel%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-google-dawn" href="https://github.com/google/dawn">google/dawn</a> (1 commits) [↩](#row-google-dawn)
+
+- [Elie Michel](https://github.com/eliemichel): [1](https://github.com/search?q=repo%3Agoogle/dawn%20author%3Aeliemichel%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-francescofugazzi-3dgsconverter" href="https://github.com/francescofugazzi/3dgsconverter">francescofugazzi/3dgsconverter</a> (1 commits) [↩](#row-francescofugazzi-3dgsconverter)
+
+- [Elie Michel](https://github.com/eliemichel): [1](https://github.com/search?q=repo%3Afrancescofugazzi/3dgsconverter%20author%3Aeliemichel%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-eliemichel-babylon-rigged-gsplat" href="https://github.com/eliemichel/Babylon-Rigged-GSplat">eliemichel/Babylon-Rigged-GSplat</a> (1 commits) [↩](#row-eliemichel-babylon-rigged-gsplat)
+
+- [Elie Michel](https://github.com/eliemichel): [1](https://github.com/search?q=repo%3Aeliemichel/Babylon-Rigged-GSplat%20author%3Aeliemichel%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-whatwg-infra" href="https://github.com/whatwg/infra">whatwg/infra</a> (1 commits) [↩](#row-whatwg-infra)
+
+- [Anne van Kesteren](https://github.com/annevk): [1](https://github.com/search?q=repo%3Awhatwg/infra%20author%3Aannevk%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-whatwg-notifications" href="https://github.com/whatwg/notifications">whatwg/notifications</a> (1 commits) [↩](#row-whatwg-notifications)
+
+- [Anne van Kesteren](https://github.com/annevk): [1](https://github.com/search?q=repo%3Awhatwg/notifications%20author%3Aannevk%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-whatwg-mimesniff" href="https://github.com/whatwg/mimesniff">whatwg/mimesniff</a> (1 commits) [↩](#row-whatwg-mimesniff)
+
+- [Anne van Kesteren](https://github.com/annevk): [1](https://github.com/search?q=repo%3Awhatwg/mimesniff%20author%3Aannevk%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-whatwg-fullscreen" href="https://github.com/whatwg/fullscreen">whatwg/fullscreen</a> (1 commits) [↩](#row-whatwg-fullscreen)
+
+- [Anne van Kesteren](https://github.com/annevk): [1](https://github.com/search?q=repo%3Awhatwg/fullscreen%20author%3Aannevk%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-whatwg-fetch" href="https://github.com/whatwg/fetch">whatwg/fetch</a> (1 commits) [↩](#row-whatwg-fetch)
+
+- [Anne van Kesteren](https://github.com/annevk): [1](https://github.com/search?q=repo%3Awhatwg/fetch%20author%3Aannevk%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-whatwg-dom" href="https://github.com/whatwg/dom">whatwg/dom</a> (1 commits) [↩](#row-whatwg-dom)
+
+- [Anne van Kesteren](https://github.com/annevk): [1](https://github.com/search?q=repo%3Awhatwg/dom%20author%3Aannevk%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-microsoft-json-schemas" href="https://github.com/microsoft/json-schemas">microsoft/json-schemas</a> (1 commits) [↩](#row-microsoft-json-schemas)
+
+- [Erika Doyle Navara](https://github.com/erikadoyle): [1](https://github.com/search?q=repo%3Amicrosoft/json-schemas%20author%3Aerikadoyle%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-garykac-ashlar" href="https://github.com/garykac/ashlar">garykac/ashlar</a> (1 commits) [↩](#row-garykac-ashlar)
+
+- [Gary Kacmarcik](https://github.com/garykac): [1](https://github.com/search?q=repo%3Agarykac/ashlar%20author%3Agarykac%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-apache-cordova-eslint" href="https://github.com/apache/cordova-eslint">apache/cordova-eslint</a> (1 commits) [↩](#row-apache-cordova-eslint)
+
+- [エリス](https://github.com/erisu): [1](https://github.com/search?q=repo%3Aapache/cordova-eslint%20author%3Aerisu%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-js-org-js-org" href="https://github.com/js-org/js.org">js-org/js.org</a> (1 commits) [↩](#row-js-org-js-org)
+
+- [elf Pavlik](https://github.com/elf-pavlik): [1](https://github.com/search?q=repo%3Ajs-org/js.org%20author%3Aelf-pavlik%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-flpm-oakwood" href="https://github.com/flpm/oakwood">flpm/oakwood</a> (1 commits) [↩](#row-flpm-oakwood)
+
+- [Felipe Moreno](https://github.com/flpm): [1](https://github.com/search?q=repo%3Aflpm/oakwood%20author%3Aflpm%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-preactjs-preact-www" href="https://github.com/preactjs/preact-www">preactjs/preact-www</a> (1 commits) [↩](#row-preactjs-preact-www)
+
+- [Guilherme Siquinelli](https://github.com/guiseek): [1](https://github.com/search?q=repo%3Apreactjs/preact-www%20author%3Aguiseek%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-langchain-ai-react-agent-js" href="https://github.com/langchain-ai/react-agent-js">langchain-ai/react-agent-js</a> (1 commits) [↩](#row-langchain-ai-react-agent-js)
+
+- [Christian Bromann](https://github.com/christian-bromann): [1](https://github.com/search?q=repo%3Alangchain-ai/react-agent-js%20author%3Achristian-bromann%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-langchain-ai-lca-langchainv1-essentials" href="https://github.com/langchain-ai/lca-langchainV1-essentials">langchain-ai/lca-langchainV1-essentials</a> (1 commits) [↩](#row-langchain-ai-lca-langchainv1-essentials)
+
+- [Christian Bromann](https://github.com/christian-bromann): [1](https://github.com/search?q=repo%3Alangchain-ai/lca-langchainV1-essentials%20author%3Achristian-bromann%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-webdriverio-desktop-mobile" href="https://github.com/webdriverio/desktop-mobile">webdriverio/desktop-mobile</a> (1 commits) [↩](#row-webdriverio-desktop-mobile)
+
+- [Christian Bromann](https://github.com/christian-bromann): [1](https://github.com/search?q=repo%3Awebdriverio/desktop-mobile%20author%3Achristian-bromann%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-webdriverio-expense-action" href="https://github.com/webdriverio/expense-action">webdriverio/expense-action</a> (1 commits) [↩](#row-webdriverio-expense-action)
+
+- [Christian Bromann](https://github.com/christian-bromann): [1](https://github.com/search?q=repo%3Awebdriverio/expense-action%20author%3Achristian-bromann%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-webdriverio-i18n" href="https://github.com/webdriverio/i18n">webdriverio/i18n</a> (1 commits) [↩](#row-webdriverio-i18n)
+
+- [Christian Bromann](https://github.com/christian-bromann): [1](https://github.com/search?q=repo%3Awebdriverio/i18n%20author%3Achristian-bromann%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-oneinfra-console" href="https://github.com/oneinfra/console">oneinfra/console</a> (1 commits) [↩](#row-oneinfra-console)
+
+- [Rafael Fernández López](https://github.com/ereslibre): [1](https://github.com/search?q=repo%3Aoneinfra/console%20author%3Aereslibre%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-nixos-nixpkgs" href="https://github.com/NixOS/nixpkgs">NixOS/nixpkgs</a> (1 commits) [↩](#row-nixos-nixpkgs)
+
+- [Rafael Fernández López](https://github.com/ereslibre): [1](https://github.com/search?q=repo%3ANixOS/nixpkgs%20author%3Aereslibre%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-hayatoito-elpa" href="https://github.com/hayatoito/elpa">hayatoito/elpa</a> (1 commits) [↩](#row-hayatoito-elpa)
+
+- [Hayato Ito](https://github.com/hayatoito): [1](https://github.com/search?q=repo%3Ahayatoito/elpa%20author%3Ahayatoito%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-edrlab-thorium-locales" href="https://github.com/edrlab/thorium-locales">edrlab/thorium-locales</a> (1 commits) [↩](#row-edrlab-thorium-locales)
+
+- [Hadrien Gardeur](https://github.com/HadrienGardeur): [1](https://github.com/search?q=repo%3Aedrlab/thorium-locales%20author%3AHadrienGardeur%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-tailscale-tailscale" href="https://github.com/tailscale/tailscale">tailscale/tailscale</a> (1 commits) [↩](#row-tailscale-tailscale)
+
+- [Francois Marier](https://github.com/fmarier): [1](https://github.com/search?q=repo%3Atailscale/tailscale%20author%3Afmarier%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-brave-install-sh" href="https://github.com/brave/install.sh">brave/install.sh</a> (1 commits) [↩](#row-brave-install-sh)
+
+- [Francois Marier](https://github.com/fmarier): [1](https://github.com/search?q=repo%3Abrave/install.sh%20author%3Afmarier%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-brave-accounts" href="https://github.com/brave/accounts">brave/accounts</a> (1 commits) [↩](#row-brave-accounts)
+
+- [Francois Marier](https://github.com/fmarier): [1](https://github.com/search?q=repo%3Abrave/accounts%20author%3Afmarier%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-fmarier-feeding-cloud-geek-nz" href="https://github.com/fmarier/feeding.cloud.geek.nz">fmarier/feeding.cloud.geek.nz</a> (1 commits) [↩](#row-fmarier-feeding-cloud-geek-nz)
+
+- [Francois Marier](https://github.com/fmarier): [1](https://github.com/search?q=repo%3Afmarier/feeding.cloud.geek.nz%20author%3Afmarier%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-cg-atag" href="https://github.com/w3c-cg/atag">w3c-cg/atag</a> (1 commits) [↩](#row-w3c-cg-atag)
+
+- [Hidde de Vries](https://github.com/hidde): [1](https://github.com/search?q=repo%3Aw3c-cg/atag%20author%3Ahidde%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-faire-sqldelight-cockroachdb-dialect" href="https://github.com/Faire/sqldelight-cockroachdb-dialect">Faire/sqldelight-cockroachdb-dialect</a> (1 commits) [↩](#row-faire-sqldelight-cockroachdb-dialect)
+
+- [Robert Ma](https://github.com/Hexcles): [1](https://github.com/search?q=repo%3AFaire/sqldelight-cockroachdb-dialect%20author%3AHexcles%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-rust-fuzz-trophy-case" href="https://github.com/rust-fuzz/trophy-case">rust-fuzz/trophy-case</a> (1 commits) [↩](#row-rust-fuzz-trophy-case)
+
+- [Corey Farwell](https://github.com/frewsxcv): [1](https://github.com/search?q=repo%3Arust-fuzz/trophy-case%20author%3Afrewsxcv%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-inaturalist-inaturalistreactnative" href="https://github.com/inaturalist/iNaturalistReactNative">inaturalist/iNaturalistReactNative</a> (1 commits) [↩](#row-inaturalist-inaturalistreactnative)
+
+- [Corey Farwell](https://github.com/frewsxcv): [1](https://github.com/search?q=repo%3Ainaturalist/iNaturalistReactNative%20author%3Afrewsxcv%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-3liz-proj4rs" href="https://github.com/3liz/proj4rs">3liz/proj4rs</a> (1 commits) [↩](#row-3liz-proj4rs)
+
+- [Corey Farwell](https://github.com/frewsxcv): [1](https://github.com/search?q=repo%3A3liz/proj4rs%20author%3Afrewsxcv%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-related-sciences-gce-github-runner" href="https://github.com/related-sciences/gce-github-runner">related-sciences/gce-github-runner</a> (1 commits) [↩](#row-related-sciences-gce-github-runner)
+
+- [Corey Farwell](https://github.com/frewsxcv): [1](https://github.com/search?q=repo%3Arelated-sciences/gce-github-runner%20author%3Afrewsxcv%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-networg-dns-redirect" href="https://github.com/NETWORG/dns-redirect">NETWORG/dns-redirect</a> (1 commits) [↩](#row-networg-dns-redirect)
+
+- [Jan Hajek](https://github.com/hajekj): [1](https://github.com/search?q=repo%3ANETWORG/dns-redirect%20author%3Ahajekj%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-thenetworg-oauth2-azure" href="https://github.com/TheNetworg/oauth2-azure">TheNetworg/oauth2-azure</a> (1 commits) [↩](#row-thenetworg-oauth2-azure)
+
+- [Jan Hajek](https://github.com/hajekj): [1](https://github.com/search?q=repo%3ATheNetworg/oauth2-azure%20author%3Ahajekj%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-huyprowow-portfolio" href="https://github.com/huyprowow/portfolio">huyprowow/portfolio</a> (1 commits) [↩](#row-huyprowow-portfolio)
+
+- [Huy](https://github.com/huyprowow): [1](https://github.com/search?q=repo%3Ahuyprowow/portfolio%20author%3Ahuyprowow%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-hbz-lobid-gnd" href="https://github.com/hbz/lobid-gnd">hbz/lobid-gnd</a> (1 commits) [↩](#row-hbz-lobid-gnd)
+
+- [Fabian Steeg](https://github.com/fsteeg): [1](https://github.com/search?q=repo%3Ahbz/lobid-gnd%20author%3Afsteeg%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-jpm-canonical-llama-cpp-builds" href="https://github.com/jpm-canonical/llama.cpp-builds">jpm-canonical/llama.cpp-builds</a> (1 commits) [↩](#row-jpm-canonical-llama-cpp-builds)
+
+- [Farshid Tavakolizadeh](https://github.com/farshidtz): [1](https://github.com/search?q=repo%3Ajpm-canonical/llama.cpp-builds%20author%3Afarshidtz%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-canonical-inference-snaps-dev" href="https://github.com/canonical/inference-snaps-dev">canonical/inference-snaps-dev</a> (1 commits) [↩](#row-canonical-inference-snaps-dev)
+
+- [Farshid Tavakolizadeh](https://github.com/farshidtz): [1](https://github.com/search?q=repo%3Acanonical/inference-snaps-dev%20author%3Afarshidtz%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-canonical-inference-snaps" href="https://github.com/canonical/inference-snaps">canonical/inference-snaps</a> (1 commits) [↩](#row-canonical-inference-snaps)
+
+- [Farshid Tavakolizadeh](https://github.com/farshidtz): [1](https://github.com/search?q=repo%3Acanonical/inference-snaps%20author%3Afarshidtz%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-canonical-qwen-vl-snap" href="https://github.com/canonical/qwen-vl-snap">canonical/qwen-vl-snap</a> (1 commits) [↩](#row-canonical-qwen-vl-snap)
+
+- [Farshid Tavakolizadeh](https://github.com/farshidtz): [1](https://github.com/search?q=repo%3Acanonical/qwen-vl-snap%20author%3Afarshidtz%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-figuresout-end-table-drawer-organizer" href="https://github.com/figuresout/end-table-drawer-organizer">figuresout/end-table-drawer-organizer</a> (1 commits) [↩](#row-figuresout-end-table-drawer-organizer)
+
+- [Newton](https://github.com/iamnewton): [1](https://github.com/search?q=repo%3Afiguresout/end-table-drawer-organizer%20author%3Aiamnewton%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-figuresout-wall-decorations" href="https://github.com/figuresout/wall-decorations">figuresout/wall-decorations</a> (1 commits) [↩](#row-figuresout-wall-decorations)
+
+- [Newton](https://github.com/iamnewton): [1](https://github.com/search?q=repo%3Afiguresout/wall-decorations%20author%3Aiamnewton%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-lynx-family-lynx" href="https://github.com/lynx-family/lynx">lynx-family/lynx</a> (1 commits) [↩](#row-lynx-family-lynx)
+
+- [Xuan Huang (黄玄)](https://github.com/Huxpro): [1](https://github.com/search?q=repo%3Alynx-family/lynx%20author%3AHuxpro%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-withastro-astro" href="https://github.com/withastro/astro">withastro/astro</a> (1 commits) [↩](#row-withastro-astro)
+
+- [Julien Cayzac](https://github.com/jcayzac): [1](https://github.com/search?q=repo%3Awithastro/astro%20author%3Ajcayzac%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-keras-team-keras-io" href="https://github.com/keras-team/keras-io">keras-team/keras-io</a> (1 commits) [↩](#row-keras-team-keras-io)
+
+- [Jeff Carpenter](https://github.com/jeffcarp): [1](https://github.com/search?q=repo%3Akeras-team/keras-io%20author%3Ajeffcarp%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-unicode-org-cldr" href="https://github.com/unicode-org/cldr">unicode-org/cldr</a> (1 commits) [↩](#row-unicode-org-cldr)
+
+- [Eemeli Aro](https://github.com/eemeli): [1](https://github.com/search?q=repo%3Aunicode-org/cldr%20author%3Aeemeli%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-mozilla-moz-l10n" href="https://github.com/mozilla/moz-l10n">mozilla/moz-l10n</a> (1 commits) [↩](#row-mozilla-moz-l10n)
+
+- [Eemeli Aro](https://github.com/eemeli): [1](https://github.com/search?q=repo%3Amozilla/moz-l10n%20author%3Aeemeli%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-eemeli-message-resource-wg" href="https://github.com/eemeli/message-resource-wg">eemeli/message-resource-wg</a> (1 commits) [↩](#row-eemeli-message-resource-wg)
+
+- [Eemeli Aro](https://github.com/eemeli): [1](https://github.com/search?q=repo%3Aeemeli/message-resource-wg%20author%3Aeemeli%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-eclipse-thingweb-website" href="https://github.com/eclipse-thingweb/website">eclipse-thingweb/website</a> (1 commits) [↩](#row-eclipse-thingweb-website)
+
+- [Jan Romann](https://github.com/JKRhb): [1](https://github.com/search?q=repo%3Aeclipse-thingweb/website%20author%3AJKRhb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-matf" href="https://github.com/w3c/matf">w3c/matf</a> (1 commits) [↩](#row-w3c-matf)
+
+- [Jan Jaap de Groot](https://github.com/JJdeGroot): [1](https://github.com/search?q=repo%3Aw3c/matf%20author%3AJJdeGroot%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-iherman-rdfjs-di-tester" href="https://github.com/iherman/rdfjs-di-tester">iherman/rdfjs-di-tester</a> (1 commits) [↩](#row-iherman-rdfjs-di-tester)
+
+- [Ivan Herman](https://github.com/iherman): [1](https://github.com/search?q=repo%3Aiherman/rdfjs-di-tester%20author%3Aiherman%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-iherman-misc-notes" href="https://github.com/iherman/misc-notes">iherman/misc-notes</a> (1 commits) [↩](#row-iherman-misc-notes)
+
+- [Ivan Herman](https://github.com/iherman): [1](https://github.com/search?q=repo%3Aiherman/misc-notes%20author%3Aiherman%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-publ_ack" href="https://github.com/w3c/publ_ack">w3c/publ_ack</a> (1 commits) [↩](#row-w3c-publ_ack)
+
+- [Ivan Herman](https://github.com/iherman): [1](https://github.com/search?q=repo%3Aw3c/publ_ack%20author%3Aiherman%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-intel-web-ai-showcase" href="https://github.com/intel/web-ai-showcase">intel/web-ai-showcase</a> (1 commits) [↩](#row-intel-web-ai-showcase)
+
+- [Belem Zhang](https://github.com/ibelem): [1](https://github.com/search?q=repo%3Aintel/web-ai-showcase%20author%3Aibelem%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-joeyparrish-pybricksmenu" href="https://github.com/joeyparrish/pybricksmenu">joeyparrish/pybricksmenu</a> (1 commits) [↩](#row-joeyparrish-pybricksmenu)
+
+- [Joey Parrish](https://github.com/joeyparrish): [1](https://github.com/search?q=repo%3Ajoeyparrish/pybricksmenu%20author%3Ajoeyparrish%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-qxracademy--github" href="https://github.com/QXRacademy/.github">QXRacademy/.github</a> (1 commits) [↩](#row-qxracademy--github)
+
+- [Jordi Martos](https://github.com/jordimartos): [1](https://github.com/search?q=repo%3AQXRacademy/.github%20author%3Ajordimartos%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3ctag-w3ctagbot" href="https://github.com/w3ctag/w3ctagbot">w3ctag/w3ctagbot</a> (1 commits) [↩](#row-w3ctag-w3ctagbot)
+
+- [Jeffrey Yasskin](https://github.com/jyasskin): [1](https://github.com/search?q=repo%3Aw3ctag/w3ctagbot%20author%3Ajyasskin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-trustknots-vcknots" href="https://github.com/trustknots/vcknots">trustknots/vcknots</a> (1 commits) [↩](#row-trustknots-vcknots)
+
+- [Hiroki TAKEMURA](https://github.com/kekeho): [1](https://github.com/search?q=repo%3Atrustknots/vcknots%20author%3Akekeho%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-unicode-org-last-resort-font" href="https://github.com/unicode-org/last-resort-font">unicode-org/last-resort-font</a> (1 commits) [↩](#row-unicode-org-last-resort-font)
+
+- [Ken Lunde](https://github.com/kenlunde): [1](https://github.com/search?q=repo%3Aunicode-org/last-resort-font%20author%3Akenlunde%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-khushalsagar-webmcp-demo" href="https://github.com/khushalsagar/webmcp-demo">khushalsagar/webmcp-demo</a> (1 commits) [↩](#row-khushalsagar-webmcp-demo)
+
+- [Khushal Sagar](https://github.com/khushalsagar): [1](https://github.com/search?q=repo%3Akhushalsagar/webmcp-demo%20author%3Akhushalsagar%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-lodash-lodash" href="https://github.com/lodash/lodash">lodash/lodash</a> (1 commits) [↩](#row-lodash-lodash)
+
+- [John-David Dalton](https://github.com/jdalton): [1](https://github.com/search?q=repo%3Alodash/lodash%20author%3Ajdalton%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-levithomason-grok" href="https://github.com/levithomason/grok">levithomason/grok</a> (1 commits) [↩](#row-levithomason-grok)
+
+- [Levi Thomason](https://github.com/levithomason): [1](https://github.com/search?q=repo%3Alevithomason/grok%20author%3Alevithomason%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-mozilla-bugbot" href="https://github.com/mozilla/bugbot">mozilla/bugbot</a> (1 commits) [↩](#row-mozilla-bugbot)
+
+- [jgraham](https://github.com/jgraham): [1](https://github.com/search?q=repo%3Amozilla/bugbot%20author%3Ajgraham%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-declanchidlow-techconf-directory" href="https://github.com/DeclanChidlow/techconf.directory">DeclanChidlow/techconf.directory</a> (1 commits) [↩](#row-declanchidlow-techconf-directory)
+
+- [Roman Komarov](https://github.com/kizu): [1](https://github.com/search?q=repo%3ADeclanChidlow/techconf.directory%20author%3Akizu%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-jimmy-zhening-luo-schema" href="https://github.com/jimmy-zhening-luo/schema">jimmy-zhening-luo/schema</a> (1 commits) [↩](#row-jimmy-zhening-luo-schema)
+
+- [Jimmy Zhening Luo](https://github.com/jimmy-zhening-luo): [1](https://github.com/search?q=repo%3Ajimmy-zhening-luo/schema%20author%3Ajimmy-zhening-luo%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ossf-tac" href="https://github.com/ossf/tac">ossf/tac</a> (1 commits) [↩](#row-ossf-tac)
+
+- [Arnaud J Le Hors](https://github.com/lehors): [1](https://github.com/search?q=repo%3Aossf/tac%20author%3Alehors%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-microsoft-fluentui" href="https://github.com/microsoft/fluentui">microsoft/fluentui</a> (1 commits) [↩](#row-microsoft-fluentui)
+
+- [Oleksandr Fediashov](https://github.com/layershifter): [1](https://github.com/search?q=repo%3Amicrosoft/fluentui%20author%3Alayershifter%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-microsoft-griffel" href="https://github.com/microsoft/griffel">microsoft/griffel</a> (1 commits) [↩](#row-microsoft-griffel)
+
+- [Oleksandr Fediashov](https://github.com/layershifter): [1](https://github.com/search?q=repo%3Amicrosoft/griffel%20author%3Alayershifter%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-libre-fm-libre-fm" href="https://github.com/libre-fm/libre-fm">libre-fm/libre-fm</a> (1 commits) [↩](#row-libre-fm-libre-fm)
+
+- [Dr. Matt Lee](https://github.com/mattl): [1](https://github.com/search?q=repo%3Alibre-fm/libre-fm%20author%3Amattl%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-nodejs-admin" href="https://github.com/nodejs/admin">nodejs/admin</a> (1 commits) [↩](#row-nodejs-admin)
+
+- [Chengzhong Wu](https://github.com/legendecas): [1](https://github.com/search?q=repo%3Anodejs/admin%20author%3Alegendecas%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-nodejs-node-gyp" href="https://github.com/nodejs/node-gyp">nodejs/node-gyp</a> (1 commits) [↩](#row-nodejs-node-gyp)
+
+- [Chengzhong Wu](https://github.com/legendecas): [1](https://github.com/search?q=repo%3Anodejs/node-gyp%20author%3Alegendecas%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-tc39-proposal-error-stacks" href="https://github.com/tc39/proposal-error-stacks">tc39/proposal-error-stacks</a> (1 commits) [↩](#row-tc39-proposal-error-stacks)
+
+- [Chengzhong Wu](https://github.com/legendecas): [1](https://github.com/search?q=repo%3Atc39/proposal-error-stacks%20author%3Alegendecas%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-a11y-discov-vocab" href="https://github.com/w3c/a11y-discov-vocab">w3c/a11y-discov-vocab</a> (1 commits) [↩](#row-w3c-a11y-discov-vocab)
+
+- [Matt Garrish](https://github.com/mattgarrish): [1](https://github.com/search?q=repo%3Aw3c/a11y-discov-vocab%20author%3Amattgarrish%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-accessiblecommunity-accessiblecommunity-github-io" href="https://github.com/accessiblecommunity/accessiblecommunity.github.io">accessiblecommunity/accessiblecommunity.github.io</a> (1 commits) [↩](#row-accessiblecommunity-accessiblecommunity-github-io)
+
+- [Michael Cooper](https://github.com/michael-n-cooper): [1](https://github.com/search?q=repo%3Aaccessiblecommunity/accessiblecommunity.github.io%20author%3Amichael-n-cooper%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-rust-lang-rustc-dev-guide" href="https://github.com/rust-lang/rustc-dev-guide">rust-lang/rustc-dev-guide</a> (1 commits) [↩](#row-rust-lang-rustc-dev-guide)
+
+- [Yuki Okushi](https://github.com/JohnTitor): [1](https://github.com/search?q=repo%3Arust-lang/rustc-dev-guide%20author%3AJohnTitor%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-rust-lang-team" href="https://github.com/rust-lang/team">rust-lang/team</a> (1 commits) [↩](#row-rust-lang-team)
+
+- [Yuki Okushi](https://github.com/JohnTitor): [1](https://github.com/search?q=repo%3Arust-lang/team%20author%3AJohnTitor%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-agentplexus-agent-team-prd" href="https://github.com/agentplexus/agent-team-prd">agentplexus/agent-team-prd</a> (1 commits) [↩](#row-agentplexus-agent-team-prd)
+
+- [John Wang](https://github.com/grokify): [1](https://github.com/search?q=repo%3Aagentplexus/agent-team-prd%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-agentplexus-homebrew-tap" href="https://github.com/agentplexus/homebrew-tap">agentplexus/homebrew-tap</a> (1 commits) [↩](#row-agentplexus-homebrew-tap)
+
+- [John Wang](https://github.com/grokify): [1](https://github.com/search?q=repo%3Aagentplexus/homebrew-tap%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-grokify-sogo" href="https://github.com/grokify/sogo">grokify/sogo</a> (1 commits) [↩](#row-grokify-sogo)
+
+- [John Wang](https://github.com/grokify): [1](https://github.com/search?q=repo%3Agrokify/sogo%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-grokify-govex" href="https://github.com/grokify/govex">grokify/govex</a> (1 commits) [↩](#row-grokify-govex)
+
+- [John Wang](https://github.com/grokify): [1](https://github.com/search?q=repo%3Agrokify/govex%20author%3Agrokify%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-solidos-contacts-pane" href="https://github.com/SolidOS/contacts-pane">SolidOS/contacts-pane</a> (1 commits) [↩](#row-solidos-contacts-pane)
+
+- [Jesse Wright](https://github.com/jeswr): [1](https://github.com/search?q=repo%3ASolidOS/contacts-pane%20author%3Ajeswr%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-bsc-es-autosubmit" href="https://github.com/BSC-ES/autosubmit">BSC-ES/autosubmit</a> (1 commits) [↩](#row-bsc-es-autosubmit)
+
+- [Bruno P. Kinoshita](https://github.com/kinow): [1](https://github.com/search?q=repo%3ABSC-ES/autosubmit%20author%3Akinow%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-googlechromelabs-web-ai-demos" href="https://github.com/GoogleChromeLabs/web-ai-demos">GoogleChromeLabs/web-ai-demos</a> (1 commits) [↩](#row-googlechromelabs-web-ai-demos)
+
+- [Mike Wasserman](https://github.com/michaelwasserman): [1](https://github.com/search?q=repo%3AGoogleChromeLabs/web-ai-demos%20author%3Amichaelwasserman%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-jsebrech-tiny-signals" href="https://github.com/jsebrech/tiny-signals">jsebrech/tiny-signals</a> (1 commits) [↩](#row-jsebrech-tiny-signals)
+
+- [Lea Verou](https://github.com/LeaVerou): [1](https://github.com/search?q=repo%3Ajsebrech/tiny-signals%20author%3ALeaVerou%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-nudeui-element" href="https://github.com/nudeui/element">nudeui/element</a> (1 commits) [↩](#row-nudeui-element)
+
+- [Lea Verou](https://github.com/LeaVerou): [1](https://github.com/search?q=repo%3Anudeui/element%20author%3ALeaVerou%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-whatwg-url" href="https://github.com/whatwg/url">whatwg/url</a> (1 commits) [↩](#row-whatwg-url)
+
+- [Mike West](https://github.com/mikewest): [1](https://github.com/search?q=repo%3Awhatwg/url%20author%3Amikewest%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-webappsec-mixed-content" href="https://github.com/w3c/webappsec-mixed-content">w3c/webappsec-mixed-content</a> (1 commits) [↩](#row-w3c-webappsec-mixed-content)
+
+- [Mike West](https://github.com/mikewest): [1](https://github.com/search?q=repo%3Aw3c/webappsec-mixed-content%20author%3Amikewest%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-migueldemoura-migueldemoura-com" href="https://github.com/migueldemoura/migueldemoura.com">migueldemoura/migueldemoura.com</a> (1 commits) [↩](#row-migueldemoura-migueldemoura-com)
+
+- [Miguel de Moura](https://github.com/migueldemoura): [1](https://github.com/search?q=repo%3Amigueldemoura/migueldemoura.com%20author%3Amigueldemoura%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-lukewarlow-neard4k" href="https://github.com/lukewarlow/neard4k">lukewarlow/neard4k</a> (1 commits) [↩](#row-lukewarlow-neard4k)
+
+- [Luke Warlow](https://github.com/lukewarlow): [1](https://github.com/search?q=repo%3Alukewarlow/neard4k%20author%3Alukewarlow%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-openui-open-ui" href="https://github.com/openui/open-ui">openui/open-ui</a> (1 commits) [↩](#row-openui-open-ui)
+
+- [Luke Warlow](https://github.com/lukewarlow): [1](https://github.com/search?q=repo%3Aopenui/open-ui%20author%3Alukewarlow%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-mehmetoguzderin-triton-windowing" href="https://github.com/mehmetoguzderin/triton-windowing">mehmetoguzderin/triton-windowing</a> (1 commits) [↩](#row-mehmetoguzderin-triton-windowing)
+
+- [Mehmet Oguz Derin](https://github.com/mehmetoguzderin): [1](https://github.com/search?q=repo%3Amehmetoguzderin/triton-windowing%20author%3Amehmetoguzderin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-mehm8128-vite-react-template" href="https://github.com/mehm8128/vite-react-template">mehm8128/vite-react-template</a> (1 commits) [↩](#row-mehm8128-vite-react-template)
+
+- [mehm8128](https://github.com/mehm8128): [1](https://github.com/search?q=repo%3Amehm8128/vite-react-template%20author%3Amehm8128%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-muan-site" href="https://github.com/muan/site">muan/site</a> (1 commits) [↩](#row-muan-site)
+
+- [Mu-An Chiou](https://github.com/muan): [1](https://github.com/search?q=repo%3Amuan/site%20author%3Amuan%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-jquery-infrastructure-puppet" href="https://github.com/jquery/infrastructure-puppet">jquery/infrastructure-puppet</a> (1 commits) [↩](#row-jquery-infrastructure-puppet)
+
+- [Timo Tijhof](https://github.com/Krinkle): [1](https://github.com/search?q=repo%3Ajquery/infrastructure-puppet%20author%3AKrinkle%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-jquery-jquery-com" href="https://github.com/jquery/jquery.com">jquery/jquery.com</a> (1 commits) [↩](#row-jquery-jquery-com)
+
+- [Timo Tijhof](https://github.com/Krinkle): [1](https://github.com/search?q=repo%3Ajquery/jquery.com%20author%3AKrinkle%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-jquery-jquery" href="https://github.com/jquery/jquery">jquery/jquery</a> (1 commits) [↩](#row-jquery-jquery)
+
+- [Timo Tijhof](https://github.com/Krinkle): [1](https://github.com/search?q=repo%3Ajquery/jquery%20author%3AKrinkle%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-wikimedia-relpath" href="https://github.com/wikimedia/RelPath">wikimedia/RelPath</a> (1 commits) [↩](#row-wikimedia-relpath)
+
+- [Timo Tijhof](https://github.com/Krinkle): [1](https://github.com/search?q=repo%3Awikimedia/RelPath%20author%3AKrinkle%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-wikimedia-mediawiki-vendor" href="https://github.com/wikimedia/mediawiki-vendor">wikimedia/mediawiki-vendor</a> (1 commits) [↩](#row-wikimedia-mediawiki-vendor)
+
+- [Timo Tijhof](https://github.com/Krinkle): [1](https://github.com/search?q=repo%3Awikimedia/mediawiki-vendor%20author%3AKrinkle%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-wikimedia-less-php" href="https://github.com/wikimedia/less.php">wikimedia/less.php</a> (1 commits) [↩](#row-wikimedia-less-php)
+
+- [Timo Tijhof](https://github.com/Krinkle): [1](https://github.com/search?q=repo%3Awikimedia/less.php%20author%3AKrinkle%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-flarum-framework" href="https://github.com/flarum/framework">flarum/framework</a> (1 commits) [↩](#row-flarum-framework)
+
+- [Timo Tijhof](https://github.com/Krinkle): [1](https://github.com/search?q=repo%3Aflarum/framework%20author%3AKrinkle%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-jpmonette-feed" href="https://github.com/jpmonette/feed">jpmonette/feed</a> (1 commits) [↩](#row-jpmonette-feed)
+
+- [Timo Tijhof](https://github.com/Krinkle): [1](https://github.com/search?q=repo%3Ajpmonette/feed%20author%3AKrinkle%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-mnot-public-resolver-errors" href="https://github.com/mnot/public-resolver-errors">mnot/public-resolver-errors</a> (1 commits) [↩](#row-mnot-public-resolver-errors)
+
+- [Mark Nottingham](https://github.com/mnot): [1](https://github.com/search?q=repo%3Amnot/public-resolver-errors%20author%3Amnot%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-igalia-explainers" href="https://github.com/Igalia/explainers">Igalia/explainers</a> (1 commits) [↩](#row-igalia-explainers)
+
+- [Manuel Rego](https://github.com/mrego): [1](https://github.com/search?q=repo%3AIgalia/explainers%20author%3Amrego%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-ccg-cg-archiver" href="https://github.com/w3c-ccg/cg-archiver">w3c-ccg/cg-archiver</a> (1 commits) [↩](#row-w3c-ccg-cg-archiver)
+
+- [Manu Sporny](https://github.com/msporny): [1](https://github.com/search?q=repo%3Aw3c-ccg/cg-archiver%20author%3Amsporny%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ant-design-ant-design" href="https://github.com/ant-design/ant-design">ant-design/ant-design</a> (1 commits) [↩](#row-ant-design-ant-design)
+
+- [Peach](https://github.com/PeachScript): [1](https://github.com/search?q=repo%3Aant-design/ant-design%20author%3APeachScript%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-gds-tech-and-security-aws-user-management-account" href="https://github.com/gds-tech-and-security/aws-user-management-account">gds-tech-and-security/aws-user-management-account</a> (1 commits) [↩](#row-gds-tech-and-security-aws-user-management-account)
+
+- [OllieJC](https://github.com/OllieJC): [1](https://github.com/search?q=repo%3Agds-tech-and-security/aws-user-management-account%20author%3AOllieJC%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-martinthomson-rfc-extract" href="https://github.com/martinthomson/rfc-extract">martinthomson/rfc-extract</a> (1 commits) [↩](#row-martinthomson-rfc-extract)
+
+- [Martin Thomson](https://github.com/martinthomson): [1](https://github.com/search?q=repo%3Amartinthomson/rfc-extract%20author%3Amartinthomson%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-tlswg-sslkeylogfile" href="https://github.com/tlswg/sslkeylogfile">tlswg/sslkeylogfile</a> (1 commits) [↩](#row-tlswg-sslkeylogfile)
+
+- [Martin Thomson](https://github.com/martinthomson): [1](https://github.com/search?q=repo%3Atlswg/sslkeylogfile%20author%3Amartinthomson%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-martinthomson-rfc-css" href="https://github.com/martinthomson/rfc-css">martinthomson/rfc-css</a> (1 commits) [↩](#row-martinthomson-rfc-css)
+
+- [Martin Thomson](https://github.com/martinthomson): [1](https://github.com/search?q=repo%3Amartinthomson/rfc-css%20author%3Amartinthomson%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-koenkk-zigbee-herdsman-converters" href="https://github.com/Koenkk/zigbee-herdsman-converters">Koenkk/zigbee-herdsman-converters</a> (1 commits) [↩](#row-koenkk-zigbee-herdsman-converters)
+
+- [Preet Patel](https://github.com/preetpatel): [1](https://github.com/search?q=repo%3AKoenkk/zigbee-herdsman-converters%20author%3Apreetpatel%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-github-cache" href="https://github.com/w3c/github-cache">w3c/github-cache</a> (1 commits) [↩](#row-w3c-github-cache)
+
+- [Philippe Le Hegaret](https://github.com/plehegar): [1](https://github.com/search?q=repo%3Aw3c/github-cache%20author%3Aplehegar%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-strategy" href="https://github.com/w3c/strategy">w3c/strategy</a> (1 commits) [↩](#row-w3c-strategy)
+
+- [Philippe Le Hegaret](https://github.com/plehegar): [1](https://github.com/search?q=repo%3Aw3c/strategy%20author%3Aplehegar%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-webcomponentsguide-webcomponents-guide" href="https://github.com/WebComponentsGuide/webcomponents.guide">WebComponentsGuide/webcomponents.guide</a> (1 commits) [↩](#row-webcomponentsguide-webcomponents-guide)
+
+- [Keith Cirkel](https://github.com/keithamus): [1](https://github.com/search?q=repo%3AWebComponentsGuide/webcomponents.guide%20author%3Akeithamus%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chaijs-loupe" href="https://github.com/chaijs/loupe">chaijs/loupe</a> (1 commits) [↩](#row-chaijs-loupe)
+
+- [Keith Cirkel](https://github.com/keithamus): [1](https://github.com/search?q=repo%3Achaijs/loupe%20author%3Akeithamus%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chaijs-assertion-error" href="https://github.com/chaijs/assertion-error">chaijs/assertion-error</a> (1 commits) [↩](#row-chaijs-assertion-error)
+
+- [Keith Cirkel](https://github.com/keithamus): [1](https://github.com/search?q=repo%3Achaijs/assertion-error%20author%3Akeithamus%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chaijs-chai-as-promised" href="https://github.com/chaijs/chai-as-promised">chaijs/chai-as-promised</a> (1 commits) [↩](#row-chaijs-chai-as-promised)
+
+- [Keith Cirkel](https://github.com/keithamus): [1](https://github.com/search?q=repo%3Achaijs/chai-as-promised%20author%3Akeithamus%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chaijs-chai-http" href="https://github.com/chaijs/chai-http">chaijs/chai-http</a> (1 commits) [↩](#row-chaijs-chai-http)
+
+- [Keith Cirkel](https://github.com/keithamus): [1](https://github.com/search?q=repo%3Achaijs/chai-http%20author%3Akeithamus%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chaijs-chai" href="https://github.com/chaijs/chai">chaijs/chai</a> (1 commits) [↩](#row-chaijs-chai)
+
+- [Keith Cirkel](https://github.com/keithamus): [1](https://github.com/search?q=repo%3Achaijs/chai%20author%3Akeithamus%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-presbrey-cmd" href="https://github.com/presbrey/cmd">presbrey/cmd</a> (1 commits) [↩](#row-presbrey-cmd)
+
+- [presbrey](https://github.com/presbrey): [1](https://github.com/search?q=repo%3Apresbrey/cmd%20author%3Apresbrey%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-niklasmerz-wlp" href="https://github.com/NiklasMerz/wlp">NiklasMerz/wlp</a> (1 commits) [↩](#row-niklasmerz-wlp)
+
+- [Niklas Merz](https://github.com/NiklasMerz): [1](https://github.com/search?q=repo%3ANiklasMerz/wlp%20author%3ANiklasMerz%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-webview-cg--github" href="https://github.com/WebView-CG/.github">WebView-CG/.github</a> (1 commits) [↩](#row-webview-cg--github)
+
+- [Niklas Merz](https://github.com/NiklasMerz): [1](https://github.com/search?q=repo%3AWebView-CG/.github%20author%3ANiklasMerz%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-oauth-wg-draft-ietf-oauth-rfc7523bis" href="https://github.com/oauth-wg/draft-ietf-oauth-rfc7523bis">oauth-wg/draft-ietf-oauth-rfc7523bis</a> (1 commits) [↩](#row-oauth-wg-draft-ietf-oauth-rfc7523bis)
+
+- [Filip Skokan](https://github.com/panva): [1](https://github.com/search?q=repo%3Aoauth-wg/draft-ietf-oauth-rfc7523bis%20author%3Apanva%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-bbc-sqs-consumer" href="https://github.com/bbc/sqs-consumer">bbc/sqs-consumer</a> (1 commits) [↩](#row-bbc-sqs-consumer)
+
+- [Nicholas Griffin](https://github.com/nicholasgriffintn): [1](https://github.com/search?q=repo%3Abbc/sqs-consumer%20author%3Anicholasgriffintn%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-bbc-imager-js" href="https://github.com/bbc/Imager.js">bbc/Imager.js</a> (1 commits) [↩](#row-bbc-imager-js)
+
+- [Nicholas Griffin](https://github.com/nicholasgriffintn): [1](https://github.com/search?q=repo%3Abbc/Imager.js%20author%3Anicholasgriffintn%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-bbc-wraith" href="https://github.com/bbc/wraith">bbc/wraith</a> (1 commits) [↩](#row-bbc-wraith)
+
+- [Nicholas Griffin](https://github.com/nicholasgriffintn): [1](https://github.com/search?q=repo%3Abbc/wraith%20author%3Anicholasgriffintn%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-rakuco-h5vcc-scraps" href="https://github.com/rakuco/h5vcc-scraps">rakuco/h5vcc-scraps</a> (1 commits) [↩](#row-rakuco-h5vcc-scraps)
+
+- [Raphael Kubo da Costa](https://github.com/rakuco): [1](https://github.com/search?q=repo%3Arakuco/h5vcc-scraps%20author%3Arakuco%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-professionalwiki-sparql" href="https://github.com/ProfessionalWiki/SPARQL">ProfessionalWiki/SPARQL</a> (1 commits) [↩](#row-professionalwiki-sparql)
+
+- [Moritz Schubotz](https://github.com/physikerwelt): [1](https://github.com/search?q=repo%3AProfessionalWiki/SPARQL%20author%3Aphysikerwelt%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-mozilla-web-ext" href="https://github.com/mozilla/web-ext">mozilla/web-ext</a> (1 commits) [↩](#row-mozilla-web-ext)
+
+- [Luca Greco](https://github.com/rpl): [1](https://github.com/search?q=repo%3Amozilla/web-ext%20author%3Arpl%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-eggjs-tegg" href="https://github.com/eggjs/tegg">eggjs/tegg</a> (1 commits) [↩](#row-eggjs-tegg)
+
+- [Hai Rao](https://github.com/RaoHai): [1](https://github.com/search?q=repo%3Aeggjs/tegg%20author%3ARaoHai%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-manishearth-elsa" href="https://github.com/Manishearth/elsa">Manishearth/elsa</a> (1 commits) [↩](#row-manishearth-elsa)
+
+- [Manish Goregaokar](https://github.com/Manishearth): [1](https://github.com/search?q=repo%3AManishearth/elsa%20author%3AManishearth%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-boa-dev-temporal" href="https://github.com/boa-dev/temporal">boa-dev/temporal</a> (1 commits) [↩](#row-boa-dev-temporal)
+
+- [Manish Goregaokar](https://github.com/Manishearth): [1](https://github.com/search?q=repo%3Aboa-dev/temporal%20author%3AManishearth%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-servo-rust-url" href="https://github.com/servo/rust-url">servo/rust-url</a> (1 commits) [↩](#row-servo-rust-url)
+
+- [Manish Goregaokar](https://github.com/Manishearth): [1](https://github.com/search?q=repo%3Aservo/rust-url%20author%3AManishearth%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-unicode-rs-unicode-security" href="https://github.com/unicode-rs/unicode-security">unicode-rs/unicode-security</a> (1 commits) [↩](#row-unicode-rs-unicode-security)
+
+- [Manish Goregaokar](https://github.com/Manishearth): [1](https://github.com/search?q=repo%3Aunicode-rs/unicode-security%20author%3AManishearth%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-tc39-test262" href="https://github.com/tc39/test262">tc39/test262</a> (1 commits) [↩](#row-tc39-test262)
+
+- [Manish Goregaokar](https://github.com/Manishearth): [1](https://github.com/search?q=repo%3Atc39/test262%20author%3AManishearth%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-rinchen-radicle-links" href="https://github.com/rinchen/radicle-links">rinchen/radicle-links</a> (1 commits) [↩](#row-rinchen-radicle-links)
+
+- [J✪ΞY STANFORD](https://github.com/rinchen): [1](https://github.com/search?q=repo%3Arinchen/radicle-links%20author%3Arinchen%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-rinchen-decentralized-manifesto" href="https://github.com/rinchen/decentralized-manifesto">rinchen/decentralized-manifesto</a> (1 commits) [↩](#row-rinchen-decentralized-manifesto)
+
+- [J✪ΞY STANFORD](https://github.com/rinchen): [1](https://github.com/search?q=repo%3Arinchen/decentralized-manifesto%20author%3Arinchen%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-eclipse-thingweb-td-code" href="https://github.com/eclipse-thingweb/td-code">eclipse-thingweb/td-code</a> (1 commits) [↩](#row-eclipse-thingweb-td-code)
+
+- [Cristiano Aguzzi](https://github.com/relu91): [1](https://github.com/search?q=repo%3Aeclipse-thingweb/td-code%20author%3Arelu91%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-unibo-prismlab-wam" href="https://github.com/UniBO-PRISMLab/wam">UniBO-PRISMLab/wam</a> (1 commits) [↩](#row-unibo-prismlab-wam)
+
+- [Cristiano Aguzzi](https://github.com/relu91): [1](https://github.com/search?q=repo%3AUniBO-PRISMLab/wam%20author%3Arelu91%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-nvidia-nemo-nemo" href="https://github.com/NVIDIA-NeMo/NeMo">NVIDIA-NeMo/NeMo</a> (1 commits) [↩](#row-nvidia-nemo-nemo)
+
+- [Paul Irish](https://github.com/paulirish): [1](https://github.com/search?q=repo%3ANVIDIA-NeMo/NeMo%20author%3Apaulirish%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-chromedevtools-devtools-frontend" href="https://github.com/ChromeDevTools/devtools-frontend">ChromeDevTools/devtools-frontend</a> (1 commits) [↩](#row-chromedevtools-devtools-frontend)
+
+- [Paul Irish](https://github.com/paulirish): [1](https://github.com/search?q=repo%3AChromeDevTools/devtools-frontend%20author%3Apaulirish%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-paulirish-chrome-side-tabs-extension" href="https://github.com/paulirish/chrome-side-tabs-extension">paulirish/chrome-side-tabs-extension</a> (1 commits) [↩](#row-paulirish-chrome-side-tabs-extension)
+
+- [Paul Irish](https://github.com/paulirish): [1](https://github.com/search?q=repo%3Apaulirish/chrome-side-tabs-extension%20author%3Apaulirish%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-kartiktalwar-gmail-js" href="https://github.com/KartikTalwar/gmail.js">KartikTalwar/gmail.js</a> (1 commits) [↩](#row-kartiktalwar-gmail-js)
+
+- [Paul Irish](https://github.com/paulirish): [1](https://github.com/search?q=repo%3AKartikTalwar/gmail.js%20author%3Apaulirish%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-paulirish-trace-cafe" href="https://github.com/paulirish/trace.cafe">paulirish/trace.cafe</a> (1 commits) [↩](#row-paulirish-trace-cafe)
+
+- [Paul Irish](https://github.com/paulirish): [1](https://github.com/search?q=repo%3Apaulirish/trace.cafe%20author%3Apaulirish%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-shivamidow-shivamidow-github-io" href="https://github.com/shivamidow/shivamidow.github.io">shivamidow/shivamidow.github.io</a> (1 commits) [↩](#row-shivamidow-shivamidow-github-io)
+
+- [ChangSeok Oh](https://github.com/shivamidow): [1](https://github.com/search?q=repo%3Ashivamidow/shivamidow.github.io%20author%3Ashivamidow%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-mozilla-node-fx-runner" href="https://github.com/mozilla/node-fx-runner">mozilla/node-fx-runner</a> (1 commits) [↩](#row-mozilla-node-fx-runner)
+
+- [Rob Wu](https://github.com/Rob--W): [1](https://github.com/search?q=repo%3Amozilla/node-fx-runner%20author%3ARob--W%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-mozilla-conduit-lando" href="https://github.com/mozilla-conduit/lando">mozilla-conduit/lando</a> (1 commits) [↩](#row-mozilla-conduit-lando)
+
+- [Rob Wu](https://github.com/Rob--W): [1](https://github.com/search?q=repo%3Amozilla-conduit/lando%20author%3ARob--W%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-webextensions" href="https://github.com/w3c/webextensions">w3c/webextensions</a> (1 commits) [↩](#row-w3c-webextensions)
+
+- [Rob Wu](https://github.com/Rob--W): [1](https://github.com/search?q=repo%3Aw3c/webextensions%20author%3ARob--W%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-studio24-accessible-forms" href="https://github.com/studio24/accessible-forms">studio24/accessible-forms</a> (1 commits) [↩](#row-studio24-accessible-forms)
+
+- [Simon R Jones](https://github.com/simonrjones): [1](https://github.com/search?q=repo%3Astudio24/accessible-forms%20author%3Asimonrjones%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-wai-course-list" href="https://github.com/w3c/wai-course-list">w3c/wai-course-list</a> (1 commits) [↩](#row-w3c-wai-course-list)
+
+- [Rémi Bétin](https://github.com/remibetin): [1](https://github.com/search?q=repo%3Aw3c/wai-course-list%20author%3Aremibetin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-wai-wcag-supplemental" href="https://github.com/w3c/wai-wcag-supplemental">w3c/wai-wcag-supplemental</a> (1 commits) [↩](#row-w3c-wai-wcag-supplemental)
+
+- [Rémi Bétin](https://github.com/remibetin): [1](https://github.com/search?q=repo%3Aw3c/wai-wcag-supplemental%20author%3Aremibetin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-wai-authoring-tools-list" href="https://github.com/w3c/wai-authoring-tools-list">w3c/wai-authoring-tools-list</a> (1 commits) [↩](#row-w3c-wai-authoring-tools-list)
+
+- [Rémi Bétin](https://github.com/remibetin): [1](https://github.com/search?q=repo%3Aw3c/wai-authoring-tools-list%20author%3Aremibetin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-wai-resource-template" href="https://github.com/w3c/wai-resource-template">w3c/wai-resource-template</a> (1 commits) [↩](#row-w3c-wai-resource-template)
+
+- [Rémi Bétin](https://github.com/remibetin): [1](https://github.com/search?q=repo%3Aw3c/wai-resource-template%20author%3Aremibetin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-wai-policies-prototype" href="https://github.com/w3c/wai-policies-prototype">w3c/wai-policies-prototype</a> (1 commits) [↩](#row-w3c-wai-policies-prototype)
+
+- [Rémi Bétin](https://github.com/remibetin): [1](https://github.com/search?q=repo%3Aw3c/wai-policies-prototype%20author%3Aremibetin%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-stasinos-mycontent" href="https://github.com/stasinos/mycontent">stasinos/mycontent</a> (1 commits) [↩](#row-stasinos-mycontent)
+
+- [Stasinos Konstantopoulos](https://github.com/stasinos): [1](https://github.com/search?q=repo%3Astasinos/mycontent%20author%3Astasinos%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-privacy-tech-lab-privacy-pioneer-web-crawler" href="https://github.com/privacy-tech-lab/privacy-pioneer-web-crawler">privacy-tech-lab/privacy-pioneer-web-crawler</a> (1 commits) [↩](#row-privacy-tech-lab-privacy-pioneer-web-crawler)
+
+- [Sebastian Zimmeck](https://github.com/SebastianZimmeck): [1](https://github.com/search?q=repo%3Aprivacy-tech-lab/privacy-pioneer-web-crawler%20author%3ASebastianZimmeck%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-privacy-tech-lab-gpc-web-ui" href="https://github.com/privacy-tech-lab/gpc-web-ui">privacy-tech-lab/gpc-web-ui</a> (1 commits) [↩](#row-privacy-tech-lab-gpc-web-ui)
+
+- [Sebastian Zimmeck](https://github.com/SebastianZimmeck): [1](https://github.com/search?q=repo%3Aprivacy-tech-lab/gpc-web-ui%20author%3ASebastianZimmeck%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-rdf-connect-js-runner" href="https://github.com/rdf-connect/js-runner">rdf-connect/js-runner</a> (1 commits) [↩](#row-rdf-connect-js-runner)
+
+- [Ieben Smessaert](https://github.com/smessie): [1](https://github.com/search?q=repo%3Ardf-connect/js-runner%20author%3Asmessie%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-speced-bikeshed-boilerplate" href="https://github.com/speced/bikeshed-boilerplate">speced/bikeshed-boilerplate</a> (1 commits) [↩](#row-speced-bikeshed-boilerplate)
+
+- [Tab Atkins Jr.](https://github.com/tabatkins): [1](https://github.com/search?q=repo%3Aspeced/bikeshed-boilerplate%20author%3Atabatkins%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-snarfed-lexrpc" href="https://github.com/snarfed/lexrpc">snarfed/lexrpc</a> (1 commits) [↩](#row-snarfed-lexrpc)
+
+- [Ryan Barrett](https://github.com/snarfed): [1](https://github.com/search?q=repo%3Asnarfed/lexrpc%20author%3Asnarfed%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-interledger-publisher-tools" href="https://github.com/interledger/publisher-tools">interledger/publisher-tools</a> (1 commits) [↩](#row-interledger-publisher-tools)
+
+- [Sid Vishnoi](https://github.com/sidvishnoi): [1](https://github.com/search?q=repo%3Ainterledger/publisher-tools%20author%3Asidvishnoi%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-linkease-istore-repo" href="https://github.com/linkease/istore-repo">linkease/istore-repo</a> (1 commits) [↩](#row-linkease-istore-repo)
+
+- [Stackie Jia](https://github.com/stackia): [1](https://github.com/search?q=repo%3Alinkease/istore-repo%20author%3Astackia%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-linkease-openwrt-app-meta" href="https://github.com/linkease/openwrt-app-meta">linkease/openwrt-app-meta</a> (1 commits) [↩](#row-linkease-openwrt-app-meta)
+
+- [Stackie Jia](https://github.com/stackia): [1](https://github.com/search?q=repo%3Alinkease/openwrt-app-meta%20author%3Astackia%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-xahau-xahaud" href="https://github.com/Xahau/xahaud">Xahau/xahaud</a> (1 commits) [↩](#row-xahau-xahaud)
+
+- [Niq Dudfield](https://github.com/sublimator): [1](https://github.com/search?q=repo%3AXahau/xahaud%20author%3Asublimator%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-bytecodealliance-wac" href="https://github.com/bytecodealliance/wac">bytecodealliance/wac</a> (1 commits) [↩](#row-bytecodealliance-wac)
+
+- [Dan Gohman](https://github.com/sunfishcode): [1](https://github.com/search?q=repo%3Abytecodealliance/wac%20author%3Asunfishcode%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-kubernetes-enhancements" href="https://github.com/kubernetes/enhancements">kubernetes/enhancements</a> (1 commits) [↩](#row-kubernetes-enhancements)
+
+- [Sergey Kanzhelev](https://github.com/SergeyKanzhelev): [1](https://github.com/search?q=repo%3Akubernetes/enhancements%20author%3ASergeyKanzhelev%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-kubernetes-sigs-cri-tools" href="https://github.com/kubernetes-sigs/cri-tools">kubernetes-sigs/cri-tools</a> (1 commits) [↩](#row-kubernetes-sigs-cri-tools)
+
+- [Sergey Kanzhelev](https://github.com/SergeyKanzhelev): [1](https://github.com/search?q=repo%3Akubernetes-sigs/cri-tools%20author%3ASergeyKanzhelev%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-mrhenry-stylelint-mrhenry" href="https://github.com/mrhenry/stylelint-mrhenry">mrhenry/stylelint-mrhenry</a> (1 commits) [↩](#row-mrhenry-stylelint-mrhenry)
+
+- [Romain Menke](https://github.com/romainmenke): [1](https://github.com/search?q=repo%3Amrhenry/stylelint-mrhenry%20author%3Aromainmenke%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-stylelint-less-stylelint-less" href="https://github.com/stylelint-less/stylelint-less">stylelint-less/stylelint-less</a> (1 commits) [↩](#row-stylelint-less-stylelint-less)
+
+- [Romain Menke](https://github.com/romainmenke): [1](https://github.com/search?q=repo%3Astylelint-less/stylelint-less%20author%3Aromainmenke%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-mrhenry-web-tests" href="https://github.com/mrhenry/web-tests">mrhenry/web-tests</a> (1 commits) [↩](#row-mrhenry-web-tests)
+
+- [Romain Menke](https://github.com/romainmenke): [1](https://github.com/search?q=repo%3Amrhenry/web-tests%20author%3Aromainmenke%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-mrhenry-polyfill-library" href="https://github.com/mrhenry/polyfill-library">mrhenry/polyfill-library</a> (1 commits) [↩](#row-mrhenry-polyfill-library)
+
+- [Romain Menke](https://github.com/romainmenke): [1](https://github.com/search?q=repo%3Amrhenry/polyfill-library%20author%3Aromainmenke%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-sergeychernyshev-vibe-coding" href="https://github.com/sergeychernyshev/vibe-coding">sergeychernyshev/vibe-coding</a> (1 commits) [↩](#row-sergeychernyshev-vibe-coding)
+
+- [Sergey Chernyshev](https://github.com/sergeychernyshev): [1](https://github.com/search?q=repo%3Asergeychernyshev/vibe-coding%20author%3Asergeychernyshev%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-favorite-icons-of-internet--github" href="https://github.com/Favorite-Icons-Of-Internet/.github">Favorite-Icons-Of-Internet/.github</a> (1 commits) [↩](#row-favorite-icons-of-internet--github)
+
+- [Sergey Chernyshev](https://github.com/sergeychernyshev): [1](https://github.com/search?q=repo%3AFavorite-Icons-Of-Internet/.github%20author%3Asergeychernyshev%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-orcwg-cra-orcwg-org" href="https://github.com/orcwg/cra.orcwg.org">orcwg/cra.orcwg.org</a> (1 commits) [↩](#row-orcwg-cra-orcwg-org)
+
+- [Tobie Langel](https://github.com/tobie): [1](https://github.com/search?q=repo%3Aorcwg/cra.orcwg.org%20author%3Atobie%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-svgdotjs-svgdom" href="https://github.com/svgdotjs/svgdom">svgdotjs/svgdom</a> (1 commits) [↩](#row-svgdotjs-svgdom)
+
+- [Tobie Langel](https://github.com/tobie): [1](https://github.com/search?q=repo%3Asvgdotjs/svgdom%20author%3Atobie%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-tidoust-mdn-webref" href="https://github.com/tidoust/mdn-webref">tidoust/mdn-webref</a> (1 commits) [↩](#row-tidoust-mdn-webref)
+
+- [François Daoust](https://github.com/tidoust): [1](https://github.com/search?q=repo%3Atidoust/mdn-webref%20author%3Atidoust%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-toji-webgpu-test" href="https://github.com/toji/webgpu-test">toji/webgpu-test</a> (1 commits) [↩](#row-toji-webgpu-test)
+
+- [Brandon Jones](https://github.com/toji): [1](https://github.com/search?q=repo%3Atoji/webgpu-test%20author%3Atoji%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-bytecodealliance-governance" href="https://github.com/bytecodealliance/governance">bytecodealliance/governance</a> (1 commits) [↩](#row-bytecodealliance-governance)
+
+- [Till Schneidereit](https://github.com/tschneidereit): [1](https://github.com/search?q=repo%3Abytecodealliance/governance%20author%3Atschneidereit%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-bytecodealliance-meetings" href="https://github.com/bytecodealliance/meetings">bytecodealliance/meetings</a> (1 commits) [↩](#row-bytecodealliance-meetings)
+
+- [Till Schneidereit](https://github.com/tschneidereit): [1](https://github.com/search?q=repo%3Abytecodealliance/meetings%20author%3Atschneidereit%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-shapesecurity-cla" href="https://github.com/shapesecurity/CLA">shapesecurity/CLA</a> (1 commits) [↩](#row-shapesecurity-cla)
+
+- [sideshowbarker](https://github.com/sideshowbarker): [1](https://github.com/search?q=repo%3Ashapesecurity/CLA%20author%3Asideshowbarker%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-google-breakpad" href="https://github.com/google/breakpad">google/breakpad</a> (1 commits) [↩](#row-google-breakpad)
+
+- [Mike Frysinger](https://github.com/vapier): [1](https://github.com/search?q=repo%3Agoogle/breakpad%20author%3Avapier%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-passkeydeveloper-featuredetect-passkeys-dev" href="https://github.com/passkeydeveloper/featuredetect.passkeys.dev">passkeydeveloper/featuredetect.passkeys.dev</a> (1 commits) [↩](#row-passkeydeveloper-featuredetect-passkeys-dev)
+
+- [Tim Cappalli](https://github.com/timcappalli): [1](https://github.com/search?q=repo%3Apasskeydeveloper/featuredetect.passkeys.dev%20author%3Atimcappalli%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-timcappalli-raycast-scripts" href="https://github.com/timcappalli/raycast-scripts">timcappalli/raycast-scripts</a> (1 commits) [↩](#row-timcappalli-raycast-scripts)
+
+- [Tim Cappalli](https://github.com/timcappalli): [1](https://github.com/search?q=repo%3Atimcappalli/raycast-scripts%20author%3Atimcappalli%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-wot-thing-description-toolchain-tmp" href="https://github.com/w3c/wot-thing-description-toolchain-tmp">w3c/wot-thing-description-toolchain-tmp</a> (1 commits) [↩](#row-w3c-wot-thing-description-toolchain-tmp)
+
+- [Ted Thibodeau Jr](https://github.com/TallTed): [1](https://github.com/search?q=repo%3Aw3c/wot-thing-description-toolchain-tmp%20author%3ATallTed%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-wot-cg" href="https://github.com/w3c/wot-cg">w3c/wot-cg</a> (1 commits) [↩](#row-w3c-wot-cg)
+
+- [Ted Thibodeau Jr](https://github.com/TallTed): [1](https://github.com/search?q=repo%3Aw3c/wot-cg%20author%3ATallTed%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-rdf-turtle" href="https://github.com/w3c/rdf-turtle">w3c/rdf-turtle</a> (1 commits) [↩](#row-w3c-rdf-turtle)
+
+- [Ted Thibodeau Jr](https://github.com/TallTed): [1](https://github.com/search?q=repo%3Aw3c/rdf-turtle%20author%3ATallTed%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-rdf-n-triples" href="https://github.com/w3c/rdf-n-triples">w3c/rdf-n-triples</a> (1 commits) [↩](#row-w3c-rdf-n-triples)
+
+- [Ted Thibodeau Jr](https://github.com/TallTed): [1](https://github.com/search?q=repo%3Aw3c/rdf-n-triples%20author%3ATallTed%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-mapbox-mapbox-gl-geocoder" href="https://github.com/mapbox/mapbox-gl-geocoder">mapbox/mapbox-gl-geocoder</a> (1 commits) [↩](#row-mapbox-mapbox-gl-geocoder)
+
+- [Aleksandr Shoronov](https://github.com/underoot): [1](https://github.com/search?q=repo%3Amapbox/mapbox-gl-geocoder%20author%3Aunderoot%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-wincent-vim-university" href="https://github.com/wincent/vim-university">wincent/vim-university</a> (1 commits) [↩](#row-wincent-vim-university)
+
+- [Greg Hurrell](https://github.com/wincent): [1](https://github.com/search?q=repo%3Awincent/vim-university%20author%3Awincent%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-wincent-command-t" href="https://github.com/wincent/command-t">wincent/command-t</a> (1 commits) [↩](#row-wincent-command-t)
+
+- [Greg Hurrell](https://github.com/wincent): [1](https://github.com/search?q=repo%3Awincent/command-t%20author%3Awincent%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-wincent-git-cipher" href="https://github.com/wincent/git-cipher">wincent/git-cipher</a> (1 commits) [↩](#row-wincent-git-cipher)
+
+- [Greg Hurrell](https://github.com/wincent): [1](https://github.com/search?q=repo%3Awincent/git-cipher%20author%3Awincent%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-upsuper-my-daily-notes" href="https://github.com/upsuper/my-daily-notes">upsuper/my-daily-notes</a> (1 commits) [↩](#row-upsuper-my-daily-notes)
+
+- [Xidorn Quan](https://github.com/upsuper): [1](https://github.com/search?q=repo%3Aupsuper/my-daily-notes%20author%3Aupsuper%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-upsuper-raid-rebuild-success-rate" href="https://github.com/upsuper/raid-rebuild-success-rate">upsuper/raid-rebuild-success-rate</a> (1 commits) [↩](#row-upsuper-raid-rebuild-success-rate)
+
+- [Xidorn Quan](https://github.com/upsuper): [1](https://github.com/search?q=repo%3Aupsuper/raid-rebuild-success-rate%20author%3Aupsuper%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-act-rules-act-rules-github-io" href="https://github.com/act-rules/act-rules.github.io">act-rules/act-rules.github.io</a> (1 commits) [↩](#row-act-rules-act-rules-github-io)
+
+- [Sasha](https://github.com/zlayaAvocado): [1](https://github.com/search?q=repo%3Aact-rules/act-rules.github.io%20author%3AzlayaAvocado%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-nivenly-securing-open-source-communities-wg" href="https://github.com/nivenly/securing-open-source-communities-wg">nivenly/securing-open-source-communities-wg</a> (1 commits) [↩](#row-nivenly-securing-open-source-communities-wg)
+
+- [Antonin Delpeuch](https://github.com/wetneb): [1](https://github.com/search?q=repo%3Anivenly/securing-open-source-communities-wg%20author%3Awetneb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-triazbalfolk-triaz-github-io" href="https://github.com/TriazBalfolk/triaz.github.io">TriazBalfolk/triaz.github.io</a> (1 commits) [↩](#row-triazbalfolk-triaz-github-io)
+
+- [Antonin Delpeuch](https://github.com/wetneb): [1](https://github.com/search?q=repo%3ATriazBalfolk/triaz.github.io%20author%3Awetneb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-i18n-tests" href="https://github.com/w3c/i18n-tests">w3c/i18n-tests</a> (1 commits) [↩](#row-w3c-i18n-tests)
+
+- [Fuqiao Xue](https://github.com/xfq): [1](https://github.com/search?q=repo%3Aw3c/i18n-tests%20author%3Axfq%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-i18n-videos" href="https://github.com/w3c/i18n-videos">w3c/i18n-videos</a> (1 commits) [↩](#row-w3c-i18n-videos)
+
+- [Fuqiao Xue](https://github.com/xfq): [1](https://github.com/search?q=repo%3Aw3c/i18n-videos%20author%3Axfq%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-i18n-activity" href="https://github.com/w3c/i18n-activity">w3c/i18n-activity</a> (1 commits) [↩](#row-w3c-i18n-activity)
+
+- [Fuqiao Xue](https://github.com/xfq): [1](https://github.com/search?q=repo%3Aw3c/i18n-activity%20author%3Axfq%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-ruby-t2s-req" href="https://github.com/w3c/ruby-t2s-req">w3c/ruby-t2s-req</a> (1 commits) [↩](#row-w3c-ruby-t2s-req)
+
+- [Fuqiao Xue](https://github.com/xfq): [1](https://github.com/search?q=repo%3Aw3c/ruby-t2s-req%20author%3Axfq%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-xfq-glossary" href="https://github.com/xfq/glossary">xfq/glossary</a> (1 commits) [↩](#row-xfq-glossary)
+
+- [Fuqiao Xue](https://github.com/xfq): [1](https://github.com/search?q=repo%3Axfq/glossary%20author%3Axfq%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-cg-ai-agent-protocol" href="https://github.com/w3c-cg/ai-agent-protocol">w3c-cg/ai-agent-protocol</a> (1 commits) [↩](#row-w3c-cg-ai-agent-protocol)
+
+- [Fuqiao Xue](https://github.com/xfq): [1](https://github.com/search?q=repo%3Aw3c-cg/ai-agent-protocol%20author%3Axfq%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-wp-theme-i18n" href="https://github.com/w3c/wp-theme-i18n">w3c/wp-theme-i18n</a> (1 commits) [↩](#row-w3c-wp-theme-i18n)
+
+- [Fuqiao Xue](https://github.com/xfq): [1](https://github.com/search?q=repo%3Aw3c/wp-theme-i18n%20author%3Axfq%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-github-notify-ml-config" href="https://github.com/w3c/github-notify-ml-config">w3c/github-notify-ml-config</a> (1 commits) [↩](#row-w3c-github-notify-ml-config)
+
+- [Fuqiao Xue](https://github.com/xfq): [1](https://github.com/search?q=repo%3Aw3c/github-notify-ml-config%20author%3Axfq%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ljharb-global-cache" href="https://github.com/ljharb/global-cache">ljharb/global-cache</a> (1 commits) [↩](#row-ljharb-global-cache)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Aljharb/global-cache%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-jonschlinkert-parse-github-url" href="https://github.com/jonschlinkert/parse-github-url">jonschlinkert/parse-github-url</a> (1 commits) [↩](#row-jonschlinkert-parse-github-url)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Ajonschlinkert/parse-github-url%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ljharb-define-properties" href="https://github.com/ljharb/define-properties">ljharb/define-properties</a> (1 commits) [↩](#row-ljharb-define-properties)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Aljharb/define-properties%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ljharb-set-function-name" href="https://github.com/ljharb/set-function-name">ljharb/set-function-name</a> (1 commits) [↩](#row-ljharb-set-function-name)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Aljharb/set-function-name%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ljharb-make-async-function" href="https://github.com/ljharb/make-async-function">ljharb/make-async-function</a> (1 commits) [↩](#row-ljharb-make-async-function)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Aljharb/make-async-function%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ljharb-prop-types-exact" href="https://github.com/ljharb/prop-types-exact">ljharb/prop-types-exact</a> (1 commits) [↩](#row-ljharb-prop-types-exact)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Aljharb/prop-types-exact%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ljharb-prop-types-tools" href="https://github.com/ljharb/prop-types-tools">ljharb/prop-types-tools</a> (1 commits) [↩](#row-ljharb-prop-types-tools)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Aljharb/prop-types-tools%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ljharb-eslint-config" href="https://github.com/ljharb/eslint-config">ljharb/eslint-config</a> (1 commits) [↩](#row-ljharb-eslint-config)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Aljharb/eslint-config%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ljharb-async-function" href="https://github.com/ljharb/async-function">ljharb/async-function</a> (1 commits) [↩](#row-ljharb-async-function)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Aljharb/async-function%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-jsx-eslint-jsx-ast-utils" href="https://github.com/jsx-eslint/jsx-ast-utils">jsx-eslint/jsx-ast-utils</a> (1 commits) [↩](#row-jsx-eslint-jsx-ast-utils)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Ajsx-eslint/jsx-ast-utils%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-browserify-to-buffer" href="https://github.com/browserify/to-buffer">browserify/to-buffer</a> (1 commits) [↩](#row-browserify-to-buffer)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Abrowserify/to-buffer%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ljharb-make-generator-function" href="https://github.com/ljharb/make-generator-function">ljharb/make-generator-function</a> (1 commits) [↩](#row-ljharb-make-generator-function)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Aljharb/make-generator-function%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-browserify-pbkdf2" href="https://github.com/browserify/pbkdf2">browserify/pbkdf2</a> (1 commits) [↩](#row-browserify-pbkdf2)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Abrowserify/pbkdf2%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ljharb-json-file-plus" href="https://github.com/ljharb/json-file-plus">ljharb/json-file-plus</a> (1 commits) [↩](#row-ljharb-json-file-plus)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Aljharb/json-file-plus%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-es-shims-string-prototype-padend" href="https://github.com/es-shims/String.prototype.padEnd">es-shims/String.prototype.padEnd</a> (1 commits) [↩](#row-es-shims-string-prototype-padend)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Aes-shims/String.prototype.padEnd%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-es-shims-string-prototype-trim" href="https://github.com/es-shims/String.prototype.trim">es-shims/String.prototype.trim</a> (1 commits) [↩](#row-es-shims-string-prototype-trim)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Aes-shims/String.prototype.trim%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-inspect-js-is-descriptor" href="https://github.com/inspect-js/is-descriptor">inspect-js/is-descriptor</a> (1 commits) [↩](#row-inspect-js-is-descriptor)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Ainspect-js/is-descriptor%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-es-shims-string-prototype-trimright" href="https://github.com/es-shims/String.prototype.trimRight">es-shims/String.prototype.trimRight</a> (1 commits) [↩](#row-es-shims-string-prototype-trimright)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Aes-shims/String.prototype.trimRight%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-es-shims-regexp-escape" href="https://github.com/es-shims/RegExp.escape">es-shims/RegExp.escape</a> (1 commits) [↩](#row-es-shims-regexp-escape)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Aes-shims/RegExp.escape%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ljharb-es-to-primitive" href="https://github.com/ljharb/es-to-primitive">ljharb/es-to-primitive</a> (1 commits) [↩](#row-ljharb-es-to-primitive)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Aljharb/es-to-primitive%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-inspect-js-is-callable" href="https://github.com/inspect-js/is-callable">inspect-js/is-callable</a> (1 commits) [↩](#row-inspect-js-is-callable)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Ainspect-js/is-callable%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-inspect-js-is-string" href="https://github.com/inspect-js/is-string">inspect-js/is-string</a> (1 commits) [↩](#row-inspect-js-is-string)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Ainspect-js/is-string%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-inspect-js-is-number-object" href="https://github.com/inspect-js/is-number-object">inspect-js/is-number-object</a> (1 commits) [↩](#row-inspect-js-is-number-object)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Ainspect-js/is-number-object%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-inspect-js-is-date-object" href="https://github.com/inspect-js/is-date-object">inspect-js/is-date-object</a> (1 commits) [↩](#row-inspect-js-is-date-object)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Ainspect-js/is-date-object%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-inspect-js-is-symbol" href="https://github.com/inspect-js/is-symbol">inspect-js/is-symbol</a> (1 commits) [↩](#row-inspect-js-is-symbol)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Ainspect-js/is-symbol%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-inspect-js-is-core-module" href="https://github.com/inspect-js/is-core-module">inspect-js/is-core-module</a> (1 commits) [↩](#row-inspect-js-is-core-module)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Ainspect-js/is-core-module%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-inspect-js-is-object" href="https://github.com/inspect-js/is-object">inspect-js/is-object</a> (1 commits) [↩](#row-inspect-js-is-object)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Ainspect-js/is-object%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ljharb-unbox-primitive" href="https://github.com/ljharb/unbox-primitive">ljharb/unbox-primitive</a> (1 commits) [↩](#row-ljharb-unbox-primitive)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Aljharb/unbox-primitive%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-inspect-js-functions-have-names" href="https://github.com/inspect-js/functions-have-names">inspect-js/functions-have-names</a> (1 commits) [↩](#row-inspect-js-functions-have-names)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Ainspect-js/functions-have-names%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-es-shims-promise-allsettled" href="https://github.com/es-shims/Promise.allSettled">es-shims/Promise.allSettled</a> (1 commits) [↩](#row-es-shims-promise-allsettled)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Aes-shims/Promise.allSettled%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-inspect-js-is-bigint" href="https://github.com/inspect-js/is-bigint">inspect-js/is-bigint</a> (1 commits) [↩](#row-inspect-js-is-bigint)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Ainspect-js/is-bigint%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-inspect-js-is-boxed-primitive" href="https://github.com/inspect-js/is-boxed-primitive">inspect-js/is-boxed-primitive</a> (1 commits) [↩](#row-inspect-js-is-boxed-primitive)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Ainspect-js/is-boxed-primitive%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-es-shims-object-fromentries" href="https://github.com/es-shims/Object.fromEntries">es-shims/Object.fromEntries</a> (1 commits) [↩](#row-es-shims-object-fromentries)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Aes-shims/Object.fromEntries%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-inspect-js-has-template-literals" href="https://github.com/inspect-js/has-template-literals">inspect-js/has-template-literals</a> (1 commits) [↩](#row-inspect-js-has-template-literals)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Ainspect-js/has-template-literals%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-es-shims-string-prototype-matchall" href="https://github.com/es-shims/String.prototype.matchAll">es-shims/String.prototype.matchAll</a> (1 commits) [↩](#row-es-shims-string-prototype-matchall)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Aes-shims/String.prototype.matchAll%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-inspect-js-has-symbols" href="https://github.com/inspect-js/has-symbols">inspect-js/has-symbols</a> (1 commits) [↩](#row-inspect-js-has-symbols)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Ainspect-js/has-symbols%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-es-shims-promise-prototype-finally" href="https://github.com/es-shims/Promise.prototype.finally">es-shims/Promise.prototype.finally</a> (1 commits) [↩](#row-es-shims-promise-prototype-finally)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Aes-shims/Promise.prototype.finally%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-inspect-js-has-bigints" href="https://github.com/inspect-js/has-bigints">inspect-js/has-bigints</a> (1 commits) [↩](#row-inspect-js-has-bigints)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Ainspect-js/has-bigints%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-inspect-js-is-array-buffer" href="https://github.com/inspect-js/is-array-buffer">inspect-js/is-array-buffer</a> (1 commits) [↩](#row-inspect-js-is-array-buffer)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Ainspect-js/is-array-buffer%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-inspect-js-is-typed-array" href="https://github.com/inspect-js/is-typed-array">inspect-js/is-typed-array</a> (1 commits) [↩](#row-inspect-js-is-typed-array)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Ainspect-js/is-typed-array%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-es-shims-object-values" href="https://github.com/es-shims/Object.values">es-shims/Object.values</a> (1 commits) [↩](#row-es-shims-object-values)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Aes-shims/Object.values%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-inspect-js-is-data-descriptor" href="https://github.com/inspect-js/is-data-descriptor">inspect-js/is-data-descriptor</a> (1 commits) [↩](#row-inspect-js-is-data-descriptor)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Ainspect-js/is-data-descriptor%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-inspect-js-is-accessor-descriptor" href="https://github.com/inspect-js/is-accessor-descriptor">inspect-js/is-accessor-descriptor</a> (1 commits) [↩](#row-inspect-js-is-accessor-descriptor)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Ainspect-js/is-accessor-descriptor%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-inspect-js-is-negative-zero" href="https://github.com/inspect-js/is-negative-zero">inspect-js/is-negative-zero</a> (1 commits) [↩](#row-inspect-js-is-negative-zero)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Ainspect-js/is-negative-zero%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-es-shims-array-prototype-flatmap" href="https://github.com/es-shims/Array.prototype.flatMap">es-shims/Array.prototype.flatMap</a> (1 commits) [↩](#row-es-shims-array-prototype-flatmap)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Aes-shims/Array.prototype.flatMap%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-es-shims-array-prototype-every" href="https://github.com/es-shims/Array.prototype.every">es-shims/Array.prototype.every</a> (1 commits) [↩](#row-es-shims-array-prototype-every)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Aes-shims/Array.prototype.every%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-es-shims-globalthis" href="https://github.com/es-shims/globalThis">es-shims/globalThis</a> (1 commits) [↩](#row-es-shims-globalthis)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Aes-shims/globalThis%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-es-shims-object-entries" href="https://github.com/es-shims/Object.entries">es-shims/Object.entries</a> (1 commits) [↩](#row-es-shims-object-entries)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Aes-shims/Object.entries%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-es-shims-math-sign" href="https://github.com/es-shims/Math.sign">es-shims/Math.sign</a> (1 commits) [↩](#row-es-shims-math-sign)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Aes-shims/Math.sign%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-es-shims-es-shim-api" href="https://github.com/es-shims/es-shim-api">es-shims/es-shim-api</a> (1 commits) [↩](#row-es-shims-es-shim-api)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Aes-shims/es-shim-api%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-es-shims-string-prototype-padstart" href="https://github.com/es-shims/String.prototype.padStart">es-shims/String.prototype.padStart</a> (1 commits) [↩](#row-es-shims-string-prototype-padstart)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Aes-shims/String.prototype.padStart%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-inspect-js-is-async-function" href="https://github.com/inspect-js/is-async-function">inspect-js/is-async-function</a> (1 commits) [↩](#row-inspect-js-is-async-function)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Ainspect-js/is-async-function%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-inspect-js-is-boolean-object" href="https://github.com/inspect-js/is-boolean-object">inspect-js/is-boolean-object</a> (1 commits) [↩](#row-inspect-js-is-boolean-object)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Ainspect-js/is-boolean-object%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-es-shims-array-includes" href="https://github.com/es-shims/array-includes">es-shims/array-includes</a> (1 commits) [↩](#row-es-shims-array-includes)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Aes-shims/array-includes%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-jsx-eslint-eslint-plugin-react" href="https://github.com/jsx-eslint/eslint-plugin-react">jsx-eslint/eslint-plugin-react</a> (1 commits) [↩](#row-jsx-eslint-eslint-plugin-react)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Ajsx-eslint/eslint-plugin-react%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-es-shims-object-getprototypeof" href="https://github.com/es-shims/Object.getPrototypeOf">es-shims/Object.getPrototypeOf</a> (1 commits) [↩](#row-es-shims-object-getprototypeof)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Aes-shims/Object.getPrototypeOf%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-es-shims-number-isnan" href="https://github.com/es-shims/Number.isNaN">es-shims/Number.isNaN</a> (1 commits) [↩](#row-es-shims-number-isnan)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Aes-shims/Number.isNaN%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-es-shims-object-is" href="https://github.com/es-shims/object-is">es-shims/object-is</a> (1 commits) [↩](#row-es-shims-object-is)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Aes-shims/object-is%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-inspect-js-is-generator-function" href="https://github.com/inspect-js/is-generator-function">inspect-js/is-generator-function</a> (1 commits) [↩](#row-inspect-js-is-generator-function)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Ainspect-js/is-generator-function%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-es-shims-is-nan" href="https://github.com/es-shims/is-nan">es-shims/is-nan</a> (1 commits) [↩](#row-es-shims-is-nan)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Aes-shims/is-nan%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-inspect-js-object-inspect" href="https://github.com/inspect-js/object-inspect">inspect-js/object-inspect</a> (1 commits) [↩](#row-inspect-js-object-inspect)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Ainspect-js/object-inspect%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ljharb-object-keys" href="https://github.com/ljharb/object-keys">ljharb/object-keys</a> (1 commits) [↩](#row-ljharb-object-keys)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Aljharb/object-keys%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-ljharb-npm-lockfile" href="https://github.com/ljharb/npm-lockfile">ljharb/npm-lockfile</a> (1 commits) [↩](#row-ljharb-npm-lockfile)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Aljharb/npm-lockfile%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-import-js-eslint-plugin-import" href="https://github.com/import-js/eslint-plugin-import">import-js/eslint-plugin-import</a> (1 commits) [↩](#row-import-js-eslint-plugin-import)
+
+- [Jordan Harband](https://github.com/ljharb): [1](https://github.com/search?q=repo%3Aimport-js/eslint-plugin-import%20author%3Aljharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-xuri-excelize-py" href="https://github.com/xuri/excelize-py">xuri/excelize-py</a> (1 commits) [↩](#row-xuri-excelize-py)
+
+- [xuri](https://github.com/xuri): [1](https://github.com/search?q=repo%3Axuri/excelize-py%20author%3Axuri%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-cyclopsmc-iconexporter" href="https://github.com/CyclopsMC/IconExporter">CyclopsMC/IconExporter</a> (1 commits) [↩](#row-cyclopsmc-iconexporter)
+
+- [Ruben Taelman](https://github.com/rubensworks): [1](https://github.com/search?q=repo%3ACyclopsMC/IconExporter%20author%3Arubensworks%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-cyclopsmc-flopper" href="https://github.com/CyclopsMC/Flopper">CyclopsMC/Flopper</a> (1 commits) [↩](#row-cyclopsmc-flopper)
+
+- [Ruben Taelman](https://github.com/rubensworks): [1](https://github.com/search?q=repo%3ACyclopsMC/Flopper%20author%3Arubensworks%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-cyclopsmc-integratedrest" href="https://github.com/CyclopsMC/IntegratedREST">CyclopsMC/IntegratedREST</a> (1 commits) [↩](#row-cyclopsmc-integratedrest)
+
+- [Ruben Taelman](https://github.com/rubensworks): [1](https://github.com/search?q=repo%3ACyclopsMC/IntegratedREST%20author%3Arubensworks%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-cyclopsmc-cyclopscore" href="https://github.com/CyclopsMC/CyclopsCore">CyclopsMC/CyclopsCore</a> (1 commits) [↩](#row-cyclopsmc-cyclopscore)
+
+- [Ruben Taelman](https://github.com/rubensworks): [1](https://github.com/search?q=repo%3ACyclopsMC/CyclopsCore%20author%3Arubensworks%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-cyclopsmc-structuredcrafting" href="https://github.com/CyclopsMC/StructuredCrafting">CyclopsMC/StructuredCrafting</a> (1 commits) [↩](#row-cyclopsmc-structuredcrafting)
+
+- [Ruben Taelman](https://github.com/rubensworks): [1](https://github.com/search?q=repo%3ACyclopsMC/StructuredCrafting%20author%3Arubensworks%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-cyclopsmc-colossalchests" href="https://github.com/CyclopsMC/ColossalChests">CyclopsMC/ColossalChests</a> (1 commits) [↩](#row-cyclopsmc-colossalchests)
+
+- [Ruben Taelman](https://github.com/rubensworks): [1](https://github.com/search?q=repo%3ACyclopsMC/ColossalChests%20author%3Arubensworks%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-cyclopsmc-energeticsheep" href="https://github.com/CyclopsMC/EnergeticSheep">CyclopsMC/EnergeticSheep</a> (1 commits) [↩](#row-cyclopsmc-energeticsheep)
+
+- [Ruben Taelman](https://github.com/rubensworks): [1](https://github.com/search?q=repo%3ACyclopsMC/EnergeticSheep%20author%3Arubensworks%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-cyclopsmc-commoncapabilities" href="https://github.com/CyclopsMC/CommonCapabilities">CyclopsMC/CommonCapabilities</a> (1 commits) [↩](#row-cyclopsmc-commoncapabilities)
+
+- [Ruben Taelman](https://github.com/rubensworks): [1](https://github.com/search?q=repo%3ACyclopsMC/CommonCapabilities%20author%3Arubensworks%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-cyclopsmc-capabilityproxy" href="https://github.com/CyclopsMC/CapabilityProxy">CyclopsMC/CapabilityProxy</a> (1 commits) [↩](#row-cyclopsmc-capabilityproxy)
+
+- [Ruben Taelman](https://github.com/rubensworks): [1](https://github.com/search?q=repo%3ACyclopsMC/CapabilityProxy%20author%3Arubensworks%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-cyclopsmc-integratedtunnels" href="https://github.com/CyclopsMC/IntegratedTunnels">CyclopsMC/IntegratedTunnels</a> (1 commits) [↩](#row-cyclopsmc-integratedtunnels)
+
+- [Ruben Taelman](https://github.com/rubensworks): [1](https://github.com/search?q=repo%3ACyclopsMC/IntegratedTunnels%20author%3Arubensworks%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-cyclopsmc-integratedscripting" href="https://github.com/CyclopsMC/IntegratedScripting">CyclopsMC/IntegratedScripting</a> (1 commits) [↩](#row-cyclopsmc-integratedscripting)
+
+- [Ruben Taelman](https://github.com/rubensworks): [1](https://github.com/search?q=repo%3ACyclopsMC/IntegratedScripting%20author%3Arubensworks%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-cyclopsmc-integrateddynamics-compat" href="https://github.com/CyclopsMC/IntegratedDynamics-Compat">CyclopsMC/IntegratedDynamics-Compat</a> (1 commits) [↩](#row-cyclopsmc-integrateddynamics-compat)
+
+- [Ruben Taelman](https://github.com/rubensworks): [1](https://github.com/search?q=repo%3ACyclopsMC/IntegratedDynamics-Compat%20author%3Arubensworks%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-rubensworks-graphql-to-sparql-js" href="https://github.com/rubensworks/graphql-to-sparql.js">rubensworks/graphql-to-sparql.js</a> (1 commits) [↩](#row-rubensworks-graphql-to-sparql-js)
+
+- [Ruben Taelman](https://github.com/rubensworks): [1](https://github.com/search?q=repo%3Arubensworks/graphql-to-sparql.js%20author%3Arubensworks%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-rubensworks-renovate-presets" href="https://github.com/rubensworks/renovate-presets">rubensworks/renovate-presets</a> (1 commits) [↩](#row-rubensworks-renovate-presets)
+
+- [Ruben Taelman](https://github.com/rubensworks): [1](https://github.com/search?q=repo%3Arubensworks/renovate-presets%20author%3Arubensworks%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-rubensworks-rdf-stores-js" href="https://github.com/rubensworks/rdf-stores.js">rubensworks/rdf-stores.js</a> (1 commits) [↩](#row-rubensworks-rdf-stores-js)
+
+- [Ruben Taelman](https://github.com/rubensworks): [1](https://github.com/search?q=repo%3Arubensworks/rdf-stores.js%20author%3Arubensworks%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-rubensworks-eslint-config" href="https://github.com/rubensworks/eslint-config">rubensworks/eslint-config</a> (1 commits) [↩](#row-rubensworks-eslint-config)
+
+- [Ruben Taelman](https://github.com/rubensworks): [1](https://github.com/search?q=repo%3Arubensworks/eslint-config%20author%3Arubensworks%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-rubensworks-dotfiles" href="https://github.com/rubensworks/dotfiles">rubensworks/dotfiles</a> (1 commits) [↩](#row-rubensworks-dotfiles)
+
+- [Ruben Taelman](https://github.com/rubensworks): [1](https://github.com/search?q=repo%3Arubensworks/dotfiles%20author%3Arubensworks%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-rubensworks-rdf-12-examples" href="https://github.com/rubensworks/rdf-12-examples">rubensworks/rdf-12-examples</a> (1 commits) [↩](#row-rubensworks-rdf-12-examples)
+
+- [Ruben Taelman](https://github.com/rubensworks): [1](https://github.com/search?q=repo%3Arubensworks/rdf-12-examples%20author%3Arubensworks%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-rubensworks-scholarmarkdown" href="https://github.com/rubensworks/ScholarMarkdown">rubensworks/ScholarMarkdown</a> (1 commits) [↩](#row-rubensworks-scholarmarkdown)
+
+- [Ruben Taelman](https://github.com/rubensworks): [1](https://github.com/search?q=repo%3Arubensworks/ScholarMarkdown%20author%3Arubensworks%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-w3c-rdf-semantics" href="https://github.com/w3c/rdf-semantics">w3c/rdf-semantics</a> (1 commits) [↩](#row-w3c-rdf-semantics)
+
+- [Ruben Taelman](https://github.com/rubensworks): [1](https://github.com/search?q=repo%3Aw3c/rdf-semantics%20author%3Arubensworks%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-servo-mozjs" href="https://github.com/servo/mozjs">servo/mozjs</a> (1 commits) [↩](#row-servo-mozjs)
+
+- [Euclid Ye](https://github.com/yezhizhen): [1](https://github.com/search?q=repo%3Aservo/mozjs%20author%3Ayezhizhen%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-duckduckgo-privacy-configuration" href="https://github.com/duckduckgo/privacy-configuration">duckduckgo/privacy-configuration</a> (1 commits) [↩](#row-duckduckgo-privacy-configuration)
+
+- [David Harbage](https://github.com/dharb): [1](https://github.com/search?q=repo%3Aduckduckgo/privacy-configuration%20author%3Adharb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-httparchive-dataform" href="https://github.com/HTTPArchive/dataform">HTTPArchive/dataform</a> (1 commits) [↩](#row-httparchive-dataform)
+
+- [Barry Pollard](https://github.com/tunetheweb): [1](https://github.com/search?q=repo%3AHTTPArchive/dataform%20author%3Atunetheweb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-httparchive-har-fyi" href="https://github.com/HTTPArchive/har.fyi">HTTPArchive/har.fyi</a> (1 commits) [↩](#row-httparchive-har-fyi)
+
+- [Barry Pollard](https://github.com/tunetheweb): [1](https://github.com/search?q=repo%3AHTTPArchive/har.fyi%20author%3Atunetheweb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-httparchive-tech-report-apis" href="https://github.com/HTTPArchive/tech-report-apis">HTTPArchive/tech-report-apis</a> (1 commits) [↩](#row-httparchive-tech-report-apis)
+
+- [Barry Pollard](https://github.com/tunetheweb): [1](https://github.com/search?q=repo%3AHTTPArchive/tech-report-apis%20author%3Atunetheweb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+### <a id="commits-googlechrome-webstatus-dev" href="https://github.com/GoogleChrome/webstatus.dev">GoogleChrome/webstatus.dev</a> (1 commits) [↩](#row-googlechrome-webstatus-dev)
+
+- [Barry Pollard](https://github.com/tunetheweb): [1](https://github.com/search?q=repo%3AGoogleChrome/webstatus.dev%20author%3Atunetheweb%20author-date%3A2025-12-27..2026-01-26&type=commits)
+
+## Language commit details
+
+### <a id="lang-javascript">JavaScript</a> (4473 commits) [↩](#row-lang-javascript)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): 1538
+- [John-David Dalton](https://github.com/jdalton): 841
+- [Jordan Harband](https://github.com/ljharb): 374
+- [Lea Verou](https://github.com/LeaVerou): 174
+- [Philip Jägenstedt](https://github.com/foolip): 144
+- [Anne van Kesteren](https://github.com/annevk): 117
+- [Sarven Capadisli](https://github.com/csarven): 112
+- [Sergey Chernyshev](https://github.com/sergeychernyshev): 80
+- [Mike Frysinger](https://github.com/vapier): 68
+- [Yuri Shkuro](https://github.com/yurishkuro): 67
+- [Ruben Taelman](https://github.com/rubensworks): 60
+- [Jimmy Zhening Luo](https://github.com/jimmy-zhening-luo): 55
+- [Aram Zucker-Scharff](https://github.com/AramZS): 52
+- [Paul Irish](https://github.com/paulirish): 49
+- [Eemeli Aro](https://github.com/eemeli): 39
+- [Belem Zhang](https://github.com/ibelem): 32
+- [Abe Jellinek](https://github.com/AbeJellinek): 31
+- [Barry Pollard](https://github.com/tunetheweb): 31
+- [François Daoust](https://github.com/tidoust): 27
+- [BigBlueHat](https://github.com/BigBlueHat): 25
+- [Nazım Can Altınova](https://github.com/canova): 24
+- [Mark Nottingham](https://github.com/mnot): 22
+- [Keith Cirkel](https://github.com/keithamus): 22
+- [Oliver Byford](https://github.com/36degrees): 19
+- [Manu Sporny](https://github.com/msporny): 19
+- [Tim Cappalli](https://github.com/timcappalli): 18
+- [Rémi Bétin](https://github.com/remibetin): 17
+- [Chun-Min Chang](https://github.com/ChunMinChang): 16
+- [Chris de Almeida](https://github.com/ctcpip): 16
+- [Jan Jaeschke](https://github.com/jnjaeschke): 15
+- [Romain Menke](https://github.com/romainmenke): 15
+- [eri](https://github.com/eerii): 14
+- [Kagami Sascha Rosylight](https://github.com/saschanaz): 14
+- [sideshowbarker](https://github.com/sideshowbarker): 14
+- [Oliver Dunk](https://github.com/oliverdunk): 13
+- [Dominique Hazael-Massieux](https://github.com/dontcallmedom): 12
+- [Marcos Cáceres](https://github.com/marcoscaceres): 12
+- [Timo Tijhof](https://github.com/Krinkle): 12
+- [Sebastian Zimmeck](https://github.com/SebastianZimmeck): 11
+- [Adam Jolicoeur](https://github.com/AdamJ): 10
+- [Morgan Murrah](https://github.com/airbr): 9
+- [Diego Molina](https://github.com/diemol): 9
+- [Teodor Tanasoaia](https://github.com/teoxoy): 9
+- [Aleksandr Shoronov](https://github.com/underoot): 9
+- [Dominic Farolino](https://github.com/domfarolino): 8
+- [Bruno P. Kinoshita](https://github.com/kinow): 8
+- [Peter Krautzberger](https://github.com/pkra): 8
+- [Rob Wu](https://github.com/Rob--W): 8
+- [Chengzhong Wu](https://github.com/legendecas): 7
+- [Miro Ostafinski](https://github.com/ostafinskim): 7
+- [David Harbage](https://github.com/dharb): 7
+- [Casey Kolderup](https://github.com/ckolderup): 6
+- [Sam Sneddon](https://github.com/gsnedders): 6
+- [Fady Farag](https://github.com/iidmsa): 6
+- [Jesse Wright](https://github.com/jeswr): 6
+- [Hai Rao](https://github.com/RaoHai): 6
+- [Ivan Kanakarakis](https://github.com/c00kiemon5ter): 5
+- [Luke Warlow](https://github.com/lukewarlow): 5
+- [Tim Nguyen](https://github.com/nt1m): 5
+- [Sam Ruby](https://github.com/rubys): 5
+- [Brandon Jones](https://github.com/toji): 5
+- [Wout Slabbinck](https://github.com/woutslabbinck): 5
+- [Brian Grinstead](https://github.com/bgrins): 4
+- [Tomasz Jakut](https://github.com/Comandeer): 4
+- [Benoît](https://github.com/BenoitZugmeyer): 4
+- [Denis Ah-Kang](https://github.com/deniak): 4
+- [Don McCurdy](https://github.com/donmccurdy): 4
+- [Anna Weine](https://github.com/Frosne): 4
+- [Jean-Yves Avenard](https://github.com/jyavenard): 4
+- [Manish Goregaokar](https://github.com/Manishearth): 4
+- [berlysia](https://github.com/berlysia): 3
+- [エリス](https://github.com/erisu): 3
+- [Fabian Steeg](https://github.com/fsteeg): 3
+- [Manuel Rego](https://github.com/mrego): 3
+- [Filip Skokan](https://github.com/panva): 3
+- [Luca Greco](https://github.com/rpl): 3
+- [Tobie Langel](https://github.com/tobie): 3
+- [Fuqiao Xue](https://github.com/xfq): 3
+- [Charles Assunção](https://github.com/assuncaocharles): 2
+- [Gregory Pappas](https://github.com/gregorypappas): 2
+- [Karl Dubost](https://github.com/karlcow): 2
+- [Brian Liu Xu](https://github.com/Lidaron): 2
+- [Mike Wasserman](https://github.com/michaelwasserman): 2
+- [Miguel de Moura](https://github.com/migueldemoura): 2
+- [Nolan Lawson](https://github.com/nolanlawson): 2
+- [Martin Thomson](https://github.com/martinthomson): 2
+- [Niklas Merz](https://github.com/NiklasMerz): 2
+- [Nicolò Ribaudo](https://github.com/nicolo-ribaudo): 2
+- [Greg Hurrell](https://github.com/wincent): 2
+- [caribouW3](https://github.com/caribouW3): 1
+- [Christian Flach](https://github.com/cmfcmf): 1
+- [Devin Rousso](https://github.com/dcrousso): 1
+- [Daniel Holbert](https://github.com/dholbert): 1
+- [Simeon Vincent](https://github.com/dotproto): 1
+- [elf Pavlik](https://github.com/elf-pavlik): 1
+- [Guilherme Siquinelli](https://github.com/guiseek): 1
+- [Jan Romann](https://github.com/JKRhb): 1
+- [Khushal Sagar](https://github.com/khushalsagar): 1
+- [Philip Walton](https://github.com/philipwalton): 1
+- [Philippe Le Hegaret](https://github.com/plehegar): 1
+- [Reilly Grant](https://github.com/reillyeon): 1
+- [Nicholas Griffin](https://github.com/nicholasgriffintn): 1
+- [Ted Thibodeau Jr](https://github.com/TallTed): 1
+- [Sasha](https://github.com/zlayaAvocado): 1
+
+### <a id="lang-typescript">TypeScript</a> (3383 commits) [↩](#row-lang-typescript)
+
+- [Christoph Guttandin](https://github.com/chrisguttandin): 526
+- [berlysia](https://github.com/berlysia): 446
+- [Nicholas Griffin](https://github.com/nicholasgriffintn): 339
+- [Christian Bromann](https://github.com/christian-bromann): 336
+- [Jimmy Zhening Luo](https://github.com/jimmy-zhening-luo): 308
+- [Corey Farwell](https://github.com/frewsxcv): 199
+- [John-David Dalton](https://github.com/jdalton): 194
+- [Jesse Wright](https://github.com/jeswr): 113
+- [Ruben Taelman](https://github.com/rubensworks): 109
+- [GU Yiling](https://github.com/Justineo): 82
+- [logonoff](https://github.com/logonoff): 57
+- [Sergey Chernyshev](https://github.com/sergeychernyshev): 52
+- [Kagami Sascha Rosylight](https://github.com/saschanaz): 50
+- [David Zearing](https://github.com/dzearing): 49
+- [Yuki Okushi](https://github.com/JohnTitor): 45
+- [Nazım Can Altınova](https://github.com/canova): 34
+- [elf Pavlik](https://github.com/elf-pavlik): 32
+- [Christian Liebel](https://github.com/christianliebel): 31
+- [Miro Ostafinski](https://github.com/ostafinskim): 23
+- [Peter Beverloo](https://github.com/beverloo): 22
+- [Christoph Neumüller](https://github.com/discostu105): 22
+- [Seiry Yu](https://github.com/seiry): 20
+- [Aleksandr Shoronov](https://github.com/underoot): 20
+- [Belem Zhang](https://github.com/ibelem): 17
+- [mehm8128](https://github.com/mehm8128): 17
+- [Xiaoshen X](https://github.com/l-xiaoshen): 16
+- [Nicolò Ribaudo](https://github.com/nicolo-ribaudo): 15
+- [Don McCurdy](https://github.com/donmccurdy): 13
+- [Daniel Weck](https://github.com/danielweck): 12
+- [Filip Skokan](https://github.com/panva): 12
+- [Cr4zy Uru5](https://github.com/crazyurus): 11
+- [Rafael Fernández López](https://github.com/ereslibre): 11
+- [Benoît](https://github.com/BenoitZugmeyer): 10
+- [Xuan Huang (黄玄)](https://github.com/Huxpro): 8
+- [Ilya Grigorik](https://github.com/igrigorik): 8
+- [Odin Hørthe-Omdal Urdland](https://github.com/odinho): 8
+- [Cristiano Aguzzi](https://github.com/relu91): 8
+- [John Wang](https://github.com/grokify): 7
+- [Jan Hajek](https://github.com/hajekj): 6
+- [Sid Vishnoi](https://github.com/sidvishnoi): 6
+- [Hadrien Gardeur](https://github.com/HadrienGardeur): 5
+- [Dimitri Podborski](https://github.com/podborski): 5
+- [Alex](https://github.com/alex-ju): 4
+- [Adam Jolicoeur](https://github.com/AdamJ): 4
+- [Matt Rakow](https://github.com/ChumpChief): 4
+- [Ivan Herman](https://github.com/iherman): 4
+- [Nicholas Tindle](https://github.com/ntindle): 4
+- [Ieben Smessaert](https://github.com/smessie): 4
+- [Wout Slabbinck](https://github.com/woutslabbinck): 4
+- [Yuri Shkuro](https://github.com/yurishkuro): 4
+- [Elie Michel](https://github.com/eliemichel): 3
+- [HE Shi-Jun](https://github.com/hax): 3
+- [Hiroya UGA](https://github.com/hiroya-uga): 3
+- [Kyle Den Hartog](https://github.com/kdenhartog): 3
+- [Ricardo Iván Vieitez Parra](https://github.com/corrideat): 2
+- [denkeni](https://github.com/denkeni): 2
+- [Eemeli Aro](https://github.com/eemeli): 2
+- [Jory Burson](https://github.com/jorydotcom): 2
+- [Oleksandr Fediashov](https://github.com/layershifter): 2
+- [Pete Gonzalez](https://github.com/octogonz): 2
+- [Robert Long](https://github.com/robertlong): 2
+- [Romain Menke](https://github.com/romainmenke): 2
+- [Anton Bershanskiy](https://github.com/bershanskiy): 1
+- [Oliver Byford](https://github.com/36degrees): 1
+- [Anssi Kostiainen](https://github.com/anssiko): 1
+- [Benjamin Bouvier](https://github.com/bnjbvr): 1
+- [Denis Ah-Kang](https://github.com/deniak): 1
+- [Daniel Dyla](https://github.com/dyladan): 1
+- [Eli Grey](https://github.com/eligrey): 1
+- [Huy](https://github.com/huyprowow): 1
+- [Julien Cayzac](https://github.com/jcayzac): 1
+- [Jeffrey Yasskin](https://github.com/jyasskin): 1
+- [Timo Tijhof](https://github.com/Krinkle): 1
+- [Peach](https://github.com/PeachScript): 1
+- [Oliver Dunk](https://github.com/oliverdunk): 1
+- [Preet Patel](https://github.com/preetpatel): 1
+- [Keith Cirkel](https://github.com/keithamus): 1
+- [Hai Rao](https://github.com/RaoHai): 1
+- [Paul Irish](https://github.com/paulirish): 1
+- [Greg Hurrell](https://github.com/wincent): 1
+- [Xidorn Quan](https://github.com/upsuper): 1
+
+### <a id="lang-html">HTML</a> (2041 commits) [↩](#row-lang-html)
+
+- [Thiago Perrotta](https://github.com/thiagowfx): 947
+- [John Wang](https://github.com/grokify): 81
+- [Barry Pollard](https://github.com/tunetheweb): 79
+- [Aram Zucker-Scharff](https://github.com/AramZS): 75
+- [Philippe Le Hegaret](https://github.com/plehegar): 63
+- [Ivan Herman](https://github.com/iherman): 48
+- [Marcos Cáceres](https://github.com/marcoscaceres): 46
+- [Manuel Rego](https://github.com/mrego): 45
+- [Tim Cappalli](https://github.com/timcappalli): 43
+- [Ted Thibodeau Jr](https://github.com/TallTed): 32
+- [Fuqiao Xue](https://github.com/xfq): 32
+- [Lea Verou](https://github.com/LeaVerou): 29
+- [Matt Garrish](https://github.com/mattgarrish): 21
+- [Rémi Bétin](https://github.com/remibetin): 20
+- [Philip Jägenstedt](https://github.com/foolip): 19
+- [Jan-Ivar Bruaroey](https://github.com/jan-ivar): 17
+- [Teodor Tanasoaia](https://github.com/teoxoy): 17
+- [Peter Krautzberger](https://github.com/pkra): 16
+- [Daniel Vogelheim](https://github.com/otherdaniel): 15
+- [Adam Jolicoeur](https://github.com/AdamJ): 14
+- [Manu Sporny](https://github.com/msporny): 14
+- [Alexander Dawson](https://github.com/AlexDawsonUK): 13
+- [Anne van Kesteren](https://github.com/annevk): 13
+- [Niklas Merz](https://github.com/NiklasMerz): 13
+- [Ruben Taelman](https://github.com/rubensworks): 13
+- [BigBlueHat](https://github.com/BigBlueHat): 11
+- [Rune Lillesveen](https://github.com/lilles): 11
+- [logonoff](https://github.com/logonoff): 11
+- [Euclid Ye](https://github.com/yezhizhen): 10
+- [elf Pavlik](https://github.com/elf-pavlik): 9
+- [jgraham](https://github.com/jgraham): 9
+- [saku](https://github.com/sakupi01): 9
+- [caribouW3](https://github.com/caribouW3): 8
+- [Aaron Coburn](https://github.com/acoburn): 8
+- [Alexandra Borovova](https://github.com/lutien): 8
+- [Anssi Kostiainen](https://github.com/anssiko): 7
+- [Hayato Ito](https://github.com/hayatoito): 7
+- [Hadrien Gardeur](https://github.com/HadrienGardeur): 7
+- [Tab Atkins Jr.](https://github.com/tabatkins): 7
+- [Sofía Celi](https://github.com/claucece): 6
+- [Jeffrey Yasskin](https://github.com/jyasskin): 6
+- [Mark Nottingham](https://github.com/mnot): 6
+- [Sergey Chernyshev](https://github.com/sergeychernyshev): 6
+- [Anusha Muley](https://github.com/aamuley): 5
+- [Daniel Holbert](https://github.com/dholbert): 5
+- [Christoph Neumüller](https://github.com/discostu105): 5
+- [Chengzhong Wu](https://github.com/legendecas): 5
+- [Timo Tijhof](https://github.com/Krinkle): 5
+- [Jordan Harband](https://github.com/ljharb): 5
+- [Adnan Aidan T.](https://github.com/adntaha): 4
+- [Morgan Murrah](https://github.com/airbr): 4
+- [Aaron Parecki](https://github.com/aaronpk): 4
+- [Christian Liebel](https://github.com/christianliebel): 4
+- [L. David Baron](https://github.com/dbaron): 4
+- [Derek Schuff](https://github.com/dschuff): 4
+- [Luke Warlow](https://github.com/lukewarlow): 4
+- [Tim Nguyen](https://github.com/nt1m): 4
+- [Nicolò Ribaudo](https://github.com/nicolo-ribaudo): 4
+- [Kagami Sascha Rosylight](https://github.com/saschanaz): 4
+- [Ryan Barrett](https://github.com/snarfed): 4
+- [François Daoust](https://github.com/tidoust): 4
+- [sideshowbarker](https://github.com/sideshowbarker): 4
+- [xuri](https://github.com/xuri): 4
+- [Andreu Botella](https://github.com/andreubotella): 3
+- [Robin Berjon](https://github.com/darobin): 3
+- [denkeni](https://github.com/denkeni): 3
+- [Sam Sneddon](https://github.com/gsnedders): 3
+- [Jan Hajek](https://github.com/hajekj): 3
+- [Henri Sivonen](https://github.com/hsivonen): 3
+- [乐平](https://github.com/lecepin): 3
+- [Jinho Bang](https://github.com/romandev): 3
+- [Doug Schepers](https://github.com/shepazu): 3
+- [Brandon Jones](https://github.com/toji): 3
+- [Rik Cabanier](https://github.com/cabanier): 2
+- [davidsgrogan](https://github.com/davidsgrogan): 2
+- [Denis Ah-Kang](https://github.com/deniak): 2
+- [Erik Wilde](https://github.com/dret): 2
+- [Chris de Almeida](https://github.com/ctcpip): 2
+- [Dominique Hazael-Massieux](https://github.com/dontcallmedom): 2
+- [Hidde de Vries](https://github.com/hidde): 2
+- [Kaelig Deloumeau-Prigent](https://github.com/kaelig): 2
+- [Mike West](https://github.com/mikewest): 2
+- [Mehmet Oguz Derin](https://github.com/mehmetoguzderin): 2
+- [Patrick H. Lauke](https://github.com/patrickhlauke): 2
+- [Rob Smith](https://github.com/rjksmith): 2
+- [Reilly Grant](https://github.com/reillyeon): 2
+- [Manish Goregaokar](https://github.com/Manishearth): 2
+- [Sid Vishnoi](https://github.com/sidvishnoi): 2
+- [andruud](https://github.com/andruud): 1
+- [Adam Page](https://github.com/adampage): 1
+- [Oliver Byford](https://github.com/36degrees): 1
+- [Chris Needham](https://github.com/chrisn): 1
+- [Ivan Kanakarakis](https://github.com/c00kiemon5ter): 1
+- [Diego Gonzalez](https://github.com/diekus): 1
+- [Simeon Vincent](https://github.com/dotproto): 1
+- [Dominic Farolino](https://github.com/domfarolino): 1
+- [Diego Molina](https://github.com/diemol): 1
+- [Hadley Beeman](https://github.com/hadleybeeman): 1
+- [Jan Jaap de Groot](https://github.com/JJdeGroot): 1
+- [Michael Cooper](https://github.com/michael-n-cooper): 1
+- [Yuki Okushi](https://github.com/JohnTitor): 1
+- [Mustaq Ahmed](https://github.com/mustaqahmed): 1
+- [Miguel de Moura](https://github.com/migueldemoura): 1
+- [mehm8128](https://github.com/mehm8128): 1
+- [Mu-An Chiou](https://github.com/muan): 1
+- [Raphael Kubo da Costa](https://github.com/rakuco): 1
+- [ChangSeok Oh](https://github.com/shivamidow): 1
+- [Rob Wu](https://github.com/Rob--W): 1
+- [Christoph Braun](https://github.com/uvdsl): 1
+- [vmpstr](https://github.com/vmpstr): 1
+- [Sasha](https://github.com/zlayaAvocado): 1
+- [Antonin Delpeuch](https://github.com/wetneb): 1
+
+### <a id="lang-go">Go</a> (1150 commits) [↩](#row-lang-go)
+
+- [John Wang](https://github.com/grokify): 921
+- [Christoph Neumüller](https://github.com/discostu105): 49
+- [Yuri Shkuro](https://github.com/yurishkuro): 45
+- [Andeya](https://github.com/andeya): 37
+- [sideshowbarker](https://github.com/sideshowbarker): 36
+- [Fernando Serboncini](https://github.com/fserb): 24
+- [presbrey](https://github.com/presbrey): 10
+- [xuri](https://github.com/xuri): 7
+- [Paul Irish](https://github.com/paulirish): 4
+- [Farshid Tavakolizadeh](https://github.com/farshidtz): 3
+- [Daniel Holbert](https://github.com/dholbert): 2
+- [Sam Sneddon](https://github.com/gsnedders): 2
+- [Francois Marier](https://github.com/fmarier): 2
+- [Ilya Grigorik](https://github.com/igrigorik): 2
+- [Sergey Kanzhelev](https://github.com/SergeyKanzhelev): 2
+- [Armin Ruech](https://github.com/arminru): 1
+- [Mo Khan](https://github.com/enj): 1
+- [Hiroki TAKEMURA](https://github.com/kekeho): 1
+- [Barry Pollard](https://github.com/tunetheweb): 1
+
+### <a id="lang-python">Python</a> (961 commits) [↩](#row-lang-python)
+
+- [Mark Nottingham](https://github.com/mnot): 278
+- [Ryan Barrett](https://github.com/snarfed): 176
+- [Corey Farwell](https://github.com/frewsxcv): 97
+- [Niq Dudfield](https://github.com/sublimator): 71
+- [sideshowbarker](https://github.com/sideshowbarker): 36
+- [Martin Thomson](https://github.com/martinthomson): 34
+- [Dylan Cutler](https://github.com/DCtheTall): 32
+- [jgraham](https://github.com/jgraham): 22
+- [Nidhi Jaju](https://github.com/nidhijaju): 21
+- [Julián Arenas Guerrero](https://github.com/arenas-guerrero-julian): 18
+- [Nicholas Tindle](https://github.com/ntindle): 18
+- [Christian Bormann](https://github.com/c2bo): 17
+- [Chun-Min Chang](https://github.com/ChunMinChang): 14
+- [Eemeli Aro](https://github.com/eemeli): 14
+- [Hai Rao](https://github.com/RaoHai): 11
+- [Nicholas Griffin](https://github.com/nicholasgriffintn): 9
+- [Moritz Schubotz](https://github.com/physikerwelt): 9
+- [Daniel Yacob](https://github.com/dyacob): 8
+- [Fabian Steeg](https://github.com/fsteeg): 7
+- [Bruno P. Kinoshita](https://github.com/kinow): 7
+- [Alex](https://github.com/AlexanderWillner): 6
+- [Ilya Grigorik](https://github.com/igrigorik): 6
+- [Mike Frysinger](https://github.com/vapier): 6
+- [Diego Molina](https://github.com/diemol): 5
+- [Alexandra Borovova](https://github.com/lutien): 5
+- [Mehmet Oguz Derin](https://github.com/mehmetoguzderin): 3
+- [OllieJC](https://github.com/OllieJC): 3
+- [Sebastian Zimmeck](https://github.com/SebastianZimmeck): 3
+- [Jiewei Qian](https://github.com/wacky6): 3
+- [bubu](https://github.com/AlbertoFDR): 2
+- [Ingvar Stepanyan](https://github.com/RReverser): 2
+- [Xidorn Quan](https://github.com/upsuper): 2
+- [Daniel Veditz](https://github.com/dveditz): 1
+- [ektrah](https://github.com/ektrah): 1
+- [Elie Michel](https://github.com/eliemichel): 1
+- [Erika Doyle Navara](https://github.com/erikadoyle): 1
+- [Felipe Moreno](https://github.com/flpm): 1
+- [Johann Hofmann](https://github.com/johannhof): 1
+- [Joey Parrish](https://github.com/joeyparrish): 1
+- [Ken Lunde](https://github.com/kenlunde): 1
+- [Chengzhong Wu](https://github.com/legendecas): 1
+- [Mike West](https://github.com/mikewest): 1
+- [Paul Irish](https://github.com/paulirish): 1
+- [Rob Wu](https://github.com/Rob--W): 1
+- [Tab Atkins Jr.](https://github.com/tabatkins): 1
+- [Till Schneidereit](https://github.com/tschneidereit): 1
+- [Ted Thibodeau Jr](https://github.com/TallTed): 1
+- [xuri](https://github.com/xuri): 1
+
+### <a id="lang-ruby">Ruby</a> (780 commits) [↩](#row-lang-ruby)
+
+- [Sam Ruby](https://github.com/rubys): 766
+- [Rémi Bétin](https://github.com/remibetin): 8
+- [John Wang](https://github.com/grokify): 4
+- [Alex](https://github.com/AlexanderWillner): 1
+- [Nicholas Griffin](https://github.com/nicholasgriffintn): 1
+
+### <a id="lang-csharp">C#</a> (739 commits) [↩](#row-lang-csharp)
+
+- [Jimmy Zhening Luo](https://github.com/jimmy-zhening-luo): 676
+- [Diego Molina](https://github.com/diemol): 36
+- [ektrah](https://github.com/ektrah): 12
+- [xuri](https://github.com/xuri): 8
+- [Dmitry Brant](https://github.com/dbrant): 7
+
+### <a id="lang-shell">Shell</a> (443 commits) [↩](#row-lang-shell)
+
+- [Thiago Perrotta](https://github.com/thiagowfx): 277
+- [Ruben Taelman](https://github.com/rubensworks): 41
+- [Nazım Can Altınova](https://github.com/canova): 18
+- [Paul Irish](https://github.com/paulirish): 15
+- [zv](https://github.com/o-y): 13
+- [Hai Rao](https://github.com/RaoHai): 13
+- [Farshid Tavakolizadeh](https://github.com/farshidtz): 12
+- [J✪ΞY STANFORD](https://github.com/rinchen): 10
+- [Keith Cirkel](https://github.com/keithamus): 8
+- [Nicholas Griffin](https://github.com/nicholasgriffintn): 8
+- [Jiewei Qian](https://github.com/wacky6): 5
+- [Manuel Rego](https://github.com/mrego): 3
+- [Aram Zucker-Scharff](https://github.com/AramZS): 2
+- [HeroCC](https://github.com/HeroCC): 2
+- [Newton](https://github.com/iamnewton): 2
+- [Mahdi Baghbani](https://github.com/MahdiBaghbani): 2
+- [Ruben Verborgh](https://github.com/RubenVerborgh): 2
+- [Jordan Harband](https://github.com/ljharb): 2
+- [Simeon Vincent](https://github.com/dotproto): 1
+- [Francois Marier](https://github.com/fmarier): 1
+- [Corey Farwell](https://github.com/frewsxcv): 1
+- [Levi Thomason](https://github.com/levithomason): 1
+- [Stackie Jia](https://github.com/stackia): 1
+- [sideshowbarker](https://github.com/sideshowbarker): 1
+- [Tim Cappalli](https://github.com/timcappalli): 1
+- [Greg Hurrell](https://github.com/wincent): 1
+
+### <a id="lang-java">Java</a> (370 commits) [↩](#row-lang-java)
+
+- [Ruben Taelman](https://github.com/rubensworks): 174
+- [sideshowbarker](https://github.com/sideshowbarker): 117
+- [Niklas Merz](https://github.com/NiklasMerz): 27
+- [Fabian Steeg](https://github.com/fsteeg): 16
+- [Yuri Shkuro](https://github.com/yurishkuro): 12
+- [Alex N. Jose](https://github.com/alexnj): 10
+- [Diego Molina](https://github.com/diemol): 5
+- [Maxime Guerreiro](https://github.com/punkeel): 4
+- [Clemens Portele](https://github.com/cportele): 3
+- [Aaron Coburn](https://github.com/acoburn): 1
+- [Eemeli Aro](https://github.com/eemeli): 1
+
+### <a id="lang-unknown">Unknown</a> (305 commits) [↩](#row-lang-unknown)
+
+- [Jimmy Zhening Luo](https://github.com/jimmy-zhening-luo): 101
+- [Raphael Kubo da Costa](https://github.com/rakuco): 18
+- [Julián Arenas Guerrero](https://github.com/arenas-guerrero-julian): 16
+- [Tim Cappalli](https://github.com/timcappalli): 14
+- [J✪ΞY STANFORD](https://github.com/rinchen): 12
+- [John Wang](https://github.com/grokify): 10
+- [Lea Verou](https://github.com/LeaVerou): 9
+- [Nicolò Ribaudo](https://github.com/nicolo-ribaudo): 9
+- [Jordan Harband](https://github.com/ljharb): 9
+- [Seiry Yu](https://github.com/seiry): 7
+- [Anssi Kostiainen](https://github.com/anssiko): 5
+- [Hadrien Gardeur](https://github.com/HadrienGardeur): 5
+- [Jordi Martos](https://github.com/jordimartos): 5
+- [Philippe Le Hegaret](https://github.com/plehegar): 5
+- [Miguel Casas](https://github.com/yell0wd0g): 5
+- [A. Soroka](https://github.com/ajs6f): 4
+- [Chris de Almeida](https://github.com/ctcpip): 4
+- [Yuri Shkuro](https://github.com/yurishkuro): 4
+- [hyojin](https://github.com/anawhj): 3
+- [Jory Burson](https://github.com/jorydotcom): 3
+- [Jacob Groß](https://github.com/kurtextrem): 3
+- [mehm8128](https://github.com/mehm8128): 3
+- [Alexander Dawson](https://github.com/AlexDawsonUK): 2
+- [Aref Z.](https://github.com/arefz): 2
+- [Aram Zucker-Scharff](https://github.com/AramZS): 2
+- [Dylan Cutler](https://github.com/DCtheTall): 2
+- [Anne van Kesteren](https://github.com/annevk): 2
+- [Jackie(Guokai) Han](https://github.com/hanguokai): 2
+- [Farshid Tavakolizadeh](https://github.com/farshidtz): 2
+- [Khalid Alnuaim](https://github.com/kaluaim): 2
+- [Khushal Sagar](https://github.com/khushalsagar): 2
+- [Mahdi Baghbani](https://github.com/MahdiBaghbani): 2
+- [Mark Nottingham](https://github.com/mnot): 2
+- [Manuel Rego](https://github.com/mrego): 2
+- [Martin Thomson](https://github.com/martinthomson): 2
+- [Moritz Schubotz](https://github.com/physikerwelt): 2
+- [François Daoust](https://github.com/tidoust): 2
+- [Fuqiao Xue](https://github.com/xfq): 2
+- [Ruben Taelman](https://github.com/rubensworks): 2
+- [Brent Zundel](https://github.com/brentzundel): 1
+- [Derek Schuff](https://github.com/dschuff): 1
+- [Elie Michel](https://github.com/eliemichel): 1
+- [Gary Kacmarcik](https://github.com/garykac): 1
+- [Theresa O’Connor](https://github.com/hober): 1
+- [Corey Farwell](https://github.com/frewsxcv): 1
+- [Eemeli Aro](https://github.com/eemeli): 1
+- [Arnaud J Le Hors](https://github.com/lehors): 1
+- [Dr. Matt Lee](https://github.com/mattl): 1
+- [Luke Warlow](https://github.com/lukewarlow): 1
+- [Timo Tijhof](https://github.com/Krinkle): 1
+- [Niklas Merz](https://github.com/NiklasMerz): 1
+- [Stasinos Konstantopoulos](https://github.com/stasinos): 1
+- [Sergey Chernyshev](https://github.com/sergeychernyshev): 1
+- [Tobie Langel](https://github.com/tobie): 1
+- [Till Schneidereit](https://github.com/tschneidereit): 1
+- [Antonin Delpeuch](https://github.com/wetneb): 1
+
+### <a id="lang-css">CSS</a> (294 commits) [↩](#row-lang-css)
+
+- [Romain Menke](https://github.com/romainmenke): 189
+- [Jimmy Zhening Luo](https://github.com/jimmy-zhening-luo): 61
+- [Jeff Carpenter](https://github.com/jeffcarp): 10
+- [Adam Jolicoeur](https://github.com/AdamJ): 7
+- [Jackie(Guokai) Han](https://github.com/hanguokai): 7
+- [Adina](https://github.com/haltersweb): 4
+- [Derek Schuff](https://github.com/dschuff): 2
+- [Bruno P. Kinoshita](https://github.com/kinow): 2
+- [Timo Tijhof](https://github.com/Krinkle): 2
+- [Scott González](https://github.com/scottgonzalez): 2
+- [Andreu Botella](https://github.com/andreubotella): 1
+- [Clemens Portele](https://github.com/cportele): 1
+- [Robin Berjon](https://github.com/darobin): 1
+- [Rafael Fernández López](https://github.com/ereslibre): 1
+- [Francois Marier](https://github.com/fmarier): 1
+- [Roman Komarov](https://github.com/kizu): 1
+- [Martin Thomson](https://github.com/martinthomson): 1
+- [Keith Cirkel](https://github.com/keithamus): 1
+
+### <a id="lang-rust">Rust</a> (262 commits) [↩](#row-lang-rust)
+
+- [Yuki Okushi](https://github.com/JohnTitor): 55
+- [Keith Cirkel](https://github.com/keithamus): 51
+- [Ingvar Stepanyan](https://github.com/RReverser): 36
+- [Manish Goregaokar](https://github.com/Manishearth): 29
+- [Euclid Ye](https://github.com/yezhizhen): 25
+- [Anna Weine](https://github.com/Frosne): 15
+- [eri](https://github.com/eerii): 14
+- [Benjamin Bouvier](https://github.com/bnjbvr): 13
+- [Douglas Creager](https://github.com/dcreager): 7
+- [Corey Farwell](https://github.com/frewsxcv): 3
+- [Martin Thomson](https://github.com/martinthomson): 3
+- [Marais Rossouw](https://github.com/maraisr): 2
+- [Surma](https://github.com/surma): 2
+- [Teodor Tanasoaia](https://github.com/teoxoy): 2
+- [Daniel Hillerström](https://github.com/dhil): 1
+- [Luke Warlow](https://github.com/lukewarlow): 1
+- [Niklas Merz](https://github.com/NiklasMerz): 1
+- [Dan Gohman](https://github.com/sunfishcode): 1
+- [Xidorn Quan](https://github.com/upsuper): 1
+
+### <a id="lang-astro">Astro</a> (199 commits) [↩](#row-lang-astro)
+
+- [saku](https://github.com/sakupi01): 116
+- [mehm8128](https://github.com/mehm8128): 30
+- [parsa](https://github.com/pzrsa): 28
+- [Yuki Okushi](https://github.com/JohnTitor): 23
+- [Sergey Chernyshev](https://github.com/sergeychernyshev): 2
+
+### <a id="lang-moonbit">MoonBit</a> (171 commits) [↩](#row-lang-moonbit)
+
+- [berlysia](https://github.com/berlysia): 171
+
+### <a id="lang-makefile">Makefile</a> (163 commits) [↩](#row-lang-makefile)
+
+- [Martin Thomson](https://github.com/martinthomson): 65
+- [Jan Romann](https://github.com/JKRhb): 46
+- [Mark Nottingham](https://github.com/mnot): 22
+- [Brent Zundel](https://github.com/brentzundel): 16
+- [Filip Skokan](https://github.com/panva): 13
+- [Stackie Jia](https://github.com/stackia): 1
+
+### <a id="lang-nix">Nix</a> (136 commits) [↩](#row-lang-nix)
+
+- [Surma](https://github.com/surma): 112
+- [Rafael Fernández López](https://github.com/ereslibre): 24
+
+### <a id="lang-cplusplus">C++</a> (111 commits) [↩](#row-lang-cplusplus)
+
+- [Lei Mingyu](https://github.com/lozy219): 20
+- [Heejin Ahn](https://github.com/aheejin): 19
+- [Hayato Ito](https://github.com/hayatoito): 11
+- [Arthur Sonzogni](https://github.com/ArthurSonzogni): 10
+- [Kevin Graney](https://github.com/kgraney): 8
+- [Anton Bershanskiy](https://github.com/bershanskiy): 6
+- [vmpstr](https://github.com/vmpstr): 6
+- [sideshowbarker](https://github.com/sideshowbarker): 5
+- [Maksim Sisov](https://github.com/msisov): 4
+- [davidsgrogan](https://github.com/davidsgrogan): 3
+- [Dan McArdle](https://github.com/dmcardle): 3
+- [Anusha Muley](https://github.com/aamuley): 2
+- [Derek Schuff](https://github.com/dschuff): 2
+- [Francois Marier](https://github.com/fmarier): 2
+- [Mike Taylor](https://github.com/miketaylr): 2
+- [Sangwhan "fish" Moon](https://github.com/cynthia): 1
+- [Chinmay Garde](https://github.com/chinmaygarde): 1
+- [Daniel Hillerström](https://github.com/dhil): 1
+- [Elie Michel](https://github.com/eliemichel): 1
+- [Xuan Huang (黄玄)](https://github.com/Huxpro): 1
+- [Niq Dudfield](https://github.com/sublimator): 1
+- [Ben Kelly](https://github.com/wanderview): 1
+- [Mike Frysinger](https://github.com/vapier): 1
+
+### <a id="lang-assembly">Assembly</a> (102 commits) [↩](#row-lang-assembly)
+
+- [Joshua Bell](https://github.com/inexorabletash): 102
+
+### <a id="lang-bikeshed">Bikeshed</a> (97 commits) [↩](#row-lang-bikeshed)
+
+- [Ieben Smessaert](https://github.com/smessie): 12
+- [Dominique Hazael-Massieux](https://github.com/dontcallmedom): 9
+- [Jan-Ivar Bruaroey](https://github.com/jan-ivar): 7
+- [Philip Jägenstedt](https://github.com/foolip): 7
+- [Dominic Farolino](https://github.com/domfarolino): 5
+- [Mehmet Oguz Derin](https://github.com/mehmetoguzderin): 5
+- [Martin Thomson](https://github.com/martinthomson): 5
+- [Anssi Kostiainen](https://github.com/anssiko): 4
+- [L. David Baron](https://github.com/dbaron): 4
+- [Fuqiao Xue](https://github.com/xfq): 4
+- [elf Pavlik](https://github.com/elf-pavlik): 3
+- [Tab Atkins Jr.](https://github.com/tabatkins): 3
+- [François Daoust](https://github.com/tidoust): 3
+- [Tim Cappalli](https://github.com/timcappalli): 3
+- [Barry Pollard](https://github.com/tunetheweb): 3
+- [Ari Chivukula](https://github.com/arichiv): 2
+- [Aaron Coburn](https://github.com/acoburn): 2
+- [davidsgrogan](https://github.com/davidsgrogan): 2
+- [Jeffrey Yasskin](https://github.com/jyasskin): 2
+- [Alexandra Borovova](https://github.com/lutien): 2
+- [Luke Warlow](https://github.com/lukewarlow): 2
+- [Marcos Cáceres](https://github.com/marcoscaceres): 2
+- [andruud](https://github.com/andruud): 1
+- [Guohui Deng](https://github.com/guohuideng2024): 1
+- [jgraham](https://github.com/jgraham): 1
+- [Tim Nguyen](https://github.com/nt1m): 1
+- [Rob Wu](https://github.com/Rob--W): 1
+- [vmpstr](https://github.com/vmpstr): 1
+
+### <a id="lang-php">PHP</a> (60 commits) [↩](#row-lang-php)
+
+- [Moritz Schubotz](https://github.com/physikerwelt): 26
+- [Romain Menke](https://github.com/romainmenke): 13
+- [Timo Tijhof](https://github.com/Krinkle): 11
+- [Aaron Parecki](https://github.com/aaronpk): 3
+- [Sean Dunwoody](https://github.com/sean-dunwoody): 3
+- [Arnaud J Le Hors](https://github.com/lehors): 2
+- [Jan Hajek](https://github.com/hajekj): 1
+- [Fuqiao Xue](https://github.com/xfq): 1
+
+### <a id="lang-vue">Vue</a> (55 commits) [↩](#row-lang-vue)
+
+- [Arthur Sonzogni](https://github.com/ArthurSonzogni): 26
+- [Xuezhou Dai](https://github.com/daidr): 16
+- [Niklas Merz](https://github.com/NiklasMerz): 7
+- [Robin Berjon](https://github.com/darobin): 6
+
+### <a id="lang-swift">Swift</a> (46 commits) [↩](#row-lang-swift)
+
+- [Jan Jaap de Groot](https://github.com/JJdeGroot): 19
+- [Alex](https://github.com/AlexanderWillner): 16
+- [Adam Jolicoeur](https://github.com/AdamJ): 9
+- [denkeni](https://github.com/denkeni): 2
+
+### <a id="lang-c">C</a> (36 commits) [↩](#row-lang-c)
+
+- [Stackie Jia](https://github.com/stackia): 33
+- [Anna Weine](https://github.com/Frosne): 3
+
+### <a id="lang-kotlin">Kotlin</a> (33 commits) [↩](#row-lang-kotlin)
+
+- [Dmitry Brant](https://github.com/dbrant): 22
+- [Luke Warlow](https://github.com/lukewarlow): 10
+- [Robert Ma](https://github.com/Hexcles): 1
+
+### <a id="lang-smarty">Smarty</a> (31 commits) [↩](#row-lang-smarty)
+
+- [Dr. Matt Lee](https://github.com/mattl): 25
+- [Granville Schmidt](https://github.com/gramidt): 6
+
+### <a id="lang-jupyter-notebook">Jupyter Notebook</a> (30 commits) [↩](#row-lang-jupyter-notebook)
+
+- [Bruno P. Kinoshita](https://github.com/kinow): 25
+- [Barry Pollard](https://github.com/tunetheweb): 3
+- [Christian Bromann](https://github.com/christian-bromann): 1
+- [Jeff Carpenter](https://github.com/jeffcarp): 1
+
+### <a id="lang-webassembly">WebAssembly</a> (27 commits) [↩](#row-lang-webassembly)
+
+- [Steven Fontanella](https://github.com/stevenfontanella): 22
+- [Derek Schuff](https://github.com/dschuff): 5
+
+### <a id="lang-mdx">MDX</a> (26 commits) [↩](#row-lang-mdx)
+
+- [berlysia](https://github.com/berlysia): 17
+- [Christian Bromann](https://github.com/christian-bromann): 3
+- [Roman Komarov](https://github.com/kizu): 3
+- [Kaelig Deloumeau-Prigent](https://github.com/kaelig): 2
+- [Luke Warlow](https://github.com/lukewarlow): 1
+
+### <a id="lang-dockerfile">Dockerfile</a> (26 commits) [↩](#row-lang-dockerfile)
+
+- [Kevin Graney](https://github.com/kgraney): 11
+- [Yuri Shkuro](https://github.com/yurishkuro): 10
+- [Tim Cappalli](https://github.com/timcappalli): 5
+
+### <a id="lang-scss">SCSS</a> (24 commits) [↩](#row-lang-scss)
+
+- [Ruben Taelman](https://github.com/rubensworks): 15
+- [Adam Jolicoeur](https://github.com/AdamJ): 6
+- [Yuki Okushi](https://github.com/JohnTitor): 2
+- [Emil Lundberg](https://github.com/emlun): 1
+
+### <a id="lang-noir">Noir</a> (22 commits) [↩](#row-lang-noir)
+
+- [Jesse Wright](https://github.com/jeswr): 22
+
+### <a id="lang-markdown">Markdown</a> (21 commits) [↩](#row-lang-markdown)
+
+- [Estelle Weyl](https://github.com/estelle): 16
+- [Rob Wu](https://github.com/Rob--W): 2
+- [Eric A. Meyer](https://github.com/meyerweb): 1
+- [sideshowbarker](https://github.com/sideshowbarker): 1
+- [Barry Pollard](https://github.com/tunetheweb): 1
+
+### <a id="lang-svelte">Svelte</a> (20 commits) [↩](#row-lang-svelte)
+
+- [logonoff](https://github.com/logonoff): 11
+- [Rémi Bétin](https://github.com/remibetin): 8
+- [Hidde de Vries](https://github.com/hidde): 1
+
+### <a id="lang-yaml">YAML</a> (20 commits) [↩](#row-lang-yaml)
+
+- [Moritz Schubotz](https://github.com/physikerwelt): 17
+- [Philip Jägenstedt](https://github.com/foolip): 3
+
+### <a id="lang-cmake">CMake</a> (16 commits) [↩](#row-lang-cmake)
+
+- [Chinmay Garde](https://github.com/chinmaygarde): 8
+- [Huy](https://github.com/huyprowow): 8
+
+### <a id="lang-mustache">Mustache</a> (14 commits) [↩](#row-lang-mustache)
+
+- [Yuri Shkuro](https://github.com/yurishkuro): 14
+
+### <a id="lang-xslt">XSLT</a> (13 commits) [↩](#row-lang-xslt)
+
+- [Mark Nottingham](https://github.com/mnot): 13
+
+### <a id="lang-perl">Perl</a> (11 commits) [↩](#row-lang-perl)
+
+- [Daniel Yacob](https://github.com/dyacob): 11
+
+### <a id="lang-llvm">LLVM</a> (9 commits) [↩](#row-lang-llvm)
+
+- [Fady Farag](https://github.com/iidmsa): 4
+- [Derek Schuff](https://github.com/dschuff): 3
+- [Heejin Ahn](https://github.com/aheejin): 1
+- [Dan Gohman](https://github.com/sunfishcode): 1
+
+### <a id="lang-json">JSON</a> (6 commits) [↩](#row-lang-json)
+
+- [Rob Wu](https://github.com/Rob--W): 3
+- [Eric A. Meyer](https://github.com/meyerweb): 1
+- [Luke Warlow](https://github.com/lukewarlow): 1
+- [Barry Pollard](https://github.com/tunetheweb): 1
+
+### <a id="lang-blade">Blade</a> (5 commits) [↩](#row-lang-blade)
+
+- [Sean Dunwoody](https://github.com/sean-dunwoody): 5
+
+### <a id="lang-g-code">G-code</a> (4 commits) [↩](#row-lang-g-code)
+
+- [Newton](https://github.com/iamnewton): 4
+
+### <a id="lang-nunjucks">Nunjucks</a> (3 commits) [↩](#row-lang-nunjucks)
+
+- [Oliver Byford](https://github.com/36degrees): 2
+- [Terence Eden](https://github.com/edent): 1
+
+### <a id="lang-scala">Scala</a> (3 commits) [↩](#row-lang-scala)
+
+- [Emil Lundberg](https://github.com/emlun): 3
+
+### <a id="lang-fluent">Fluent</a> (3 commits) [↩](#row-lang-fluent)
+
+- [Manish Goregaokar](https://github.com/Manishearth): 2
+- [Corey Farwell](https://github.com/frewsxcv): 1
+
+### <a id="lang-flux">FLUX</a> (3 commits) [↩](#row-lang-flux)
+
+- [Fabian Steeg](https://github.com/fsteeg): 3
+
+### <a id="lang-yacc">Yacc</a> (3 commits) [↩](#row-lang-yacc)
+
+- [Jesse Wright](https://github.com/jeswr): 3
+
+### <a id="lang-jinja">Jinja</a> (3 commits) [↩](#row-lang-jinja)
+
+- [Paolo De Rosa](https://github.com/paolo-de-rosa): 3
+
+### <a id="lang-dart">Dart</a> (2 commits) [↩](#row-lang-dart)
+
+- [Chinmay Garde](https://github.com/chinmaygarde): 2
+
+### <a id="lang-powershell">PowerShell</a> (2 commits) [↩](#row-lang-powershell)
+
+- [Erika Doyle Navara](https://github.com/erikadoyle): 2
+
+### <a id="lang-tex">TeX</a> (2 commits) [↩](#row-lang-tex)
+
+- [Ruben Taelman](https://github.com/rubensworks): 2
+
+### <a id="lang-vim-script">Vim Script</a> (1 commits) [↩](#row-lang-vim-script)
+
+- [BigBlueHat](https://github.com/BigBlueHat): 1
+
+### <a id="lang-openscad">OpenSCAD</a> (1 commits) [↩](#row-lang-openscad)
+
+- [Terence Eden](https://github.com/edent): 1
+
+### <a id="lang-emacs-lisp">Emacs Lisp</a> (1 commits) [↩](#row-lang-emacs-lisp)
+
+- [Hayato Ito](https://github.com/hayatoito): 1
+
+### <a id="lang-hcl">HCL</a> (1 commits) [↩](#row-lang-hcl)
+
+- [OllieJC](https://github.com/OllieJC): 1
+
+### <a id="lang-twig">Twig</a> (1 commits) [↩](#row-lang-twig)
+
+- [Simon R Jones](https://github.com/simonrjones): 1
+
+### <a id="lang-liquid">Liquid</a> (1 commits) [↩](#row-lang-liquid)
+
+- [Rémi Bétin](https://github.com/remibetin): 1
+
+### <a id="lang-lua">Lua</a> (1 commits) [↩](#row-lang-lua)
+
+- [Greg Hurrell](https://github.com/wincent): 1
+
+---
+
+*Report generated on 2026-01-26 20:47:21 +0900 by [gh-activity-chronicle](https://github.com/gh-tui-tools/gh-activity-chronicle).*

@@ -1,0 +1,10 @@
+# Generated reports (keep SAMPLE*.md as examples)
+*-to-*.md
+!SAMPLE*.md
+
+# Python
+__pycache__/
+*.pyc
+
+# Editor backup files
+*~

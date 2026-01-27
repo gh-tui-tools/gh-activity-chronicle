@@ -1,11 +1,11 @@
-# gh-user-chronicle
+# gh-activity-chronicle
 
-gh CLI extension that generates a comprehensive markdown report of a user's GitHub activity over time
+gh-activity-chronicle generates comprehensive markdown reports of GitHub activity — for users or organizations — over a specified time period.
 
 ## Installation
 
 ```bash
-gh extension install gh-tui-tools/gh-user-chronicle
+gh extension install gh-tui-tools/gh-activity-chronicle
 ```
 
 ### Requirements
@@ -13,58 +13,82 @@ gh extension install gh-tui-tools/gh-user-chronicle
 - [GitHub CLI (`gh`)](https://cli.github.com/) installed and authenticated
 - Python 3.6+
 
+> [!WARNING]
+> **API Rate Limits**: This tool makes many GitHub API calls. A single-user report uses ~50-200 calls. Organization reports use significantly more — a 7-day report for a 500-member org uses ~1,300 calls (~26% of your 5,000/hour limit).
+>
+> **To minimize API usage:**
+> - Use shorter time periods (7 days is the default)
+> - For orgs, use `‑‑team` to report on specific teams instead of all members
+> - Avoid running multiple org reports in quick succession
+
 ## Usage
 
 ```bash
-# Basic usage (last 30 days, current GitHub user)
-gh user-chronicle
+# Basic usage (last 7 days, current GitHub user)
+gh activity-chronicle
 
 # Specify a different user
-gh user-chronicle --user USERNAME
+gh activity-chronicle --user USERNAME
 
 # Last week
-gh user-chronicle --weeks 1
+gh activity-chronicle --weeks 1
 
 # Last 3 months
-gh user-chronicle --months 3
+gh activity-chronicle --months 3
 
 # Last year
-gh user-chronicle --year
+gh activity-chronicle --year
 
 # Specific date range
-gh user-chronicle --since 2026-01-01 --until 2026-01-31
+gh activity-chronicle --since 2026-01-01 --until 2026-01-31
 
 # Custom output filename
-gh user-chronicle -o report.md
+gh activity-chronicle -o report.md
 
 # Output to stdout instead of file
-gh user-chronicle --stdout
+gh activity-chronicle --stdout
+
+# Organization mode (public members only, the default)
+gh activity-chronicle --org w3c
+
+# Organization mode including private members
+gh activity-chronicle --org w3c --private
+
+# Organization owners only
+gh activity-chronicle --org w3c --owners
+
+# Organization + team mode (reports on specific team members)
+gh activity-chronicle --org w3c --team accessibility-specialists
 ```
 
 ## Options
 
 | Option | Short | Description |
 |--------|-------|-------------|
-| `--user` | `-u` | GitHub username (default: current authenticated user) |
-| `--days` | | Number of days to look back (default: 30) |
-| `--weeks` | | Number of weeks to look back |
-| `--months` | | Number of months to look back |
-| `--year` | | Look back one year |
-| `--since` | | Start date in YYYY-MM-DD format |
-| `--until` | | End date in YYYY-MM-DD format (default: today) |
-| `--output` | `-o` | Output file path (default: `<user>-<since>-to-<until>.md`) |
-| `--stdout` | | Output to stdout instead of file |
+| `‑‑user` | `‑u` | GitHub username (default: current authenticated user) |
+| `‑‑org` | | GitHub organization name (mutually exclusive with `‑‑user`) |
+| `‑‑team` | | Team slug within org (requires `‑‑org`) |
+| `‑‑owners` | | Report on org owners only (requires `‑‑org`) |
+| `‑‑private` | | Include private members (default is public members only; requires `‑‑org`) |
+| `‑‑days` | | Number of days to look back (default: 7) |
+| `‑‑weeks` | | Number of weeks to look back |
+| `‑‑months` | | Number of months to look back |
+| `‑‑year` | | Look back one year |
+| `‑‑since` | | Start date in YYYY-MM-DD format |
+| `‑‑until` | | End date in YYYY-MM-DD format (default: today) |
+| `‑‑output` | `‑o` | Output file path (default: `<user>-<since>-to-<until>.md` or `<org>-<since>-to-<until>.md`) |
+| `‑‑stdout` | | Output to stdout instead of file |
 
 ## Report contents
 
-See [SAMPLE.md](SAMPLE.md) for example output.
+See [SAMPLE.md](SAMPLE.md) for example user mode output, or [SAMPLE-ORG.md](SAMPLE-ORG.md) for org mode output.
 
 The generated report includes:
 
 ### Executive summary
 - Commits (default branches and all branches)
 - PRs created
-- Pull request reviews given
+- PR reviews given
 - Issues created
 - Repositories contributed to
 - Lines added/deleted
@@ -74,10 +98,8 @@ The generated report includes:
 - Commits by programming language
 - Lines added/deleted by language
 
-### Code reviews
-- PRs reviewed with lines of source reviewed
-- PR discussions participated in
-- Reviews received on authored PRs
+### PRs reviewed
+- Breakdown by repository with line counts
 
 ### Projects by category
 Repositories are automatically categorized into:
@@ -100,21 +122,36 @@ Repositories are automatically categorized into:
 ### PRs created
 - Status breakdown (merged, open, closed)
 - Notable PRs sorted by lines changed
-
-### PRs reviewed
-- Breakdown by repository with line counts
+- Reviews received on created PRs
 
 ## Examples
 
-Generate a monthly report for yourself:
+Generate a weekly report for yourself:
 ```bash
-gh user-chronicle --days 30
+gh activity-chronicle
 ```
 
 Generate a quarterly report with custom filename:
 ```bash
-gh user-chronicle -u octocat --since 2026-01-01 --until 2026-03-31 -o Q1-2026.md
+gh activity-chronicle -u octocat --since 2026-01-01 --until 2026-03-31 -o Q1-2026.md
 ```
+
+## Organization mode
+
+When using `‑‑org`, the report aggregates activity from organization members:
+
+- **Default**: Reports on public members only (those who’ve made their membership visible)
+- **With `‑‑private`**: Include all members (public and private)
+- **With `‑‑owners`**: Reports on organization owners (admin members) only
+- **With `‑‑team`**: Reports on members of the specified team
+
+Note: `‑‑private`, `‑‑owners`, and `‑‑team` are mutually exclusive.
+
+The report shows combined totals across all members, with PRs and reviews de-duplicated by URL. Data for each member is gathered in parallel (30 concurrent workers).
+
+Output filename format:
+- Org only: `{org}-{since}-to-{until}.md`
+- Org + team: `{org}-{team}-{since}-to-{until}.md`
 
 ## Notes
 
@@ -123,9 +160,10 @@ gh user-chronicle -u octocat --since 2026-01-01 --until 2026-03-31 -o Q1-2026.md
 - Private repositories and special profile repositories (`username/username`) are automatically excluded.
 - For repositories with significant C++ code (>=10% of codebase), the language is reported as C++ even if test files cause GitHub to detect a different primary language.
 - Report generation for a full year (~1000 commits) takes about 90 seconds.
+- Organization mode requires that you have permission to view org membership (typically org members or public membership).
 
 ## Uninstall
 
 ```bash
-gh extension remove user-chronicle
+gh extension remove activity-chronicle
 ```
