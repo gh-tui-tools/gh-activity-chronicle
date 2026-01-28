@@ -1282,6 +1282,111 @@ All lines are kept under 79 characters (PEP 8 standard) without `# noqa` exempti
 
 The 79-character limit is a feature, not a burden — it's a forcing function for cleaner code.
 
+## Testing
+
+The project includes a comprehensive pytest-based test suite covering unit tests, integration tests, snapshot tests, and end-to-end tests.
+
+### Test organization
+
+```
+tests/
+├── conftest.py              # Shared fixtures, module loading
+├── test_helpers.py          # Unit tests for pure helper functions
+├── test_categorization.py   # Pattern matching, repo categorization
+├── test_rate_limit.py       # API call estimation, warning thresholds
+├── test_aggregation.py      # Data aggregation functions
+├── test_integration.py      # Data flow with mocked API calls
+├── test_regression.py       # Output structure verification
+├── test_snapshots.py        # Golden file comparison
+├── test_e2e.py              # End-to-end pipeline tests
+├── api_recorder.py          # Record/replay infrastructure
+└── fixtures/
+    ├── golden/              # Expected output baselines
+    │   ├── user_report.md
+    │   └── org_report.md
+    └── api_responses/       # Recorded API responses (optional)
+```
+
+### Test categories
+
+**Unit tests** (no mocking required):
+- `test_helpers.py` — `format_number()`, anchor generators, link generators, `is_bot()`
+- `test_categorization.py` — `matches()`, `get_category_from_topics()`, `should_skip_repo()`
+- `test_rate_limit.py` — `estimate_org_api_calls()`, `should_warn_rate_limit()`
+- `test_aggregation.py` — `aggregate_language_stats()`, `aggregate_org_data()`, `generate_notable_prs_table()`
+
+**Integration tests** (mock `run_gh_command`):
+- `test_integration.py` — Tests data gathering and report generation with mocked API responses
+- Verifies the orchestration logic without making real network calls
+
+**Regression tests**:
+- `test_regression.py` — Verifies report structure (sections exist, markdown valid, expected content)
+- Catches unintended changes to output format
+
+**Snapshot tests**:
+- `test_snapshots.py` — Compares full report output against golden baseline files
+- `normalize_report()` removes timestamps for stable comparison
+- Use `--update-golden` flag to regenerate baselines after intentional changes
+
+**End-to-end tests**:
+- `test_e2e.py` — Tests complete data flow from API calls through report generation
+- `MockGhCommand` class simulates GitHub API responses based on call patterns
+- Verifies data consistency (commit counts match, PRs deduplicated correctly)
+
+### Running tests
+
+```bash
+# Install dependencies
+pip install pytest pytest-mock
+
+# Run all tests
+pytest tests/ -v
+
+# Run specific category
+pytest tests/test_helpers.py -v
+
+# Update golden files after intentional changes
+pytest tests/test_snapshots.py --update-golden
+```
+
+### Module loading
+
+The main script (`gh-activity-chronicle`) lacks a `.py` extension since it's a CLI tool. The test suite loads it dynamically:
+
+```python
+def load_chronicle_module():
+    script_path = Path(__file__).parent.parent / "gh-activity-chronicle"
+    loader = importlib.machinery.SourceFileLoader("chronicle", str(script_path))
+    spec = importlib.util.spec_from_loader("chronicle", loader)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+```
+
+### API mocking strategy
+
+For integration and E2E tests, the suite mocks at different levels:
+
+1. **Function-level mocking** — Mock specific functions like `get_contributions_summary()` to return controlled data
+2. **Command-level mocking** — `MockGhCommand` class intercepts `run_gh_command()` calls and returns appropriate responses based on argument patterns
+3. **Record/replay** — `ApiRecorder` class can capture real API responses for later replay (useful for creating realistic fixtures)
+
+The mocking approach allows testing the full pipeline without GitHub API access while still exercising real code paths.
+
+### Continuous integration
+
+A GitHub Actions workflow (`.github/workflows/ci.yml`) runs the test suite on pushes to main, pull requests, and manual dispatch. Tests run across Python 3.9–3.13 on `ubuntu-latest`.
+
+### Golden file maintenance
+
+Golden files (`tests/fixtures/golden/`) contain expected report output. When report format changes intentionally:
+
+1. Run `pytest tests/test_snapshots.py --update-golden`
+2. Review the diff in the golden files
+3. Commit the updated golden files with the code changes
+
+The `normalize_report()` function removes variable content (timestamps) before comparison, ensuring tests are deterministic.
+
 ## Future improvements
 
 ### Performance and efficiency
@@ -1319,6 +1424,6 @@ The 79-character limit is a feature, not a burden — it's a forcing function fo
 
 ### Integration
 
-- **CI/CD integration** — GitHub Actions workflow for scheduled report generation
+- **Scheduled report generation** — GitHub Actions workflow for automatic periodic reports
 - **Slack/email delivery** — Send reports directly to communication channels
 - **JSON output** — Machine-readable output for downstream processing

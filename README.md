@@ -162,6 +162,36 @@ Output filename format:
 - Report generation for a full year (~1000 commits) takes about 90 seconds.
 - Organization mode requires that you have permission to view org membership (typically org members or public membership).
 
+## Testing
+
+The project includes a comprehensive test suite (157 tests):
+
+```bash
+# Install test dependencies
+pip install pytest pytest-mock
+
+# Run all tests
+pytest tests/ -v
+
+# Run specific test categories
+pytest tests/test_helpers.py -v      # Unit tests for helper functions
+pytest tests/test_snapshots.py -v    # Snapshot comparison tests
+pytest tests/test_e2e.py -v          # End-to-end data flow tests
+```
+
+**Test categories:**
+- **Unit tests** — Pure functions (categorization, rate limits, formatting)
+- **Integration tests** — Data flow with mocked GitHub API
+- **Snapshot tests** — Compare full reports against golden baselines
+- **End-to-end tests** — Complete pipeline verification
+
+To update golden files after intentional output changes:
+```bash
+pytest tests/test_snapshots.py --update-golden
+```
+
+See [tests/README.md](tests/README.md) for details.
+
 ## Uninstall
 
 ```bash
