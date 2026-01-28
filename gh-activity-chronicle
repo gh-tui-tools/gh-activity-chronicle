@@ -2653,6 +2653,15 @@ def make_lang_anchor(language):
     return anchor
 
 
+def make_org_anchor(org_or_company):
+    """Create anchor ID from org name or company ('tc39' -> 'org-tc39')."""
+    # Slugify: lowercase, replace non-alphanumeric with hyphens
+    slug = org_or_company.lower()
+    slug = re.sub(r'[^a-z0-9]+', '-', slug)
+    slug = slug.strip('-')
+    return f"org-{slug}"
+
+
 def make_lang_commit_link(language, count, since_date, until_date, username):
     """Create a markdown link to GitHub commit search filtered by language.
 
@@ -4081,7 +4090,7 @@ def generate_org_report(
                 desc = repo["description"] or ""
                 desc = desc[:50] + "..." if len(desc) > 50 else desc
                 anchor = make_repo_anchor(repo["name"])
-                commits_link = f"[{repo['commits']}](#commits-{anchor})"
+                commits_link = f"[{repo['commits']}](#user-content-commits-{anchor})"
                 # Add anchor ID to repo cell for backlinks from detail section
                 url = f"https://github.com/{repo['name']}"
                 span = f"<span id=\"row-{anchor}\"></span>"
@@ -4102,7 +4111,7 @@ def generate_org_report(
                 dels = format_number(lines['deletions'])
                 lines_str = f"+{adds}/-{dels}"
                 anchor = make_repo_anchor(repo["name"])
-                commits_link = f"[{repo['commits']}](#commits-{anchor})"
+                commits_link = f"[{repo['commits']}](#user-content-commits-{anchor})"
                 # Add anchor ID to repo cell for backlinks
                 url = f"https://github.com/{repo['name']}"
                 span = f"<span id=\"row-{anchor}\"></span>"
@@ -4151,7 +4160,7 @@ def generate_org_report(
                 span = f"<span id=\"row-lang-{anchor}\"></span>"
                 lang_cell = f"{span}{stat['language']}"
                 cnt = format_number(stat['commits'])
-                commits_link = f"[{cnt}](#lang-{anchor})"
+                commits_link = f"[{cnt}](#user-content-lang-{anchor})"
                 row = f"| {lang_cell} | {commits_link} | {stat['repos']} |"
                 report.append(row)
         else:
@@ -4163,7 +4172,7 @@ def generate_org_report(
                 span = f"<span id=\"row-lang-{anchor}\"></span>"
                 lang_cell = f"{span}{stat['language']}"
                 cnt = format_number(stat['commits'])
-                commits_link = f"[{cnt}](#lang-{anchor})"
+                commits_link = f"[{cnt}](#user-content-lang-{anchor})"
                 adds = format_number(stat['additions'])
                 dels = format_number(stat['deletions'])
                 lines_str = f"+{adds}/-{dels}"
@@ -4229,9 +4238,42 @@ def generate_org_report(
     report.append(f"| Review comments received | {pr_cmts} |")
     report.append("")
 
+    # Language commit breakdown by member (for anchor links from Languages)
+    if lang_member_commits:
+        report.append("<details name=\"commit-details\">")
+        report.append("<summary><h2>Commit details by language</h2></summary>")
+        report.append("")
+        # Sort languages by total commits descending
+        sorted_langs = sorted(
+            lang_member_commits.items(),
+            key=lambda x: sum(x[1].values()),
+            reverse=True
+        )
+        for language, member_commits in sorted_langs:
+            anchor = make_lang_anchor(language)
+            total = sum(member_commits.values())
+            backlink = f"[↩](#user-content-row-lang-{anchor})"
+            lang_anchor = f"<a id=\"lang-{anchor}\">{language}</a>"
+            header = f"### {lang_anchor} ({total} commits) {backlink}"
+            report.append(header)
+            report.append("")
+            # Sort members by commit count descending
+            sorted_members = sorted(
+                member_commits.items(), key=lambda x: x[1], reverse=True)
+            for member, count in sorted_members:
+                display_name = member_real_names.get(member) or member
+                # Plain count - can't filter commits by language
+                mem_url = f"https://github.com/{member}"
+                row = f"- [{display_name}]({mem_url}): {count}"
+                report.append(row)
+            report.append("")
+        report.append("</details>")
+        report.append("")
+
     # Commit breakdown by member (for anchor links from Projects tables)
     if repo_member_commits:
-        report.append("## Commit details by repository")
+        report.append("<details name=\"commit-details\">")
+        report.append("<summary><h2>Commit details by repository</h2></summary>")
         report.append("")
         # Sort repos by total commits descending
         sorted_repos = sorted(
@@ -4242,7 +4284,7 @@ def generate_org_report(
         for repo_name, member_commits in sorted_repos:
             anchor = make_repo_anchor(repo_name)
             total = sum(member_commits.values())
-            backlink = f"[↩](#row-{anchor})"
+            backlink = f"[↩](#user-content-row-{anchor})"
             repo_url = f"https://github.com/{repo_name}"
             repo_link = f"<a id=\"commits-{anchor}\" href=\"{repo_url}\">"
             repo_link += f"{repo_name}</a>"
@@ -4260,35 +4302,80 @@ def generate_org_report(
                 row = f"- [{display_name}]({mem_url}): {commit_link}"
                 report.append(row)
             report.append("")
-
-    # Language commit breakdown by member (for anchor links from Languages)
-    if lang_member_commits:
-        report.append("## Language commit details")
+        report.append("</details>")
         report.append("")
-        # Sort languages by total commits descending
-        sorted_langs = sorted(
-            lang_member_commits.items(),
-            key=lambda x: sum(x[1].values()),
-            reverse=True
-        )
-        for language, member_commits in sorted_langs:
-            anchor = make_lang_anchor(language)
-            total = sum(member_commits.values())
-            backlink = f"[↩](#row-lang-{anchor})"
-            lang_anchor = f"<a id=\"lang-{anchor}\">{language}</a>"
-            header = f"### {lang_anchor} ({total} commits) {backlink}"
-            report.append(header)
-            report.append("")
-            # Sort members by commit count descending
-            sorted_members = sorted(
-                member_commits.items(), key=lambda x: x[1], reverse=True)
-            for member, count in sorted_members:
-                display_name = member_real_names.get(member) or member
-                # Plain count - can't filter commits by language
-                mem_url = f"https://github.com/{member}"
-                row = f"- [{display_name}]({mem_url}): {count}"
-                report.append(row)
-            report.append("")
+
+    # Build company name normalization map
+    # - Match case-insensitively
+    # - If any user has @org, all matching plain-text become @org
+    # - Use initial cap for display (e.g., babel -> Babel)
+    org_pattern = r'@([a-zA-Z0-9_-]+(?:\.[a-zA-Z0-9_-]+)*)'
+    org_canonical = {}  # lowercase -> (display_name, has_at_prefix)
+    for company in member_companies.values():
+        if not company:
+            continue
+        company = company.strip()
+        # Extract @mentions
+        at_orgs = re.findall(org_pattern, company)
+        for org in at_orgs:
+            key = org.lower()
+            # @mention takes precedence
+            org_canonical[key] = (org.lower(), True)
+        # Extract plain text words (potential company names)
+        # Remove @mentions first, then get remaining words
+        plain = re.sub(org_pattern, '', company).strip()
+        if plain:
+            for word in plain.split():
+                word = word.strip()
+                if word:
+                    key = word.lower()
+                    if key not in org_canonical:
+                        # Initial cap for plain text
+                        org_canonical[key] = (word.capitalize(), False)
+
+    def normalize_company(company):
+        """Normalize company string using the canonical map."""
+        if not company:
+            return company
+        company = company.strip()
+        result = company
+        # First normalize @mentions
+        at_orgs = re.findall(org_pattern, company)
+        for org in at_orgs:
+            key = org.lower()
+            if key in org_canonical:
+                canon, _ = org_canonical[key]
+                result = re.sub(
+                    f'@{re.escape(org)}\\b',
+                    f'@{canon}',
+                    result,
+                    flags=re.IGNORECASE
+                )
+        # Then check plain text words - convert to @mention if one exists
+        remaining = re.sub(org_pattern, '', result)
+        for word in remaining.split():
+            word = word.strip()
+            if word:
+                key = word.lower()
+                if key in org_canonical:
+                    canon, has_at = org_canonical[key]
+                    if has_at:
+                        # Replace plain text with @mention
+                        result = re.sub(
+                            f'\\b{re.escape(word)}\\b',
+                            f'@{canon}',
+                            result,
+                            flags=re.IGNORECASE
+                        )
+                    else:
+                        # Just normalize capitalization
+                        result = re.sub(
+                            f'\\b{re.escape(word)}\\b',
+                            canon,
+                            result,
+                            flags=re.IGNORECASE
+                        )
+        return result.strip()
 
     # Commit breakdown by user (inverse of by-repository view)
     if repo_member_commits:
@@ -4298,7 +4385,8 @@ def generate_org_report(
             for member, count in member_commits.items():
                 user_repo_commits[member][repo_name] = count
 
-        report.append("## Commit details by user")
+        report.append("<details name=\"commit-details\">")
+        report.append("<summary><h2>Commit details by user</h2></summary>")
         report.append("")
         # Sort users by total commits descending
         sorted_users = sorted(
@@ -4311,13 +4399,15 @@ def generate_org_report(
             total = sum(repos.values())
             mem_url = f"https://github.com/{member}"
             member_link = f"[{display_name}]({mem_url})"
+            # Add anchor for linking from "by organization" section
+            anchor = f'<a id="user-{member}"></a>'
             # Format company with @org mentions as links (skip for --owners)
             company_part = ""
+            org_backlinks = ""
             if not owners_only:
-                company = member_companies.get(member, "").strip()
+                company = normalize_company(member_companies.get(member, ""))
                 if company:
                     # Find all @org mentions and convert to links
-                    org_pattern = r'@([a-zA-Z0-9_-]+)'
                     orgs = re.findall(org_pattern, company)
                     if orgs:
                         # Replace each @org with a markdown link
@@ -4327,9 +4417,23 @@ def generate_org_report(
                             linked = linked.replace(
                                 f"@{org}", f"[@{org}]({org_url})")
                         company_part = f" ({linked.strip()})"
+                        # Backlinks to user's list item in each org
+                        backlinks = []
+                        for org in orgs:
+                            org_anchor = make_org_anchor(org)
+                            backlinks.append(
+                                f"[↩](#user-content-{org_anchor}-{member})")
+                        org_backlinks = " " + " ".join(backlinks)
                     else:
                         company_part = f" ({company})"
-            header = f"### {member_link}{company_part} ({total} commits)"
+                        # Backlink to user's list item in company group
+                        org_anchor = make_org_anchor(company)
+                        org_backlinks = f" [↩](#user-content-{org_anchor}-{member})"
+                else:
+                    # No company - backlink to user's list item in Unaffiliated
+                    org_backlinks = f" [↩](#user-content-org-unaffiliated-{member})"
+            header = (f"### {anchor}{member_link}{company_part} "
+                      f"({total} commits){org_backlinks}")
             report.append(header)
             report.append("")
             # Sort repos by commit count descending
@@ -4341,6 +4445,97 @@ def generate_org_report(
                 repo_url = f"https://github.com/{repo_name}"
                 row = f"- [{repo_name}]({repo_url}): {commit_link}"
                 report.append(row)
+            report.append("")
+        report.append("</details>")
+        report.append("")
+
+    # Commit breakdown by organization (group users by company)
+    if repo_member_commits and not owners_only:
+        # Build org -> [(member, display_name, total_commits), ...] mapping
+        org_members = defaultdict(list)  # @org mentions (get GitHub links)
+        company_members = defaultdict(list)  # Plain text companies (no links)
+        unaffiliated = []  # Users with no company at all
+        for member, repos in user_repo_commits.items():
+            # Use normalized company for grouping
+            company = normalize_company(member_companies.get(member, ""))
+            total = sum(repos.values())
+            display_name = member_real_names.get(member) or member
+            if company:
+                orgs = re.findall(org_pattern, company)
+                if orgs:
+                    for org in orgs:
+                        org_members[org].append((member, display_name, total))
+                else:
+                    # Plain text company, group by whole string
+                    company_members[company].append(
+                        (member, display_name, total))
+            else:
+                # No company at all
+                unaffiliated.append((member, display_name, total))
+
+        if org_members or company_members or unaffiliated:
+            report.append("<details name=\"commit-details\">")
+            report.append("<summary><h2>Commit details by organization</h2></summary>")
+            report.append("")
+            # Sort @org groups by total commits descending
+            sorted_orgs = sorted(
+                org_members.items(),
+                key=lambda x: sum(m[2] for m in x[1]),
+                reverse=True
+            )
+            for org, members in sorted_orgs:
+                org_total = sum(m[2] for m in members)
+                org_url = f"https://github.com/{org}"
+                org_link = f"[{org}]({org_url})"
+                org_anchor = f'<a id="{make_org_anchor(org)}"></a>'
+                report.append(f"### {org_anchor}{org_link} ({org_total} commits)")
+                report.append("")
+                # Sort members by commit count descending
+                sorted_members = sorted(
+                    members, key=lambda x: x[2], reverse=True)
+                for member, display_name, total in sorted_members:
+                    user_anchor = f"#user-content-user-{member}"
+                    # Anchor for backlink from "by user" section
+                    item_anchor = f'<a id="{make_org_anchor(org)}-{member}"></a>'
+                    row = f"- {item_anchor}[{display_name}]({user_anchor}) ({total})"
+                    report.append(row)
+                report.append("")
+            # Plain text company groups (no GitHub links)
+            sorted_companies = sorted(
+                company_members.items(),
+                key=lambda x: sum(m[2] for m in x[1]),
+                reverse=True
+            )
+            for company, members in sorted_companies:
+                company_total = sum(m[2] for m in members)
+                company_anchor = f'<a id="{make_org_anchor(company)}"></a>'
+                report.append(f"### {company_anchor}{company} ({company_total} commits)")
+                report.append("")
+                sorted_members = sorted(
+                    members, key=lambda x: x[2], reverse=True)
+                for member, display_name, total in sorted_members:
+                    user_anchor = f"#user-content-user-{member}"
+                    # Anchor for backlink from "by user" section
+                    item_anchor = f'<a id="{make_org_anchor(company)}-{member}"></a>'
+                    row = f"- {item_anchor}[{display_name}]({user_anchor}) ({total})"
+                    report.append(row)
+                report.append("")
+            # Users with no company at all
+            if unaffiliated:
+                unaffiliated_total = sum(u[2] for u in unaffiliated)
+                unaff_anchor = '<a id="org-unaffiliated"></a>'
+                report.append(f"### {unaff_anchor}Unaffiliated ({unaffiliated_total} commits)")
+                report.append("")
+                sorted_unaffiliated = sorted(
+                    unaffiliated, key=lambda x: x[2], reverse=True)
+                for member, display_name, total in sorted_unaffiliated:
+                    user_anchor = f"#user-content-user-{member}"
+                    # Anchor for backlink from "by user" section
+                    item_anchor = f'<a id="org-unaffiliated-{member}"></a>'
+                    row = f"- {item_anchor}[{display_name}]({user_anchor}) ({total})"
+                    report.append(row)
+                report.append("")
+            report.append("</details>")
             report.append("")
 
     # Footer

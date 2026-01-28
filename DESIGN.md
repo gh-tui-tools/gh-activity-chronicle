@@ -270,30 +270,70 @@ See also: [Commit hyperlinks](#commit-hyperlinks) section for full implementatio
 
 ### Organization mode
 
-Org mode reports have the same structure as user mode, plus:
+Org mode reports have the same structure as user mode, plus four collapsible detail sections wrapped in `<details><summary>` for better UX:
 
-```markdown
-## Commit details by repository
+```html
+<details name="commit-details">
+<summary><h2>Commit details by language</h2></summary>
+
+- Per-language sections with anchor IDs
+- Each section lists members who committed in that language
+- Backlinks to the Languages table
+
+### <a id="lang-python"></a>Python (N commits) [↩](#row-lang-python)
+- [member1](...): count
+
+</details>
+
+<details>
+<summary><h2>Commit details by repository</h2></summary>
+
 - Per-repo sections with anchor IDs
 - Each section lists members who contributed
 - Each member's commit count links to GitHub search
 
-### <a id="commits-org-repo"></a>[org/repo](https://github.com/org/repo) (N commits)
-- [member1](https://github.com/member1): [count](search-link)
-- [member2](https://github.com/member2): [count](search-link)
+### <a id="commits-org-repo"></a>[org/repo](...) (N commits)
+- [member1](...): [count](search-link)
 
-## Commit details by user
+</details>
+
+<details>
+<summary><h2>Commit details by user</h2></summary>
+
 - Per-user sections showing their repository breakdown
 - Each repo's commit count links to GitHub search
 - User's company shown in parentheses (hidden for `--owners` mode)
 - Company @mentions link to GitHub orgs
+- Backlinks (↩) to user's list item in "Commit details by organization"
 
-### [Jordan Harband](https://github.com/ljharb) ([@socketdev](https://github.com/socketdev) [@tc39](https://github.com/tc39)) (123 commits)
-- [org/repo1](https://github.com/org/repo1): [count](search-link)
-- [org/repo2](https://github.com/org/repo2): [count](search-link)
+### <a id="user-ljharb"></a>[Jordan Harband](...) ([@socketdev](...) [@tc39](...)) (123 commits) [↩](#org-socketdev-ljharb) [↩](#org-tc39-ljharb)
+- [org/repo1](...): [count](search-link)
+
+</details>
+
+<details>
+<summary><h2>Commit details by organization</h2></summary>
+
+- Groups users by their company (both @mentions and plain text)
+- @org mentions get GitHub-linked headings; plain text companies don't
+- Users can appear under multiple orgs if they list several @mentions
+- Each user has an anchor for backlinks and links to "Commit details by user"
+- Users with no company are grouped under "Unaffiliated"
+- Hidden for `--owners` mode
+
+### <a id="org-tc39"></a>[tc39](...) (456 commits)
+- <a id="org-tc39-ljharb"></a>[Jordan Harband](#user-ljharb) (234)
+
+### <a id="org-dwango-co-ltd"></a>DWANGO Co.,Ltd. (15 commits)
+- <a id="org-dwango-co-ltd-berlysia"></a>[berlysia](#user-berlysia) (15)
+
+### <a id="org-unaffiliated"></a>Unaffiliated (42 commits)
+- <a id="org-unaffiliated-someuser"></a>[someuser](#user-someuser) (42)
+
+</details>
 ```
 
-The "by repository" section enables the commit count links in the Projects tables (which link to anchors rather than GitHub search, due to GitHub's query complexity limits). The "by user" section provides a complementary view showing each member's contribution breakdown, with their company affiliation visible at a glance.
+These sections are collapsed by default on GitHub, making long org reports less overwhelming. All four sections share the same `name="commit-details"` attribute, which creates **accordion behavior** — opening one section automatically closes any other open section in the group. This prevents users from having multiple large detail sections expanded simultaneously, keeping the page manageable. The "Commit details by language" section provides per-language breakdowns. The "by repository" section enables commit count links in the Projects tables. The "by user" section shows each member's contribution breakdown with company affiliation and backlinks to navigate back to their exact position in the org list. The "by organization" section groups users by company for a quick view of which organizations are most active.
 
 ### Report elements
 
@@ -742,6 +782,7 @@ Organization mode extends the tool to generate reports for GitHub organizations:
    - Commit counts link to anchors (not GitHub search, due to query complexity limits)
    - "Commit details by repository" section with per-member breakdowns
    - "Commit details by user" section with per-repo breakdowns (inverse view)
+   - "Commit details by organization" section grouping users by company @mentions
    - Members list passed to report generator for anchor link construction
 
 ### API endpoints
@@ -994,7 +1035,7 @@ This approach:
 
 ### Organization mode — Languages table
 
-The Languages table in org mode also uses anchor links to a "Language commit details" section. However, unlike the repository breakdown, **the per-member counts in the language section are plain numbers without GitHub links**.
+The Languages table in org mode also uses anchor links to a "Commit details by language" section. However, unlike the repository breakdown, **the per-member counts in the language section are plain numbers without GitHub links**.
 
 Why? GitHub commit search doesn't support filtering by programming language:
 - `language:` is a code search qualifier, not a commit search qualifier
@@ -1035,6 +1076,9 @@ def make_repo_anchor(repo_name):
 
 def make_lang_anchor(language):
     """Create an anchor ID from a language name (e.g., 'C++' -> 'cplusplus')."""
+
+def make_org_anchor(org_or_company):
+    """Create an anchor ID from org/company (e.g., 'tc39' -> 'org-tc39', 'DWANGO Co.,Ltd.' -> 'org-dwango-co-ltd')."""
 ```
 
 The `aggregate_org_data()` function tracks:
@@ -1055,13 +1099,29 @@ In the detail sections, members are displayed using their **real name** (from th
 
 The link always points to the GitHub profile using the username, but the display text shows the more readable real name when the user has one configured.
 
-In the "Commit details by user" section, the member's **company** is also shown (unless using `--owners` mode, where it would be redundant). Company `@mentions` are converted to GitHub org links:
+In the "Commit details by user" section, the member's **company** is also shown (unless using `--owners` mode, where it would be redundant). Company `@mentions` are converted to GitHub org links, and backlinks point to the user's specific list item in the "Commit details by organization" section:
 
 ```markdown
-### [Jordan Harband](https://github.com/ljharb) ([@socketdev](https://github.com/socketdev) [@tc39](https://github.com/tc39)) (123 commits)
+### [Jordan Harband](https://github.com/ljharb) ([@socketdev](https://github.com/socketdev) [@tc39](https://github.com/tc39)) (123 commits) [↩](#org-socketdev-ljharb) [↩](#org-tc39-ljharb)
 ```
 
-Multiple `@org` mentions are supported — each becomes a separate link. Plain text companies (without `@`) are shown as-is.
+Multiple `@org` mentions are supported — each becomes a separate link with its own backlink. Org names can include periods (e.g., `@mesur.io`). Plain text companies (without `@`) are shown as-is and also get backlinks to their list item in the company group. This enables sequential navigation through an org's member list — view a user's details, then use the backlink to return to exactly where you left off.
+
+### Company name normalization
+
+GitHub users enter their company field as free text, leading to inconsistent variations:
+- Case differences: `babel`, `Babel`, `BABEL`
+- Format differences: `W3C`, `@w3c`, `@W3C`
+
+To group users consistently in the "Commit details by organization" section, company names are normalized:
+
+1. **Case normalization**: All variations of the same word are grouped together. Plain text gets initial capitalization (e.g., `babel` → `Babel`).
+
+2. **@mention preference**: If any user has a company with an `@org` mention, all users with the same plain-text variation are grouped under the `@org` form. For example, if one user has `@w3c` and another has `W3C`, both appear under `@w3c` in the organization groupings.
+
+3. **Mixed values**: Users with both `@org` mentions and plain text in their company field have each component normalized separately.
+
+This ensures that minor formatting differences don't split users who work at the same organization into separate groups.
 
 ## Limitations
 
