@@ -1740,6 +1740,7 @@ def get_contributions_summary(username, since_date, until_date):
     {{
       user(login: "{username}") {{
         name
+        company
         contributionsCollection(from: "{from_ts}", to: "{to_ts}") {{
           totalCommitContributions
           totalPullRequestContributions
@@ -3070,6 +3071,7 @@ def gather_user_data_light(username, since_date, until_date,
     user_data = contributions.get("user", {}) if contributions else {}
     contrib_collection = user_data.get("contributionsCollection", {})
     user_real_name = user_data.get("name") or ""
+    user_company = user_data.get("company") or ""
 
     total_commits_default_branch = contrib_collection.get(
         "totalCommitContributions", 0)
@@ -3186,6 +3188,7 @@ def gather_user_data_light(username, since_date, until_date,
     return {
         "username": username,
         "user_real_name": user_real_name,
+        "user_company": user_company,
         "total_commits_default_branch": total_commits_default_branch,
         "total_commits_all": total_commits_all,
         "total_prs": total_prs,
@@ -3254,6 +3257,7 @@ def aggregate_org_data(member_data_list):
     # language -> {username: commit_count}
     lang_member_commits = defaultdict(lambda: defaultdict(int))
     member_real_names = {}  # username -> real_name
+    member_companies = {}   # username -> company
 
     for member_data in member_data_list:
         # Sum scalar metrics
@@ -3292,8 +3296,11 @@ def aggregate_org_data(member_data_list):
         # Merge repos by category - sum commits for same repo
         member_username = member_data.get("username", "")
         member_real_name = member_data.get("user_real_name", "")
+        member_company = member_data.get("user_company", "")
         if member_username and member_real_name:
             member_real_names[member_username] = member_real_name
+        if member_username and member_company:
+            member_companies[member_username] = member_company
         for category, repos in repos_by_cat.items():
             for repo in repos:
                 repo_name = repo["name"]
@@ -3356,6 +3363,7 @@ def aggregate_org_data(member_data_list):
             k: dict(v) for k, v in lang_member_commits.items()
         },
         "member_real_names": member_real_names,
+        "member_companies": member_companies,
         "is_light_mode": is_light_mode,
     }
 
@@ -3554,6 +3562,7 @@ def gather_org_data_active_contributors(
             "repo_member_commits": {},
             "lang_member_commits": {},
             "member_real_names": {},
+            "member_companies": {},
             "is_light_mode": True,
         }, []
 
@@ -4003,6 +4012,7 @@ def generate_org_report(
     repo_member_commits = aggregated_data.get("repo_member_commits", {})
     lang_member_commits = aggregated_data.get("lang_member_commits", {})
     member_real_names = aggregated_data.get("member_real_names", {})
+    member_companies = aggregated_data.get("member_companies", {})
 
     # Build title
     org_login = org_info.get("login", "")
@@ -4277,6 +4287,59 @@ def generate_org_report(
                 # Plain count - can't filter commits by language
                 mem_url = f"https://github.com/{member}"
                 row = f"- [{display_name}]({mem_url}): {count}"
+                report.append(row)
+            report.append("")
+
+    # Commit breakdown by user (inverse of by-repository view)
+    if repo_member_commits:
+        # Invert: {repo: {member: count}} -> {member: {repo: count}}
+        user_repo_commits = defaultdict(dict)
+        for repo_name, member_commits in repo_member_commits.items():
+            for member, count in member_commits.items():
+                user_repo_commits[member][repo_name] = count
+
+        report.append("## Commit details by user")
+        report.append("")
+        # Sort users by total commits descending
+        sorted_users = sorted(
+            user_repo_commits.items(),
+            key=lambda x: sum(x[1].values()),
+            reverse=True
+        )
+        for member, repos in sorted_users:
+            display_name = member_real_names.get(member) or member
+            total = sum(repos.values())
+            mem_url = f"https://github.com/{member}"
+            member_link = f"[{display_name}]({mem_url})"
+            # Format company with @org mentions as links (skip for --owners)
+            company_part = ""
+            if not owners_only:
+                company = member_companies.get(member, "").strip()
+                if company:
+                    # Find all @org mentions and convert to links
+                    org_pattern = r'@([a-zA-Z0-9_-]+)'
+                    orgs = re.findall(org_pattern, company)
+                    if orgs:
+                        # Replace each @org with a markdown link
+                        linked = company
+                        for org in orgs:
+                            org_url = f"https://github.com/{org}"
+                            linked = linked.replace(
+                                f"@{org}", f"[@{org}]({org_url})")
+                        company_part = f" ({linked.strip()})"
+                    else:
+                        company_part = f" ({company})"
+            header = f"### {member_link}{company_part} ({total} commits)"
+            report.append(header)
+            report.append("")
+            # Sort repos by commit count descending
+            sorted_repos = sorted(
+                repos.items(), key=lambda x: x[1], reverse=True)
+            for repo_name, count in sorted_repos:
+                commit_link = make_commit_link(
+                    repo_name, count, since_date, until_date, member)
+                repo_url = f"https://github.com/{repo_name}"
+                row = f"- [{repo_name}]({repo_url}): {commit_link}"
                 report.append(row)
             report.append("")
 

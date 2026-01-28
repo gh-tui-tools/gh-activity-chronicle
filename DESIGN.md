@@ -52,7 +52,7 @@ Installed via `gh extension install gh-tui-tools/gh-activity-chronicle` and invo
 ### GraphQL API
 
 Used for:
-- **User profile** (`user.name`): Real name for report title
+- **User profile** (`user.name`, `user.company`): Real name for report title, company for member display
 - **Contribution summary** (`contributionsCollection`): Aggregate counts for commits, PRs, reviews, issues
 - **PR reviews** (`pullRequestReviewContributions`): Actual PRs reviewed within the date range, with pagination
 - **Repository info** (`repository`): Fork status, parent repo, language, description
@@ -281,9 +281,19 @@ Org mode reports have the same structure as user mode, plus:
 ### <a id="commits-org-repo"></a>[org/repo](https://github.com/org/repo) (N commits)
 - [member1](https://github.com/member1): [count](search-link)
 - [member2](https://github.com/member2): [count](search-link)
+
+## Commit details by user
+- Per-user sections showing their repository breakdown
+- Each repo's commit count links to GitHub search
+- User's company shown in parentheses (hidden for `--owners` mode)
+- Company @mentions link to GitHub orgs
+
+### [Jordan Harband](https://github.com/ljharb) ([@socketdev](https://github.com/socketdev) [@tc39](https://github.com/tc39)) (123 commits)
+- [org/repo1](https://github.com/org/repo1): [count](search-link)
+- [org/repo2](https://github.com/org/repo2): [count](search-link)
 ```
 
-This section enables the commit count links in the Projects tables (which link to anchors rather than GitHub search, due to GitHub's query complexity limits).
+The "by repository" section enables the commit count links in the Projects tables (which link to anchors rather than GitHub search, due to GitHub's query complexity limits). The "by user" section provides a complementary view showing each member's contribution breakdown, with their company affiliation visible at a glance.
 
 ### Report elements
 
@@ -731,6 +741,7 @@ Organization mode extends the tool to generate reports for GitHub organizations:
 5. **Generate report**: Same structure as user report with aggregated data, plus:
    - Commit counts link to anchors (not GitHub search, due to query complexity limits)
    - "Commit details by repository" section with per-member breakdowns
+   - "Commit details by user" section with per-repo breakdowns (inverse view)
    - Members list passed to report generator for anchor link construction
 
 ### API endpoints
@@ -1033,7 +1044,7 @@ The `aggregate_org_data()` function tracks:
 
 Both commit tracking dicts are used to generate the detail sections with bidirectional anchor links (table → detail section → back to table row).
 
-### Member name display
+### Member name and company display
 
 In the detail sections, members are displayed using their **real name** (from their GitHub profile) when available, with the **username as fallback**:
 
@@ -1043,6 +1054,14 @@ In the detail sections, members are displayed using their **real name** (from th
 ```
 
 The link always points to the GitHub profile using the username, but the display text shows the more readable real name when the user has one configured.
+
+In the "Commit details by user" section, the member's **company** is also shown (unless using `--owners` mode, where it would be redundant). Company `@mentions` are converted to GitHub org links:
+
+```markdown
+### [Jordan Harband](https://github.com/ljharb) ([@socketdev](https://github.com/socketdev) [@tc39](https://github.com/tc39)) (123 commits)
+```
+
+Multiple `@org` mentions are supported — each becomes a separate link. Plain text companies (without `@`) are shown as-is.
 
 ## Limitations
 
@@ -1235,7 +1254,6 @@ The 79-character limit is a feature, not a burden — it's a forcing function fo
 ### Organization mode
 
 - **`--full` flag** — Opt-in to full data gathering (fork commits, line stats) for smaller teams where API limits aren't a concern
-- **Member comparison** — Rank members by various metrics (commits, reviews, lines)
 - **Team comparison** — Compare activity across multiple teams in one report
 - **Inactive member detection** — Identify members with no activity in the period
 
