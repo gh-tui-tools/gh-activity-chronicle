@@ -7,21 +7,21 @@ To update golden files after intentional changes:
     pytest tests/test_snapshots.py --update-golden
 
 Or manually:
-    python -c "from tests.test_snapshots import update_golden_files; update_golden_files()"
+    python -c "from tests.test_snapshots import update_golden_files; \
+update_golden_files()"
 """
 
 import difflib
-import os
 import sys
 from pathlib import Path
-from unittest.mock import patch, MagicMock
+from unittest.mock import patch
 
 import pytest
 
 # Add parent to path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from tests.conftest import load_chronicle_module
+from tests.conftest import load_chronicle_module  # noqa: E402
 
 # Load the module
 mod = load_chronicle_module()
@@ -56,14 +56,14 @@ def get_comprehensive_user_data():
                     "commits": 45,
                     "prs": 5,
                     "language": "CSS",
-                    "description": "CSS Working Group Editor Drafts"
+                    "description": "CSS Working Group Editor Drafts",
                 },
                 {
                     "name": "whatwg/html",
                     "commits": 20,
                     "prs": 3,
                     "language": "HTML",
-                    "description": "HTML Standard"
+                    "description": "HTML Standard",
                 },
             ],
             "Browser engines": [
@@ -72,7 +72,7 @@ def get_comprehensive_user_data():
                     "commits": 15,
                     "prs": 2,
                     "language": "C++",
-                    "description": "A fast JSON parser"
+                    "description": "A fast JSON parser",
                 },
             ],
             "Other": [
@@ -81,7 +81,7 @@ def get_comprehensive_user_data():
                     "commits": 40,
                     "prs": 2,
                     "language": "Python",
-                    "description": "Personal project"
+                    "description": "Personal project",
                 },
             ],
         },
@@ -107,8 +107,8 @@ def get_comprehensive_user_data():
                 "deletions": 50,
                 "repository": {
                     "nameWithOwner": "w3c/csswg-drafts",
-                    "primaryLanguage": {"name": "CSS"}
-                }
+                    "primaryLanguage": {"name": "CSS"},
+                },
             },
             {
                 "title": "Fix HTML parser edge case",
@@ -119,8 +119,8 @@ def get_comprehensive_user_data():
                 "deletions": 20,
                 "repository": {
                     "nameWithOwner": "whatwg/html",
-                    "primaryLanguage": {"name": "HTML"}
-                }
+                    "primaryLanguage": {"name": "HTML"},
+                },
             },
             {
                 "title": "Add JSON5 support",
@@ -131,8 +131,8 @@ def get_comprehensive_user_data():
                 "deletions": 100,
                 "repository": {
                     "nameWithOwner": "nicehero/nicejson",
-                    "primaryLanguage": {"name": "C++"}
-                }
+                    "primaryLanguage": {"name": "C++"},
+                },
             },
         ],
         "reviewed_nodes": [
@@ -142,7 +142,7 @@ def get_comprehensive_user_data():
                 "additions": 300,
                 "deletions": 80,
                 "author": {"login": "otheruser"},
-                "repository": {"nameWithOwner": "w3c/csswg-drafts"}
+                "repository": {"nameWithOwner": "w3c/csswg-drafts"},
             },
             {
                 "title": "Add new element",
@@ -150,7 +150,7 @@ def get_comprehensive_user_data():
                 "additions": 150,
                 "deletions": 20,
                 "author": {"login": "anotheruser"},
-                "repository": {"nameWithOwner": "whatwg/html"}
+                "repository": {"nameWithOwner": "whatwg/html"},
             },
         ],
     }
@@ -179,14 +179,14 @@ def get_comprehensive_org_data():
                     "commits": 200,
                     "prs": 30,
                     "language": "CSS",
-                    "description": "CSS Working Group Editor Drafts"
+                    "description": "CSS Working Group Editor Drafts",
                 },
                 {
                     "name": "whatwg/html",
                     "commits": 100,
                     "prs": 15,
                     "language": "HTML",
-                    "description": "HTML Standard"
+                    "description": "HTML Standard",
                 },
             ],
             "Accessibility (WAI)": [
@@ -195,7 +195,7 @@ def get_comprehensive_org_data():
                     "commits": 80,
                     "prs": 10,
                     "language": "HTML",
-                    "description": "WAI-ARIA specification"
+                    "description": "WAI-ARIA specification",
                 },
             ],
             "Other": [
@@ -204,7 +204,7 @@ def get_comprehensive_org_data():
                     "commits": 70,
                     "prs": 10,
                     "language": "JavaScript",
-                    "description": "Miscellaneous project"
+                    "description": "Miscellaneous project",
                 },
             ],
         },
@@ -248,8 +248,8 @@ def get_comprehensive_org_data():
                 "deletions": 100,
                 "repository": {
                     "nameWithOwner": "w3c/csswg-drafts",
-                    "primaryLanguage": {"name": "CSS"}
-                }
+                    "primaryLanguage": {"name": "CSS"},
+                },
             },
         ],
         "reviewed_nodes": [
@@ -259,7 +259,7 @@ def get_comprehensive_org_data():
                 "additions": 200,
                 "deletions": 50,
                 "author": {"login": "external"},
-                "repository": {"nameWithOwner": "whatwg/html"}
+                "repository": {"nameWithOwner": "whatwg/html"},
             },
         ],
         "is_light_mode": True,
@@ -298,7 +298,7 @@ def diff_reports(expected: str, actual: str) -> str:
         actual_lines,
         fromfile="expected (golden)",
         tofile="actual",
-        lineterm=""
+        lineterm="",
     )
     return "\n".join(diff)
 
@@ -359,8 +359,7 @@ class TestOrgReportSnapshot:
         ]
         mock_data = get_comprehensive_org_data()
         return mod.generate_org_report(
-            org_info, None, "2026-01-01", "2026-01-31",
-            mock_data, members
+            org_info, None, "2026-01-01", "2026-01-31", mock_data, members
         )
 
     def test_org_report_matches_golden(self, org_report, request):
@@ -401,7 +400,9 @@ def update_golden_files():
     # Generate user report
     mock_data = get_comprehensive_user_data()
     with patch.object(mod, "gather_user_data", return_value=mock_data):
-        user_report = mod.generate_report("testuser", "2026-01-01", "2026-01-31")
+        user_report = mod.generate_report(
+            "testuser", "2026-01-01", "2026-01-31"
+        )
     (GOLDEN_DIR / "user_report.md").write_text(
         normalize_report(user_report), encoding="utf-8"
     )
@@ -417,8 +418,7 @@ def update_golden_files():
     ]
     mock_data = get_comprehensive_org_data()
     org_report = mod.generate_org_report(
-        org_info, None, "2026-01-01", "2026-01-31",
-        mock_data, members
+        org_info, None, "2026-01-01", "2026-01-31", mock_data, members
     )
     (GOLDEN_DIR / "org_report.md").write_text(
         normalize_report(org_report), encoding="utf-8"
@@ -433,7 +433,7 @@ def pytest_addoption(parser):
             "--update-golden",
             action="store_true",
             default=False,
-            help="Update golden files instead of comparing"
+            help="Update golden files instead of comparing",
         )
     except ValueError:
         # Option already added (e.g., by conftest)

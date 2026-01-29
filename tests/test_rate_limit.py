@@ -1,7 +1,5 @@
 """Unit tests for rate limit estimation and warning logic."""
 
-import pytest
-
 
 class TestEstimateOrgApiCalls:
     """Tests for estimate_org_api_calls()."""

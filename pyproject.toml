@@ -25,6 +25,15 @@ filterwarnings = [
     "ignore::DeprecationWarning",
 ]
 
+[tool.ruff]
+line-length = 79
+
+[tool.ruff.lint]
+select = ["E", "F", "W"]
+
+[tool.ruff.format]
+quote-style = "double"
+
 [tool.coverage.run]
 source = ["."]
 omit = ["tests/*", "research/*"]

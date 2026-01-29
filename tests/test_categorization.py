@@ -31,18 +31,12 @@ class TestMatches:
         assert mod.matches("other-thing", patterns) is False
 
     def test_exclude_prefix(self, mod):
-        patterns = {
-            "prefix": ["media"],
-            "exclude_prefix": ["mediacapture"]
-        }
+        patterns = {"prefix": ["media"], "exclude_prefix": ["mediacapture"]}
         assert mod.matches("media-session", patterns) is True
         assert mod.matches("mediacapture-streams", patterns) is False
 
     def test_exclude_contains(self, mod):
-        patterns = {
-            "contains": ["web"],
-            "exclude_contains": ["webrtc"]
-        }
+        patterns = {"contains": ["web"], "exclude_contains": ["webrtc"]}
         assert mod.matches("web-audio", patterns) is True
         assert mod.matches("webrtc-stats", patterns) is False
 
@@ -60,13 +54,14 @@ class TestMatches:
 
         # Uppercase pattern won't match because name is lowercased
         patterns_upper = {"exact": ["WebKit"]}
-        assert mod.matches("WebKit", patterns_upper) is False  # "webkit" != "WebKit"
+        # "webkit" != "WebKit"
+        assert mod.matches("WebKit", patterns_upper) is False
 
     def test_multiple_pattern_types(self, mod):
         patterns = {
             "prefix": ["test-"],
             "suffix": ["-spec"],
-            "contains": ["middle"]
+            "contains": ["middle"],
         }
         assert mod.matches("test-something", patterns) is True
         assert mod.matches("something-spec", patterns) is True
@@ -138,8 +133,11 @@ class TestCategorizeRepo:
 
         # w3c repos should generally be web standards
         result = cat_func("w3c/some-random-spec")
-        assert "standards" in result.lower() or "w3c" in result.lower() \
+        assert (
+            "standards" in result.lower()
+            or "w3c" in result.lower()
             or result != "Other"
+        )
 
     def test_standards_org_patterns(self, mod):
         """Test pattern matching within standards orgs."""
@@ -188,7 +186,9 @@ class TestShouldSkipRepo:
 
     def test_normal_repo_not_skipped(self, mod):
         """Regular public repos should not be skipped."""
-        result = mod.should_skip_repo("octocat/hello-world", username="octocat")
+        result = mod.should_skip_repo(
+            "octocat/hello-world", username="octocat"
+        )
         assert result is False
 
     def test_serenity_repo_skipped(self, mod):

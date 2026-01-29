@@ -4,7 +4,7 @@ import importlib.machinery
 import importlib.util
 import sys
 from pathlib import Path
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
 import pytest
 
@@ -15,7 +15,7 @@ def pytest_addoption(parser):
         "--update-golden",
         action="store_true",
         default=False,
-        help="Update golden snapshot files instead of comparing"
+        help="Update golden snapshot files instead of comparing",
     )
 
 
@@ -23,12 +23,15 @@ def pytest_addoption(parser):
 # Import the main script (which has no .py extension)
 # ---------------------------------------------------------------------------
 
+
 def load_chronicle_module():
     """Load gh-activity-chronicle as a module despite lacking .py extension."""
     script_path = Path(__file__).parent.parent / "gh-activity-chronicle"
 
     # Use machinery.SourceFileLoader for broader Python version compatibility
-    loader = importlib.machinery.SourceFileLoader("chronicle", str(script_path))
+    loader = importlib.machinery.SourceFileLoader(
+        "chronicle", str(script_path)
+    )
     spec = importlib.util.spec_from_loader("chronicle", loader)
     module = importlib.util.module_from_spec(spec)
 
@@ -57,6 +60,7 @@ def mod():
 # Sample data fixtures
 # ---------------------------------------------------------------------------
 
+
 @pytest.fixture
 def sample_pr_nodes():
     """Sample PR data for testing PR table generation."""
@@ -69,8 +73,8 @@ def sample_pr_nodes():
             "deletions": 100,
             "repository": {
                 "nameWithOwner": "owner/repo",
-                "primaryLanguage": {"name": "Python"}
-            }
+                "primaryLanguage": {"name": "Python"},
+            },
         },
         {
             "title": "Fix critical bug",
@@ -80,8 +84,8 @@ def sample_pr_nodes():
             "deletions": 200,
             "repository": {
                 "nameWithOwner": "owner/repo",
-                "primaryLanguage": {"name": "Python"}
-            }
+                "primaryLanguage": {"name": "Python"},
+            },
         },
         {
             "title": "Update documentation",
@@ -91,8 +95,8 @@ def sample_pr_nodes():
             "deletions": 0,
             "repository": {
                 "nameWithOwner": "other/docs",
-                "primaryLanguage": None
-            }
+                "primaryLanguage": None,
+            },
         },
     ]
 
@@ -102,18 +106,38 @@ def sample_repos_by_category():
     """Sample categorized repos for testing aggregation."""
     return {
         "Web standards and specifications": [
-            {"name": "w3c/csswg-drafts", "commits": 10, "prs": 2,
-             "language": "CSS", "description": "CSS specs"},
-            {"name": "whatwg/html", "commits": 5, "prs": 1,
-             "language": "HTML", "description": "HTML Standard"},
+            {
+                "name": "w3c/csswg-drafts",
+                "commits": 10,
+                "prs": 2,
+                "language": "CSS",
+                "description": "CSS specs",
+            },
+            {
+                "name": "whatwg/html",
+                "commits": 5,
+                "prs": 1,
+                "language": "HTML",
+                "description": "HTML Standard",
+            },
         ],
         "Browser engines": [
-            {"name": "nicehero/nicejson", "commits": 3, "prs": 0,
-             "language": "C++", "description": "JSON library"},
+            {
+                "name": "nicehero/nicejson",
+                "commits": 3,
+                "prs": 0,
+                "language": "C++",
+                "description": "JSON library",
+            },
         ],
         "Other": [
-            {"name": "user/random-project", "commits": 1, "prs": 0,
-             "language": "Python", "description": "Something else"},
+            {
+                "name": "user/random-project",
+                "commits": 1,
+                "prs": 0,
+                "language": "Python",
+                "description": "Something else",
+            },
         ],
     }
 
@@ -149,24 +173,42 @@ def sample_member_data():
             "total_deletions": 200,
             "repos_by_category": {
                 "Web standards and specifications": [
-                    {"name": "w3c/csswg-drafts", "commits": 30, "prs": 3,
-                     "language": "CSS", "description": "CSS specs"},
-                    {"name": "whatwg/html", "commits": 20, "prs": 2,
-                     "language": "HTML", "description": "HTML Standard"},
+                    {
+                        "name": "w3c/csswg-drafts",
+                        "commits": 30,
+                        "prs": 3,
+                        "language": "CSS",
+                        "description": "CSS specs",
+                    },
+                    {
+                        "name": "whatwg/html",
+                        "commits": 20,
+                        "prs": 2,
+                        "language": "HTML",
+                        "description": "HTML Standard",
+                    },
                 ]
             },
             "prs_nodes": [
-                {"url": "https://github.com/w3c/csswg-drafts/pull/1",
-                 "title": "Add feature", "state": "MERGED",
-                 "additions": 100, "deletions": 10,
-                 "repository": {"nameWithOwner": "w3c/csswg-drafts"}}
+                {
+                    "url": "https://github.com/w3c/csswg-drafts/pull/1",
+                    "title": "Add feature",
+                    "state": "MERGED",
+                    "additions": 100,
+                    "deletions": 10,
+                    "repository": {"nameWithOwner": "w3c/csswg-drafts"},
+                }
             ],
             "reviewed_nodes": [
-                {"url": "https://github.com/whatwg/html/pull/5",
-                 "title": "Fix issue", "state": "MERGED",
-                 "additions": 50, "deletions": 5,
-                 "author": {"login": "bob"},
-                 "repository": {"nameWithOwner": "whatwg/html"}}
+                {
+                    "url": "https://github.com/whatwg/html/pull/5",
+                    "title": "Fix issue",
+                    "state": "MERGED",
+                    "additions": 50,
+                    "deletions": 5,
+                    "author": {"login": "bob"},
+                    "repository": {"nameWithOwner": "whatwg/html"},
+                }
             ],
             "is_light_mode": True,
         },
@@ -183,23 +225,36 @@ def sample_member_data():
             "total_deletions": 100,
             "repos_by_category": {
                 "Web standards and specifications": [
-                    {"name": "w3c/csswg-drafts", "commits": 30, "prs": 3,
-                     "language": "CSS", "description": "CSS specs"},
+                    {
+                        "name": "w3c/csswg-drafts",
+                        "commits": 30,
+                        "prs": 3,
+                        "language": "CSS",
+                        "description": "CSS specs",
+                    },
                 ]
             },
             "prs_nodes": [
-                {"url": "https://github.com/w3c/csswg-drafts/pull/2",
-                 "title": "Another feature", "state": "OPEN",
-                 "additions": 200, "deletions": 20,
-                 "repository": {"nameWithOwner": "w3c/csswg-drafts"}}
+                {
+                    "url": "https://github.com/w3c/csswg-drafts/pull/2",
+                    "title": "Another feature",
+                    "state": "OPEN",
+                    "additions": 200,
+                    "deletions": 20,
+                    "repository": {"nameWithOwner": "w3c/csswg-drafts"},
+                }
             ],
             "reviewed_nodes": [
                 # Same PR as alice reviewed - should be deduplicated
-                {"url": "https://github.com/whatwg/html/pull/5",
-                 "title": "Fix issue", "state": "MERGED",
-                 "additions": 50, "deletions": 5,
-                 "author": {"login": "charlie"},
-                 "repository": {"nameWithOwner": "whatwg/html"}}
+                {
+                    "url": "https://github.com/whatwg/html/pull/5",
+                    "title": "Fix issue",
+                    "state": "MERGED",
+                    "additions": 50,
+                    "deletions": 5,
+                    "author": {"login": "charlie"},
+                    "repository": {"nameWithOwner": "whatwg/html"},
+                }
             ],
             "is_light_mode": True,
         },
@@ -209,6 +264,7 @@ def sample_member_data():
 # ---------------------------------------------------------------------------
 # Mock fixtures for API calls
 # ---------------------------------------------------------------------------
+
 
 @pytest.fixture
 def mock_gh_command():
@@ -227,6 +283,7 @@ def mock_subprocess():
 # ---------------------------------------------------------------------------
 # API response fixtures
 # ---------------------------------------------------------------------------
+
 
 @pytest.fixture
 def contribution_summary_response():
@@ -250,9 +307,9 @@ def contribution_summary_response():
                                 "parent": None,
                                 "isPrivate": False,
                                 "primaryLanguage": {"name": "Python"},
-                                "description": "A test repo"
+                                "description": "A test repo",
                             },
-                            "contributions": {"totalCount": 50}
+                            "contributions": {"totalCount": 50},
                         },
                         {
                             "repository": {
@@ -261,12 +318,12 @@ def contribution_summary_response():
                                 "parent": {"nameWithOwner": "upstream/repo2"},
                                 "isPrivate": False,
                                 "primaryLanguage": {"name": "JavaScript"},
-                                "description": "Forked repo"
+                                "description": "Forked repo",
                             },
-                            "contributions": {"totalCount": 30}
-                        }
-                    ]
-                }
+                            "contributions": {"totalCount": 30},
+                        },
+                    ],
+                },
             }
         }
     }
@@ -282,23 +339,17 @@ def commits_search_response():
                 "sha": "abc123",
                 "commit": {
                     "message": "Add new feature\n\nDetailed description",
-                    "author": {"date": "2026-01-15T10:00:00Z"}
+                    "author": {"date": "2026-01-15T10:00:00Z"},
                 },
-                "repository": {
-                    "full_name": "owner/repo1",
-                    "fork": False
-                }
+                "repository": {"full_name": "owner/repo1", "fork": False},
             },
             {
                 "sha": "def456",
                 "commit": {
                     "message": "Fix bug",
-                    "author": {"date": "2026-01-16T14:30:00Z"}
+                    "author": {"date": "2026-01-16T14:30:00Z"},
                 },
-                "repository": {
-                    "full_name": "owner/repo2",
-                    "fork": True
-                }
-            }
-        ]
+                "repository": {"full_name": "owner/repo2", "fork": True},
+            },
+        ],
     }

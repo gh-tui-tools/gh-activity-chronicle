@@ -33,6 +33,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 
 class RateLimitError(Exception):
     """Raised when GitHub API rate limit is exceeded."""
+
     pass
 
 
@@ -56,7 +57,9 @@ def get_rate_limit_reset_time():
     try:
         rate_result = subprocess.run(
             ["gh", "api", "rate_limit", "--jq", ".resources.graphql.reset"],
-            capture_output=True, text=True, check=True
+            capture_output=True,
+            text=True,
+            check=True,
         )
         reset_timestamp = int(rate_result.stdout.strip())
         return datetime.fromtimestamp(reset_timestamp)
@@ -68,9 +71,16 @@ def get_rate_limit_remaining():
     """Get the remaining GraphQL rate limit calls, or None."""
     try:
         result = subprocess.run(
-            ["gh", "api", "rate_limit",
-             "--jq", ".resources.graphql.remaining"],
-            capture_output=True, text=True, check=True
+            [
+                "gh",
+                "api",
+                "rate_limit",
+                "--jq",
+                ".resources.graphql.remaining",
+            ],
+            capture_output=True,
+            text=True,
+            check=True,
         )
         return int(result.stdout.strip())
     except Exception:
@@ -79,14 +89,14 @@ def get_rate_limit_remaining():
 
 # Rate limit warning constants
 RATE_LIMIT_TOTAL = 5000
-WARN_THRESHOLD_TOTAL = 0.50       # Warn if estimated > 50% of total limit
-WARN_THRESHOLD_REMAINING = 0.80   # Warn if estimated > 80% of remaining
+WARN_THRESHOLD_TOTAL = 0.50  # Warn if estimated > 50% of total limit
+WARN_THRESHOLD_REMAINING = 0.80  # Warn if estimated > 80% of remaining
 
 # Worker and batch size constants
-MAX_PARALLEL_WORKERS = 30         # Max threads for parallel API calls
-ACTIVITY_CHECK_WORKERS = 50       # Workers for activity checking (scraping)
-GRAPHQL_BATCH_SIZE = 10           # Users per GraphQL batch query
-API_PAGE_SIZE = 100               # Items per page for paginated API calls
+MAX_PARALLEL_WORKERS = 30  # Max threads for parallel API calls
+ACTIVITY_CHECK_WORKERS = 50  # Workers for activity checking (scraping)
+GRAPHQL_BATCH_SIZE = 10  # Users per GraphQL batch query
+API_PAGE_SIZE = 100  # Items per page for paginated API calls
 
 
 def estimate_org_api_calls(num_members, days):
@@ -131,8 +141,10 @@ def should_warn_rate_limit(estimated_calls, remaining_calls):
         return True, msg
 
     # Warn if job might exhaust remaining quota
-    if (remaining_calls is not None
-            and estimated_calls > remaining_calls * WARN_THRESHOLD_REMAINING):
+    if (
+        remaining_calls is not None
+        and estimated_calls > remaining_calls * WARN_THRESHOLD_REMAINING
+    ):
         msg = f"~{estimated_calls:,} API calls (~{pct}% of your {limit_str})"
         return True, msg
 
@@ -151,8 +163,10 @@ def prompt_rate_limit_warning(reason, skip_prompt=False):
     """
     msg = f"\nWarning: Generating a report will use {reason}.\n"
     sys.stderr.write(Colors.warning(msg))
-    msg = ("To reduce calls, consider a shorter time period (--days 7) "
-           "and/or using a --team value.\n\n")
+    msg = (
+        "To reduce calls, consider a shorter time period (--days 7) "
+        "and/or using a --team value.\n\n"
+    )
     sys.stderr.write(Colors.warning(msg))
 
     if skip_prompt:
@@ -164,7 +178,7 @@ def prompt_rate_limit_warning(reason, skip_prompt=False):
 
     try:
         response = input().strip().lower()
-        return response in ('y', 'yes')
+        return response in ("y", "yes")
     except (EOFError, KeyboardInterrupt):
         sys.stderr.write("\n")
         return False
@@ -223,8 +237,10 @@ def wait_for_rate_limit_reset(max_wait_seconds=120):
 
     if wait_seconds <= max_wait_seconds:
         reset_str = reset_time.strftime("%H:%M:%S")
-        msg = (f"\nRate limit hit. Waiting until {reset_str} "
-               f"({int(wait_seconds)} seconds)...\n")
+        msg = (
+            f"\nRate limit hit. Waiting until {reset_str} "
+            f"({int(wait_seconds)} seconds)...\n"
+        )
         sys.stderr.write(Colors.warning(msg))
         time.sleep(wait_seconds + 1)  # Add 1 second buffer
         _rate_limit_hit = False  # Clear the flag to retry
@@ -578,7 +594,6 @@ EXPLICIT_REPOS = {
     # Web Vitals / Performance
     "GoogleChrome/web-vitals": PERFORMANCE,
     # Actix web framework
-    "actix/actix-web": WEB_FRAMEWORKS,
     "actix/actix-extras": WEB_FRAMEWORKS,
     "actix/actix-net": WEB_FRAMEWORKS,
     "actix/examples": WEB_FRAMEWORKS,
@@ -779,210 +794,402 @@ ORG_CATEGORIES = {
 }
 
 # Standards orgs that use pattern-based categorization
-STANDARDS_ORGS = {"w3c", "w3c-cg", "whatwg", "wicg", "tc39", "webassembly",
-                  "khronos-group"}
+STANDARDS_ORGS = {
+    "w3c",
+    "w3c-cg",
+    "whatwg",
+    "wicg",
+    "tc39",
+    "webassembly",
+    "khronos-group",
+}
 
 # Pattern definitions for repos within standards orgs
 # Format: (category, {prefix: [], suffix: [], contains: [], exact: []})
 STANDARDS_ORG_PATTERNS = [
-    (ACCESSIBILITY, {
-        "prefix": ["wai-", "wcag"],
-        "contains": ["aria"],
-        "exact": ["apa", "adapt"],
-    }),
-    (I18N, {
-        "prefix": ["i18n"],
-        "contains": ["charmod"],
-        "exact": ["typography", "unicode-xml"],
-        "suffix": ["lreq", "-req"],
-    }),
-    (DIGITAL_PUBLISHING, {
-        "prefix": ["epub", "audiobook", "publ-", "dpub", "pm-"],
-        "exact": ["publishing"],
-    }),
-    (SECURITY, {
-        "prefix": ["webappsec"],
-        "contains": ["security", "threat-model"],
-        "exclude_contains": ["privacy"],
-    }),
-    (PRIVACY, {
-        "contains": ["privacy", "fingerprint"],
-        "exact": ["ping", "privacywg", "gpc", "dpv"],
-    }),
-    (VERIFIABLE_CREDENTIALS, {
-        "prefix": ["vc-", "did"],
-        "contains": ["credential", "verifiable"],
-    }),
-    (WEB_OF_THINGS, {
-        "prefix": ["wot"],
-        "exact": ["wotwg"],
-    }),
-    (WEBRTC, {
-        "prefix": ["webrtc", "mediacapture"],
-        "exact": ["ortc"],
-    }),
-    (WEB_AUDIO, {
-        "prefix": ["audio", "web-audio"],
-        "exact": ["webaudio", "web-midi-api", "web-speech-api"],
-    }),
-    (MEDIA, {
-        "prefix": ["media"],
-        "exact": ["encrypted-media", "mediasession"],
-        "exclude_prefix": ["mediacapture"],
-    }),
-    (DEVICES_SENSORS, {
-        "contains": ["sensor"],
-        "exact": ["battery", "nfc", "web-nfc"],
-    }),
-    (CSS, {
-        "prefix": ["css", "houdini"],
-        "exact": ["csswg-drafts", "css-houdini-drafts"],
-    }),
-    (GRAPHICS, {
-        "prefix": ["graphics-", "svg-", "gpu", "webgl"],
-        "exact": ["svgwg", "png", "gpuweb-wg", "fxtf-drafts", "webgpu"],
-    }),
-    (SEMANTIC_WEB, {
-        "contains": ["rdf", "sparql", "shacl", "json-ld", "jsonld"],
-        "exact": ["ldn", "solid", "lws-protocol", "data-shapes", "yml2vocab"],
-    }),
-    (SOCIAL_WEB, {
-        "contains": ["social", "activity"],
-        "exact": ["socialwg", "activitystreams", "websub", "webmention",
-                  "micropub", "activitypub"],
-    }),
-    (SUSTAINABILITY, {
-        "contains": ["sustainab"],
-    }),
-    (AI_AGENTS, {
-        "contains": ["ai-agent", "aikr", "agent-comm", "smartagent"],
-        "prefix": ["webai-"],
-        "exact": ["cogai", "webai"],
-    }),
-    (PAYMENTS, {
-        "contains": ["payment"],
-        "exact": ["webpayments"],
-    }),
-    (PERFORMANCE, {
-        "prefix": ["perf"],
-        "contains": ["performance"],
-        "exact": ["resource-hints", "navigation-timing", "user-timing",
-                  "resource-timing"],
-    }),
-    (W3C_PROCESS, {
-        "prefix": ["tpac", "breakout", "ab-"],
-        "exact": ["guide", "initiatives", "charter-drafts", "w3process",
-                  "modern-tooling", "cg-program", "onboarding",
-                  "strategy"],
-    }),
-    (W3C_INFRASTRUCTURE, {
-        "prefix": ["w3c-website", "wp-theme"],
-        "exact": ["logos", "echidna", "gargantua", "github-cache",
-                  "wicg.github.io", "node-w3capi",
-                  "github-notify-ml-config", "publ_ack"],
-        "suffix": ["bot", "Bot"],
-    }),
-    (SPEC_TOOLING, {
-        "prefix": ["spec-"],
-        "contains": ["webidl"],
-        "exact": ["reffy", "spec-families", "respec", "bikeshed", "webref",
-                  "specref", "specberus", "strudy", "browser-specs"],
-    }),
-    (SERVICE_WORKERS, {
-        "contains": ["service-worker"],
-        "exact": ["serviceworker", "manifest", "web-app-manifest",
-                  "appmanifest"],
-    }),
-    (WEB_FONTS, {
-        "prefix": ["woff"],
-        "contains": ["font"],
-    }),
-    (EDITING, {
-        "contains": ["editing", "selection"],
-    }),
-    (EVENTS, {
-        "contains": ["pointer", "uievents"],
-    }),
-    (MINI_APPS, {
-        "prefix": ["mini-"],
-        "contains": ["miniapp"],
-    }),
-    (HTML, {
-        "prefix": ["html-"],
-        "exact": ["html"],
-    }),
-    (DOM, {
-        "exact": ["dom", "webcomponents", "custom-elements", "shadow-dom"],
-    }),
+    (
+        ACCESSIBILITY,
+        {
+            "prefix": ["wai-", "wcag"],
+            "contains": ["aria"],
+            "exact": ["apa", "adapt"],
+        },
+    ),
+    (
+        I18N,
+        {
+            "prefix": ["i18n"],
+            "contains": ["charmod"],
+            "exact": ["typography", "unicode-xml"],
+            "suffix": ["lreq", "-req"],
+        },
+    ),
+    (
+        DIGITAL_PUBLISHING,
+        {
+            "prefix": ["epub", "audiobook", "publ-", "dpub", "pm-"],
+            "exact": ["publishing"],
+        },
+    ),
+    (
+        SECURITY,
+        {
+            "prefix": ["webappsec"],
+            "contains": ["security", "threat-model"],
+            "exclude_contains": ["privacy"],
+        },
+    ),
+    (
+        PRIVACY,
+        {
+            "contains": ["privacy", "fingerprint"],
+            "exact": ["ping", "privacywg", "gpc", "dpv"],
+        },
+    ),
+    (
+        VERIFIABLE_CREDENTIALS,
+        {
+            "prefix": ["vc-", "did"],
+            "contains": ["credential", "verifiable"],
+        },
+    ),
+    (
+        WEB_OF_THINGS,
+        {
+            "prefix": ["wot"],
+            "exact": ["wotwg"],
+        },
+    ),
+    (
+        WEBRTC,
+        {
+            "prefix": ["webrtc", "mediacapture"],
+            "exact": ["ortc"],
+        },
+    ),
+    (
+        WEB_AUDIO,
+        {
+            "prefix": ["audio", "web-audio"],
+            "exact": ["webaudio", "web-midi-api", "web-speech-api"],
+        },
+    ),
+    (
+        MEDIA,
+        {
+            "prefix": ["media"],
+            "exact": ["encrypted-media", "mediasession"],
+            "exclude_prefix": ["mediacapture"],
+        },
+    ),
+    (
+        DEVICES_SENSORS,
+        {
+            "contains": ["sensor"],
+            "exact": ["battery", "nfc", "web-nfc"],
+        },
+    ),
+    (
+        CSS,
+        {
+            "prefix": ["css", "houdini"],
+            "exact": ["csswg-drafts", "css-houdini-drafts"],
+        },
+    ),
+    (
+        GRAPHICS,
+        {
+            "prefix": ["graphics-", "svg-", "gpu", "webgl"],
+            "exact": ["svgwg", "png", "gpuweb-wg", "fxtf-drafts", "webgpu"],
+        },
+    ),
+    (
+        SEMANTIC_WEB,
+        {
+            "contains": ["rdf", "sparql", "shacl", "json-ld", "jsonld"],
+            "exact": [
+                "ldn",
+                "solid",
+                "lws-protocol",
+                "data-shapes",
+                "yml2vocab",
+            ],
+        },
+    ),
+    (
+        SOCIAL_WEB,
+        {
+            "contains": ["social", "activity"],
+            "exact": [
+                "socialwg",
+                "activitystreams",
+                "websub",
+                "webmention",
+                "micropub",
+                "activitypub",
+            ],
+        },
+    ),
+    (
+        SUSTAINABILITY,
+        {
+            "contains": ["sustainab"],
+        },
+    ),
+    (
+        AI_AGENTS,
+        {
+            "contains": ["ai-agent", "aikr", "agent-comm", "smartagent"],
+            "prefix": ["webai-"],
+            "exact": ["cogai", "webai"],
+        },
+    ),
+    (
+        PAYMENTS,
+        {
+            "contains": ["payment"],
+            "exact": ["webpayments"],
+        },
+    ),
+    (
+        PERFORMANCE,
+        {
+            "prefix": ["perf"],
+            "contains": ["performance"],
+            "exact": [
+                "resource-hints",
+                "navigation-timing",
+                "user-timing",
+                "resource-timing",
+            ],
+        },
+    ),
+    (
+        W3C_PROCESS,
+        {
+            "prefix": ["tpac", "breakout", "ab-"],
+            "exact": [
+                "guide",
+                "initiatives",
+                "charter-drafts",
+                "w3process",
+                "modern-tooling",
+                "cg-program",
+                "onboarding",
+                "strategy",
+            ],
+        },
+    ),
+    (
+        W3C_INFRASTRUCTURE,
+        {
+            "prefix": ["w3c-website", "wp-theme"],
+            "exact": [
+                "logos",
+                "echidna",
+                "gargantua",
+                "github-cache",
+                "wicg.github.io",
+                "node-w3capi",
+                "github-notify-ml-config",
+                "publ_ack",
+            ],
+            "suffix": ["bot", "Bot"],
+        },
+    ),
+    (
+        SPEC_TOOLING,
+        {
+            "prefix": ["spec-"],
+            "contains": ["webidl"],
+            "exact": [
+                "reffy",
+                "spec-families",
+                "respec",
+                "bikeshed",
+                "webref",
+                "specref",
+                "specberus",
+                "strudy",
+                "browser-specs",
+            ],
+        },
+    ),
+    (
+        SERVICE_WORKERS,
+        {
+            "contains": ["service-worker"],
+            "exact": [
+                "serviceworker",
+                "manifest",
+                "web-app-manifest",
+                "appmanifest",
+            ],
+        },
+    ),
+    (
+        WEB_FONTS,
+        {
+            "prefix": ["woff"],
+            "contains": ["font"],
+        },
+    ),
+    (
+        EDITING,
+        {
+            "contains": ["editing", "selection"],
+        },
+    ),
+    (
+        EVENTS,
+        {
+            "contains": ["pointer", "uievents"],
+        },
+    ),
+    (
+        MINI_APPS,
+        {
+            "prefix": ["mini-"],
+            "contains": ["miniapp"],
+        },
+    ),
+    (
+        HTML,
+        {
+            "prefix": ["html-"],
+            "exact": ["html"],
+        },
+    ),
+    (
+        DOM,
+        {
+            "exact": ["dom", "webcomponents", "custom-elements", "shadow-dom"],
+        },
+    ),
 ]
 
 # General patterns for repos outside standards orgs
 GENERAL_PATTERNS = [
-    (SPEC_TOOLING, {
-        "contains": ["spec-factory", "spec-maintenance"],
-        "exact": ["respec", "bikeshed", "reffy", "specref"],
-    }),
-    (GITHUB_ANALYTICS, {
-        "contains": ["analytics", "metrics", "statistics"],
-    }),
-    (BROWSER_INTEROP, {
-        "prefix": ["interop"],
-    }),
-    (WPT, {
-        "contains": ["wpt"],
-    }),
-    (HTML_CSS_VALIDATION, {
-        "contains": ["validator"],
-    }),
-    (BROWSER_ENGINES, {
-        "contains": ["ladybird", "webkit", "firefox"],
-    }),
+    (
+        SPEC_TOOLING,
+        {
+            "contains": ["spec-factory", "spec-maintenance"],
+            "exact": ["respec", "bikeshed", "reffy", "specref"],
+        },
+    ),
+    (
+        GITHUB_ANALYTICS,
+        {
+            "contains": ["analytics", "metrics", "statistics"],
+        },
+    ),
+    (
+        BROWSER_INTEROP,
+        {
+            "prefix": ["interop"],
+        },
+    ),
+    (
+        WPT,
+        {
+            "contains": ["wpt"],
+        },
+    ),
+    (
+        HTML_CSS_VALIDATION,
+        {
+            "contains": ["validator"],
+        },
+    ),
+    (
+        BROWSER_ENGINES,
+        {
+            "contains": ["ladybird", "webkit", "firefox"],
+        },
+    ),
     # IETF standards patterns (for orgs not in ORG_CATEGORIES)
-    (IETF_STANDARDS, {
-        "prefix": ["draft-ietf-", "draft-iab-"],
-        "contains": ["-ietf-"],
-    }),
+    (
+        IETF_STANDARDS,
+        {
+            "prefix": ["draft-ietf-", "draft-iab-"],
+            "contains": ["-ietf-"],
+        },
+    ),
     # Personal projects patterns
-    (PERSONAL_PROJECTS, {
-        "suffix": [".github.io", "-github-io"],
-    }),
+    (
+        PERSONAL_PROJECTS,
+        {
+            "suffix": [".github.io", "-github-io"],
+        },
+    ),
     # Dotfiles patterns
-    (DOTFILES, {
-        "exact": ["dotfiles", ".dotfiles"],
-        "contains": ["dotfiles"],
-    }),
+    (
+        DOTFILES,
+        {
+            "exact": ["dotfiles", ".dotfiles"],
+            "contains": ["dotfiles"],
+        },
+    ),
     # Audio/MIDI libraries patterns
-    (AUDIO_MIDI_LIBRARIES, {
-        "contains": [
-            "audio-worklet", "midi-json", "midi-file", "web-audio-beat"
-        ],
-    }),
+    (
+        AUDIO_MIDI_LIBRARIES,
+        {
+            "contains": [
+                "audio-worklet",
+                "midi-json",
+                "midi-file",
+                "web-audio-beat",
+            ],
+        },
+    ),
     # Passkeys/WebAuthn patterns
-    (PASSKEYS, {
-        "contains": ["webauthn", "passkey", "passkeys"],
-    }),
+    (
+        PASSKEYS,
+        {
+            "contains": ["webauthn", "passkey", "passkeys"],
+        },
+    ),
     # Browser extensions patterns
-    (BROWSER_EXTENSIONS, {
-        "contains": ["chrome-extension", "browser-extension", "web-extension"],
-        "suffix": ["-extension"],
-    }),
+    (
+        BROWSER_EXTENSIONS,
+        {
+            "contains": [
+                "chrome-extension",
+                "browser-extension",
+                "web-extension",
+            ],
+            "suffix": ["-extension"],
+        },
+    ),
     # Compilers patterns
-    (COMPILERS, {
-        "contains": ["emscripten", "llvm", "wasm-bindgen"],
-    }),
+    (
+        COMPILERS,
+        {
+            "contains": ["emscripten", "llvm", "wasm-bindgen"],
+        },
+    ),
     # CSS tooling patterns
-    (CSS_TOOLING, {
-        "prefix": ["postcss-", "stylelint-"],
-        "contains": ["postcss"],
-    }),
+    (
+        CSS_TOOLING,
+        {
+            "prefix": ["postcss-", "stylelint-"],
+            "contains": ["postcss"],
+        },
+    ),
     # TC39 proposals -> ES shims
-    (ES_SHIMS, {
-        "prefix": ["proposal-"],
-    }),
+    (
+        ES_SHIMS,
+        {
+            "prefix": ["proposal-"],
+        },
+    ),
     # Supply chain security patterns
-    (SUPPLY_CHAIN_SECURITY, {
-        "contains": ["supply-chain", "dependency-check"],
-    }),
+    (
+        SUPPLY_CHAIN_SECURITY,
+        {
+            "contains": ["supply-chain", "dependency-check"],
+        },
+    ),
 ]
 
 # Display order for categories in reports (preferred order, then any others)
@@ -1066,61 +1273,49 @@ TOPIC_CATEGORIES = {
     "tc39": TC39,
     "web-standards": WEB_STANDARDS,
     "specification": WEB_STANDARDS,
-
     # Accessibility
     "accessibility": ACCESSIBILITY,
     "a11y": ACCESSIBILITY,
     "wcag": ACCESSIBILITY,
     "aria": ACCESSIBILITY,
-
     # Internationalization
     "i18n": I18N,
     "internationalization": I18N,
     "localization": I18N,
     "l10n": I18N,
-
     # Security and Privacy
     "security": SECURITY,
     "privacy": PRIVACY,
-
     # WebXR / Immersive
     "webxr": IMMERSIVE_WEB,
     "virtual-reality": IMMERSIVE_WEB,
     "augmented-reality": IMMERSIVE_WEB,
     "vr": IMMERSIVE_WEB,
     "ar": IMMERSIVE_WEB,
-
     # WebRTC
     "webrtc": WEBRTC,
     "real-time-communication": WEBRTC,
-
     # Web Audio
     "webaudio": WEB_AUDIO,
     "web-audio": WEB_AUDIO,
     "web-midi": WEB_AUDIO,
-
     # Graphics
     "webgl": GRAPHICS,
     "webgpu": GRAPHICS,
     "svg": GRAPHICS,
     "canvas": GRAPHICS,
-
     # 3D (non-standards)
     "threejs": "3D/WebGL",
     "3d": "3D/WebGL",
-
     # Programming languages
     "programming-language": PROGRAMMING_LANGUAGES,
     "language": PROGRAMMING_LANGUAGES,
-
     # JavaScript runtimes
     "nodejs": JS_RUNTIMES,
     "deno": JS_RUNTIMES,
     "javascript-runtime": JS_RUNTIMES,
-
     # TypeScript
     "typescript": TYPESCRIPT,
-
     # Web frameworks
     "web-framework": WEB_FRAMEWORKS,
     "django": WEB_FRAMEWORKS,
@@ -1129,7 +1324,6 @@ TOPIC_CATEGORIES = {
     "laravel": WEB_FRAMEWORKS,
     "spring": WEB_FRAMEWORKS,
     "spring-boot": WEB_FRAMEWORKS,
-
     # Frontend frameworks
     "frontend": FRONTEND_FRAMEWORKS,
     "react": FRONTEND_FRAMEWORKS,
@@ -1138,13 +1332,11 @@ TOPIC_CATEGORIES = {
     "angular": FRONTEND_FRAMEWORKS,
     "nextjs": FRONTEND_FRAMEWORKS,
     "frontend-framework": FRONTEND_FRAMEWORKS,
-
     # UI libraries
     "ui-components": UI_COMPONENTS,
     "component-library": UI_COMPONENTS,
     "design-system": UI_COMPONENTS,
     "css-framework": UI_COMPONENTS,
-
     # Mobile
     "react-native": MOBILE,
     "flutter": MOBILE,
@@ -1152,7 +1344,6 @@ TOPIC_CATEGORIES = {
     "ios": MOBILE,
     "android": MOBILE,
     "cross-platform": MOBILE,
-
     # Data science
     "data-science": DATA_SCIENCE,
     "data-analysis": DATA_SCIENCE,
@@ -1161,7 +1352,6 @@ TOPIC_CATEGORIES = {
     "jupyter": DATA_SCIENCE,
     "scientific-computing": DATA_SCIENCE,
     "statistics": DATA_SCIENCE,
-
     # ML frameworks
     "machine-learning": ML_FRAMEWORKS,
     "deep-learning": ML_FRAMEWORKS,
@@ -1175,7 +1365,6 @@ TOPIC_CATEGORIES = {
     "natural-language-processing": ML_FRAMEWORKS,
     "computer-vision": ML_FRAMEWORKS,
     "image-processing": ML_FRAMEWORKS,
-
     # DevOps
     "devops": DEVOPS,
     "kubernetes": DEVOPS,
@@ -1191,26 +1380,22 @@ TOPIC_CATEGORIES = {
     "cloud": DEVOPS,
     "serverless": DEVOPS,
     "microservices": DEVOPS,
-
     # CI/CD
     "ci-cd": CI_CD,
     "continuous-integration": CI_CD,
     "continuous-deployment": CI_CD,
     "github-actions": CI_CD,
-
     # Package managers
     "package-manager": PACKAGE_MANAGERS,
     "dependency-management": PACKAGE_MANAGERS,
     "homebrew": PACKAGE_MANAGERS,
     "npm": PACKAGE_MANAGERS,
     "pip": PACKAGE_MANAGERS,
-
     # Build tools
     "build-tool": BUILD_TOOLS,
     "build-system": BUILD_TOOLS,
     "bundler": BUILD_TOOLS,
     "webpack": BUILD_TOOLS,
-
     # Testing
     "testing": TESTING_FRAMEWORKS,
     "testing-tools": TESTING_FRAMEWORKS,
@@ -1219,13 +1404,11 @@ TOPIC_CATEGORIES = {
     "e2e-testing": TESTING_FRAMEWORKS,
     "unit-testing": TESTING_FRAMEWORKS,
     "test-framework": TESTING_FRAMEWORKS,
-
     # Documentation
     "documentation": DOCUMENTATION,
     "docs": DOCUMENTATION,
     "documentation-tool": DOCUMENTATION_PLATFORMS,
     "static-site-generator": DOCUMENTATION_PLATFORMS,
-
     # Dotfiles
     "dotfiles": DOTFILES,
     "dotfile": DOTFILES,
@@ -1235,13 +1418,11 @@ TOPIC_CATEGORIES = {
     "vimrc": DOTFILES,
     "neovim-config": DOTFILES,
     "nvim-config": DOTFILES,
-
     # Browser engines
     "browser": BROWSER_ENGINES,
     "browser-engine": BROWSER_ENGINES,
     "webkit": BROWSER_ENGINES,
     "chromium": BROWSER_ENGINES,
-
     # Home automation and Embedded systems
     "home-automation": HOME_AUTOMATION,
     "iot": HOME_AUTOMATION,
@@ -1255,7 +1436,6 @@ TOPIC_CATEGORIES = {
     "esp32": HOME_AUTOMATION,
     "esp8266": HOME_AUTOMATION,
     "stm32": HOME_AUTOMATION,
-
     # Databases
     "database": DATABASES,
     "sql": DATABASES,
@@ -1270,7 +1450,6 @@ TOPIC_CATEGORIES = {
     "cassandra": DATABASES,
     "graphdb": DATABASES,
     "timeseries": DATABASES,
-
     # Game development
     "game-development": GAME_DEVELOPMENT,
     "game-engine": GAME_DEVELOPMENT,
@@ -1281,7 +1460,6 @@ TOPIC_CATEGORIES = {
     "game": GAME_DEVELOPMENT,
     "2d-game": GAME_DEVELOPMENT,
     "3d-game": GAME_DEVELOPMENT,
-
     # Blockchain
     "blockchain": BLOCKCHAIN,
     "cryptocurrency": BLOCKCHAIN,
@@ -1293,7 +1471,6 @@ TOPIC_CATEGORIES = {
     "defi": BLOCKCHAIN,
     "nft": BLOCKCHAIN,
     "crypto": BLOCKCHAIN,
-
     # Developer tools
     "cli": DEVELOPER_TOOLS,
     "command-line": DEVELOPER_TOOLS,
@@ -1312,29 +1489,24 @@ TOPIC_CATEGORIES = {
     "zsh-plugin": DEVELOPER_TOOLS,
     "oh-my-zsh": DEVELOPER_TOOLS,
     "shell-plugin": DEVELOPER_TOOLS,
-
     # Audio/MIDI libraries
     "midi": AUDIO_MIDI_LIBRARIES,
     "audio-worklet": AUDIO_MIDI_LIBRARIES,
     "audio-processing": AUDIO_MIDI_LIBRARIES,
-
     # ES shims and polyfills
     "polyfill": ES_SHIMS,
     "shim": ES_SHIMS,
     "es6-shim": ES_SHIMS,
     "ecmascript": ES_SHIMS,
-
     # HTTP tooling
     "http": HTTP_TOOLING,
     "http-client": HTTP_TOOLING,
     "http-server": HTTP_TOOLING,
     "rfc": HTTP_TOOLING,
-
     # IETF/Internet standards
     "ietf": IETF_STANDARDS,
     "internet-draft": IETF_STANDARDS,
     "rfc-spec": IETF_STANDARDS,
-
     # Observability and tracing
     "observability": OBSERVABILITY,
     "tracing": OBSERVABILITY,
@@ -1346,7 +1518,6 @@ TOPIC_CATEGORIES = {
     "grafana": OBSERVABILITY,
     "monitoring": OBSERVABILITY,
     "apm": OBSERVABILITY,
-
     # Passkeys/WebAuthn
     "webauthn": PASSKEYS,
     "passkey": PASSKEYS,
@@ -1354,7 +1525,6 @@ TOPIC_CATEGORIES = {
     "fido2": PASSKEYS,
     "fido": PASSKEYS,
     "passwordless": PASSKEYS,
-
     # RDF/Linked Data tooling
     "rdf": RDF_TOOLING,
     "sparql": RDF_TOOLING,
@@ -1362,12 +1532,10 @@ TOPIC_CATEGORIES = {
     "semantic-web": RDF_TOOLING,
     "knowledge-graph": RDF_TOOLING,
     "triple-store": RDF_TOOLING,
-
     # Personal projects
     "personal-website": PERSONAL_PROJECTS,
     "portfolio": PERSONAL_PROJECTS,
     "blog": PERSONAL_PROJECTS,
-
     # Browser extensions
     "chrome-extension": BROWSER_EXTENSIONS,
     "browser-extension": BROWSER_EXTENSIONS,
@@ -1375,7 +1543,6 @@ TOPIC_CATEGORIES = {
     "firefox-extension": BROWSER_EXTENSIONS,
     "web-extension": BROWSER_EXTENSIONS,
     "webextension": BROWSER_EXTENSIONS,
-
     # Compilers and toolchains
     "compiler": COMPILERS,
     "llvm": COMPILERS,
@@ -1383,7 +1550,6 @@ TOPIC_CATEGORIES = {
     "wasm": COMPILERS,
     "webassembly-tooling": COMPILERS,
     "bazel": COMPILERS,
-
     # CSS tooling
     "postcss": CSS_TOOLING,
     "postcss-plugin": CSS_TOOLING,
@@ -1391,19 +1557,16 @@ TOPIC_CATEGORIES = {
     "css-preprocessor": CSS_TOOLING,
     "sass": CSS_TOOLING,
     "less": CSS_TOOLING,
-
     # Reference management
     "citation": REFERENCE_MANAGEMENT,
     "bibliography": REFERENCE_MANAGEMENT,
     "reference-manager": REFERENCE_MANAGEMENT,
     "zotero": REFERENCE_MANAGEMENT,
-
     # Supply chain security
     "supply-chain": SUPPLY_CHAIN_SECURITY,
     "dependency-security": SUPPLY_CHAIN_SECURITY,
     "npm-security": SUPPLY_CHAIN_SECURITY,
     "software-supply-chain": SUPPLY_CHAIN_SECURITY,
-
     # Web analytics
     "web-analytics": WEB_ANALYTICS,
     "httparchive": WEB_ANALYTICS,
@@ -1461,7 +1624,7 @@ def fetch_repo_topics(repo_name):
             ["gh", "api", f"repos/{repo_name}", "--jq", ".topics // []"],
             capture_output=True,
             text=True,
-            check=True
+            check=True,
         )
         if result.stdout.strip():
             return tuple(json.loads(result.stdout))
@@ -1505,10 +1668,7 @@ def run_gh_command(
     for attempt in range(max_retries + 1):
         try:
             result = subprocess.run(
-                ["gh"] + args,
-                capture_output=True,
-                text=True,
-                check=True
+                ["gh"] + args, capture_output=True, text=True, check=True
             )
             if parse_json and result.stdout.strip():
                 return json.loads(result.stdout)
@@ -1525,15 +1685,17 @@ def run_gh_command(
             # Check for transient errors - retry with backoff
             if any(err in e.stderr for err in transient_errors):
                 if attempt < max_retries:
-                    wait_time = 2 ** attempt  # Exponential backoff: 1s, 2s, 4s
+                    wait_time = 2**attempt  # Exponential backoff: 1s, 2s, 4s
                     time.sleep(wait_time)
                     continue  # Retry
                 # Max retries exceeded - silently return None
                 # (don't alarm users; the tool continues with remaining work)
                 return None
 
-            print(Colors.error(f"Error running gh command: {e.stderr}"),
-                  file=sys.stderr)
+            print(
+                Colors.error(f"Error running gh command: {e.stderr}"),
+                file=sys.stderr,
+            )
             return None
         except json.JSONDecodeError:
             return result.stdout.strip()
@@ -1616,9 +1778,11 @@ def should_skip_repo(repo_name, repo_info=None, username=None):
     # Different from org repos like validator/validator, which are legitimate
     if username:
         parts = repo_name.split("/")
-        if (len(parts) == 2
-                and parts[0].lower() == username.lower()
-                and parts[1].lower() == username.lower()):
+        if (
+            len(parts) == 2
+            and parts[0].lower() == username.lower()
+            and parts[1].lower() == username.lower()
+        ):
             return True
     # Skip private repos if we have repo info
     if repo_info and repo_info.get("isPrivate"):
@@ -1730,8 +1894,10 @@ def get_contributions_summary(username, since_date, until_date):
     if (end - start).days > 365:
         start = end - timedelta(days=365)
         since_date = start.strftime("%Y-%m-%d")
-        msg = (f"\nNote: GitHub API limits to 1 year. "
-               f"Using {since_date} as start date.")
+        msg = (
+            f"\nNote: GitHub API limits to 1 year. "
+            f"Using {since_date} as start date."
+        )
         print(Colors.warning(msg), file=sys.stderr)
 
     from_ts = f"{since_date}T00:00:00Z"
@@ -1795,14 +1961,23 @@ def get_all_commits(username, since_date, until_date):
         if page > 10:
             hit_limit = True
             break
-        result = run_gh_command([
-            "api", "search/commits",
-            "-X", "GET",
-            "-f", (f"q=author:{username} "
-                   f"author-date:{since_date}..{until_date}"),
-            "-f", f"per_page={API_PAGE_SIZE}",
-            "-f", f"page={page}"
-        ])
+        result = run_gh_command(
+            [
+                "api",
+                "search/commits",
+                "-X",
+                "GET",
+                "-f",
+                (
+                    f"q=author:{username} "
+                    f"author-date:{since_date}..{until_date}"
+                ),
+                "-f",
+                f"per_page={API_PAGE_SIZE}",
+                "-f",
+                f"page={page}",
+            ]
+        )
         if not result or "items" not in result:
             break
         items = result["items"]
@@ -1838,11 +2013,17 @@ def get_commit_stats(commits_by_repo):
                 msg = f"Fetching commit stats ({processed}/{total_commits})..."
                 progress.update(msg)
             # Fetch commit details with stats
-            result = run_gh_command([
-                "api", f"repos/{repo_name}/commits/{sha}",
-                "--jq", ("{additions: .stats.additions, "
-                         "deletions: .stats.deletions}")
-            ])
+            result = run_gh_command(
+                [
+                    "api",
+                    f"repos/{repo_name}/commits/{sha}",
+                    "--jq",
+                    (
+                        "{additions: .stats.additions, "
+                        "deletions: .stats.deletions}"
+                    ),
+                ]
+            )
             if result:
                 adds = result.get("additions", 0)
                 dels = result.get("deletions", 0)
@@ -1884,16 +2065,21 @@ def get_user_forks(username):
 
         for node in nodes:
             # Convert to format expected by rest of code
-            forks.append({
-                "full_name": node.get("nameWithOwner"),
-                "description": node.get("description"),
-                "language": (node.get("primaryLanguage") or {}).get("name"),
-                "fork": node.get("isFork"),
-                "parent": (
-                    {"full_name": node["parent"]["nameWithOwner"]}
-                    if node.get("parent") else None
-                )
-            })
+            forks.append(
+                {
+                    "full_name": node.get("nameWithOwner"),
+                    "description": node.get("description"),
+                    "language": (node.get("primaryLanguage") or {}).get(
+                        "name"
+                    ),
+                    "fork": node.get("isFork"),
+                    "parent": (
+                        {"full_name": node["parent"]["nameWithOwner"]}
+                        if node.get("parent")
+                        else None
+                    ),
+                }
+            )
 
         page_info = repos.get("pageInfo", {})
         if not page_info.get("hasNextPage"):
@@ -1911,9 +2097,17 @@ def get_fork_commits(username, fork_repo, since_date, until_date):
 
     try:
         result = subprocess.run(
-            ["gh", "api", f"repos/{fork_repo}/branches", "--paginate",
-             "--jq", ".[].name"],
-            capture_output=True, text=True, check=True
+            [
+                "gh",
+                "api",
+                f"repos/{fork_repo}/branches",
+                "--paginate",
+                "--jq",
+                ".[].name",
+            ],
+            capture_output=True,
+            text=True,
+            check=True,
         )
         lines = result.stdout.strip().split("\n")
         all_branches = [b.strip() for b in lines if b.strip()]
@@ -1926,8 +2120,15 @@ def get_fork_commits(username, fork_repo, since_date, until_date):
     # Filter to likely user-created branches (not main/master or upstream)
     # User branches often have prefixes like: eng/, fix/, feature/, username
     user_branch_patterns = [
-        "eng/", "fix/", "feat/", "feature/", "bug/", "test/", "wip/",
-        fork_owner.lower() + "/", fork_owner.lower() + "-"
+        "eng/",
+        "fix/",
+        "feat/",
+        "feature/",
+        "bug/",
+        "test/",
+        "wip/",
+        fork_owner.lower() + "/",
+        fork_owner.lower() + "-",
     ]
     upstream_branches = {"main", "master", "develop", "dev", "trunk", "HEAD"}
 
@@ -1960,12 +2161,14 @@ def get_fork_commits(username, fork_repo, since_date, until_date):
 
     for branch_name in user_branches:
         # Get commits from this branch (use query string, not -f flags for GET)
-        url = (f"repos/{fork_repo}/commits"
-               f"?sha={quote(branch_name, safe='')}"
-               f"&author={username}"
-               f"&since={since_date}T00:00:00Z"
-               f"&until={until_date}T23:59:59Z"
-               f"&per_page={API_PAGE_SIZE}")
+        url = (
+            f"repos/{fork_repo}/commits"
+            f"?sha={quote(branch_name, safe='')}"
+            f"&author={username}"
+            f"&since={since_date}T00:00:00Z"
+            f"&until={until_date}T23:59:59Z"
+            f"&per_page={API_PAGE_SIZE}"
+        )
         result = run_gh_command(["api", url])
         if result:
             for commit in result:
@@ -2025,7 +2228,7 @@ def get_repo_info(repo_names):
     repo_list = list(repo_names)
 
     for batch_start in range(0, len(repo_list), batch_size):
-        batch = repo_list[batch_start:batch_start + batch_size]
+        batch = repo_list[batch_start : batch_start + batch_size]
         batch_queries = []
         for i, repo_name in enumerate(batch):
             owner, name = repo_name.split("/", 1)
@@ -2346,15 +2549,20 @@ def check_activity_via_scrape(username, since_date, until_date):
     Returns:
         True if active, False if not active, None if couldn't determine
     """
-    url = (f"https://github.com/users/{username}/contributions"
-           f"?from={since_date}&to={until_date}")
+    url = (
+        f"https://github.com/users/{username}/contributions"
+        f"?from={since_date}&to={until_date}"
+    )
     try:
-        req = urllib.request.Request(url, headers={
-            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15)',
-            'Accept': 'text/html',
-        })
+        req = urllib.request.Request(
+            url,
+            headers={
+                "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15)",
+                "Accept": "text/html",
+            },
+        )
         with urllib.request.urlopen(req, timeout=15) as response:
-            html = response.read().decode('utf-8')
+            html = response.read().decode("utf-8")
             # Find contribution squares with data-date and data-level attrs
             # data-level > 0 means there were contributions on that day
             pattern = r'data-date="(\d{4}-\d{2}-\d{2})"[^>]*data-level="(\d)"'
@@ -2443,7 +2651,7 @@ def get_contribution_summaries_batch(
 
     # Batch users into groups (GraphQL has query complexity limits)
     for i in range(0, len(usernames), GRAPHQL_BATCH_SIZE):
-        batch = list(usernames)[i:i + GRAPHQL_BATCH_SIZE]
+        batch = list(usernames)[i : i + GRAPHQL_BATCH_SIZE]
 
         # Build aliased query for batch
         from_ts = f"{since_date}T00:00:00Z"
@@ -2498,34 +2706,54 @@ def get_contribution_summaries_batch(
 
 def get_review_comments_count(username, since_date):
     """Get count of PR review comments made."""
-    result = run_gh_command([
-        "api", "search/issues",
-        "-X", "GET",
-        "-f", f"q=commenter:{username} type:pr updated:>={since_date}",
-        "-f", f"per_page={API_PAGE_SIZE}",
-        "--jq", ".total_count"
-    ], parse_json=False)
+    result = run_gh_command(
+        [
+            "api",
+            "search/issues",
+            "-X",
+            "GET",
+            "-f",
+            f"q=commenter:{username} type:pr updated:>={since_date}",
+            "-f",
+            f"per_page={API_PAGE_SIZE}",
+            "--jq",
+            ".total_count",
+        ],
+        parse_json=False,
+    )
     return int(result) if result else 0
 
 
 def count_test_related_commits(username, since_date):
     """Count commits that mention tests."""
-    result = run_gh_command([
-        "api", "search/commits",
-        "-X", "GET",
-        "-f", f'q=author:{username} author-date:>={since_date} "test"',
-        "-f", "per_page=1",
-        "--jq", ".total_count"
-    ], parse_json=False)
+    result = run_gh_command(
+        [
+            "api",
+            "search/commits",
+            "-X",
+            "GET",
+            "-f",
+            f'q=author:{username} author-date:>={since_date} "test"',
+            "-f",
+            "per_page=1",
+            "--jq",
+            ".total_count",
+        ],
+        parse_json=False,
+    )
     return int(result) if result else 0
 
 
 def get_org_info(org_name):
     """Get organization info (login, name, description)."""
-    result = run_gh_command([
-        "api", f"orgs/{org_name}",
-        "--jq", "{login: .login, name: .name, description: .description}"
-    ])
+    result = run_gh_command(
+        [
+            "api",
+            f"orgs/{org_name}",
+            "--jq",
+            "{login: .login, name: .name, description: .description}",
+        ]
+    )
     return result
 
 
@@ -2543,8 +2771,16 @@ def paginate_gh_api(endpoint, extra_params=None, progress_callback=None):
     all_items = []
     page = 1
     while True:
-        cmd = ["api", endpoint, "-X", "GET",
-               "-f", f"per_page={API_PAGE_SIZE}", "-f", f"page={page}"]
+        cmd = [
+            "api",
+            endpoint,
+            "-X",
+            "GET",
+            "-f",
+            f"per_page={API_PAGE_SIZE}",
+            "-f",
+            f"page={page}",
+        ]
         if extra_params:
             for param in extra_params:
                 cmd.extend(["-f", param])
@@ -2570,32 +2806,34 @@ def get_org_owners(org_name, progress_callback=None):
     return paginate_gh_api(
         f"orgs/{org_name}/members",
         extra_params=["role=admin"],
-        progress_callback=progress_callback
+        progress_callback=progress_callback,
     )
 
 
 def get_org_members(org_name, progress_callback=None):
     """Get all organization members with pagination."""
     return paginate_gh_api(
-        f"orgs/{org_name}/members",
-        progress_callback=progress_callback
+        f"orgs/{org_name}/members", progress_callback=progress_callback
     )
 
 
 def get_org_public_members(org_name, progress_callback=None):
     """Get public organization members with pagination."""
     return paginate_gh_api(
-        f"orgs/{org_name}/public_members",
-        progress_callback=progress_callback
+        f"orgs/{org_name}/public_members", progress_callback=progress_callback
     )
 
 
 def get_team_info(org_name, team_slug):
     """Get team info (slug, name, description)."""
-    result = run_gh_command([
-        "api", f"orgs/{org_name}/teams/{team_slug}",
-        "--jq", "{slug: .slug, name: .name, description: .description}"
-    ])
+    result = run_gh_command(
+        [
+            "api",
+            f"orgs/{org_name}/teams/{team_slug}",
+            "--jq",
+            "{slug: .slug, name: .name, description: .description}",
+        ]
+    )
     return result
 
 
@@ -2603,7 +2841,7 @@ def get_team_members(org_name, team_slug, progress_callback=None):
     """Get team members with pagination."""
     return paginate_gh_api(
         f"orgs/{org_name}/teams/{team_slug}/members",
-        progress_callback=progress_callback
+        progress_callback=progress_callback,
     )
 
 
@@ -2657,8 +2895,8 @@ def make_org_anchor(org_or_company):
     """Create anchor ID from org name or company ('tc39' -> 'org-tc39')."""
     # Slugify: lowercase, replace non-alphanumeric with hyphens
     slug = org_or_company.lower()
-    slug = re.sub(r'[^a-z0-9]+', '-', slug)
-    slug = slug.strip('-')
+    slug = re.sub(r"[^a-z0-9]+", "-", slug)
+    slug = slug.strip("-")
     return f"org-{slug}"
 
 
@@ -2675,8 +2913,10 @@ def make_lang_commit_link(language, count, since_date, until_date, username):
     Returns:
         Markdown link like [count](url)
     """
-    query = (f"author:{username} language:{language} "
-             f"author-date:{since_date}..{until_date}")
+    query = (
+        f"author:{username} language:{language} "
+        f"author-date:{since_date}..{until_date}"
+    )
     url = f"https://github.com/search?q={quote(query)}&type=commits"
     return f"[{count}]({url})"
 
@@ -2728,17 +2968,20 @@ def gather_user_data(username, since_date, until_date, show_progress=True):
     user_real_name = user_data.get("name") or ""
 
     total_commits_default_branch = contrib_collection.get(
-        "totalCommitContributions", 0)
+        "totalCommitContributions", 0
+    )
     if commits_data:
         total_commits_all = commits_data.get("total_count", 0)
     else:
         total_commits_all = 0
     total_prs = contrib_collection.get("totalPullRequestContributions", 0)
     total_pr_reviews = contrib_collection.get(
-        "totalPullRequestReviewContributions", 0)
+        "totalPullRequestReviewContributions", 0
+    )
     total_issues = contrib_collection.get("totalIssueContributions", 0)
     repos_contributed = contrib_collection.get(
-        "totalRepositoriesWithContributedCommits", 0)
+        "totalRepositoriesWithContributedCommits", 0
+    )
 
     # PRs data
     if prs_created:
@@ -2748,9 +2991,11 @@ def gather_user_data(username, since_date, until_date, show_progress=True):
     total_additions = sum(pr.get("additions", 0) for pr in prs_nodes)
     total_deletions = sum(pr.get("deletions", 0) for pr in prs_nodes)
     reviews_received = sum(
-        (pr.get("reviews") or {}).get("totalCount", 0) for pr in prs_nodes)
+        (pr.get("reviews") or {}).get("totalCount", 0) for pr in prs_nodes
+    )
     pr_comments_received = sum(
-        (pr.get("comments") or {}).get("totalCount", 0) for pr in prs_nodes)
+        (pr.get("comments") or {}).get("totalCount", 0) for pr in prs_nodes
+    )
 
     # Reviewed PRs data (get_prs_reviewed now returns a list directly)
     reviewed_nodes = prs_reviewed if prs_reviewed else []
@@ -2815,7 +3060,7 @@ def gather_user_data(username, since_date, until_date, show_progress=True):
             "description": parent.get("description") or "",
             "primaryLanguage": parent.get("primaryLanguage") or {"name": ""},
             "isFork": True,
-            "parent": {"nameWithOwner": parent_name}
+            "parent": {"nameWithOwner": parent_name},
         }
 
     # Check each fork for commits
@@ -2826,7 +3071,8 @@ def gather_user_data(username, since_date, until_date, show_progress=True):
             progress.update(f"Checking fork {i}/{total_forks}: {highlighted}")
         # Get commits from all branches of this fork
         fork_commits = get_fork_commits(
-            username, fork_name, since_date, until_date)
+            username, fork_name, since_date, until_date
+        )
         if fork_commits:
             # Only count commits not already found via search API
             existing_count = commit_counts_by_repo.get(fork_name, 0)
@@ -2908,11 +3154,14 @@ def gather_user_data(username, since_date, until_date, show_progress=True):
 
     def fetch_commit_stats(commit_tuple):
         target_repo, source_repo, sha = commit_tuple
-        result = run_gh_command([
-            "api", f"repos/{source_repo}/commits/{sha}",
-            "--jq", ("{additions: .stats.additions, "
-                     "deletions: .stats.deletions}")
-        ])
+        result = run_gh_command(
+            [
+                "api",
+                f"repos/{source_repo}/commits/{sha}",
+                "--jq",
+                ("{additions: .stats.additions, deletions: .stats.deletions}"),
+            ]
+        )
         with results_lock:
             processed[0] += 1
             done = processed[0]
@@ -2985,23 +3234,27 @@ def gather_user_data(username, since_date, until_date, show_progress=True):
     # Build repos_by_category with resolved languages
     for repo_name, commit_count, info, lang in repos_with_known_lang:
         category = get_category(repo_name)
-        repos_by_category[category].append({
-            "name": repo_name,
-            "commits": commit_count,
-            "description": info.get("description") or "",
-            "language": lang,
-        })
+        repos_by_category[category].append(
+            {
+                "name": repo_name,
+                "commits": commit_count,
+                "description": info.get("description") or "",
+                "language": lang,
+            }
+        )
 
     for repo_name, commit_count, info, rep_lang in repos_needing_lang_check:
         effective_lang = effective_languages.get(repo_name)
         language = effective_lang if effective_lang else rep_lang
         category = get_category(repo_name)
-        repos_by_category[category].append({
-            "name": repo_name,
-            "commits": commit_count,
-            "description": info.get("description") or "",
-            "language": language,
-        })
+        repos_by_category[category].append(
+            {
+                "name": repo_name,
+                "commits": commit_count,
+                "description": info.get("description") or "",
+                "language": language,
+            }
+        )
 
     # Build a mapping of repo -> language for use in PR tables
     repo_languages = {}
@@ -3012,7 +3265,8 @@ def gather_user_data(username, since_date, until_date, show_progress=True):
     # Sort repos within categories by commit count
     for category in repos_by_category:
         repos_by_category[category].sort(
-            key=lambda x: x["commits"], reverse=True)
+            key=lambda x: x["commits"], reverse=True
+        )
 
     # Convert defaultdict to regular dict and repo_line_stats too
     repo_line_stats = dict(repo_line_stats)
@@ -3042,8 +3296,9 @@ def gather_user_data(username, since_date, until_date, show_progress=True):
     }
 
 
-def gather_user_data_light(username, since_date, until_date,
-                           show_progress=True):
+def gather_user_data_light(
+    username, since_date, until_date, show_progress=True
+):
     """Gather lightweight data for a user (for org mode to reduce API calls).
 
     Fetches only essential data:
@@ -3083,13 +3338,16 @@ def gather_user_data_light(username, since_date, until_date,
     user_company = user_data.get("company") or ""
 
     total_commits_default_branch = contrib_collection.get(
-        "totalCommitContributions", 0)
+        "totalCommitContributions", 0
+    )
     total_prs = contrib_collection.get("totalPullRequestContributions", 0)
     total_pr_reviews = contrib_collection.get(
-        "totalPullRequestReviewContributions", 0)
+        "totalPullRequestReviewContributions", 0
+    )
     total_issues = contrib_collection.get("totalIssueContributions", 0)
     repos_contributed = contrib_collection.get(
-        "totalRepositoriesWithContributedCommits", 0)
+        "totalRepositoriesWithContributedCommits", 0
+    )
 
     # PRs data
     if prs_created:
@@ -3100,16 +3358,19 @@ def gather_user_data_light(username, since_date, until_date,
     total_additions = sum(pr.get("additions", 0) for pr in prs_nodes)
     total_deletions = sum(pr.get("deletions", 0) for pr in prs_nodes)
     reviews_received = sum(
-        (pr.get("reviews") or {}).get("totalCount", 0) for pr in prs_nodes)
+        (pr.get("reviews") or {}).get("totalCount", 0) for pr in prs_nodes
+    )
     pr_comments_received = sum(
-        (pr.get("comments") or {}).get("totalCount", 0) for pr in prs_nodes)
+        (pr.get("comments") or {}).get("totalCount", 0) for pr in prs_nodes
+    )
 
     # Reviewed PRs data
     reviewed_nodes = prs_reviewed if prs_reviewed else []
 
     # Build repos_by_category from contribution summary (commit data)
     commit_repos = contrib_collection.get(
-        "commitContributionsByRepository", [])
+        "commitContributionsByRepository", []
+    )
 
     # Collect all unique repos to fetch info for
     repos_to_fetch = set()
@@ -3172,12 +3433,14 @@ def gather_user_data_light(username, since_date, until_date,
         description = info.get("description") or ""
         category = get_category(repo_name)
 
-        repos_by_category[category].append({
-            "name": repo_name,
-            "commits": commit_count,
-            "description": description,
-            "language": language,
-        })
+        repos_by_category[category].append(
+            {
+                "name": repo_name,
+                "commits": commit_count,
+                "description": description,
+                "language": language,
+            }
+        )
 
     # Recalculate total commits from contribution summary aggregation
     total_commits_all = sum(aggregated_commits.values())
@@ -3191,7 +3454,8 @@ def gather_user_data_light(username, since_date, until_date,
     # Sort repos within categories by commit count
     for category in repos_by_category:
         repos_by_category[category].sort(
-            key=lambda x: x["commits"], reverse=True)
+            key=lambda x: x["commits"], reverse=True
+        )
 
     # Return structure matching gather_user_data() but with empty line stats
     return {
@@ -3234,7 +3498,8 @@ def aggregate_org_data(member_data_list):
 
     # Check if we're in light mode (any member has the flag)
     is_light_mode = any(
-        m.get("is_light_mode", False) for m in member_data_list)
+        m.get("is_light_mode", False) for m in member_data_list
+    )
 
     # Initialize aggregated values
     total_commits_default_branch = 0
@@ -3259,19 +3524,21 @@ def aggregate_org_data(member_data_list):
     # category -> {repo_name -> repo_dict}
     merged_repos_by_category = defaultdict(dict)
     merged_repo_line_stats = defaultdict(
-        lambda: {"additions": 0, "deletions": 0})
+        lambda: {"additions": 0, "deletions": 0}
+    )
     merged_repo_languages = {}
     # repo_name -> {username: commit_count}
     repo_member_commits = defaultdict(dict)
     # language -> {username: commit_count}
     lang_member_commits = defaultdict(lambda: defaultdict(int))
     member_real_names = {}  # username -> real_name
-    member_companies = {}   # username -> company
+    member_companies = {}  # username -> company
 
     for member_data in member_data_list:
         # Sum scalar metrics
         total_commits_default_branch += member_data.get(
-            "total_commits_default_branch", 0)
+            "total_commits_default_branch", 0
+        )
         total_commits_all += member_data.get("total_commits_all", 0)
         total_prs += member_data.get("total_prs", 0)
         total_pr_reviews += member_data.get("total_pr_reviews", 0)
@@ -3378,8 +3645,13 @@ def aggregate_org_data(member_data_list):
 
 
 def gather_org_data_active_contributors(
-    org_name, team_slug, owners_only, include_private,
-    since_date, until_date, skip_warning=False
+    org_name,
+    team_slug,
+    owners_only,
+    include_private,
+    since_date,
+    until_date,
+    skip_warning=False,
 ):
     """Gather org data using the active contributors approach.
 
@@ -3420,19 +3692,23 @@ def gather_org_data_active_contributors(
             print(Colors.error(msg), file=sys.stderr)
             sys.exit(1)
         members = get_team_members(
-            org_name, team_slug, progress_callback=update_member_progress)
+            org_name, team_slug, progress_callback=update_member_progress
+        )
         member_type = "team members"
     elif owners_only:
         members = get_org_owners(
-            org_name, progress_callback=update_member_progress)
+            org_name, progress_callback=update_member_progress
+        )
         member_type = "owners"
     elif include_private:
         members = get_org_members(
-            org_name, progress_callback=update_member_progress)
+            org_name, progress_callback=update_member_progress
+        )
         member_type = "members"
     else:
         members = get_org_public_members(
-            org_name, progress_callback=update_member_progress)
+            org_name, progress_callback=update_member_progress
+        )
         member_type = "public members"
     progress.stop()
 
@@ -3445,7 +3721,7 @@ def gather_org_data_active_contributors(
     bots_filtered = [m for m in members if is_bot(m)]
     members = [m for m in members if not is_bot(m)]
     if bots_filtered:
-        bot_names = ', '.join(bots_filtered)
+        bot_names = ", ".join(bots_filtered)
         count = len(bots_filtered)
         sys.stderr.write(f"Filtered out {count} bot(s): {bot_names}\n")
 
@@ -3485,8 +3761,10 @@ def gather_org_data_active_contributors(
     activity_start_time = time.time()
     active_from_scrape, inactive_from_scrape, unknown_users = (
         check_activity_fast(
-            members, since_date, until_date,
-            progress_callback=update_activity_progress
+            members,
+            since_date,
+            until_date,
+            progress_callback=update_activity_progress,
         )
     )
     progress.stop()
@@ -3504,8 +3782,10 @@ def gather_org_data_active_contributors(
             progress.update(msg)
 
         fallback_summaries = get_contribution_summaries_batch(
-            unknown_users, since_date, until_date,
-            progress_callback=update_fallback_progress
+            unknown_users,
+            since_date,
+            until_date,
+            progress_callback=update_fallback_progress,
         )
         progress.stop()
 
@@ -3517,8 +3797,10 @@ def gather_org_data_active_contributors(
                 sys.exit(1)
             progress.start(f"Retrying API check for {count} users...")
             fallback_summaries = get_contribution_summaries_batch(
-                unknown_users, since_date, until_date,
-                progress_callback=update_fallback_progress
+                unknown_users,
+                since_date,
+                until_date,
+                progress_callback=update_fallback_progress,
             )
             progress.stop()
 
@@ -3549,31 +3831,37 @@ def gather_org_data_active_contributors(
     if not active_members:
         # No active members - return empty aggregated data
         progress.stop()
-        return org_info, team_info, [], {
-            "total_commits_default_branch": 0,
-            "total_commits_all": 0,
-            "total_prs": 0,
-            "total_pr_reviews": 0,
-            "total_issues": 0,
-            "repos_contributed": 0,
-            "prs_nodes": [],
-            "reviewed_nodes": [],
-            "total_additions": 0,
-            "total_deletions": 0,
-            "reviews_received": 0,
-            "pr_comments_received": 0,
-            "lines_reviewed": 0,
-            "review_comments": 0,
-            "test_commits": 0,
-            "repos_by_category": {},
-            "repo_line_stats": {},
-            "repo_languages": {},
-            "repo_member_commits": {},
-            "lang_member_commits": {},
-            "member_real_names": {},
-            "member_companies": {},
-            "is_light_mode": True,
-        }, []
+        return (
+            org_info,
+            team_info,
+            [],
+            {
+                "total_commits_default_branch": 0,
+                "total_commits_all": 0,
+                "total_prs": 0,
+                "total_pr_reviews": 0,
+                "total_issues": 0,
+                "repos_contributed": 0,
+                "prs_nodes": [],
+                "reviewed_nodes": [],
+                "total_additions": 0,
+                "total_deletions": 0,
+                "reviews_received": 0,
+                "pr_comments_received": 0,
+                "lines_reviewed": 0,
+                "review_comments": 0,
+                "test_commits": 0,
+                "repos_by_category": {},
+                "repo_line_stats": {},
+                "repo_languages": {},
+                "repo_member_commits": {},
+                "lang_member_commits": {},
+                "member_real_names": {},
+                "member_companies": {},
+                "is_light_mode": True,
+            },
+            [],
+        )
 
     # Gather detailed data for active members in parallel
     member_data_list = []
@@ -3583,7 +3871,8 @@ def gather_org_data_active_contributors(
     def gather_member(username):
         try:
             data = gather_user_data_light(
-                username, since_date, until_date, show_progress=False)
+                username, since_date, until_date, show_progress=False
+            )
             return (username, data, False)
         except Exception as e:
             if "rate limit" in str(e).lower() or check_rate_limit_hit():
@@ -3659,7 +3948,8 @@ def get_ordered_categories(repos_by_category):
     all_categories = set(repos_by_category.keys())
     category_order = [c for c in CATEGORY_PRIORITY if c in all_categories]
     other_cats = sorted(
-        c for c in all_categories if c not in CATEGORY_PRIORITY)
+        c for c in all_categories if c not in CATEGORY_PRIORITY
+    )
     return category_order + other_cats
 
 
@@ -3693,13 +3983,15 @@ def aggregate_language_stats(repos_by_category, repo_line_stats=None):
     all_languages = set(lang_commits.keys())
     lang_stats = []
     for lang in all_languages:
-        lang_stats.append({
-            "language": lang,
-            "commits": lang_commits.get(lang, 0),
-            "repos": lang_repos.get(lang, 0),
-            "additions": lang_additions.get(lang, 0),
-            "deletions": lang_deletions.get(lang, 0),
-        })
+        lang_stats.append(
+            {
+                "language": lang,
+                "commits": lang_commits.get(lang, 0),
+                "repos": lang_repos.get(lang, 0),
+                "additions": lang_additions.get(lang, 0),
+                "deletions": lang_deletions.get(lang, 0),
+            }
+        )
     lang_stats.sort(key=lambda x: x["commits"], reverse=True)
     return lang_stats
 
@@ -3715,7 +4007,8 @@ def generate_notable_prs_table(prs_nodes, repo_languages):
         List of markdown lines for the Notable PRs table (header + rows).
     """
     notable_prs = sorted(
-        prs_nodes, key=lambda x: x.get("additions", 0), reverse=True)[:15]
+        prs_nodes, key=lambda x: x.get("additions", 0), reverse=True
+    )[:15]
 
     if not notable_prs:
         return []
@@ -3744,8 +4037,10 @@ def generate_notable_prs_table(prs_nodes, repo_languages):
         url = pr.get("url", "")
 
         lines_str = f"+{additions}/-{deletions}"
-        row = (f"| [{pr_title}]({url}) | {repo} | {language} "
-               f"| {lines_str} | {reviews} | {status} |")
+        row = (
+            f"| [{pr_title}]({url}) | {repo} | {language} "
+            f"| {lines_str} | {reviews} | {status} |"
+        )
         lines.append(row)
 
     lines.append("")
@@ -3774,7 +4069,8 @@ def generate_report(username, since_date, until_date):
 
     # Filter out PRs authored by bots from reviewed list
     reviewed_nodes = [
-        pr for pr in reviewed_nodes
+        pr
+        for pr in reviewed_nodes
         if not is_bot((pr.get("author") or {}).get("login", ""))
     ]
 
@@ -3851,17 +4147,19 @@ def generate_report(username, since_date, until_date):
             desc = desc[:50] + "..." if len(desc) > 50 else desc
             default_lines = {"additions": 0, "deletions": 0}
             lines = repo_line_stats.get(repo["name"], default_lines)
-            adds = format_number(lines['additions'])
-            dels = format_number(lines['deletions'])
+            adds = format_number(lines["additions"])
+            dels = format_number(lines["deletions"])
             lines_str = f"+{adds}/-{dels}"
             commits_link = make_commit_link(
-                repo["name"], repo["commits"],
-                since_date, until_date, username)
+                repo["name"], repo["commits"], since_date, until_date, username
+            )
             repo_url = f"https://github.com/{repo['name']}"
             repo_link = f"[{repo['name']}]({repo_url})"
-            lang = repo['language']
-            row = (f"| {repo_link} | {commits_link} | {lines_str} "
-                   f"| {lang} | {desc} |")
+            lang = repo["language"]
+            row = (
+                f"| {repo_link} | {commits_link} | {lines_str} "
+                f"| {lang} | {desc} |"
+            )
             report.append(row)
 
         report.append("")
@@ -3894,12 +4192,13 @@ def generate_report(username, since_date, until_date):
         report.append("| Language | Commits | Lines |")
         report.append("|----------|--------:|----------:|")
         for stat in lang_stats:
-            lang = stat['language']
-            cnt = format_number(stat['commits'])
+            lang = stat["language"]
+            cnt = format_number(stat["commits"])
             commits_link = make_lang_commit_link(
-                lang, cnt, since_date, until_date, username)
-            adds = format_number(stat['additions'])
-            dels = format_number(stat['deletions'])
+                lang, cnt, since_date, until_date, username
+            )
+            adds = format_number(stat["additions"])
+            dels = format_number(stat["deletions"])
             row = f"| {lang} | {commits_link} | +{adds}/-{dels} |"
             report.append(row)
         report.append("")
@@ -3918,10 +4217,12 @@ def generate_report(username, since_date, until_date):
         report.append("|------------|----------|-------------:|------------:|")
 
         sorted_repos = sorted(
-            reviewed_by_repo.items(), key=lambda x: len(x[1]), reverse=True)
+            reviewed_by_repo.items(), key=lambda x: len(x[1]), reverse=True
+        )
         for repo, prs in sorted_repos[:15]:
             total_lines = sum(
-                pr.get("additions", 0) + pr.get("deletions", 0) for pr in prs)
+                pr.get("additions", 0) + pr.get("deletions", 0) for pr in prs
+            )
             # Use computed language if available; fall back to primaryLanguage
             if repo_languages.get(repo):
                 language = repo_languages.get(repo)
@@ -3942,8 +4243,10 @@ def generate_report(username, since_date, until_date):
     merged_prs = [pr for pr in prs_nodes if pr.get("merged")]
     open_prs = [pr for pr in prs_nodes if pr.get("state") == "OPEN"]
     closed_prs = [
-        pr for pr in prs_nodes
-        if pr.get("state") == "CLOSED" and not pr.get("merged")]
+        pr
+        for pr in prs_nodes
+        if pr.get("state") == "CLOSED" and not pr.get("merged")
+    ]
 
     report.append("| Status | Count |")
     report.append("|--------|------:|")
@@ -3966,10 +4269,12 @@ def generate_report(username, since_date, until_date):
     report.append("---")
     report.append("")
     now = datetime.now().astimezone()
-    timestamp = now.strftime('%Y-%m-%d %H:%M:%S %z')
+    timestamp = now.strftime("%Y-%m-%d %H:%M:%S %z")
     tool_url = "https://github.com/gh-tui-tools/gh-activity-chronicle"
-    footer = (f"*Report generated on {timestamp} "
-              f"by [gh-activity-chronicle]({tool_url}).*")
+    footer = (
+        f"*Report generated on {timestamp} "
+        f"by [gh-activity-chronicle]({tool_url}).*"
+    )
     report.append(footer)
 
     progress.stop()
@@ -3977,7 +4282,8 @@ def generate_report(username, since_date, until_date):
 
 
 def generate_org_report(
-        org_info, team_info, since_date, until_date, aggregated_data, members):
+    org_info, team_info, since_date, until_date, aggregated_data, members
+):
     """Generate a report for an organization or team.
 
     Args:
@@ -3996,7 +4302,8 @@ def generate_org_report(
     # Extract data from aggregated_data
     is_light_mode = aggregated_data.get("is_light_mode", False)
     total_commits_default_branch = aggregated_data.get(
-        "total_commits_default_branch", 0)
+        "total_commits_default_branch", 0
+    )
     total_commits_all = aggregated_data.get("total_commits_all", 0)
     total_prs = aggregated_data.get("total_prs", 0)
     total_pr_reviews = aggregated_data.get("total_pr_reviews", 0)
@@ -4007,7 +4314,8 @@ def generate_org_report(
 
     # Filter out PRs authored by bots from reviewed list
     reviewed_nodes = [
-        pr for pr in reviewed_nodes
+        pr
+        for pr in reviewed_nodes
         if not is_bot((pr.get("author") or {}).get("login", ""))
     ]
     total_additions = aggregated_data.get("total_additions", 0)
@@ -4035,11 +4343,15 @@ def generate_org_report(
         team_name = team_info.get("name") or ""
         # Use en-dash for separator
         if org_name and team_name:
-            title = (f"# github activity chronicle: {org_link} – {team_slug} "
-                     f"({org_name} – {team_name})")
+            title = (
+                f"# github activity chronicle: {org_link} – {team_slug} "
+                f"({org_name} – {team_name})"
+            )
         elif org_name:
-            title = (f"# github activity chronicle: {org_link} – {team_slug} "
-                     f"({org_name})")
+            title = (
+                f"# github activity chronicle: {org_link} – {team_slug} "
+                f"({org_name})"
+            )
         else:
             title = f"# github activity chronicle: {org_link} – {team_slug}"
     else:
@@ -4090,12 +4402,13 @@ def generate_org_report(
                 desc = repo["description"] or ""
                 desc = desc[:50] + "..." if len(desc) > 50 else desc
                 anchor = make_repo_anchor(repo["name"])
-                commits_link = f"[{repo['commits']}](#user-content-commits-{anchor})"
-                # Add anchor ID to repo cell for backlinks from detail section
+                href = f"#user-content-commits-{anchor}"
+                commits_link = f"[{repo['commits']}]({href})"
+                # Add anchor for backlinks from detail section
                 url = f"https://github.com/{repo['name']}"
-                span = f"<span id=\"row-{anchor}\"></span>"
+                span = f'<span id="row-{anchor}"></span>'
                 repo_cell = f"{span}[{repo['name']}]({url})"
-                lang = repo['language']
+                lang = repo["language"]
                 row = f"| {repo_cell} | {commits_link} | {lang} | {desc} |"
                 report.append(row)
         else:
@@ -4107,18 +4420,21 @@ def generate_org_report(
                 desc = desc[:50] + "..." if len(desc) > 50 else desc
                 default_lines = {"additions": 0, "deletions": 0}
                 lines = repo_line_stats.get(repo["name"], default_lines)
-                adds = format_number(lines['additions'])
-                dels = format_number(lines['deletions'])
+                adds = format_number(lines["additions"])
+                dels = format_number(lines["deletions"])
                 lines_str = f"+{adds}/-{dels}"
                 anchor = make_repo_anchor(repo["name"])
-                commits_link = f"[{repo['commits']}](#user-content-commits-{anchor})"
-                # Add anchor ID to repo cell for backlinks
+                href = f"#user-content-commits-{anchor}"
+                commits_link = f"[{repo['commits']}]({href})"
+                # Add anchor for backlinks
                 url = f"https://github.com/{repo['name']}"
-                span = f"<span id=\"row-{anchor}\"></span>"
+                span = f'<span id="row-{anchor}"></span>'
                 repo_cell = f"{span}[{repo['name']}]({url})"
-                lang = repo['language']
-                row = (f"| {repo_cell} | {commits_link} | {lines_str} "
-                       f"| {lang} | {desc} |")
+                lang = repo["language"]
+                row = (
+                    f"| {repo_cell} | {commits_link} | {lines_str} "
+                    f"| {lang} | {desc} |"
+                )
                 report.append(row)
 
         report.append("")
@@ -4156,10 +4472,10 @@ def generate_org_report(
             report.append("| Language | Commits | Repos |")
             report.append("|----------|--------:|------:|")
             for stat in lang_stats:
-                anchor = make_lang_anchor(stat['language'])
-                span = f"<span id=\"row-lang-{anchor}\"></span>"
+                anchor = make_lang_anchor(stat["language"])
+                span = f'<span id="row-lang-{anchor}"></span>'
                 lang_cell = f"{span}{stat['language']}"
-                cnt = format_number(stat['commits'])
+                cnt = format_number(stat["commits"])
                 commits_link = f"[{cnt}](#user-content-lang-{anchor})"
                 row = f"| {lang_cell} | {commits_link} | {stat['repos']} |"
                 report.append(row)
@@ -4168,13 +4484,13 @@ def generate_org_report(
             report.append("| Language | Commits | Lines |")
             report.append("|----------|--------:|------:|")
             for stat in lang_stats:
-                anchor = make_lang_anchor(stat['language'])
-                span = f"<span id=\"row-lang-{anchor}\"></span>"
+                anchor = make_lang_anchor(stat["language"])
+                span = f'<span id="row-lang-{anchor}"></span>'
                 lang_cell = f"{span}{stat['language']}"
-                cnt = format_number(stat['commits'])
+                cnt = format_number(stat["commits"])
                 commits_link = f"[{cnt}](#user-content-lang-{anchor})"
-                adds = format_number(stat['additions'])
-                dels = format_number(stat['deletions'])
+                adds = format_number(stat["additions"])
+                dels = format_number(stat["deletions"])
                 lines_str = f"+{adds}/-{dels}"
                 row = f"| {lang_cell} | {commits_link} | {lines_str} |"
                 report.append(row)
@@ -4194,10 +4510,12 @@ def generate_org_report(
         report.append("|------------|----------|-------------:|------------:|")
 
         sorted_repos = sorted(
-            reviewed_by_repo.items(), key=lambda x: len(x[1]), reverse=True)
+            reviewed_by_repo.items(), key=lambda x: len(x[1]), reverse=True
+        )
         for repo, prs in sorted_repos[:15]:
             total_lines = sum(
-                pr.get("additions", 0) + pr.get("deletions", 0) for pr in prs)
+                pr.get("additions", 0) + pr.get("deletions", 0) for pr in prs
+            )
             # Use computed language if available; fall back to primaryLanguage
             if repo_languages.get(repo):
                 language = repo_languages.get(repo)
@@ -4218,8 +4536,10 @@ def generate_org_report(
     merged_prs = [pr for pr in prs_nodes if pr.get("merged")]
     open_prs = [pr for pr in prs_nodes if pr.get("state") == "OPEN"]
     closed_prs = [
-        pr for pr in prs_nodes
-        if pr.get("state") == "CLOSED" and not pr.get("merged")]
+        pr
+        for pr in prs_nodes
+        if pr.get("state") == "CLOSED" and not pr.get("merged")
+    ]
 
     report.append("| Status | Count |")
     report.append("|--------|------:|")
@@ -4240,26 +4560,27 @@ def generate_org_report(
 
     # Language commit breakdown by member (for anchor links from Languages)
     if lang_member_commits:
-        report.append("<details name=\"commit-details\">")
+        report.append('<details name="commit-details">')
         report.append("<summary><h2>Commit details by language</h2></summary>")
         report.append("")
         # Sort languages by total commits descending
         sorted_langs = sorted(
             lang_member_commits.items(),
             key=lambda x: sum(x[1].values()),
-            reverse=True
+            reverse=True,
         )
         for language, member_commits in sorted_langs:
             anchor = make_lang_anchor(language)
             total = sum(member_commits.values())
             backlink = f"[↩](#user-content-row-lang-{anchor})"
-            lang_anchor = f"<a id=\"lang-{anchor}\">{language}</a>"
+            lang_anchor = f'<a id="lang-{anchor}">{language}</a>'
             header = f"### {lang_anchor} ({total} commits) {backlink}"
             report.append(header)
             report.append("")
             # Sort members by commit count descending
             sorted_members = sorted(
-                member_commits.items(), key=lambda x: x[1], reverse=True)
+                member_commits.items(), key=lambda x: x[1], reverse=True
+            )
             for member, count in sorted_members:
                 display_name = member_real_names.get(member) or member
                 # Plain count - can't filter commits by language
@@ -4272,32 +4593,36 @@ def generate_org_report(
 
     # Commit breakdown by member (for anchor links from Projects tables)
     if repo_member_commits:
-        report.append("<details name=\"commit-details\">")
-        report.append("<summary><h2>Commit details by repository</h2></summary>")
+        report.append('<details name="commit-details">')
+        report.append(
+            "<summary><h2>Commit details by repository</h2></summary>"
+        )
         report.append("")
         # Sort repos by total commits descending
         sorted_repos = sorted(
             repo_member_commits.items(),
             key=lambda x: sum(x[1].values()),
-            reverse=True
+            reverse=True,
         )
         for repo_name, member_commits in sorted_repos:
             anchor = make_repo_anchor(repo_name)
             total = sum(member_commits.values())
             backlink = f"[↩](#user-content-row-{anchor})"
             repo_url = f"https://github.com/{repo_name}"
-            repo_link = f"<a id=\"commits-{anchor}\" href=\"{repo_url}\">"
+            repo_link = f'<a id="commits-{anchor}" href="{repo_url}">'
             repo_link += f"{repo_name}</a>"
             header = f"### {repo_link} ({total} commits) {backlink}"
             report.append(header)
             report.append("")
             # Sort members by commit count descending
             sorted_members = sorted(
-                member_commits.items(), key=lambda x: x[1], reverse=True)
+                member_commits.items(), key=lambda x: x[1], reverse=True
+            )
             for member, count in sorted_members:
                 display_name = member_real_names.get(member) or member
                 commit_link = make_commit_link(
-                    repo_name, count, since_date, until_date, member)
+                    repo_name, count, since_date, until_date, member
+                )
                 mem_url = f"https://github.com/{member}"
                 row = f"- [{display_name}]({mem_url}): {commit_link}"
                 report.append(row)
@@ -4309,7 +4634,7 @@ def generate_org_report(
     # - Match case-insensitively
     # - If any user has @org, all matching plain-text become @org
     # - Use initial cap for display (e.g., babel -> Babel)
-    org_pattern = r'@([a-zA-Z0-9_-]+(?:\.[a-zA-Z0-9_-]+)*)'
+    org_pattern = r"@([a-zA-Z0-9_-]+(?:\.[a-zA-Z0-9_-]+)*)"
     org_canonical = {}  # lowercase -> (display_name, has_at_prefix)
     for company in member_companies.values():
         if not company:
@@ -4323,7 +4648,7 @@ def generate_org_report(
             org_canonical[key] = (org.lower(), True)
         # Extract plain text words (potential company names)
         # Remove @mentions first, then get remaining words
-        plain = re.sub(org_pattern, '', company).strip()
+        plain = re.sub(org_pattern, "", company).strip()
         if plain:
             for word in plain.split():
                 word = word.strip()
@@ -4346,13 +4671,13 @@ def generate_org_report(
             if key in org_canonical:
                 canon, _ = org_canonical[key]
                 result = re.sub(
-                    f'@{re.escape(org)}\\b',
-                    f'@{canon}',
+                    f"@{re.escape(org)}\\b",
+                    f"@{canon}",
                     result,
-                    flags=re.IGNORECASE
+                    flags=re.IGNORECASE,
                 )
         # Then check plain text words - convert to @mention if one exists
-        remaining = re.sub(org_pattern, '', result)
+        remaining = re.sub(org_pattern, "", result)
         for word in remaining.split():
             word = word.strip()
             if word:
@@ -4362,18 +4687,18 @@ def generate_org_report(
                     if has_at:
                         # Replace plain text with @mention
                         result = re.sub(
-                            f'\\b{re.escape(word)}\\b',
-                            f'@{canon}',
+                            f"\\b{re.escape(word)}\\b",
+                            f"@{canon}",
                             result,
-                            flags=re.IGNORECASE
+                            flags=re.IGNORECASE,
                         )
                     else:
                         # Just normalize capitalization
                         result = re.sub(
-                            f'\\b{re.escape(word)}\\b',
+                            f"\\b{re.escape(word)}\\b",
                             canon,
                             result,
-                            flags=re.IGNORECASE
+                            flags=re.IGNORECASE,
                         )
         return result.strip()
 
@@ -4385,14 +4710,14 @@ def generate_org_report(
             for member, count in member_commits.items():
                 user_repo_commits[member][repo_name] = count
 
-        report.append("<details name=\"commit-details\">")
+        report.append('<details name="commit-details">')
         report.append("<summary><h2>Commit details by user</h2></summary>")
         report.append("")
         # Sort users by total commits descending
         sorted_users = sorted(
             user_repo_commits.items(),
             key=lambda x: sum(x[1].values()),
-            reverse=True
+            reverse=True,
         )
         for member, repos in sorted_users:
             display_name = member_real_names.get(member) or member
@@ -4415,33 +4740,41 @@ def generate_org_report(
                         for org in orgs:
                             org_url = f"https://github.com/{org}"
                             linked = linked.replace(
-                                f"@{org}", f"[@{org}]({org_url})")
+                                f"@{org}", f"[@{org}]({org_url})"
+                            )
                         company_part = f" ({linked.strip()})"
                         # Backlinks to user's list item in each org
                         backlinks = []
                         for org in orgs:
                             org_anchor = make_org_anchor(org)
                             backlinks.append(
-                                f"[↩](#user-content-{org_anchor}-{member})")
+                                f"[↩](#user-content-{org_anchor}-{member})"
+                            )
                         org_backlinks = " " + " ".join(backlinks)
                     else:
                         company_part = f" ({company})"
                         # Backlink to user's list item in company group
-                        org_anchor = make_org_anchor(company)
-                        org_backlinks = f" [↩](#user-content-{org_anchor}-{member})"
+                        oa = make_org_anchor(company)
+                        href = f"#user-content-{oa}-{member}"
+                        org_backlinks = f" [↩]({href})"
                 else:
-                    # No company - backlink to user's list item in Unaffiliated
-                    org_backlinks = f" [↩](#user-content-org-unaffiliated-{member})"
-            header = (f"### {anchor}{member_link}{company_part} "
-                      f"({total} commits){org_backlinks}")
+                    # Backlink to Unaffiliated group
+                    href = f"#user-content-org-unaffiliated-{member}"
+                    org_backlinks = f" [↩]({href})"
+            header = (
+                f"### {anchor}{member_link}{company_part} "
+                f"({total} commits){org_backlinks}"
+            )
             report.append(header)
             report.append("")
             # Sort repos by commit count descending
             sorted_repos = sorted(
-                repos.items(), key=lambda x: x[1], reverse=True)
+                repos.items(), key=lambda x: x[1], reverse=True
+            )
             for repo_name, count in sorted_repos:
                 commit_link = make_commit_link(
-                    repo_name, count, since_date, until_date, member)
+                    repo_name, count, since_date, until_date, member
+                )
                 repo_url = f"https://github.com/{repo_name}"
                 row = f"- [{repo_name}]({repo_url}): {commit_link}"
                 report.append(row)
@@ -4468,71 +4801,86 @@ def generate_org_report(
                 else:
                     # Plain text company, group by whole string
                     company_members[company].append(
-                        (member, display_name, total))
+                        (member, display_name, total)
+                    )
             else:
                 # No company at all
                 unaffiliated.append((member, display_name, total))
 
         if org_members or company_members or unaffiliated:
-            report.append("<details name=\"commit-details\">")
-            report.append("<summary><h2>Commit details by organization</h2></summary>")
+            report.append('<details name="commit-details">')
+            report.append(
+                "<summary><h2>Commit details by organization</h2></summary>"
+            )
             report.append("")
             # Sort @org groups by total commits descending
             sorted_orgs = sorted(
                 org_members.items(),
                 key=lambda x: sum(m[2] for m in x[1]),
-                reverse=True
+                reverse=True,
             )
             for org, members in sorted_orgs:
                 org_total = sum(m[2] for m in members)
                 org_url = f"https://github.com/{org}"
                 org_link = f"[{org}]({org_url})"
-                org_anchor = f'<a id="{make_org_anchor(org)}"></a>'
-                report.append(f"### {org_anchor}{org_link} ({org_total} commits)")
+                oa = make_org_anchor(org)
+                org_anchor = f'<a id="{oa}"></a>'
+                heading = f"### {org_anchor}{org_link} ({org_total} commits)"
+                report.append(heading)
                 report.append("")
                 # Sort members by commit count descending
                 sorted_members = sorted(
-                    members, key=lambda x: x[2], reverse=True)
+                    members, key=lambda x: x[2], reverse=True
+                )
                 for member, display_name, total in sorted_members:
-                    user_anchor = f"#user-content-user-{member}"
+                    ua = f"#user-content-user-{member}"
                     # Anchor for backlink from "by user" section
-                    item_anchor = f'<a id="{make_org_anchor(org)}-{member}"></a>'
-                    row = f"- {item_anchor}[{display_name}]({user_anchor}) ({total})"
+                    ia = f'<a id="{oa}-{member}"></a>'
+                    row = f"- {ia}[{display_name}]({ua}) ({total})"
                     report.append(row)
                 report.append("")
             # Plain text company groups (no GitHub links)
             sorted_companies = sorted(
                 company_members.items(),
                 key=lambda x: sum(m[2] for m in x[1]),
-                reverse=True
+                reverse=True,
             )
             for company, members in sorted_companies:
                 company_total = sum(m[2] for m in members)
-                company_anchor = f'<a id="{make_org_anchor(company)}"></a>'
-                report.append(f"### {company_anchor}{company} ({company_total} commits)")
+                ca = make_org_anchor(company)
+                company_anchor = f'<a id="{ca}"></a>'
+                heading = (
+                    f"### {company_anchor}{company} ({company_total} commits)"
+                )
+                report.append(heading)
                 report.append("")
                 sorted_members = sorted(
-                    members, key=lambda x: x[2], reverse=True)
+                    members, key=lambda x: x[2], reverse=True
+                )
                 for member, display_name, total in sorted_members:
-                    user_anchor = f"#user-content-user-{member}"
+                    ua = f"#user-content-user-{member}"
                     # Anchor for backlink from "by user" section
-                    item_anchor = f'<a id="{make_org_anchor(company)}-{member}"></a>'
-                    row = f"- {item_anchor}[{display_name}]({user_anchor}) ({total})"
+                    ia = f'<a id="{ca}-{member}"></a>'
+                    row = f"- {ia}[{display_name}]({ua}) ({total})"
                     report.append(row)
                 report.append("")
             # Users with no company at all
             if unaffiliated:
                 unaffiliated_total = sum(u[2] for u in unaffiliated)
-                unaff_anchor = '<a id="org-unaffiliated"></a>'
-                report.append(f"### {unaff_anchor}Unaffiliated ({unaffiliated_total} commits)")
+                ua_tag = '<a id="org-unaffiliated"></a>'
+                heading = (
+                    f"### {ua_tag}Unaffiliated ({unaffiliated_total} commits)"
+                )
+                report.append(heading)
                 report.append("")
                 sorted_unaffiliated = sorted(
-                    unaffiliated, key=lambda x: x[2], reverse=True)
+                    unaffiliated, key=lambda x: x[2], reverse=True
+                )
                 for member, display_name, total in sorted_unaffiliated:
-                    user_anchor = f"#user-content-user-{member}"
+                    ua = f"#user-content-user-{member}"
                     # Anchor for backlink from "by user" section
-                    item_anchor = f'<a id="org-unaffiliated-{member}"></a>'
-                    row = f"- {item_anchor}[{display_name}]({user_anchor}) ({total})"
+                    ia = f'<a id="org-unaffiliated-{member}"></a>'
+                    row = f"- {ia}[{display_name}]({ua}) ({total})"
                     report.append(row)
                 report.append("")
             report.append("</details>")
@@ -4542,10 +4890,12 @@ def generate_org_report(
     report.append("---")
     report.append("")
     now = datetime.now().astimezone()
-    timestamp = now.strftime('%Y-%m-%d %H:%M:%S %z')
+    timestamp = now.strftime("%Y-%m-%d %H:%M:%S %z")
     tool_url = "https://github.com/gh-tui-tools/gh-activity-chronicle"
-    footer = (f"*Report generated on {timestamp} "
-              f"by [gh-activity-chronicle]({tool_url}).*")
+    footer = (
+        f"*Report generated on {timestamp} "
+        f"by [gh-activity-chronicle]({tool_url}).*"
+    )
     report.append(footer)
 
     progress.stop()
@@ -4557,60 +4907,67 @@ def main():
         description="Generate an activity report for a GitHub user over time"
     )
     parser.add_argument(
-        "--user", "-u", type=str,
-        help="GitHub username (default: current authenticated user)"
+        "--user",
+        "-u",
+        type=str,
+        help="GitHub username (default: current authenticated user)",
     )
     parser.add_argument(
-        "--org", type=str,
-        help="GitHub organization name (mutually exclusive with --user)"
+        "--org",
+        type=str,
+        help="GitHub organization name (mutually exclusive with --user)",
     )
     parser.add_argument(
-        "--team", type=str,
-        help="Team slug within org (requires --org)"
+        "--team", type=str, help="Team slug within org (requires --org)"
     )
     parser.add_argument(
-        "--owners", action="store_true",
-        help="Report on org owners only (requires --org)"
+        "--owners",
+        action="store_true",
+        help="Report on org owners only (requires --org)",
     )
     parser.add_argument(
-        "--private", action="store_true",
-        help="Include private members (default: public only; requires --org)"
+        "--private",
+        action="store_true",
+        help="Include private members (default: public only; requires --org)",
     )
     parser.add_argument(
-        "--days", type=int,
-        help="Number of days to look back (default: 7)"
+        "--days", type=int, help="Number of days to look back (default: 7)"
     )
     parser.add_argument(
-        "--weeks", type=int,
-        help="Number of weeks to look back"
+        "--weeks", type=int, help="Number of weeks to look back"
     )
     parser.add_argument(
-        "--months", type=int,
-        help="Number of months to look back"
+        "--months", type=int, help="Number of months to look back"
     )
     parser.add_argument(
-        "--year", action="store_true",
-        help="Look back one year (shortcut for --days 365)"
+        "--year",
+        action="store_true",
+        help="Look back one year (shortcut for --days 365)",
     )
     parser.add_argument(
-        "--since", type=str,
-        help="Start date in YYYY-MM-DD format"
+        "--since", type=str, help="Start date in YYYY-MM-DD format"
     )
     parser.add_argument(
-        "--until", type=str,
-        help="End date in YYYY-MM-DD format (default: today)"
+        "--until",
+        type=str,
+        help="End date in YYYY-MM-DD format (default: today)",
     )
     parser.add_argument(
-        "--output", "-o", type=str,
-        help="Output file path (default: <username>-<since>-to-<until>.md)"
+        "--output",
+        "-o",
+        type=str,
+        help="Output file path (default: <username>-<since>-to-<until>.md)",
     )
     parser.add_argument(
-        "--stdout", action="store_true",
-        help="Output to stdout instead of file"
+        "--stdout",
+        action="store_true",
+        help="Output to stdout instead of file",
     )
     parser.add_argument(
-        "--yes", "-y", action="store_true",
-        help="Skip rate limit warning prompt (auto-confirm)"
+        "--yes",
+        "-y",
+        action="store_true",
+        help="Skip rate limit warning prompt (auto-confirm)",
     )
 
     args = parser.parse_args()
@@ -4635,36 +4992,41 @@ def main():
         print(msg, file=sys.stderr)
         sys.exit(1)
 
-    if getattr(args, 'private', False) and not args.org:
+    if getattr(args, "private", False) and not args.org:
         msg = Colors.error("Error: --private requires --org")
         print(msg, file=sys.stderr)
         sys.exit(1)
 
-    if getattr(args, 'private', False) and args.team:
+    if getattr(args, "private", False) and args.team:
         msg = Colors.error("Error: --private and --team are exclusive")
         print(msg, file=sys.stderr)
         sys.exit(1)
 
-    if getattr(args, 'private', False) and args.owners:
+    if getattr(args, "private", False) and args.owners:
         msg = Colors.error(
-            "Error: --private and --owners are mutually exclusive")
+            "Error: --private and --owners are mutually exclusive"
+        )
         print(msg, file=sys.stderr)
         sys.exit(1)
 
     # Warn about privacy implications of --private
-    if getattr(args, 'private', False):
-        warn1 = ("\nWarning: The --private flag includes members who "
-                 "have chosen to hide their org membership.\n")
+    if getattr(args, "private", False):
+        warn1 = (
+            "\nWarning: The --private flag includes members who "
+            "have chosen to hide their org membership.\n"
+        )
         sys.stderr.write(Colors.warning(warn1))
-        warn2 = ("Publishing the resulting report publicly would expose "
-                 "their membership against their wishes.\n\n")
+        warn2 = (
+            "Publishing the resulting report publicly would expose "
+            "their membership against their wishes.\n\n"
+        )
         sys.stderr.write(Colors.warning(warn2))
         if not args.yes:
             sys.stderr.write("Proceed anyway? [y/N] ")
             sys.stderr.flush()
             try:
                 response = input().strip().lower()
-                if response not in ('y', 'yes'):
+                if response not in ("y", "yes"):
                     sys.stderr.write("Aborted.\n")
                     sys.exit(0)
             except (EOFError, KeyboardInterrupt):
@@ -4682,7 +5044,9 @@ def main():
             try:
                 result = subprocess.run(
                     ["gh", "api", "user", "--jq", ".login"],
-                    capture_output=True, text=True, check=True
+                    capture_output=True,
+                    text=True,
+                    check=True,
                 )
                 username = result.stdout.strip()
                 if not username:
@@ -4692,13 +5056,17 @@ def main():
                 if "rate limit" in e.stderr.lower():
                     print_rate_limit_error()
                 else:
-                    msg = ("Error: Could not detect GitHub username. "
-                           "Please specify with --user USERNAME")
+                    msg = (
+                        "Error: Could not detect GitHub username. "
+                        "Please specify with --user USERNAME"
+                    )
                     print(Colors.error(msg), file=sys.stderr)
                 sys.exit(1)
             except ValueError:
-                msg = ("Error: Could not detect GitHub username. "
-                       "Please specify with --user USERNAME")
+                msg = (
+                    "Error: Could not detect GitHub username. "
+                    "Please specify with --user USERNAME"
+                )
                 print(Colors.error(msg), file=sys.stderr)
                 sys.exit(1)
 
@@ -4751,10 +5119,16 @@ def main():
         msg = f"Gathering data for org {org_hl} ({dates})\n"
         sys.stderr.write(msg)
         gather_start_time = time.time()
-        include_private = getattr(args, 'private', False)
+        include_private = getattr(args, "private", False)
         result = gather_org_data_active_contributors(
-            args.org, args.team, args.owners, include_private,
-            since_date, until_date, skip_warning=args.yes)
+            args.org,
+            args.team,
+            args.owners,
+            include_private,
+            since_date,
+            until_date,
+            skip_warning=args.yes,
+        )
         org_info, team_info, members, aggregated, member_data = result
         gather_elapsed = time.time() - gather_start_time
         gather_mins = int(gather_elapsed // 60)
@@ -4766,8 +5140,9 @@ def main():
         msg = f"Gathering data for org {args.org} took {gather_time_str}\n"
         sys.stderr.write(msg)
         progress.start("Generating report...")
-        report = generate_org_report(org_info, team_info, since_date,
-                                     until_date, aggregated, members)
+        report = generate_org_report(
+            org_info, team_info, since_date, until_date, aggregated, members
+        )
         progress.stop()
 
         # Determine output filename for org mode

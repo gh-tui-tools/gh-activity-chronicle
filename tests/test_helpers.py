@@ -1,6 +1,5 @@
 """Unit tests for helper functions (pure functions, no API calls)."""
 
-import pytest
 from urllib.parse import unquote
 
 
@@ -99,8 +98,12 @@ class TestMakeCommitLink:
         )
         assert "[10]" in link
         assert "github.com/search" in link
-        assert "repo%3Aowner%2Frepo" in link or "repo:owner/repo" in unquote(link)
-        assert "author%3Atestuser" in link or "author:testuser" in unquote(link)
+        assert "repo%3Aowner%2Frepo" in link or "repo:owner/repo" in unquote(
+            link
+        )
+        assert "author%3Atestuser" in link or "author:testuser" in unquote(
+            link
+        )
 
     def test_link_with_special_chars_in_repo(self, mod):
         link = mod.make_commit_link(
@@ -111,8 +114,11 @@ class TestMakeCommitLink:
 
     def test_multiple_authors(self, mod):
         link = mod.make_commit_link(
-            "owner/repo", 20, "2026-01-01", "2026-01-31",
-            ["user1", "user2", "user3"]
+            "owner/repo",
+            20,
+            "2026-01-01",
+            "2026-01-31",
+            ["user1", "user2", "user3"],
         )
         # Should contain OR syntax for multiple authors
         decoded = unquote(link)

@@ -19,11 +19,10 @@ Usage for replay:
 
 import hashlib
 import json
-import os
 import subprocess
 from contextlib import contextmanager
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List
 from unittest.mock import patch
 
 
@@ -68,12 +67,12 @@ class ApiRecorder:
 
             response_data = {
                 "stdout": result.stdout,
-                "stderr": result.stderr if hasattr(result, 'stderr') else "",
+                "stderr": result.stderr if hasattr(result, "stderr") else "",
                 "returncode": result.returncode,
             }
             response_path.write_text(
                 json.dumps(response_data, indent=2, ensure_ascii=False),
-                encoding="utf-8"
+                encoding="utf-8",
             )
 
             self.manifest.append(record)
@@ -96,8 +95,7 @@ class ApiRecorder:
             self.output_dir.mkdir(parents=True, exist_ok=True)
             manifest_path = self.output_dir / "manifest.json"
             manifest_path.write_text(
-                json.dumps(self.manifest, indent=2),
-                encoding="utf-8"
+                json.dumps(self.manifest, indent=2), encoding="utf-8"
             )
 
 
@@ -129,7 +127,9 @@ class ApiReplayer:
                     response_path.read_text(encoding="utf-8")
                 )
 
-    def _make_mock_result(self, response_data: Dict) -> subprocess.CompletedProcess:
+    def _make_mock_result(
+        self, response_data: Dict
+    ) -> subprocess.CompletedProcess:
         """Create a mock CompletedProcess from recorded data."""
         return subprocess.CompletedProcess(
             args=[],
@@ -145,7 +145,8 @@ class ApiReplayer:
             if self.call_index >= len(self.manifest):
                 raise RuntimeError(
                     f"More API calls than recorded. "
-                    f"Expected {len(self.manifest)}, got call #{self.call_index + 1}"
+                    f"Expected {len(self.manifest)}, "
+                    f"got call #{self.call_index + 1}"
                 )
 
             record = self.manifest[self.call_index]
@@ -172,17 +173,14 @@ class ApiReplayer:
             pass  # Could verify all calls were consumed
 
 
-def create_mock_responses_for_user(username: str, days: int = 7) -> Dict[str, Any]:
+def create_mock_responses_for_user(
+    username: str, days: int = 7
+) -> Dict[str, Any]:
     """Create a minimal set of mock API responses for testing.
 
     This creates synthetic responses without hitting the real API.
     Useful for creating baseline fixtures quickly.
     """
-    from datetime import datetime, timedelta
-
-    until_date = datetime.now().strftime("%Y-%m-%d")
-    since_date = (datetime.now() - timedelta(days=days)).strftime("%Y-%m-%d")
-
     return {
         "contribution_summary": {
             "data": {
@@ -204,9 +202,9 @@ def create_mock_responses_for_user(username: str, days: int = 7) -> Dict[str, An
                                     "parent": None,
                                     "isPrivate": False,
                                     "primaryLanguage": {"name": "Python"},
-                                    "description": "Test repository 1"
+                                    "description": "Test repository 1",
                                 },
-                                "contributions": {"totalCount": 15}
+                                "contributions": {"totalCount": 15},
                             },
                             {
                                 "repository": {
@@ -215,12 +213,12 @@ def create_mock_responses_for_user(username: str, days: int = 7) -> Dict[str, An
                                     "parent": None,
                                     "isPrivate": False,
                                     "primaryLanguage": {"name": "JavaScript"},
-                                    "description": "Test repository 2"
+                                    "description": "Test repository 2",
                                 },
-                                "contributions": {"totalCount": 10}
-                            }
-                        ]
-                    }
+                                "contributions": {"totalCount": 10},
+                            },
+                        ],
+                    },
                 }
             }
         },
@@ -230,10 +228,10 @@ def create_mock_responses_for_user(username: str, days: int = 7) -> Dict[str, An
                 {
                     "sha": f"abc{i:03d}",
                     "repository": {"full_name": "testorg/repo1"},
-                    "commit": {"message": f"Test commit {i}"}
+                    "commit": {"message": f"Test commit {i}"},
                 }
                 for i in range(25)
-            ]
+            ],
         },
         "prs_created": {
             "search": {
@@ -248,8 +246,8 @@ def create_mock_responses_for_user(username: str, days: int = 7) -> Dict[str, An
                         "deletions": 30,
                         "repository": {
                             "nameWithOwner": "testorg/repo1",
-                            "primaryLanguage": {"name": "Python"}
-                        }
+                            "primaryLanguage": {"name": "Python"},
+                        },
                     },
                     {
                         "title": "Fix bug",
@@ -260,10 +258,10 @@ def create_mock_responses_for_user(username: str, days: int = 7) -> Dict[str, An
                         "deletions": 10,
                         "repository": {
                             "nameWithOwner": "testorg/repo2",
-                            "primaryLanguage": {"name": "JavaScript"}
-                        }
-                    }
-                ]
+                            "primaryLanguage": {"name": "JavaScript"},
+                        },
+                    },
+                ],
             }
         },
         "prs_reviewed": [],

@@ -6,7 +6,7 @@ test the complete output pipeline.
 """
 
 import re
-from unittest.mock import patch, MagicMock
+from unittest.mock import patch
 
 import pytest
 
@@ -41,15 +41,15 @@ class TestUserReportStructure:
                         "commits": 80,
                         "prs": 12,
                         "language": "CSS",
-                        "description": "CSS Working Group Editor Drafts"
+                        "description": "CSS Working Group Editor Drafts",
                     },
                     {
                         "name": "whatwg/html",
                         "commits": 30,
                         "prs": 5,
                         "language": "HTML",
-                        "description": "HTML Living Standard"
-                    }
+                        "description": "HTML Living Standard",
+                    },
                 ],
                 "Other": [
                     {
@@ -57,9 +57,9 @@ class TestUserReportStructure:
                         "commits": 40,
                         "prs": 8,
                         "language": "Python",
-                        "description": "Personal project"
+                        "description": "Personal project",
                     }
-                ]
+                ],
             },
             "repo_line_stats": {
                 "w3c/csswg-drafts": {"additions": 8000, "deletions": 2000},
@@ -80,8 +80,8 @@ class TestUserReportStructure:
                     "deletions": 100,
                     "repository": {
                         "nameWithOwner": "w3c/csswg-drafts",
-                        "primaryLanguage": {"name": "CSS"}
-                    }
+                        "primaryLanguage": {"name": "CSS"},
+                    },
                 },
                 {
                     "title": "Fix HTML parser bug",
@@ -91,9 +91,9 @@ class TestUserReportStructure:
                     "deletions": 50,
                     "repository": {
                         "nameWithOwner": "whatwg/html",
-                        "primaryLanguage": {"name": "HTML"}
-                    }
-                }
+                        "primaryLanguage": {"name": "HTML"},
+                    },
+                },
             ],
             "reviewed_nodes": [
                 {
@@ -102,7 +102,7 @@ class TestUserReportStructure:
                     "additions": 300,
                     "deletions": 80,
                     "author": {"login": "other-user"},
-                    "repository": {"nameWithOwner": "w3c/csswg-drafts"}
+                    "repository": {"nameWithOwner": "w3c/csswg-drafts"},
                 }
             ],
         }
@@ -147,7 +147,12 @@ class TestUserReportStructure:
             # Should have commit counts
             assert "150" in report or "commits" in report.lower()
             # Should have PR counts
-            assert "25" in report or "PRs" in report or "pull request" in report.lower()
+            has_prs = (
+                "25" in report
+                or "PRs" in report
+                or "pull request" in report.lower()
+            )
+            assert has_prs
 
     def test_projects_by_category_section(self, mod, complete_user_data):
         """Projects by category should have tables."""
@@ -234,15 +239,15 @@ class TestOrgReportStructure:
                         "commits": 500,
                         "prs": 80,
                         "language": "CSS",
-                        "description": "CSS specs"
+                        "description": "CSS specs",
                     },
                     {
                         "name": "whatwg/dom",
                         "commits": 200,
                         "prs": 30,
                         "language": "HTML",
-                        "description": "DOM Standard"
-                    }
+                        "description": "DOM Standard",
+                    },
                 ],
                 "Accessibility (WAI)": [
                     {
@@ -250,9 +255,9 @@ class TestOrgReportStructure:
                         "commits": 100,
                         "prs": 20,
                         "language": "HTML",
-                        "description": "WAI-ARIA spec"
+                        "description": "WAI-ARIA spec",
                     }
-                ]
+                ],
             },
             "repo_line_stats": {},
             "repo_languages": {},
@@ -295,13 +300,22 @@ class TestOrgReportStructure:
     @pytest.fixture
     def org_info(self):
         """Mock org info."""
-        return {"login": "w3c", "name": "World Wide Web Consortium"}
+        return {
+            "login": "w3c",
+            "name": "World Wide Web Consortium",
+        }
 
-    def test_org_report_title(self, mod, complete_org_data, mock_members, org_info):
+    def test_org_report_title(
+        self, mod, complete_org_data, mock_members, org_info
+    ):
         """Org report should have org name in title."""
         report = mod.generate_org_report(
-            org_info, None, "2026-01-01", "2026-01-31",
-            complete_org_data, mock_members
+            org_info,
+            None,
+            "2026-01-01",
+            "2026-01-31",
+            complete_org_data,
+            mock_members,
         )
 
         assert "w3c" in report.lower()
@@ -312,8 +326,12 @@ class TestOrgReportStructure:
     ):
         """Org report should have collapsible detail sections."""
         report = mod.generate_org_report(
-            org_info, None, "2026-01-01", "2026-01-31",
-            complete_org_data, mock_members
+            org_info,
+            None,
+            "2026-01-01",
+            "2026-01-31",
+            complete_org_data,
+            mock_members,
         )
 
         # Should have <details> elements
@@ -326,8 +344,12 @@ class TestOrgReportStructure:
     ):
         """Detail sections should have name attribute for accordion."""
         report = mod.generate_org_report(
-            org_info, None, "2026-01-01", "2026-01-31",
-            complete_org_data, mock_members
+            org_info,
+            None,
+            "2026-01-01",
+            "2026-01-31",
+            complete_org_data,
+            mock_members,
         )
 
         # All detail sections should share same name for accordion
@@ -338,8 +360,12 @@ class TestOrgReportStructure:
     ):
         """Should have commit details by repository section."""
         report = mod.generate_org_report(
-            org_info, None, "2026-01-01", "2026-01-31",
-            complete_org_data, mock_members
+            org_info,
+            None,
+            "2026-01-01",
+            "2026-01-31",
+            complete_org_data,
+            mock_members,
         )
 
         assert "Commit details by repository" in report
@@ -351,8 +377,12 @@ class TestOrgReportStructure:
     ):
         """Should have commit details by user section."""
         report = mod.generate_org_report(
-            org_info, None, "2026-01-01", "2026-01-31",
-            complete_org_data, mock_members
+            org_info,
+            None,
+            "2026-01-01",
+            "2026-01-31",
+            complete_org_data,
+            mock_members,
         )
 
         assert "Commit details by user" in report
@@ -364,8 +394,12 @@ class TestOrgReportStructure:
     ):
         """Should have commit details by organization section."""
         report = mod.generate_org_report(
-            org_info, None, "2026-01-01", "2026-01-31",
-            complete_org_data, mock_members
+            org_info,
+            None,
+            "2026-01-01",
+            "2026-01-31",
+            complete_org_data,
+            mock_members,
         )
 
         assert "Commit details by organization" in report
@@ -377,29 +411,45 @@ class TestOrgReportStructure:
     ):
         """Should have commit details by language section."""
         report = mod.generate_org_report(
-            org_info, None, "2026-01-01", "2026-01-31",
-            complete_org_data, mock_members
+            org_info,
+            None,
+            "2026-01-01",
+            "2026-01-31",
+            complete_org_data,
+            mock_members,
         )
 
         assert "Commit details by language" in report
         # Should list languages
         assert "CSS" in report or "HTML" in report
 
-    def test_anchor_ids_present(self, mod, complete_org_data, mock_members, org_info):
+    def test_anchor_ids_present(
+        self, mod, complete_org_data, mock_members, org_info
+    ):
         """Report should have anchor IDs for navigation."""
         report = mod.generate_org_report(
-            org_info, None, "2026-01-01", "2026-01-31",
-            complete_org_data, mock_members
+            org_info,
+            None,
+            "2026-01-01",
+            "2026-01-31",
+            complete_org_data,
+            mock_members,
         )
 
         # Should have anchor IDs for repos, languages, users, orgs
         assert '<a id="' in report or 'id="' in report
 
-    def test_backlinks_present(self, mod, complete_org_data, mock_members, org_info):
+    def test_backlinks_present(
+        self, mod, complete_org_data, mock_members, org_info
+    ):
         """User section should have backlinks to org section."""
         report = mod.generate_org_report(
-            org_info, None, "2026-01-01", "2026-01-31",
-            complete_org_data, mock_members
+            org_info,
+            None,
+            "2026-01-01",
+            "2026-01-31",
+            complete_org_data,
+            mock_members,
         )
 
         # Should have backlink characters
@@ -426,8 +476,15 @@ class TestMarkdownValidity:
             "test_commits": 0,
             "repos_contributed": 1,
             "repos_by_category": {
-                "Other": [{"name": "o/r", "commits": 10, "prs": 2,
-                          "language": "Python", "description": "Test"}]
+                "Other": [
+                    {
+                        "name": "o/r",
+                        "commits": 10,
+                        "prs": 2,
+                        "language": "Python",
+                        "description": "Test",
+                    }
+                ]
             },
             "repo_line_stats": {"o/r": {"additions": 100, "deletions": 20}},
             "repo_languages": {"o/r": "Python"},
@@ -452,8 +509,8 @@ class TestMarkdownValidity:
     def test_no_unclosed_parens_in_links(self, sample_report):
         """Links should have matching parentheses."""
         # Find all markdown links and verify they're properly formed
-        link_pattern = r'\[([^\]]*)\]\(([^)]*)\)'
-        links = re.findall(link_pattern, sample_report)
+        link_pattern = r"\[([^\]]*)\]\(([^)]*)\)"
+        re.findall(link_pattern, sample_report)
         # If we found links, the pattern matched, so they're valid
         # This is a basic check
 
@@ -475,7 +532,8 @@ class TestMarkdownValidity:
             if line.startswith("#"):
                 # Header line should have text after #
                 header_text = line.lstrip("#").strip()
-                assert len(header_text) > 0 or "<" in line  # Allow HTML in headers
+                # Allow HTML in headers
+                assert len(header_text) > 0 or "<" in line
 
 
 class TestRegressionExpectations:

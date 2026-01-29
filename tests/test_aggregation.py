@@ -1,7 +1,5 @@
 """Unit tests for data aggregation functions."""
 
-import pytest
-
 
 class TestAggregateLanguageStats:
     """Tests for aggregate_language_stats()."""
@@ -50,7 +48,12 @@ class TestAggregateLanguageStats:
         repos = {
             "Category": [
                 {"name": "repo1", "commits": 5, "prs": 1, "language": None},
-                {"name": "repo2", "commits": 3, "prs": 0, "language": "Python"},
+                {
+                    "name": "repo2",
+                    "commits": 3,
+                    "prs": 0,
+                    "language": "Python",
+                },
             ]
         }
         result = mod.aggregate_language_stats(repos)
@@ -61,10 +64,20 @@ class TestAggregateLanguageStats:
         """Same language in different categories should be combined."""
         repos = {
             "Category1": [
-                {"name": "repo1", "commits": 10, "prs": 1, "language": "Python"},
+                {
+                    "name": "repo1",
+                    "commits": 10,
+                    "prs": 1,
+                    "language": "Python",
+                },
             ],
             "Category2": [
-                {"name": "repo2", "commits": 5, "prs": 2, "language": "Python"},
+                {
+                    "name": "repo2",
+                    "commits": 5,
+                    "prs": 2,
+                    "language": "Python",
+                },
             ],
         }
         result = mod.aggregate_language_stats(repos)
@@ -86,15 +99,22 @@ class TestAggregateOrgData:
 
         assert isinstance(result, dict)
         # The actual keys use different naming
-        assert "total_commits_default_branch" in result or "total_commits_all" in result
-        assert "total_prs" in result or "total_pr_reviews" in result
+        has_commits = (
+            "total_commits_default_branch" in result
+            or "total_commits_all" in result
+        )
+        assert has_commits
+        has_prs = "total_prs" in result or "total_pr_reviews" in result
+        assert has_prs
 
     def test_commit_totals(self, mod, sample_member_data):
         """Total commits should be aggregated from member data."""
         result = mod.aggregate_org_data(sample_member_data)
 
         # Check that commit counts are present and non-negative
-        total = result.get("total_commits_default_branch", 0) + result.get("total_commits_all", 0)
+        default_branch = result.get("total_commits_default_branch", 0)
+        all_branches = result.get("total_commits_all", 0)
+        total = default_branch + all_branches
         assert total >= 0
 
     def test_pr_deduplication(self, mod, sample_member_data):
@@ -168,8 +188,7 @@ class TestAggregateOrgData:
             # Commits should be summed for same repo
             web_repos = rbc["Web standards and specifications"]
             csswg = next(
-                (r for r in web_repos if r["name"] == "w3c/csswg-drafts"),
-                None
+                (r for r in web_repos if r["name"] == "w3c/csswg-drafts"), None
             )
             if csswg:
                 # alice: 30, bob: 30 = 60 total
@@ -193,7 +212,9 @@ class TestGenerateNotablePrsTable:
             "owner/repo": "Python",
             "other/docs": "Markdown",
         }
-        result = mod.generate_notable_prs_table(sample_pr_nodes, repo_languages)
+        result = mod.generate_notable_prs_table(
+            sample_pr_nodes, repo_languages
+        )
 
         assert isinstance(result, list)
         assert len(result) > 0
@@ -204,11 +225,13 @@ class TestGenerateNotablePrsTable:
 
     def test_sorted_by_additions(self, mod, sample_pr_nodes):
         """PRs should be sorted by additions (lines changed)."""
-        repo_languages = {"owner/repo": "Python", "other/docs": "Markdown"}
-        result = mod.generate_notable_prs_table(sample_pr_nodes, repo_languages)
+        repo_languages = {
+            "owner/repo": "Python",
+            "other/docs": "Markdown",
+        }
+        mod.generate_notable_prs_table(sample_pr_nodes, repo_languages)
 
         # The PR with 1000 additions should appear before the one with 500
-        result_str = "\n".join(result)
         # "Update documentation" has 1000 additions, should be first PR row
         # "Add new feature" has 500 additions
 
@@ -230,8 +253,8 @@ class TestGenerateNotablePrsTable:
                 "deletions": 10,
                 "repository": {
                     "nameWithOwner": "owner/repo",
-                    "primaryLanguage": {"name": "Python"}
-                }
+                    "primaryLanguage": {"name": "Python"},
+                },
             }
             for i in range(20)
         ]
@@ -252,7 +275,7 @@ class TestGenerateNotablePrsTable:
                 "state": "OPEN",
                 "additions": 0,
                 "deletions": 0,
-                "repository": {"nameWithOwner": "owner/repo"}
+                "repository": {"nameWithOwner": "owner/repo"},
                 # Missing primaryLanguage
             }
         ]
@@ -286,10 +309,9 @@ class TestGetOrderedCategories:
             "Alpha Category": ["r2"],
             "Other": ["r3"],
         }
-        result = mod.get_ordered_categories(categories)
+        mod.get_ordered_categories(categories)
 
         # Find non-priority, non-Other categories
-        non_priority = [c for c in result if c not in ["Other"]]
         # If both are non-priority, Alpha should come before Zebra
 
     def test_empty_input(self, mod):

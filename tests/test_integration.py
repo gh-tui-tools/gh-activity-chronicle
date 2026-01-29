@@ -4,8 +4,7 @@ These tests verify the data flow from API responses through to output,
 using mocked subprocess calls to avoid actual GitHub API usage.
 """
 
-import json
-from unittest.mock import MagicMock, patch, call
+from unittest.mock import MagicMock, patch
 
 import pytest
 
@@ -16,9 +15,7 @@ class TestRunGhCommand:
     def test_successful_json_response(self, mod, mock_subprocess):
         """Test successful JSON response parsing."""
         mock_subprocess.return_value = MagicMock(
-            stdout='{"key": "value"}',
-            stderr="",
-            returncode=0
+            stdout='{"key": "value"}', stderr="", returncode=0
         )
 
         result = mod.run_gh_command(["api", "test"], parse_json=True)
@@ -27,9 +24,7 @@ class TestRunGhCommand:
     def test_non_json_response(self, mod, mock_subprocess):
         """Test non-JSON response handling."""
         mock_subprocess.return_value = MagicMock(
-            stdout="plain text response",
-            stderr="",
-            returncode=0
+            stdout="plain text response", stderr="", returncode=0
         )
 
         result = mod.run_gh_command(["api", "test"], parse_json=False)
@@ -45,10 +40,7 @@ class TestRunGhCommand:
 
         # Should raise or return None depending on implementation
         try:
-            result = mod.run_gh_command(
-                ["api", "test"],
-                raise_on_rate_limit=True
-            )
+            mod.run_gh_command(["api", "test"], raise_on_rate_limit=True)
         except mod.RateLimitError:
             pass  # Expected
         except Exception:
@@ -63,9 +55,7 @@ class TestRunGhCommand:
         error.stderr = "HTTP 502"
 
         success = MagicMock(
-            stdout='{"data": "success"}',
-            stderr="",
-            returncode=0
+            stdout='{"data": "success"}', stderr="", returncode=0
         )
 
         mock_subprocess.side_effect = [error, success]
@@ -91,8 +81,11 @@ class TestContributionSummary:
         assert result is not None
         # Should extract user data
         if isinstance(result, dict):
-            assert "user" in result or "contributionsCollection" in result \
+            assert (
+                "user" in result
+                or "contributionsCollection" in result
                 or "totalCommitContributions" in str(result)
+            )
 
 
 class TestGatherUserData:
@@ -103,47 +96,53 @@ class TestGatherUserData:
         """Mock all API-calling functions for gather_user_data."""
         with patch.multiple(
             mod,
-            get_contributions_summary=MagicMock(return_value={
-                "data": {
-                    "user": {
-                        "name": "Test User",
-                        "company": "@testorg",
-                        "contributionsCollection": {
-                            "totalCommitContributions": 50,
-                            "restrictedContributionsCount": 5,
-                            "totalPullRequestContributions": 10,
-                            "totalIssueContributions": 3,
-                            "totalPullRequestReviewContributions": 15,
-                            "commitContributionsByRepository": [
-                                {
-                                    "repository": {
-                                        "nameWithOwner": "org/repo",
-                                        "isFork": False,
-                                        "parent": None,
-                                        "isPrivate": False,
-                                        "primaryLanguage": {"name": "Python"},
-                                        "description": "Test repo"
-                                    },
-                                    "contributions": {"totalCount": 50}
-                                }
-                            ]
+            get_contributions_summary=MagicMock(
+                return_value={
+                    "data": {
+                        "user": {
+                            "name": "Test User",
+                            "company": "@testorg",
+                            "contributionsCollection": {
+                                "totalCommitContributions": 50,
+                                "restrictedContributionsCount": 5,
+                                "totalPullRequestContributions": 10,
+                                "totalIssueContributions": 3,
+                                "totalPullRequestReviewContributions": 15,
+                                "commitContributionsByRepository": [
+                                    {
+                                        "repository": {
+                                            "nameWithOwner": "org/repo",
+                                            "isFork": False,
+                                            "parent": None,
+                                            "isPrivate": False,
+                                            "primaryLanguage": {
+                                                "name": "Python"
+                                            },
+                                            "description": "Test repo",
+                                        },
+                                        "contributions": {"totalCount": 50},
+                                    }
+                                ],
+                            },
                         }
                     }
                 }
-            }),
-            get_all_commits=MagicMock(return_value={
-                "items": [
-                    {
-                        "sha": "abc123",
-                        "repository": {"full_name": "org/repo"},
-                        "commit": {"message": "Test commit"}
-                    }
-                ],
-                "total_count": 1
-            }),
-            get_prs_created=MagicMock(return_value={
-                "search": {"nodes": [], "issueCount": 0}
-            }),
+            ),
+            get_all_commits=MagicMock(
+                return_value={
+                    "items": [
+                        {
+                            "sha": "abc123",
+                            "repository": {"full_name": "org/repo"},
+                            "commit": {"message": "Test commit"},
+                        }
+                    ],
+                    "total_count": 1,
+                }
+            ),
+            get_prs_created=MagicMock(
+                return_value={"search": {"nodes": [], "issueCount": 0}}
+            ),
             get_prs_reviewed=MagicMock(return_value=[]),
             get_user_forks=MagicMock(return_value=[]),
             get_repo_info=MagicMock(return_value={}),
@@ -156,8 +155,7 @@ class TestGatherUserData:
         """Test basic data gathering flow."""
         # This test verifies the orchestration works with mocked dependencies
         result = mod.gather_user_data(
-            "testuser", "2026-01-01", "2026-01-31",
-            show_progress=False
+            "testuser", "2026-01-01", "2026-01-31", show_progress=False
         )
 
         assert isinstance(result, dict)
@@ -166,13 +164,10 @@ class TestGatherUserData:
     def test_returns_expected_structure(self, mod, mock_all_api_calls):
         """Verify returned data has expected structure."""
         result = mod.gather_user_data(
-            "testuser", "2026-01-01", "2026-01-31",
-            show_progress=False
+            "testuser", "2026-01-01", "2026-01-31", show_progress=False
         )
 
-        expected_keys = [
-            "username", "repos_by_category"
-        ]
+        expected_keys = ["username", "repos_by_category"]
         for key in expected_keys:
             assert key in result, f"Missing expected key: {key}"
 
@@ -185,34 +180,36 @@ class TestGatherUserDataLight:
         """Mock API calls for light mode."""
         with patch.multiple(
             mod,
-            get_contributions_summary=MagicMock(return_value={
-                "data": {
-                    "user": {
-                        "name": "Test User",
-                        "company": "@testorg",
-                        "contributionsCollection": {
-                            "totalCommitContributions": 25,
-                            "restrictedContributionsCount": 0,
-                            "totalPullRequestContributions": 5,
-                            "totalIssueContributions": 2,
-                            "totalPullRequestReviewContributions": 8,
-                            "commitContributionsByRepository": [
-                                {
-                                    "repository": {
-                                        "nameWithOwner": "org/repo",
-                                        "isFork": False,
-                                        "parent": None,
-                                        "isPrivate": False,
-                                        "primaryLanguage": {"name": "Go"},
-                                        "description": "Go project"
-                                    },
-                                    "contributions": {"totalCount": 25}
-                                }
-                            ]
+            get_contributions_summary=MagicMock(
+                return_value={
+                    "data": {
+                        "user": {
+                            "name": "Test User",
+                            "company": "@testorg",
+                            "contributionsCollection": {
+                                "totalCommitContributions": 25,
+                                "restrictedContributionsCount": 0,
+                                "totalPullRequestContributions": 5,
+                                "totalIssueContributions": 2,
+                                "totalPullRequestReviewContributions": 8,
+                                "commitContributionsByRepository": [
+                                    {
+                                        "repository": {
+                                            "nameWithOwner": "org/repo",
+                                            "isFork": False,
+                                            "parent": None,
+                                            "isPrivate": False,
+                                            "primaryLanguage": {"name": "Go"},
+                                            "description": "Go project",
+                                        },
+                                        "contributions": {"totalCount": 25},
+                                    }
+                                ],
+                            },
                         }
                     }
                 }
-            }),
+            ),
             get_prs_created=MagicMock(return_value=[]),
             get_prs_reviewed=MagicMock(return_value=[]),
             get_repo_info_cached=MagicMock(return_value=None),
@@ -270,7 +267,7 @@ class TestReportGeneration:
                         "commits": 50,
                         "prs": 5,
                         "language": "CSS",
-                        "description": "CSS specs"
+                        "description": "CSS specs",
                     }
                 ],
                 "Other": [
@@ -279,9 +276,9 @@ class TestReportGeneration:
                         "commits": 10,
                         "prs": 1,
                         "language": "Python",
-                        "description": "Personal project"
+                        "description": "Personal project",
                     }
-                ]
+                ],
             },
             "repo_line_stats": {
                 "w3c/csswg-drafts": {"additions": 3000, "deletions": 500},
@@ -300,8 +297,8 @@ class TestReportGeneration:
                     "deletions": 50,
                     "repository": {
                         "nameWithOwner": "w3c/csswg-drafts",
-                        "primaryLanguage": {"name": "CSS"}
-                    }
+                        "primaryLanguage": {"name": "CSS"},
+                    },
                 }
             ],
             "reviewed_nodes": [
@@ -311,14 +308,18 @@ class TestReportGeneration:
                     "additions": 100,
                     "deletions": 20,
                     "author": {"login": "other"},
-                    "repository": {"nameWithOwner": "w3c/csswg-drafts"}
+                    "repository": {"nameWithOwner": "w3c/csswg-drafts"},
                 }
             ],
         }
 
     def test_report_contains_username(self, mod, mock_user_data):
         """Report should contain the username."""
-        with patch.object(mod, "gather_user_data", return_value=mock_user_data):
+        with patch.object(
+            mod,
+            "gather_user_data",
+            return_value=mock_user_data,
+        ):
             report = mod.generate_report(
                 "testuser", "2026-01-01", "2026-01-31"
             )
@@ -327,7 +328,11 @@ class TestReportGeneration:
 
     def test_report_contains_date_range(self, mod, mock_user_data):
         """Report should show the date range."""
-        with patch.object(mod, "gather_user_data", return_value=mock_user_data):
+        with patch.object(
+            mod,
+            "gather_user_data",
+            return_value=mock_user_data,
+        ):
             report = mod.generate_report(
                 "testuser", "2026-01-01", "2026-01-31"
             )
@@ -337,7 +342,11 @@ class TestReportGeneration:
 
     def test_report_has_sections(self, mod, mock_user_data):
         """Report should have expected sections."""
-        with patch.object(mod, "gather_user_data", return_value=mock_user_data):
+        with patch.object(
+            mod,
+            "gather_user_data",
+            return_value=mock_user_data,
+        ):
             report = mod.generate_report(
                 "testuser", "2026-01-01", "2026-01-31"
             )
@@ -355,7 +364,11 @@ class TestReportGeneration:
 
     def test_report_markdown_valid(self, mod, mock_user_data):
         """Report should be valid markdown."""
-        with patch.object(mod, "gather_user_data", return_value=mock_user_data):
+        with patch.object(
+            mod,
+            "gather_user_data",
+            return_value=mock_user_data,
+        ):
             report = mod.generate_report(
                 "testuser", "2026-01-01", "2026-01-31"
             )
@@ -390,7 +403,7 @@ class TestOrgReportGeneration:
                         "commits": 300,
                         "prs": 30,
                         "language": "CSS",
-                        "description": "CSS specs"
+                        "description": "CSS specs",
                     }
                 ]
             },
@@ -399,9 +412,7 @@ class TestOrgReportGeneration:
             "repo_member_commits": {
                 "w3c/csswg-drafts": {"alice": 200, "bob": 100}
             },
-            "lang_member_commits": {
-                "CSS": {"alice": 200, "bob": 100}
-            },
+            "lang_member_commits": {"CSS": {"alice": 200, "bob": 100}},
             "member_real_names": {"alice": "Alice", "bob": "Bob"},
             "member_companies": {"alice": "@w3c", "bob": "@google"},
             "prs_nodes": [],
@@ -418,8 +429,7 @@ class TestOrgReportGeneration:
         ]
 
         report = mod.generate_org_report(
-            org_info, None, "2026-01-01", "2026-01-31",
-            mock_org_data, members
+            org_info, None, "2026-01-01", "2026-01-31", mock_org_data, members
         )
 
         # Should have detail sections
@@ -431,8 +441,7 @@ class TestOrgReportGeneration:
         members = [{"login": "alice"}, {"login": "bob"}]
 
         report = mod.generate_org_report(
-            org_info, None, "2026-01-01", "2026-01-31",
-            mock_org_data, members
+            org_info, None, "2026-01-01", "2026-01-31", mock_org_data, members
         )
 
         # Should have <details> elements with name attribute
@@ -446,7 +455,6 @@ class TestCompanyNormalization:
     def test_at_mention_extracted(self, mod):
         """@org mentions should be extracted from company field."""
         # Test the regex pattern for @org extraction
-        import re
         pattern = getattr(mod, "org_pattern", None)
         if pattern:
             matches = pattern.findall("@tc39 @w3c")
@@ -455,7 +463,6 @@ class TestCompanyNormalization:
 
     def test_org_with_period(self, mod):
         """@org mentions with periods should work (e.g., @mesur.io)."""
-        import re
         pattern = getattr(mod, "org_pattern", None)
         if pattern:
             matches = pattern.findall("@mesur.io")

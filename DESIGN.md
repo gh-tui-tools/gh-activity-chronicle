@@ -1373,9 +1373,13 @@ For integration and E2E tests, the suite mocks at different levels:
 
 The mocking approach allows testing the full pipeline without GitHub API access while still exercising real code paths.
 
+### Linting and formatting
+
+[Ruff](https://docs.astral.sh/ruff/) handles both linting (`ruff check`) and formatting (`ruff format`), configured in `pyproject.toml` with a 79-character line length. A pre-commit hook (`.git/hooks/pre-commit`) runs both checks on staged files.
+
 ### Continuous integration
 
-A GitHub Actions workflow (`.github/workflows/ci.yml`) runs the test suite on pushes to main, pull requests, and manual dispatch. Tests run across Python 3.9–3.13 on `ubuntu-latest`.
+A GitHub Actions workflow (`.github/workflows/ci.yml`) runs ruff check, ruff format, and the test suite on pushes to main, pull requests, and manual dispatch. Tests run across Python 3.9–3.13 on `ubuntu-latest`.
 
 ### Golden file maintenance
 
