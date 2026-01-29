@@ -223,17 +223,64 @@ class TestGenerateNotablePrsTable:
         header = result[0]
         assert "PR" in header or "Title" in header or "|" in header
 
-    def test_sorted_by_additions(self, mod, sample_pr_nodes):
-        """PRs should be sorted by additions (lines changed)."""
+    def test_sorted_by_total_lines(self, mod, sample_pr_nodes):
+        """PRs should be sorted by additions + deletions."""
         repo_languages = {
             "owner/repo": "Python",
             "other/docs": "Markdown",
         }
-        mod.generate_notable_prs_table(sample_pr_nodes, repo_languages)
+        result = mod.generate_notable_prs_table(
+            sample_pr_nodes, repo_languages
+        )
 
-        # The PR with 1000 additions should appear before the one with 500
-        # "Update documentation" has 1000 additions, should be first PR row
-        # "Add new feature" has 500 additions
+        # Data rows only (skip heading, blank line, header, separator)
+        data_rows = [
+            r
+            for r in result
+            if r.startswith("|") and "---" not in r and "PR" not in r
+        ]
+        # "Update documentation": 1000+0=1000 total → first
+        # "Add new feature": 500+100=600 total → second
+        # "Fix critical bug": 50+200=250 total → third
+        assert "Update documentation" in data_rows[0]
+        assert "Add new feature" in data_rows[1]
+        assert "Fix critical bug" in data_rows[2]
+
+    def test_sort_prefers_churn_over_additions(self, mod):
+        """A PR with fewer additions but more total churn sorts first."""
+        prs = [
+            {
+                "title": "High additions",
+                "url": "https://github.com/o/r/pull/1",
+                "state": "MERGED",
+                "additions": 900,
+                "deletions": 0,
+                "repository": {
+                    "nameWithOwner": "o/r",
+                    "primaryLanguage": {"name": "Python"},
+                },
+            },
+            {
+                "title": "High churn",
+                "url": "https://github.com/o/r/pull/2",
+                "state": "MERGED",
+                "additions": 500,
+                "deletions": 500,
+                "repository": {
+                    "nameWithOwner": "o/r",
+                    "primaryLanguage": {"name": "Python"},
+                },
+            },
+        ]
+        result = mod.generate_notable_prs_table(prs, {"o/r": "Python"})
+        data_rows = [
+            r
+            for r in result
+            if r.startswith("|") and "---" not in r and "PR" not in r
+        ]
+        # "High churn" (1000 total) before "High additions" (900 total)
+        assert "High churn" in data_rows[0]
+        assert "High additions" in data_rows[1]
 
     def test_empty_pr_list(self, mod):
         """Empty PR list should return empty or minimal table."""
@@ -242,7 +289,7 @@ class TestGenerateNotablePrsTable:
         assert isinstance(result, list)
 
     def test_top_15_limit(self, mod):
-        """Should limit to top 15 PRs."""
+        """Should limit to top 15 PRs by default."""
         # Create 20 PRs
         prs = [
             {
@@ -265,6 +312,30 @@ class TestGenerateNotablePrsTable:
         # Header is one row, so data rows should be <= 15
         # Actually header + 15 data rows = 16 rows with "|"
         assert len(data_rows) <= 16
+
+    def test_custom_limit(self, mod):
+        """Custom limit should control the number of PRs shown."""
+        prs = [
+            {
+                "title": f"PR {i}",
+                "url": f"https://github.com/owner/repo/pull/{i}",
+                "state": "MERGED",
+                "additions": 100 * (20 - i),
+                "deletions": 10,
+                "repository": {
+                    "nameWithOwner": "owner/repo",
+                    "primaryLanguage": {"name": "Python"},
+                },
+            }
+            for i in range(20)
+        ]
+        result = mod.generate_notable_prs_table(
+            prs, {"owner/repo": "Python"}, limit=5
+        )
+
+        data_rows = [r for r in result if r.startswith("|") and "---" not in r]
+        # Header + 5 data rows = 6
+        assert len(data_rows) == 6
 
     def test_pr_with_missing_fields(self, mod):
         """PRs with missing fields should be handled gracefully."""

@@ -89,6 +89,7 @@ gh activity-chronicle --org w3c --team accessibility-specialists
 | `‑‑output` | `‑o` | Output file path / stem (default: `<name>-<since>-to-<until>`) |
 | `‑‑stdout` | | Output to stdout instead of file (requires `‑‑format`) |
 | `‑‑format` | `‑f` | Output format: `markdown`, `json`, or `html` (default: all three; or inferred from `‑‑output` extension) |
+| `‑‑notable‑prs` | | Max notable PRs to show (default: scales with date range: 15/25/35/50) |
 
 ## Report contents
 
@@ -132,7 +133,7 @@ Repositories are automatically categorized into:
 
 ### PRs created
 - Status breakdown (merged, open, closed)
-- Notable PRs sorted by lines changed
+- Notable PRs sorted by total lines changed (additions + deletions)
 - Reviews received on created PRs
 
 ## Examples

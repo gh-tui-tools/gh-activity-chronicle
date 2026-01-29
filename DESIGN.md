@@ -241,7 +241,9 @@ See also: [Commit hyperlinks](#commit-hyperlinks) section for full implementatio
 **Period:** 2026-01-01 to 2026-01-31
 
 ## Notable PRs
-- Top 15 PRs by lines changed (first, most visible table)
+- Top PRs by total lines changed (additions + deletions), first and most visible table
+- Default count scales with date range: 15 (≤14d), 25 (≤60d), 35 (≤180d), 50 (>180d)
+- Override with `--notable-prs N`
 
 ## Projects by category
 - Category name
@@ -1295,7 +1297,8 @@ Common patterns are extracted into reusable helpers:
 - `paginate_gh_api()` — Generic pagination for GitHub REST API endpoints
 - `get_ordered_categories()` — Sort categories by priority for display
 - `aggregate_language_stats()` — Combine language data across repos
-- `generate_notable_prs_table()` — Build the Notable PRs markdown table
+- `generate_notable_prs_table(prs, langs, limit)` — Build the Notable PRs markdown table, sorted by total churn
+- `_resolve_stem()` — Compute base filename stem for output files
 
 ### Idiomatic Python patterns
 

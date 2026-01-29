@@ -3996,19 +3996,22 @@ def aggregate_language_stats(repos_by_category, repo_line_stats=None):
     return lang_stats
 
 
-def generate_notable_prs_table(prs_nodes, repo_languages):
+def generate_notable_prs_table(prs_nodes, repo_languages, limit=15):
     """Generate markdown table rows for notable PRs.
 
     Args:
         prs_nodes: List of PR node dicts
         repo_languages: Dict mapping repo name -> language
+        limit: Maximum number of PRs to include
 
     Returns:
         List of markdown lines for the Notable PRs table (header + rows).
     """
     notable_prs = sorted(
-        prs_nodes, key=lambda x: x.get("additions", 0), reverse=True
-    )[:15]
+        prs_nodes,
+        key=lambda x: x.get("additions", 0) + x.get("deletions", 0),
+        reverse=True,
+    )[:limit]
 
     if not notable_prs:
         return []
@@ -4636,7 +4639,9 @@ hr {{
 """
 
 
-def generate_report(username, since_date, until_date, data=None):
+def generate_report(
+    username, since_date, until_date, data=None, notable_prs=15
+):
     """Generate the full user chronicle."""
     if data is None:
         highlighted = Colors.highlight(username)
@@ -4706,7 +4711,9 @@ def generate_report(username, since_date, until_date, data=None):
     report.append("")
 
     # Notable PRs (first table - most visible)
-    report.extend(generate_notable_prs_table(prs_nodes, repo_languages))
+    report.extend(
+        generate_notable_prs_table(prs_nodes, repo_languages, notable_prs)
+    )
 
     # Projects by category (second section - shows where effort went)
     report.append("## Projects by category")
@@ -4873,7 +4880,13 @@ def generate_report(username, since_date, until_date, data=None):
 
 
 def generate_org_report(
-    org_info, team_info, since_date, until_date, aggregated_data, members
+    org_info,
+    team_info,
+    since_date,
+    until_date,
+    aggregated_data,
+    members,
+    notable_prs=15,
 ):
     """Generate a report for an organization or team.
 
@@ -4961,7 +4974,9 @@ def generate_org_report(
     report.append("")
 
     # Notable PRs (first table - most visible)
-    report.extend(generate_notable_prs_table(prs_nodes, repo_languages))
+    report.extend(
+        generate_notable_prs_table(prs_nodes, repo_languages, notable_prs)
+    )
 
     # Projects by category (second section - shows where effort went)
     report.append("## Projects by category")
@@ -5507,6 +5522,7 @@ RunConfig = namedtuple(
         "stdout",  # bool
         "yes",  # bool
         "format",  # str or None: "markdown", "json", "html", or None (all)
+        "notable_prs",  # int: max notable PRs to show
     ],
 )
 
@@ -5591,6 +5607,12 @@ def parse_and_validate_args(argv=None):
         default=None,
         help="Output format (default: all three; or inferred from"
         " --output extension)",
+    )
+    parser.add_argument(
+        "--notable-prs",
+        type=int,
+        default=None,
+        help="Max notable PRs to show (default: scales with date range)",
     )
 
     args = parser.parse_args(argv)
@@ -5716,6 +5738,23 @@ def parse_and_validate_args(argv=None):
         )
         sys.exit(1)
 
+    # Resolve notable PRs limit: explicit --notable-prs takes precedence,
+    # otherwise scale with the date range.
+    if args.notable_prs is not None:
+        np = args.notable_prs
+    else:
+        s = datetime.strptime(since_date, "%Y-%m-%d")
+        u = datetime.strptime(until_date, "%Y-%m-%d")
+        days = (u - s).days
+        if days <= 14:
+            np = 15
+        elif days <= 60:
+            np = 25
+        elif days <= 180:
+            np = 35
+        else:
+            np = 50
+
     return RunConfig(
         username=args.user,
         org=args.org,
@@ -5728,6 +5767,7 @@ def parse_and_validate_args(argv=None):
         stdout=args.stdout,
         yes=args.yes,
         format=fmt,
+        notable_prs=np,
     )
 
 
@@ -5795,10 +5835,12 @@ def run(config):
             members,
         )
 
+        np = config.notable_prs
+
         if fmt is None:
             # All formats
             progress.start("Generating report...")
-            md_report = generate_org_report(*org_report_args)
+            md_report = generate_org_report(*org_report_args, notable_prs=np)
             progress.stop()
             html_report = markdown_to_html(md_report)
             json_report = format_org_data_json(*org_report_args)
@@ -5806,7 +5848,7 @@ def run(config):
             report = format_org_data_json(*org_report_args)
         else:
             progress.start("Generating report...")
-            report = generate_org_report(*org_report_args)
+            report = generate_org_report(*org_report_args, notable_prs=np)
             progress.stop()
             if fmt == "html":
                 report = markdown_to_html(report)
@@ -5826,6 +5868,7 @@ def run(config):
                 config.since_date,
                 config.until_date,
                 data=data,
+                notable_prs=config.notable_prs,
             )
             html_report = markdown_to_html(md_report)
             json_report = format_user_data_json(
@@ -5853,6 +5896,7 @@ def run(config):
                 config.username,
                 config.since_date,
                 config.until_date,
+                notable_prs=config.notable_prs,
             )
             if fmt == "html":
                 report = markdown_to_html(report)

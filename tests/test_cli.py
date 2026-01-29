@@ -241,6 +241,30 @@ class TestParseAndValidateArgs:
         )
         assert config.format == "json"
 
+    # -- notable-prs flag --
+
+    def test_notable_prs_default_7_days(self):
+        config = mod.parse_and_validate_args(["--user", "x"])
+        assert config.notable_prs == 15
+
+    def test_notable_prs_default_30_days(self):
+        config = mod.parse_and_validate_args(["--user", "x", "--days", "30"])
+        assert config.notable_prs == 25
+
+    def test_notable_prs_default_90_days(self):
+        config = mod.parse_and_validate_args(["--user", "x", "--months", "3"])
+        assert config.notable_prs == 35
+
+    def test_notable_prs_default_year(self):
+        config = mod.parse_and_validate_args(["--user", "x", "--year"])
+        assert config.notable_prs == 50
+
+    def test_notable_prs_explicit_overrides(self):
+        config = mod.parse_and_validate_args(
+            ["--user", "x", "--year", "--notable-prs", "10"]
+        )
+        assert config.notable_prs == 10
+
 
 # -----------------------------------------------------------------------
 # TestRun
@@ -264,6 +288,7 @@ class TestRun:
             stdout=False,
             yes=False,
             format=None,
+            notable_prs=15,
         )
         defaults.update(overrides)
         return mod.RunConfig(**defaults)
@@ -746,6 +771,7 @@ class TestMain:
             stdout=False,
             yes=False,
             format=None,
+            notable_prs=15,
         )
 
     def test_username_detected_successfully(self):
