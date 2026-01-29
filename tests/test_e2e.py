@@ -1194,3 +1194,161 @@ class TestGatherUserDataLightWithProgress:
 
         assert data["username"] == "testuser"
         assert data["is_light_mode"] is True
+
+
+class TestClearRepoInfoCache:
+    """Test clear_repo_info_cache utility."""
+
+    def test_clears_cache(self):
+        mod.clear_repo_info_cache()
+        # No error means it ran; the internal cache is now empty.
+        # Verify by checking the module-level variable directly.
+        assert mod._repo_info_cache == {}
+
+
+class TestGatherUserDataForkMissingFields:
+    """Test fork with missing full_name or parent_name is skipped."""
+
+    def _call(self, mocks, username="testuser"):
+        patches = {}
+        for name, retval in mocks.items():
+            patches[name] = patch.object(
+                mod,
+                name,
+                return_value=retval,
+            )
+        for p in patches.values():
+            p.start()
+        try:
+            return mod.gather_user_data(
+                username,
+                "2026-01-01",
+                "2026-01-07",
+                show_progress=False,
+            )
+        finally:
+            for p in patches.values():
+                p.stop()
+
+    def test_fork_missing_parent_skipped(self):
+        """Fork entry without parent.full_name is skipped."""
+        mocks = _patch_gather(
+            {
+                "get_all_commits": {"total_count": 0, "items": []},
+                "get_user_forks": [
+                    {"full_name": "testuser/somefork", "parent": None},
+                ],
+            }
+        )
+        data = self._call(mocks)
+        # Fork with no parent is silently skipped; no crash
+        assert data["total_commits_all"] == 0
+
+    def test_fork_missing_full_name_skipped(self):
+        """Fork entry without full_name is skipped."""
+        mocks = _patch_gather(
+            {
+                "get_all_commits": {"total_count": 0, "items": []},
+                "get_user_forks": [
+                    {"parent": {"full_name": "upstream/repo"}},
+                ],
+            }
+        )
+        data = self._call(mocks)
+        assert data["total_commits_all"] == 0
+
+
+class TestGatherUserDataPrivateRepoSkipped:
+    """Test that private repos are skipped during commit aggregation."""
+
+    def _call(self, mocks, username="testuser"):
+        patches = {}
+        for name, retval in mocks.items():
+            patches[name] = patch.object(
+                mod,
+                name,
+                return_value=retval,
+            )
+        for p in patches.values():
+            p.start()
+        try:
+            return mod.gather_user_data(
+                username,
+                "2026-01-01",
+                "2026-01-07",
+                show_progress=False,
+            )
+        finally:
+            for p in patches.values():
+                p.stop()
+
+    def test_private_repo_skipped_via_repo_info(self):
+        """Repo not flagged private in commit data but private in repo_info.
+
+        The search API commit item may have private=False, but the full
+        repo_info fetched later reveals isPrivate=True.  The second filter
+        at aggregation time (should_skip_repo with repo_info) must catch it.
+        """
+        mocks = _patch_gather(
+            {
+                "get_all_commits": {
+                    "total_count": 2,
+                    "items": [
+                        {
+                            "sha": "pub111",
+                            "repository": {
+                                "full_name": "owner/public-repo",
+                                "private": False,
+                            },
+                            "commit": {
+                                "message": "public commit",
+                                "author": {"date": "2026-01-02T00:00:00Z"},
+                            },
+                        },
+                        {
+                            "sha": "priv111",
+                            "repository": {
+                                # Search API says private=False (stale/wrong)
+                                "full_name": "owner/secret-repo",
+                                "private": False,
+                            },
+                            "commit": {
+                                "message": "private commit",
+                                "author": {"date": "2026-01-02T00:00:00Z"},
+                            },
+                        },
+                    ],
+                },
+                "get_repo_info": {
+                    "owner/public-repo": {
+                        "nameWithOwner": "owner/public-repo",
+                        "isFork": False,
+                        "parent": None,
+                        "isPrivate": False,
+                        "description": "Public repo",
+                        "primaryLanguage": {"name": "Python"},
+                    },
+                    "owner/secret-repo": {
+                        "nameWithOwner": "owner/secret-repo",
+                        "isFork": False,
+                        "parent": None,
+                        # Full API response reveals it's actually private
+                        "isPrivate": True,
+                        "description": "Secret repo",
+                        "primaryLanguage": {"name": "Go"},
+                    },
+                },
+            }
+        )
+        data = self._call(mocks)
+
+        # Only the public repo commit should be counted
+        assert data["total_commits_all"] == 1
+
+        # secret-repo should not appear in any category
+        all_repo_names = []
+        for repos in data["repos_by_category"].values():
+            for repo in repos:
+                all_repo_names.append(repo["name"])
+        assert "owner/secret-repo" not in all_repo_names
+        assert "owner/public-repo" in all_repo_names

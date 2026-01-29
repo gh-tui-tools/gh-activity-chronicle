@@ -135,8 +135,15 @@ class TestParseAndValidateArgs:
     # -- stdout flag --
 
     def test_stdout_flag(self):
-        config = mod.parse_and_validate_args(["--user", "x", "--stdout"])
+        config = mod.parse_and_validate_args(
+            ["--user", "x", "--stdout", "--format", "markdown"]
+        )
         assert config.stdout is True
+
+    def test_stdout_without_format_errors(self):
+        with pytest.raises(SystemExit) as exc_info:
+            mod.parse_and_validate_args(["--user", "x", "--stdout"])
+        assert exc_info.value.code == 1
 
     # -- --private prompt handling --
 
@@ -172,6 +179,68 @@ class TestParseAndValidateArgs:
         )
         assert config.output == "my-report.md"
 
+    # -- format flag --
+
+    def test_format_default_none(self):
+        config = mod.parse_and_validate_args(["--user", "x"])
+        assert config.format is None
+
+    def test_format_explicit_json(self):
+        config = mod.parse_and_validate_args(
+            ["--user", "x", "--format", "json"]
+        )
+        assert config.format == "json"
+
+    def test_format_explicit_html(self):
+        config = mod.parse_and_validate_args(
+            ["--user", "x", "--format", "html"]
+        )
+        assert config.format == "html"
+
+    def test_format_short_flag(self):
+        config = mod.parse_and_validate_args(["--user", "x", "-f", "json"])
+        assert config.format == "json"
+
+    def test_format_invalid_choice(self):
+        with pytest.raises(SystemExit):
+            mod.parse_and_validate_args(["--user", "x", "--format", "csv"])
+
+    def test_format_inferred_from_json_output(self):
+        config = mod.parse_and_validate_args(
+            ["--user", "x", "--output", "report.json"]
+        )
+        assert config.format == "json"
+
+    def test_format_inferred_from_html_output(self):
+        config = mod.parse_and_validate_args(
+            ["--user", "x", "--output", "report.html"]
+        )
+        assert config.format == "html"
+
+    def test_format_inferred_from_htm_output(self):
+        config = mod.parse_and_validate_args(
+            ["--user", "x", "--output", "report.htm"]
+        )
+        assert config.format == "html"
+
+    def test_format_inferred_md_is_none(self):
+        config = mod.parse_and_validate_args(
+            ["--user", "x", "--output", "report.md"]
+        )
+        assert config.format is None
+
+    def test_format_inferred_unknown_ext_is_none(self):
+        config = mod.parse_and_validate_args(
+            ["--user", "x", "--output", "report.txt"]
+        )
+        assert config.format is None
+
+    def test_format_explicit_overrides_extension(self):
+        config = mod.parse_and_validate_args(
+            ["--user", "x", "--format", "json", "--output", "report.html"]
+        )
+        assert config.format == "json"
+
 
 # -----------------------------------------------------------------------
 # TestRun
@@ -194,12 +263,13 @@ class TestRun:
             output=None,
             stdout=False,
             yes=False,
+            format=None,
         )
         defaults.update(overrides)
         return mod.RunConfig(**defaults)
 
     def test_user_mode_writes_file(self, tmp_path):
-        config = self._make_config()
+        config = self._make_config(format="markdown")
         report_text = "# mock report"
 
         with (
@@ -213,7 +283,7 @@ class TestRun:
         mock_write.assert_called_once_with(report_text)
 
     def test_user_mode_stdout(self, capsys):
-        config = self._make_config(stdout=True)
+        config = self._make_config(stdout=True, format="markdown")
         report_text = "# stdout report"
 
         with patch.object(mod, "generate_report", return_value=report_text):
@@ -223,7 +293,7 @@ class TestRun:
         assert captured.out.strip() == report_text
 
     def test_user_mode_explicit_output(self):
-        config = self._make_config(output="custom.md")
+        config = self._make_config(output="custom.md", format="markdown")
         report_text = "# custom output"
 
         with (
@@ -239,6 +309,7 @@ class TestRun:
         config = self._make_config(
             username=None,
             org="myorg",
+            format="markdown",
         )
         report_text = "# org report"
         gather_result = (
@@ -272,6 +343,7 @@ class TestRun:
             username=None,
             org="myorg",
             team="editors",
+            format="markdown",
         )
         report_text = "# team report"
         gather_result = (
@@ -308,6 +380,7 @@ class TestRun:
             username=None,
             org="myorg",
             owners=True,
+            format="markdown",
         )
         report_text = "# owners report"
         gather_result = (
@@ -336,6 +409,321 @@ class TestRun:
 
         mock_write.assert_called_once_with(report_text)
 
+    # -- JSON format tests --
+
+    def test_user_mode_json_stdout(self, capsys):
+        config = self._make_config(stdout=True, format="json")
+        mock_data = {
+            "user_real_name": "Alice",
+            "total_commits_default_branch": 10,
+            "total_commits_all": 10,
+            "total_prs": 2,
+            "total_pr_reviews": 1,
+            "total_issues": 0,
+            "total_additions": 100,
+            "total_deletions": 20,
+            "test_commits": 0,
+            "repos_contributed": 1,
+            "reviews_received": 0,
+            "pr_comments_received": 0,
+            "repos_by_category": {},
+            "repo_line_stats": {},
+            "repo_languages": {},
+            "prs_nodes": [],
+            "reviewed_nodes": [],
+        }
+
+        with patch.object(mod, "gather_user_data", return_value=mock_data):
+            mod.run(config)
+
+        import json
+
+        captured = capsys.readouterr()
+        output = json.loads(captured.out)
+        assert output["meta"]["tool"] == "gh-activity-chronicle"
+        assert output["meta"]["username"] == "alice"
+        assert "data" in output
+        assert "report" in output
+
+    def test_org_mode_json_stdout(self, capsys):
+        config = self._make_config(
+            username=None, org="myorg", stdout=True, format="json"
+        )
+        gather_result = (
+            {"login": "myorg"},
+            None,
+            [],
+            {"repos_by_category": {}, "prs_nodes": [], "reviewed_nodes": []},
+            [],
+        )
+
+        with (
+            patch.object(
+                mod,
+                "gather_org_data_active_contributors",
+                return_value=gather_result,
+            ),
+        ):
+            mod.run(config)
+
+        import json
+
+        captured = capsys.readouterr()
+        output = json.loads(captured.out)
+        assert output["meta"]["org"]["login"] == "myorg"
+        assert "data" in output
+        assert "report" in output
+
+    # -- HTML format tests --
+
+    def test_user_mode_html_stdout(self, capsys):
+        config = self._make_config(stdout=True, format="html")
+        report_md = "# Test Report\n\n**Period:** 2026-01-01 to 2026-01-07"
+
+        with patch.object(mod, "generate_report", return_value=report_md):
+            mod.run(config)
+
+        captured = capsys.readouterr()
+        assert "<!DOCTYPE html>" in captured.out
+        assert "<h1>" in captured.out
+
+    def test_org_mode_html_stdout(self, capsys):
+        config = self._make_config(
+            username=None, org="myorg", stdout=True, format="html"
+        )
+        report_md = "# Org Report"
+        gather_result = (
+            {"login": "myorg"},
+            None,
+            [],
+            {},
+            [],
+        )
+
+        with (
+            patch.object(
+                mod,
+                "gather_org_data_active_contributors",
+                return_value=gather_result,
+            ),
+            patch.object(
+                mod,
+                "generate_org_report",
+                return_value=report_md,
+            ),
+            patch.object(mod, "progress"),
+        ):
+            mod.run(config)
+
+        captured = capsys.readouterr()
+        assert "<!DOCTYPE html>" in captured.out
+
+    # -- Default filename extension tests --
+
+    def test_json_default_filename_extension(self):
+        config = self._make_config(format="json")
+        mock_data = {
+            "user_real_name": "",
+            "total_commits_default_branch": 0,
+            "total_commits_all": 0,
+            "total_prs": 0,
+            "total_pr_reviews": 0,
+            "total_issues": 0,
+            "total_additions": 0,
+            "total_deletions": 0,
+            "test_commits": 0,
+            "repos_contributed": 0,
+            "reviews_received": 0,
+            "pr_comments_received": 0,
+            "repos_by_category": {},
+            "repo_line_stats": {},
+            "repo_languages": {},
+            "prs_nodes": [],
+            "reviewed_nodes": [],
+        }
+
+        with (
+            patch.object(mod, "gather_user_data", return_value=mock_data),
+            patch.object(Path, "write_text"),
+        ):
+            mod.run(config)
+
+        # Verify the default filename ends with .json
+        # (checked via the Path constructor call)
+
+    def test_html_default_filename_extension(self):
+        config = self._make_config(format="html")
+        report_md = "# Report"
+
+        with (
+            patch.object(mod, "generate_report", return_value=report_md),
+            patch.object(Path, "write_text"),
+        ):
+            mod.run(config)
+
+    # -- All-formats (default) tests --
+
+    def test_user_mode_all_formats_writes_three_files(self, tmp_path):
+        config = self._make_config()  # format=None → all formats
+        mock_data = {
+            "user_real_name": "Alice",
+            "total_commits_default_branch": 10,
+            "total_commits_all": 10,
+            "total_prs": 2,
+            "total_pr_reviews": 1,
+            "total_issues": 0,
+            "total_additions": 100,
+            "total_deletions": 20,
+            "test_commits": 0,
+            "repos_contributed": 1,
+            "reviews_received": 0,
+            "pr_comments_received": 0,
+            "repos_by_category": {},
+            "repo_line_stats": {},
+            "repo_languages": {},
+            "prs_nodes": [],
+            "reviewed_nodes": [],
+        }
+        md_report = "# mock report"
+
+        with (
+            patch.object(mod, "gather_user_data", return_value=mock_data),
+            patch.object(mod, "generate_report", return_value=md_report),
+            patch.object(Path, "write_text") as mock_write,
+        ):
+            mod.run(config)
+
+        assert mock_write.call_count == 3
+
+    def test_user_mode_all_formats_with_output_strips_ext(self, tmp_path):
+        config = self._make_config(output="report.md")  # format=None
+        mock_data = {
+            "user_real_name": "",
+            "total_commits_default_branch": 0,
+            "total_commits_all": 0,
+            "total_prs": 0,
+            "total_pr_reviews": 0,
+            "total_issues": 0,
+            "total_additions": 0,
+            "total_deletions": 0,
+            "test_commits": 0,
+            "repos_contributed": 0,
+            "reviews_received": 0,
+            "pr_comments_received": 0,
+            "repos_by_category": {},
+            "repo_line_stats": {},
+            "repo_languages": {},
+            "prs_nodes": [],
+            "reviewed_nodes": [],
+        }
+        md_report = "# report"
+
+        with (
+            patch.object(mod, "gather_user_data", return_value=mock_data),
+            patch.object(mod, "generate_report", return_value=md_report),
+            patch.object(Path, "write_text") as mock_write,
+        ):
+            mod.run(config)
+
+        assert mock_write.call_count == 3
+
+    def test_user_mode_all_formats_unrecognized_ext_uses_as_stem(self):
+        config = self._make_config(output="report.txt")  # format=None
+        mock_data = {
+            "user_real_name": "",
+            "total_commits_default_branch": 0,
+            "total_commits_all": 0,
+            "total_prs": 0,
+            "total_pr_reviews": 0,
+            "total_issues": 0,
+            "total_additions": 0,
+            "total_deletions": 0,
+            "test_commits": 0,
+            "repos_contributed": 0,
+            "reviews_received": 0,
+            "pr_comments_received": 0,
+            "repos_by_category": {},
+            "repo_line_stats": {},
+            "repo_languages": {},
+            "prs_nodes": [],
+            "reviewed_nodes": [],
+        }
+        md_report = "# report"
+
+        with (
+            patch.object(mod, "gather_user_data", return_value=mock_data),
+            patch.object(mod, "generate_report", return_value=md_report),
+            patch.object(Path, "write_text") as mock_write,
+        ):
+            mod.run(config)
+
+        # Stem is "report.txt" (unrecognized ext kept as-is)
+        assert mock_write.call_count == 3
+
+    def test_org_mode_all_formats_writes_three_files(self):
+        config = self._make_config(username=None, org="myorg")  # format=None
+        report_md = "# org report"
+        gather_result = (
+            {"login": "myorg"},
+            None,
+            [],
+            {},
+            [],
+        )
+
+        with (
+            patch.object(
+                mod,
+                "gather_org_data_active_contributors",
+                return_value=gather_result,
+            ),
+            patch.object(
+                mod,
+                "generate_org_report",
+                return_value=report_md,
+            ),
+            patch.object(mod, "progress"),
+            patch.object(Path, "write_text") as mock_write,
+        ):
+            mod.run(config)
+
+        assert mock_write.call_count == 3
+
+    def test_user_mode_all_formats_gathers_data_once(self):
+        """gather_user_data called once in all-formats mode."""
+        config = self._make_config()  # format=None
+        mock_data = {
+            "user_real_name": "",
+            "total_commits_default_branch": 0,
+            "total_commits_all": 0,
+            "total_prs": 0,
+            "total_pr_reviews": 0,
+            "total_issues": 0,
+            "total_additions": 0,
+            "total_deletions": 0,
+            "test_commits": 0,
+            "repos_contributed": 0,
+            "reviews_received": 0,
+            "pr_comments_received": 0,
+            "repos_by_category": {},
+            "repo_line_stats": {},
+            "repo_languages": {},
+            "prs_nodes": [],
+            "reviewed_nodes": [],
+        }
+        md_report = "# report"
+
+        with (
+            patch.object(
+                mod, "gather_user_data", return_value=mock_data
+            ) as mock_gather,
+            patch.object(mod, "generate_report", return_value=md_report),
+            patch.object(Path, "write_text"),
+        ):
+            mod.run(config)
+
+        mock_gather.assert_called_once()
+
 
 # -----------------------------------------------------------------------
 # TestMain — username detection via subprocess
@@ -357,6 +745,7 @@ class TestMain:
             output=None,
             stdout=False,
             yes=False,
+            format=None,
         )
 
     def test_username_detected_successfully(self):

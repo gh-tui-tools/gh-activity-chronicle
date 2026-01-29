@@ -977,6 +977,67 @@ class TestUserReportEmptyCategory:
         assert "Other" in report
 
 
+class TestUserReportReviewedPRsLanguageFallback:
+    """User report reviewed PRs falls back to primaryLanguage."""
+
+    def test_fallback_when_repo_not_in_repo_languages(self, mod):
+        user_data = {
+            "username": "testuser",
+            "user_real_name": "Test User",
+            "company": "",
+            "total_commits_default_branch": 10,
+            "total_commits_all": 10,
+            "total_prs": 0,
+            "total_pr_reviews": 1,
+            "total_issues": 0,
+            "total_additions": 100,
+            "total_deletions": 20,
+            "test_commits": 0,
+            "repos_contributed": 1,
+            "reviews_received": 0,
+            "pr_comments_received": 0,
+            "lines_reviewed": 0,
+            "review_comments": 0,
+            "repos_by_category": {
+                "Other": [
+                    {
+                        "name": "user/project",
+                        "commits": 10,
+                        "prs": 0,
+                        "language": "Python",
+                        "description": "Test",
+                    }
+                ],
+            },
+            "repo_line_stats": {
+                "user/project": {"additions": 100, "deletions": 20}
+            },
+            "repo_languages": {"user/project": "Python"},
+            "prs_nodes": [],
+            "reviewed_nodes": [
+                {
+                    "title": "Fix issue",
+                    "url": "https://github.com/ext/lib/pull/1",
+                    "additions": 50,
+                    "deletions": 10,
+                    "author": {"login": "other"},
+                    "repository": {
+                        "nameWithOwner": "ext/lib",
+                        "primaryLanguage": {"name": "Rust"},
+                    },
+                },
+            ],
+        }
+        with patch.object(mod, "gather_user_data", return_value=user_data):
+            report = mod.generate_report(
+                "testuser", "2026-01-01", "2026-01-31"
+            )
+
+        # ext/lib is NOT in repo_languages, so Rust comes from primaryLanguage
+        assert "ext/lib" in report
+        assert "Rust" in report
+
+
 # -----------------------------------------------------------------------
 # Group 7: Org report generation branch coverage
 # -----------------------------------------------------------------------
@@ -1158,3 +1219,389 @@ class TestOrgReportCompanyNormalization:
         # "b" should have been normalized: plain "acme" → "@acme"
         # Both should appear as @acme in the report
         assert "@acme" in report
+
+
+class TestBuildUserReportSections:
+    """Test build_user_report_sections() structured output."""
+
+    @pytest.fixture
+    def user_data(self):
+        return {
+            "user_real_name": "Test User",
+            "total_commits_default_branch": 120,
+            "total_commits_all": 150,
+            "total_prs": 25,
+            "total_pr_reviews": 40,
+            "total_issues": 8,
+            "total_additions": 12000,
+            "total_deletions": 3000,
+            "test_commits": 15,
+            "repos_contributed": 3,
+            "reviews_received": 5,
+            "pr_comments_received": 3,
+            "repos_by_category": {
+                "Web standards and specifications": [
+                    {
+                        "name": "w3c/csswg-drafts",
+                        "commits": 80,
+                        "prs": 12,
+                        "language": "CSS",
+                        "description": "CSS Working Group Editor Drafts",
+                    },
+                ],
+            },
+            "repo_line_stats": {
+                "w3c/csswg-drafts": {"additions": 8000, "deletions": 2000},
+            },
+            "repo_languages": {"w3c/csswg-drafts": "CSS"},
+            "prs_nodes": [
+                {
+                    "title": "Add CSS Grid feature",
+                    "url": "https://github.com/w3c/csswg-drafts/pull/100",
+                    "state": "MERGED",
+                    "merged": True,
+                    "additions": 500,
+                    "deletions": 100,
+                    "repository": {
+                        "nameWithOwner": "w3c/csswg-drafts",
+                        "primaryLanguage": {"name": "CSS"},
+                    },
+                },
+                {
+                    "title": "Fix parser bug",
+                    "url": "https://github.com/w3c/csswg-drafts/pull/101",
+                    "state": "OPEN",
+                    "additions": 50,
+                    "deletions": 10,
+                    "repository": {
+                        "nameWithOwner": "w3c/csswg-drafts",
+                        "primaryLanguage": {"name": "CSS"},
+                    },
+                },
+            ],
+            "reviewed_nodes": [
+                {
+                    "title": "Update Flexbox spec",
+                    "url": "https://github.com/w3c/csswg-drafts/pull/102",
+                    "additions": 300,
+                    "deletions": 80,
+                    "author": {"login": "other-user"},
+                    "repository": {
+                        "nameWithOwner": "w3c/csswg-drafts",
+                        "primaryLanguage": {"name": "CSS"},
+                    },
+                }
+            ],
+        }
+
+    def test_sections_keys(self, mod, user_data):
+        sections = mod.build_user_report_sections(
+            user_data, "testuser", "2026-01-01", "2026-01-31"
+        )
+        assert "notable_prs" in sections
+        assert "projects_by_category" in sections
+        assert "executive_summary" in sections
+        assert "languages" in sections
+        assert "prs_reviewed" in sections
+        assert "prs_created" in sections
+        assert "reviews_received" in sections
+
+    def test_executive_summary_values(self, mod, user_data):
+        sections = mod.build_user_report_sections(
+            user_data, "testuser", "2026-01-01", "2026-01-31"
+        )
+        summary = sections["executive_summary"]
+        assert summary["commits_default_branch"] == 120
+        assert summary["commits_all_branches"] == 150
+        assert summary["prs_created"] == 25
+        assert summary["lines_added"] == 12000
+
+    def test_prs_created_counts(self, mod, user_data):
+        sections = mod.build_user_report_sections(
+            user_data, "testuser", "2026-01-01", "2026-01-31"
+        )
+        assert sections["prs_created"]["merged"] == 1
+        assert sections["prs_created"]["open"] == 1
+        assert sections["prs_created"]["total"] == 2
+
+    def test_notable_prs_populated(self, mod, user_data):
+        sections = mod.build_user_report_sections(
+            user_data, "testuser", "2026-01-01", "2026-01-31"
+        )
+        assert len(sections["notable_prs"]) == 2
+        assert sections["notable_prs"][0]["title"] == "Add CSS Grid feature"
+
+    def test_reviews_received(self, mod, user_data):
+        sections = mod.build_user_report_sections(
+            user_data, "testuser", "2026-01-01", "2026-01-31"
+        )
+        assert sections["reviews_received"]["reviews_received"] == 5
+        assert sections["reviews_received"]["review_comments_received"] == 3
+
+    def test_projects_by_category(self, mod, user_data):
+        sections = mod.build_user_report_sections(
+            user_data, "testuser", "2026-01-01", "2026-01-31"
+        )
+        cats = sections["projects_by_category"]
+        assert "Web standards and specifications" in cats
+        repo = cats["Web standards and specifications"][0]
+        assert repo["name"] == "w3c/csswg-drafts"
+        assert repo["additions"] == 8000
+
+    def test_prs_reviewed(self, mod, user_data):
+        sections = mod.build_user_report_sections(
+            user_data, "testuser", "2026-01-01", "2026-01-31"
+        )
+        assert len(sections["prs_reviewed"]) == 1
+        assert sections["prs_reviewed"][0]["repository"] == "w3c/csswg-drafts"
+
+    def test_empty_category_skipped(self, mod, user_data):
+        user_data["repos_by_category"]["Empty Category"] = []
+        sections = mod.build_user_report_sections(
+            user_data, "testuser", "2026-01-01", "2026-01-31"
+        )
+        assert "Empty Category" not in sections["projects_by_category"]
+
+    def test_reviewed_pr_language_fallback(self, mod, user_data):
+        """When repo is not in repo_languages, fall back to primaryLanguage."""
+        user_data["repo_languages"] = {}  # no precomputed languages
+        sections = mod.build_user_report_sections(
+            user_data, "testuser", "2026-01-01", "2026-01-31"
+        )
+        assert len(sections["prs_reviewed"]) == 1
+        assert sections["prs_reviewed"][0]["language"] == "CSS"
+
+
+class TestBuildOrgReportSections:
+    """Test build_org_report_sections() structured output."""
+
+    @pytest.fixture
+    def org_data(self):
+        return {
+            "total_commits_default_branch": 500,
+            "total_commits_all": 500,
+            "total_prs": 50,
+            "total_pr_reviews": 100,
+            "total_issues": 20,
+            "repos_contributed": 2,
+            "total_additions": 25000,
+            "total_deletions": 5000,
+            "test_commits": 42,
+            "reviews_received": 10,
+            "pr_comments_received": 5,
+            "repos_by_category": {
+                "Other": [
+                    {
+                        "name": "org/repo",
+                        "commits": 500,
+                        "prs": 50,
+                        "language": "Go",
+                        "description": "A repo",
+                    }
+                ],
+            },
+            "repo_line_stats": {},
+            "repo_languages": {},
+            "repo_member_commits": {"org/repo": {"alice": 300, "bob": 200}},
+            "lang_member_commits": {"Go": {"alice": 300, "bob": 200}},
+            "member_real_names": {"alice": "Alice", "bob": "Bob"},
+            "member_companies": {"alice": "@org", "bob": ""},
+            "prs_nodes": [],
+            "reviewed_nodes": [],
+            "is_light_mode": True,
+        }
+
+    def test_sections_keys(self, mod, org_data):
+        org_info = {"login": "org", "name": "Org"}
+        sections = mod.build_org_report_sections(
+            org_info, None, "2026-01-01", "2026-01-31", org_data, []
+        )
+        assert "notable_prs" in sections
+        assert "projects_by_category" in sections
+        assert "executive_summary" in sections
+        assert "languages" in sections
+        assert "prs_created" in sections
+        assert "repo_member_commits" in sections
+
+    def test_light_mode_no_line_stats(self, mod, org_data):
+        org_info = {"login": "org", "name": "Org"}
+        sections = mod.build_org_report_sections(
+            org_info, None, "2026-01-01", "2026-01-31", org_data, []
+        )
+        summary = sections["executive_summary"]
+        assert "lines_added" not in summary
+        assert "test_related_commits" not in summary
+
+    def test_full_mode_has_line_stats(self, mod, org_data):
+        org_data["is_light_mode"] = False
+        org_data["repo_line_stats"] = {
+            "org/repo": {"additions": 25000, "deletions": 5000}
+        }
+        org_info = {"login": "org", "name": "Org"}
+        sections = mod.build_org_report_sections(
+            org_info, None, "2026-01-01", "2026-01-31", org_data, []
+        )
+        summary = sections["executive_summary"]
+        assert summary["lines_added"] == 25000
+        assert summary["test_related_commits"] == 42
+
+    def test_notable_prs_populated(self, mod, org_data):
+        org_data["prs_nodes"] = [
+            {
+                "title": "Big PR",
+                "url": "https://github.com/org/repo/pull/1",
+                "state": "MERGED",
+                "merged": True,
+                "additions": 500,
+                "deletions": 100,
+                "repository": {
+                    "nameWithOwner": "org/repo",
+                    "primaryLanguage": {"name": "Go"},
+                },
+            },
+        ]
+        org_info = {"login": "org", "name": "Org"}
+        sections = mod.build_org_report_sections(
+            org_info, None, "2026-01-01", "2026-01-31", org_data, []
+        )
+        assert len(sections["notable_prs"]) == 1
+        assert sections["notable_prs"][0]["title"] == "Big PR"
+
+    def test_empty_category_skipped(self, mod, org_data):
+        org_data["repos_by_category"]["Empty Category"] = []
+        org_info = {"login": "org", "name": "Org"}
+        sections = mod.build_org_report_sections(
+            org_info, None, "2026-01-01", "2026-01-31", org_data, []
+        )
+        assert "Empty Category" not in sections["projects_by_category"]
+
+    def test_prs_reviewed_with_language_fallback(self, mod, org_data):
+        """Reviewed PRs use primaryLanguage fallback."""
+        org_data["reviewed_nodes"] = [
+            {
+                "title": "Review PR",
+                "url": "https://github.com/org/repo/pull/5",
+                "additions": 200,
+                "deletions": 40,
+                "author": {"login": "someone"},
+                "repository": {
+                    "nameWithOwner": "org/repo",
+                    "primaryLanguage": {"name": "Go"},
+                },
+            },
+        ]
+        org_info = {"login": "org", "name": "Org"}
+        sections = mod.build_org_report_sections(
+            org_info, None, "2026-01-01", "2026-01-31", org_data, []
+        )
+        assert len(sections["prs_reviewed"]) == 1
+        assert sections["prs_reviewed"][0]["language"] == "Go"
+        assert sections["prs_reviewed"][0]["total_lines"] == 240
+
+    def test_prs_reviewed_uses_repo_languages(self, mod, org_data):
+        """Reviewed PRs prefer repo_languages over primaryLanguage."""
+        org_data["repo_languages"] = {"org/repo": "Rust"}
+        org_data["reviewed_nodes"] = [
+            {
+                "title": "Review PR",
+                "url": "https://github.com/org/repo/pull/5",
+                "additions": 100,
+                "deletions": 20,
+                "author": {"login": "someone"},
+                "repository": {
+                    "nameWithOwner": "org/repo",
+                    "primaryLanguage": {"name": "Go"},
+                },
+            },
+        ]
+        org_info = {"login": "org", "name": "Org"}
+        sections = mod.build_org_report_sections(
+            org_info, None, "2026-01-01", "2026-01-31", org_data, []
+        )
+        assert sections["prs_reviewed"][0]["language"] == "Rust"
+
+
+class TestFormatUserDataJson:
+    """Test format_user_data_json() output."""
+
+    def test_valid_json(self, mod):
+        import json
+
+        data = {
+            "user_real_name": "",
+            "total_commits_default_branch": 0,
+            "total_commits_all": 0,
+            "total_prs": 0,
+            "total_pr_reviews": 0,
+            "total_issues": 0,
+            "total_additions": 0,
+            "total_deletions": 0,
+            "test_commits": 0,
+            "repos_contributed": 0,
+            "reviews_received": 0,
+            "pr_comments_received": 0,
+            "repos_by_category": {},
+            "repo_line_stats": {},
+            "repo_languages": {},
+            "prs_nodes": [],
+            "reviewed_nodes": [],
+        }
+        result = mod.format_user_data_json(
+            data, "testuser", "2026-01-01", "2026-01-31"
+        )
+        parsed = json.loads(result)
+        assert parsed["meta"]["tool"] == "gh-activity-chronicle"
+        assert parsed["meta"]["username"] == "testuser"
+        assert parsed["meta"]["since_date"] == "2026-01-01"
+        assert "data" in parsed
+        assert "report" in parsed
+
+    def test_includes_raw_data(self, mod):
+        import json
+
+        data = {
+            "user_real_name": "Test",
+            "total_commits_default_branch": 42,
+            "total_commits_all": 42,
+            "total_prs": 0,
+            "total_pr_reviews": 0,
+            "total_issues": 0,
+            "total_additions": 0,
+            "total_deletions": 0,
+            "test_commits": 0,
+            "repos_contributed": 0,
+            "reviews_received": 0,
+            "pr_comments_received": 0,
+            "repos_by_category": {},
+            "repo_line_stats": {},
+            "repo_languages": {},
+            "prs_nodes": [],
+            "reviewed_nodes": [],
+        }
+        result = mod.format_user_data_json(
+            data, "user", "2026-01-01", "2026-01-31"
+        )
+        parsed = json.loads(result)
+        assert parsed["data"]["total_commits_default_branch"] == 42
+
+
+class TestFormatOrgDataJson:
+    """Test format_org_data_json() output."""
+
+    def test_valid_json(self, mod):
+        import json
+
+        org_info = {"login": "org", "name": "Org"}
+        aggregated = {
+            "repos_by_category": {},
+            "prs_nodes": [],
+            "reviewed_nodes": [],
+            "is_light_mode": True,
+        }
+        result = mod.format_org_data_json(
+            org_info, None, "2026-01-01", "2026-01-31", aggregated, []
+        )
+        parsed = json.loads(result)
+        assert parsed["meta"]["org"]["login"] == "org"
+        assert "data" in parsed
+        assert "report" in parsed

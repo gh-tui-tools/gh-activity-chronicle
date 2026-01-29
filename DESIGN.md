@@ -2,7 +2,7 @@
 
 ## Overview
 
-gh-activity-chronicle is a GitHub CLI extension, written in Python, that generates comprehensive markdown reports of GitHub activity — for individual users or organizations — over a specified time period. Reports include commits, pull requests, code reviews, and categorize work by project type.
+gh-activity-chronicle is a GitHub CLI extension, written in Python, that generates comprehensive reports of GitHub activity — for individual users or organizations — over a specified time period. Reports include commits, pull requests, code reviews, and categorize work by project type. Output is available in Markdown, JSON (machine-readable), and HTML (standalone page with embedded CSS) — by default all three are written.
 
 Installed via `gh extension install gh-tui-tools/gh-activity-chronicle` and invoked as `gh activity-chronicle`.
 
@@ -25,7 +25,7 @@ Installed via `gh extension install gh-tui-tools/gh-activity-chronicle` and invo
 ```
 ┌─────────────────┐     ┌──────────────────┐     ┌─────────────────┐
 │   CLI Parser    │────▶│  Data Gathering  │────▶│ Report Generator│
-│  (argparse)     │     │  (GitHub APIs)   │     │   (Markdown)    │
+│  (argparse)     │     │  (GitHub APIs)   │     │ (MD/JSON/HTML) │
 └─────────────────┘     └──────────────────┘     └─────────────────┘
                                │
                     ┌──────────┴──────────┐
@@ -45,7 +45,7 @@ Installed via `gh extension install gh-tui-tools/gh-activity-chronicle` and invo
 5. **Aggregate to parents**: Map fork commits to upstream repositories
 6. **Fetch commit stats**: Parallel REST API calls for line additions/deletions
 7. **Categorize repositories**: Apply heuristics and explicit mappings
-8. **Generate markdown**: Structured report with tables and summaries
+8. **Generate report**: Structured output as Markdown, JSON, or HTML
 
 ## GitHub API usage
 
@@ -348,6 +348,60 @@ These sections are collapsed by default on GitHub, making long org reports less 
 **Footer**: Generation timestamp with timezone offset.
 
 See [SAMPLE.md](SAMPLE.md) for example user mode output, or [SAMPLE-ORG.md](SAMPLE-ORG.md) for org mode output.
+
+## Output formats
+
+Three output formats are supported. By default all three are written; `--format` selects a single one (or it's inferred from the `--output` file extension):
+
+### Markdown
+
+The primary output format. Renders well on GitHub, in markdown viewers, and in text editors. This is what `generate_report()` and `generate_org_report()` produce directly.
+
+### JSON
+
+Machine-readable output for downstream processing. Structure:
+
+```json
+{
+  "meta": {
+    "tool": "gh-activity-chronicle",
+    "generated_at": "2026-01-07T14:30:45+09:00",
+    "username": "octocat",
+    "since_date": "2026-01-01",
+    "until_date": "2026-01-07"
+  },
+  "data": { /* raw gather_user_data() / aggregate_org_data() output */ },
+  "report": { /* structured sections: notable_prs, languages, etc. */ }
+}
+```
+
+The `data` key contains the full raw data dict. The `report` key contains pre-computed structured sections (notable PRs, projects by category, executive summary, languages, PRs created/reviewed) — saving consumers from re-deriving the same computations that the markdown formatter performs.
+
+The section computation is done by `build_user_report_sections()` and `build_org_report_sections()`, which serve as the shared computation layer consumed by both the JSON serializer and (indirectly) the markdown formatter.
+
+### HTML
+
+Standalone HTML page with embedded CSS. Produced by converting the markdown output through `markdown_to_html()`, a bundled ~100-line regex-based converter that handles the exact markdown subset used in reports:
+
+- `#` through `######` headings
+- `| table | rows |` with separator detection
+- `- bullet` lists
+- `**bold**`, `*italic*`, `[text](url)` inline markup
+- `---` horizontal rules
+- HTML passthrough (`<details>`, `<summary>`, `<span>`, `<a>`)
+
+The CSS provides: system font stack, max-width 960px container, table borders with zebra striping, link styling, and `<details>`/`<summary>` cursor styling. Zero external dependencies.
+
+### Format selection logic
+
+1. Explicit `--format` flag takes precedence — writes a single file
+2. If `--format` not given but `--output` has a recognized extension (`.json`, `.html`/`.htm`), infer that single format
+3. Default (no `--format`, no recognized extension): write all three files (`.md`, `.json`, `.html`) using the same stem
+4. `--stdout` requires `--format` (can't stream all three to stdout)
+
+Output filenames share a common stem (`{name}-{since}-to-{until}`) with the format-appropriate extension. When `--output` is given in the all-formats case, any recognized extension is stripped to derive the stem (e.g. `--output report.md` → `report.md`, `report.json`, `report.html`).
+
+To avoid double API calls in the all-formats path, `gather_user_data()` is called once and the result is passed to both `generate_report(data=...)` and `format_user_data_json()`. The `_resolve_stem()` helper computes the base filename.
 
 ## Configuration
 
@@ -746,7 +800,7 @@ Organization mode extends the tool to generate reports for GitHub organizations:
 ```
 ┌─────────────────┐     ┌──────────────────┐     ┌─────────────────┐
 │   CLI Parser    │────▶│  gather_org_data │────▶│generate_org_rpt │
-│(--org,--private,│     │                  │     │   (Markdown)    │
+│(--org,--private,│     │                  │     │ (MD/JSON/HTML) │
 │ --owners,--team)│     │                  │     │                 │
 └─────────────────┘     └──────────────────┘     └─────────────────┘
                                │
@@ -968,8 +1022,10 @@ This design ensures the progress indicator reflects actual completion rather tha
 
 ### Output filename
 
-- Org only: `{org}-{since}-to-{until}.md`
-- Org + team: `{org}-{team}-{since}-to-{until}.md`
+- Org only: `{org}-{since}-to-{until}.{ext}`
+- Org + team: `{org}-{team}-{since}-to-{until}.{ext}`
+
+where `{ext}` is `.md`, `.json`, or `.html`. By default all three extensions are written; with `--format`, only the matching extension is written.
 
 ## Commit hyperlinks
 
@@ -1296,10 +1352,11 @@ tests/
 ├── test_rate_limit.py       # 19 tests: API call estimation, warning thresholds
 ├── test_aggregation.py      # 28 tests: data aggregation functions
 ├── test_integration.py      # 106 tests: data flow with mocked API calls
-├── test_regression.py       # 41 tests: output structure verification
+├── test_regression.py       # 61 tests: output structure, section builders, JSON
 ├── test_snapshots.py        # 2 tests: golden file comparison
-├── test_e2e.py              # 24 tests: end-to-end pipeline tests
-├── test_cli.py              # 36 tests: argument parsing, run() orchestration
+├── test_e2e.py              # 28 tests: end-to-end pipeline tests
+├── test_cli.py              # 53 tests: argument parsing, format selection, run()
+├── test_html.py             # 35 tests: markdown-to-HTML converter
 ├── api_recorder.py          # Record/replay infrastructure
 └── fixtures/
     ├── golden/              # Expected output baselines
@@ -1321,7 +1378,7 @@ tests/
 - Verifies the orchestration logic without making real network calls
 
 **Regression tests**:
-- `test_regression.py` — Verifies report structure (sections exist, markdown valid, expected content)
+- `test_regression.py` — Verifies report structure, section builders, JSON/HTML output format
 - Catches unintended changes to output format
 
 **Snapshot tests**:
@@ -1334,13 +1391,17 @@ tests/
 - `MockGhCommand` class simulates GitHub API responses based on call patterns
 - Verifies data consistency (commit counts match, PRs deduplicated correctly)
 
+**HTML converter tests**:
+- `test_html.py` — Tests `markdown_to_html()` and `_inline_markdown()` converters
+- Covers headings, tables, lists, inline markup, HTML passthrough, element transitions
+
 **CLI tests**:
-- `test_cli.py` — Tests the refactored `main()` entry point (`parse_and_validate_args()` + `run()`)
-- Covers all argument combinations, mutual-exclusion validation errors, date computation, and output path logic
+- `test_cli.py` — Tests `parse_and_validate_args()` + `run()` entry points
+- Covers all argument combinations, format selection, extension inference, validation, output dispatch
 
 ### Coverage
 
-The test suite (340 tests) enforces a **98% coverage threshold** configured in `pyproject.toml`. Current coverage is ~99%. Genuinely untestable code (terminal I/O, threading callbacks, rate-limit recovery) is marked `# pragma: no cover`. The remaining ~20 uncovered lines are intentionally left without pragmas — they represent code where mock complexity outweighs testing value, and the coverage report serves as a living inventory of these gaps.
+The test suite (416 tests) enforces a **98% coverage threshold** configured in `pyproject.toml`. Current coverage is ~99%. Genuinely untestable code (terminal I/O, threading callbacks, rate-limit recovery) is marked `# pragma: no cover`. The remaining ~20 uncovered lines are intentionally left without pragmas — they represent code where mock complexity outweighs testing value, and the coverage report serves as a living inventory of these gaps.
 
 ### Running tests
 
@@ -1417,7 +1478,6 @@ The `normalize_report()` function removes variable content (timestamps) before c
 
 ### Output and formatting
 
-- **HTML output** — Generate standalone HTML with embedded CSS for richer formatting
 - **Comparison mode** — Compare two periods side-by-side (e.g., this month vs last month)
 - **Contribution graphs** — ASCII or image-based activity heatmaps
 - **`--compact` flag** — Single-page summary without detailed tables
@@ -1439,4 +1499,3 @@ The `normalize_report()` function removes variable content (timestamps) before c
 
 - **Scheduled report generation** — GitHub Actions workflow for automatic periodic reports
 - **Slack/email delivery** — Send reports directly to communication channels
-- **JSON output** — Machine-readable output for downstream processing

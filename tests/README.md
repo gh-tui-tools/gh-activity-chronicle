@@ -6,7 +6,7 @@
 # Install test dependencies
 pip install pytest pytest-mock
 
-# Run all tests (340 tests)
+# Run all tests (416 tests)
 pytest tests/ -v
 
 # Run specific test file
@@ -42,9 +42,9 @@ Mocks `run_gh_command()` and related functions to test data flow without network
 
 | File | Tests | Coverage |
 |------|-------|----------|
-| `test_regression.py` | 41 | Report structure, markdown validity, known behaviors |
+| `test_regression.py` | 61 | Report structure, section builders, JSON/HTML output |
 
-Verifies output structure is correct (sections exist, tables formatted properly, etc.).
+Verifies output structure (sections exist, tables formatted properly), section builders (`build_user_report_sections`, `build_org_report_sections`), and JSON serialization.
 
 ### Snapshot Tests
 
@@ -58,17 +58,25 @@ Compares full report output against baseline files in `fixtures/golden/`.
 
 | File | Tests | Coverage |
 |------|-------|----------|
-| `test_e2e.py` | 24 | Full data flow, report generation, data consistency |
+| `test_e2e.py` | 28 | Full data flow, report generation, data consistency |
 
 Tests complete pipeline with `MockGhCommand` simulating API responses.
+
+### HTML Converter Tests
+
+| File | Tests | Coverage |
+|------|-------|----------|
+| `test_html.py` | 35 | `markdown_to_html()`, `_inline_markdown()` |
+
+Tests the bundled markdown-to-HTML converter. Covers headings, tables, lists, inline markup (bold, italic, links), horizontal rules, HTML passthrough, and element transition edge cases.
 
 ### CLI Tests
 
 | File | Tests | Coverage |
 |------|-------|----------|
-| `test_cli.py` | 36 | Argument parsing, validation, `run()` orchestration |
+| `test_cli.py` | 53 | Argument parsing, format selection, `run()` orchestration |
 
-Tests `parse_and_validate_args()` and `run()` — the refactored `main()` entry point. Covers all argument combinations, validation errors, date computation, and output path logic.
+Tests `parse_and_validate_args()` and `run()` — the refactored `main()` entry point. Covers all argument combinations, format flag, extension inference, validation errors, date computation, and output path logic.
 
 ## Fixtures
 

@@ -1,5 +1,7 @@
 # Generated reports (keep SAMPLE*.md as examples)
 *-to-*.md
+*-to-*.json
+*-to-*.html
 !SAMPLE*.md
 
 # Python

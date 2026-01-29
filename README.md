@@ -1,6 +1,6 @@
 # gh-activity-chronicle
 
-gh-activity-chronicle generates comprehensive markdown reports of GitHub activity — for users or organizations — over a specified time period.
+gh-activity-chronicle generates comprehensive reports of GitHub activity — for users or organizations — over a specified time period. By default it writes all three output formats (Markdown, JSON, and HTML); use `--format` to select just one.
 
 ## Installation
 
@@ -25,6 +25,7 @@ gh extension install gh-tui-tools/gh-activity-chronicle
 
 ```bash
 # Basic usage (last 7 days, current GitHub user)
+# Writes .md, .json, and .html files
 gh activity-chronicle
 
 # Specify a different user
@@ -42,11 +43,20 @@ gh activity-chronicle --year
 # Specific date range
 gh activity-chronicle --since 2026-01-01 --until 2026-01-31
 
-# Custom output filename
+# Custom output stem (writes report.md, report.json, report.html)
 gh activity-chronicle -o report.md
 
-# Output to stdout instead of file
-gh activity-chronicle --stdout
+# Single format only
+gh activity-chronicle --format json
+gh activity-chronicle --format html
+gh activity-chronicle --format markdown
+
+# Single format inferred from output file extension
+gh activity-chronicle -o report.json
+gh activity-chronicle -o report.html
+
+# Output to stdout (requires --format)
+gh activity-chronicle --stdout --format markdown
 
 # Organization mode (public members only, the default)
 gh activity-chronicle --org w3c
@@ -76,8 +86,9 @@ gh activity-chronicle --org w3c --team accessibility-specialists
 | `‑‑year` | | Look back one year |
 | `‑‑since` | | Start date in YYYY-MM-DD format |
 | `‑‑until` | | End date in YYYY-MM-DD format (default: today) |
-| `‑‑output` | `‑o` | Output file path (default: `<user>-<since>-to-<until>.md` or `<org>-<since>-to-<until>.md`) |
-| `‑‑stdout` | | Output to stdout instead of file |
+| `‑‑output` | `‑o` | Output file path / stem (default: `<name>-<since>-to-<until>`) |
+| `‑‑stdout` | | Output to stdout instead of file (requires `‑‑format`) |
+| `‑‑format` | `‑f` | Output format: `markdown`, `json`, or `html` (default: all three; or inferred from `‑‑output` extension) |
 
 ## Report contents
 
@@ -149,9 +160,11 @@ Note: `‑‑private`, `‑‑owners`, and `‑‑team` are mutually exclusive.
 
 The report shows combined totals across all members, with PRs and reviews de-duplicated by URL. Data for each member is gathered in parallel (30 concurrent workers).
 
-Output filename format:
-- Org only: `{org}-{since}-to-{until}.md`
-- Org + team: `{org}-{team}-{since}-to-{until}.md`
+Output filename stem:
+- Org only: `{org}-{since}-to-{until}`
+- Org + team: `{org}-{team}-{since}-to-{until}`
+
+By default all three extensions (`.md`, `.json`, `.html`) are written. With `--format`, only the matching extension is written.
 
 ## Notes
 
@@ -164,7 +177,7 @@ Output filename format:
 
 ## Testing
 
-The project includes a comprehensive test suite (157 tests):
+The project includes a comprehensive test suite (416 tests):
 
 ```bash
 # Install test dependencies
@@ -182,8 +195,10 @@ pytest tests/test_e2e.py -v          # End-to-end data flow tests
 **Test categories:**
 - **Unit tests** — Pure functions (categorization, rate limits, formatting)
 - **Integration tests** — Data flow with mocked GitHub API
+- **Regression tests** — Output structure, JSON/HTML converters, section builders
 - **Snapshot tests** — Compare full reports against golden baselines
 - **End-to-end tests** — Complete pipeline verification
+- **CLI tests** — Argument parsing, format selection, output dispatch
 
 To update golden files after intentional output changes:
 ```bash
