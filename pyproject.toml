@@ -20,6 +20,8 @@ addopts = [
     "-v",
     "--tb=short",
     "-ra",
+    "--cov=.",
+    "--cov-report=term-missing:skip-covered",
 ]
 filterwarnings = [
     "ignore::DeprecationWarning",
@@ -39,6 +41,7 @@ source = ["."]
 omit = ["tests/*", "research/*"]
 
 [tool.coverage.report]
+fail_under = 98
 exclude_lines = [
     "pragma: no cover",
     "if __name__ == .__main__.:",

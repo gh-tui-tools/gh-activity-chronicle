@@ -6,7 +6,7 @@
 # Install test dependencies
 pip install pytest pytest-mock
 
-# Run all tests (157 tests)
+# Run all tests (340 tests)
 pytest tests/ -v
 
 # Run specific test file
@@ -23,10 +23,10 @@ pytest tests/ --cov=. --cov-report=term-missing
 
 | File | Tests | Coverage |
 |------|-------|----------|
-| `test_helpers.py` | 24 | `format_number`, anchors, links, `is_bot`, Colors |
-| `test_categorization.py` | 24 | `matches`, topics, `should_skip_repo`, priority |
+| `test_helpers.py` | 36 | `format_number`, anchors, links, `is_bot`, Colors |
+| `test_categorization.py` | 48 | `matches`, topics, `should_skip_repo`, priority, edge cases |
 | `test_rate_limit.py` | 19 | `estimate_org_api_calls`, `should_warn_rate_limit` |
-| `test_aggregation.py` | 23 | Language stats, org data, PR tables, ordering |
+| `test_aggregation.py` | 28 | Language stats, org data, PR tables, ordering |
 
 These test pure functions that don't call the GitHub API.
 
@@ -34,7 +34,7 @@ These test pure functions that don't call the GitHub API.
 
 | File | Tests | Coverage |
 |------|-------|----------|
-| `test_integration.py` | 21 | API wrapper, data gathering, report generation |
+| `test_integration.py` | 106 | API wrappers, data gathering, report generation, pagination |
 
 Mocks `run_gh_command()` and related functions to test data flow without network calls.
 
@@ -42,7 +42,7 @@ Mocks `run_gh_command()` and related functions to test data flow without network
 
 | File | Tests | Coverage |
 |------|-------|----------|
-| `test_regression.py` | 35 | Report structure, markdown validity, known behaviors |
+| `test_regression.py` | 41 | Report structure, markdown validity, known behaviors |
 
 Verifies output structure is correct (sections exist, tables formatted properly, etc.).
 
@@ -58,9 +58,17 @@ Compares full report output against baseline files in `fixtures/golden/`.
 
 | File | Tests | Coverage |
 |------|-------|----------|
-| `test_e2e.py` | 9 | Full data flow, report generation, data consistency |
+| `test_e2e.py` | 24 | Full data flow, report generation, data consistency |
 
 Tests complete pipeline with `MockGhCommand` simulating API responses.
+
+### CLI Tests
+
+| File | Tests | Coverage |
+|------|-------|----------|
+| `test_cli.py` | 36 | Argument parsing, validation, `run()` orchestration |
+
+Tests `parse_and_validate_args()` and `run()` — the refactored `main()` entry point. Covers all argument combinations, validation errors, date computation, and output path logic.
 
 ## Fixtures
 
@@ -80,6 +88,12 @@ api_responses/
     ├── 001_abc123.json         # Recorded response
     └── ...
 ```
+
+## Coverage
+
+The test suite enforces a **98% coverage threshold** (`fail_under = 98` in `pyproject.toml`). Current coverage is ~99%.
+
+Lines that are genuinely untestable (terminal I/O, threading callbacks, rate-limit recovery) are marked with `# pragma: no cover`. The ~20 remaining uncovered lines are intentionally left without pragmas — they represent code that *could* be tested but where the mock complexity isn't worth it. The coverage report serves as a living inventory of these known gaps.
 
 ## Updating Golden Files
 

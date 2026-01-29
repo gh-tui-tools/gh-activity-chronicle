@@ -6,7 +6,7 @@ test the complete output pipeline.
 """
 
 import re
-from unittest.mock import patch
+from unittest.mock import MagicMock, patch
 
 import pytest
 
@@ -456,6 +456,271 @@ class TestOrgReportStructure:
         assert "↩" in report or "[↩]" in report
 
 
+class TestOrgReportTitleBranches:
+    """Test title construction branches in generate_org_report()."""
+
+    @pytest.fixture
+    def base_org_data(self):
+        """Minimal org data for title tests."""
+        return {
+            "total_commits_default_branch": 100,
+            "total_commits_all": 100,
+            "total_prs": 10,
+            "total_pr_reviews": 20,
+            "total_issues": 5,
+            "repos_contributed": 1,
+            "total_additions": 1000,
+            "total_deletions": 200,
+            "repos_by_category": {
+                "Other": [
+                    {
+                        "name": "org/repo",
+                        "commits": 100,
+                        "prs": 10,
+                        "language": "Go",
+                        "description": "A repo",
+                    }
+                ],
+            },
+            "repo_line_stats": {},
+            "repo_languages": {},
+            "repo_member_commits": {"org/repo": {"alice": 100}},
+            "lang_member_commits": {"Go": {"alice": 100}},
+            "member_real_names": {"alice": "Alice"},
+            "member_companies": {"alice": "@org"},
+            "prs_nodes": [],
+            "reviewed_nodes": [],
+            "is_light_mode": True,
+        }
+
+    @pytest.fixture
+    def members(self):
+        return [{"login": "alice", "name": "Alice"}]
+
+    def test_team_info_with_org_and_team_name(
+        self, mod, base_org_data, members
+    ):
+        """Title with team_info, org_name, and team_name."""
+        org_info = {"login": "w3c", "name": "W3C"}
+        team_info = {"slug": "editors", "name": "Spec Editors"}
+        report = mod.generate_org_report(
+            org_info,
+            team_info,
+            "2026-01-01",
+            "2026-01-31",
+            base_org_data,
+            members,
+        )
+        first_line = report.split("\n")[0]
+        assert "editors" in first_line
+        assert "W3C" in first_line
+        assert "Spec Editors" in first_line
+
+    def test_team_info_with_org_name_only(self, mod, base_org_data, members):
+        """Title with team_info and org_name but no team_name."""
+        org_info = {"login": "w3c", "name": "W3C"}
+        team_info = {"slug": "editors", "name": ""}
+        report = mod.generate_org_report(
+            org_info,
+            team_info,
+            "2026-01-01",
+            "2026-01-31",
+            base_org_data,
+            members,
+        )
+        first_line = report.split("\n")[0]
+        assert "editors" in first_line
+        assert "(W3C)" in first_line
+
+    def test_team_info_without_org_name(self, mod, base_org_data, members):
+        """Title with team_info but no org_name."""
+        org_info = {"login": "w3c", "name": ""}
+        team_info = {"slug": "editors", "name": ""}
+        report = mod.generate_org_report(
+            org_info,
+            team_info,
+            "2026-01-01",
+            "2026-01-31",
+            base_org_data,
+            members,
+        )
+        first_line = report.split("\n")[0]
+        assert "editors" in first_line
+        # No parenthesized org_name
+        assert "()" not in first_line
+
+    def test_no_team_info_with_org_name(self, mod, base_org_data, members):
+        """Title without team_info, with org_name."""
+        org_info = {"login": "w3c", "name": "W3C"}
+        report = mod.generate_org_report(
+            org_info,
+            None,
+            "2026-01-01",
+            "2026-01-31",
+            base_org_data,
+            members,
+        )
+        first_line = report.split("\n")[0]
+        assert "(W3C)" in first_line
+
+    def test_no_team_info_without_org_name(self, mod, base_org_data, members):
+        """Title without team_info and without org_name."""
+        org_info = {"login": "w3c", "name": ""}
+        report = mod.generate_org_report(
+            org_info,
+            None,
+            "2026-01-01",
+            "2026-01-31",
+            base_org_data,
+            members,
+        )
+        first_line = report.split("\n")[0]
+        assert "[w3c]" in first_line
+        assert "(" not in first_line or "https" in first_line
+
+    def test_owners_only_flag(self, mod, base_org_data, members):
+        """owners_only flag should append 'Owners' to title."""
+        org_info = {"login": "w3c", "name": "W3C"}
+        base_org_data["owners_only"] = True
+        report = mod.generate_org_report(
+            org_info,
+            None,
+            "2026-01-01",
+            "2026-01-31",
+            base_org_data,
+            members,
+        )
+        first_line = report.split("\n")[0]
+        assert first_line.endswith("Owners")
+
+
+class TestOrgReportFullMode:
+    """Test full mode (non-light) branches in generate_org_report()."""
+
+    @pytest.fixture
+    def full_mode_org_data(self):
+        """Org data with is_light_mode=False and populated line stats."""
+        return {
+            "total_commits_default_branch": 500,
+            "total_commits_all": 500,
+            "total_prs": 50,
+            "total_pr_reviews": 100,
+            "total_issues": 20,
+            "repos_contributed": 2,
+            "total_additions": 25000,
+            "total_deletions": 5000,
+            "test_commits": 42,
+            "repos_by_category": {
+                "Web standards and specifications": [
+                    {
+                        "name": "w3c/csswg-drafts",
+                        "commits": 300,
+                        "prs": 30,
+                        "language": "CSS",
+                        "description": "CSS specs",
+                    },
+                    {
+                        "name": "whatwg/html",
+                        "commits": 200,
+                        "prs": 20,
+                        "language": "HTML",
+                        "description": "HTML Standard",
+                    },
+                ],
+            },
+            "repo_line_stats": {
+                "w3c/csswg-drafts": {
+                    "additions": 15000,
+                    "deletions": 3000,
+                },
+                "whatwg/html": {"additions": 10000, "deletions": 2000},
+            },
+            "repo_languages": {
+                "w3c/csswg-drafts": "CSS",
+                "whatwg/html": "HTML",
+            },
+            "repo_member_commits": {
+                "w3c/csswg-drafts": {"alice": 200, "bob": 100},
+                "whatwg/html": {"alice": 100, "charlie": 100},
+            },
+            "lang_member_commits": {
+                "CSS": {"alice": 200, "bob": 100},
+                "HTML": {"alice": 100, "charlie": 100},
+            },
+            "member_real_names": {
+                "alice": "Alice",
+                "bob": "Bob",
+                "charlie": "Charlie",
+            },
+            "member_companies": {
+                "alice": "@w3c",
+                "bob": "@google",
+                "charlie": "@w3c",
+            },
+            "prs_nodes": [],
+            "reviewed_nodes": [],
+            "is_light_mode": False,
+        }
+
+    @pytest.fixture
+    def members(self):
+        return [
+            {"login": "alice", "name": "Alice"},
+            {"login": "bob", "name": "Bob"},
+            {"login": "charlie", "name": "Charlie"},
+        ]
+
+    def test_projects_table_has_lines_column(
+        self, mod, full_mode_org_data, members
+    ):
+        """Full mode projects table should have a Lines column."""
+        org_info = {"login": "w3c", "name": "W3C"}
+        report = mod.generate_org_report(
+            org_info,
+            None,
+            "2026-01-01",
+            "2026-01-31",
+            full_mode_org_data,
+            members,
+        )
+        # Full mode header
+        assert "| Repo | Commits | Lines | Lang | Description |" in report
+        # Should contain line stats like +15,000/-3,000
+        assert "+15,000/-3,000" in report
+
+    def test_executive_summary_has_lines_and_tests(
+        self, mod, full_mode_org_data, members
+    ):
+        """Full mode executive summary includes lines and test commits."""
+        org_info = {"login": "w3c", "name": "W3C"}
+        report = mod.generate_org_report(
+            org_info,
+            None,
+            "2026-01-01",
+            "2026-01-31",
+            full_mode_org_data,
+            members,
+        )
+        assert "| Lines added | 25,000 |" in report
+        assert "| Lines deleted | 5,000 |" in report
+        assert "| Test-related commits | 42 |" in report
+
+    def test_languages_table_has_lines_column(
+        self, mod, full_mode_org_data, members
+    ):
+        """Full mode languages table should have a Lines column."""
+        org_info = {"login": "w3c", "name": "W3C"}
+        report = mod.generate_org_report(
+            org_info,
+            None,
+            "2026-01-01",
+            "2026-01-31",
+            full_mode_org_data,
+            members,
+        )
+        assert "| Language | Commits | Lines |" in report
+
+
 class TestMarkdownValidity:
     """Tests to ensure generated markdown is valid."""
 
@@ -561,3 +826,335 @@ class TestRegressionExpectations:
         """Profile repos (user/user) should be excluded."""
         result = mod.should_skip_repo("octocat/octocat", username="octocat")
         assert result is True
+
+
+class TestOrgReportWithReviewedPRs:
+    """Org report with reviewed_nodes covers PRs reviewed section."""
+
+    @pytest.fixture
+    def org_data_with_reviews(self):
+        """Org data with populated reviewed_nodes."""
+        return {
+            "total_commits_default_branch": 100,
+            "total_commits_all": 100,
+            "total_prs": 10,
+            "total_pr_reviews": 20,
+            "total_issues": 5,
+            "repos_contributed": 1,
+            "total_additions": 1000,
+            "total_deletions": 200,
+            "repos_by_category": {
+                "Other": [
+                    {
+                        "name": "org/repo",
+                        "commits": 100,
+                        "prs": 10,
+                        "language": "Go",
+                        "description": "A repo",
+                    }
+                ],
+            },
+            "repo_line_stats": {},
+            "repo_languages": {},
+            "repo_member_commits": {"org/repo": {"alice": 100}},
+            "lang_member_commits": {"Go": {"alice": 100}},
+            "member_real_names": {"alice": "Alice"},
+            "member_companies": {"alice": "@org"},
+            "prs_nodes": [],
+            "reviewed_nodes": [
+                {
+                    "title": "Add feature",
+                    "url": "https://github.com/org/repo/pull/1",
+                    "additions": 50,
+                    "deletions": 10,
+                    "author": {"login": "bob"},
+                    "repository": {
+                        "nameWithOwner": "org/repo",
+                        "primaryLanguage": {"name": "Go"},
+                    },
+                },
+                {
+                    "title": "Fix bug",
+                    "url": "https://github.com/org/repo/pull/2",
+                    "additions": 20,
+                    "deletions": 5,
+                    "author": {"login": "charlie"},
+                    "repository": {
+                        "nameWithOwner": "org/repo",
+                        "primaryLanguage": None,
+                    },
+                },
+            ],
+            "is_light_mode": True,
+        }
+
+    def test_reviewed_prs_section_present(self, mod, org_data_with_reviews):
+        """Org report with reviewed_nodes has PRs reviewed section."""
+        org_info = {"login": "org", "name": "Org"}
+        members = [{"login": "alice"}]
+
+        report = mod.generate_org_report(
+            org_info,
+            None,
+            "2026-01-01",
+            "2026-01-31",
+            org_data_with_reviews,
+            members,
+        )
+
+        assert "PRs reviewed" in report
+        assert "org/repo" in report
+
+    def test_language_fallback_from_primary_language(
+        self, mod, org_data_with_reviews
+    ):
+        """Language falls back to primaryLanguage when repo_languages empty."""
+        org_info = {"login": "org", "name": "Org"}
+        members = [{"login": "alice"}]
+
+        report = mod.generate_org_report(
+            org_info,
+            None,
+            "2026-01-01",
+            "2026-01-31",
+            org_data_with_reviews,
+            members,
+        )
+
+        # Go should appear from primaryLanguage fallback
+        assert "Go" in report
+
+
+class TestUserReportEmptyCategory:
+    """User report with empty category repos list covers continue branch."""
+
+    def test_empty_category_skipped(self, mod):
+        """Category with empty repos list is skipped."""
+        user_data = {
+            "username": "testuser",
+            "user_real_name": "Test User",
+            "company": "",
+            "total_commits_default_branch": 10,
+            "total_commits_all": 10,
+            "total_prs": 2,
+            "total_pr_reviews": 0,
+            "total_issues": 0,
+            "total_additions": 100,
+            "total_deletions": 20,
+            "test_commits": 0,
+            "repos_contributed": 1,
+            "reviews_received": 0,
+            "pr_comments_received": 0,
+            "lines_reviewed": 0,
+            "review_comments": 0,
+            "repos_by_category": {
+                "Other": [
+                    {
+                        "name": "user/project",
+                        "commits": 10,
+                        "prs": 2,
+                        "language": "Python",
+                        "description": "Test",
+                    }
+                ],
+                "Empty category": [],
+            },
+            "repo_line_stats": {
+                "user/project": {"additions": 100, "deletions": 20}
+            },
+            "repo_languages": {"user/project": "Python"},
+            "prs_nodes": [],
+            "reviewed_nodes": [],
+        }
+        with patch.object(mod, "gather_user_data", return_value=user_data):
+            report = mod.generate_report(
+                "testuser", "2026-01-01", "2026-01-31"
+            )
+
+        # Empty category should not appear in output
+        assert "Empty category" not in report
+        # Non-empty category should still be present
+        assert "Other" in report
+
+
+# -----------------------------------------------------------------------
+# Group 7: Org report generation branch coverage
+# -----------------------------------------------------------------------
+
+
+class TestOrgReportReviewedPRsLanguageFallback:
+    """Reviewed PRs table falls back to primaryLanguage."""
+
+    def test_fallback_when_repo_languages_missing(self, mod):
+        """Repo not in repo_languages → uses primaryLanguage."""
+        data = {
+            "total_commits_default_branch": 10,
+            "total_commits_all": 10,
+            "total_prs": 1,
+            "total_pr_reviews": 1,
+            "total_issues": 0,
+            "repos_contributed": 1,
+            "total_additions": 50,
+            "total_deletions": 10,
+            "repos_by_category": {
+                "Other": [
+                    {
+                        "name": "org/repo",
+                        "commits": 10,
+                        "prs": 1,
+                        "language": "Rust",
+                        "description": "",
+                    }
+                ],
+            },
+            "repo_line_stats": {},
+            "repo_languages": {},  # empty — forces fallback
+            "repo_member_commits": {"org/repo": {"alice": 10}},
+            "lang_member_commits": {"Rust": {"alice": 10}},
+            "member_real_names": {"alice": "Alice"},
+            "member_companies": {"alice": "@org"},
+            "prs_nodes": [],
+            "reviewed_nodes": [
+                {
+                    "title": "Add feature",
+                    "url": "https://github.com/org/repo/pull/1",
+                    "additions": 50,
+                    "deletions": 10,
+                    "author": {"login": "bob"},
+                    "repository": {
+                        "nameWithOwner": "org/repo",
+                        "primaryLanguage": {"name": "Rust"},
+                    },
+                },
+            ],
+            "is_light_mode": True,
+        }
+        org_info = {"login": "org", "name": "Org"}
+        with patch.object(mod, "progress", MagicMock()):
+            report = mod.generate_org_report(
+                org_info,
+                None,
+                "2026-01-01",
+                "2026-01-31",
+                data,
+                ["alice"],
+            )
+        assert "Rust" in report
+
+
+class TestOrgReportEmptyCategory:
+    """Empty category in org report is skipped."""
+
+    def test_empty_category_skipped(self, mod):
+        """Category with empty repos list → continue."""
+        data = {
+            "total_commits_default_branch": 5,
+            "total_commits_all": 5,
+            "total_prs": 0,
+            "total_pr_reviews": 0,
+            "total_issues": 0,
+            "repos_contributed": 1,
+            "total_additions": 20,
+            "total_deletions": 5,
+            "repos_by_category": {
+                "Other": [
+                    {
+                        "name": "org/repo",
+                        "commits": 5,
+                        "prs": 0,
+                        "language": "Go",
+                        "description": "",
+                    }
+                ],
+                "Empty bucket": [],
+            },
+            "repo_line_stats": {},
+            "repo_languages": {},
+            "repo_member_commits": {"org/repo": {"alice": 5}},
+            "lang_member_commits": {"Go": {"alice": 5}},
+            "member_real_names": {"alice": "Alice"},
+            "member_companies": {},
+            "prs_nodes": [],
+            "reviewed_nodes": [],
+            "is_light_mode": True,
+        }
+        org_info = {"login": "org", "name": "Org"}
+        with patch.object(mod, "progress", MagicMock()):
+            report = mod.generate_org_report(
+                org_info,
+                None,
+                "2026-01-01",
+                "2026-01-31",
+                data,
+                ["alice"],
+            )
+        assert "Empty bucket" not in report
+        assert "Other" in report
+
+
+class TestOrgReportCompanyNormalization:
+    """Company normalization in org report."""
+
+    def _make_data(self, member_companies):
+        return {
+            "total_commits_default_branch": 10,
+            "total_commits_all": 10,
+            "total_prs": 0,
+            "total_pr_reviews": 0,
+            "total_issues": 0,
+            "repos_contributed": 1,
+            "total_additions": 50,
+            "total_deletions": 10,
+            "repos_by_category": {
+                "Other": [
+                    {
+                        "name": "org/repo",
+                        "commits": 10,
+                        "prs": 0,
+                        "language": "Go",
+                        "description": "",
+                    }
+                ],
+            },
+            "repo_line_stats": {},
+            "repo_languages": {},
+            "repo_member_commits": {"org/repo": {"a": 5, "b": 5}},
+            "lang_member_commits": {"Go": {"a": 5, "b": 5}},
+            "member_real_names": {"a": "A", "b": "B"},
+            "member_companies": member_companies,
+            "prs_nodes": [],
+            "reviewed_nodes": [],
+            "is_light_mode": True,
+        }
+
+    def test_empty_company_skipped(self, mod):
+        """Empty company string is skipped in normalization."""
+        data = self._make_data({"a": "", "b": "@acme"})
+        org_info = {"login": "org", "name": "Org"}
+        with patch.object(mod, "progress", MagicMock()):
+            report = mod.generate_org_report(
+                org_info,
+                None,
+                "2026-01-01",
+                "2026-01-31",
+                data,
+                ["a", "b"],
+            )
+        assert "@acme" in report
+
+    def test_plain_text_to_at_mention(self, mod):
+        """Plain 'acme' normalized to '@acme' when another has @acme."""
+        data = self._make_data({"a": "@acme", "b": "acme"})
+        org_info = {"login": "org", "name": "Org"}
+        with patch.object(mod, "progress", MagicMock()):
+            report = mod.generate_org_report(
+                org_info,
+                None,
+                "2026-01-01",
+                "2026-01-31",
+                data,
+                ["a", "b"],
+            )
+        # "b" should have been normalized: plain "acme" → "@acme"
+        # Both should appear as @acme in the report
+        assert "@acme" in report

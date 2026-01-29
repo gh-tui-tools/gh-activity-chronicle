@@ -282,6 +282,60 @@ class TestGenerateNotablePrsTable:
         result = mod.generate_notable_prs_table(prs, {})
         assert isinstance(result, list)
 
+    def test_long_title_truncated(self, mod):
+        """PR titles longer than 60 chars should be truncated with '...'."""
+        long_title = "A" * 80  # 80-char title, well over the 60-char limit
+        prs = [
+            {
+                "title": long_title,
+                "url": "https://github.com/owner/repo/pull/1",
+                "state": "MERGED",
+                "additions": 100,
+                "deletions": 10,
+                "repository": {
+                    "nameWithOwner": "owner/repo",
+                    "primaryLanguage": {"name": "Python"},
+                },
+            }
+        ]
+        result = mod.generate_notable_prs_table(prs, {"owner/repo": "Python"})
+
+        # Find the data row (not header or separator)
+        data_rows = [
+            r
+            for r in result
+            if r.startswith("|") and "---" not in r and "PR" not in r
+        ]
+        assert len(data_rows) == 1
+        # The truncated title should be 60 chars + "..."
+        assert "A" * 60 + "..." in data_rows[0]
+
+    def test_short_title_not_truncated(self, mod):
+        """PR titles at or under 60 chars should not be truncated."""
+        short_title = "B" * 60  # Exactly 60 chars
+        prs = [
+            {
+                "title": short_title,
+                "url": "https://github.com/owner/repo/pull/1",
+                "state": "MERGED",
+                "additions": 100,
+                "deletions": 10,
+                "repository": {
+                    "nameWithOwner": "owner/repo",
+                    "primaryLanguage": {"name": "Python"},
+                },
+            }
+        ]
+        result = mod.generate_notable_prs_table(prs, {"owner/repo": "Python"})
+        data_rows = [
+            r
+            for r in result
+            if r.startswith("|") and "---" not in r and "PR" not in r
+        ]
+        assert len(data_rows) == 1
+        assert short_title in data_rows[0]
+        assert "..." not in data_rows[0]
+
 
 class TestGetOrderedCategories:
     """Tests for get_ordered_categories()."""

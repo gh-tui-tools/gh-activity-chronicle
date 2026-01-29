@@ -1,5 +1,7 @@
 """Unit tests for repository categorization and pattern matching."""
 
+from unittest.mock import patch
+
 import pytest
 
 
@@ -169,6 +171,47 @@ class TestCategorizeRepo:
         result = cat_func("randomuser123/my-random-project-xyz")
         assert result == "Other"
 
+    def test_no_slash_repo_name(self, mod):
+        """Repo name without a slash should use full name as base."""
+        result = mod.get_category("validator")
+        # "validator" matches the explicit base name from
+        # "validator/validator", so it gets the same category
+        assert result == "HTML/CSS checking (validation)"
+
+    def test_fork_base_name_match(self, mod):
+        """A fork matching an explicit repo base name gets same category."""
+        # "someuser/ladybird" matches base name "ladybird" from
+        # "ladybirdbrowser/ladybird" in EXPLICIT_REPOS
+        result = mod.get_category("someuser/ladybird")
+        assert result == "Browser engines"
+
+    def test_standards_positions_repo(self, mod):
+        """Any org's standards-positions repo gets Standards positions."""
+        result = mod.get_category("anyorg/standards-positions")
+        assert result == "Standards positions"
+
+    def test_general_pattern_match(self, mod):
+        """Repos matching GENERAL_PATTERNS should get that category."""
+        # "respec" is in GENERAL_PATTERNS via SPEC_TOOLING contains
+        result = mod.get_category("someuser/my-validator-tool")
+        assert result == "HTML/CSS checking (validation)"
+
+    def test_topic_based_fallback(self, mod):
+        """Repos with matching topics should get topic-based category."""
+        with patch.object(
+            mod, "fetch_repo_topics", return_value=["machine-learning"]
+        ):
+            result = mod.get_category("randomuser/random-ml-thing")
+        assert result == "ML frameworks"
+
+    def test_topic_fallback_no_match_returns_other(self, mod):
+        """Repos with no matching topics should get Other."""
+        with patch.object(
+            mod, "fetch_repo_topics", return_value=["obscure-topic"]
+        ):
+            result = mod.get_category("randomuser123/my-random-project-xyz")
+        assert result == "Other"
+
 
 class TestShouldSkipRepo:
     """Tests for the should_skip_repo filtering function."""
@@ -201,6 +244,96 @@ class TestShouldSkipRepo:
         result = mod.should_skip_repo("")
         assert result is True
         result = mod.should_skip_repo(None)
+        assert result is True
+
+    def test_ladybird_copies_set_skipped(self, mod):
+        """Known Ladybird copy repos should be skipped."""
+        result = mod.should_skip_repo("zechy0055/qosta-broswer")
+        assert result is True
+
+    def test_firefox_copies_set_skipped(self, mod):
+        """Known Firefox copy repos should be skipped."""
+        result = mod.should_skip_repo("mozilla/gecko-dev")
+        assert result is True
+
+    def test_serenity_copies_set_skipped(self, mod):
+        """Known SerenityOS copy repos should be skipped."""
+        result = mod.should_skip_repo("serenityos/serenity")
+        assert result is True
+
+    def test_ladybird_related_name_skipped(self, mod):
+        """Repos with 'lady' in name (not the canonical one) are skipped."""
+        result = mod.should_skip_repo("random/ladybird-fork")
+        assert result is True
+
+    def test_ladybird_canonical_not_skipped(self, mod):
+        """The canonical Ladybird repo should not be skipped."""
+        result = mod.should_skip_repo("ladybirdbrowser/ladybird")
+        assert result is False
+
+    def test_ladybird_user_fork_not_skipped(self, mod):
+        """A user's own Ladybird fork should not be skipped."""
+        result = mod.should_skip_repo("myuser/ladybird", username="myuser")
+        assert result is False
+
+    def test_firefox_allowed_list_not_skipped(self, mod):
+        """The canonical Firefox repo should not be skipped."""
+        result = mod.should_skip_repo("mozilla-firefox/firefox")
+        assert result is False
+
+    def test_firefox_user_fork_not_skipped(self, mod):
+        """A user's own Firefox fork should not be skipped."""
+        result = mod.should_skip_repo("myuser/firefox", username="myuser")
+        assert result is False
+
+    def test_fork_parent_ladybird_skipped(self, mod):
+        """Repo forked from ladybirdbrowser/ladybird should be skipped."""
+        repo_info = {
+            "parent": {"nameWithOwner": "ladybirdbrowser/ladybird"},
+        }
+        result = mod.should_skip_repo(
+            "someuser/renamed-browser", repo_info=repo_info
+        )
+        assert result is True
+
+    def test_fork_description_ladybird_skipped(self, mod):
+        """Repo with 'ladybird' in description should be skipped."""
+        repo_info = {
+            "description": "A fork of the Ladybird browser engine",
+        }
+        result = mod.should_skip_repo(
+            "someuser/my-browser", repo_info=repo_info
+        )
+        assert result is True
+
+    def test_fork_description_truly_independent_skipped(self, mod):
+        """Repo with Ladybird tagline description should be skipped."""
+        repo_info = {
+            "description": "Truly independent web browser",
+        }
+        result = mod.should_skip_repo(
+            "someuser/my-project", repo_info=repo_info
+        )
+        assert result is True
+
+    def test_fork_parent_firefox_skipped(self, mod):
+        """Repo forked from mozilla-firefox/firefox should be skipped."""
+        repo_info = {
+            "parent": {"nameWithOwner": "mozilla-firefox/firefox"},
+        }
+        result = mod.should_skip_repo(
+            "someuser/renamed-fox", repo_info=repo_info
+        )
+        assert result is True
+
+    def test_fork_description_firefox_skipped(self, mod):
+        """Repo with Firefox official description should be skipped."""
+        repo_info = {
+            "description": (
+                "The official repository of Mozilla's Firefox web browser"
+            ),
+        }
+        result = mod.should_skip_repo("someuser/my-fox", repo_info=repo_info)
         assert result is True
 
 
@@ -238,3 +371,37 @@ class TestCategoryPriority:
             web_idx = result.index("Web standards and specifications")
             other_idx = result.index("Other")
             assert web_idx < other_idx
+
+
+class TestCategorizeRepoEdgeCases:
+    """Edge cases for EXPLICIT_REPOS loop and standards-positions."""
+
+    def test_explicit_repo_key_without_slash(self, mod):
+        """EXPLICIT_REPOS key without '/' uses full key as base."""
+        original = dict(mod.EXPLICIT_REPOS)
+        mod.EXPLICIT_REPOS["mybare"] = "Test Category"
+        try:
+            result = mod.get_category("anyuser/mybare")
+            assert result == "Test Category"
+        finally:
+            mod.EXPLICIT_REPOS.clear()
+            mod.EXPLICIT_REPOS.update(original)
+
+    def test_standards_positions_standalone_check(self, mod):
+        """standards-positions matched by dedicated check."""
+        original = dict(mod.EXPLICIT_REPOS)
+        # Remove entries whose base name is "standards-positions"
+        # so the standalone check on line 1746 is reached
+        filtered = {
+            k: v
+            for k, v in original.items()
+            if k.split("/")[-1] != "standards-positions"
+        }
+        mod.EXPLICIT_REPOS.clear()
+        mod.EXPLICIT_REPOS.update(filtered)
+        try:
+            result = mod.get_category("neworg/standards-positions")
+            assert result == "Standards positions"
+        finally:
+            mod.EXPLICIT_REPOS.clear()
+            mod.EXPLICIT_REPOS.update(original)

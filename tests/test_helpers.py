@@ -203,3 +203,28 @@ class TestColorsClass:
         if hasattr(colors, "green"):
             result = colors.green("test")
             assert "test" in result
+
+    def test_warning(self, mod):
+        """warning() wraps text with yellow color codes."""
+        result = mod.Colors.warning("caution")
+        assert "caution" in result
+
+    def test_success(self, mod):
+        """success() wraps text with green color codes."""
+        result = mod.Colors.success("done")
+        assert "done" in result
+
+    def test_highlight(self, mod):
+        """highlight() wraps text with cyan color codes."""
+        result = mod.Colors.highlight("look here")
+        assert "look here" in result
+
+    def test_bold(self, mod):
+        """bold() wraps text with bold codes."""
+        result = mod.Colors.bold("important")
+        assert "important" in result
+
+    def test_dim(self, mod):
+        """dim() wraps text with dim codes."""
+        result = mod.Colors.dim("subtle")
+        assert "subtle" in result

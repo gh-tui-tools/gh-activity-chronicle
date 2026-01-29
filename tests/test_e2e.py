@@ -437,3 +437,760 @@ class TestE2EDataFlow:
         for pr in aggregated.get("reviewed_nodes", []):
             reviewed_urls.add(pr.get("url"))
         assert len(reviewed_urls) == 1
+
+
+# -----------------------------------------------------------------------
+# Helper: default mocks for gather_user_data / gather_user_data_light
+# -----------------------------------------------------------------------
+
+
+def _base_contributions(username="testuser"):
+    """Minimal contribution summary response."""
+    return {
+        "user": {
+            "name": "Test User",
+            "company": "",
+            "contributionsCollection": {
+                "totalCommitContributions": 5,
+                "restrictedContributionsCount": 0,
+                "totalPullRequestContributions": 1,
+                "totalIssueContributions": 0,
+                "totalPullRequestReviewContributions": 0,
+                "totalRepositoriesWithContributedCommits": 1,
+                "commitContributionsByRepository": [
+                    {
+                        "repository": {
+                            "nameWithOwner": "owner/repo1",
+                            "isFork": False,
+                            "parent": None,
+                            "isPrivate": False,
+                            "primaryLanguage": {"name": "Python"},
+                            "description": "A repo",
+                        },
+                        "contributions": {"totalCount": 5},
+                    }
+                ],
+            },
+        }
+    }
+
+
+def _patch_gather(overrides=None):
+    """Return a dict of patch targets -> return values for gather_user_data.
+
+    Callers can override individual keys.
+    """
+    defaults = {
+        "get_contributions_summary": _base_contributions(),
+        "get_all_commits": {
+            "total_count": 1,
+            "items": [
+                {
+                    "sha": "aaa111",
+                    "repository": {
+                        "full_name": "owner/repo1",
+                        "private": False,
+                    },
+                    "commit": {
+                        "message": "init",
+                        "author": {"date": "2026-01-02T00:00:00Z"},
+                    },
+                }
+            ],
+        },
+        "get_prs_created": {
+            "search": {"nodes": [], "issueCount": 0},
+        },
+        "get_prs_reviewed": [],
+        "get_review_comments_count": 0,
+        "count_test_related_commits": 0,
+        "get_user_forks": [],
+        "get_repo_info": {},
+        "get_effective_language": None,
+        "run_gh_command": {"additions": 10, "deletions": 5},
+    }
+    if overrides:
+        defaults.update(overrides)
+    return defaults
+
+
+class TestGatherUserDataBranches:
+    """Tests exercising specific branches inside gather_user_data()."""
+
+    def _call(self, mocks, username="testuser"):
+        """Call gather_user_data with all API functions mocked."""
+        patches = {}
+        for name, retval in mocks.items():
+            patches[name] = patch.object(
+                mod,
+                name,
+                return_value=retval,
+            )
+
+        ctx = {}
+        for name, p in patches.items():
+            ctx[name] = p.start()
+
+        try:
+            return mod.gather_user_data(
+                username,
+                "2026-01-01",
+                "2026-01-07",
+                show_progress=False,
+            )
+        finally:
+            for p in patches.values():
+                p.stop()
+
+    # 1. get_all_commits returns None
+    def test_commits_data_none(self):
+        mocks = _patch_gather({"get_all_commits": None})
+        data = self._call(mocks)
+        # total_commits_all is recalculated from aggregated_commits,
+        # which will be 0 because there are no commit items to iterate.
+        assert data["total_commits_all"] == 0
+
+    # 2. Fork whose parent is in EXPLICIT_REPOS
+    def test_fork_with_categorized_parent(self):
+        # Pick a repo from EXPLICIT_REPOS (tobie/specref exists there)
+        parent_name = "tobie/specref"
+        fork_name = "testuser/specref"
+        mocks = _patch_gather(
+            {
+                "get_all_commits": {"total_count": 0, "items": []},
+                "get_user_forks": [
+                    {
+                        "full_name": fork_name,
+                        "parent": {"full_name": parent_name},
+                    }
+                ],
+                "get_repo_info": {
+                    parent_name: {
+                        "nameWithOwner": parent_name,
+                        "description": "spec references",
+                        "primaryLanguage": {"name": "JavaScript"},
+                        "isFork": False,
+                        "parent": None,
+                    },
+                },
+                "get_fork_commits": [
+                    {"sha": "fork111"},
+                    {"sha": "fork222"},
+                ],
+            }
+        )
+        # Need get_fork_commits to return the list
+        with patch.object(
+            mod,
+            "get_fork_commits",
+            return_value=[{"sha": "fork111"}, {"sha": "fork222"}],
+        ):
+            data = self._call(mocks)
+
+        # The fork commits should be attributed to the parent repo
+        assert data["total_commits_all"] == 2
+
+    # 3. Fork commits exceed search API count
+    def test_fork_commits_exceed_search(self):
+        parent_name = "tobie/specref"
+        fork_name = "testuser/specref"
+        mocks = _patch_gather(
+            {
+                "get_all_commits": {
+                    "total_count": 1,
+                    "items": [
+                        {
+                            "sha": "search1",
+                            "repository": {
+                                "full_name": fork_name,
+                                "private": False,
+                            },
+                            "commit": {
+                                "message": "x",
+                                "author": {"date": "2026-01-02T00:00:00Z"},
+                            },
+                        }
+                    ],
+                },
+                "get_user_forks": [
+                    {
+                        "full_name": fork_name,
+                        "parent": {"full_name": parent_name},
+                    }
+                ],
+                "get_repo_info": {
+                    parent_name: {
+                        "nameWithOwner": parent_name,
+                        "description": "spec references",
+                        "primaryLanguage": {"name": "JavaScript"},
+                        "isFork": False,
+                        "parent": None,
+                    },
+                },
+            }
+        )
+        # get_fork_commits returns MORE than the search API found (1)
+        with patch.object(
+            mod,
+            "get_fork_commits",
+            return_value=[
+                {"sha": "fc1"},
+                {"sha": "fc2"},
+                {"sha": "fc3"},
+            ],
+        ):
+            data = self._call(mocks)
+
+        # Fork count (3) > search count (1), so fork count wins
+        assert data["total_commits_all"] == 3
+
+    # 4. Profile repo skipped; empty repos_to_lookup → repo_info = {}
+    def test_profile_repo_skipped(self):
+        mocks = _patch_gather(
+            {
+                "get_all_commits": {
+                    "total_count": 1,
+                    "items": [
+                        {
+                            "sha": "ppp111",
+                            "repository": {
+                                "full_name": "testuser/testuser",
+                                "private": False,
+                            },
+                            "commit": {
+                                "message": "Update README",
+                                "author": {"date": "2026-01-02T00:00:00Z"},
+                            },
+                        }
+                    ],
+                },
+            }
+        )
+        data = self._call(mocks)
+        # Profile repo is skipped, so 0 commits in aggregated output
+        assert data["total_commits_all"] == 0
+
+    # 5. Fork owned by another user → skipped during aggregation
+    def test_fork_owned_by_other_user(self):
+        mocks = _patch_gather(
+            {
+                "get_all_commits": {
+                    "total_count": 1,
+                    "items": [
+                        {
+                            "sha": "other1",
+                            "repository": {
+                                "full_name": "otheruser/somerepo",
+                                "private": False,
+                            },
+                            "commit": {
+                                "message": "x",
+                                "author": {"date": "2026-01-02T00:00:00Z"},
+                            },
+                        }
+                    ],
+                },
+                "get_repo_info": {
+                    "otheruser/somerepo": {
+                        "nameWithOwner": "otheruser/somerepo",
+                        "isFork": True,
+                        "parent": {"nameWithOwner": "upstream/somerepo"},
+                        "description": "",
+                        "primaryLanguage": {"name": "Go"},
+                    },
+                },
+            }
+        )
+        data = self._call(mocks)
+        # Fork by another user is skipped
+        assert data["total_commits_all"] == 0
+
+    # 6. Target parent repo should be skipped (contains "serenity")
+    def test_target_parent_skipped(self):
+        fork_name = "testuser/myfork"
+        parent_name = "org/serenity-os"
+        mocks = _patch_gather(
+            {
+                "get_all_commits": {
+                    "total_count": 1,
+                    "items": [
+                        {
+                            "sha": "sss111",
+                            "repository": {
+                                "full_name": fork_name,
+                                "private": False,
+                            },
+                            "commit": {
+                                "message": "x",
+                                "author": {"date": "2026-01-02T00:00:00Z"},
+                            },
+                        }
+                    ],
+                },
+                "get_repo_info": {
+                    fork_name: {
+                        "nameWithOwner": fork_name,
+                        "isFork": True,
+                        "parent": {"nameWithOwner": parent_name},
+                        "description": "",
+                        "primaryLanguage": {"name": "C++"},
+                    },
+                },
+            }
+        )
+        data = self._call(mocks)
+        # Parent "serenity" is skipped, so commits dropped
+        assert data["total_commits_all"] == 0
+
+    # 7. Commit stat fetch returns None → (repo, 0, 0) fallback
+    def test_commit_stat_returns_none(self):
+        mocks = _patch_gather(
+            {
+                "run_gh_command": None,
+            }
+        )
+        data = self._call(mocks)
+        # Stats should fall back to 0; the commit still counts
+        repo_stats = data.get("repo_line_stats", {})
+        if repo_stats:
+            for repo, stats in repo_stats.items():
+                assert stats["additions"] == 0
+                assert stats["deletions"] == 0
+
+    # 8. Language check triggered → get_effective_language returns "C++"
+    def test_language_check_triggered(self):
+        mocks = _patch_gather(
+            {
+                "get_all_commits": {
+                    "total_count": 1,
+                    "items": [
+                        {
+                            "sha": "lang1",
+                            "repository": {
+                                "full_name": "owner/jsrepo",
+                                "private": False,
+                            },
+                            "commit": {
+                                "message": "x",
+                                "author": {"date": "2026-01-02T00:00:00Z"},
+                            },
+                        }
+                    ],
+                },
+                "get_repo_info": {
+                    "owner/jsrepo": {
+                        "nameWithOwner": "owner/jsrepo",
+                        "isFork": False,
+                        "parent": None,
+                        "description": "A JS repo",
+                        "primaryLanguage": {"name": "JavaScript"},
+                    },
+                },
+                "get_effective_language": "C++",
+            }
+        )
+        data = self._call(mocks)
+
+        # The repo should appear with language "C++"
+        found = False
+        for repos in data["repos_by_category"].values():
+            for repo in repos:
+                if repo["name"] == "owner/jsrepo":
+                    assert repo["language"] == "C++"
+                    found = True
+        assert found, "owner/jsrepo not found in repos_by_category"
+
+    # 9. get_effective_language returns None → falls back to reported
+    def test_language_check_returns_none(self):
+        mocks = _patch_gather(
+            {
+                "get_all_commits": {
+                    "total_count": 1,
+                    "items": [
+                        {
+                            "sha": "lang2",
+                            "repository": {
+                                "full_name": "owner/htmlrepo",
+                                "private": False,
+                            },
+                            "commit": {
+                                "message": "x",
+                                "author": {"date": "2026-01-02T00:00:00Z"},
+                            },
+                        }
+                    ],
+                },
+                "get_repo_info": {
+                    "owner/htmlrepo": {
+                        "nameWithOwner": "owner/htmlrepo",
+                        "isFork": False,
+                        "parent": None,
+                        "description": "HTML things",
+                        "primaryLanguage": {"name": "HTML"},
+                    },
+                },
+            }
+        )
+        with patch.object(
+            mod,
+            "get_effective_language",
+            return_value=None,
+        ):
+            data = self._call(mocks)
+
+        # Should fall back to "HTML"
+        found = False
+        for repos in data["repos_by_category"].values():
+            for repo in repos:
+                if repo["name"] == "owner/htmlrepo":
+                    assert repo["language"] == "HTML"
+                    found = True
+        assert found, "owner/htmlrepo not found in repos_by_category"
+
+
+class TestGatherUserDataLightBranches:
+    """Tests exercising specific branches inside gather_user_data_light()."""
+
+    def _call(self, overrides=None, username="testuser"):
+        """Call gather_user_data_light with API functions mocked."""
+        defaults = {
+            "get_contributions_summary": _base_contributions(username),
+            "get_prs_created": {
+                "search": {"nodes": [], "issueCount": 0},
+            },
+            "get_prs_reviewed": [],
+            "get_repo_info_cached": {},
+        }
+        if overrides:
+            defaults.update(overrides)
+
+        patches = {}
+        for name, retval in defaults.items():
+            patches[name] = patch.object(
+                mod,
+                name,
+                return_value=retval,
+            )
+
+        for p in patches.values():
+            p.start()
+
+        try:
+            return mod.gather_user_data_light(
+                username,
+                "2026-01-01",
+                "2026-01-07",
+                show_progress=False,
+            )
+        finally:
+            for p in patches.values():
+                p.stop()
+
+    # 10. PRs with valid repository.nameWithOwner → added to repos_to_fetch
+    def test_pr_repos_extracted(self):
+        pr_node = {
+            "title": "Fix bug",
+            "url": "https://github.com/ext/lib/pull/1",
+            "state": "MERGED",
+            "additions": 10,
+            "deletions": 2,
+            "reviews": {"totalCount": 1},
+            "comments": {"totalCount": 0},
+            "repository": {
+                "nameWithOwner": "ext/lib",
+                "primaryLanguage": {"name": "Go"},
+            },
+        }
+        reviewed_node = {
+            "title": "Review this",
+            "url": "https://github.com/ext/other/pull/5",
+            "state": "OPEN",
+            "additions": 20,
+            "deletions": 5,
+            "author": {"login": "someone"},
+            "repository": {
+                "nameWithOwner": "ext/other",
+                "primaryLanguage": {"name": "Rust"},
+            },
+        }
+        data = self._call(
+            {
+                "get_prs_created": {
+                    "search": {"nodes": [pr_node], "issueCount": 1},
+                },
+                "get_prs_reviewed": [reviewed_node],
+                "get_repo_info_cached": {
+                    "ext/lib": {
+                        "nameWithOwner": "ext/lib",
+                        "description": "",
+                        "primaryLanguage": {"name": "Go"},
+                        "isFork": False,
+                        "parent": None,
+                    },
+                    "ext/other": {
+                        "nameWithOwner": "ext/other",
+                        "description": "",
+                        "primaryLanguage": {"name": "Rust"},
+                        "isFork": False,
+                        "parent": None,
+                    },
+                },
+            }
+        )
+
+        assert data["total_prs"] == 1
+        assert len(data["prs_nodes"]) == 1
+        assert len(data["reviewed_nodes"]) == 1
+
+    # 11. Profile repo skipped in light mode
+    def test_skip_repo_in_light_mode(self):
+        contribs = _base_contributions("testuser")
+        # Add testuser/testuser as a commit repo
+        repos = contribs["user"]["contributionsCollection"][
+            "commitContributionsByRepository"
+        ]
+        repos.append(
+            {
+                "repository": {
+                    "nameWithOwner": "testuser/testuser",
+                    "isFork": False,
+                    "parent": None,
+                    "isPrivate": False,
+                    "primaryLanguage": None,
+                    "description": "Profile repo",
+                },
+                "contributions": {"totalCount": 3},
+            }
+        )
+        data = self._call(
+            {
+                "get_contributions_summary": contribs,
+            }
+        )
+
+        # testuser/testuser should be skipped
+        all_repo_names = []
+        for repos_list in data["repos_by_category"].values():
+            for repo in repos_list:
+                all_repo_names.append(repo["name"])
+        assert "testuser/testuser" not in all_repo_names
+
+
+class TestAggregateOrgDataLineStats:
+    """Test line_stats merging in aggregate_org_data."""
+
+    # 12. Two members' repo_line_stats for same repo summed correctly
+    def test_line_stats_merging(self):
+        member_data = [
+            {
+                "username": "alice",
+                "user_real_name": "Alice",
+                "user_company": "",
+                "total_commits_default_branch": 10,
+                "total_commits_all": 10,
+                "total_prs": 0,
+                "total_pr_reviews": 0,
+                "total_issues": 0,
+                "total_additions": 0,
+                "total_deletions": 0,
+                "reviews_received": 0,
+                "pr_comments_received": 0,
+                "lines_reviewed": 0,
+                "review_comments": 0,
+                "test_commits": 0,
+                "repos_contributed": 1,
+                "repos_by_category": {
+                    "Other": [
+                        {
+                            "name": "org/shared",
+                            "commits": 10,
+                            "language": "Python",
+                            "description": "",
+                        }
+                    ]
+                },
+                "prs_nodes": [],
+                "reviewed_nodes": [],
+                "repo_line_stats": {
+                    "org/shared": {
+                        "additions": 100,
+                        "deletions": 20,
+                    }
+                },
+                "repo_languages": {"org/shared": "Python"},
+                "is_light_mode": False,
+            },
+            {
+                "username": "bob",
+                "user_real_name": "Bob",
+                "user_company": "",
+                "total_commits_default_branch": 5,
+                "total_commits_all": 5,
+                "total_prs": 0,
+                "total_pr_reviews": 0,
+                "total_issues": 0,
+                "total_additions": 0,
+                "total_deletions": 0,
+                "reviews_received": 0,
+                "pr_comments_received": 0,
+                "lines_reviewed": 0,
+                "review_comments": 0,
+                "test_commits": 0,
+                "repos_contributed": 1,
+                "repos_by_category": {
+                    "Other": [
+                        {
+                            "name": "org/shared",
+                            "commits": 5,
+                            "language": "Python",
+                            "description": "",
+                        }
+                    ]
+                },
+                "prs_nodes": [],
+                "reviewed_nodes": [],
+                "repo_line_stats": {
+                    "org/shared": {
+                        "additions": 50,
+                        "deletions": 10,
+                    }
+                },
+                "repo_languages": {"org/shared": "Python"},
+                "is_light_mode": False,
+            },
+        ]
+
+        aggregated = mod.aggregate_org_data(member_data)
+
+        # Line stats should be summed
+        stats = aggregated["repo_line_stats"]["org/shared"]
+        assert stats["additions"] == 150  # 100 + 50
+        assert stats["deletions"] == 30  # 20 + 10
+
+
+class TestAggregateOrgDataUserCompany:
+    """Test user_company field tracking in aggregate_org_data."""
+
+    def test_member_company_tracked(self):
+        member_data = [
+            {
+                "username": "alice",
+                "user_real_name": "Alice",
+                "user_company": "@acme",
+                "total_commits_default_branch": 5,
+                "total_commits_all": 5,
+                "total_prs": 0,
+                "total_pr_reviews": 0,
+                "total_issues": 0,
+                "total_additions": 0,
+                "total_deletions": 0,
+                "reviews_received": 0,
+                "pr_comments_received": 0,
+                "lines_reviewed": 0,
+                "review_comments": 0,
+                "test_commits": 0,
+                "repos_contributed": 1,
+                "repos_by_category": {
+                    "Other": [
+                        {
+                            "name": "org/repo",
+                            "commits": 5,
+                            "language": "Go",
+                            "description": "",
+                        }
+                    ]
+                },
+                "prs_nodes": [],
+                "reviewed_nodes": [],
+                "repo_line_stats": {},
+                "repo_languages": {},
+                "is_light_mode": True,
+            },
+        ]
+
+        aggregated = mod.aggregate_org_data(member_data)
+
+        assert aggregated["member_companies"]["alice"] == "@acme"
+
+
+class TestGatherUserDataWithProgress:
+    """Test gather_user_data with show_progress=True to cover branches."""
+
+    def _call_with_progress(self, mocks, username="testuser"):
+        """Call gather_user_data with show_progress=True."""
+        patches = {}
+        for name, retval in mocks.items():
+            patches[name] = patch.object(
+                mod,
+                name,
+                return_value=retval,
+            )
+
+        for p in patches.values():
+            p.start()
+
+        # Also mock progress so it doesn't write to stderr
+        progress_patch = patch.object(mod, "progress")
+        progress_patch.start()
+
+        try:
+            return mod.gather_user_data(
+                username,
+                "2026-01-01",
+                "2026-01-07",
+                show_progress=True,
+            )
+        finally:
+            progress_patch.stop()
+            for p in patches.values():
+                p.stop()
+
+    def test_progress_branches_covered(self):
+        """Calling with show_progress=True covers progress.start/update."""
+        mocks = _patch_gather()
+        data = self._call_with_progress(mocks)
+        assert data["username"] == "testuser"
+        assert "repos_by_category" in data
+
+
+class TestGatherUserDataLightWithProgress:
+    """Test gather_user_data_light with show_progress=True."""
+
+    def test_progress_branches_covered(self):
+        defaults = {
+            "get_contributions_summary": _base_contributions("testuser"),
+            "get_prs_created": {
+                "search": {"nodes": [], "issueCount": 0},
+            },
+            "get_prs_reviewed": [],
+            "get_repo_info_cached": {},
+        }
+
+        patches = {}
+        for name, retval in defaults.items():
+            patches[name] = patch.object(
+                mod,
+                name,
+                return_value=retval,
+            )
+
+        for p in patches.values():
+            p.start()
+
+        progress_patch = patch.object(mod, "progress")
+        progress_patch.start()
+
+        try:
+            data = mod.gather_user_data_light(
+                "testuser",
+                "2026-01-01",
+                "2026-01-07",
+                show_progress=True,
+            )
+        finally:
+            progress_patch.stop()
+            for p in patches.values():
+                p.stop()
+
+        assert data["username"] == "testuser"
+        assert data["is_light_mode"] is True

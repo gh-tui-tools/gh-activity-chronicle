@@ -1291,14 +1291,15 @@ The project includes a comprehensive pytest-based test suite covering unit tests
 ```
 tests/
 ├── conftest.py              # Shared fixtures, module loading
-├── test_helpers.py          # Unit tests for pure helper functions
-├── test_categorization.py   # Pattern matching, repo categorization
-├── test_rate_limit.py       # API call estimation, warning thresholds
-├── test_aggregation.py      # Data aggregation functions
-├── test_integration.py      # Data flow with mocked API calls
-├── test_regression.py       # Output structure verification
-├── test_snapshots.py        # Golden file comparison
-├── test_e2e.py              # End-to-end pipeline tests
+├── test_helpers.py          # 36 unit tests for pure helper functions
+├── test_categorization.py   # 48 tests: pattern matching, repo categorization
+├── test_rate_limit.py       # 19 tests: API call estimation, warning thresholds
+├── test_aggregation.py      # 28 tests: data aggregation functions
+├── test_integration.py      # 106 tests: data flow with mocked API calls
+├── test_regression.py       # 41 tests: output structure verification
+├── test_snapshots.py        # 2 tests: golden file comparison
+├── test_e2e.py              # 24 tests: end-to-end pipeline tests
+├── test_cli.py              # 36 tests: argument parsing, run() orchestration
 ├── api_recorder.py          # Record/replay infrastructure
 └── fixtures/
     ├── golden/              # Expected output baselines
@@ -1332,6 +1333,14 @@ tests/
 - `test_e2e.py` — Tests complete data flow from API calls through report generation
 - `MockGhCommand` class simulates GitHub API responses based on call patterns
 - Verifies data consistency (commit counts match, PRs deduplicated correctly)
+
+**CLI tests**:
+- `test_cli.py` — Tests the refactored `main()` entry point (`parse_and_validate_args()` + `run()`)
+- Covers all argument combinations, mutual-exclusion validation errors, date computation, and output path logic
+
+### Coverage
+
+The test suite (340 tests) enforces a **98% coverage threshold** configured in `pyproject.toml`. Current coverage is ~99%. Genuinely untestable code (terminal I/O, threading callbacks, rate-limit recovery) is marked `# pragma: no cover`. The remaining ~20 uncovered lines are intentionally left without pragmas — they represent code where mock complexity outweighs testing value, and the coverage report serves as a living inventory of these gaps.
 
 ### Running tests
 
@@ -1379,7 +1388,7 @@ The mocking approach allows testing the full pipeline without GitHub API access 
 
 ### Continuous integration
 
-A GitHub Actions workflow (`.github/workflows/ci.yml`) runs ruff check, ruff format, and the test suite on pushes to main, pull requests, and manual dispatch. Tests run across Python 3.9–3.13 on `ubuntu-latest`.
+A GitHub Actions workflow (`.github/workflows/ci.yml`) runs ruff check, ruff format, and the test suite on pushes to main, pull requests, and manual dispatch. Tests run across Python 3.9–3.13 on `ubuntu-latest`. The coverage threshold is enforced via `pyproject.toml` (`fail_under = 98`), so CI fails if coverage drops below 98%.
 
 ### Golden file maintenance
 
