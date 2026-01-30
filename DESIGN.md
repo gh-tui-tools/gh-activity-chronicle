@@ -778,23 +778,44 @@ The tool primarily uses GraphQL for contribution summaries, PR data, and activit
 **Estimation formula:**
 
 ```python
-def estimate_org_api_calls(num_members, days):
-    # Phase 1: batch GraphQL queries (10 users per query)
-    phase1 = (num_members + 9) // 10
+def estimate_org_api_calls(num_members, days, known_active=False):
+    if known_active:
+        # Phase 1 already done; just estimate remaining phase 2
+        phase1_calls = 0
+        effective = num_members
+    else:
+        # Phase 1: scraping handles ~95% of activity checks for free;
+        # only ~5% fall back to GraphQL batch queries (10 users per query)
+        phase1 = (int(num_members * 0.05) + 9) // 10
 
-    # Phase 2: data gathering for active members
-    # Empirical base: ~2.4 calls per member per week
+        # Large orgs: active count scales sublinearly with total members
+        if num_members <= 500:
+            effective = num_members
+        else:
+            effective = 500 * (num_members / 500) ** 0.8
+
+    # Empirical base: ~2.4 calls per active member per week
     # Time scaling: sublinear — 30 days uses ~1.7x the calls of 7 days, not 4.3x
-    base_rate = 2.4
-    time_factor = (days / 7) ** 0.4
-    phase2 = num_members * base_rate * time_factor
+    phase2 = effective * 2.4 * (days / 7) ** 0.4
 
     return phase1 + phase2
 ```
 
-This formula was calibrated against real usage (w3c org, 524 members):
-- 7 days: ~1,300 actual → 1,310 estimated
-- 30 days: ~2,200 actual → 2,303 estimated
+Two key adjustments keep the estimate accurate for large orgs:
+
+1. **Phase 1 discount**: The [activity check](#active-contributors-optimization) uses web scraping for ~95% of members (free — no API cost). Only ~5% fall back to GraphQL batch queries, so phase 1 is estimated as `ceil(num_members × 0.05 / 10)` rather than `ceil(num_members / 10)`.
+
+2. **Sublinear member scaling** (exponent 0.8): Doubling total membership doesn't double active contributors — large orgs have proportionally more inactive members. For orgs over 500 members, the effective member count is `500 × (num_members / 500)^0.8`. This keeps estimates reasonable: without it, w3c with `--private` (3,686 members) was estimated at 5,728 calls — 2.1× the actual 2,724.
+
+Calibrated against real usage (w3c org):
+
+| Scenario | Actual | Estimated |
+|----------|--------|-----------|
+| 524 public members, 7 days | ~1,300 | ~1,250 |
+| 524 public members, 30 days | ~2,200 | ~2,228 |
+| 3,686 total members (`--private`), 1 day | ~2,724 | ~2,742 |
+
+**Re-check after activity filter:** The pre-check uses heuristics because the actual active count isn't known yet. Once the activity check completes and the real active count is known, the tool re-estimates using `known_active=True` — which uses the exact active count directly (no sublinear heuristic, no phase 1 overhead since it's already done) — and warns again if the revised estimate still exceeds thresholds. This catches cases where the heuristic was too optimistic and the actual cost would be higher than predicted.
 
 **Warning thresholds:**
 
@@ -812,7 +833,7 @@ If GraphQL remaining is < 50 calls, the tool doesn't ask "Proceed anyway?" — i
 **User prompt:**
 
 ```
-Warning: Generating a report will use ~2,303 API calls (~52% of your 4,423 remaining limit).
+Warning: Generating a report may use up to ~2,228 API calls (~50% of your 4,423 remaining limit).
 To reduce calls, consider a shorter time period (--days 7) and/or using a --team value.
 Or wait another 16 minutes until 17:24, when your graphql rate limit will be reset.
 
@@ -836,10 +857,11 @@ The "Or wait another…" line shows how long until the rate limit window resets,
 
 | Scenario | Members | Days | Estimated | Warning? |
 |----------|---------|------|-----------|----------|
-| Default | 524 | 7 | ~1,310 | No (26%) |
-| Monthly | 524 | 30 | ~2,303 | No (46%) |
+| Default | 524 | 7 | ~1,250 | No (25%) |
+| Monthly | 524 | 30 | ~2,228 | No (45%) |
 | Small team | 20 | 30 | ~88 | No (2%) |
-| Low remaining | 524 | 7 | ~1,310 | Yes if <1,638 remaining |
+| Large org (`--private`) | 3,686 | 1 | ~2,742 | Yes (55%) |
+| Low remaining | 524 | 7 | ~1,250 | Yes if <1,563 remaining |
 
 ### Transient error handling
 

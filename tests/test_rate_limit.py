@@ -7,28 +7,44 @@ class TestEstimateOrgApiCalls:
     def test_small_org_short_period(self, mod):
         """Small org (10 members) for 7 days."""
         result = mod.estimate_org_api_calls(10, 7)
-        # Phase 1: ceil(10/10) = 1
-        # Phase 2: 10 * 2.4 * (7/7)^0.4 = 24
+        # Phase 1: ceil(10*0.05 / 10) = 1
+        # Phase 2: 10 * 2.4 * 1.0 = 24
         # Total: ~25
         assert 20 <= result <= 50
 
     def test_medium_org(self, mod):
         """Medium org (50 members) for 7 days."""
         result = mod.estimate_org_api_calls(50, 7)
-        # Should be roughly 50 * 2.4 + batch overhead
+        # Should be roughly 50 * 2.4 + small phase 1 overhead
         assert 100 <= result <= 200
 
     def test_large_org_baseline(self, mod):
         """Large org (524 members, w3c baseline) for 7 days."""
         result = mod.estimate_org_api_calls(524, 7)
-        # Documented as ~1,310 for w3c 7-day
+        # Empirical: ~1,300 for w3c 7-day
         assert 1000 <= result <= 1600
 
     def test_large_org_monthly(self, mod):
         """Large org for 30 days."""
         result = mod.estimate_org_api_calls(524, 30)
-        # Documented as ~2,303 for w3c 30-day
+        # Empirical: ~2,200 for w3c 30-day
         assert 2000 <= result <= 2800
+
+    def test_very_large_org_short_period(self, mod):
+        """Very large org (3686 members, w3c --private) for 1 day."""
+        result = mod.estimate_org_api_calls(3686, 1)
+        # Empirical: ~2,724 actual calls
+        # Old formula gave 5,728 (2.1x overestimate)
+        assert 2000 <= result <= 3500
+
+    def test_sublinear_member_scaling(self, mod):
+        """Doubling members should NOT double API calls."""
+        small = mod.estimate_org_api_calls(500, 7)
+        large = mod.estimate_org_api_calls(1000, 7)
+        ratio = large / small
+        # With linear scaling ratio would be ~2.0
+        # With ^0.8 scaling it should be ~1.7
+        assert ratio < 2.0
 
     def test_sublinear_time_scaling(self, mod):
         """30 days should NOT be 4x the calls of 7 days."""
@@ -60,6 +76,21 @@ class TestEstimateOrgApiCalls:
         # 365/30 ≈ 12, but with ^0.4 scaling should be ~2-3x
         ratio = result / thirty_day
         assert ratio < 5
+
+    def test_known_active_skips_phase1(self, mod):
+        """known_active=True should skip phase 1 and sublinear scaling."""
+        # With known_active, 1000 members is used directly (no ^0.8)
+        known = mod.estimate_org_api_calls(1000, 7, known_active=True)
+        # Should be ~1000 * 2.4 = 2400 (no phase 1, no scaling)
+        assert 2300 <= known <= 2500
+
+    def test_known_active_lower_than_heuristic_for_large_org(self, mod):
+        """known_active for small active count < heuristic for large total."""
+        # Pre-check: 3000 total members, heuristic applies sublinear scaling
+        heuristic = mod.estimate_org_api_calls(3000, 7)
+        # Re-check: only 200 actually active, no scaling needed
+        actual = mod.estimate_org_api_calls(200, 7, known_active=True)
+        assert actual < heuristic
 
 
 class TestShouldWarnRateLimit:

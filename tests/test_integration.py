@@ -2024,6 +2024,41 @@ class TestGatherOrgDataActiveContributors:
                     )
                 assert exc_info.value.code == 0
 
+    def test_rate_limit_recheck_after_activity_filter(self, mod):
+        """Re-check after activity filter warns and user declines."""
+        with patch.multiple(
+            mod,
+            progress=MagicMock(),
+            get_org_info=MagicMock(
+                return_value={"login": "org", "name": "Org"}
+            ),
+            get_org_public_members=MagicMock(return_value=["alice", "bob"]),
+            check_activity_fast=MagicMock(
+                return_value=(["alice", "bob"], [], [])
+            ),
+            get_rate_limit_remaining=MagicMock(return_value=4500),
+            # Pre-check passes, re-check warns
+            should_warn_rate_limit=MagicMock(
+                side_effect=[
+                    (False, None),
+                    (True, "estimated 4,000 calls"),
+                ]
+            ),
+            prompt_rate_limit_warning=MagicMock(return_value=False),
+            clear_repo_info_cache=MagicMock(),
+        ):
+            with patch("sys.exit", side_effect=self._exit):
+                with pytest.raises(SystemExit) as exc_info:
+                    mod.gather_org_data_active_contributors(
+                        "org",
+                        None,
+                        False,
+                        False,
+                        "2026-01-01",
+                        "2026-01-31",
+                    )
+                assert exc_info.value.code == 0
+
     def test_members_gt_5_truncated_display(self, mod, mock_org_pipeline):
         """More than 5 members shows truncated display."""
         mod.get_org_public_members.return_value = [

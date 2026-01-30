@@ -111,24 +111,42 @@ GRAPHQL_BATCH_SIZE = 10  # Users per GraphQL batch query
 API_PAGE_SIZE = 100  # Items per page for paginated API calls
 
 
-def estimate_org_api_calls(num_members, days):
+def estimate_org_api_calls(num_members, days, known_active=False):
     """Estimate API calls for org mode.
 
-    Based on empirical observation (w3c org, 524 members):
-    - 7 days → ~1,300 calls
-    - 30 days → ~2,200 calls
-    - Phase 1 (activity check): ceil(members / 10) GraphQL batch queries
-    - Phase 2 (data gathering): scales with members and time period
-    """
-    # Phase 1: batch GraphQL queries (10 users per query)
-    phase1_calls = (num_members + 9) // 10
+    Based on empirical observation (w3c org):
+    - 524 public members, 7 days → ~1,300 calls
+    - 524 public members, 30 days → ~2,200 calls
+    - 3,686 total members (--private), 1 day → ~2,724 calls
 
-    # Phase 2: data gathering for active members
-    # Base rate: ~2.4 calls per member per week (empirical)
+    Args:
+        num_members: Total member count (or active count if known_active).
+        days: Number of days in the reporting period.
+        known_active: If True, num_members is the actual active count
+            (phase 1 already done, no sublinear heuristic needed).
+    """
+    if known_active:
+        # Phase 1 already done; just estimate remaining phase 2
+        phase1_calls = 0
+        effective = num_members
+    else:
+        # Phase 1: scraping handles ~95% of activity checks for free;
+        # only ~5% fall back to GraphQL batch queries (10 users per query)
+        phase1_calls = (int(num_members * 0.05) + 9) // 10
+
+        # Phase 2: active member count scales sublinearly with total
+        # members — doubling membership doesn't double active contributors.
+        # Power-law (exponent 0.8) calibrated from w3c data.
+        if num_members <= 500:
+            effective = num_members
+        else:
+            effective = 500 * (num_members / 500) ** 0.8
+
+    # Base rate: ~2.4 calls per active member per week (empirical)
     # Time scaling: sublinear — 30 days uses ~1.7x calls of 7 days
     base_rate = 2.4
     time_factor = (days / 7) ** 0.4
-    phase2_calls = num_members * base_rate * time_factor
+    phase2_calls = effective * base_rate * time_factor
 
     return int(phase1_calls + phase2_calls)
 
@@ -173,7 +191,7 @@ def prompt_rate_limit_warning(reason, skip_prompt=False):
     Returns:
         True if user confirms (or skip_prompt=True), False otherwise
     """
-    msg = f"\nWarning: Generating a report will use {reason}.\n"
+    msg = f"\nWarning: Generating a report may use up to {reason}.\n"
     sys.stderr.write(Colors.warning(msg))
     msg = (
         "To reduce calls, consider a shorter time period (--days 7) "
@@ -3864,6 +3882,17 @@ def gather_org_data_active_contributors(
     active_count = len(active_members)
     total = len(members)
     sys.stderr.write(f"Found {active_count} active members out of {total}\n")
+
+    # Re-estimate with actual active count (phase 1 is done)
+    revised_estimate = estimate_org_api_calls(
+        active_count, days, known_active=True
+    )
+    remaining_calls = get_rate_limit_remaining()
+    warn, reason = should_warn_rate_limit(revised_estimate, remaining_calls)
+    if warn:
+        if not prompt_rate_limit_warning(reason, skip_prompt=skip_warning):
+            sys.stderr.write("Aborted.\n")
+            sys.exit(0)
 
     if not active_members:
         # No active members - return empty aggregated data
