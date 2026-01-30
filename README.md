@@ -169,6 +169,7 @@ By default all three extensions (`.md`, `.json`, `.html`) are written. With `--f
 
 ## Notes
 
+- The markdown output is intended to be committed to a GitHub repository and viewed on the GitHub website — not locally. Local markdown viewers won't correctly render the `#user-content-` fragment links used in org-mode reports, and report files often exceed the [400 KB size limit](https://docs.github.com/en/rest/markdown/markdown) of GitHub's Markdown rendering API (which local GFM tools like `grip` depend on). The HTML output works anywhere.
 - The GitHub API limits contribution queries to a 1-year span. For longer periods, the script automatically adjusts the start date.
 - Commits to your forks are automatically aggregated under the parent repository (e.g., commits to `yourname/WebKit` appear under `WebKit/WebKit`).
 - Private repositories and special profile repositories (`username/username`) are automatically excluded.
@@ -178,7 +179,7 @@ By default all three extensions (`.md`, `.json`, `.html`) are written. With `--f
 
 ## Testing
 
-The project includes a comprehensive test suite (416 tests):
+The project includes a comprehensive test suite (431 tests):
 
 ```bash
 # Install test dependencies

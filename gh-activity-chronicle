@@ -5190,8 +5190,8 @@ def generate_org_report(
             for member, count in sorted_members:
                 display_name = member_real_names.get(member) or member
                 # Plain count - can't filter commits by language
-                mem_url = f"https://github.com/{member}"
-                row = f"- [{display_name}]({mem_url}): {count}"
+                mem_ref = f"#user-content-user-{member}"
+                row = f"- [{display_name}]({mem_ref}): {count}"
                 report.append(row)
             report.append("")
         report.append("</details>")
@@ -5229,8 +5229,8 @@ def generate_org_report(
                 commit_link = make_commit_link(
                     repo_name, count, since_date, until_date, member
                 )
-                mem_url = f"https://github.com/{member}"
-                row = f"- [{display_name}]({mem_url}): {commit_link}"
+                mem_ref = f"#user-content-user-{member}"
+                row = f"- [{display_name}]({mem_ref}): {commit_link}"
                 report.append(row)
             report.append("")
         report.append("</details>")
@@ -5308,85 +5308,12 @@ def generate_org_report(
                         )
         return result.strip()
 
-    # Commit breakdown by user (inverse of by-repository view)
+    # Invert repo_member_commits for the per-user and per-org sections
+    user_repo_commits = defaultdict(dict)
     if repo_member_commits:
-        # Invert: {repo: {member: count}} -> {member: {repo: count}}
-        user_repo_commits = defaultdict(dict)
         for repo_name, member_commits in repo_member_commits.items():
             for member, count in member_commits.items():
                 user_repo_commits[member][repo_name] = count
-
-        report.append('<details name="commit-details">')
-        report.append("<summary><h2>Commit details by user</h2></summary>")
-        report.append("")
-        # Sort users by total commits descending
-        sorted_users = sorted(
-            user_repo_commits.items(),
-            key=lambda x: sum(x[1].values()),
-            reverse=True,
-        )
-        for member, repos in sorted_users:
-            display_name = member_real_names.get(member) or member
-            total = sum(repos.values())
-            mem_url = f"https://github.com/{member}"
-            member_link = f"[{display_name}]({mem_url})"
-            # Add anchor for linking from "by organization" section
-            anchor = f'<a id="user-{member}"></a>'
-            # Format company with @org mentions as links (skip for --owners)
-            company_part = ""
-            org_backlinks = ""
-            if not owners_only:
-                company = normalize_company(member_companies.get(member, ""))
-                if company:
-                    # Find all @org mentions and convert to links
-                    orgs = re.findall(org_pattern, company)
-                    if orgs:
-                        # Replace each @org with a markdown link
-                        linked = company
-                        for org in orgs:
-                            org_url = f"https://github.com/{org}"
-                            linked = linked.replace(
-                                f"@{org}", f"[@{org}]({org_url})"
-                            )
-                        company_part = f" ({linked.strip()})"
-                        # Backlinks to user's list item in each org
-                        backlinks = []
-                        for org in orgs:
-                            org_anchor = make_org_anchor(org)
-                            backlinks.append(
-                                f"[↩](#user-content-{org_anchor}-{member})"
-                            )
-                        org_backlinks = " " + " ".join(backlinks)
-                    else:
-                        company_part = f" ({company})"
-                        # Backlink to user's list item in company group
-                        oa = make_org_anchor(company)
-                        href = f"#user-content-{oa}-{member}"
-                        org_backlinks = f" [↩]({href})"
-                else:
-                    # Backlink to Unaffiliated group
-                    href = f"#user-content-org-unaffiliated-{member}"
-                    org_backlinks = f" [↩]({href})"
-            header = (
-                f"### {anchor}{member_link}{company_part} "
-                f"({total} commits){org_backlinks}"
-            )
-            report.append(header)
-            report.append("")
-            # Sort repos by commit count descending
-            sorted_repos = sorted(
-                repos.items(), key=lambda x: x[1], reverse=True
-            )
-            for repo_name, count in sorted_repos:
-                commit_link = make_commit_link(
-                    repo_name, count, since_date, until_date, member
-                )
-                repo_url = f"https://github.com/{repo_name}"
-                row = f"- [{repo_name}]({repo_url}): {commit_link}"
-                report.append(row)
-            report.append("")
-        report.append("</details>")
-        report.append("")
 
     # Commit breakdown by organization (group users by company)
     if repo_member_commits and not owners_only:
@@ -5491,6 +5418,80 @@ def generate_org_report(
                 report.append("")
             report.append("</details>")
             report.append("")
+
+    # Commit breakdown by user (inverse of by-repository view)
+    if user_repo_commits:
+        report.append('<details name="commit-details">')
+        report.append("<summary><h2>Commit details by user</h2></summary>")
+        report.append("")
+        # Sort users by total commits descending
+        sorted_users = sorted(
+            user_repo_commits.items(),
+            key=lambda x: sum(x[1].values()),
+            reverse=True,
+        )
+        for member, repos in sorted_users:
+            display_name = member_real_names.get(member) or member
+            total = sum(repos.values())
+            mem_url = f"https://github.com/{member}"
+            member_link = f"[{display_name}]({mem_url})"
+            # Add anchor for linking from other sections
+            anchor = f'<a id="user-{member}"></a>'
+            # Format company with @org mentions as links (skip for --owners)
+            company_part = ""
+            org_backlinks = ""
+            if not owners_only:
+                company = normalize_company(member_companies.get(member, ""))
+                if company:
+                    # Find all @org mentions and convert to links
+                    orgs = re.findall(org_pattern, company)
+                    if orgs:
+                        # Replace each @org with a markdown link
+                        linked = company
+                        for org in orgs:
+                            org_url = f"https://github.com/{org}"
+                            linked = linked.replace(
+                                f"@{org}", f"[@{org}]({org_url})"
+                            )
+                        company_part = f" ({linked.strip()})"
+                        # Backlinks to user's list item in each org
+                        backlinks = []
+                        for org in orgs:
+                            org_anchor = make_org_anchor(org)
+                            backlinks.append(
+                                f"[↩](#user-content-{org_anchor}-{member})"
+                            )
+                        org_backlinks = " " + " ".join(backlinks)
+                    else:
+                        company_part = f" ({company})"
+                        # Backlink to user's list item in company group
+                        oa = make_org_anchor(company)
+                        href = f"#user-content-{oa}-{member}"
+                        org_backlinks = f" [↩]({href})"
+                else:
+                    # Backlink to Unaffiliated group
+                    href = f"#user-content-org-unaffiliated-{member}"
+                    org_backlinks = f" [↩]({href})"
+            header = (
+                f"### {anchor}{member_link}{company_part} "
+                f"({total} commits){org_backlinks}"
+            )
+            report.append(header)
+            report.append("")
+            # Sort repos by commit count descending
+            sorted_repos = sorted(
+                repos.items(), key=lambda x: x[1], reverse=True
+            )
+            for repo_name, count in sorted_repos:
+                commit_link = make_commit_link(
+                    repo_name, count, since_date, until_date, member
+                )
+                repo_url = f"https://github.com/{repo_name}"
+                row = f"- [{repo_name}]({repo_url}): {commit_link}"
+                report.append(row)
+            report.append("")
+        report.append("</details>")
+        report.append("")
 
     # Footer
     report.append("---")

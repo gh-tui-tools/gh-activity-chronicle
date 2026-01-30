@@ -212,7 +212,7 @@ But GitHub search has undocumented query complexity limits. With 30+ ORed author
 **Solution**: A two-level linking approach:
 
 1. Commit counts in tables link to **anchors within the document** (not GitHub search)
-2. A **"Commit details by repository" section** at the end lists per-member breakdowns
+2. A **"Commit details by repository" section** lists per-member breakdowns
 3. Each **individual member's count** links to a single-author GitHub search (which works fine)
 
 ```markdown
@@ -280,6 +280,7 @@ Org mode reports have the same structure as user mode, plus four collapsible det
 
 - Per-language sections with anchor IDs
 - Each section lists members who committed in that language
+- Member names link to their heading in "Commit details by user"
 - Backlinks to the Languages table
 
 ### <a id="lang-python"></a>Python (N commits) [↩](#row-lang-python)
@@ -292,24 +293,11 @@ Org mode reports have the same structure as user mode, plus four collapsible det
 
 - Per-repo sections with anchor IDs
 - Each section lists members who contributed
+- Member names link to their heading in "Commit details by user"
 - Each member's commit count links to GitHub search
 
 ### <a id="commits-org-repo"></a>[org/repo](...) (N commits)
 - [member1](...): [count](search-link)
-
-</details>
-
-<details>
-<summary><h2>Commit details by user</h2></summary>
-
-- Per-user sections showing their repository breakdown
-- Each repo's commit count links to GitHub search
-- User's company shown in parentheses (hidden for `--owners` mode)
-- Company @mentions link to GitHub orgs
-- Backlinks (↩) to user's list item in "Commit details by organization"
-
-### <a id="user-ljharb"></a>[Jordan Harband](...) ([@socketdev](...) [@tc39](...)) (123 commits) [↩](#org-socketdev-ljharb) [↩](#org-tc39-ljharb)
-- [org/repo1](...): [count](search-link)
 
 </details>
 
@@ -333,9 +321,23 @@ Org mode reports have the same structure as user mode, plus four collapsible det
 - <a id="org-unaffiliated-someuser"></a>[someuser](#user-someuser) (42)
 
 </details>
+
+<details>
+<summary><h2>Commit details by user</h2></summary>
+
+- Per-user sections showing their repository breakdown
+- Each repo's commit count links to GitHub search
+- User's company shown in parentheses (hidden for `--owners` mode)
+- Company @mentions link to GitHub orgs
+- Backlinks (↩) to user's list item in "Commit details by organization"
+
+### <a id="user-ljharb"></a>[Jordan Harband](...) ([@socketdev](...) [@tc39](...)) (123 commits) [↩](#org-socketdev-ljharb) [↩](#org-tc39-ljharb)
+- [org/repo1](...): [count](search-link)
+
+</details>
 ```
 
-These sections are collapsed by default on GitHub, making long org reports less overwhelming. All four sections share the same `name="commit-details"` attribute, which creates **accordion behavior** — opening one section automatically closes any other open section in the group. This prevents users from having multiple large detail sections expanded simultaneously, keeping the page manageable. The "Commit details by language" section provides per-language breakdowns. The "by repository" section enables commit count links in the Projects tables. The "by user" section shows each member's contribution breakdown with company affiliation and backlinks to navigate back to their exact position in the org list. The "by organization" section groups users by company for a quick view of which organizations are most active.
+These sections are collapsed by default on GitHub, making long org reports less overwhelming. All four sections share the same `name="commit-details"` attribute, which creates **accordion behavior** — opening one section automatically closes any other open section in the group. This prevents users from having multiple large detail sections expanded simultaneously, keeping the page manageable. The "Commit details by language" section provides per-language breakdowns. The "by repository" section enables commit count links in the Projects tables. The "by organization" section groups users by company for a quick view of which organizations are most active. The "by user" section — the last of the four — shows each member's contribution breakdown with company affiliation and backlinks to navigate back to their exact position in the org list.
 
 ### Report elements
 
@@ -357,7 +359,13 @@ Three output formats are supported. By default all three are written; `--format`
 
 ### Markdown
 
-The primary output format. Renders well on GitHub, in markdown viewers, and in text editors. This is what `generate_report()` and `generate_org_report()` produce directly.
+The primary output format, intended to be committed to a GitHub repository and viewed on the GitHub website. This is what `generate_report()` and `generate_org_report()` produce directly.
+
+The markdown output is not designed for local viewing. Two factors make local rendering impractical:
+
+1. **Fragment link compatibility**: Org-mode reports use `#user-content-`-prefixed fragment links for cross-section navigation (e.g., `#user-content-user-ljharb`). GitHub automatically prepends `user-content-` to all user-generated HTML element IDs as a namespace safety measure, so these links resolve correctly on github.com. Local markdown renderers don't apply this transformation, so the fragment links won't match any element IDs.
+
+2. **Document size**: Reports — especially org-mode reports for large organizations — routinely exceed several hundred kilobytes. Tools for rendering GitHub-Flavored Markdown locally (e.g., `grip`) rely on [GitHub's Markdown REST API](https://docs.github.com/en/rest/markdown/markdown), which rejects documents larger than 400 KB. GitHub.com itself renders the files correctly regardless of size.
 
 ### JSON
 
@@ -837,8 +845,8 @@ Organization mode extends the tool to generate reports for GitHub organizations:
 5. **Generate report**: Same structure as user report with aggregated data, plus:
    - Commit counts link to anchors (not GitHub search, due to query complexity limits)
    - "Commit details by repository" section with per-member breakdowns
-   - "Commit details by user" section with per-repo breakdowns (inverse view)
    - "Commit details by organization" section grouping users by company @mentions
+   - "Commit details by user" section with per-repo breakdowns (inverse view)
    - Members list passed to report generator for anchor link construction
 
 ### API endpoints
@@ -1072,7 +1080,7 @@ Since GitHub search can't handle multi-author queries at scale, org mode uses a 
    | [w3c/csswg-drafts](https://github.com/w3c/csswg-drafts) | [47](#commits-w3c-csswg-drafts) | ...
    ```
 
-2. **"Commit details by repository" section** at the end of the report provides per-member breakdowns:
+2. **"Commit details by repository" section** provides per-member breakdowns:
    ```markdown
    ## Commit details by repository
 
@@ -1148,16 +1156,16 @@ Both commit tracking dicts are used to generate the detail sections with bidirec
 
 ### Member name and company display
 
-In the detail sections, members are displayed using their **real name** (from their GitHub profile) when available, with the **username as fallback**:
+In the detail sections, members are displayed using their **real name** (from their GitHub profile) when available, with the **username as fallback**. The display text shows the more readable real name when the user has one configured.
+
+In the "Commit details by language" and "Commit details by repository" sections, member names link to the member's heading in "Commit details by user" (an internal document anchor), enabling cross-section navigation:
 
 ```markdown
-- [Chris Lilley](https://github.com/svgeesus): [13](...)
-- [sideshowbarker](https://github.com/sideshowbarker): [1](...)
+- [Chris Lilley](#user-content-user-svgeesus): [13](...)
+- [sideshowbarker](#user-content-user-sideshowbarker): [1](...)
 ```
 
-The link always points to the GitHub profile using the username, but the display text shows the more readable real name when the user has one configured.
-
-In the "Commit details by user" section, the member's **company** is also shown (unless using `--owners` mode, where it would be redundant). Company `@mentions` are converted to GitHub org links, and backlinks point to the user's specific list item in the "Commit details by organization" section:
+In the "Commit details by user" section itself, the heading links to the member's GitHub profile. The member's **company** is also shown (unless using `--owners` mode, where it would be redundant). Company `@mentions` are converted to GitHub org links, and backlinks point to the user's specific list item in the "Commit details by organization" section:
 
 ```markdown
 ### [Jordan Harband](https://github.com/ljharb) ([@socketdev](https://github.com/socketdev) [@tc39](https://github.com/tc39)) (123 commits) [↩](#org-socketdev-ljharb) [↩](#org-tc39-ljharb)
@@ -1404,7 +1412,7 @@ tests/
 
 ### Coverage
 
-The test suite (416 tests) enforces a **98% coverage threshold** configured in `pyproject.toml`. Current coverage is ~99%. Genuinely untestable code (terminal I/O, threading callbacks, rate-limit recovery) is marked `# pragma: no cover`. The remaining ~20 uncovered lines are intentionally left without pragmas — they represent code where mock complexity outweighs testing value, and the coverage report serves as a living inventory of these gaps.
+The test suite (431 tests) enforces a **98% coverage threshold** configured in `pyproject.toml`. Current coverage is ~99%. Genuinely untestable code (terminal I/O, threading callbacks, rate-limit recovery) is marked `# pragma: no cover`. The remaining ~20 uncovered lines are intentionally left without pragmas — they represent code where mock complexity outweighs testing value, and the coverage report serves as a living inventory of these gaps.
 
 ### Running tests
 
