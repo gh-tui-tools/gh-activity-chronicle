@@ -53,18 +53,30 @@ def set_rate_limit_hit():
 
 
 def get_rate_limit_reset_time():
-    """Get the GraphQL rate limit reset time as a datetime, or None."""
+    """Get the rate limit reset time and resource name.
+
+    Returns:
+        (datetime, str) tuple, or (None, None) on failure.
+        The string is the GitHub API resource name (e.g. "graphql").
+    """
+    resource = "graphql"
     try:
         rate_result = subprocess.run(
-            ["gh", "api", "rate_limit", "--jq", ".resources.graphql.reset"],
+            [
+                "gh",
+                "api",
+                "rate_limit",
+                "--jq",
+                f".resources.{resource}.reset",
+            ],
             capture_output=True,
             text=True,
             check=True,
         )
         reset_timestamp = int(rate_result.stdout.strip())
-        return datetime.fromtimestamp(reset_timestamp)
+        return datetime.fromtimestamp(reset_timestamp), resource
     except Exception:
-        return None
+        return None, None
 
 
 def get_rate_limit_remaining():
@@ -165,9 +177,23 @@ def prompt_rate_limit_warning(reason, skip_prompt=False):
     sys.stderr.write(Colors.warning(msg))
     msg = (
         "To reduce calls, consider a shorter time period (--days 7) "
-        "and/or using a --team value.\n\n"
+        "and/or using a --team value.\n"
     )
     sys.stderr.write(Colors.warning(msg))
+
+    reset_time, resource = get_rate_limit_reset_time()
+    if reset_time:
+        now = datetime.now()
+        wait_mins = max(1, int((reset_time - now).total_seconds() / 60 + 0.5))
+        reset_str = reset_time.strftime("%H:%M")
+        msg = (
+            f"Or wait another {wait_mins} minute"
+            f"{'s' if wait_mins != 1 else ''}"
+            f" until {reset_str}, when your {resource}"
+            " rate limit will be reset.\n"
+        )
+        sys.stderr.write(Colors.warning(msg))
+    sys.stderr.write("\n")
 
     if skip_prompt:
         sys.stderr.write("Proceeding (--yes flag provided).\n\n")
@@ -192,7 +218,7 @@ def print_rate_limit_error(extra_advice=None):
     """
     sys.stderr.write(Colors.error("GitHub API rate limit exceeded.\n"))
 
-    reset_time = get_rate_limit_reset_time()
+    reset_time, _resource = get_rate_limit_reset_time()
     if reset_time:
         reset_str = reset_time.strftime("%H:%M:%S")
         msg = f"Try again after {reset_str} (local time).\n"
@@ -217,7 +243,7 @@ def wait_for_rate_limit_reset(max_wait_seconds=120):
         True if we waited and can retry, False if wait would be too long
     """
     global _rate_limit_hit
-    reset_time = get_rate_limit_reset_time()
+    reset_time, _resource = get_rate_limit_reset_time()
 
     if not reset_time:
         # Can't determine reset time — wait a bit for secondary rate limits
@@ -3917,7 +3943,7 @@ def gather_org_data_active_contributors(
                         remaining = len(active_members) - completed_count[0]
                         in_flight = min(MAX_PARALLEL_WORKERS, remaining)
                         done = completed_count[0]
-                        if in_flight > 0:
+                        if 0 < in_flight <= 29:
                             pend = f"({in_flight} pending)"
                             msg = f"Gathered {done}/{active_count} {pend}"
                         else:
@@ -5904,19 +5930,22 @@ def run(config):
 
         if fmt is None:
             # All formats
-            progress.start("Generating report...")
             md_report = generate_org_report(*org_report_args, notable_prs=np)
-            progress.stop()
+            progress.start("Writing HTML...")
             html_report = markdown_to_html(md_report)
+            progress.update("Writing JSON...")
             json_report = format_org_data_json(*org_report_args)
-        elif fmt == "json":
-            report = format_org_data_json(*org_report_args)
-        else:
-            progress.start("Generating report...")
-            report = generate_org_report(*org_report_args, notable_prs=np)
             progress.stop()
+        elif fmt == "json":
+            progress.start("Writing JSON...")
+            report = format_org_data_json(*org_report_args)
+            progress.stop()
+        else:
+            report = generate_org_report(*org_report_args, notable_prs=np)
             if fmt == "html":
+                progress.start("Writing HTML...")
                 report = markdown_to_html(report)
+                progress.stop()
     else:
         # -- User mode: gather data ----------------------------------------
         if fmt is None:
@@ -5935,13 +5964,16 @@ def run(config):
                 data=data,
                 notable_prs=config.notable_prs,
             )
+            progress.start("Writing HTML...")
             html_report = markdown_to_html(md_report)
+            progress.update("Writing JSON...")
             json_report = format_user_data_json(
                 data,
                 config.username,
                 config.since_date,
                 config.until_date,
             )
+            progress.stop()
         elif fmt == "json":
             highlighted = Colors.highlight(config.username)
             dates = f"{config.since_date} to {config.until_date}"

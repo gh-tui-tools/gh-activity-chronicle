@@ -293,10 +293,10 @@ See also: [Commit hyperlinks](#commit-hyperlinks) section for full implementatio
 
 ### Organization mode
 
-Org mode reports have the same structure as user mode — Executive summary first, then collapsible Notable PRs, Projects by category (with nested collapsible categories), Languages, PRs reviewed, and PRs created — plus four collapsible detail sections wrapped in `<details><summary>` for better UX:
+Org mode reports have the same structure as user mode — Executive summary first, then collapsible Notable PRs, Projects by category (with nested collapsible categories), Languages, PRs reviewed, and PRs created — plus four collapsible detail sections. All top-level sections share `name="activity"` for accordion behavior:
 
 ```html
-<details name="commit-details">
+<details name="activity">
 <summary><h2>Commit details by language</h2></summary>
 
 - Per-language sections with anchor IDs
@@ -309,7 +309,7 @@ Org mode reports have the same structure as user mode — Executive summary firs
 
 </details>
 
-<details>
+<details name="activity">
 <summary><h2>Commit details by repository</h2></summary>
 
 - Per-repo sections with anchor IDs
@@ -322,7 +322,7 @@ Org mode reports have the same structure as user mode — Executive summary firs
 
 </details>
 
-<details>
+<details name="activity">
 <summary><h2>Commit details by organization</h2></summary>
 
 - Groups users by their company (both @mentions and plain text)
@@ -343,7 +343,7 @@ Org mode reports have the same structure as user mode — Executive summary firs
 
 </details>
 
-<details>
+<details name="activity">
 <summary><h2>Commit details by user</h2></summary>
 
 - Per-user sections showing their repository breakdown
@@ -358,7 +358,7 @@ Org mode reports have the same structure as user mode — Executive summary firs
 </details>
 ```
 
-These sections are collapsed by default on GitHub, making long org reports less overwhelming. All four sections share the same `name="commit-details"` attribute, which creates **accordion behavior** — opening one section automatically closes any other open section in the group. This prevents users from having multiple large detail sections expanded simultaneously, keeping the page manageable. The "Commit details by language" section provides per-language breakdowns. The "by repository" section enables commit count links in the Projects tables. The "by organization" section groups users by company for a quick view of which organizations are most active. The "by user" section — the last of the four — shows each member's contribution breakdown with company affiliation and backlinks to navigate back to their exact position in the org list.
+These sections are collapsed by default on GitHub, making long org reports less overwhelming. All top-level sections — including Notable PRs, Projects by category, Languages, PRs reviewed, PRs created, and the four commit-detail sections — share `name="activity"`, which creates **accordion behavior**: opening one section automatically closes any other open section in the group. This prevents users from having multiple large sections expanded simultaneously, keeping the page manageable. Within "Projects by category", each category also forms its own accordion (`name="category"`), so only one category is expanded at a time. The "Commit details by language" section provides per-language breakdowns. The "by repository" section enables commit count links in the Projects tables. The "by organization" section groups users by company for a quick view of which organizations are most active. The "by user" section — the last of the four — shows each member's contribution breakdown with company affiliation and backlinks to navigate back to their exact position in the org list.
 
 ### Report elements
 
@@ -368,11 +368,13 @@ These sections are collapsed by default on GitHub, making long org reports less 
 
 **Executive summary**: Key metrics table (commits, PRs, reviews, issues, lines, repos). First section after the title — always visible.
 
-**Notable PRs**: Collapsible (`<details>/<summary>`). Top PRs sorted by total lines changed.
+**Notable PRs**: Collapsible (`<details name="activity">`). Top PRs sorted by total lines changed.
 
-**Projects by category**: Collapsible outer wrapper, with each category in a nested collapsible `<details>/<summary>` with an anchor ID (e.g., `cat-browser-engines`) and inline summary showing repo/commit counts. Commits are clickable (direct GitHub search for user mode, anchor links for org mode).
+**Projects by category**: Collapsible outer wrapper (`name="activity"`), with each category in a nested collapsible `<details name="category">` (accordion — only one category open at a time) with an anchor ID (e.g., `cat-browser-engines`) and inline summary showing repo/commit counts. Commits are clickable (direct GitHub search for user mode, anchor links for org mode).
 
-**Languages, PRs reviewed, PRs created**: Each wrapped in collapsible `<details>/<summary>`. Commit counts in the Languages table link to language-filtered GitHub searches in user mode.
+**Languages, PRs reviewed, PRs created**: Each wrapped in collapsible `<details name="activity">`. Commit counts in the Languages table link to language-filtered GitHub searches in user mode.
+
+All top-level sections share `name="activity"` for accordion behavior — only one section is open at a time across the entire report.
 
 **Footer**: Generation timestamp with timezone offset.
 
@@ -810,11 +812,14 @@ If GraphQL remaining is < 50 calls, the tool doesn't ask "Proceed anyway?" — i
 **User prompt:**
 
 ```
-Warning: Generating a report will use an estimated ~2,303 GitHub API calls (~52% of your 4,423 remaining limit).
-To reduce the number of calls, consider specifying a shorter time period (--days 7) and/or using a --team value.
+Warning: Generating a report will use ~2,303 API calls (~52% of your 4,423 remaining limit).
+To reduce calls, consider a shorter time period (--days 7) and/or using a --team value.
+Or wait another 16 minutes until 17:24, when your graphql rate limit will be reset.
 
 Proceed anyway? [y/N]
 ```
+
+The "Or wait another…" line shows how long until the rate limit window resets, giving users a concrete alternative to proceeding. The resource name (e.g. "graphql") comes from whichever API limit `get_rate_limit_reset_time()` checks. The line is omitted if the reset time can't be determined.
 
 - Default is No — pressing Enter aborts
 - User must type `y` or `yes` to proceed

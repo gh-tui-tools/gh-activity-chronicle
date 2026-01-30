@@ -749,6 +749,138 @@ class TestRun:
 
         mock_gather.assert_called_once()
 
+    def test_org_all_formats_shows_progress_for_each_step(self):
+        """All-formats org mode shows progress for HTML and JSON."""
+        config = self._make_config(username=None, org="myorg")
+        report_md = "# org report"
+        gather_result = (
+            {"login": "myorg"},
+            None,
+            [],
+            {},
+            [],
+        )
+
+        with (
+            patch.object(
+                mod,
+                "gather_org_data_active_contributors",
+                return_value=gather_result,
+            ),
+            patch.object(
+                mod,
+                "generate_org_report",
+                return_value=report_md,
+            ),
+            patch.object(mod, "progress") as mock_progress,
+            patch.object(Path, "write_text"),
+        ):
+            mod.run(config)
+
+        calls = [str(c) for c in mock_progress.method_calls]
+        assert "call.start('Writing HTML...')" in calls
+        assert "call.update('Writing JSON...')" in calls
+        assert "call.stop()" in calls
+
+    def test_org_json_only_shows_progress(self):
+        """JSON-only org mode shows progress for JSON."""
+        config = self._make_config(username=None, org="myorg", format="json")
+        gather_result = (
+            {"login": "myorg"},
+            None,
+            [],
+            {
+                "repos_by_category": {},
+                "prs_nodes": [],
+                "reviewed_nodes": [],
+            },
+            [],
+        )
+
+        with (
+            patch.object(
+                mod,
+                "gather_org_data_active_contributors",
+                return_value=gather_result,
+            ),
+            patch.object(mod, "progress") as mock_progress,
+            patch.object(Path, "write_text"),
+        ):
+            mod.run(config)
+
+        calls = [str(c) for c in mock_progress.method_calls]
+        assert "call.start('Writing JSON...')" in calls
+        assert "call.stop()" in calls
+
+    def test_org_html_only_shows_progress(self):
+        """HTML-only org mode shows progress for HTML."""
+        config = self._make_config(username=None, org="myorg", format="html")
+        report_md = "# org report"
+        gather_result = (
+            {"login": "myorg"},
+            None,
+            [],
+            {},
+            [],
+        )
+
+        with (
+            patch.object(
+                mod,
+                "gather_org_data_active_contributors",
+                return_value=gather_result,
+            ),
+            patch.object(
+                mod,
+                "generate_org_report",
+                return_value=report_md,
+            ),
+            patch.object(mod, "progress") as mock_progress,
+            patch.object(Path, "write_text"),
+        ):
+            mod.run(config)
+
+        calls = [str(c) for c in mock_progress.method_calls]
+        assert "call.start('Writing HTML...')" in calls
+        assert "call.stop()" in calls
+
+    def test_user_all_formats_shows_progress_for_each_step(self):
+        """All-formats user mode shows progress for HTML and JSON."""
+        config = self._make_config()  # format=None
+        mock_data = {
+            "user_real_name": "",
+            "total_commits_default_branch": 0,
+            "total_commits_all": 0,
+            "total_prs": 0,
+            "total_pr_reviews": 0,
+            "total_issues": 0,
+            "total_additions": 0,
+            "total_deletions": 0,
+            "test_commits": 0,
+            "repos_contributed": 0,
+            "reviews_received": 0,
+            "pr_comments_received": 0,
+            "repos_by_category": {},
+            "repo_line_stats": {},
+            "repo_languages": {},
+            "prs_nodes": [],
+            "reviewed_nodes": [],
+        }
+        md_report = "# report"
+
+        with (
+            patch.object(mod, "gather_user_data", return_value=mock_data),
+            patch.object(mod, "generate_report", return_value=md_report),
+            patch.object(mod, "progress") as mock_progress,
+            patch.object(Path, "write_text"),
+        ):
+            mod.run(config)
+
+        calls = [str(c) for c in mock_progress.method_calls]
+        assert "call.start('Writing HTML...')" in calls
+        assert "call.update('Writing JSON...')" in calls
+        assert "call.stop()" in calls
+
 
 # -----------------------------------------------------------------------
 # TestMain — username detection via subprocess

@@ -1417,22 +1417,24 @@ class TestGetContributionSummariesBatch:
 class TestGetRateLimitResetTime:
     """Tests for get_rate_limit_reset_time()."""
 
-    def test_returns_datetime(self, mod):
-        """Successful call returns a datetime."""
+    def test_returns_datetime_and_resource(self, mod):
+        """Successful call returns a (datetime, resource) tuple."""
         import datetime
 
         mock_result = MagicMock(stdout="1738200000\n", returncode=0)
         with patch("subprocess.run", return_value=mock_result):
-            result = mod.get_rate_limit_reset_time()
+            reset_time, resource = mod.get_rate_limit_reset_time()
 
-        assert isinstance(result, datetime.datetime)
+        assert isinstance(reset_time, datetime.datetime)
+        assert resource == "graphql"
 
-    def test_error_returns_none(self, mod):
-        """Error returns None."""
+    def test_error_returns_none_pair(self, mod):
+        """Error returns (None, None)."""
         with patch("subprocess.run", side_effect=Exception("fail")):
-            result = mod.get_rate_limit_reset_time()
+            reset_time, resource = mod.get_rate_limit_reset_time()
 
-        assert result is None
+        assert reset_time is None
+        assert resource is None
 
 
 class TestGetRateLimitRemaining:
@@ -1459,7 +1461,11 @@ class TestWaitForRateLimitReset:
 
     def test_no_reset_time_sleeps_60s(self, mod):
         """reset_time is None — sleep 60s, return True."""
-        with patch.object(mod, "get_rate_limit_reset_time", return_value=None):
+        with patch.object(
+            mod,
+            "get_rate_limit_reset_time",
+            return_value=(None, None),
+        ):
             with patch("time.sleep") as mock_sleep:
                 with patch("sys.stderr", MagicMock()):
                     result = mod.wait_for_rate_limit_reset()
@@ -1472,7 +1478,11 @@ class TestWaitForRateLimitReset:
         from datetime import datetime, timedelta
 
         past = datetime.now() - timedelta(seconds=60)
-        with patch.object(mod, "get_rate_limit_reset_time", return_value=past):
+        with patch.object(
+            mod,
+            "get_rate_limit_reset_time",
+            return_value=(past, "graphql"),
+        ):
             result = mod.wait_for_rate_limit_reset()
 
         assert result is True
@@ -1482,7 +1492,11 @@ class TestWaitForRateLimitReset:
         from datetime import datetime, timedelta
 
         soon = datetime.now() + timedelta(seconds=30)
-        with patch.object(mod, "get_rate_limit_reset_time", return_value=soon):
+        with patch.object(
+            mod,
+            "get_rate_limit_reset_time",
+            return_value=(soon, "graphql"),
+        ):
             with patch("time.sleep") as mock_sleep:
                 with patch("sys.stderr", MagicMock()):
                     result = mod.wait_for_rate_limit_reset(
@@ -1498,7 +1512,9 @@ class TestWaitForRateLimitReset:
 
         far_future = datetime.now() + timedelta(seconds=600)
         with patch.object(
-            mod, "get_rate_limit_reset_time", return_value=far_future
+            mod,
+            "get_rate_limit_reset_time",
+            return_value=(far_future, "graphql"),
         ):
             result = mod.wait_for_rate_limit_reset(max_wait_seconds=120)
 
@@ -2292,6 +2308,57 @@ class TestPromptRateLimitWarning:
             result = mod.prompt_rate_limit_warning("many calls")
         assert result is False
 
+    def test_reset_time_shown(self, mod, capsys):
+        """Warning includes reset time and resource name."""
+        from datetime import datetime, timedelta
+
+        reset = datetime.now() + timedelta(minutes=16)
+        with (
+            patch.object(
+                mod,
+                "get_rate_limit_reset_time",
+                return_value=(reset, "graphql"),
+            ),
+            patch("builtins.input", return_value="n"),
+        ):
+            mod.prompt_rate_limit_warning("many calls")
+        stderr = capsys.readouterr().err
+        assert "wait another" in stderr
+        assert "minute" in stderr
+        assert reset.strftime("%H:%M") in stderr
+        assert "graphql rate limit will be reset" in stderr
+
+    def test_reset_time_omitted_when_unavailable(self, mod, capsys):
+        """Warning omits reset line when time can't be fetched."""
+        with (
+            patch.object(
+                mod,
+                "get_rate_limit_reset_time",
+                return_value=(None, None),
+            ),
+            patch("builtins.input", return_value="n"),
+        ):
+            mod.prompt_rate_limit_warning("many calls")
+        stderr = capsys.readouterr().err
+        assert "wait another" not in stderr
+
+    def test_reset_time_singular_minute(self, mod, capsys):
+        """Shows 'minute' (not 'minutes') when ~1 minute remains."""
+        from datetime import datetime, timedelta
+
+        reset = datetime.now() + timedelta(seconds=45)
+        with (
+            patch.object(
+                mod,
+                "get_rate_limit_reset_time",
+                return_value=(reset, "graphql"),
+            ),
+            patch("builtins.input", return_value="n"),
+        ):
+            mod.prompt_rate_limit_warning("many calls")
+        stderr = capsys.readouterr().err
+        assert "1 minute " in stderr
+
 
 class TestPrintRateLimitError:
     """Tests for print_rate_limit_error()."""
@@ -2304,7 +2371,7 @@ class TestPrintRateLimitError:
         with patch.object(
             mod,
             "get_rate_limit_reset_time",
-            return_value=reset,
+            return_value=(reset, "graphql"),
         ):
             # Just verify it doesn't raise
             mod.print_rate_limit_error()
@@ -2314,7 +2381,7 @@ class TestPrintRateLimitError:
         with patch.object(
             mod,
             "get_rate_limit_reset_time",
-            return_value=None,
+            return_value=(None, None),
         ):
             mod.print_rate_limit_error()
 
@@ -2323,7 +2390,7 @@ class TestPrintRateLimitError:
         with patch.object(
             mod,
             "get_rate_limit_reset_time",
-            return_value=None,
+            return_value=(None, None),
         ):
             mod.print_rate_limit_error(
                 extra_advice=["Use --days 7", "Try --team"],
