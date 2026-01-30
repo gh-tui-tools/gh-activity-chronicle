@@ -219,9 +219,9 @@ class TestGenerateNotablePrsTable:
         assert isinstance(result, list)
         assert len(result) > 0
 
-        # Should have header row
-        header = result[0]
-        assert "PR" in header or "Title" in header or "|" in header
+        # Should start with <details> wrapper
+        assert result[0] == '<details name="activity">'
+        assert "Notable PRs" in result[1]
 
     def test_sorted_by_total_lines(self, mod, sample_pr_nodes):
         """PRs should be sorted by additions + deletions."""

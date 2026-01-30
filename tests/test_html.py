@@ -69,6 +69,12 @@ class TestMarkdownToHtml:
         assert "<style>" in html
         assert "font-family" in html
 
+    def test_has_accordion_scroll_script(self):
+        html = mod.markdown_to_html("# Hello")
+        assert "<script>" in html
+        assert "scrollIntoView" in html
+        assert "details[name]" in html
+
     def test_heading_levels(self):
         md = "# H1\n## H2\n### H3\n#### H4\n##### H5\n###### H6"
         html = mod.markdown_to_html(md)

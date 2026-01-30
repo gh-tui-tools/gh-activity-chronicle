@@ -367,7 +367,7 @@ def is_bot(login):
 
 
 # Category-name constants (avoid typos, enable IDE support)
-ACCESSIBILITY = "Accessibility (WAI)"
+ACCESSIBILITY = "Accessibility"
 AI_AGENTS = "AI and agents"
 AUDIO_MIDI_LIBRARIES = "Audio/MIDI libraries"
 BLOCKCHAIN = "Blockchain"
@@ -398,11 +398,11 @@ GITHUB_ANALYTICS = "GitHub analytics"
 GRAPHICS = "Graphics"
 HOME_AUTOMATION = "Home automation and embedded systems"
 HTML = "HTML"
-HTML_CSS_VALIDATION = "HTML/CSS checking (validation)"
+HTML_CSS_VALIDATION = "HTML/CSS checking/validation"
 HTTP_TOOLING = "HTTP tooling"
-I18N = "Internationalization (i18n)"
+I18N = "Internationalization"
 IETF_STANDARDS = "IETF/Internet standards"
-IMMERSIVE_WEB = "Immersive Web (WebXR)"
+IMMERSIVE_WEB = "Immersive Web"
 JS_RUNTIMES = "JavaScript runtimes"
 MACHINE_LEARNING = "Machine Learning"
 MEDIA = "Media"
@@ -422,7 +422,7 @@ PROGRAMMING_LANGUAGES = "Programming languages"
 RDF_TOOLING = "RDF/Linked Data tooling"
 REFERENCE_MANAGEMENT = "Reference management"
 SECURITY = "Security"
-SEMANTIC_WEB = "Semantic Web (Linked Data)"
+SEMANTIC_WEB = "Linked Data"
 SERVICE_WORKERS = "Service Workers"
 SOCIAL_WEB = "Social Web"
 SPEC_TOOLING = "Specification tooling"
@@ -472,7 +472,7 @@ EXPLICIT_REPOS = {
     # Standards positions
     "webkit/standards-positions": STANDARDS_POSITIONS,
     "mozilla/standards-positions": STANDARDS_POSITIONS,
-    # HTML/CSS checking (validation)
+    # HTML/CSS checking/validation
     "validator/validator": HTML_CSS_VALIDATION,
     "validator/htmlparser": HTML_CSS_VALIDATION,
     "w3c/css-validator": HTML_CSS_VALIDATION,
@@ -2900,6 +2900,17 @@ def make_org_anchor(org_or_company):
     return f"org-{slug}"
 
 
+def make_category_anchor(category):
+    """Create anchor ID from category name.
+
+    Example: 'Browser engines' -> 'cat-browser-engines'.
+    """
+    slug = category.lower()
+    slug = re.sub(r"[^a-z0-9]+", "-", slug)
+    slug = slug.strip("-")
+    return f"cat-{slug}"
+
+
 def make_lang_commit_link(language, count, since_date, until_date, username):
     """Create a markdown link to GitHub commit search filtered by language.
 
@@ -4017,7 +4028,8 @@ def generate_notable_prs_table(prs_nodes, repo_languages, limit=15):
         return []
 
     lines = []
-    lines.append("## Notable PRs")
+    lines.append('<details name="activity">')
+    lines.append("<summary><h2>Notable PRs</h2></summary>")
     lines.append("")
     lines.append("| PR | Repo | Language | Lines | Reviews | Status |")
     lines.append("|----|------|----------|------:|------:|--------|")
@@ -4046,6 +4058,8 @@ def generate_notable_prs_table(prs_nodes, repo_languages, limit=15):
         )
         lines.append(row)
 
+    lines.append("")
+    lines.append("</details>")
     lines.append("")
     return lines
 
@@ -4622,7 +4636,7 @@ details {{
 summary {{
   cursor: pointer;
 }}
-summary h2 {{
+summary h2, summary h3 {{
   display: inline;
 }}
 hr {{
@@ -4634,6 +4648,15 @@ hr {{
 </head>
 <body>
 {body}
+<script>
+document.querySelectorAll("details[name]").forEach(d => {{
+  d.addEventListener("toggle", () => {{
+    if (d.open) {{
+      d.querySelector("summary").scrollIntoView({{behavior: "instant"}});
+    }}
+  }});
+}});
+</script>
 </body>
 </html>
 """
@@ -4710,13 +4733,34 @@ def generate_report(
     report.append("---")
     report.append("")
 
-    # Notable PRs (first table - most visible)
+    # Executive summary (first section - key metrics at a glance)
+    report.append("## Executive summary")
+    report.append("")
+    report.append("| Metric | Count |")
+    report.append("|--------|------:|")
+    commits_def = format_number(total_commits_default_branch)
+    commits_all = format_number(total_commits_all)
+    report.append(f"| Commits (default branches) | {commits_def} |")
+    report.append(f"| Commits (all branches) | {commits_all} |")
+    report.append(f"| PRs created | {format_number(total_prs)} |")
+    report.append(f"| PR reviews given | {format_number(total_pr_reviews)} |")
+    report.append(f"| Issues created | {format_number(total_issues)} |")
+    repos_contrib = format_number(repos_contributed)
+    report.append(f"| Repositories contributed to | {repos_contrib} |")
+    report.append(f"| Lines added | {format_number(total_additions)} |")
+    report.append(f"| Lines deleted | {format_number(total_deletions)} |")
+    test_commit_fmt = format_number(test_commits)
+    report.append(f"| Test-related commits | {test_commit_fmt} |")
+    report.append("")
+
+    # Notable PRs
     report.extend(
         generate_notable_prs_table(prs_nodes, repo_languages, notable_prs)
     )
 
-    # Projects by category (second section - shows where effort went)
-    report.append("## Projects by category")
+    # Projects by category
+    report.append('<details name="activity">')
+    report.append("<summary><h2>Projects by category</h2></summary>")
     report.append("")
 
     # Get ordered category list
@@ -4730,12 +4774,17 @@ def generate_report(
         total_cat_commits = sum(r["commits"] for r in repos)
         repo_word = "repository" if len(repos) == 1 else "repositories"
         commit_word = "commit" if total_cat_commits == 1 else "commits"
-        report.append(f"### {category}")
-        report.append("")
         cat_commits_fmt = format_number(total_cat_commits)
         n_repos = len(repos)
-        summary = f"*{n_repos} {repo_word}, {cat_commits_fmt} {commit_word}*"
-        report.append(summary)
+        cat_anchor = make_category_anchor(category)
+        summary_text = (
+            f"({n_repos} {repo_word}, {cat_commits_fmt} {commit_word})"
+        )
+        report.append('<details name="category">')
+        report.append(
+            f'<summary><h3><a id="{cat_anchor}"></a>'
+            f"{category} <em>{summary_text}</em></h3></summary>"
+        )
         report.append("")
         report.append("| Repo | Commits | Lines | Lang | Description |")
         report.append("|------|--------:|------:|------|-------------|")
@@ -4761,31 +4810,18 @@ def generate_report(
             report.append(row)
 
         report.append("")
+        report.append("</details>")
+        report.append("")
 
-    report.append("## Executive summary")
-    report.append("")
-    report.append("| Metric | Count |")
-    report.append("|--------|------:|")
-    commits_def = format_number(total_commits_default_branch)
-    commits_all = format_number(total_commits_all)
-    report.append(f"| Commits (default branches) | {commits_def} |")
-    report.append(f"| Commits (all branches) | {commits_all} |")
-    report.append(f"| PRs created | {format_number(total_prs)} |")
-    report.append(f"| PR reviews given | {format_number(total_pr_reviews)} |")
-    report.append(f"| Issues created | {format_number(total_issues)} |")
-    repos_contrib = format_number(repos_contributed)
-    report.append(f"| Repositories contributed to | {repos_contrib} |")
-    report.append(f"| Lines added | {format_number(total_additions)} |")
-    report.append(f"| Lines deleted | {format_number(total_deletions)} |")
-    test_commit_fmt = format_number(test_commits)
-    report.append(f"| Test-related commits | {test_commit_fmt} |")
+    report.append("</details>")
     report.append("")
 
     # Aggregate stats by language (using commit-based line stats)
     lang_stats = aggregate_language_stats(repos_by_category, repo_line_stats)
 
     if lang_stats:
-        report.append("## Languages")
+        report.append('<details name="activity">')
+        report.append("<summary><h2>Languages</h2></summary>")
         report.append("")
         report.append("| Language | Commits | Lines |")
         report.append("|----------|--------:|----------:|")
@@ -4800,9 +4836,12 @@ def generate_report(
             row = f"| {lang} | {commits_link} | +{adds}/-{dels} |"
             report.append(row)
         report.append("")
+        report.append("</details>")
+        report.append("")
 
     if reviewed_nodes:
-        report.append("## PRs reviewed")
+        report.append('<details name="activity">')
+        report.append("<summary><h2>PRs reviewed</h2></summary>")
         report.append("")
 
         # Group by repository
@@ -4834,8 +4873,11 @@ def generate_report(
             report.append(row)
 
         report.append("")
+        report.append("</details>")
+        report.append("")
 
-    report.append("## PRs created")
+    report.append('<details name="activity">')
+    report.append("<summary><h2>PRs created</h2></summary>")
     report.append("")
 
     merged_prs = [pr for pr in prs_nodes if pr.get("merged")]
@@ -4861,6 +4903,8 @@ def generate_report(
     report.append(f"| Reviews received | {format_number(reviews_received)} |")
     cmts_recv = format_number(pr_comments_received)
     report.append(f"| Review comments received | {cmts_recv} |")
+    report.append("")
+    report.append("</details>")
     report.append("")
 
     # Footer
@@ -4973,13 +5017,36 @@ def generate_org_report(
     report.append("---")
     report.append("")
 
-    # Notable PRs (first table - most visible)
+    # Executive summary (first section - key metrics at a glance)
+    report.append("## Executive summary")
+    report.append("")
+    report.append("| Metric | Count |")
+    report.append("|--------|------:|")
+    commits_def = format_number(total_commits_default_branch)
+    commits_all = format_number(total_commits_all)
+    report.append(f"| Commits (default branches) | {commits_def} |")
+    report.append(f"| Commits (all branches) | {commits_all} |")
+    report.append(f"| PRs created | {format_number(total_prs)} |")
+    report.append(f"| PR reviews given | {format_number(total_pr_reviews)} |")
+    report.append(f"| Issues created | {format_number(total_issues)} |")
+    repos_contrib = format_number(repos_contributed)
+    report.append(f"| Repositories contributed to | {repos_contrib} |")
+    if not is_light_mode:
+        # Full mode: include line stats and test commits
+        report.append(f"| Lines added | {format_number(total_additions)} |")
+        report.append(f"| Lines deleted | {format_number(total_deletions)} |")
+        test_cnt = format_number(test_commits)
+        report.append(f"| Test-related commits | {test_cnt} |")
+    report.append("")
+
+    # Notable PRs
     report.extend(
         generate_notable_prs_table(prs_nodes, repo_languages, notable_prs)
     )
 
-    # Projects by category (second section - shows where effort went)
-    report.append("## Projects by category")
+    # Projects by category
+    report.append('<details name="activity">')
+    report.append("<summary><h2>Projects by category</h2></summary>")
     report.append("")
 
     # Get ordered category list
@@ -4993,11 +5060,15 @@ def generate_org_report(
         total_cat_commits = sum(r["commits"] for r in repos)
         repo_word = "repository" if len(repos) == 1 else "repositories"
         commit_word = "commit" if total_cat_commits == 1 else "commits"
-        report.append(f"### {category}")
-        report.append("")
         cat_cnt = format_number(total_cat_commits)
-        summary = f"*{len(repos)} {repo_word}, {cat_cnt} {commit_word}*"
-        report.append(summary)
+        n_repos = len(repos)
+        cat_anchor = make_category_anchor(category)
+        summary_text = f"({n_repos} {repo_word}, {cat_cnt} {commit_word})"
+        report.append('<details name="category">')
+        report.append(
+            f'<summary><h3><a id="{cat_anchor}"></a>'
+            f"{category} <em>{summary_text}</em></h3></summary>"
+        )
         report.append("")
 
         if is_light_mode:
@@ -5044,26 +5115,10 @@ def generate_org_report(
                 report.append(row)
 
         report.append("")
+        report.append("</details>")
+        report.append("")
 
-    report.append("## Executive summary")
-    report.append("")
-    report.append("| Metric | Count |")
-    report.append("|--------|------:|")
-    commits_def = format_number(total_commits_default_branch)
-    commits_all = format_number(total_commits_all)
-    report.append(f"| Commits (default branches) | {commits_def} |")
-    report.append(f"| Commits (all branches) | {commits_all} |")
-    report.append(f"| PRs created | {format_number(total_prs)} |")
-    report.append(f"| PR reviews given | {format_number(total_pr_reviews)} |")
-    report.append(f"| Issues created | {format_number(total_issues)} |")
-    repos_contrib = format_number(repos_contributed)
-    report.append(f"| Repositories contributed to | {repos_contrib} |")
-    if not is_light_mode:
-        # Full mode: include line stats and test commits
-        report.append(f"| Lines added | {format_number(total_additions)} |")
-        report.append(f"| Lines deleted | {format_number(total_deletions)} |")
-        test_cnt = format_number(test_commits)
-        report.append(f"| Test-related commits | {test_cnt} |")
+    report.append("</details>")
     report.append("")
 
     # Aggregate stats by language
@@ -5071,7 +5126,8 @@ def generate_org_report(
     lang_stats = aggregate_language_stats(repos_by_category, stats_source)
 
     if lang_stats:
-        report.append("## Languages")
+        report.append('<details name="activity">')
+        report.append("<summary><h2>Languages</h2></summary>")
         report.append("")
         if is_light_mode:
             # Light mode: show repos count instead of lines
@@ -5101,9 +5157,12 @@ def generate_org_report(
                 row = f"| {lang_cell} | {commits_link} | {lines_str} |"
                 report.append(row)
         report.append("")
+        report.append("</details>")
+        report.append("")
 
     if reviewed_nodes:
-        report.append("## PRs reviewed")
+        report.append('<details name="activity">')
+        report.append("<summary><h2>PRs reviewed</h2></summary>")
         report.append("")
 
         # Group by repository
@@ -5135,8 +5194,11 @@ def generate_org_report(
             report.append(row)
 
         report.append("")
+        report.append("</details>")
+        report.append("")
 
-    report.append("## PRs created")
+    report.append('<details name="activity">')
+    report.append("<summary><h2>PRs created</h2></summary>")
     report.append("")
 
     merged_prs = [pr for pr in prs_nodes if pr.get("merged")]
@@ -5163,10 +5225,12 @@ def generate_org_report(
     pr_cmts = format_number(pr_comments_received)
     report.append(f"| Review comments received | {pr_cmts} |")
     report.append("")
+    report.append("</details>")
+    report.append("")
 
     # Language commit breakdown by member (for anchor links from Languages)
     if lang_member_commits:
-        report.append('<details name="commit-details">')
+        report.append('<details name="activity">')
         report.append("<summary><h2>Commit details by language</h2></summary>")
         report.append("")
         # Sort languages by total commits descending
@@ -5199,7 +5263,7 @@ def generate_org_report(
 
     # Commit breakdown by member (for anchor links from Projects tables)
     if repo_member_commits:
-        report.append('<details name="commit-details">')
+        report.append('<details name="activity">')
         report.append(
             "<summary><h2>Commit details by repository</h2></summary>"
         )
@@ -5341,7 +5405,7 @@ def generate_org_report(
                 unaffiliated.append((member, display_name, total))
 
         if org_members or company_members or unaffiliated:
-            report.append('<details name="commit-details">')
+            report.append('<details name="activity">')
             report.append(
                 "<summary><h2>Commit details by organization</h2></summary>"
             )
@@ -5421,7 +5485,7 @@ def generate_org_report(
 
     # Commit breakdown by user (inverse of by-repository view)
     if user_repo_commits:
-        report.append('<details name="commit-details">')
+        report.append('<details name="activity">')
         report.append("<summary><h2>Commit details by user</h2></summary>")
         report.append("")
         # Sort users by total commits descending

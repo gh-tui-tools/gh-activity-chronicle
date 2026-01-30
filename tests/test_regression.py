@@ -249,7 +249,7 @@ class TestOrgReportStructure:
                         "description": "DOM Standard",
                     },
                 ],
-                "Accessibility (WAI)": [
+                "Accessibility": [
                     {
                         "name": "w3c/wai-aria",
                         "commits": 100,
@@ -353,7 +353,7 @@ class TestOrgReportStructure:
         )
 
         # All detail sections should share same name for accordion
-        assert 'name="commit-details"' in report
+        assert 'name="activity"' in report
 
     def test_commit_details_by_repository(
         self, mod, complete_org_data, mock_members, org_info

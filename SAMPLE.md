@@ -26,7 +26,7 @@
 
 ## Projects by category
 
-### Accessibility (WAI)
+### Accessibility
 
 *1 repository, 1 commit*
 
@@ -42,7 +42,7 @@
 |------------|--------:|----------:|----------|-------------|
 | [w3c/charter-drafts](https://github.com/w3c/charter-drafts) | [1](https://github.com/search?q=repo%3Aw3c/charter-drafts%20author%3Asideshowbarker%20author-date%3A2025-12-27..2026-01-26&type=commits) | +3/-3 | HTML | Draft W3C WG and CG charters for public review |
 
-### HTML/CSS checking (validation)
+### HTML/CSS checking/validation
 
 *2 repositories, 112 commits*
 

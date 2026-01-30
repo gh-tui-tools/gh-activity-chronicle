@@ -591,7 +591,7 @@ class TestOrgReportGeneration:
 
         # Should have <details> elements with name attribute
         assert "<details" in report
-        assert 'name="commit-details"' in report
+        assert 'name="activity"' in report
 
 
 class TestCompanyNormalization:

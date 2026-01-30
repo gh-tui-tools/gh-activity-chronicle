@@ -4,41 +4,6 @@
 
 ---
 
-## Notable PRs
-
-| PR | Repo | Language | Lines | Reviews | Status |
-|----|------|----------|------:|------:|--------|
-| [Add JSON5 support](https://github.com/nicehero/nicejson/pull/10) | nicehero/nicejson | C++ | +500/-100 | 0 | Open |
-| [Add CSS Grid gap shorthand](https://github.com/w3c/csswg-drafts/pull/100) | w3c/csswg-drafts | CSS | +250/-50 | 0 | Merged |
-| [Fix HTML parser edge case](https://github.com/whatwg/html/pull/50) | whatwg/html | HTML | +80/-20 | 0 | Merged |
-
-## Projects by category
-
-### Browser engines
-
-*1 repository, 15 commits*
-
-| Repo | Commits | Lines | Lang | Description |
-|------|--------:|------:|------|-------------|
-| [nicehero/nicejson](https://github.com/nicehero/nicejson) | [15](https://github.com/search?q=repo%3Anicehero/nicejson%20author%3Atestuser%20author-date%3A2026-01-01..2026-01-31&type=commits) | +2,000/-500 | C++ | A fast JSON parser |
-
-### Web standards and specifications
-
-*2 repositories, 65 commits*
-
-| Repo | Commits | Lines | Lang | Description |
-|------|--------:|------:|------|-------------|
-| [w3c/csswg-drafts](https://github.com/w3c/csswg-drafts) | [45](https://github.com/search?q=repo%3Aw3c/csswg-drafts%20author%3Atestuser%20author-date%3A2026-01-01..2026-01-31&type=commits) | +4,000/-1,000 | CSS | CSS Working Group Editor Drafts |
-| [whatwg/html](https://github.com/whatwg/html) | [20](https://github.com/search?q=repo%3Awhatwg/html%20author%3Atestuser%20author-date%3A2026-01-01..2026-01-31&type=commits) | +1,500/-400 | HTML | HTML Standard |
-
-### Other
-
-*1 repository, 40 commits*
-
-| Repo | Commits | Lines | Lang | Description |
-|------|--------:|------:|------|-------------|
-| [testuser/my-project](https://github.com/testuser/my-project) | [40](https://github.com/search?q=repo%3Atestuser/my-project%20author%3Atestuser%20author-date%3A2026-01-01..2026-01-31&type=commits) | +1,000/-200 | Python | Personal project |
-
 ## Executive summary
 
 | Metric | Count |
@@ -53,7 +18,52 @@
 | Lines deleted | 2,100 |
 | Test-related commits | 8 |
 
-## Languages
+<details name="activity">
+<summary><h2>Notable PRs</h2></summary>
+
+| PR | Repo | Language | Lines | Reviews | Status |
+|----|------|----------|------:|------:|--------|
+| [Add JSON5 support](https://github.com/nicehero/nicejson/pull/10) | nicehero/nicejson | C++ | +500/-100 | 0 | Open |
+| [Add CSS Grid gap shorthand](https://github.com/w3c/csswg-drafts/pull/100) | w3c/csswg-drafts | CSS | +250/-50 | 0 | Merged |
+| [Fix HTML parser edge case](https://github.com/whatwg/html/pull/50) | whatwg/html | HTML | +80/-20 | 0 | Merged |
+
+</details>
+
+<details name="activity">
+<summary><h2>Projects by category</h2></summary>
+
+<details name="category">
+<summary><h3><a id="cat-browser-engines"></a>Browser engines <em>(1 repository, 15 commits)</em></h3></summary>
+
+| Repo | Commits | Lines | Lang | Description |
+|------|--------:|------:|------|-------------|
+| [nicehero/nicejson](https://github.com/nicehero/nicejson) | [15](https://github.com/search?q=repo%3Anicehero/nicejson%20author%3Atestuser%20author-date%3A2026-01-01..2026-01-31&type=commits) | +2,000/-500 | C++ | A fast JSON parser |
+
+</details>
+
+<details name="category">
+<summary><h3><a id="cat-web-standards-and-specifications"></a>Web standards and specifications <em>(2 repositories, 65 commits)</em></h3></summary>
+
+| Repo | Commits | Lines | Lang | Description |
+|------|--------:|------:|------|-------------|
+| [w3c/csswg-drafts](https://github.com/w3c/csswg-drafts) | [45](https://github.com/search?q=repo%3Aw3c/csswg-drafts%20author%3Atestuser%20author-date%3A2026-01-01..2026-01-31&type=commits) | +4,000/-1,000 | CSS | CSS Working Group Editor Drafts |
+| [whatwg/html](https://github.com/whatwg/html) | [20](https://github.com/search?q=repo%3Awhatwg/html%20author%3Atestuser%20author-date%3A2026-01-01..2026-01-31&type=commits) | +1,500/-400 | HTML | HTML Standard |
+
+</details>
+
+<details name="category">
+<summary><h3><a id="cat-other"></a>Other <em>(1 repository, 40 commits)</em></h3></summary>
+
+| Repo | Commits | Lines | Lang | Description |
+|------|--------:|------:|------|-------------|
+| [testuser/my-project](https://github.com/testuser/my-project) | [40](https://github.com/search?q=repo%3Atestuser/my-project%20author%3Atestuser%20author-date%3A2026-01-01..2026-01-31&type=commits) | +1,000/-200 | Python | Personal project |
+
+</details>
+
+</details>
+
+<details name="activity">
+<summary><h2>Languages</h2></summary>
 
 | Language | Commits | Lines |
 |----------|--------:|----------:|
@@ -62,14 +72,20 @@
 | HTML | [20](https://github.com/search?q=author%3Atestuser%20language%3AHTML%20author-date%3A2026-01-01..2026-01-31&type=commits) | +1,500/-400 |
 | C++ | [15](https://github.com/search?q=author%3Atestuser%20language%3AC%2B%2B%20author-date%3A2026-01-01..2026-01-31&type=commits) | +2,000/-500 |
 
-## PRs reviewed
+</details>
+
+<details name="activity">
+<summary><h2>PRs reviewed</h2></summary>
 
 | Repository | Language | PRs Reviewed | Total Lines |
 |------------|----------|-------------:|------------:|
 | w3c/csswg-drafts | CSS | 1 | 380 |
 | whatwg/html | HTML | 1 | 170 |
 
-## PRs created
+</details>
+
+<details name="activity">
+<summary><h2>PRs created</h2></summary>
 
 | Status | Count |
 |--------|------:|
@@ -84,6 +100,8 @@
 |--------|------:|
 | Reviews received | 15 |
 | Review comments received | 8 |
+
+</details>
 
 ---
 

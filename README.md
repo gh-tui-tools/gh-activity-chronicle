@@ -106,19 +106,15 @@ The generated report includes:
 - Lines added/deleted
 - Test-related commits
 
-### Languages
-- Commits by programming language
-- Lines added/deleted by language
-
-### PRs reviewed
-- Breakdown by repository with line counts
+### Notable PRs
+- Top PRs sorted by total lines changed (additions + deletions)
 
 ### Projects by category
 Repositories are automatically categorized into:
-- **W3C working-group areas**: Accessibility (WAI), Internationalization (i18n), Digital publishing, Security, Privacy, Immersive Web (WebXR), Verifiable Credentials, Web of Things, WebRTC, Web Audio, Media, Devices and sensors, Graphics, Machine Learning, Semantic Web, Sustainability, AI and agents, Payments, Performance
+- **W3C working-group areas**: Accessibility, Internationalization, Digital publishing, Security, Privacy, Immersive Web, Verifiable Credentials, Web of Things, WebRTC, Web Audio, Media, Devices and sensors, Graphics, Machine Learning, Linked Data, Sustainability, AI and agents, Payments, Performance
 - **W3C operations**: W3C Process, W3C TAG, W3C Infrastructure
 - **Standards ecosystem**: Specification tooling, Standards positions, Web standards and specifications (catch-all)
-- **Testing and quality**: Web Platform Tests, HTML/CSS checking (validation), Browser interop, Testing frameworks
+- **Testing and quality**: Web Platform Tests, HTML/CSS checking/validation, Browser interop, Testing frameworks
 - **Documentation**: MDN, Documentation platforms (Docusaurus, Sphinx, etc.)
 - **Implementation**: Browser engines, Developer tools, GitHub analytics
 - **Programming languages**: Programming languages, JavaScript runtimes, TypeScript
@@ -131,9 +127,15 @@ Repositories are automatically categorized into:
 - **Blockchain**: Blockchain and cryptocurrency
 - **Other**: Everything else
 
+### Languages
+- Commits by programming language
+- Lines added/deleted by language
+
+### PRs reviewed
+- Breakdown by repository with line counts
+
 ### PRs created
 - Status breakdown (merged, open, closed)
-- Notable PRs sorted by total lines changed (additions + deletions)
 - Reviews received on created PRs
 
 ## Examples

@@ -26,7 +26,7 @@
 
 ## Projects by category
 
-### Accessibility (WAI)
+### Accessibility
 
 *26 repositories, 117 commits*
 
@@ -59,7 +59,7 @@
 | <span id="row-dequelabs-cauldron"></span>[dequelabs/cauldron](https://github.com/dequelabs/cauldron) | [1](#user-content-commits-dequelabs-cauldron) | TypeScript |  |
 | <span id="row-act-rules-act-rules-github-io"></span>[act-rules/act-rules.github.io](https://github.com/act-rules/act-rules.github.io) | [1](#user-content-commits-act-rules-act-rules-github-io) | JavaScript | Accessibility conformance testing rules for HTML |
 
-### Internationalization (i18n)
+### Internationalization
 
 *11 repositories, 68 commits*
 
@@ -195,7 +195,7 @@
 | <span id="row-w3c-webmention"></span>[w3c/webmention](https://github.com/w3c/webmention) | [3](#user-content-commits-w3c-webmention) | HTML | Webmention spec |
 | <span id="row-w3c-websub"></span>[w3c/websub](https://github.com/w3c/websub) | [3](#user-content-commits-w3c-websub) | HTML | WebSub Spec in Social Web Working Group |
 
-### Semantic Web (Linked Data)
+### Linked Data
 
 *12 repositories, 52 commits*
 
@@ -225,7 +225,7 @@
 | <span id="row-w3c-epub-tests"></span>[w3c/epub-tests](https://github.com/w3c/epub-tests) | [15](#user-content-commits-w3c-epub-tests) | HTML | Test repository for EPUB3, maintained by the EPUB3... |
 | <span id="row-w3c-pm-wg"></span>[w3c/pm-wg](https://github.com/w3c/pm-wg) | [8](#user-content-commits-w3c-pm-wg) | HTML | Publishing Maintenance Working Group |
 
-### Immersive Web (WebXR)
+### Immersive Web
 
 *2 repositories, 4 commits*
 
@@ -443,7 +443,7 @@
 | <span id="row-web-platform-tests-wpt-metadata"></span>[web-platform-tests/wpt-metadata](https://github.com/web-platform-tests/wpt-metadata) | [4](#user-content-commits-web-platform-tests-wpt-metadata) | Go | Out-of-tree metadata for wpt |
 | <span id="row-web-platform-tests-wpt-fyi"></span>[web-platform-tests/wpt.fyi](https://github.com/web-platform-tests/wpt.fyi) | [1](#user-content-commits-web-platform-tests-wpt-fyi) | Go | web-platform-tests dashboard |
 
-### HTML/CSS checking (validation)
+### HTML/CSS checking/validation
 
 *2 repositories, 105 commits*
 

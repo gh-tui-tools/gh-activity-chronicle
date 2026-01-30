@@ -4,39 +4,6 @@
 
 ---
 
-## Notable PRs
-
-| PR | Repo | Language | Lines | Reviews | Status |
-|----|------|----------|------:|------:|--------|
-| [Major CSS update](https://github.com/w3c/csswg-drafts/pull/200) | w3c/csswg-drafts | CSS | +500/-100 | 0 | Merged |
-
-## Projects by category
-
-### Accessibility (WAI)
-
-*1 repository, 80 commits*
-
-| Repository | Commits | Language | Description |
-|------------|--------:|----------|-------------|
-| <span id="row-w3c-wai-aria"></span>[w3c/wai-aria](https://github.com/w3c/wai-aria) | [80](#user-content-commits-w3c-wai-aria) | HTML | WAI-ARIA specification |
-
-### Web standards and specifications
-
-*2 repositories, 300 commits*
-
-| Repository | Commits | Language | Description |
-|------------|--------:|----------|-------------|
-| <span id="row-w3c-csswg-drafts"></span>[w3c/csswg-drafts](https://github.com/w3c/csswg-drafts) | [200](#user-content-commits-w3c-csswg-drafts) | CSS | CSS Working Group Editor Drafts |
-| <span id="row-whatwg-html"></span>[whatwg/html](https://github.com/whatwg/html) | [100](#user-content-commits-whatwg-html) | HTML | HTML Standard |
-
-### Other
-
-*1 repository, 70 commits*
-
-| Repository | Commits | Language | Description |
-|------------|--------:|----------|-------------|
-| <span id="row-user-misc-project"></span>[user/misc-project](https://github.com/user/misc-project) | [70](#user-content-commits-user-misc-project) | JavaScript | Miscellaneous project |
-
 ## Executive summary
 
 | Metric | Count |
@@ -48,7 +15,50 @@
 | Issues created | 25 |
 | Repositories contributed to | 8 |
 
-## Languages
+<details name="activity">
+<summary><h2>Notable PRs</h2></summary>
+
+| PR | Repo | Language | Lines | Reviews | Status |
+|----|------|----------|------:|------:|--------|
+| [Major CSS update](https://github.com/w3c/csswg-drafts/pull/200) | w3c/csswg-drafts | CSS | +500/-100 | 0 | Merged |
+
+</details>
+
+<details name="activity">
+<summary><h2>Projects by category</h2></summary>
+
+<details name="category">
+<summary><h3><a id="cat-accessibility"></a>Accessibility <em>(1 repository, 80 commits)</em></h3></summary>
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-w3c-wai-aria"></span>[w3c/wai-aria](https://github.com/w3c/wai-aria) | [80](#user-content-commits-w3c-wai-aria) | HTML | WAI-ARIA specification |
+
+</details>
+
+<details name="category">
+<summary><h3><a id="cat-web-standards-and-specifications"></a>Web standards and specifications <em>(2 repositories, 300 commits)</em></h3></summary>
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-w3c-csswg-drafts"></span>[w3c/csswg-drafts](https://github.com/w3c/csswg-drafts) | [200](#user-content-commits-w3c-csswg-drafts) | CSS | CSS Working Group Editor Drafts |
+| <span id="row-whatwg-html"></span>[whatwg/html](https://github.com/whatwg/html) | [100](#user-content-commits-whatwg-html) | HTML | HTML Standard |
+
+</details>
+
+<details name="category">
+<summary><h3><a id="cat-other"></a>Other <em>(1 repository, 70 commits)</em></h3></summary>
+
+| Repository | Commits | Language | Description |
+|------------|--------:|----------|-------------|
+| <span id="row-user-misc-project"></span>[user/misc-project](https://github.com/user/misc-project) | [70](#user-content-commits-user-misc-project) | JavaScript | Miscellaneous project |
+
+</details>
+
+</details>
+
+<details name="activity">
+<summary><h2>Languages</h2></summary>
 
 | Language | Commits | Repos |
 |----------|--------:|------:|
@@ -56,13 +66,19 @@
 | <span id="row-lang-html"></span>HTML | [180](#user-content-lang-html) | 2 |
 | <span id="row-lang-javascript"></span>JavaScript | [70](#user-content-lang-javascript) | 1 |
 
-## PRs reviewed
+</details>
+
+<details name="activity">
+<summary><h2>PRs reviewed</h2></summary>
 
 | Repository | Language | PRs Reviewed | Total Lines |
 |------------|----------|-------------:|------------:|
 | whatwg/html | HTML | 1 | 250 |
 
-## PRs created
+</details>
+
+<details name="activity">
+<summary><h2>PRs created</h2></summary>
 
 | Status | Count |
 |--------|------:|
@@ -78,7 +94,9 @@
 | Reviews received | 0 |
 | Review comments received | 0 |
 
-<details name="commit-details">
+</details>
+
+<details name="activity">
 <summary><h2>Commit details by language</h2></summary>
 
 ### <a id="lang-css">CSS</a> (200 commits) [↩](#user-content-row-lang-css)
@@ -100,7 +118,7 @@
 
 </details>
 
-<details name="commit-details">
+<details name="activity">
 <summary><h2>Commit details by repository</h2></summary>
 
 ### <a id="commits-w3c-csswg-drafts" href="https://github.com/w3c/csswg-drafts">w3c/csswg-drafts</a> (200 commits) [↩](#user-content-row-w3c-csswg-drafts)
@@ -125,7 +143,7 @@
 
 </details>
 
-<details name="commit-details">
+<details name="activity">
 <summary><h2>Commit details by organization</h2></summary>
 
 ### <a id="org-w3c"></a>[w3c](https://github.com/w3c) (290 commits)
@@ -147,7 +165,7 @@
 
 </details>
 
-<details name="commit-details">
+<details name="activity">
 <summary><h2>Commit details by user</h2></summary>
 
 ### <a id="user-alice"></a>[Alice Smith](https://github.com/alice) ([@w3c](https://github.com/w3c)) (210 commits) [↩](#user-content-org-w3c-alice)

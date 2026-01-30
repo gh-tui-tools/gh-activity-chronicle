@@ -87,7 +87,7 @@ class TestGetCategoryFromTopics:
     def test_accessibility_topics(self, mod):
         topics = ["accessibility", "a11y"]
         result = mod.get_category_from_topics(topics)
-        assert result == "Accessibility (WAI)"
+        assert result == "Accessibility"
 
     def test_empty_topics(self, mod):
         assert mod.get_category_from_topics([]) is None
@@ -122,7 +122,7 @@ class TestCategorizeRepo:
 
         # validator/validator should be HTML/CSS checking
         result = cat_func("validator/validator")
-        assert result == "HTML/CSS checking (validation)"
+        assert result == "HTML/CSS checking/validation"
 
     def test_org_based_categorization(self, mod):
         """Test organization-based categorization."""
@@ -152,11 +152,11 @@ class TestCategorizeRepo:
 
         # w3c/wai-* should be Accessibility
         result = cat_func("w3c/wai-aria")
-        assert result == "Accessibility (WAI)"
+        assert result == "Accessibility"
 
         # w3c/i18n-* should be Internationalization
         result = cat_func("w3c/i18n-glossary")
-        assert result == "Internationalization (i18n)"
+        assert result == "Internationalization"
 
     def test_uncategorized_repo(self, mod):
         """Test that unknown repos fall through to Other."""
@@ -176,7 +176,7 @@ class TestCategorizeRepo:
         result = mod.get_category("validator")
         # "validator" matches the explicit base name from
         # "validator/validator", so it gets the same category
-        assert result == "HTML/CSS checking (validation)"
+        assert result == "HTML/CSS checking/validation"
 
     def test_fork_base_name_match(self, mod):
         """A fork matching an explicit repo base name gets same category."""
@@ -194,7 +194,7 @@ class TestCategorizeRepo:
         """Repos matching GENERAL_PATTERNS should get that category."""
         # "respec" is in GENERAL_PATTERNS via SPEC_TOOLING contains
         result = mod.get_category("someuser/my-validator-tool")
-        assert result == "HTML/CSS checking (validation)"
+        assert result == "HTML/CSS checking/validation"
 
     def test_topic_based_fallback(self, mod):
         """Repos with matching topics should get topic-based category."""

@@ -296,7 +296,7 @@ class TestE2EOrgReport:
         assert "# github activity chronicle" in report
         assert "testorg" in report
         assert "<details" in report  # Has collapsible sections
-        assert 'name="commit-details"' in report  # Accordion behavior
+        assert 'name="activity"' in report  # Accordion behavior
 
     def test_org_report_has_all_detail_sections(self, mock_member_data):
         """Verify org report has all four detail sections."""

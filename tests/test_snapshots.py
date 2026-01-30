@@ -189,7 +189,7 @@ def get_comprehensive_org_data():
                     "description": "HTML Standard",
                 },
             ],
-            "Accessibility (WAI)": [
+            "Accessibility": [
                 {
                     "name": "w3c/wai-aria",
                     "commits": 80,

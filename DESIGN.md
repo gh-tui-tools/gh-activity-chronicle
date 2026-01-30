@@ -240,31 +240,52 @@ See also: [Commit hyperlinks](#commit-hyperlinks) section for full implementatio
 
 **Period:** 2026-01-01 to 2026-01-31
 
-## Notable PRs
-- Top PRs by total lines changed (additions + deletions), first and most visible table
-- Default count scales with date range: 15 (≤14d), 25 (≤60d), 35 (≤180d), 50 (>180d)
-- Override with `--notable-prs N`
-
-## Projects by category
-- Category name
-  - Table: Repository | Commits | PRs | Lines | Language | Description
-  - Commits link to GitHub search
-
 ## Executive summary
 - Commits, PRs, reviews, issues counts
 - Lines added/deleted
 - Repositories contributed to
 
-## Languages
+<details>
+<summary><h2>Notable PRs</h2></summary>
+
+- Top PRs by total lines changed (additions + deletions)
+- Default count scales with date range: 15 (≤14d), 25 (≤60d), 35 (≤180d), 50 (>180d)
+- Override with `--notable-prs N`
+
+</details>
+
+<details>
+<summary><h2>Projects by category</h2></summary>
+
+- Each category wrapped in nested <details>/<summary> (collapsible)
+- Heading includes anchor ID, category name, and repo/commit counts on one line
+- Table: Repository | Commits | PRs | Lines | Language | Description
+- Commits link to GitHub search
+
+</details>
+
+<details>
+<summary><h2>Languages</h2></summary>
+
 - Table: Language | Commits | PRs | Lines
 - Commits link to GitHub search filtered by language
 
-## PRs reviewed
+</details>
+
+<details>
+<summary><h2>PRs reviewed</h2></summary>
+
 - By repository with line counts
 
-## PRs created
+</details>
+
+<details>
+<summary><h2>PRs created</h2></summary>
+
 - Status breakdown (merged/open/closed)
 - Reviews received on created PRs
+
+</details>
 
 ---
 *Report generated on 2026-01-23 14:30:45 +0900*
@@ -272,7 +293,7 @@ See also: [Commit hyperlinks](#commit-hyperlinks) section for full implementatio
 
 ### Organization mode
 
-Org mode reports have the same structure as user mode, plus four collapsible detail sections wrapped in `<details><summary>` for better UX:
+Org mode reports have the same structure as user mode — Executive summary first, then collapsible Notable PRs, Projects by category (with nested collapsible categories), Languages, PRs reviewed, and PRs created — plus four collapsible detail sections wrapped in `<details><summary>` for better UX:
 
 ```html
 <details name="commit-details">
@@ -345,9 +366,13 @@ These sections are collapsed by default on GitHub, making long org reports less 
 
 **Period**: Date range clearly displayed at the top.
 
-**Projects by category tables**: Commits are clickable (direct GitHub search for user mode, anchor links for org mode).
+**Executive summary**: Key metrics table (commits, PRs, reviews, issues, lines, repos). First section after the title — always visible.
 
-**Languages table**: Commit counts link to language-filtered GitHub searches in user mode.
+**Notable PRs**: Collapsible (`<details>/<summary>`). Top PRs sorted by total lines changed.
+
+**Projects by category**: Collapsible outer wrapper, with each category in a nested collapsible `<details>/<summary>` with an anchor ID (e.g., `cat-browser-engines`) and inline summary showing repo/commit counts. Commits are clickable (direct GitHub search for user mode, anchor links for org mode).
+
+**Languages, PRs reviewed, PRs created**: Each wrapped in collapsible `<details>/<summary>`. Commit counts in the Languages table link to language-filtered GitHub searches in user mode.
 
 **Footer**: Generation timestamp with timezone offset.
 
@@ -400,7 +425,7 @@ Standalone HTML page with embedded CSS. Produced by converting the markdown outp
 - `---` horizontal rules
 - HTML passthrough (`<details>`, `<summary>`, `<span>`, `<a>`)
 
-The CSS provides: system font stack, max-width 960px container, table borders with zebra striping, link styling, and `<details>`/`<summary>` cursor styling. Zero external dependencies.
+The CSS provides: system font stack, max-width 960px container, table borders with zebra striping, link styling, `<details>`/`<summary>` cursor styling, and `display: inline` for `summary h2` and `summary h3` (so headings inside `<summary>` render inline with the disclosure triangle). Zero external dependencies.
 
 ### Format selection logic
 
@@ -426,12 +451,12 @@ Repositories are categorized using a combination of explicit mappings and heuris
 **Org-based auto-detection**:
 - `w3c/*`, `w3c-cg/*`, `whatwg/*`, `wicg/*` → Web standards (with pattern overrides)
 - `tc39/*`, `webassembly/*`, `khronos-group/*` → Web standards
-- `immersive-web/*` → Immersive Web (WebXR)
+- `immersive-web/*` → Immersive Web
 - `webaudio/*` → Web Audio
 - `webmachinelearning/*` → Machine Learning
-- `json-ld/*` → Semantic Web
-- `act-rules/*` → Accessibility (WAI)
-- `r12a/*` → Internationalization (i18n)
+- `json-ld/*` → Linked Data
+- `act-rules/*` → Accessibility
+- `r12a/*` → Internationalization
 - `speced/*`, `jsdom/*` → Specification tooling
 - `web-platform-dx/*` → Interop
 - `w3cping/*` → Privacy
@@ -440,8 +465,8 @@ Repositories are categorized using a combination of explicit mappings and heuris
 - `*/standards-positions` → Standards positions
 
 **Pattern-based detection** (within standards orgs):
-- `wai-*`, `wcag*` → Accessibility (WAI)
-- `i18n*`, `charmod*` → Internationalization (i18n)
+- `wai-*`, `wcag*` → Accessibility
+- `i18n*`, `charmod*` → Internationalization
 - `epub-*`, `publ-*`, `dpub*`, `audiobook*` → Digital Publishing
 - `security*` → Security
 - `privacy*`, `fingerprint*`, `ping`, `privacywg`, `gpc`, `dpv` → Privacy
@@ -451,7 +476,7 @@ Repositories are categorized using a combination of explicit mappings and heuris
 - `media*` (non-mediacapture), `encrypted-media`, `mediasession` → Media
 - `*sensor*`, `battery`, `nfc`, `web-nfc` → Devices and Sensors
 - `svgwg`, `png`, `gpuweb-wg`, `graphics-*`, `svg-*` → Graphics
-- `rdf*`, `sparql*`, `shacl*` → Semantic Web
+- `rdf*`, `sparql*`, `shacl*` → Linked Data
 - `sustainab*` → Sustainability
 - `ai-agent*`, `aikr`, `agent-comm*`, `cogai` → AI and agents
 - `payment*`, `webpayments` → Payments
@@ -500,8 +525,8 @@ Repositories are categorized using a combination of explicit mappings and heuris
 - `zotero` → Reference management
 - `SocketDev` → Supply chain security
 - `HTTPArchive` → Web analytics
-- `SolidOS`, `SolidLabResearch`, `hackers4peace` → Semantic Web (Solid protocol)
-- `matrix-org` → Semantic Web (decentralized)
+- `SolidOS`, `SolidLabResearch`, `hackers4peace` → Linked Data (Solid protocol)
+- `matrix-org` → Linked Data (decentralized)
 - `agentplexus`, `langchain-ai` → AI and agents
 
 **Topic-based detection** (fallback for uncategorized repos):
@@ -517,20 +542,20 @@ Example topic mappings:
 - `database`, `mongodb`, `postgresql`, `mysql`, `redis` → Databases
 - `game-development`, `unity`, `godot`, `game-engine` → Game development
 - `blockchain`, `cryptocurrency`, `bitcoin`, `ethereum`, `web3` → Blockchain
-- `accessibility`, `a11y`, `wcag` → Accessibility (WAI)
-- `webxr`, `virtual-reality`, `ar`, `vr` → Immersive Web (WebXR)
+- `accessibility`, `a11y`, `wcag` → Accessibility
+- `webxr`, `virtual-reality`, `ar`, `vr` → Immersive Web
 
 The full mapping is in `TOPIC_CATEGORIES` dict in the source.
 
 **Current categories**:
 
 *W3C Working Group Areas:*
-- Accessibility (WAI)
-- Internationalization (i18n)
+- Accessibility
+- Internationalization
 - Digital Publishing
 - Security
 - Privacy
-- Immersive Web (WebXR)
+- Immersive Web
 - Verifiable Credentials
 - Web of Things
 - WebRTC
@@ -539,7 +564,7 @@ The full mapping is in `TOPIC_CATEGORIES` dict in the source.
 - Devices and Sensors
 - Graphics
 - Machine Learning (WebNN)
-- Semantic Web
+- Linked Data
 - Sustainability
 - AI and agents
 - Payments
@@ -558,7 +583,7 @@ The full mapping is in `TOPIC_CATEGORIES` dict in the source.
 - Web standards and specifications (catch-all)
 
 *Testing and Quality:*
-- HTML/CSS checking (validation)
+- HTML/CSS checking/validation
 - Web Platform Tests
 - Browser interop
 - Testing frameworks
@@ -1145,6 +1170,9 @@ def make_lang_anchor(language):
 
 def make_org_anchor(org_or_company):
     """Create an anchor ID from org/company (e.g., 'tc39' -> 'org-tc39', 'DWANGO Co.,Ltd.' -> 'org-dwango-co-ltd')."""
+
+def make_category_anchor(category):
+    """Create an anchor ID from category name (e.g., 'Browser engines' -> 'cat-browser-engines')."""
 ```
 
 The `aggregate_org_data()` function tracks:
