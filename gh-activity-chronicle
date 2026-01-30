@@ -5505,7 +5505,7 @@ def generate_org_report(
             total = sum(repos.values())
             display_name = member_real_names.get(member) or member
             if company:
-                orgs = re.findall(org_pattern, company)
+                orgs = list(dict.fromkeys(re.findall(org_pattern, company)))
                 if orgs:
                     for org in orgs:
                         org_members[org].append((member, display_name, total))
@@ -5622,7 +5622,9 @@ def generate_org_report(
                 company = normalize_company(member_companies.get(member, ""))
                 if company:
                     # Find all @org mentions and convert to links
-                    orgs = re.findall(org_pattern, company)
+                    orgs = list(
+                        dict.fromkeys(re.findall(org_pattern, company))
+                    )
                     if orgs:
                         # Replace each @org with a markdown link
                         linked = company

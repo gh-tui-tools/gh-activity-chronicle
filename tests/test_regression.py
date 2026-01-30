@@ -406,6 +406,54 @@ class TestOrgReportStructure:
         # Should group by company
         assert "@w3c" in report or "w3c" in report
 
+    def test_duplicate_org_in_company_does_not_duplicate_member(
+        self, mod, org_info
+    ):
+        """Member with '@google Google' company appears once, not twice."""
+        data = {
+            "total_commits_default_branch": 10,
+            "total_commits_all": 10,
+            "total_prs": 1,
+            "total_pr_reviews": 0,
+            "total_issues": 0,
+            "repos_contributed": 1,
+            "repos_by_category": {
+                "Other": [
+                    {
+                        "name": "nicehero/nicejson",
+                        "commits": 10,
+                        "prs": 1,
+                        "language": "Python",
+                        "description": "A project",
+                    }
+                ]
+            },
+            "repo_line_stats": {},
+            "repo_languages": {},
+            "repo_member_commits": {
+                "nicehero/nicejson": {"tomayac": 10},
+            },
+            "lang_member_commits": {"Python": {"tomayac": 10}},
+            "member_real_names": {"tomayac": "Thomas Steiner"},
+            "member_companies": {"tomayac": "@google Google"},
+            "prs_nodes": [],
+            "reviewed_nodes": [],
+            "is_light_mode": True,
+        }
+        members = [{"login": "tomayac", "name": "Thomas Steiner"}]
+        report = mod.generate_org_report(
+            org_info,
+            None,
+            "2026-01-01",
+            "2026-01-31",
+            data,
+            members,
+        )
+        # "Thomas Steiner" should appear only once in the org section
+        org_section = report.split("Commit details by organization")[1]
+        org_section = org_section.split("Commit details by")[0]
+        assert org_section.count("Thomas Steiner") == 1
+
     def test_commit_details_by_language(
         self, mod, complete_org_data, mock_members, org_info
     ):
