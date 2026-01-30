@@ -5,7 +5,7 @@
 Install test and lint dependencies:
 
 ```sh
-pip install pytest pytest-mock ruff
+pip install .[test,lint]
 ```
 
 ## Pre-commit hooks

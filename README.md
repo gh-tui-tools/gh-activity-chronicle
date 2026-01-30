@@ -184,8 +184,8 @@ By default all three extensions (`.md`, `.json`, `.html`) are written. With `--f
 The project includes a comprehensive test suite (431 tests):
 
 ```bash
-# Install test dependencies
-pip install pytest pytest-mock
+# Install test and lint dependencies
+pip install .[test,lint]
 
 # Run all tests
 pytest tests/ -v

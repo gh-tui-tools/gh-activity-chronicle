@@ -9,7 +9,11 @@ requires-python = ">=3.6"
 test = [
     "pytest>=7.0",
     "pytest-mock>=3.0",
+    "pytest-cov>=4.0",
     "jsonschema>=4.0",
+]
+lint = [
+    "ruff>=0.4",
 ]
 
 [tool.pytest.ini_options]
