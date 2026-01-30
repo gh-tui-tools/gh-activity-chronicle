@@ -1605,3 +1605,254 @@ class TestFormatOrgDataJson:
         assert parsed["meta"]["org"]["login"] == "org"
         assert "data" in parsed
         assert "report" in parsed
+
+
+class TestJsonSchema:
+    """Validate JSON output against schema.json."""
+
+    @pytest.fixture
+    def schema(self):
+        import json
+        from pathlib import Path
+
+        schema_path = Path(__file__).parent.parent / "schema.json"
+        with open(schema_path) as f:
+            return json.load(f)
+
+    def test_user_json_validates(self, mod, schema):
+        """User-mode JSON output validates against schema."""
+        import json
+
+        import jsonschema
+
+        data = {
+            "user_real_name": "Test User",
+            "total_commits_default_branch": 120,
+            "total_commits_all": 150,
+            "total_prs": 25,
+            "total_pr_reviews": 40,
+            "total_issues": 8,
+            "total_additions": 12000,
+            "total_deletions": 3000,
+            "test_commits": 15,
+            "repos_contributed": 3,
+            "reviews_received": 5,
+            "pr_comments_received": 3,
+            "lines_reviewed": 2000,
+            "review_comments": 10,
+            "repos_by_category": {
+                "Web standards and specifications": [
+                    {
+                        "name": "w3c/csswg-drafts",
+                        "commits": 80,
+                        "prs": 12,
+                        "language": "CSS",
+                        "description": "CSS Working Group",
+                    },
+                ],
+                "Other": [
+                    {
+                        "name": "user/project",
+                        "commits": 40,
+                        "prs": 8,
+                        "language": "Python",
+                        "description": "Personal project",
+                    },
+                ],
+            },
+            "repo_line_stats": {
+                "w3c/csswg-drafts": {
+                    "additions": 8000,
+                    "deletions": 2000,
+                },
+                "user/project": {
+                    "additions": 2000,
+                    "deletions": 500,
+                },
+            },
+            "repo_languages": {
+                "w3c/csswg-drafts": "CSS",
+                "user/project": "Python",
+            },
+            "prs_nodes": [
+                {
+                    "title": "Add CSS Grid feature",
+                    "url": "https://github.com/w3c/csswg-drafts/pull/1",
+                    "state": "MERGED",
+                    "merged": True,
+                    "additions": 500,
+                    "deletions": 100,
+                    "repository": {
+                        "nameWithOwner": "w3c/csswg-drafts",
+                        "primaryLanguage": {"name": "CSS"},
+                    },
+                },
+                {
+                    "title": "Update readme",
+                    "url": "https://github.com/user/project/pull/5",
+                    "state": "OPEN",
+                    "merged": False,
+                    "additions": 50,
+                    "deletions": 10,
+                    "repository": {
+                        "nameWithOwner": "user/project",
+                        "primaryLanguage": {"name": "Python"},
+                    },
+                },
+            ],
+            "reviewed_nodes": [
+                {
+                    "title": "Update Flexbox spec",
+                    "url": "https://github.com/w3c/csswg-drafts/pull/2",
+                    "additions": 300,
+                    "deletions": 80,
+                    "author": {"login": "other-user"},
+                    "repository": {
+                        "nameWithOwner": "w3c/csswg-drafts",
+                    },
+                },
+            ],
+        }
+        result = mod.format_user_data_json(
+            data, "testuser", "2026-01-01", "2026-01-31"
+        )
+        parsed = json.loads(result)
+        jsonschema.validate(parsed, schema)
+
+    def test_org_json_validates(self, mod, schema):
+        """Org-mode JSON output validates against schema."""
+        import json
+
+        import jsonschema
+
+        org_info = {
+            "login": "w3c",
+            "name": "World Wide Web Consortium",
+            "description": "Web standards org",
+        }
+        aggregated = {
+            "total_commits_default_branch": 200,
+            "total_commits_all": 200,
+            "total_prs": 50,
+            "total_pr_reviews": 80,
+            "total_issues": 20,
+            "repos_contributed": 30,
+            "total_additions": 0,
+            "total_deletions": 0,
+            "reviews_received": 30,
+            "pr_comments_received": 25,
+            "test_commits": 0,
+            "repos_by_category": {
+                "Web standards and specifications": [
+                    {
+                        "name": "w3c/csswg-drafts",
+                        "commits": 60,
+                        "prs": 10,
+                        "language": "CSS",
+                        "description": "CSS specs",
+                    },
+                ],
+            },
+            "repo_line_stats": {},
+            "repo_languages": {"w3c/csswg-drafts": "CSS"},
+            "prs_nodes": [
+                {
+                    "title": "Add feature",
+                    "url": "https://github.com/w3c/csswg-drafts/pull/1",
+                    "state": "MERGED",
+                    "merged": True,
+                    "additions": 100,
+                    "deletions": 10,
+                    "repository": {
+                        "nameWithOwner": "w3c/csswg-drafts",
+                        "primaryLanguage": {"name": "CSS"},
+                    },
+                },
+            ],
+            "reviewed_nodes": [
+                {
+                    "title": "Fix issue",
+                    "url": "https://github.com/w3c/csswg-drafts/pull/2",
+                    "additions": 50,
+                    "deletions": 5,
+                    "author": {"login": "alice"},
+                    "repository": {
+                        "nameWithOwner": "w3c/csswg-drafts",
+                    },
+                },
+            ],
+            "is_light_mode": True,
+            "owners_only": False,
+            "repo_member_commits": {
+                "w3c/csswg-drafts": {"alice": 35, "bob": 25},
+            },
+            "lang_member_commits": {
+                "CSS": {"alice": 35, "bob": 25},
+            },
+            "member_real_names": {
+                "alice": "Alice Smith",
+                "bob": "Bob Jones",
+            },
+            "member_companies": {
+                "alice": "@acme",
+                "bob": "@w3c",
+            },
+        }
+        members = ["alice", "bob"]
+        result = mod.format_org_data_json(
+            org_info,
+            None,
+            "2026-01-01",
+            "2026-01-31",
+            aggregated,
+            members,
+        )
+        parsed = json.loads(result)
+        jsonschema.validate(parsed, schema)
+
+    def test_org_with_team_validates(self, mod, schema):
+        """Org-mode JSON with --team validates against schema."""
+        import json
+
+        import jsonschema
+
+        org_info = {
+            "login": "w3c",
+            "name": "World Wide Web Consortium",
+            "description": "Web standards org",
+        }
+        team_info = {
+            "slug": "webperf",
+            "name": "Web Performance",
+            "description": "Web Performance WG",
+        }
+        aggregated = {
+            "total_commits_default_branch": 50,
+            "total_commits_all": 50,
+            "total_prs": 10,
+            "total_pr_reviews": 15,
+            "total_issues": 3,
+            "repos_contributed": 5,
+            "total_additions": 0,
+            "total_deletions": 0,
+            "reviews_received": 8,
+            "pr_comments_received": 6,
+            "test_commits": 0,
+            "repos_by_category": {},
+            "repo_line_stats": {},
+            "repo_languages": {},
+            "prs_nodes": [],
+            "reviewed_nodes": [],
+            "is_light_mode": True,
+            "owners_only": False,
+        }
+        result = mod.format_org_data_json(
+            org_info,
+            team_info,
+            "2026-01-01",
+            "2026-01-31",
+            aggregated,
+            ["alice"],
+        )
+        parsed = json.loads(result)
+        jsonschema.validate(parsed, schema)

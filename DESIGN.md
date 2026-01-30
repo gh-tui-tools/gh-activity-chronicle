@@ -394,25 +394,74 @@ The markdown output is not designed for local viewing. Two factors make local re
 
 ### JSON
 
-Machine-readable output for downstream processing. Structure:
+Machine-readable output for downstream processing. The structure is formally defined in [`schema.json`](schema.json) (JSON Schema draft 2020-12). What follows is a human-readable summary.
+
+**Top-level keys:**
 
 ```json
 {
-  "meta": {
-    "tool": "gh-activity-chronicle",
-    "generated_at": "2026-01-07T14:30:45+09:00",
-    "username": "octocat",
-    "since_date": "2026-01-01",
-    "until_date": "2026-01-07"
-  },
-  "data": { /* raw gather_user_data() / aggregate_org_data() output */ },
-  "report": { /* structured sections: notable_prs, languages, etc. */ }
+  "meta":   { },
+  "data":   { },
+  "report": { }
 }
 ```
 
-The `data` key contains the full raw data dict. The `report` key contains pre-computed structured sections (notable PRs, projects by category, executive summary, languages, PRs created/reviewed) — saving consumers from re-deriving the same computations that the markdown formatter performs.
+#### `meta` — report metadata
 
-The section computation is done by `build_user_report_sections()` and `build_org_report_sections()`, which serve as the shared computation layer consumed by both the JSON serializer and (indirectly) the markdown formatter.
+Two variants (expressed as `oneOf` in the schema):
+
+**User mode** — when invoked with a username:
+
+| Key | Type | Description |
+|-----|------|-------------|
+| `tool` | string | Always `"gh-activity-chronicle"` |
+| `version` | string | Schema version (currently `"1.0.0"`) |
+| `generated_at` | string | ISO 8601 datetime with timezone |
+| `username` | string | GitHub username |
+| `since_date` | string | Start date (YYYY-MM-DD) |
+| `until_date` | string | End date (YYYY-MM-DD) |
+
+**Org mode** — when invoked with `--org`:
+
+| Key | Type | Description |
+|-----|------|-------------|
+| `tool`, `version`, `generated_at`, `since_date`, `until_date` | — | Same as user mode |
+| `org` | object | `{ login, name, description }` |
+| `team` | object \| null | `{ slug, name, description }` when `--team` is used, otherwise `null` |
+| `members` | array of strings | GitHub usernames included in the report |
+
+#### `data` — raw gathered data
+
+The full dict from `gather_user_data()` (user mode) or `aggregate_org_data()` (org mode). Its shape is an internal implementation detail — the schema documents key fields without being exhaustive. Consumers who want stable, well-defined structures should use `report` instead.
+
+Notable keys: `total_commits_default_branch`, `total_prs`, `total_pr_reviews`, `total_issues`, `repos_contributed`, `prs_nodes`, `reviewed_nodes`, `repos_by_category`, `repo_line_stats`, `repo_languages`. Org mode additionally includes `repo_member_commits`, `lang_member_commits`, `member_real_names`, `member_companies`, `is_light_mode`, and `owners_only`.
+
+#### `report` — computed sections
+
+Pre-computed structured sections, saving consumers from re-deriving the same computations that the markdown formatter performs. The section computation is done by `build_user_report_sections()` and `build_org_report_sections()`, which serve as the shared computation layer consumed by both the JSON serializer and (indirectly) the markdown formatter.
+
+**Always present** (both user and org mode):
+
+| Key | Type | Contents |
+|-----|------|----------|
+| `executive_summary` | object | Integer counts: `commits_default_branch`, `commits_all_branches`, `prs_created`, `pr_reviews_given`, `issues_created`, `repositories_contributed_to`. User mode adds `lines_added`, `lines_deleted`, `test_related_commits`. |
+| `notable_prs` | array | Top 10 PRs by churn. Each entry: `{ title, url, state, additions, deletions, repository, language }`. `state` is `"OPEN"`, `"MERGED"`, or `"CLOSED"`. |
+| `projects_by_category` | object | Category name → array of repo objects. Each repo: `{ name, commits, language, description }`. User mode adds `additions` and `deletions`. |
+| `languages` | array | Per-language stats: `{ language, commits, repos }`. User mode adds `additions` and `deletions`. Sorted by commit count descending. |
+| `prs_reviewed` | array | Top 15 repos by review count: `{ repository, language, prs_reviewed, total_lines }`. |
+| `prs_created` | object | `{ merged, open, closed_not_merged, total }` — all integers. |
+| `reviews_received` | object | `{ reviews_received, review_comments_received }` — all integers. |
+
+**Org mode only** (conditionally present):
+
+| Key | Type | Contents |
+|-----|------|----------|
+| `repo_member_commits` | object | `{ "owner/repo": { "username": count, ... }, ... }` |
+| `lang_member_commits` | object | `{ "Language": { "username": count, ... }, ... }` |
+| `member_real_names` | object | `{ "username": "Full Name", ... }` |
+| `member_companies` | object | `{ "username": "Company", ... }` |
+
+**Line stats availability:** User mode always includes per-repo and per-language line additions/deletions. Org mode omits them when running in light mode (the default for orgs) because per-commit line stats aren't fetched to conserve API calls.
 
 ### HTML
 
