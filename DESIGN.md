@@ -374,7 +374,7 @@ These sections are collapsed by default on GitHub, making long org reports less 
 
 **Languages, PRs reviewed, PRs created**: Each wrapped in collapsible `<details name="activity">`. Commit counts in the Languages table link to language-filtered GitHub searches in user mode.
 
-All top-level sections share `name="activity"` for accordion behavior — only one section is open at a time across the entire report.
+All top-level sections share `name="activity"` for accordion behavior — only one section is open at a time across the entire report. In HTML output, a small script scrolls the `<summary>` into view when a section is opened by clicking, so the heading stays visible. The script tracks whether the `<summary>` was actually clicked and skips the scroll when the browser opens a `<details>` for hash navigation (e.g., following a `#user-GarthDB` link), so the native scroll-to-anchor behavior is preserved.
 
 **Footer**: Generation timestamp with timezone offset.
 

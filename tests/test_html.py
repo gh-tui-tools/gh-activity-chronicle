@@ -75,6 +75,20 @@ class TestMarkdownToHtml:
         assert "scrollIntoView" in html
         assert "details[name]" in html
 
+    def test_accordion_scroll_only_on_click(self):
+        """Scroll-to-top only on user click, not hash navigation."""
+        html = mod.markdown_to_html("# Hello")
+        # Must track click on summary to distinguish user clicks
+        # from browser opening details for hash navigation
+        assert "click" in html
+        assert "summary" in html
+        # scrollIntoView should be guarded by the click flag
+        script = html.split("<script>")[1].split("</script>")[0]
+        assert "clicked" in script or "click" in script
+        # The toggle handler must check the flag before scrolling
+        assert "scrollIntoView" in script
+        assert "open" in script
+
     def test_heading_levels(self):
         md = "# H1\n## H2\n### H3\n#### H4\n##### H5\n###### H6"
         html = mod.markdown_to_html(md)

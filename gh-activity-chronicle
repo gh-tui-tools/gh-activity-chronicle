@@ -4754,10 +4754,15 @@ hr {{
 {body}
 <script>
 document.querySelectorAll("details[name]").forEach(d => {{
+  let clicked = false;
+  d.querySelector("summary").addEventListener("click", () => {{
+    clicked = true;
+  }});
   d.addEventListener("toggle", () => {{
-    if (d.open) {{
+    if (d.open && clicked) {{
       d.querySelector("summary").scrollIntoView({{behavior: "instant"}});
     }}
+    clicked = false;
   }});
 }});
 </script>
