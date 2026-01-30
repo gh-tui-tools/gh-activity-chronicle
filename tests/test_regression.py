@@ -593,6 +593,35 @@ class TestOrgReportTitleBranches:
         first_line = report.split("\n")[0]
         assert first_line.endswith("Owners")
 
+    def test_include_private_shows_warning(self, mod, base_org_data, members):
+        """include_private flag adds a warning banner."""
+        org_info = {"login": "w3c", "name": "W3C"}
+        base_org_data["include_private"] = True
+        report = mod.generate_org_report(
+            org_info,
+            None,
+            "2026-01-01",
+            "2026-01-31",
+            base_org_data,
+            members,
+        )
+        assert "> [!WARNING]" in report
+        assert "Do not share this report publicly" in report
+        assert "made their membership" in report
+
+    def test_no_private_no_warning(self, mod, base_org_data, members):
+        """No warning banner when include_private is not set."""
+        org_info = {"login": "w3c", "name": "W3C"}
+        report = mod.generate_org_report(
+            org_info,
+            None,
+            "2026-01-01",
+            "2026-01-31",
+            base_org_data,
+            members,
+        )
+        assert "> [!WARNING]" not in report
+
 
 class TestOrgReportFullMode:
     """Test full mode (non-light) branches in generate_org_report()."""

@@ -3968,6 +3968,7 @@ def gather_org_data_active_contributors(
     progress.update("Aggregating member data...")
     aggregated = aggregate_org_data(member_data_list)
     aggregated["owners_only"] = owners_only
+    aggregated["include_private"] = include_private
     progress.stop()
 
     return org_info, team_info, active_members, aggregated, member_data_list
@@ -4536,6 +4537,48 @@ def markdown_to_html(md_text):
             html_lines.append("<hr>")
             continue
 
+        # Blockquote (GitHub alert syntax: > [!WARNING] etc.)
+        if stripped.startswith("> "):
+            if in_table:
+                html_lines.append("</table>")
+                in_table = False
+                had_header_sep = False
+            if in_list:
+                html_lines.append("</ul>")
+                in_list = False
+            bq_lines = []
+            alert_type = None
+            # Collect consecutive > lines
+            idx = lines.index(line)
+            while idx < len(lines):
+                s = lines[idx].strip()
+                if not s.startswith("> "):
+                    break
+                content = s[2:]
+                alert_m = re.match(
+                    r"^\[!(WARNING|NOTE|TIP|CAUTION"
+                    r"|IMPORTANT)\]$",
+                    content,
+                )
+                if alert_m:
+                    alert_type = alert_m.group(1).lower()
+                else:
+                    bq_lines.append(_inline_markdown(content))
+                idx += 1
+            # Remove consumed lines so they aren't
+            # processed again (mutate `lines` in place)
+            start = lines.index(line)
+            del lines[start + 1 : idx]
+            css_class = f' class="alert-{alert_type}"' if alert_type else ""
+            label = ""
+            if alert_type:
+                label = f"<strong>{alert_type.title()}</strong><br>"
+            inner = " ".join(bq_lines)
+            html_lines.append(
+                f"<blockquote{css_class}>{label}{inner}</blockquote>"
+            )
+            continue
+
         # Headings
         if stripped.startswith("#"):
             if in_table:
@@ -4669,6 +4712,12 @@ hr {{
   border: none;
   border-top: 1px solid #d0d7de;
   margin: 2rem 0;
+}}
+.alert-warning {{
+  border-left: 4px solid #d4a017;
+  background: #fff8e1;
+  padding: 0.75rem 1rem;
+  margin: 1rem 0;
 }}
 </style>
 </head>
@@ -5010,6 +5059,7 @@ def generate_org_report(
     org_name = org_info.get("name") or ""
     org_link = f"[{org_login}](https://github.com/{org_login})"
     owners_only = aggregated_data.get("owners_only", False)
+    include_private = aggregated_data.get("include_private", False)
 
     report = []
     if team_info:
@@ -5042,6 +5092,15 @@ def generate_org_report(
     report.append("")
     report.append("---")
     report.append("")
+
+    if include_private:
+        report.append("> [!WARNING]")
+        report.append(
+            "> **Do not share this report publicly.** It includes"
+            " data on users who have made their membership in this"
+            " organization private."
+        )
+        report.append("")
 
     # Executive summary (first section - key metrics at a glance)
     report.append("## Executive summary")
@@ -5883,7 +5942,8 @@ def _resolve_stem(config):
             name = config.org
     else:
         name = config.username
-    return f"{name}-{config.since_date}-to-{config.until_date}"
+    private = "-private" if getattr(config, "private", False) else ""
+    return f"{name}{private}-{config.since_date}-to-{config.until_date}"
 
 
 def run(config):

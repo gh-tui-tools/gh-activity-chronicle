@@ -714,6 +714,35 @@ class TestRun:
 
         assert mock_write.call_count == 3
 
+    def test_private_flag_adds_private_to_stem(self):
+        """--private adds '-private' to default output stem."""
+        config = self._make_config(username=None, org="myorg", private=True)
+        stem = mod._resolve_stem(config)
+        assert "-private-" in stem
+        assert stem.startswith("myorg-private-")
+
+    def test_no_private_flag_no_private_in_stem(self):
+        """Without --private, stem doesn't contain '-private'."""
+        config = self._make_config(username=None, org="myorg", private=False)
+        stem = mod._resolve_stem(config)
+        assert "-private" not in stem
+
+    def test_private_with_team_in_stem(self):
+        """--private with --team includes both in stem."""
+        config = self._make_config(
+            username=None, org="myorg", team="coreteam", private=True
+        )
+        stem = mod._resolve_stem(config)
+        assert "myorg-coreteam-private-" in stem
+
+    def test_private_with_explicit_output_ignores_flag(self):
+        """--output overrides default stem; --private doesn't affect it."""
+        config = self._make_config(
+            username=None, org="myorg", private=True, output="custom"
+        )
+        stem = mod._resolve_stem(config)
+        assert stem == "custom"
+
     def test_user_mode_all_formats_gathers_data_once(self):
         """gather_user_data called once in all-formats mode."""
         config = self._make_config()  # format=None

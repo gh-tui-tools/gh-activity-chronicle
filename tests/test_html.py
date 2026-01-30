@@ -294,3 +294,46 @@ class TestMarkdownToHtml:
         assert "</table>" in html
         assert "<ul>" in html
         assert "<li>item</li>" in html
+
+    def test_blockquote_warning_alert(self):
+        """GitHub [!WARNING] alert renders as styled blockquote."""
+        md = "> [!WARNING]\n> Some warning text here."
+        html = mod.markdown_to_html(md)
+        assert '<blockquote class="alert-warning">' in html
+        assert "<strong>Warning</strong>" in html
+        assert "Some warning text here." in html
+
+    def test_blockquote_without_alert_type(self):
+        """Plain blockquote without alert type."""
+        md = "> Just a quote."
+        html = mod.markdown_to_html(md)
+        assert "<blockquote>" in html
+        assert "Just a quote." in html
+        assert "class=" not in html.split("<blockquote")[1].split(">")[0]
+
+    def test_blockquote_multiline(self):
+        """Multi-line blockquote is joined."""
+        md = "> [!WARNING]\n> Line one.\n> Line two."
+        html = mod.markdown_to_html(md)
+        assert "Line one." in html
+        assert "Line two." in html
+
+    def test_blockquote_closes_table(self):
+        """A blockquote after a table closes the table."""
+        md = "| A |\n|---|\n| 1 |\n> quote"
+        html = mod.markdown_to_html(md)
+        assert "</table>" in html
+        assert "<blockquote>" in html
+
+    def test_blockquote_closes_list(self):
+        """A blockquote after a list closes the list."""
+        md = "- item\n> quote"
+        html = mod.markdown_to_html(md)
+        assert "</ul>" in html
+        assert "<blockquote>" in html
+
+    def test_blockquote_warning_css(self):
+        """Warning alert CSS is present in HTML output."""
+        md = "> [!WARNING]\n> Text."
+        html = mod.markdown_to_html(md)
+        assert ".alert-warning" in html
