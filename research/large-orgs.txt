@@ -1,0 +1,98 @@
+=== Organizations with 100+ public members ===
+
+Rank   Organization                    Public Members
+-------------------------------------------------------
+1      microsoft                                4,482
+2      ibm                                      3,245
+3      azure                                    2,862
+4      epicgames                                2,737
+5      oracle                                   1,748
+6      apache                                   1,586
+7      jenkinsci                                  708
+8      SAP                                        629
+9      google                                     625
+10     dotnet                                     541
+11     kubernetes                                 529
+12     w3c                                        525
+13     googlecloudplatform                        459
+14     kubernetes-sigs                            348
+15     open-telemetry                             294
+16     datadog                                    270
+17     adobe                                      239
+18     magento                                    223
+19     tensorflow                                 216
+20     github                                     215
+21     istio                                      215
+22     openjdk                                    209
+23     nodejs                                     203
+24     eclipse                                    196
+25     shopify                                    186
+26     wordpress                                  185
+27     azure-samples                              179
+28     elastic                                    178
+29     aws                                        177
+30     tc39                                       160
+31     rust-lang                                  152
+32     reactjs                                    152
+33     alibaba                                    152
+34     python                                     140
+35     jetbrains                                  139
+36     apple                                      138
+37     nvidia                                     130
+38     ethereum                                   126
+39     whatwg                                     114
+40     redhat-developer                           109
+41     hashicorp                                  100
+42     oracle-devrel                              100
+
+Found 42 organizations with 100+ public members
+
+
+=== Organizations with 50-99 public members ===
+
+Rank   Organization                    Public Members
+-------------------------------------------------------
+43     mozilla                                     98
+44     gradle                                      97
+45     envoyproxy                                  96
+46     argoproj                                    94
+47     ruby                                        91
+48     awslabs                                     88
+49     flutter                                     87
+50     cncf                                        84
+51     golang                                      84
+52     aws-samples                                 84
+53     django                                      82
+54     freecodecamp                                82
+55     uber                                        81
+56     vercel                                      81
+57     tektoncd                                    80
+58     home-assistant                              78
+59     facebook                                    72
+60     vuejs                                       71
+61     bytedance                                   71
+62     php                                         70
+63     rails                                       70
+64     pytest-dev                                  70
+65     huggingface                                 69
+66     jquery                                      66
+67     baidu                                       66
+68     scikit-learn                                63
+69     facebookresearch                            60
+70     exercism                                    59
+71     pypa                                        59
+72     haskell                                     57
+73     vlang                                       57
+74     atlassian                                   56
+75     mongodb                                     56
+76     containers                                  56
+77     ansible                                     54
+78     containerd                                  54
+79     emberjs                                     53
+80     numpy                                       52
+81     scipy                                       52
+82     openjs-foundation                           51
+83     pytorch                                     51
+84     line                                        50
+
+Generated: 2026-01-28
