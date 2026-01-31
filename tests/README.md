@@ -9,8 +9,8 @@ pip install pytest pytest-mock
 # Run all tests (416 tests)
 pytest tests/ -v
 
-# Run specific test file
-pytest tests/test_helpers.py -v
+# Run specific test file (--no-cov skips coverage)
+pytest tests/test_helpers.py -v --no-cov
 
 # Run with coverage (requires pytest-cov)
 pip install pytest-cov
@@ -28,7 +28,7 @@ pytest tests/ --cov=. --cov-report=term-missing
 | `test_rate_limit.py` | 19 | `estimate_org_api_calls`, `should_warn_rate_limit` |
 | `test_aggregation.py` | 28 | Language stats, org data, PR tables, ordering |
 
-These test pure functions that don't call the GitHub API.
+These test pure functions that don’t call the GitHub API.
 
 ### Integration Tests (with mocking)
 
@@ -101,7 +101,7 @@ api_responses/
 
 The test suite enforces a **98% coverage threshold** (`fail_under = 98` in `pyproject.toml`). Current coverage is ~99%.
 
-Lines that are genuinely untestable (terminal I/O, threading callbacks, rate-limit recovery) are marked with `# pragma: no cover`. The ~20 remaining uncovered lines are intentionally left without pragmas — they represent code that *could* be tested but where the mock complexity isn't worth it. The coverage report serves as a living inventory of these known gaps.
+Lines that are genuinely untestable (terminal I/O, threading callbacks, rate-limit recovery) are marked with `# pragma: no cover`. The ~20 remaining uncovered lines are intentionally left without pragmas — they represent code that *could* be tested but where the mock complexity isn’t worth it. The coverage report serves as a living inventory of these known gaps.
 
 ## Updating Golden Files
 
@@ -189,7 +189,7 @@ Check the source for exact field names if tests fail with `KeyError`.
 
 ## Troubleshooting
 
-### "No module named pytest"
+### “No module named pytest”
 ```bash
 pip install pytest pytest-mock
 ```
@@ -201,7 +201,7 @@ git diff tests/fixtures/golden/  # Review changes
 ```
 
 ### Tests fail with KeyError
-The mock data structure doesn't match what the code expects. Check the actual function return values in the source code.
+The mock data structure doesn’t match what the code expects. Check the actual function return values in the source code.
 
 ### Module loading fails
 The test suite loads `gh-activity-chronicle` despite lacking `.py` extension. If this fails, check that `conftest.py` is present and the script path is correct.

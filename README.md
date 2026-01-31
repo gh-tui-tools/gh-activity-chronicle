@@ -1,6 +1,6 @@
 # gh-activity-chronicle
 
-gh-activity-chronicle generates comprehensive reports of GitHub activity — for users or organizations — over a specified time period. By default it writes all three output formats (Markdown, JSON, and HTML); use `--format` to select just one.
+gh-activity-chronicle generates comprehensive reports of GitHub activity — for users or organizations — over a specified time period.
 
 ## Installation
 
@@ -14,7 +14,7 @@ gh extension install gh-tui-tools/gh-activity-chronicle
 - Python 3.6+
 
 > [!WARNING]
-> **API Rate Limits**: This tool makes many GitHub API calls. A single-user report uses ~50-200 calls. Organization reports use significantly more — a 7-day report for a 500-member org uses ~1,300 calls (~26% of your 5,000/hour limit).
+> **API Rate Limits**: This tool makes many GitHub API calls. A single-user run uses ~50-200 calls. Org runs use much more: a 7-day report for a 500-member org uses ~1,300 calls (~26% of the 5,000/hour limit).
 >
 > **To minimize API usage:**
 > - Use shorter time periods (7 days is the default)
@@ -88,7 +88,7 @@ gh activity-chronicle --org w3c --team accessibility-specialists
 | `‑‑until` | | End date in YYYY-MM-DD format (default: today) |
 | `‑‑output` | `‑o` | Output file path / stem (default: `<name>-<since>-to-<until>`) |
 | `‑‑stdout` | | Output to stdout instead of file (requires `‑‑format`) |
-| `‑‑format` | `‑f` | Output format: `markdown`, `json`, or `html` (default: all three; or inferred from `‑‑output` extension) |
+| `‑‑format` | `‑f` | Output format: `markdown`\|`json`\|`html` (default: all; or inferred from `‑‑output`) |
 | `‑‑notable‑prs` | | Max notable PRs to show (default: scales with date range: 15/25/35/50) |
 
 ## Report contents
@@ -113,12 +113,12 @@ The generated report includes:
 Repositories are automatically categorized into:
 - **W3C working-group areas**: Accessibility, Internationalization, Digital publishing, Security, Privacy, Immersive Web, Verifiable Credentials, Web of Things, WebRTC, Web Audio, Media, Devices and sensors, Graphics, Machine Learning, Linked Data, Sustainability, AI and agents, Payments, Performance
 - **W3C operations**: W3C Process, W3C TAG, W3C Infrastructure
-- **Standards ecosystem**: Specification tooling, Standards positions, Web standards and specifications (catch-all)
-- **Testing and quality**: Web Platform Tests, HTML/CSS checking/validation, Browser interop, Testing frameworks
+- **Standards ecosystem**: Spec tooling, Standards positions, Web standards and specs (catch-all)
+- **Testing and quality**: WPT, HTML/CSS checking/validation, Browser interop, Testing frameworks
 - **Documentation**: MDN, Documentation platforms (Docusaurus, Sphinx, etc.)
 - **Implementation**: Browser engines, Developer tools, GitHub analytics
 - **Programming languages**: Programming languages, JavaScript runtimes, TypeScript
-- **Web development**: Web frameworks, Frontend frameworks, UI component libraries, Mobile development, 3D/WebGL
+- **Web development**: Web frameworks, Frontend frameworks, UI component libraries, Mobile dev, 3D/WebGL
 - **Data and ML**: Data science, ML frameworks
 - **DevOps and infrastructure**: DevOps, CI/CD, Package managers, Build tools
 - **IoT and embedded**: Home automation and Embedded systems
@@ -167,11 +167,11 @@ Output filename stem:
 - Org only: `{org}-{since}-to-{until}`
 - Org + team: `{org}-{team}-{since}-to-{until}`
 
-By default all three extensions (`.md`, `.json`, `.html`) are written. With `--format`, only the matching extension is written.
+By default, all three formats (`.md`, `.json`, `.html`) are output. With `--format`, only the matching format is.
 
 ## Notes
 
-- The markdown output is intended to be committed to a GitHub repository and viewed on the GitHub website — not locally. Local markdown viewers won't correctly render the `#user-content-` fragment links used in org-mode reports, and report files often exceed the [400 KB size limit](https://docs.github.com/en/rest/markdown/markdown) of GitHub's Markdown rendering API (which local GFM tools like `grip` depend on). The HTML output works anywhere.
+- The markdown output is intended to be committed to a GitHub repository and viewed on the GitHub website — not locally. Local markdown viewers won’t correctly handle the `#user-content-` fragment links used in org-mode reports, and report files often exceed the [400 KB size limit](https://docs.github.com/en/rest/markdown/markdown) of GitHub’s Markdown rendering API (which local GFM tools like `grip` depend on). The HTML output works anywhere.
 - The GitHub API limits contribution queries to a 1-year span. For longer periods, the script automatically adjusts the start date.
 - Commits to your forks are automatically aggregated under the parent repository (e.g., commits to `yourname/WebKit` appear under `WebKit/WebKit`).
 - Private repositories and special profile repositories (`username/username`) are automatically excluded.
@@ -190,21 +190,26 @@ pip install .[test,lint]
 # Run all tests
 pytest tests/ -v
 
-# Run specific test categories
-pytest tests/test_helpers.py -v      # Unit tests for helper functions
-pytest tests/test_snapshots.py -v    # Snapshot comparison tests
-pytest tests/test_e2e.py -v          # End-to-end data flow tests
+# Run specific test categories (--no-cov skips coverage)
+pytest tests/test_helpers.py -v --no-cov
+pytest tests/test_snapshots.py -v --no-cov
+pytest tests/test_e2e.py -v --no-cov
 ```
 
-**Test categories:**
-- **Unit tests** — Pure functions (categorization, rate limits, formatting)
-- **Integration tests** — Data flow with mocked GitHub API
-- **Regression tests** — Output structure, JSON/HTML converters, section builders
-- **Snapshot tests** — Compare full reports against golden baselines
-- **End-to-end tests** — Complete pipeline verification
-- **CLI tests** — Argument parsing, format selection, output dispatch
+### Test categories
 
-To update golden files after intentional output changes:
+| Category | Coverage |
+|----------|----------|
+| Unit tests | Pure functions (categorization, rate limits, formatting) |
+| Integration tests | Data flow with mocked GitHub API |
+| Regression tests | Output structure, JSON/HTML converters, section builders |
+| Snapshot tests | Compare full reports against golden baselines |
+| End-to-end tests | Complete pipeline verification |
+| CLI tests | Argument parsing, format selection, output dispatch |
+
+### Golden files
+
+To update golden files after you intentionally make any output-format changes, do this:
 ```bash
 pytest tests/test_snapshots.py --update-golden
 ```

@@ -25,7 +25,7 @@ Installed via `gh extension install gh-tui-tools/gh-activity-chronicle` and invo
 ```
 ┌─────────────────┐     ┌──────────────────┐     ┌─────────────────┐
 │   CLI Parser    │────▶│  Data Gathering  │────▶│ Report Generator│
-│  (argparse)     │     │  (GitHub APIs)   │     │ (MD/JSON/HTML) │
+│  (argparse)     │     │  (GitHub APIs)   │     │ (MD/JSON/HTML)  │
 └─────────────────┘     └──────────────────┘     └─────────────────┘
                                │
                     ┌──────────┴──────────┐
@@ -123,7 +123,7 @@ aggregated_commits[target_repo] += commit_count
 
 ### Bot filtering
 
-**Problem**: PRs authored by bots (dependabot, renovate, etc.) can appear in the "PRs reviewed" list, inflating review counts with trivial dependency updates.
+**Problem**: PRs authored by bots (dependabot, renovate, etc.) can appear in the “PRs reviewed” list, inflating review counts with trivial dependency updates.
 
 **Solution**: Filter out bot-authored PRs from review lists using `is_bot()`:
 
@@ -195,7 +195,7 @@ with ThreadPoolExecutor(max_workers=10) as executor:
     futures = [executor.submit(fetch_lang, repo) for repo in repos_needing_check]
 ```
 
-Worker counts are tuned to avoid GitHub's secondary rate limits (abuse detection). 40+ workers triggers rate limiting; 30 is the practical maximum.
+Worker counts are tuned to avoid GitHub’s secondary rate limits (abuse detection). 40+ workers triggers rate limiting; 30 is the practical maximum.
 
 Results: ~1000 commits in ~90 seconds.
 
@@ -207,13 +207,13 @@ Results: ~1000 commits in ~90 seconds.
 repo:w3c/csswg-drafts (author:user1 OR author:user2 OR ... author:user39) author-date:2025-12-26..2026-01-25
 ```
 
-But GitHub search has undocumented query complexity limits. With 30+ ORed authors, the search silently returns zero results — no error, just empty. There's also no `team:` or `org:` qualifier to filter commits by organization membership.
+But GitHub search has undocumented query complexity limits. With 30+ OR’ed authors, the search silently returns zero results — no error, just empty. There’s also no `team:` or `org:` qualifier to filter commits by organization membership.
 
 **Solution**: A two-level linking approach:
 
 1. Commit counts in tables link to **anchors within the document** (not GitHub search)
-2. A **"Commit details by repository" section** lists per-member breakdowns
-3. Each **individual member's count** links to a single-author GitHub search (which works fine)
+2. A **“Commit details by repository” section** lists per-member breakdowns
+3. Each **individual member’s count** links to a single-author GitHub search (which works fine)
 
 ```markdown
 ## Commit details by repository
@@ -358,7 +358,7 @@ Org mode reports have the same structure as user mode — Executive summary firs
 </details>
 ```
 
-These sections are collapsed by default on GitHub, making long org reports less overwhelming. All top-level sections — including Notable PRs, Projects by category, Languages, PRs reviewed, PRs created, and the four commit-detail sections — share `name="activity"`, which creates **accordion behavior**: opening one section automatically closes any other open section in the group. This prevents users from having multiple large sections expanded simultaneously, keeping the page manageable. Within "Projects by category", each category also forms its own accordion (`name="category"`), so only one category is expanded at a time. The "Commit details by language" section provides per-language breakdowns. The "by repository" section enables commit count links in the Projects tables. The "by organization" section groups users by company for a quick view of which organizations are most active. The "by user" section — the last of the four — shows each member's contribution breakdown with company affiliation and backlinks to navigate back to their exact position in the org list.
+These sections are collapsed by default on GitHub, making long org reports less overwhelming. All top-level sections — including Notable PRs, Projects by category, Languages, PRs reviewed, PRs created, and the four commit-detail sections — share `name="activity"`, which creates **accordion behavior**: opening one section automatically closes any other open section in the group. This prevents users from having multiple large sections expanded simultaneously, keeping the page manageable. Within “Projects by category”, each category also forms its own accordion (`name="category"`), so only one category is expanded at a time. The “Commit details by language” section provides per-language breakdowns. The “by repository” section enables commit count links in the Projects tables. The “by organization” section groups users by company for a quick view of which organizations are most active. The “by user” section — the last of the four — shows each member’s contribution breakdown with company affiliation and backlinks to navigate back to their exact position in the org list.
 
 ### Report elements
 
@@ -374,7 +374,7 @@ These sections are collapsed by default on GitHub, making long org reports less 
 
 **Languages, PRs reviewed, PRs created**: Each wrapped in collapsible `<details name="activity">`. Commit counts in the Languages table link to language-filtered GitHub searches in user mode.
 
-All top-level sections share `name="activity"` for accordion behavior — only one section is open at a time across the entire report. In HTML output, a small script scrolls the `<summary>` into view when a section is opened by clicking, so the heading stays visible. The script tracks whether the `<summary>` was actually clicked and skips the scroll when the browser opens a `<details>` for hash navigation (e.g., following a `#user-GarthDB` link), so the native scroll-to-anchor behavior is preserved.
+All top-level sections share `name="activity"` for accordion behavior — only one section is open at a time across the entire report. In HTML output, a small script scrolls the `<summary>` into view when a section is opened by clicking, so the heading stays visible. The script tracks whether the `<summary>` was actually clicked and skips the scroll when the browser opens a `<details>` for hash navigation (e.g., following a `#user-sideshowbarker` link), so the native scroll-to-anchor behavior is preserved.
 
 **Footer**: Generation timestamp with timezone offset.
 
@@ -382,7 +382,7 @@ See [SAMPLE.md](SAMPLE.md) for example user mode output, or [SAMPLE-ORG.md](SAMP
 
 ## Output formats
 
-Three output formats are supported. By default all three are written; `--format` selects a single one (or it's inferred from the `--output` file extension):
+Three output formats are supported. By default all three are written; `--format` selects a single one (or it’s inferred from the `--output` file extension):
 
 ### Markdown
 
@@ -390,9 +390,9 @@ The primary output format, intended to be committed to a GitHub repository and v
 
 The markdown output is not designed for local viewing. Two factors make local rendering impractical:
 
-1. **Fragment link compatibility**: Org-mode reports use `#user-content-`-prefixed fragment links for cross-section navigation (e.g., `#user-content-user-ljharb`). GitHub automatically prepends `user-content-` to all user-generated HTML element IDs as a namespace safety measure, so these links resolve correctly on github.com. Local markdown renderers don't apply this transformation, so the fragment links won't match any element IDs.
+1. **Fragment link compatibility**: Org-mode reports use `#user-content-`-prefixed fragment links for cross-section navigation (e.g., `#user-content-user-ljharb`). GitHub automatically prepends `user-content-` to all user-generated HTML element IDs as a namespace safety measure, so these links resolve correctly on github.com. Local markdown renderers don’t apply this transformation, so the fragment links won’t match any element IDs.
 
-2. **Document size**: Reports — especially org-mode reports for large organizations — routinely exceed several hundred kilobytes. Tools for rendering GitHub-Flavored Markdown locally (e.g., `grip`) rely on [GitHub's Markdown REST API](https://docs.github.com/en/rest/markdown/markdown), which rejects documents larger than 400 KB. GitHub.com itself renders the files correctly regardless of size.
+2. **Document size**: Reports — especially org-mode reports for large organizations — routinely exceed several hundred kilobytes. Tools for rendering GitHub-Flavored Markdown locally (e.g., `grip`) rely on [GitHub’s Markdown REST API](https://docs.github.com/en/rest/markdown/markdown), which rejects documents larger than 400 KB. GitHub.com itself renders the files correctly regardless of size.
 
 ### JSON
 
@@ -463,7 +463,7 @@ Pre-computed structured sections, saving consumers from re-deriving the same com
 | `member_real_names` | object | `{ "username": "Full Name", ... }` |
 | `member_companies` | object | `{ "username": "Company", ... }` |
 
-**Line stats availability:** User mode always includes per-repo and per-language line additions/deletions. Org mode omits them when running in light mode (the default for orgs) because per-commit line stats aren't fetched to conserve API calls.
+**Line stats availability:** User mode always includes per-repo and per-language line additions/deletions. Org mode omits them when running in light mode (the default for orgs) because per-commit line stats aren’t fetched to conserve API calls.
 
 ### HTML
 
@@ -483,7 +483,7 @@ The CSS provides: system font stack, max-width 960px container, table borders wi
 1. Explicit `--format` flag takes precedence — writes a single file
 2. If `--format` not given but `--output` has a recognized extension (`.json`, `.html`/`.htm`), infer that single format
 3. Default (no `--format`, no recognized extension): write all three files (`.md`, `.json`, `.html`) using the same stem
-4. `--stdout` requires `--format` (can't stream all three to stdout)
+4. `--stdout` requires `--format` (can’t stream all three to stdout)
 
 Output filenames share a common stem (`{name}-{since}-to-{until}`) with the format-appropriate extension. When `--output` is given in the all-formats case, any recognized extension is stripped to derive the stem (e.g. `--output report.md` → `report.md`, `report.json`, `report.html`).
 
@@ -582,7 +582,7 @@ Repositories are categorized using a combination of explicit mappings and heuris
 
 **Topic-based detection** (fallback for uncategorized repos):
 
-As a final fallback before categorizing a repo as "Other", the tool fetches the repo’s GitHub topics and maps them to a set of categories. This allows dynamic categorization without hardcoding every repo. Topics are cached to avoid redundant API calls.
+As a final fallback before categorizing a repo as “Other”, the tool fetches the repo’s GitHub topics and maps them to a set of categories. This allows dynamic categorization without hardcoding every repo. Topics are cached to avoid redundant API calls.
 
 Example topic mappings:
 - `machine-learning`, `deep-learning`, `tensorflow`, `pytorch`, `nlp`, `computer-vision` → ML frameworks
@@ -704,7 +704,7 @@ The full mapping is in `TOPIC_CATEGORIES` dict in the source.
 Categories are developed iteratively by analyzing real report output. The process:
 
 1. **Generate a report** for a large org (e.g., w3c with 40+ members over 30 days)
-2. **Examine the "Other" category** — this is the uncategorized pile
+2. **Examine the “Other” category** — this is the uncategorized pile
 3. **Look for patterns**:
    - Org ownership: e.g., all `CyclopsMC/*` repos are Minecraft mods
    - Repo name patterns: e.g., `postcss-*` repos are CSS tooling
@@ -712,22 +712,22 @@ Categories are developed iteratively by analyzing real report output. The proces
    - Ecosystem groupings: e.g., Solid protocol repos across multiple orgs
 4. **Add categorization rules** in order of specificity:
    - `ORG_CATEGORIES` for whole organizations
-   - `EXPLICIT_REPOS` for specific repos that don't fit patterns
+   - `EXPLICIT_REPOS` for specific repos that don’t fit patterns
    - `GENERAL_PATTERNS` for name-based matching
    - `TOPIC_CATEGORIES` for GitHub topic-based fallback
-5. **Re-run the report** to verify the "Other" pile shrinks
-6. **Iterate** — repeat steps 2-5 until "Other" is manageable
+5. **Re-run the report** to verify the “Other” pile shrinks
+6. **Iterate** — repeat steps 2-5 until “Other” is manageable
 
 **Principles:**
-- Categories should be meaningful groupings, not just "reduce Other"
+- Categories should be meaningful groupings, not just “reduce Other”
 - Prefer org-level rules over per-repo rules where possible
 - Pattern matching (prefixes, suffixes) scales better than explicit lists
 - Topic-based fallback catches repos that follow community conventions
-- It's OK to have some repos in "Other" — not everything needs categorizing
+- It’s OK to have some repos in “Other” — not everything needs categorizing
 
 **Example discovery process (from w3c org report):**
 
-The w3c org report showed 858 repos in "Other". Analysis revealed:
+The w3c org report showed 858 repos in “Other”. Analysis revealed:
 - `chrisguttandin/*` repos: all audio worklet/MIDI/WebAudio libraries
 - `es-shims/*` and `inspect-js/*`: JavaScript polyfills and shims
 - `httpwg/*`, `oauth-wg/*`: IETF working group repos
@@ -739,7 +739,7 @@ The w3c org report showed 858 repos in "Other". Analysis revealed:
 - `zotero/*`: Reference management software
 - `SocketDev/*`: npm supply chain security
 
-This analysis led to adding 15 new categories in two passes, reducing "Other" from 858 to ~200 repos for the w3c org.
+This analysis led to adding 15 new categories in two passes, reducing “Other” from 858 to ~200 repos for the w3c org.
 
 ### Blocklists
 
@@ -752,7 +752,7 @@ Add new entries when copies evade automatic detection.
 
 ### Rate limit handling
 
-**Problem**: When the user hits GitHub's rate limit, showing "Could not detect GitHub username" is confusing and unhelpful.
+**Problem**: When the user hits GitHub’s rate limit, showing “Could not detect GitHub username” is confusing and unhelpful.
 
 **Solution**: Detect rate limit errors and show when the limit resets:
 
@@ -761,9 +761,9 @@ Error: GitHub API rate limit exceeded.
 Try again after 08:27:13 (local time).
 ```
 
-The reset time is fetched from GitHub's `rate_limit` API endpoint.
+The reset time is fetched from GitHub’s `rate_limit` API endpoint.
 
-**Important**: The tool checks the **GraphQL** rate limit, not the REST API "core" limit. GitHub has separate quotas:
+**Important**: The tool checks the **GraphQL** rate limit, not the REST API “core” limit. GitHub has separate quotas:
 - REST API (core): 5,000/hour
 - GraphQL: 5,000/hour (separate pool)
 
@@ -805,7 +805,7 @@ Two key adjustments keep the estimate accurate for large orgs:
 
 1. **Phase 1 discount**: The [activity check](#active-contributors-optimization) uses web scraping for ~95% of members (free — no API cost). Only ~5% fall back to GraphQL batch queries, so phase 1 is estimated as `ceil(num_members × 0.05 / 10)` rather than `ceil(num_members / 10)`.
 
-2. **Sublinear member scaling** (exponent 0.8): Doubling total membership doesn't double active contributors — large orgs have proportionally more inactive members. For orgs over 500 members, the effective member count is `500 × (num_members / 500)^0.8`. This keeps estimates reasonable: without it, w3c with `--private` (3,686 members) was estimated at 5,728 calls — 2.1× the actual 2,724.
+2. **Sublinear member scaling** (exponent 0.8): Doubling total membership doesn’t double active contributors — large orgs have proportionally more inactive members. For orgs over 500 members, the effective member count is `500 × (num_members / 500)^0.8`. This keeps estimates reasonable: without it, w3c with `--private` (3,686 members) was estimated at 5,728 calls — 2.1× the actual 2,724.
 
 Calibrated against real usage (w3c org):
 
@@ -815,7 +815,7 @@ Calibrated against real usage (w3c org):
 | 524 public members, 30 days | ~2,200 | ~2,228 |
 | 3,686 total members (`--private`), 1 day | ~2,724 | ~2,742 |
 
-**Re-check after activity filter:** The pre-check uses heuristics because the actual active count isn't known yet. Once the activity check completes and the real active count is known, the tool re-estimates using `known_active=True` — which uses the exact active count directly (no sublinear heuristic, no phase 1 overhead since it's already done) — and warns again if the revised estimate still exceeds thresholds. This catches cases where the heuristic was too optimistic and the actual cost would be higher than predicted.
+**Re-check after activity filter:** The pre-check uses heuristics because the actual active count isn’t known yet. Once the activity check completes and the real active count is known, the tool re-estimates using `known_active=True` — which uses the exact active count directly (no sublinear heuristic, no phase 1 overhead since it’s already done) — and warns again if the revised estimate still exceeds thresholds. This catches cases where the heuristic was too optimistic and the actual cost would be higher than predicted.
 
 **Warning thresholds:**
 
@@ -828,7 +828,7 @@ Both conditions check the *actual remaining GraphQL limit* (via `gh api rate_lim
 
 **Early exit when exhausted:**
 
-If GraphQL remaining is < 50 calls, the tool doesn't ask "Proceed anyway?" — it immediately shows the rate limit error with reset time and exits. There's no point asking when there's nothing left to work with.
+If GraphQL remaining is < 50 calls, the tool doesn’t ask “Proceed anyway?” — it immediately shows the rate limit error with reset time and exits. There’s no point asking when there’s nothing left to work with.
 
 **User prompt:**
 
@@ -840,7 +840,7 @@ Or wait another 16 minutes until 17:24, when your graphql rate limit will be res
 Proceed anyway? [y/N]
 ```
 
-The "Or wait another…" line shows how long until the rate limit window resets, giving users a concrete alternative to proceeding. The resource name (e.g. "graphql") comes from whichever API limit `get_rate_limit_reset_time()` checks. The line is omitted if the reset time can't be determined.
+The “Or wait another…” line shows how long until the rate limit window resets, giving users a concrete alternative to proceeding. The resource name (e.g. “graphql”) comes from whichever API limit `get_rate_limit_reset_time()` checks. The line is omitted if the reset time can’t be determined.
 
 - Default is No — pressing Enter aborts
 - User must type `y` or `yes` to proceed
@@ -865,7 +865,7 @@ The "Or wait another…" line shows how long until the rate limit window resets,
 
 ### Transient error handling
 
-**Problem**: GitHub's API occasionally returns transient HTTP errors (502 Bad Gateway, 503 Service Unavailable, 504 Gateway Timeout) during high-load periods or brief service disruptions. A single failed request shouldn't abort an entire report.
+**Problem**: GitHub’s API occasionally returns transient HTTP errors (502 Bad Gateway, 503 Service Unavailable, 504 Gateway Timeout) during high-load periods or brief service disruptions. A single failed request shouldn’t abort an entire report.
 
 **Solution**: Retry failed requests with exponential backoff:
 
@@ -894,7 +894,7 @@ def run_gh_command(args, parse_json=True, raise_on_rate_limit=False, max_retries
 | 2 | 2 seconds |
 | 3 | 4 seconds |
 
-After 3 retries (7 seconds total wait), the request is treated as failed and the tool silently continues with remaining work. No error is shown to the user — since the report still completes successfully, there's no need to alarm them about transient infrastructure issues. For org mode, a single member's failed API call won't prevent the report from completing; that member's data is simply skipped.
+After 3 retries (7 seconds total wait), the request is treated as failed and the tool silently continues with remaining work. No error is shown to the user — since the report still completes successfully, there’s no need to alarm them about transient infrastructure issues. For org mode, a single member’s failed API call won’t prevent the report from completing; that member’s data is simply skipped.
 
 **Why exponential backoff?**
 
@@ -945,9 +945,9 @@ Organization mode extends the tool to generate reports for GitHub organizations:
    - Merge line stats per repo (sum)
 5. **Generate report**: Same structure as user report with aggregated data, plus:
    - Commit counts link to anchors (not GitHub search, due to query complexity limits)
-   - "Commit details by repository" section with per-member breakdowns
-   - "Commit details by organization" section grouping users by company @mentions
-   - "Commit details by user" section with per-repo breakdowns (inverse view)
+   - “Commit details by repository” section with per-member breakdowns
+   - “Commit details by organization” section grouping users by company @mentions
+   - “Commit details by user” section with per-repo breakdowns (inverse view)
    - Members list passed to report generator for anchor link construction
 
 ### API endpoints
@@ -963,7 +963,7 @@ Organization mode uses these additional REST API endpoints:
 
 ### Privacy warning for `--private`
 
-**Problem**: GitHub allows org members to set their membership visibility to "private," meaning only org admins can see they're a member. If someone generates a report with `--private` and publishes it, they would expose these members' private membership status.
+**Problem**: GitHub allows org members to set their membership visibility to “private,” meaning only org admins can see they’re a member. If someone generates a report with `--private` and publishes it, they would expose these members’ private membership status.
 
 **Solution**: Warn users when they use `--private`:
 
@@ -986,13 +986,13 @@ Member data gathering uses 30 concurrent workers (via `ThreadPoolExecutor`), sam
 
 ### Active contributors optimization
 
-**Problem**: Large organizations (e.g., w3c with 524 public members) would exhaust GitHub's 5,000 API calls/hour rate limit when gathering data for all members — even with light mode's reduced per-member cost.
+**Problem**: Large organizations (e.g., w3c with 524 public members) would exhaust GitHub’s 5,000 API calls/hour rate limit when gathering data for all members — even with light mode’s reduced per-member cost.
 
 **Solution**: A two-phase approach that first identifies which members had *any* activity during the report period, then gathers detailed data only for those active members.
 
 **Phase 1 — Find active members (fast scraping):**
 
-Instead of slow sequential GraphQL queries, we scrape GitHub's contribution graph endpoint in parallel:
+Instead of slow sequential GraphQL queries, we scrape GitHub’s contribution graph endpoint in parallel:
 
 ```
 https://github.com/users/{username}/contributions?from=2026-01-19&to=2026-01-26
@@ -1004,7 +1004,7 @@ This endpoint returns HTML with contribution squares showing activity levels:
 ```
 
 **Why scraping is faster:**
-- Web requests don't count against GitHub's API rate limits
+- Web requests don’t count against GitHub’s API rate limits
 - Can use 50 concurrent workers (vs sequential API calls)
 - The endpoint is designed to be fast (powers the GitHub UI)
 - Contribution graph includes ALL contributions (commits, PRs, issues, reviews)
@@ -1031,13 +1031,13 @@ Only call `gather_user_data_light()` for members who passed the activity filter.
 | 7 days (default) | ~1,300 | 26% of limit |
 | 30 days | ~2,100 | 42% of limit |
 
-Note: Scraping doesn't count against the API limit, so the actual API usage is lower — only the GraphQL fallback (typically ~5% of users) and Phase 2 data gathering use API calls.
+Note: Scraping doesn’t count against the API limit, so the actual API usage is lower — only the GraphQL fallback (typically ~5% of users) and Phase 2 data gathering use API calls.
 
 **Benefits:**
 
 - **Much faster**: 26 seconds vs 2+ minutes for activity checking
 - **Enables repeatability**: Can run multiple reports per hour without hitting rate limits
-- **Leaves headroom**: Other `gh` commands won't fail due to exhausted limits
+- **Leaves headroom**: Other `gh` commands won’t fail due to exhausted limits
 - **Graceful fallback**: Users with private profiles or errors still get checked via API
 
 **Progress indication:**
@@ -1056,17 +1056,17 @@ If the GraphQL fallback hits the rate limit, the tool waits for reset (up to 3 m
 
 ### Data scope (light mode)
 
-Org mode uses `gather_user_data_light()` which fetches only essential data to avoid exhausting GitHub's API rate limit. This means org reports **include only commits to upstream/canonical repositories** — not commits to members' personal forks.
+Org mode uses `gather_user_data_light()` which fetches only essential data to avoid exhausting GitHub’s API rate limit. This means org reports **include only commits to upstream/canonical repositories** — not commits to members’ personal forks.
 
-Another way to think about it: org mode captures **merged work** — commits from PRs that have been merged into upstream repositories. It doesn't capture **work-in-progress** — commits on fork branches for PRs that haven't been merged yet.
+Another way to think about it: org mode captures **merged work** — commits from PRs that have been merged into upstream repositories. It doesn’t capture **work-in-progress** — commits on fork branches for PRs that haven’t been merged yet.
 
-**What's included:**
-- Commits from GitHub's contribution summary (repos where the user has push access)
+**What’s included:**
+- Commits from GitHub’s contribution summary (repos where the user has push access)
 - PRs created by members
 - PRs reviewed by members
 
-**What's excluded:**
-- Commits to members' forks of repositories (these are captured in user mode via fork scanning)
+**What’s excluded:**
+- Commits to members’ forks of repositories (these are captured in user mode via fork scanning)
 - Commits on non-default branches of forks (work-in-progress for unmerged PRs)
 - Per-commit line stats (additions/deletions)
 - Test commit detection
@@ -1090,9 +1090,9 @@ Org mode shows progress through multiple phases, each with a spinner and status 
 
 3. **Gathering member data**: `⠇ Gathered data for 65/145 active members (30 in progress)`
    - Shows *completed* count (not started count) to accurately reflect progress
-   - Shows how many workers are still fetching data ("N in progress")
-   - Updates as each member's data finishes (not when it starts)
-   - The "in progress" count explains apparent pauses when slow members (those with lots of PRs/reviews) are being processed
+   - Shows how many workers are still fetching data (“N in progress”)
+   - Updates as each member’s data finishes (not when it starts)
+   - The “in progress” count explains apparent pauses when slow members (those with lots of PRs/reviews) are being processed
 
 4. **Gathering complete**: `⠇ Gathered data for all 145 active members`
    - Brief transition message (0.3s) showing the gathering phase is complete
@@ -1170,18 +1170,18 @@ For org reports, we aggregate commits from multiple members. The naive approach 
 repo:w3c/csswg-drafts (author:user1 OR author:user2 OR author:user3 ...) author-date:...
 ```
 
-**Problem discovered**: GitHub search has undocumented query complexity limits. When ORing 30+ authors together, GitHub returns zero results — silently, with no error message. There's also no `team:` or `org:` qualifier that would filter commits by organization membership.
+**Problem discovered**: GitHub search has undocumented query complexity limits. When ORing 30+ authors together, GitHub returns zero results — silently, with no error message. There’s also no `team:` or `org:` qualifier that would filter commits by organization membership.
 
 ### Organization mode — the solution
 
-Since GitHub search can't handle multi-author queries at scale, org mode uses a two-level linking approach:
+Since GitHub search can’t handle multi-author queries at scale, org mode uses a two-level linking approach:
 
 1. **Commit counts in tables link to anchors** within the same document:
    ```markdown
    | [w3c/csswg-drafts](https://github.com/w3c/csswg-drafts) | [47](#commits-w3c-csswg-drafts) | ...
    ```
 
-2. **"Commit details by repository" section** provides per-member breakdowns:
+2. **“Commit details by repository” section** provides per-member breakdowns:
    ```markdown
    ## Commit details by repository
 
@@ -1202,12 +1202,12 @@ This approach:
 
 ### Organization mode — Languages table
 
-The Languages table in org mode also uses anchor links to a "Commit details by language" section. However, unlike the repository breakdown, **the per-member counts in the language section are plain numbers without GitHub links**.
+The Languages table in org mode also uses anchor links to a “Commit details by language” section. However, unlike the repository breakdown, **the per-member counts in the language section are plain numbers without GitHub links**.
 
-Why? GitHub commit search doesn't support filtering by programming language:
+Why? GitHub commit search doesn’t support filtering by programming language:
 - `language:` is a code search qualifier, not a commit search qualifier
 - Using `language:` in a commit search causes GitHub to interpret it as code search
-- Code search doesn't support `author:` — so we can't filter by both
+- Code search doesn’t support `author:` — so we can’t filter by both
 
 We attempted workarounds:
 1. **Multi-repo queries**: Find repos of that language the user committed to, construct `(repo:x OR repo:y) author:user`. But GitHub still interprets this as code search when repos span multiple languages.
@@ -1216,14 +1216,14 @@ The result: Language detail sections show who contributed how many commits, with
 
 ### GitHub search limitations
 
-GitHub's search APIs have several undocumented limitations that affect commit linking:
+GitHub’s search APIs have several undocumented limitations that affect commit linking:
 
 | Limitation | Impact | Workaround |
 |------------|--------|------------|
 | **Query complexity limit** | ORing 30+ authors returns zero results silently | Use per-member breakdowns with single-author links |
-| **No team/org filter** | Can't filter commits by org membership | List authors explicitly (hits complexity limit) |
+| **No team/org filter** | Can’t filter commits by org membership | List authors explicitly (hits complexity limit) |
 | **No language filter for commits** | `language:` is code-search only; using it triggers code search mode | No workaround; show plain counts for language breakdowns |
-| **Code search lacks author** | Can't combine `language:` with `author:` | No workaround |
+| **Code search lacks author** | Can’t combine `language:` with `author:` | No workaround |
 
 ### Implementation
 
@@ -1262,20 +1262,20 @@ Both commit tracking dicts are used to generate the detail sections with bidirec
 
 In the detail sections, members are displayed using their **real name** (from their GitHub profile) when available, with the **username as fallback**. The display text shows the more readable real name when the user has one configured.
 
-In the "Commit details by language" and "Commit details by repository" sections, member names link to the member's heading in "Commit details by user" (an internal document anchor), enabling cross-section navigation:
+In the “Commit details by language” and “Commit details by repository” sections, member names link to the member’s heading in “Commit details by user” (an internal document anchor), enabling cross-section navigation:
 
 ```markdown
 - [Chris Lilley](#user-content-user-svgeesus): [13](...)
 - [sideshowbarker](#user-content-user-sideshowbarker): [1](...)
 ```
 
-In the "Commit details by user" section itself, the heading links to the member's GitHub profile. The member's **company** is also shown (unless using `--owners` mode, where it would be redundant). Company `@mentions` are converted to GitHub org links, and backlinks point to the user's specific list item in the "Commit details by organization" section:
+In the “Commit details by user” section itself, the heading links to the member’s GitHub profile. The member’s **company** is also shown (unless using `--owners` mode, where it would be redundant). Company `@mentions` are converted to GitHub org links, and backlinks point to the user’s specific list item in the “Commit details by organization” section:
 
 ```markdown
 ### [Jordan Harband](https://github.com/ljharb) ([@socketdev](https://github.com/socketdev) [@tc39](https://github.com/tc39)) (123 commits) [↩](#org-socketdev-ljharb) [↩](#org-tc39-ljharb)
 ```
 
-Multiple `@org` mentions are supported — each becomes a separate link with its own backlink. Org names can include periods (e.g., `@mesur.io`). Plain text companies (without `@`) are shown as-is and also get backlinks to their list item in the company group. This enables sequential navigation through an org's member list — view a user's details, then use the backlink to return to exactly where you left off.
+Multiple `@org` mentions are supported — each becomes a separate link with its own backlink. Org names can include periods (e.g., `@mesur.io`). Plain text companies (without `@`) are shown as-is and also get backlinks to their list item in the company group. This enables sequential navigation through an org’s member list — view a user’s details, then use the backlink to return to exactly where you left off.
 
 ### Company name normalization
 
@@ -1283,7 +1283,7 @@ GitHub users enter their company field as free text, leading to inconsistent var
 - Case differences: `babel`, `Babel`, `BABEL`
 - Format differences: `W3C`, `@w3c`, `@W3C`
 
-To group users consistently in the "Commit details by organization" section, company names are normalized:
+To group users consistently in the “Commit details by organization” section, company names are normalized:
 
 1. **Case normalization**: All variations of the same word are grouped together. Plain text gets initial capitalization (e.g., `babel` → `Babel`).
 
@@ -1291,21 +1291,21 @@ To group users consistently in the "Commit details by organization" section, com
 
 3. **Mixed values**: Users with both `@org` mentions and plain text in their company field have each component normalized separately.
 
-This ensures that minor formatting differences don't split users who work at the same organization into separate groups.
+This ensures that minor formatting differences don’t split users who work at the same organization into separate groups.
 
 ## Limitations
 
 1. **1000 commit limit**: GitHub search API caps at 1000 results. For very active users over long periods, some commits may be missing.
 
-2. **1-year contribution summary**: GitHub's `contributionsCollection` GraphQL field only supports 1-year spans.
+2. **1-year contribution summary**: GitHub’s `contributionsCollection` GraphQL field only supports 1-year spans.
 
 3. **Fork branch heuristics**: The branch filtering for forks may miss some user branches or include upstream branches in some cases.
 
-4. **Rate limits**: Heavy usage may hit GitHub's 5000 requests/hour limit, especially for long periods with many repositories. Exceeding ~30 concurrent requests triggers secondary rate limits (abuse detection). The [active contributors optimization](#active-contributors-optimization) mitigates this for org mode — a 7-day report (the default) for 524 members uses ~1,300 API calls (~26% of the hourly limit).
+4. **Rate limits**: Heavy usage may hit GitHub’s 5000 requests/hour limit, especially for long periods with many repositories. Exceeding ~30 concurrent requests triggers secondary rate limits (abuse detection). The [active contributors optimization](#active-contributors-optimization) mitigates this for org mode — a 7-day report (the default) for 524 members uses ~1,300 API calls (~26% of the hourly limit).
 
 5. **Organization permissions**: Org mode requires permission to view org membership. For private orgs or orgs with hidden membership, you must be a member.
 
-6. **GitHub search query complexity**: GitHub silently returns zero results for complex search queries (e.g., 30+ ORed authors). This limits the ability to create single links that filter by multiple authors. The workaround is to use anchor links with per-member breakdowns (see "Commit hyperlinks" section).
+6. **GitHub search query complexity**: GitHub silently returns zero results for complex search queries (e.g., 30+ ORed authors). This limits the ability to create single links that filter by multiple authors. The workaround is to use anchor links with per-member breakdowns (see “Commit hyperlinks” section).
 
 ## Code style
 
@@ -1316,11 +1316,11 @@ The source code is optimized for both **readability** and **concision** — two 
 **Readability** means the code is easy to understand at a glance:
 - Descriptive variable and function names
 - Logical grouping of related code
-- Comments where the *why* isn't obvious from the code itself
+- Comments where the *why* isn’t obvious from the code itself
 
 **Concision** means avoiding unnecessary verbosity:
 - No redundant comments that just restate what the code does
-- Compact expressions where they're clearer than verbose alternatives
+- Compact expressions where they’re clearer than verbose alternatives
 - PEP 8 compliance (79-character line limit) which forces thoughtful line breaks
 
 ### Examples
@@ -1451,7 +1451,7 @@ All lines are kept under 79 characters (PEP 8 standard) without `# noqa` exempti
 - Makes the code more readable in split-pane editors and terminal windows
 - Results in natural line breaks at logical boundaries
 
-The 79-character limit is a feature, not a burden — it's a forcing function for cleaner code.
+The 79-character limit is a feature, not a burden — it’s a forcing function for cleaner code.
 
 ## Testing
 
@@ -1536,7 +1536,7 @@ pytest tests/test_snapshots.py --update-golden
 
 ### Module loading
 
-The main script (`gh-activity-chronicle`) lacks a `.py` extension since it's a CLI tool. The test suite loads it dynamically:
+The main script (`gh-activity-chronicle`) lacks a `.py` extension since it’s a CLI tool. The test suite loads it dynamically:
 
 ```python
 def load_chronicle_module():
@@ -1606,7 +1606,7 @@ The `normalize_report()` function removes variable content (timestamps) before c
 
 ### Organization mode
 
-- **`--full` flag** — Opt-in to full data gathering (fork commits, line stats) for smaller teams where API limits aren't a concern
+- **`--full` flag** — Opt-in to full data gathering (fork commits, line stats) for smaller teams where API limits aren’t a concern
 - **Team comparison** — Compare activity across multiple teams in one report
 - **Inactive member detection** — Identify members with no activity in the period
 
