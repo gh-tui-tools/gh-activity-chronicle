@@ -203,41 +203,38 @@ class TestGatherUserDataLight:
     @pytest.fixture
     def mock_light_api_calls(self, mod):
         """Mock API calls for light mode."""
+        contributions = {
+            "user": {
+                "name": "Test User",
+                "company": "@testorg",
+                "contributionsCollection": {
+                    "totalCommitContributions": 25,
+                    "restrictedContributionsCount": 0,
+                    "totalPullRequestContributions": 5,
+                    "totalIssueContributions": 2,
+                    "totalPullRequestReviewContributions": 8,
+                    "commitContributionsByRepository": [
+                        {
+                            "repository": {
+                                "nameWithOwner": "org/repo",
+                                "isFork": False,
+                                "parent": None,
+                                "isPrivate": False,
+                                "primaryLanguage": {"name": "Go"},
+                                "description": "Go project",
+                            },
+                            "contributions": {"totalCount": 25},
+                        }
+                    ],
+                },
+            }
+        }
         with patch.multiple(
             mod,
-            get_contributions_summary=MagicMock(
-                return_value={
-                    "data": {
-                        "user": {
-                            "name": "Test User",
-                            "company": "@testorg",
-                            "contributionsCollection": {
-                                "totalCommitContributions": 25,
-                                "restrictedContributionsCount": 0,
-                                "totalPullRequestContributions": 5,
-                                "totalIssueContributions": 2,
-                                "totalPullRequestReviewContributions": 8,
-                                "commitContributionsByRepository": [
-                                    {
-                                        "repository": {
-                                            "nameWithOwner": "org/repo",
-                                            "isFork": False,
-                                            "parent": None,
-                                            "isPrivate": False,
-                                            "primaryLanguage": {"name": "Go"},
-                                            "description": "Go project",
-                                        },
-                                        "contributions": {"totalCount": 25},
-                                    }
-                                ],
-                            },
-                        }
-                    }
-                }
+            get_member_data_combined=MagicMock(
+                return_value=(contributions, None, [])
             ),
-            get_prs_created=MagicMock(return_value=[]),
-            get_prs_reviewed=MagicMock(return_value=[]),
-            get_repo_info_cached=MagicMock(return_value=None),
+            get_repo_info_cached=MagicMock(return_value={}),
         ):
             yield
 
@@ -268,67 +265,63 @@ class TestGatherUserDataLightForkAttribution:
     @pytest.fixture
     def mock_fork_api_calls(self, mod):
         """Mock API calls returning multiple repos including a fork."""
+        contributions = {
+            "user": {
+                "name": "Test User",
+                "company": "",
+                "contributionsCollection": {
+                    "totalCommitContributions": 40,
+                    "restrictedContributionsCount": 0,
+                    "totalPullRequestContributions": 5,
+                    "totalIssueContributions": 1,
+                    "totalPullRequestReviewContributions": 3,
+                    "totalRepositoriesWithContributedCommits": 3,
+                    "commitContributionsByRepository": [
+                        {
+                            "repository": {
+                                "nameWithOwner": "upstream/lib",
+                                "isFork": False,
+                                "parent": None,
+                                "isPrivate": False,
+                                "primaryLanguage": {"name": "Python"},
+                                "description": "Upstream lib",
+                            },
+                            "contributions": {"totalCount": 15},
+                        },
+                        {
+                            "repository": {
+                                "nameWithOwner": "testuser/lib",
+                                "isFork": True,
+                                "parent": {"nameWithOwner": "upstream/lib"},
+                                "isPrivate": False,
+                                "primaryLanguage": {"name": "Python"},
+                                "description": "Fork of lib",
+                            },
+                            "contributions": {"totalCount": 10},
+                        },
+                        {
+                            "repository": {
+                                "nameWithOwner": "testuser/myapp",
+                                "isFork": False,
+                                "parent": None,
+                                "isPrivate": False,
+                                "primaryLanguage": {"name": "Go"},
+                                "description": "My app",
+                            },
+                            "contributions": {"totalCount": 15},
+                        },
+                    ],
+                    "pullRequestContributionsByRepository": [],
+                    "pullRequestReviewContributionsByRepository": [],
+                },
+            }
+        }
+        prs_created = {"search": {"nodes": [], "issueCount": 0}}
         with patch.multiple(
             mod,
-            get_contributions_summary=MagicMock(
-                return_value={
-                    "user": {
-                        "name": "Test User",
-                        "company": "",
-                        "contributionsCollection": {
-                            "totalCommitContributions": 40,
-                            "restrictedContributionsCount": 0,
-                            "totalPullRequestContributions": 5,
-                            "totalIssueContributions": 1,
-                            "totalPullRequestReviewContributions": 3,
-                            "totalRepositoriesWithContributedCommits": 3,
-                            "commitContributionsByRepository": [
-                                {
-                                    "repository": {
-                                        "nameWithOwner": "upstream/lib",
-                                        "isFork": False,
-                                        "parent": None,
-                                        "isPrivate": False,
-                                        "primaryLanguage": {"name": "Python"},
-                                        "description": "Upstream lib",
-                                    },
-                                    "contributions": {"totalCount": 15},
-                                },
-                                {
-                                    "repository": {
-                                        "nameWithOwner": "testuser/lib",
-                                        "isFork": True,
-                                        "parent": {
-                                            "nameWithOwner": "upstream/lib"
-                                        },
-                                        "isPrivate": False,
-                                        "primaryLanguage": {"name": "Python"},
-                                        "description": "Fork of lib",
-                                    },
-                                    "contributions": {"totalCount": 10},
-                                },
-                                {
-                                    "repository": {
-                                        "nameWithOwner": "testuser/myapp",
-                                        "isFork": False,
-                                        "parent": None,
-                                        "isPrivate": False,
-                                        "primaryLanguage": {"name": "Go"},
-                                        "description": "My app",
-                                    },
-                                    "contributions": {"totalCount": 15},
-                                },
-                            ],
-                            "pullRequestContributionsByRepository": [],
-                            "pullRequestReviewContributionsByRepository": [],
-                        },
-                    }
-                }
+            get_member_data_combined=MagicMock(
+                return_value=(contributions, prs_created, [])
             ),
-            get_prs_created=MagicMock(
-                return_value={"search": {"nodes": [], "issueCount": 0}}
-            ),
-            get_prs_reviewed=MagicMock(return_value=[]),
             get_repo_info_cached=MagicMock(return_value={}),
         ):
             yield
@@ -1456,6 +1449,223 @@ class TestGetRateLimitRemaining:
         assert result is None
 
 
+class TestGetMemberDataCombined:
+    """Tests for get_member_data_combined()."""
+
+    def _mock_graphql_result(self, user_data=None, search_data=None):
+        """Build a mock GraphQL result for the combined query."""
+        result = {}
+        if user_data is not None:
+            result["user"] = user_data
+        if search_data is not None:
+            result["prsCreated"] = search_data
+        return result
+
+    def test_basic_extraction(self, mod):
+        """Extracts contributions, PRs created, and reviews from result."""
+        graphql_result = self._mock_graphql_result(
+            user_data={
+                "name": "Test",
+                "company": "",
+                "contributionsCollection": {
+                    "totalCommitContributions": 5,
+                    "pullRequestReviewContributions": {
+                        "totalCount": 1,
+                        "pageInfo": {"hasNextPage": False, "endCursor": None},
+                        "nodes": [
+                            {
+                                "pullRequest": {
+                                    "title": "PR1",
+                                    "url": "https://github.com/o/r/pull/1",
+                                    "repository": {
+                                        "nameWithOwner": "o/r",
+                                        "primaryLanguage": {"name": "Go"},
+                                    },
+                                    "author": {"login": "alice"},
+                                    "additions": 10,
+                                    "deletions": 2,
+                                }
+                            }
+                        ],
+                    },
+                },
+            },
+            search_data={
+                "issueCount": 1,
+                "nodes": [
+                    {"title": "My PR", "url": "https://github.com/o/r/pull/2"}
+                ],
+            },
+        )
+        with patch.object(mod, "run_gh_graphql", return_value=graphql_result):
+            contribs, prs_created, reviews = mod.get_member_data_combined(
+                "testuser", "2026-01-01", "2026-01-07"
+            )
+
+        assert contribs["user"]["name"] == "Test"
+        # pullRequestReviewContributions should be removed from contribs
+        cc = contribs["user"]["contributionsCollection"]
+        assert "pullRequestReviewContributions" not in cc
+        assert prs_created == {"search": graphql_result["prsCreated"]}
+        assert len(reviews) == 1
+        assert reviews[0]["url"] == "https://github.com/o/r/pull/1"
+
+    def test_none_result(self, mod):
+        """None from GraphQL returns (None, None, [])."""
+        with patch.object(mod, "run_gh_graphql", return_value=None):
+            contribs, prs_created, reviews = mod.get_member_data_combined(
+                "testuser", "2026-01-01", "2026-01-07"
+            )
+
+        assert contribs is None
+        assert prs_created is None
+        assert reviews == []
+
+    def test_review_pagination(self, mod):
+        """Fetches extra review pages when hasNextPage is True."""
+        graphql_result = self._mock_graphql_result(
+            user_data={
+                "name": "Test",
+                "company": "",
+                "contributionsCollection": {
+                    "totalCommitContributions": 0,
+                    "pullRequestReviewContributions": {
+                        "totalCount": 101,
+                        "pageInfo": {
+                            "hasNextPage": True,
+                            "endCursor": "cursor123",
+                        },
+                        "nodes": [
+                            {
+                                "pullRequest": {
+                                    "title": f"PR{i}",
+                                    "url": f"https://github.com/o/r/pull/{i}",
+                                    "repository": {
+                                        "nameWithOwner": "o/r",
+                                        "primaryLanguage": None,
+                                    },
+                                    "author": {"login": "bob"},
+                                    "additions": 1,
+                                    "deletions": 0,
+                                }
+                            }
+                            for i in range(100)
+                        ],
+                    },
+                },
+            },
+        )
+        extra_review = {
+            "title": "PR100",
+            "url": "https://github.com/o/r/pull/100",
+            "repository": {"nameWithOwner": "o/r", "primaryLanguage": None},
+            "author": {"login": "bob"},
+            "additions": 1,
+            "deletions": 0,
+        }
+        with patch.object(mod, "run_gh_graphql", return_value=graphql_result):
+            with patch.object(
+                mod, "get_prs_reviewed", return_value=[extra_review]
+            ) as mock_extra:
+                contribs, prs_created, reviews = mod.get_member_data_combined(
+                    "testuser", "2026-01-01", "2026-01-07"
+                )
+
+        mock_extra.assert_called_once_with(
+            "testuser", "2026-01-01", "2026-01-07", start_cursor="cursor123"
+        )
+        assert len(reviews) == 101  # 100 from first page + 1 extra
+
+    def test_deduplicates_reviews(self, mod):
+        """Duplicate review URLs are deduplicated."""
+        graphql_result = self._mock_graphql_result(
+            user_data={
+                "name": "Test",
+                "company": "",
+                "contributionsCollection": {
+                    "totalCommitContributions": 0,
+                    "pullRequestReviewContributions": {
+                        "totalCount": 2,
+                        "pageInfo": {"hasNextPage": False, "endCursor": None},
+                        "nodes": [
+                            {
+                                "pullRequest": {
+                                    "title": "Same PR",
+                                    "url": "https://github.com/o/r/pull/1",
+                                    "repository": {
+                                        "nameWithOwner": "o/r",
+                                        "primaryLanguage": None,
+                                    },
+                                    "author": {"login": "a"},
+                                    "additions": 1,
+                                    "deletions": 0,
+                                }
+                            },
+                            {
+                                "pullRequest": {
+                                    "title": "Same PR",
+                                    "url": "https://github.com/o/r/pull/1",
+                                    "repository": {
+                                        "nameWithOwner": "o/r",
+                                        "primaryLanguage": None,
+                                    },
+                                    "author": {"login": "a"},
+                                    "additions": 1,
+                                    "deletions": 0,
+                                }
+                            },
+                        ],
+                    },
+                },
+            },
+        )
+        with patch.object(mod, "run_gh_graphql", return_value=graphql_result):
+            _, _, reviews = mod.get_member_data_combined(
+                "testuser", "2026-01-01", "2026-01-07"
+            )
+
+        assert len(reviews) == 1
+
+    def test_year_span_clamped(self, mod):
+        """Spans > 1 year are clamped to 1 year from end date."""
+        graphql_result = self._mock_graphql_result(
+            user_data={
+                "name": "Test",
+                "company": "",
+                "contributionsCollection": {
+                    "totalCommitContributions": 0,
+                    "pullRequestReviewContributions": {
+                        "totalCount": 0,
+                        "pageInfo": {"hasNextPage": False, "endCursor": None},
+                        "nodes": [],
+                    },
+                },
+            },
+        )
+        with patch.object(
+            mod, "run_gh_graphql", return_value=graphql_result
+        ) as mock_gql:
+            with patch("sys.stderr", MagicMock()):
+                mod.get_member_data_combined(
+                    "testuser", "2023-01-01", "2026-01-07"
+                )
+
+        # The query should use a clamped start date (1 year before end)
+        call_args = mock_gql.call_args[0][0]
+        assert "2025-01-07T00:00:00Z" in call_args
+
+    def test_no_user_in_result(self, mod):
+        """Result with no user key returns (None, None, [])."""
+        retval = {"prsCreated": {}}
+        with patch.object(mod, "run_gh_graphql", return_value=retval):
+            contribs, prs_created, reviews = mod.get_member_data_combined(
+                "testuser", "2026-01-01", "2026-01-07"
+            )
+
+        assert contribs is None
+        assert reviews == []
+
+
 class TestWaitForRateLimitReset:
     """Tests for wait_for_rate_limit_reset()."""
 
@@ -1519,6 +1729,30 @@ class TestWaitForRateLimitReset:
             result = mod.wait_for_rate_limit_reset(max_wait_seconds=120)
 
         assert result is False
+
+    def test_long_wait_chunked_with_progress(self, mod):
+        """Long wait sleeps in 60s chunks and prints progress."""
+        from datetime import datetime, timedelta
+
+        # Reset in 150 seconds — should produce 3 sleep calls
+        # (60s + 60s + 31s)
+        future = datetime.now() + timedelta(seconds=150)
+        with patch.object(
+            mod,
+            "get_rate_limit_reset_time",
+            return_value=(future, "graphql"),
+        ):
+            with patch("time.sleep") as mock_sleep:
+                with patch("sys.stderr", MagicMock()):
+                    result = mod.wait_for_rate_limit_reset(
+                        max_wait_seconds=3600
+                    )
+
+        assert result is True
+        # Should have multiple sleep calls (chunked)
+        assert mock_sleep.call_count >= 2
+        # First chunk should be 60 seconds
+        assert mock_sleep.call_args_list[0][0][0] == 60
 
 
 # -----------------------------------------------------------------------

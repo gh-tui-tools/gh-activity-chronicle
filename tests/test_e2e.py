@@ -854,26 +854,33 @@ class TestGatherUserDataLightBranches:
     def _call(self, overrides=None, username="testuser"):
         """Call gather_user_data_light with API functions mocked."""
         defaults = {
-            "get_contributions_summary": _base_contributions(username),
-            "get_prs_created": {
+            "contributions": _base_contributions(username),
+            "prs_created": {
                 "search": {"nodes": [], "issueCount": 0},
             },
-            "get_prs_reviewed": [],
+            "prs_reviewed": [],
             "get_repo_info_cached": {},
         }
         if overrides:
             defaults.update(overrides)
 
-        patches = {}
-        for name, retval in defaults.items():
-            patches[name] = patch.object(
-                mod,
-                name,
-                return_value=retval,
-            )
+        combined_return = (
+            defaults["contributions"],
+            defaults["prs_created"],
+            defaults["prs_reviewed"],
+        )
 
-        for p in patches.values():
-            p.start()
+        p_combined = patch.object(
+            mod, "get_member_data_combined", return_value=combined_return
+        )
+        p_repo = patch.object(
+            mod,
+            "get_repo_info_cached",
+            return_value=defaults["get_repo_info_cached"],
+        )
+
+        p_combined.start()
+        p_repo.start()
 
         try:
             return mod.gather_user_data_light(
@@ -883,8 +890,8 @@ class TestGatherUserDataLightBranches:
                 show_progress=False,
             )
         finally:
-            for p in patches.values():
-                p.stop()
+            p_combined.stop()
+            p_repo.stop()
 
     # 10. PRs with valid repository.nameWithOwner → added to repos_to_fetch
     def test_pr_repos_extracted(self):
@@ -915,10 +922,10 @@ class TestGatherUserDataLightBranches:
         }
         data = self._call(
             {
-                "get_prs_created": {
+                "prs_created": {
                     "search": {"nodes": [pr_node], "issueCount": 1},
                 },
-                "get_prs_reviewed": [reviewed_node],
+                "prs_reviewed": [reviewed_node],
                 "get_repo_info_cached": {
                     "ext/lib": {
                         "nameWithOwner": "ext/lib",
@@ -964,7 +971,7 @@ class TestGatherUserDataLightBranches:
         )
         data = self._call(
             {
-                "get_contributions_summary": contribs,
+                "contributions": contribs,
             }
         )
 
@@ -1157,25 +1164,17 @@ class TestGatherUserDataLightWithProgress:
     """Test gather_user_data_light with show_progress=True."""
 
     def test_progress_branches_covered(self):
-        defaults = {
-            "get_contributions_summary": _base_contributions("testuser"),
-            "get_prs_created": {
-                "search": {"nodes": [], "issueCount": 0},
-            },
-            "get_prs_reviewed": [],
-            "get_repo_info_cached": {},
-        }
+        contributions = _base_contributions("testuser")
+        prs_created = {"search": {"nodes": [], "issueCount": 0}}
+        combined_return = (contributions, prs_created, [])
 
-        patches = {}
-        for name, retval in defaults.items():
-            patches[name] = patch.object(
-                mod,
-                name,
-                return_value=retval,
-            )
+        p_combined = patch.object(
+            mod, "get_member_data_combined", return_value=combined_return
+        )
+        p_repo = patch.object(mod, "get_repo_info_cached", return_value={})
 
-        for p in patches.values():
-            p.start()
+        p_combined.start()
+        p_repo.start()
 
         progress_patch = patch.object(mod, "progress")
         progress_patch.start()
@@ -1189,8 +1188,8 @@ class TestGatherUserDataLightWithProgress:
             )
         finally:
             progress_patch.stop()
-            for p in patches.values():
-                p.stop()
+            p_combined.stop()
+            p_repo.stop()
 
         assert data["username"] == "testuser"
         assert data["is_light_mode"] is True

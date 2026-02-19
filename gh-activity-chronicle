@@ -142,9 +142,12 @@ def estimate_org_api_calls(num_members, days, known_active=False):
         else:
             effective = 500 * (num_members / 500) ** 0.8
 
-    # Base rate: ~2.4 calls per active member per week (empirical)
+    # Base rate: ~1.0 calls per active member per week (empirical).
+    # Reduced from 2.4 after combining 3 per-member GraphQL calls into 1
+    # (get_member_data_combined). Extra calls come from occasional review
+    # pagination (users with 100+ reviews) and shared repo-info lookups.
     # Time scaling: sublinear — 30 days uses ~1.7x calls of 7 days
-    base_rate = 2.4
+    base_rate = 1.0
     time_factor = (days / 7) ** 0.4
     phase2_calls = effective * base_rate * time_factor
 
@@ -251,11 +254,12 @@ def print_rate_limit_error(extra_advice=None):
         sys.stderr.write("\n")
 
 
-def wait_for_rate_limit_reset(max_wait_seconds=120):
-    """Wait for rate limit to reset if it's soon enough.
+def wait_for_rate_limit_reset(max_wait_seconds=3600):
+    """Wait for rate limit to reset if it’s soon enough.
 
     Args:
-        max_wait_seconds: Maximum seconds to wait (default 2 minutes)
+        max_wait_seconds: Maximum seconds to wait (default 1 hour, matching
+            GitHub’s hourly rate limit reset cycle)
 
     Returns:
         True if we waited and can retry, False if wait would be too long
@@ -264,7 +268,7 @@ def wait_for_rate_limit_reset(max_wait_seconds=120):
     reset_time, _resource = get_rate_limit_reset_time()
 
     if not reset_time:
-        # Can't determine reset time — wait a bit for secondary rate limits
+        # Can’t determine reset time — wait a bit for secondary rate limits
         msg = "\nRate limit hit. Waiting 60 seconds...\n"
         sys.stderr.write(Colors.warning(msg))
         time.sleep(60)
@@ -281,12 +285,22 @@ def wait_for_rate_limit_reset(max_wait_seconds=120):
 
     if wait_seconds <= max_wait_seconds:
         reset_str = reset_time.strftime("%H:%M:%S")
+        total = int(wait_seconds)
         msg = (
             f"\nRate limit hit. Waiting until {reset_str} "
-            f"({int(wait_seconds)} seconds)...\n"
+            f"({total} seconds)...\n"
         )
         sys.stderr.write(Colors.warning(msg))
-        time.sleep(wait_seconds + 1)  # Add 1 second buffer
+        remaining = wait_seconds + 1  # Add 1 second buffer
+        while remaining > 0:
+            chunk = min(remaining, 60)
+            time.sleep(chunk)
+            remaining -= chunk
+            if remaining > 0:
+                mins_left = int(remaining // 60)
+                secs_left = int(remaining % 60)
+                msg = f"  Rate limit resets in {mins_left}m {secs_left}s...\n"
+                sys.stderr.write(Colors.warning(msg))
         _rate_limit_hit = False  # Clear the flag to retry
         return True
 
@@ -2349,15 +2363,19 @@ def get_prs_created(username, since_date):
     return run_gh_graphql(query)
 
 
-def get_prs_reviewed(username, since_date, until_date):
+def get_prs_reviewed(username, since_date, until_date, start_cursor=None):
     """Get PRs reviewed in the time period using contributions API.
 
     Uses contributionsCollection.pullRequestReviewContributions which
     accurately tracks reviews given within the date range, unlike the search
     API which only filters by PR update date.
+
+    Args:
+        start_cursor: Optional cursor to resume pagination from (used by
+            get_member_data_combined when the first page was already fetched).
     """
     all_reviews = []
-    cursor = None
+    cursor = start_cursor
 
     # Parse dates and check span (contributionsCollection only supports 1 year)
     start = datetime.strptime(since_date, "%Y-%m-%d")
@@ -2421,6 +2439,162 @@ def get_prs_reviewed(username, since_date, until_date):
             unique_reviews.append(pr)
 
     return unique_reviews
+
+
+def get_member_data_combined(username, since_date, until_date):
+    """Fetch contribution summary, PRs created, and PRs reviewed in one call.
+
+    Combines three separate GraphQL calls into a single request to reduce
+    API usage in org/light mode. Returns data in the same shapes the
+    callers (gather_user_data_light) expect.
+
+    Returns:
+        (contributions, prs_created, prs_reviewed) where:
+        - contributions: dict matching get_contributions_summary() shape
+        - prs_created: dict matching get_prs_created() shape
+        - prs_reviewed: list matching get_prs_reviewed() shape
+    """
+    # Handle 1-year span limit (same as get_contributions_summary)
+    start = datetime.strptime(since_date, "%Y-%m-%d")
+    end = datetime.strptime(until_date, "%Y-%m-%d")
+    if (end - start).days > 365:
+        start = end - timedelta(days=365)
+        since_date = start.strftime("%Y-%m-%d")
+        msg = (
+            f"\nNote: GitHub API limits to 1 year. "
+            f"Using {since_date} as start date."
+        )
+        print(Colors.warning(msg), file=sys.stderr)
+
+    from_ts = f"{since_date}T00:00:00Z"
+    to_ts = f"{until_date}T23:59:59Z"
+    search_q = f"type:pr author:{username} created:>={since_date}"
+
+    query = f'''
+    {{
+      user(login: "{username}") {{
+        name
+        company
+        contributionsCollection(from: "{from_ts}", to: "{to_ts}") {{
+          totalCommitContributions
+          totalPullRequestContributions
+          totalPullRequestReviewContributions
+          totalIssueContributions
+          totalRepositoriesWithContributedCommits
+          commitContributionsByRepository(maxRepositories: 100) {{
+            repository {{
+              nameWithOwner
+              description
+              primaryLanguage {{ name }}
+              isFork
+              parent {{ nameWithOwner }}
+            }}
+            contributions {{
+              totalCount
+            }}
+          }}
+          pullRequestContributionsByRepository(maxRepositories: 100) {{
+            repository {{
+              nameWithOwner
+            }}
+            contributions {{
+              totalCount
+            }}
+          }}
+          pullRequestReviewContributionsByRepository(maxRepositories: 100) {{
+            repository {{
+              nameWithOwner
+            }}
+            contributions {{
+              totalCount
+            }}
+          }}
+          pullRequestReviewContributions(first: 100) {{
+            totalCount
+            pageInfo {{ hasNextPage endCursor }}
+            nodes {{
+              pullRequest {{
+                title
+                repository {{ nameWithOwner primaryLanguage {{ name }} }}
+                author {{ login }}
+                url
+                additions
+                deletions
+              }}
+            }}
+          }}
+        }}
+      }}
+      prsCreated: search(query: "{search_q}", type: ISSUE, first: 100) {{
+        issueCount
+        nodes {{
+          ... on PullRequest {{
+            title
+            repository {{ nameWithOwner primaryLanguage {{ name }} }}
+            url
+            state
+            merged
+            createdAt
+            additions
+            deletions
+            reviews {{ totalCount }}
+            comments {{ totalCount }}
+          }}
+        }}
+      }}
+    }}
+    '''
+    result = run_gh_graphql(query)
+
+    # Extract contributions in the shape get_contributions_summary returns
+    contributions = None
+    if result and result.get("user"):
+        contributions = {"user": result["user"]}
+
+    # Extract PRs created in the shape get_prs_created returns
+    prs_created = None
+    if result and result.get("prsCreated"):
+        prs_created = {"search": result["prsCreated"]}
+
+    # Extract PRs reviewed from the nested review contributions
+    prs_reviewed = []
+    if result and result.get("user"):
+        contrib = result["user"].get("contributionsCollection", {})
+        review_data = contrib.get("pullRequestReviewContributions", {})
+        nodes = review_data.get("nodes", [])
+
+        for node in nodes:
+            pr = node.get("pullRequest")
+            if pr:
+                prs_reviewed.append(pr)
+
+        # If there are more pages, fetch them via get_prs_reviewed
+        page_info = review_data.get("pageInfo", {})
+        if page_info.get("hasNextPage"):
+            end_cursor = page_info.get("endCursor")
+            extra = get_prs_reviewed(
+                username, since_date, until_date, start_cursor=end_cursor
+            )
+            prs_reviewed.extend(extra)
+
+        # Remove the review contributions data from the contributions dict
+        # so it matches the shape of get_contributions_summary (which doesn’t
+        # include pullRequestReviewContributions)
+        if "pullRequestReviewContributions" in contrib:
+            del contributions["user"]["contributionsCollection"][
+                "pullRequestReviewContributions"
+            ]
+
+    # Deduplicate reviews by PR URL (same as get_prs_reviewed)
+    seen_urls = set()
+    unique_reviews = []
+    for pr in prs_reviewed:
+        url = pr.get("url")
+        if url and url not in seen_urls:
+            seen_urls.add(url)
+            unique_reviews.append(pr)
+
+    return contributions, prs_created, unique_reviews
 
 
 def get_org_prs_created(org, since_date, until_date):
@@ -3374,17 +3548,11 @@ def gather_user_data_light(
     """
     if show_progress:
         highlighted = Colors.highlight(username)
-        progress.update(f"Fetching contribution summary for {highlighted}...")
+        progress.update(f"Fetching data for {highlighted}...")
 
-    contributions = get_contributions_summary(username, since_date, until_date)
-
-    if show_progress:
-        progress.update(f"Fetching PRs created by {highlighted}...")
-    prs_created = get_prs_created(username, since_date)
-
-    if show_progress:
-        progress.update(f"Fetching PRs reviewed by {highlighted}...")
-    prs_reviewed = get_prs_reviewed(username, since_date, until_date)
+    contributions, prs_created, prs_reviewed = get_member_data_combined(
+        username, since_date, until_date
+    )
 
     # Extract key metrics from contribution summary
     user_data = contributions.get("user", {}) if contributions else {}
@@ -3847,7 +4015,7 @@ def gather_org_data_active_contributors(
         # Check if rate limit was hit during fallback
         if check_rate_limit_hit():
             sys.stderr.write("\n")
-            if not wait_for_rate_limit_reset(max_wait_seconds=180):
+            if not wait_for_rate_limit_reset(max_wait_seconds=3600):
                 print_rate_limit_error()
                 sys.exit(1)
             progress.start(f"Retrying API check for {count} users...")
@@ -3986,7 +4154,7 @@ def gather_org_data_active_contributors(
 
         if hit_rate_limit:  # pragma: no cover — rate-limit recovery
             progress.stop()
-            if not wait_for_rate_limit_reset(max_wait_seconds=180):
+            if not wait_for_rate_limit_reset(max_wait_seconds=3600):
                 print_rate_limit_error()
                 sys.exit(1)
             progress.start(f"Gathering data for {active_count} members...")

@@ -55,6 +55,7 @@ Used for:
 - **User profile** (`user.name`, `user.company`): Real name for report title, company for member display
 - **Contribution summary** (`contributionsCollection`): Aggregate counts for commits, PRs, reviews, issues
 - **PR reviews** (`pullRequestReviewContributions`): Actual PRs reviewed within the date range, with pagination
+- **Combined member query** (`get_member_data_combined`): In org/light mode, a single GraphQL request fetches the contribution summary, PRs created (via aliased `search`), and PRs reviewed — reducing 3 API calls per member to 1
 - **Repository info** (`repository`): Fork status, parent repo, language, description
 - **User forks** (`user.repositories`): List of user’s forked repos with parent info
 
@@ -794,9 +795,10 @@ def estimate_org_api_calls(num_members, days, known_active=False):
         else:
             effective = 500 * (num_members / 500) ** 0.8
 
-    # Empirical base: ~2.4 calls per active member per week
+    # Empirical base: ~1.0 calls per active member per week
+    # (reduced from 2.4 after combining 3 per-member GraphQL calls into 1)
     # Time scaling: sublinear — 30 days uses ~1.7x the calls of 7 days, not 4.3x
-    phase2 = effective * 2.4 * (days / 7) ** 0.4
+    phase2 = effective * 1.0 * (days / 7) ** 0.4
 
     return phase1 + phase2
 ```
@@ -807,13 +809,13 @@ Two key adjustments keep the estimate accurate for large orgs:
 
 2. **Sublinear member scaling** (exponent 0.8): Doubling total membership doesn’t double active contributors — large orgs have proportionally more inactive members. For orgs over 500 members, the effective member count is `500 × (num_members / 500)^0.8`. This keeps estimates reasonable: without it, w3c with `--private` (3,686 members) was estimated at 5,728 calls — 2.1× the actual 2,724.
 
-Calibrated against real usage (w3c org):
+Calibrated against w3c org (pre-optimization actuals, post-optimization estimates):
 
-| Scenario | Actual | Estimated |
-|----------|--------|-----------|
-| 524 public members, 7 days | ~1,300 | ~1,250 |
-| 524 public members, 30 days | ~2,200 | ~2,228 |
-| 3,686 total members (`--private`), 1 day | ~2,724 | ~2,742 |
+| Scenario | Pre-optimization actual | Estimated (base rate 1.0) |
+|----------|------------------------|---------------------------|
+| 524 public members, 7 days | ~1,300 | ~525 |
+| 524 public members, 30 days | ~2,200 | ~935 |
+| 3,686 total members (`--private`), 1 day | ~2,724 | ~1,155 |
 
 **Re-check after activity filter:** The pre-check uses heuristics because the actual active count isn’t known yet. Once the activity check completes and the real active count is known, the tool re-estimates using `known_active=True` — which uses the exact active count directly (no sublinear heuristic, no phase 1 overhead since it’s already done) — and warns again if the revised estimate still exceeds thresholds. This catches cases where the heuristic was too optimistic and the actual cost would be higher than predicted.
 
@@ -857,11 +859,11 @@ The “Or wait another…” line shows how long until the rate limit window res
 
 | Scenario | Members | Days | Estimated | Warning? |
 |----------|---------|------|-----------|----------|
-| Default | 524 | 7 | ~1,250 | No (25%) |
-| Monthly | 524 | 30 | ~2,228 | No (45%) |
-| Small team | 20 | 30 | ~88 | No (2%) |
-| Large org (`--private`) | 3,686 | 1 | ~2,742 | Yes (55%) |
-| Low remaining | 524 | 7 | ~1,250 | Yes if <1,563 remaining |
+| Default | 524 | 7 | ~525 | No (11%) |
+| Monthly | 524 | 30 | ~935 | No (19%) |
+| Small team | 20 | 30 | ~37 | No (1%) |
+| Large org (`--private`) | 3,686 | 1 | ~1,155 | No (23%) |
+| Low remaining | 524 | 7 | ~525 | Yes if <657 remaining |
 
 ### Transient error handling
 
@@ -935,7 +937,7 @@ Organization mode extends the tool to generate reports for GitHub organizations:
 1. **Fetch org/team info**: Get organization metadata and optionally team info
 2. **Get members**: Fetch public members (default), all members (`--private`), owners (`--owners`), or team members (`--team`)
 3. **Filter to active members**: Batch query contribution summaries to find members with any activity in the date range (see [Active contributors optimization](#active-contributors-optimization))
-4. **Gather per-member data**: Call `gather_user_data_light()` for each *active* member in parallel (30 workers)
+4. **Gather per-member data**: Call `gather_user_data_light()` for each *active* member in parallel (30 workers). Each member uses a single combined GraphQL query (`get_member_data_combined`) that fetches contribution summary, PRs created, and PRs reviewed in one request
 5. **Aggregate data**: Combine all member data:
    - Sum scalar metrics (commits, PRs, reviews, issues, lines)
    - Union of repos contributed (counted uniquely)
@@ -982,7 +984,7 @@ This ensures users understand the privacy implications before generating a repor
 
 ### Concurrency
 
-Member data gathering uses 30 concurrent workers (via `ThreadPoolExecutor`), same as commit stats fetching. This is feasible because `gather_user_data_light()` makes only ~5-10 API calls per member (vs 100-1000+ in full mode).
+Member data gathering uses 30 concurrent workers (via `ThreadPoolExecutor`), same as commit stats fetching. This is feasible because `gather_user_data_light()` makes only ~1–2 API calls per member (a single combined GraphQL query, vs 100–1000+ in full mode).
 
 ### Active contributors optimization
 
@@ -1026,10 +1028,10 @@ Only call `gather_user_data_light()` for members who passed the activity filter.
 
 **API call comparison (w3c, 524 members):**
 
-| Time period | API calls | Rate limit impact |
-|-------------|----------:|-------------------|
-| 7 days (default) | ~1,300 | 26% of limit |
-| 30 days | ~2,100 | 42% of limit |
+| Time period | Est. API calls | Rate limit impact |
+|-------------|---------------:|-------------------|
+| 7 days (default) | ~525 | 11% of limit |
+| 30 days | ~935 | 19% of limit |
 
 Note: Scraping doesn’t count against the API limit, so the actual API usage is lower — only the GraphQL fallback (typically ~5% of users) and Phase 2 data gathering use API calls.
 
@@ -1052,7 +1054,7 @@ Found 316 active members out of 524
 
 **Rate limit handling:**
 
-If the GraphQL fallback hits the rate limit, the tool waits for reset (up to 3 minutes) or shows the reset time and exits.
+If the GraphQL fallback hits the rate limit, the tool waits for reset (up to 1 hour, with 60-second progress updates to keep CI alive) or shows the reset time and exits.
 
 ### Data scope (light mode)
 
@@ -1071,7 +1073,7 @@ Another way to think about it: org mode captures **merged work** — commits fro
 - Per-commit line stats (additions/deletions)
 - Test commit detection
 
-This tradeoff prioritizes API efficiency: full data gathering can require 100-1000+ API calls per member, while light mode requires only ~5-10 calls per member. For an org with 40 members, this is the difference between 4000-40000 calls (likely hitting rate limits) vs 200-400 calls (completing comfortably).
+This tradeoff prioritizes API efficiency: full data gathering can require 100-1000+ API calls per member, while light mode requires only ~1–2 calls per member (a single combined GraphQL query, plus occasional review pagination). For an org with 40 members, this is the difference between 4,000–40,000 calls (likely hitting rate limits) vs ~40–80 calls (completing comfortably).
 
 For complete commit tracking including fork contributions, generate individual user reports.
 
@@ -1516,7 +1518,7 @@ tests/
 
 ### Coverage
 
-The test suite (431 tests) enforces a **98% coverage threshold** configured in `pyproject.toml`. Current coverage is ~99%. Genuinely untestable code (terminal I/O, threading callbacks, rate-limit recovery) is marked `# pragma: no cover`. The remaining ~20 uncovered lines are intentionally left without pragmas — they represent code where mock complexity outweighs testing value, and the coverage report serves as a living inventory of these gaps.
+The test suite (468 tests) enforces a **98% coverage threshold** configured in `pyproject.toml`. Current coverage is ~99%. Genuinely untestable code (terminal I/O, threading callbacks, rate-limit recovery) is marked `# pragma: no cover`. The remaining ~20 uncovered lines are intentionally left without pragmas — they represent code where mock complexity outweighs testing value, and the coverage report serves as a living inventory of these gaps.
 
 ### Running tests
 
@@ -1552,7 +1554,7 @@ def load_chronicle_module():
 
 For integration and E2E tests, the suite mocks at different levels:
 
-1. **Function-level mocking** — Mock specific functions like `get_contributions_summary()` to return controlled data
+1. **Function-level mocking** — Mock specific functions like `get_member_data_combined()` to return controlled data
 2. **Command-level mocking** — `MockGhCommand` class intercepts `run_gh_command()` calls and returns appropriate responses based on argument patterns
 3. **Record/replay** — `ApiRecorder` class can capture real API responses for later replay (useful for creating realistic fixtures)
 

@@ -14,7 +14,7 @@ gh extension install gh-tui-tools/gh-activity-chronicle
 - Python 3.6+
 
 > [!WARNING]
-> **API Rate Limits**: This tool makes many GitHub API calls. A single-user run uses ~50-200 calls. Org runs use much more: a 7-day report for a 500-member org uses ~1,300 calls (~26% of the 5,000/hour limit).
+> **API Rate Limits**: This tool makes many GitHub API calls. A single-user run uses ~50-200 calls. Org runs use much more: a 7-day report for a 500-member org uses ~525 calls (~11% of the 5,000/hour limit).
 >
 > **To minimize API usage:**
 > - Use shorter time periods (7 days is the default)
@@ -181,7 +181,7 @@ By default, all three formats (`.md`, `.json`, `.html`) are output. With `--form
 
 ## Testing
 
-The project includes a comprehensive test suite (431 tests):
+The project includes a comprehensive test suite (468 tests):
 
 ```bash
 # Install test and lint dependencies
