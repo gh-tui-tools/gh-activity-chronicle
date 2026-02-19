@@ -1007,11 +1007,23 @@ This endpoint returns HTML with contribution squares showing activity levels:
 
 **Why scraping is faster:**
 - Web requests don’t count against GitHub’s API rate limits
-- Can use 50 concurrent workers (vs sequential API calls)
+- Can use many concurrent workers (vs sequential API calls)
 - The endpoint is designed to be fast (powers the GitHub UI)
 - Contribution graph includes ALL contributions (commits, PRs, issues, reviews)
 
 For users where scraping fails (404, timeout, private profile), we fall back to GraphQL batch queries.
+
+**Adaptive concurrency and 429 handling:**
+
+GitHub’s web servers enforce their own rate limits on scraping requests, separate from the API rate limit. For large member lists (`--private` with 3,000+ members), sending 50 concurrent requests triggers HTTP 429 (Too Many Requests) responses with `Retry-After` headers.
+
+Three mitigations, in order of priority:
+
+1. **Shared rate limiter** — For >500 members, a `_ScrapeRateLimiter` object throttles all workers to a shared maximum of `SCRAPE_MAX_RPS` (7) requests per second. GitHub allows ~500 requests/minute (≈8.3/s); 7/s provides safe headroom. The rate limiter uses a threading lock and `time.monotonic()` to serialize request timing across all workers, so the effective rate is steady regardless of worker count. For 3,705 members at 7/s, the activity check takes ~8.8 minutes of clean progress with no 429s.
+
+2. **Adaptive worker count** — The scraping worker count also scales inversely with member count: `max(10, 500 × ACTIVITY_CHECK_WORKERS / total)`. This reduces the burst size when the rate limiter allows a batch through.
+
+3. **Retry with backoff** — As a safety net, if a 429 response still occurs, `check_activity_via_scrape()` retries up to 3 times. It reads the `Retry-After` header (capped at 60 seconds) and adds random jitter (0–5 seconds) to desynchronize retries. Each retry prints a warning to stderr (e.g., “`HTTP 429 for username — retrying in 62s (attempt 1/3)`”). If all retries fail, the user falls back to the GraphQL batch query path.
 
 **Phase 2 — Gather data for active members only:**
 
@@ -1022,7 +1034,7 @@ Only call `gather_user_data_light()` for members who passed the activity filter.
 | Approach | Activity check time | Method |
 |----------|--------------------:|--------|
 | Old (GraphQL) | ~2m 17s | Sequential batches of 10 |
-| New (scraping) | **~26s** | 50 parallel workers + fallback |
+| New (scraping) | **~26s** | Adaptive parallel workers + fallback |
 
 **Speedup: ~5x faster** for the activity checking phase.
 
@@ -1086,7 +1098,7 @@ Org mode shows progress through multiple phases, each with a spinner and status 
    - Provides feedback during what can be a multi-second operation for large orgs
 
 2. **Checking activity**: `⠋ Checking activity for 450/524 members (latest: username)`
-   - Uses fast parallel web scraping (50 workers)
+   - Uses fast parallel web scraping (adaptive worker count; up to 50)
    - Falls back to API for users where scraping fails
    - Followed by timing summary: `Checking activity for 524 w3c members took 26s`
 
@@ -1397,7 +1409,8 @@ Tuning parameters are defined as constants at the top of the file:
 
 ```python
 MAX_PARALLEL_WORKERS = 30         # Max threads for parallel API calls
-ACTIVITY_CHECK_WORKERS = 50       # Workers for activity checking (scraping)
+ACTIVITY_CHECK_WORKERS = 50       # Max workers for activity checking (adaptive)
+SCRAPE_MAX_RPS = 7                # Max scrape requests/sec (GitHub allows ~500/min)
 GRAPHQL_BATCH_SIZE = 10           # Users per GraphQL batch query
 API_PAGE_SIZE = 100               # Items per page for paginated API calls
 ```
@@ -1468,7 +1481,7 @@ tests/
 ├── test_categorization.py   # 48 tests: pattern matching, repo categorization
 ├── test_rate_limit.py       # 19 tests: API call estimation, warning thresholds
 ├── test_aggregation.py      # 28 tests: data aggregation functions
-├── test_integration.py      # 106 tests: data flow with mocked API calls
+├── test_integration.py      # 113 tests: data flow with mocked API calls
 ├── test_regression.py       # 61 tests: output structure, section builders, JSON
 ├── test_snapshots.py        # 2 tests: golden file comparison
 ├── test_e2e.py              # 28 tests: end-to-end pipeline tests
@@ -1518,7 +1531,7 @@ tests/
 
 ### Coverage
 
-The test suite (468 tests) enforces a **98% coverage threshold** configured in `pyproject.toml`. Current coverage is ~99%. Genuinely untestable code (terminal I/O, threading callbacks, rate-limit recovery) is marked `# pragma: no cover`. The remaining ~20 uncovered lines are intentionally left without pragmas — they represent code where mock complexity outweighs testing value, and the coverage report serves as a living inventory of these gaps.
+The test suite (475 tests) enforces a **98% coverage threshold** configured in `pyproject.toml`. Current coverage is ~99%. Genuinely untestable code (terminal I/O, threading callbacks, rate-limit recovery) is marked `# pragma: no cover`. The remaining ~20 uncovered lines are intentionally left without pragmas — they represent code where mock complexity outweighs testing value, and the coverage report serves as a living inventory of these gaps.
 
 ### Running tests
 

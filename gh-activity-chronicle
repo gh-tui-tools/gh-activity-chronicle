@@ -22,7 +22,9 @@ from datetime import datetime, timedelta
 from collections import defaultdict, namedtuple
 from pathlib import Path
 from urllib.parse import quote
+import urllib.error
 import urllib.request
+import random
 import re
 import sys
 import os
@@ -107,6 +109,7 @@ WARN_THRESHOLD_REMAINING = 0.80  # Warn if estimated > 80% of remaining
 # Worker and batch size constants
 MAX_PARALLEL_WORKERS = 30  # Max threads for parallel API calls
 ACTIVITY_CHECK_WORKERS = 50  # Workers for activity checking (scraping)
+SCRAPE_MAX_RPS = 7  # Max scrape requests/sec (GitHub allows ~500/min)
 GRAPHQL_BATCH_SIZE = 10  # Users per GraphQL batch query
 API_PAGE_SIZE = 100  # Items per page for paginated API calls
 
@@ -2753,11 +2756,31 @@ def get_org_pr_reviews(org, since_date, until_date):
     return reviews_by_reviewer
 
 
+class _ScrapeRateLimiter:
+    """Throttle concurrent scrape requests to a target rate."""
+
+    def __init__(self, max_rps):
+        self._min_interval = 1.0 / max_rps
+        self._lock = threading.Lock()
+        self._next_time = 0.0
+
+    def wait(self):
+        """Block until the next request is allowed."""
+        with self._lock:
+            now = time.monotonic()
+            if now < self._next_time:
+                time.sleep(self._next_time - now)
+            self._next_time = time.monotonic() + self._min_interval
+
+
 def check_activity_via_scrape(username, since_date, until_date):
     """Check if user has contributions by scraping their contribution graph.
 
     This is much faster than GraphQL (~60ms vs ~2.5s per batch) and
-    doesn't count against API rate limits, allowing high parallelism.
+    doesn’t count against API rate limits, allowing high parallelism.
+
+    Retries on HTTP 429 (Too Many Requests) with exponential backoff,
+    respecting the Retry-After header when present.
 
     Args:
         username: GitHub username
@@ -2765,32 +2788,55 @@ def check_activity_via_scrape(username, since_date, until_date):
         until_date: End date (YYYY-MM-DD)
 
     Returns:
-        True if active, False if not active, None if couldn't determine
+        True if active, False if not active, None if couldn’t determine
     """
     url = (
         f"https://github.com/users/{username}/contributions"
         f"?from={since_date}&to={until_date}"
     )
-    try:
-        req = urllib.request.Request(
-            url,
-            headers={
-                "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15)",
-                "Accept": "text/html",
-            },
-        )
-        with urllib.request.urlopen(req, timeout=15) as response:
-            html = response.read().decode("utf-8")
-            # Find contribution squares with data-date and data-level attrs
-            # data-level > 0 means there were contributions on that day
-            pattern = r'data-date="(\d{4}-\d{2}-\d{2})"[^>]*data-level="(\d)"'
-            matches = re.findall(pattern, html)
-            for date, level in matches:
-                if since_date <= date <= until_date and int(level) > 0:
-                    return True
-            return False
-    except Exception:
-        return None  # Couldn't determine, will fall back to GraphQL
+    max_retries = 3
+    for attempt in range(max_retries + 1):
+        try:
+            req = urllib.request.Request(
+                url,
+                headers={
+                    "User-Agent": (
+                        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15)"
+                    ),
+                    "Accept": "text/html",
+                },
+            )
+            with urllib.request.urlopen(req, timeout=15) as resp:
+                html = resp.read().decode("utf-8")
+                pattern = (
+                    r'data-date="(\d{4}-\d{2}-\d{2})"'
+                    r'[^>]*data-level="(\d)"'
+                )
+                matches = re.findall(pattern, html)
+                for date, level in matches:
+                    if since_date <= date <= until_date and int(level) > 0:
+                        return True
+                return False
+        except urllib.error.HTTPError as e:
+            if e.code == 429 and attempt < max_retries:
+                retry_after = int(e.headers.get("Retry-After", 10))
+                wait = min(retry_after, 60)
+                jitter = random.uniform(0, min(wait, 5))
+                total_wait = wait + jitter
+                sys.stderr.write(
+                    Colors.warning(
+                        f"  HTTP 429 for {username}"
+                        f" — retrying in {total_wait:.0f}s"
+                        f" (attempt {attempt + 1}"
+                        f"/{max_retries})\n"
+                    )
+                )
+                sys.stderr.flush()
+                time.sleep(total_wait)
+                continue
+            return None
+        except Exception:
+            return None
 
 
 def check_activity_fast(
@@ -2820,7 +2866,14 @@ def check_activity_fast(
     completed = [0]  # Use list to allow modification in nested function
     lock = threading.Lock()
 
+    # Rate-limit scraping for large member lists to avoid HTTP 429.
+    # GitHub’s web servers allow ~500 requests/minute; throttle to
+    # SCRAPE_MAX_RPS to stay safely under that limit.
+    rate_limiter = _ScrapeRateLimiter(SCRAPE_MAX_RPS) if total > 500 else None
+
     def check_one(username):
+        if rate_limiter:
+            rate_limiter.wait()
         result = check_activity_via_scrape(username, since_date, until_date)
         with lock:
             completed[0] += 1
@@ -2828,8 +2881,11 @@ def check_activity_fast(
                 progress_callback(completed[0], total, username)
         return username, result
 
-    # Use many workers - web scraping doesn't hit API rate limits
-    with ThreadPoolExecutor(max_workers=ACTIVITY_CHECK_WORKERS) as executor:
+    # Scale down workers for large member lists to avoid HTTP 429
+    workers = ACTIVITY_CHECK_WORKERS
+    if total > 500:
+        workers = max(10, 500 * ACTIVITY_CHECK_WORKERS // total)
+    with ThreadPoolExecutor(max_workers=workers) as executor:
         futures = [executor.submit(check_one, u) for u in usernames]
         for future in as_completed(futures):
             username, is_active = future.result()

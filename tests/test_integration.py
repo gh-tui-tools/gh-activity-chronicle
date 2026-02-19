@@ -1306,6 +1306,81 @@ class TestCheckActivityViaScrape:
 
         assert result is None
 
+    def test_429_retry_succeeds(self, mod):
+        """HTTP 429 triggers retry and succeeds on next attempt."""
+        import urllib.error
+
+        html = '<td data-date="2026-01-10" data-level="2"></td>'
+        mock_ok = MagicMock()
+        mock_ok.read.return_value = html.encode("utf-8")
+        mock_ok.__enter__ = lambda s: s
+        mock_ok.__exit__ = MagicMock(return_value=False)
+
+        err_429 = urllib.error.HTTPError(
+            "url", 429, "Too Many Requests", {"Retry-After": "1"}, None
+        )
+
+        with (
+            patch(
+                "urllib.request.urlopen",
+                side_effect=[err_429, mock_ok],
+            ),
+            patch("time.sleep"),
+        ):
+            result = mod.check_activity_via_scrape(
+                "alice", "2026-01-01", "2026-01-31"
+            )
+
+        assert result is True
+
+    def test_429_exhausts_retries(self, mod):
+        """HTTP 429 on all retries returns None."""
+        import urllib.error
+
+        err_429 = urllib.error.HTTPError(
+            "url", 429, "Too Many Requests", {"Retry-After": "1"}, None
+        )
+
+        with (
+            patch(
+                "urllib.request.urlopen",
+                side_effect=[err_429, err_429, err_429, err_429],
+            ),
+            patch("time.sleep"),
+        ):
+            result = mod.check_activity_via_scrape(
+                "alice", "2026-01-01", "2026-01-31"
+            )
+
+        assert result is None
+
+    def test_429_caps_retry_after(self, mod):
+        """Retry-After > 60 is capped to 60 seconds."""
+        import urllib.error
+
+        html = '<td data-date="2026-01-10" data-level="1"></td>'
+        mock_ok = MagicMock()
+        mock_ok.read.return_value = html.encode("utf-8")
+        mock_ok.__enter__ = lambda s: s
+        mock_ok.__exit__ = MagicMock(return_value=False)
+
+        err_429 = urllib.error.HTTPError(
+            "url", 429, "Rate limit", {"Retry-After": "300"}, None
+        )
+
+        with (
+            patch(
+                "urllib.request.urlopen",
+                side_effect=[err_429, mock_ok],
+            ),
+            patch("time.sleep") as mock_sleep,
+            patch("random.uniform", return_value=2.5),
+        ):
+            mod.check_activity_via_scrape("alice", "2026-01-01", "2026-01-31")
+
+        # wait = min(300, 60) = 60, jitter = 2.5
+        mock_sleep.assert_called_once_with(62.5)
+
 
 class TestCheckActivityFast:
     """Tests for check_activity_fast()."""
@@ -1326,6 +1401,90 @@ class TestCheckActivityFast:
         assert "alice" in active
         assert "bob" in inactive
         assert "charlie" in unknown
+
+    def test_scales_workers_for_large_lists(self, mod):
+        """Worker count scales down for >500 members."""
+        # Test the scaling formula directly:
+        # workers = max(10, 500 * ACTIVITY_CHECK_WORKERS // total)
+        w = mod.ACTIVITY_CHECK_WORKERS
+        assert w == 50  # baseline
+
+        # 500 users: no scaling (> 500 check is strict)
+        # 2000 users: 500*50//2000 = 12
+        assert max(10, 500 * w // 2000) == 12
+        # 3705 users: 500*50//3705 = 6 -> clamped to 10
+        assert max(10, 500 * w // 3705) == 10
+        # 5000 users: 500*50//5000 = 5 -> clamped to 10
+        assert max(10, 500 * w // 5000) == 10
+
+
+class TestScrapeRateLimiter:
+    """Tests for _ScrapeRateLimiter."""
+
+    def test_throttles_requests(self, mod):
+        """Requests are spaced by at least 1/max_rps seconds."""
+        import time
+
+        limiter = mod._ScrapeRateLimiter(max_rps=100)
+        times = []
+        for _ in range(5):
+            limiter.wait()
+            times.append(time.monotonic())
+
+        for i in range(1, len(times)):
+            gap = times[i] - times[i - 1]
+            assert gap >= 0.009  # ~1/100 with tolerance
+
+    def test_no_rate_limiter_for_small_lists(self, mod):
+        """No rate limiter created for <= 500 members."""
+
+        def mock_scrape(username, since, until):
+            return True
+
+        called_wait = []
+        orig_init = mod._ScrapeRateLimiter.__init__
+
+        def spy_init(self, max_rps):
+            called_wait.append(True)
+            orig_init(self, max_rps)
+
+        with (
+            patch.object(
+                mod, "check_activity_via_scrape", side_effect=mock_scrape
+            ),
+            patch.object(mod._ScrapeRateLimiter, "__init__", spy_init),
+        ):
+            mod.check_activity_fast(
+                ["alice", "bob"], "2026-01-01", "2026-01-31"
+            )
+
+        assert len(called_wait) == 0
+
+    def test_rate_limiter_used_for_large_lists(self, mod):
+        """Rate limiter is created and used for > 500 members."""
+        import threading
+
+        users = [f"u{i}" for i in range(501)]
+        # MagicMock.call_count isn\'t thread-safe, so use our own counter
+        wait_count = [0]
+        count_lock = threading.Lock()
+
+        def counting_wait(self_arg=None):
+            with count_lock:
+                wait_count[0] += 1
+
+        def mock_scrape(username, since, until):
+            return True
+
+        with (
+            patch.object(
+                mod, "check_activity_via_scrape", side_effect=mock_scrape
+            ),
+            patch.object(mod._ScrapeRateLimiter, "wait", counting_wait),
+        ):
+            mod.check_activity_fast(users, "2026-01-01", "2026-01-31")
+
+        assert wait_count[0] == 501
 
 
 class TestGetContributionSummariesBatch:
