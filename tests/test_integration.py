@@ -3564,3 +3564,21 @@ class TestGenericFailureCappedAt3Retries:
         assert member_data_list[0]["username"] == "good_user"
         # failing_user hit 3 failures
         assert failure_counts[0] >= 3
+
+
+class TestGatherUserDataLightReturnsNoneOnFailedApi:
+    """gather_user_data_light returns None when the API call fails."""
+
+    def test_returns_none_when_contributions_is_none(self, mod):
+        """When get_member_data_combined returns (None, None, []),
+        gather_user_data_light returns None instead of a zeroed dict."""
+        with patch.object(
+            mod,
+            "get_member_data_combined",
+            return_value=(None, None, []),
+        ):
+            result = mod.gather_user_data_light(
+                "testuser", "2026-01-01", "2026-01-31", show_progress=False
+            )
+
+        assert result is None

@@ -3708,6 +3708,10 @@ def gather_user_data_light(
         username, since_date, until_date
     )
 
+    # If the API call failed entirely, return None so the caller can retry
+    if contributions is None:
+        return None
+
     # Extract key metrics from contribution summary
     user_data = contributions.get("user", {}) if contributions else {}
     contrib_collection = user_data.get("contributionsCollection", {})
@@ -4265,6 +4269,8 @@ def gather_org_data_active_contributors(
             data = gather_user_data_light(
                 username, since_date, until_date, show_progress=False
             )
+            if data is None and check_rate_limit_hit():
+                return (username, None, True)  # Rate limit — retry
             return (username, data, False)
         except Exception as e:  # pragma: no cover — threading error paths
             if "rate limit" in str(e).lower() or check_rate_limit_hit():

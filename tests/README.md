@@ -6,7 +6,7 @@
 # Install test dependencies
 pip install pytest pytest-mock
 
-# Run all tests (498 tests)
+# Run all tests (499 tests)
 pytest tests/ -v
 
 # Run specific test file (--no-cov skips coverage)

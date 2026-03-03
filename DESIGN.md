@@ -1489,7 +1489,7 @@ tests/
 ├── test_categorization.py   # 48 tests: pattern matching, repo categorization
 ├── test_rate_limit.py       # 19 tests: API call estimation, warning thresholds
 ├── test_aggregation.py      # 28 tests: data aggregation functions
-├── test_integration.py      # 146 tests: data flow with mocked API calls
+├── test_integration.py      # 147 tests: data flow with mocked API calls
 ├── test_regression.py       # 61 tests: output structure, section builders, JSON
 ├── test_snapshots.py        # 2 tests: golden file comparison
 ├── test_e2e.py              # 28 tests: end-to-end pipeline tests
@@ -1539,7 +1539,7 @@ tests/
 
 ### Coverage
 
-The test suite (498 tests) enforces a **99% coverage threshold** configured in `pyproject.toml`. Current coverage is ~99.6%. Genuinely untestable code (terminal I/O, threading callbacks, rate-limit recovery) is marked `# pragma: no cover`. The remaining ~8 uncovered lines are intentionally left without pragmas — they represent code where mock complexity outweighs testing value, and the coverage report serves as a living inventory of these gaps.
+The test suite (499 tests) enforces a **99% coverage threshold** configured in `pyproject.toml`. Current coverage is ~99.6%. Genuinely untestable code (terminal I/O, threading callbacks, rate-limit recovery) is marked `# pragma: no cover`. The remaining ~8 uncovered lines are intentionally left without pragmas — they represent code where mock complexity outweighs testing value, and the coverage report serves as a living inventory of these gaps.
 
 ### Running tests
 
