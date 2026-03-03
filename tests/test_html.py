@@ -351,3 +351,11 @@ class TestMarkdownToHtml:
         md = "> [!WARNING]\n> Text."
         html = mod.markdown_to_html(md)
         assert ".alert-warning" in html
+
+    def test_blockquote_followed_by_text(self):
+        """Blockquote followed by non-blockquote text hits break."""
+        md = "> A quote line.\n\nRegular paragraph text."
+        html = mod.markdown_to_html(md)
+        assert "<blockquote>" in html
+        assert "A quote line." in html
+        assert "Regular paragraph text." in html

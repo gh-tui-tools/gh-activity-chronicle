@@ -3137,3 +3137,186 @@ class TestPaginateGhApiDefensiveBreaks:
         cmd_args = mock_cmd.call_args[0][0]
         assert "-f" in cmd_args
         assert "role=admin" in cmd_args
+
+
+# -----------------------------------------------------------------------
+# F. Coverage gap tests: thin wrappers, defensive breaks, edge cases
+# -----------------------------------------------------------------------
+
+
+class TestPaginateGhApiProgressCallback:
+    """Test that paginate_gh_api calls progress_callback."""
+
+    def test_callback_receives_running_total(self, mod):
+        """progress_callback is called with running total."""
+        page1 = [{"login": f"u{i}"} for i in range(100)]
+        page2 = [{"login": f"u{i}"} for i in range(100, 140)]
+        callback = MagicMock()
+
+        with patch.object(mod, "run_gh_command", side_effect=[page1, page2]):
+            result = mod.paginate_gh_api(
+                "orgs/test/members", progress_callback=callback
+            )
+
+        assert len(result) == 140
+        assert callback.call_count == 2
+        callback.assert_any_call(100)
+        callback.assert_any_call(140)
+
+
+class TestGetOrgOwners:
+    """Tests for get_org_owners() thin wrapper."""
+
+    def test_delegates_with_role_admin(self, mod):
+        """Passes orgs/{name}/members endpoint with role=admin."""
+        with patch.object(
+            mod, "paginate_gh_api", return_value=["owner1"]
+        ) as mock_paginate:
+            result = mod.get_org_owners("myorg")
+
+        assert result == ["owner1"]
+        mock_paginate.assert_called_once_with(
+            "orgs/myorg/members",
+            extra_params=["role=admin"],
+            progress_callback=None,
+        )
+
+
+class TestGetOrgMembers:
+    """Tests for get_org_members() thin wrapper."""
+
+    def test_delegates_to_members_endpoint(self, mod):
+        """Passes orgs/{name}/members endpoint."""
+        with patch.object(
+            mod, "paginate_gh_api", return_value=["m1", "m2"]
+        ) as mock_paginate:
+            result = mod.get_org_members("myorg")
+
+        assert result == ["m1", "m2"]
+        mock_paginate.assert_called_once_with(
+            "orgs/myorg/members", progress_callback=None
+        )
+
+
+class TestGetOrgPublicMembers:
+    """Tests for get_org_public_members() thin wrapper."""
+
+    def test_delegates_to_public_members_endpoint(self, mod):
+        """Passes orgs/{name}/public_members endpoint."""
+        with patch.object(
+            mod, "paginate_gh_api", return_value=["pub1"]
+        ) as mock_paginate:
+            result = mod.get_org_public_members("myorg")
+
+        assert result == ["pub1"]
+        mock_paginate.assert_called_once_with(
+            "orgs/myorg/public_members", progress_callback=None
+        )
+
+
+class TestGetTeamInfo:
+    """Tests for get_team_info()."""
+
+    def test_returns_team_info_dict(self, mod):
+        """Returns dict with slug, name, description."""
+        info = {"slug": "core", "name": "Core Team", "description": "Desc"}
+        with patch.object(mod, "run_gh_command", return_value=info):
+            result = mod.get_team_info("myorg", "core")
+
+        assert result == info
+
+    def test_passes_correct_api_path(self, mod):
+        """API path includes org and team slug."""
+        with patch.object(mod, "run_gh_command", return_value={}) as mock_cmd:
+            mod.get_team_info("w3c", "accessibility")
+
+        cmd_args = mock_cmd.call_args[0][0]
+        assert "orgs/w3c/teams/accessibility" in " ".join(cmd_args)
+
+
+class TestGetTeamMembers:
+    """Tests for get_team_members() thin wrapper."""
+
+    def test_delegates_to_team_members_endpoint(self, mod):
+        """Passes orgs/{org}/teams/{slug}/members endpoint."""
+        with patch.object(
+            mod, "paginate_gh_api", return_value=["tm1"]
+        ) as mock_paginate:
+            result = mod.get_team_members("w3c", "core")
+
+        assert result == ["tm1"]
+        mock_paginate.assert_called_once_with(
+            "orgs/w3c/teams/core/members", progress_callback=None
+        )
+
+
+class TestGetAllCommitsNoItemsKey:
+    """Cover break when API returns dict without 'items' key."""
+
+    def test_dict_without_items_key_breaks(self, mod):
+        """API returning dict without 'items' triggers break."""
+        with patch.object(
+            mod,
+            "run_gh_command",
+            return_value={"total_count": 0},
+        ):
+            result = mod.get_all_commits(
+                "testuser", "2026-01-01", "2026-01-07"
+            )
+        assert result["total_count"] == 0
+        assert result["items"] == []
+
+
+class TestGetUserForksNoneResponse:
+    """Cover break when GraphQL returns None."""
+
+    def test_none_graphql_response_returns_empty(self, mod):
+        """GraphQL returning None gives empty list."""
+        with patch.object(mod, "run_gh_graphql", return_value=None):
+            result = mod.get_user_forks("alice")
+
+        assert result == []
+
+    def test_missing_user_key_returns_empty(self, mod):
+        """GraphQL returning dict without 'user' gives empty list."""
+        with patch.object(mod, "run_gh_graphql", return_value={"errors": []}):
+            result = mod.get_user_forks("alice")
+
+        assert result == []
+
+
+class TestGatherUserDataLightEmptyRepoInfo:
+    """Cover repo_info = {} fallback when no repos to fetch."""
+
+    def test_no_repos_yields_empty_repo_info(self, mod):
+        """No commit repos + no PRs + no reviews = repo_info = {}."""
+        contributions = {
+            "user": {
+                "name": "Test User",
+                "company": "",
+                "contributionsCollection": {
+                    "totalCommitContributions": 0,
+                    "restrictedContributionsCount": 0,
+                    "totalPullRequestContributions": 0,
+                    "totalIssueContributions": 0,
+                    "totalPullRequestReviewContributions": 0,
+                    "commitContributionsByRepository": [],
+                },
+            }
+        }
+        with patch.multiple(
+            mod,
+            get_member_data_combined=MagicMock(
+                return_value=(contributions, None, [])
+            ),
+            # get_repo_info_cached should NOT be called
+            get_repo_info_cached=MagicMock(return_value={}),
+        ):
+            result = mod.gather_user_data_light(
+                "testuser", "2026-01-01", "2026-01-31"
+            )
+
+        # No repos fetched, function still succeeds
+        assert result["prs_nodes"] == []
+        assert result["reviewed_nodes"] == []
+        assert result["repos_by_category"] == {}

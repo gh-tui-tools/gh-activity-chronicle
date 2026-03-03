@@ -6,7 +6,7 @@
 # Install test dependencies
 pip install pytest pytest-mock
 
-# Run all tests (416 tests)
+# Run all tests (489 tests)
 pytest tests/ -v
 
 # Run specific test file (--no-cov skips coverage)
@@ -25,8 +25,8 @@ pytest tests/ --cov=. --cov-report=term-missing
 |------|-------|----------|
 | `test_helpers.py` | 36 | `format_number`, anchors, links, `is_bot`, Colors |
 | `test_categorization.py` | 48 | `matches`, topics, `should_skip_repo`, priority, edge cases |
-| `test_rate_limit.py` | 19 | `estimate_org_api_calls`, `should_warn_rate_limit` |
-| `test_aggregation.py` | 28 | Language stats, org data, PR tables, ordering |
+| `test_rate_limit.py` | 23 | `estimate_org_api_calls`, `should_warn_rate_limit` |
+| `test_aggregation.py` | 30 | Language stats, org data, PR tables, ordering |
 
 These test pure functions that don’t call the GitHub API.
 
@@ -34,7 +34,7 @@ These test pure functions that don’t call the GitHub API.
 
 | File | Tests | Coverage |
 |------|-------|----------|
-| `test_integration.py` | 106 | API wrappers, data gathering, report generation, pagination |
+| `test_integration.py` | 137 | API wrappers, data gathering, report generation, pagination |
 
 Mocks `run_gh_command()` and related functions to test data flow without network calls.
 
@@ -42,7 +42,7 @@ Mocks `run_gh_command()` and related functions to test data flow without network
 
 | File | Tests | Coverage |
 |------|-------|----------|
-| `test_regression.py` | 61 | Report structure, section builders, JSON/HTML output |
+| `test_regression.py` | 67 | Report structure, section builders, JSON/HTML output |
 
 Verifies output structure (sections exist, tables formatted properly), section builders (`build_user_report_sections`, `build_org_report_sections`), and JSON serialization.
 
@@ -66,7 +66,7 @@ Tests complete pipeline with `MockGhCommand` simulating API responses.
 
 | File | Tests | Coverage |
 |------|-------|----------|
-| `test_html.py` | 35 | `markdown_to_html()`, `_inline_markdown()` |
+| `test_html.py` | 46 | `markdown_to_html()`, `_inline_markdown()` |
 
 Tests the bundled markdown-to-HTML converter. Covers headings, tables, lists, inline markup (bold, italic, links), horizontal rules, HTML passthrough, and element transition edge cases.
 
@@ -74,7 +74,7 @@ Tests the bundled markdown-to-HTML converter. Covers headings, tables, lists, in
 
 | File | Tests | Coverage |
 |------|-------|----------|
-| `test_cli.py` | 53 | Argument parsing, format selection, `run()` orchestration |
+| `test_cli.py` | 72 | Argument parsing, format selection, `run()` orchestration |
 
 Tests `parse_and_validate_args()` and `run()` — the refactored `main()` entry point. Covers all argument combinations, format flag, extension inference, validation errors, date computation, and output path logic.
 
@@ -99,9 +99,9 @@ api_responses/
 
 ## Coverage
 
-The test suite enforces a **98% coverage threshold** (`fail_under = 98` in `pyproject.toml`). Current coverage is ~99%.
+The test suite enforces a **99% coverage threshold** (`fail_under = 99` in `pyproject.toml`). Current coverage is ~99.7%.
 
-Lines that are genuinely untestable (terminal I/O, threading callbacks, rate-limit recovery) are marked with `# pragma: no cover`. The ~20 remaining uncovered lines are intentionally left without pragmas — they represent code that *could* be tested but where the mock complexity isn’t worth it. The coverage report serves as a living inventory of these known gaps.
+Lines that are genuinely untestable (terminal I/O, threading callbacks, rate-limit recovery) are marked with `# pragma: no cover`. The ~8 remaining uncovered lines are intentionally left without pragmas — they represent code that *could* be tested but where the mock complexity isn’t worth it. The coverage report serves as a living inventory of these known gaps.
 
 ## Updating Golden Files
 

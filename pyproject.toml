@@ -46,7 +46,7 @@ source = ["."]
 omit = ["tests/*", "research/*"]
 
 [tool.coverage.report]
-fail_under = 98
+fail_under = 99
 exclude_lines = [
     "pragma: no cover",
     "if __name__ == .__main__.:",

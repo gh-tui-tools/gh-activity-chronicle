@@ -1531,7 +1531,7 @@ tests/
 
 ### Coverage
 
-The test suite (477 tests) enforces a **98% coverage threshold** configured in `pyproject.toml`. Current coverage is ~99%. Genuinely untestable code (terminal I/O, threading callbacks, rate-limit recovery) is marked `# pragma: no cover`. The remaining ~20 uncovered lines are intentionally left without pragmas — they represent code where mock complexity outweighs testing value, and the coverage report serves as a living inventory of these gaps.
+The test suite (489 tests) enforces a **99% coverage threshold** configured in `pyproject.toml`. Current coverage is ~99.7%. Genuinely untestable code (terminal I/O, threading callbacks, rate-limit recovery) is marked `# pragma: no cover`. The remaining ~8 uncovered lines are intentionally left without pragmas — they represent code where mock complexity outweighs testing value, and the coverage report serves as a living inventory of these gaps.
 
 ### Running tests
 
@@ -1579,7 +1579,7 @@ The mocking approach allows testing the full pipeline without GitHub API access 
 
 ### Continuous integration
 
-A GitHub Actions workflow (`.github/workflows/ci.yml`) runs ruff check, ruff format, and the test suite on pushes to main, pull requests, and manual dispatch. Tests run across Python 3.9–3.13 on `ubuntu-latest`. The coverage threshold is enforced via `pyproject.toml` (`fail_under = 98`), so CI fails if coverage drops below 98%.
+A GitHub Actions workflow (`.github/workflows/ci.yml`) runs ruff check, ruff format, and the test suite on pushes to main, pull requests, and manual dispatch. Tests run across Python 3.9–3.13 on `ubuntu-latest`. The coverage threshold is enforced via `pyproject.toml` (`fail_under = 99`), so CI fails if coverage drops below 99%.
 
 ### Golden file maintenance
 
