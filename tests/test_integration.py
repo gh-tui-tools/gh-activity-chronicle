@@ -1913,6 +1913,52 @@ class TestWaitForRateLimitReset:
         # First chunk should be 60 seconds
         assert mock_sleep.call_args_list[0][0][0] == 60
 
+    def test_spinner_countdown_no_reset_time(self, mod):
+        """Progress spinner used when reset time unknown."""
+        mock_progress = MagicMock()
+        with (
+            patch.object(
+                mod,
+                "get_rate_limit_reset_time",
+                return_value=(None, None),
+            ),
+            patch("time.sleep"),
+        ):
+            result = mod.wait_for_rate_limit_reset(progress=mock_progress)
+
+        assert result is True
+        mock_progress.start.assert_called_once_with(
+            "Rate limited. Waiting 60s..."
+        )
+        mock_progress.stop.assert_called_once()
+
+    def test_spinner_countdown_with_reset_time(self, mod):
+        """Progress spinner shows countdown when reset time known."""
+        from datetime import datetime, timedelta
+
+        future = datetime.now() + timedelta(seconds=40)
+        mock_progress = MagicMock()
+        with (
+            patch.object(
+                mod,
+                "get_rate_limit_reset_time",
+                return_value=(future, "graphql"),
+            ),
+            patch("time.sleep"),
+        ):
+            result = mod.wait_for_rate_limit_reset(
+                max_wait_seconds=3600, progress=mock_progress
+            )
+
+        assert result is True
+        mock_progress.start.assert_called_once_with("")
+        mock_progress.stop.assert_called_once()
+        # Should have updated with countdown messages
+        assert mock_progress.update.call_count >= 1
+        msg = mock_progress.update.call_args_list[0][0][0]
+        assert "resets at" in msg
+        assert "remaining" in msg
+
 
 # -----------------------------------------------------------------------
 # D. Org data pipeline tests

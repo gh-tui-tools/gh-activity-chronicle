@@ -181,7 +181,7 @@ By default, all three formats (`.md`, `.json`, `.html`) are output. With `--form
 
 ## Testing
 
-The project includes a comprehensive test suite (475 tests):
+The project includes a comprehensive test suite (477 tests):
 
 ```bash
 # Install test and lint dependencies

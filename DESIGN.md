@@ -1066,7 +1066,7 @@ Found 316 active members out of 524
 
 **Rate limit handling:**
 
-If the GraphQL fallback hits the rate limit, the tool waits for reset (up to 1 hour, with 60-second progress updates to keep CI alive) or shows the reset time and exits.
+If the GraphQL fallback hits the rate limit, the tool waits for reset (up to 1 hour). When a `ProgressIndicator` is available (the normal case in org mode), the wait is shown as a live spinner countdown that overwrites in place every 15 seconds (e.g., ’’Rate limit reached — resets at 14:32 (12m 45s remaining)’’). If the wait would exceed 1 hour, the tool shows the reset time and exits.
 
 ### Data scope (light mode)
 
@@ -1481,7 +1481,7 @@ tests/
 ├── test_categorization.py   # 48 tests: pattern matching, repo categorization
 ├── test_rate_limit.py       # 19 tests: API call estimation, warning thresholds
 ├── test_aggregation.py      # 28 tests: data aggregation functions
-├── test_integration.py      # 113 tests: data flow with mocked API calls
+├── test_integration.py      # 115 tests: data flow with mocked API calls
 ├── test_regression.py       # 61 tests: output structure, section builders, JSON
 ├── test_snapshots.py        # 2 tests: golden file comparison
 ├── test_e2e.py              # 28 tests: end-to-end pipeline tests
@@ -1531,7 +1531,7 @@ tests/
 
 ### Coverage
 
-The test suite (475 tests) enforces a **98% coverage threshold** configured in `pyproject.toml`. Current coverage is ~99%. Genuinely untestable code (terminal I/O, threading callbacks, rate-limit recovery) is marked `# pragma: no cover`. The remaining ~20 uncovered lines are intentionally left without pragmas — they represent code where mock complexity outweighs testing value, and the coverage report serves as a living inventory of these gaps.
+The test suite (477 tests) enforces a **98% coverage threshold** configured in `pyproject.toml`. Current coverage is ~99%. Genuinely untestable code (terminal I/O, threading callbacks, rate-limit recovery) is marked `# pragma: no cover`. The remaining ~20 uncovered lines are intentionally left without pragmas — they represent code where mock complexity outweighs testing value, and the coverage report serves as a living inventory of these gaps.
 
 ### Running tests
 

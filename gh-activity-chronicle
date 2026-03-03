@@ -257,12 +257,18 @@ def print_rate_limit_error(extra_advice=None):
         sys.stderr.write("\n")
 
 
-def wait_for_rate_limit_reset(max_wait_seconds=3600):
-    """Wait for rate limit to reset if it’s soon enough.
+def wait_for_rate_limit_reset(max_wait_seconds=3600, progress=None):
+    """Wait for rate limit to reset, showing a spinner countdown.
+
+    If a ProgressIndicator is passed, shows a live countdown that
+    overwrites in place every 15 seconds (e.g., ’’Rate limit
+    reached — resets at 14:32 (12m 45s remaining)’’).
+    Falls back to line-based output if no progress indicator.
 
     Args:
-        max_wait_seconds: Maximum seconds to wait (default 1 hour, matching
-            GitHub’s hourly rate limit reset cycle)
+        max_wait_seconds: Maximum seconds to wait (default 1 hour,
+            matching GitHub’s hourly rate limit reset cycle)
+        progress: Optional ProgressIndicator for spinner countdown
 
     Returns:
         True if we waited and can retry, False if wait would be too long
@@ -271,40 +277,61 @@ def wait_for_rate_limit_reset(max_wait_seconds=3600):
     reset_time, _resource = get_rate_limit_reset_time()
 
     if not reset_time:
-        # Can’t determine reset time — wait a bit for secondary rate limits
-        msg = "\nRate limit hit. Waiting 60 seconds...\n"
-        sys.stderr.write(Colors.warning(msg))
-        time.sleep(60)
-        _rate_limit_hit = False  # Clear the flag to retry
+        # Can’t determine reset time — wait for secondary limits
+        if progress:
+            progress.start("Rate limited. Waiting 60s...")
+            time.sleep(60)
+            progress.stop()
+        else:
+            msg = "\nRate limit hit. Waiting 60 seconds...\n"
+            sys.stderr.write(Colors.warning(msg))
+            time.sleep(60)
+        _rate_limit_hit = False
         return True
 
     now = datetime.now()
     wait_seconds = (reset_time - now).total_seconds()
 
     if wait_seconds <= 0:
-        # Already reset
         _rate_limit_hit = False
         return True
 
     if wait_seconds <= max_wait_seconds:
-        reset_str = reset_time.strftime("%H:%M:%S")
-        total = int(wait_seconds)
-        msg = (
-            f"\nRate limit hit. Waiting until {reset_str} "
-            f"({total} seconds)...\n"
-        )
-        sys.stderr.write(Colors.warning(msg))
-        remaining = wait_seconds + 1  # Add 1 second buffer
-        while remaining > 0:
-            chunk = min(remaining, 60)
-            time.sleep(chunk)
-            remaining -= chunk
-            if remaining > 0:
-                mins_left = int(remaining // 60)
-                secs_left = int(remaining % 60)
-                msg = f"  Rate limit resets in {mins_left}m {secs_left}s...\n"
-                sys.stderr.write(Colors.warning(msg))
-        _rate_limit_hit = False  # Clear the flag to retry
+        reset_str = reset_time.strftime("%H:%M")
+        if progress:
+            progress.start("")
+            remaining = wait_seconds + 1
+            while remaining > 0:
+                mins, secs = divmod(int(remaining), 60)
+                progress.update(
+                    f"Rate limit reached — resets at "
+                    f"{reset_str} ({mins}m {secs:02d}s remaining)"
+                )
+                chunk = min(15, remaining)
+                time.sleep(chunk)
+                remaining -= chunk
+            progress.stop()
+        else:
+            total = int(wait_seconds)
+            msg = (
+                f"\nRate limit hit. Waiting until {reset_str} "
+                f"({total} seconds)...\n"
+            )
+            sys.stderr.write(Colors.warning(msg))
+            remaining = wait_seconds + 1
+            while remaining > 0:
+                chunk = min(remaining, 60)
+                time.sleep(chunk)
+                remaining -= chunk
+                if remaining > 0:
+                    mins_left = int(remaining // 60)
+                    secs_left = int(remaining % 60)
+                    msg = (
+                        f"  Rate limit resets in"
+                        f" {mins_left}m {secs_left}s...\n"
+                    )
+                    sys.stderr.write(Colors.warning(msg))
+        _rate_limit_hit = False
         return True
 
     # Wait would be too long
@@ -4070,8 +4097,9 @@ def gather_org_data_active_contributors(
 
         # Check if rate limit was hit during fallback
         if check_rate_limit_hit():
-            sys.stderr.write("\n")
-            if not wait_for_rate_limit_reset(max_wait_seconds=3600):
+            if not wait_for_rate_limit_reset(
+                max_wait_seconds=3600, progress=progress
+            ):
                 print_rate_limit_error()
                 sys.exit(1)
             progress.start(f"Retrying API check for {count} users...")
@@ -4210,7 +4238,9 @@ def gather_org_data_active_contributors(
 
         if hit_rate_limit:  # pragma: no cover — rate-limit recovery
             progress.stop()
-            if not wait_for_rate_limit_reset(max_wait_seconds=3600):
+            if not wait_for_rate_limit_reset(
+                max_wait_seconds=3600, progress=progress
+            ):
                 print_rate_limit_error()
                 sys.exit(1)
             progress.start(f"Gathering data for {active_count} members...")
