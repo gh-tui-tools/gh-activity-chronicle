@@ -764,11 +764,11 @@ Try again after 08:27:13 (local time).
 
 The reset time is fetched from GitHub’s `rate_limit` API endpoint.
 
-**Important**: The tool checks the **GraphQL** rate limit, not the REST API “core” limit. GitHub has separate quotas:
+**Auto-detection**: GitHub has separate rate limit pools:
 - REST API (core): 5,000/hour
 - GraphQL: 5,000/hour (separate pool)
 
-The tool primarily uses GraphQL for contribution summaries, PR data, and activity checking. Users can have 3,000+ REST calls remaining but 0 GraphQL calls — checking the wrong limit would give misleading information.
+The tool queries both pools and auto-detects which is exhausted (or has fewer remaining calls). This matters because different operations use different pools — REST pagination for member enumeration, GraphQL for contribution summaries. An optional `resource` parameter allows explicit selection when needed.
 
 ### Rate limit warning (org mode)
 
@@ -826,7 +826,7 @@ Calibrated against w3c org (pre-optimization actuals, post-optimization estimate
 | Large job (absolute) | Estimated > 50% of 5,000 total | Job is significant regardless of current usage |
 | Exhaustion risk | Estimated > 80% of remaining | Job might exhaust current quota |
 
-Both conditions check the *actual remaining GraphQL limit* (via `gh api rate_limit .resources.graphql`) rather than assuming a full 5,000.
+Both conditions check the *actual remaining limit* (via `gh api rate_limit`, querying the minimum of core and graphql pools) rather than assuming a full 5,000.
 
 **Early exit when exhausted:**
 
@@ -1066,7 +1066,15 @@ Found 316 active members out of 524
 
 **Rate limit handling:**
 
-If the GraphQL fallback hits the rate limit, the tool waits for reset (up to 1 hour). When a `ProgressIndicator` is available (the normal case in org mode), the wait is shown as a live spinner countdown that overwrites in place every 15 seconds (e.g., ’’Rate limit reached — resets at 14:32 (12m 45s remaining)’’). If the wait would exceed 1 hour, the tool shows the reset time and exits.
+Rate limit resilience is built into every stage of the pipeline:
+
+1. **Member enumeration** (`paginate_gh_api`): If a REST page fetch fails due to rate limit, waits for reset and retries the same page. Without this, hitting the core rate limit at page 28 of 38 would silently lose 926+ members.
+
+2. **Phase 1 fallback** (GraphQL batch queries): Uses a while loop that retries with only the remaining (unfetched) users after each rate limit wait. Avoids re-querying already-fetched users and loops until all users are checked.
+
+3. **Phase 2 gathering** (per-member data): Waits for reset on rate limit, caps generic (non-rate-limit) failures at 3 retries per member to prevent infinite loops from permanently-failing accounts.
+
+When a `ProgressIndicator` is available (the normal case in org mode), rate limit waits are shown as a live spinner countdown that overwrites in place every 15 seconds (e.g., ’’Rate limit reached — resets at 14:32 (12m 45s remaining)’’). If the wait would exceed 1 hour, the tool shows the reset time and exits.
 
 ### Data scope (light mode)
 
@@ -1481,7 +1489,7 @@ tests/
 ├── test_categorization.py   # 48 tests: pattern matching, repo categorization
 ├── test_rate_limit.py       # 19 tests: API call estimation, warning thresholds
 ├── test_aggregation.py      # 28 tests: data aggregation functions
-├── test_integration.py      # 115 tests: data flow with mocked API calls
+├── test_integration.py      # 146 tests: data flow with mocked API calls
 ├── test_regression.py       # 61 tests: output structure, section builders, JSON
 ├── test_snapshots.py        # 2 tests: golden file comparison
 ├── test_e2e.py              # 28 tests: end-to-end pipeline tests
@@ -1531,7 +1539,7 @@ tests/
 
 ### Coverage
 
-The test suite (489 tests) enforces a **99% coverage threshold** configured in `pyproject.toml`. Current coverage is ~99.7%. Genuinely untestable code (terminal I/O, threading callbacks, rate-limit recovery) is marked `# pragma: no cover`. The remaining ~8 uncovered lines are intentionally left without pragmas — they represent code where mock complexity outweighs testing value, and the coverage report serves as a living inventory of these gaps.
+The test suite (498 tests) enforces a **99% coverage threshold** configured in `pyproject.toml`. Current coverage is ~99.6%. Genuinely untestable code (terminal I/O, threading callbacks, rate-limit recovery) is marked `# pragma: no cover`. The remaining ~8 uncovered lines are intentionally left without pragmas — they represent code where mock complexity outweighs testing value, and the coverage report serves as a living inventory of these gaps.
 
 ### Running tests
 

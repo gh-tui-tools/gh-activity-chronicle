@@ -54,43 +54,110 @@ def set_rate_limit_hit():
     _rate_limit_hit = True
 
 
-def get_rate_limit_reset_time():
+def get_rate_limit_reset_time(resource=None):
     """Get the rate limit reset time and resource name.
+
+    When resource is None (default), auto-detects which resource is
+    exhausted by querying both core and graphql pools and returning
+    the one with remaining == 0 (or lowest remaining).
+
+    Args:
+        resource: Optional explicit resource name ("core" or "graphql").
+            When None, auto-detects the exhausted resource.
 
     Returns:
         (datetime, str) tuple, or (None, None) on failure.
         The string is the GitHub API resource name (e.g. "graphql").
     """
-    resource = "graphql"
     try:
+        if resource:
+            # Explicit resource requested — preserve old behavior
+            rate_result = subprocess.run(
+                [
+                    "gh",
+                    "api",
+                    "rate_limit",
+                    "--jq",
+                    f".resources.{resource}.reset",
+                ],
+                capture_output=True,
+                text=True,
+                check=True,
+            )
+            reset_timestamp = int(rate_result.stdout.strip())
+            return datetime.fromtimestamp(reset_timestamp), resource
+
+        # Auto-detect: query both core and graphql
         rate_result = subprocess.run(
             [
                 "gh",
                 "api",
                 "rate_limit",
                 "--jq",
-                f".resources.{resource}.reset",
+                "{core_remaining: .resources.core.remaining,"
+                " core_reset: .resources.core.reset,"
+                " graphql_remaining: .resources.graphql.remaining,"
+                " graphql_reset: .resources.graphql.reset}",
             ],
             capture_output=True,
             text=True,
             check=True,
         )
-        reset_timestamp = int(rate_result.stdout.strip())
-        return datetime.fromtimestamp(reset_timestamp), resource
+        import json as _json
+
+        data = _json.loads(rate_result.stdout.strip())
+        core_rem = data["core_remaining"]
+        gql_rem = data["graphql_remaining"]
+
+        # Pick the exhausted resource, or the one with fewer remaining
+        if core_rem <= gql_rem:
+            chosen = "core"
+            reset_timestamp = data["core_reset"]
+        else:
+            chosen = "graphql"
+            reset_timestamp = data["graphql_reset"]
+
+        return datetime.fromtimestamp(reset_timestamp), chosen
     except Exception:
         return None, None
 
 
-def get_rate_limit_remaining():
-    """Get the remaining GraphQL rate limit calls, or None."""
+def get_rate_limit_remaining(resource=None):
+    """Get the remaining rate limit calls, or None.
+
+    When resource is None (default), returns the minimum of core and
+    graphql remaining calls. When explicit, returns that resource only.
+
+    Args:
+        resource: Optional explicit resource name ("core" or "graphql").
+            When None, returns min(core, graphql).
+    """
     try:
+        if resource:
+            result = subprocess.run(
+                [
+                    "gh",
+                    "api",
+                    "rate_limit",
+                    "--jq",
+                    f".resources.{resource}.remaining",
+                ],
+                capture_output=True,
+                text=True,
+                check=True,
+            )
+            return int(result.stdout.strip())
+
+        # Auto-detect: return minimum of core and graphql
         result = subprocess.run(
             [
                 "gh",
                 "api",
                 "rate_limit",
                 "--jq",
-                ".resources.graphql.remaining",
+                "[.resources.core.remaining,"
+                " .resources.graphql.remaining]"
+                " | min",
             ],
             capture_output=True,
             text=True,
@@ -3087,7 +3154,11 @@ def paginate_gh_api(endpoint, extra_params=None, progress_callback=None):
                 cmd.extend(["-f", param])
         result = run_gh_command(cmd)
         if not result:
-            break
+            if check_rate_limit_hit() and wait_for_rate_limit_reset(
+                progress=progress
+            ):
+                continue  # Retry the same page
+            break  # Rate-limit wait failed, or non-rate-limit error
         if not isinstance(result, list):
             break
         items = [m.get("login") for m in result if m.get("login")]
@@ -4087,29 +4158,32 @@ def gather_org_data_active_contributors(
             msg = f"Checking {completed}/{total} remaining ({highlighted})"
             progress.update(msg)
 
-        fallback_summaries = get_contribution_summaries_batch(
-            unknown_users,
-            since_date,
-            until_date,
-            progress_callback=update_fallback_progress,
-        )
-        progress.stop()
-
-        # Check if rate limit was hit during fallback
-        if check_rate_limit_hit():
+        fallback_summaries = {}
+        remaining_users = list(unknown_users)
+        while remaining_users:
+            batch_results = get_contribution_summaries_batch(
+                remaining_users,
+                since_date,
+                until_date,
+                progress_callback=update_fallback_progress,
+            )
+            fallback_summaries.update(batch_results)
+            remaining_users = [
+                u for u in remaining_users if u not in fallback_summaries
+            ]
+            if not remaining_users:
+                break
+            progress.stop()
+            if not check_rate_limit_hit():
+                break  # Non-rate-limit failure — stop
             if not wait_for_rate_limit_reset(
                 max_wait_seconds=3600, progress=progress
             ):
                 print_rate_limit_error()
                 sys.exit(1)
-            progress.start(f"Retrying API check for {count} users...")
-            fallback_summaries = get_contribution_summaries_batch(
-                unknown_users,
-                since_date,
-                until_date,
-                progress_callback=update_fallback_progress,
-            )
-            progress.stop()
+            n = len(remaining_users)
+            progress.start(f"Retrying API check for {n} remaining users...")
+        progress.stop()
 
         # Add active users from fallback
         for username in unknown_users:
@@ -4200,6 +4274,7 @@ def gather_org_data_active_contributors(
             return (username, None, False)
 
     members_to_process = set(range(len(active_members)))
+    failure_counts = {}  # idx  — number of generic failures
 
     progress.start(f"Gathering data for 0/{active_count} active members...")
 
@@ -4230,6 +4305,17 @@ def gather_org_data_active_contributors(
                         else:
                             msg = f"Gathered {done}/{active_count}"
                         progress.update(msg)
+                else:  # pragma: no cover — threading failure path
+                    # Generic failure (not rate limit)  — track and cap
+                    failure_counts[idx] = failure_counts.get(idx, 0) + 1
+                    if failure_counts[idx] >= 3:
+                        members_to_process.discard(idx)
+                        name = active_members[idx]
+                        msg = (
+                            f"\nWarning: Giving up on {name} "
+                            f"after 3 failures\n"
+                        )
+                        sys.stderr.write(msg)
 
                 if hit_rate_limit:  # pragma: no cover
                     for f in futures:

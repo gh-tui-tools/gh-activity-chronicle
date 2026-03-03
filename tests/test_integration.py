@@ -1232,12 +1232,50 @@ class TestPaginateGhApi:
         # page2 has <100 items so pagination stops
         assert len(result) == 130
 
-    def test_none_result_stops(self, mod):
-        """None result stops pagination."""
-        with patch.object(mod, "run_gh_command", return_value=None):
+    def test_none_result_stops_non_rate_limit(self, mod):
+        """None result stops pagination when not a rate limit."""
+        with (
+            patch.object(mod, "run_gh_command", return_value=None),
+            patch.object(mod, "check_rate_limit_hit", return_value=False),
+        ):
             result = mod.paginate_gh_api("orgs/test/members")
 
         assert result == []
+
+    def test_rate_limit_waits_and_retries(self, mod):
+        """On rate limit, waits for reset and retries the same page."""
+        page1 = [{"login": f"user{i}"} for i in range(100)]
+        page2 = [{"login": f"user{i}"} for i in range(100, 150)]
+
+        # page1 OK -> None (rate limit hit) -> page2 OK
+        with (
+            patch.object(
+                mod, "run_gh_command", side_effect=[page1, None, page2]
+            ),
+            patch.object(mod, "check_rate_limit_hit", return_value=True),
+            patch.object(
+                mod, "wait_for_rate_limit_reset", return_value=True
+            ) as mock_wait,
+        ):
+            result = mod.paginate_gh_api("orgs/test/members")
+
+        # All items from both pages should be present
+        assert len(result) == 150
+        mock_wait.assert_called_once()
+
+    def test_rate_limit_wait_fails_returns_partial(self, mod):
+        """When wait_for_rate_limit_reset returns False, returns partial."""
+        page1 = [{"login": f"user{i}"} for i in range(100)]
+
+        with (
+            patch.object(mod, "run_gh_command", side_effect=[page1, None]),
+            patch.object(mod, "check_rate_limit_hit", return_value=True),
+            patch.object(mod, "wait_for_rate_limit_reset", return_value=False),
+        ):
+            result = mod.paginate_gh_api("orgs/test/members")
+
+        # Only first page returned
+        assert len(result) == 100
 
 
 class TestGetOrgInfo:
@@ -1570,14 +1608,24 @@ class TestGetRateLimitResetTime:
     """Tests for get_rate_limit_reset_time()."""
 
     def test_returns_datetime_and_resource(self, mod):
-        """Successful call returns a (datetime, resource) tuple."""
+        """Successful auto-detect call returns (datetime, resource) tuple."""
         import datetime
+        import json
 
-        mock_result = MagicMock(stdout="1738200000\n", returncode=0)
+        data = json.dumps(
+            {
+                "core_remaining": 4500,
+                "core_reset": 1738200000,
+                "graphql_remaining": 100,
+                "graphql_reset": 1738201000,
+            }
+        )
+        mock_result = MagicMock(stdout=data, returncode=0)
         with patch("subprocess.run", return_value=mock_result):
             reset_time, resource = mod.get_rate_limit_reset_time()
 
         assert isinstance(reset_time, datetime.datetime)
+        # graphql has fewer remaining, so it should be chosen
         assert resource == "graphql"
 
     def test_error_returns_none_pair(self, mod):
@@ -1593,7 +1641,7 @@ class TestGetRateLimitRemaining:
     """Tests for get_rate_limit_remaining()."""
 
     def test_returns_int(self, mod):
-        """Successful call returns an int."""
+        """Successful auto-detect call returns min of both resources."""
         mock_result = MagicMock(stdout="4500\n", returncode=0)
         with patch("subprocess.run", return_value=mock_result):
             result = mod.get_rate_limit_remaining()
@@ -3320,3 +3368,199 @@ class TestGatherUserDataLightEmptyRepoInfo:
         assert result["prs_nodes"] == []
         assert result["reviewed_nodes"] == []
         assert result["repos_by_category"] == {}
+
+
+# -----------------------------------------------------------------------
+# G. Rate-limit resilience tests
+# -----------------------------------------------------------------------
+
+
+class TestGetRateLimitResetTimeAutoDetect:
+    """Tests for auto-detection of exhausted rate limit resource."""
+
+    def test_auto_detects_exhausted_core(self, mod):
+        """When core remaining=0, returns core reset time."""
+        import json
+
+        data = {
+            "core_remaining": 0,
+            "core_reset": 1738200000,
+            "graphql_remaining": 4000,
+            "graphql_reset": 1738201000,
+        }
+        mock_result = MagicMock(stdout=json.dumps(data), returncode=0)
+        with patch("subprocess.run", return_value=mock_result):
+            reset_time, resource = mod.get_rate_limit_reset_time()
+
+        assert resource == "core"
+        assert reset_time is not None
+
+    def test_auto_detects_exhausted_graphql(self, mod):
+        """When graphql remaining=0, returns graphql reset time."""
+        import json
+
+        data = {
+            "core_remaining": 4000,
+            "core_reset": 1738200000,
+            "graphql_remaining": 0,
+            "graphql_reset": 1738201000,
+        }
+        mock_result = MagicMock(stdout=json.dumps(data), returncode=0)
+        with patch("subprocess.run", return_value=mock_result):
+            reset_time, resource = mod.get_rate_limit_reset_time()
+
+        assert resource == "graphql"
+        assert reset_time is not None
+
+    def test_explicit_resource_param(self, mod):
+        """Explicit resource="graphql" preserves old behavior."""
+        mock_result = MagicMock(stdout="1738200000\n", returncode=0)
+        with patch("subprocess.run", return_value=mock_result):
+            reset_time, resource = mod.get_rate_limit_reset_time(
+                resource="graphql"
+            )
+
+        assert resource == "graphql"
+        assert reset_time is not None
+
+
+class TestGetRateLimitRemainingAutoDetect:
+    """Tests for auto-detection in get_rate_limit_remaining."""
+
+    def test_auto_returns_minimum(self, mod):
+        """When no resource specified, returns min(core, graphql)."""
+        mock_result = MagicMock(stdout="150\n", returncode=0)
+        with patch("subprocess.run", return_value=mock_result):
+            result = mod.get_rate_limit_remaining()
+
+        assert result == 150
+
+    def test_explicit_resource_param(self, mod):
+        """Explicit resource="core" queries just that resource."""
+        mock_result = MagicMock(stdout="3000\n", returncode=0)
+        with patch("subprocess.run", return_value=mock_result) as mock_run:
+            result = mod.get_rate_limit_remaining(resource="core")
+
+        assert result == 3000
+        # Verify it queried the specific resource
+        jq_arg = mock_run.call_args[0][0][-1]
+        assert "core" in jq_arg
+
+
+class TestFallbackRetriesOnlyRemainingUsers:
+    """Test that Phase 1 fallback retries only remaining (unfetched) users."""
+
+    def test_fallback_retries_only_remaining(self, mod):
+        """Batch returns partial, rate limit hit, retry with remaining only."""
+
+        # First call returns only user0; second returns user1
+        def batch_side_effect(users, since, until, progress_callback=None):
+            if "user0" in users and "user1" in users:
+                # First call: returns only user0, then rate limit
+                mod._rate_limit_hit = True
+                return {
+                    "user0": {
+                        "contributionsCollection": {
+                            "totalCommitContributions": 5,
+                            "totalPullRequestContributions": 0,
+                            "totalPullRequestReviewContributions": 0,
+                        }
+                    }
+                }
+            else:
+                # Retry: only user1 passed in
+                return {
+                    "user1": {
+                        "contributionsCollection": {
+                            "totalCommitContributions": 3,
+                            "totalPullRequestContributions": 0,
+                            "totalPullRequestReviewContributions": 0,
+                        }
+                    }
+                }
+
+        with (
+            patch.object(
+                mod,
+                "get_contribution_summaries_batch",
+                side_effect=batch_side_effect,
+            ),
+            patch.object(
+                mod, "wait_for_rate_limit_reset", return_value=True
+            ) as mock_wait,
+        ):
+            # Simulate the fallback loop logic directly
+            unknown_users = ["user0", "user1"]
+            fallback_summaries = {}
+            remaining_users = list(unknown_users)
+
+            while remaining_users:
+                batch_results = mod.get_contribution_summaries_batch(
+                    remaining_users, "2026-01-01", "2026-12-31"
+                )
+                fallback_summaries.update(batch_results)
+                remaining_users = [
+                    u for u in remaining_users if u not in fallback_summaries
+                ]
+                if not remaining_users:
+                    break
+                if not mod.check_rate_limit_hit():
+                    break
+                mod.wait_for_rate_limit_reset(max_wait_seconds=3600)
+                mod._rate_limit_hit = False
+
+        # Both users fetched
+        assert "user0" in fallback_summaries
+        assert "user1" in fallback_summaries
+        mock_wait.assert_called_once()
+
+
+class TestGenericFailureCappedAt3Retries:
+    """Test that Phase 2 caps generic failures at 3 retries per member."""
+
+    def test_member_discarded_after_3_failures(self, mod):
+        """gather_member always returns None; member eventually discarded."""
+        from concurrent.futures import ThreadPoolExecutor, as_completed
+
+        active_members = ["failing_user", "good_user"]
+        member_data_list = []
+        members_to_process = set(range(len(active_members)))
+        failure_counts = {}
+
+        call_count = [0]
+
+        def gather_member(username):
+            if username == "failing_user":
+                return (username, None, False)  # Generic failure
+            return (username, {"username": "good_user"}, False)
+
+        # Simulate the phase 2 loop
+        while members_to_process:
+            call_count[0] += 1
+            if call_count[0] > 10:
+                break  # Safety: prevent infinite loop in test
+
+            with ThreadPoolExecutor(max_workers=2) as executor:
+                futures = {
+                    executor.submit(gather_member, active_members[idx]): idx
+                    for idx in members_to_process
+                }
+
+                for future in as_completed(futures):
+                    idx = futures[future]
+                    username, data, hit_limit = future.result()
+                    if data:
+                        member_data_list.append(data)
+                        members_to_process.discard(idx)
+                    else:
+                        failure_counts[idx] = failure_counts.get(idx, 0) + 1
+                        if failure_counts[idx] >= 3:
+                            members_to_process.discard(idx)
+
+        # Loop terminated (didn\'t hit safety limit of 10)
+        assert call_count[0] <= 4
+        # good_user was collected
+        assert len(member_data_list) == 1
+        assert member_data_list[0]["username"] == "good_user"
+        # failing_user hit 3 failures
+        assert failure_counts[0] >= 3

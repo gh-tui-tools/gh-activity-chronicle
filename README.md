@@ -181,7 +181,7 @@ By default, all three formats (`.md`, `.json`, `.html`) are output. With `--form
 
 ## Testing
 
-The project includes a comprehensive test suite (489 tests):
+The project includes a comprehensive test suite (498 tests):
 
 ```bash
 # Install test and lint dependencies
@@ -201,7 +201,7 @@ pytest tests/test_e2e.py -v --no-cov
 | Category | Coverage |
 |----------|----------|
 | Unit tests | Pure functions (categorization, rate limits, formatting) |
-| Integration tests | Data flow with mocked GitHub API |
+| Integration tests | Data flow with mocked GitHub API, rate-limit resilience |
 | Regression tests | Output structure, JSON/HTML converters, section builders |
 | Snapshot tests | Compare full reports against golden baselines |
 | End-to-end tests | Complete pipeline verification |
