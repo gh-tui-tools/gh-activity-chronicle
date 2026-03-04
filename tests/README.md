@@ -6,7 +6,7 @@
 # Install test dependencies
 pip install pytest pytest-mock
 
-# Run all tests (499 tests)
+# Run all tests (504 tests)
 pytest tests/ -v
 
 # Run specific test file (--no-cov skips coverage)
@@ -34,7 +34,7 @@ These test pure functions that don’t call the GitHub API.
 
 | File | Tests | Coverage |
 |------|-------|----------|
-| `test_integration.py` | 146 | API wrappers, data gathering, report generation, pagination, rate-limit resilience |
+| `test_integration.py` | 152 | API wrappers, data gathering, report generation, pagination, rate-limit resilience |
 
 Mocks `run_gh_command()` and related functions to test data flow without network calls.
 
@@ -101,7 +101,7 @@ api_responses/
 
 The test suite enforces a **99% coverage threshold** (`fail_under = 99` in `pyproject.toml`). Current coverage is ~99.6%.
 
-Lines that are genuinely untestable (terminal I/O, threading callbacks, rate-limit recovery) are marked with `# pragma: no cover`. The ~9 remaining uncovered lines are intentionally left without pragmas — they represent code that *could* be tested but where the mock complexity isn’t worth it. The coverage report serves as a living inventory of these known gaps.
+Lines that are genuinely untestable (terminal I/O, threading callbacks, rate-limit recovery) are marked with `# pragma: no cover`. The ~10 remaining uncovered lines are intentionally left without pragmas — they represent code that *could* be tested but where the mock complexity isn’t worth it. The coverage report serves as a living inventory of these known gaps.
 
 ## Updating Golden Files
 

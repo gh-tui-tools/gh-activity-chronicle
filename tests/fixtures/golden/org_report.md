@@ -87,13 +87,6 @@
 | Closed (not merged) | 0 |
 | **Total** | **1** |
 
-### Reviews received (on created PRs)
-
-| Metric | Count |
-|--------|------:|
-| Reviews received | 0 |
-| Review comments received | 0 |
-
 </details>
 
 <details name="activity">

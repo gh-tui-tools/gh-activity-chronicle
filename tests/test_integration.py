@@ -1616,7 +1616,7 @@ class TestGetRateLimitResetTime:
             {
                 "core_remaining": 4500,
                 "core_reset": 1738200000,
-                "graphql_remaining": 100,
+                "graphql_remaining": 0,
                 "graphql_reset": 1738201000,
             }
         )
@@ -1625,7 +1625,7 @@ class TestGetRateLimitResetTime:
             reset_time, resource = mod.get_rate_limit_reset_time()
 
         assert isinstance(reset_time, datetime.datetime)
-        # graphql has fewer remaining, so it should be chosen
+        # graphql is exhausted (remaining=0), so it should be chosen
         assert resource == "graphql"
 
     def test_error_returns_none_pair(self, mod):
@@ -3582,3 +3582,92 @@ class TestGatherUserDataLightReturnsNoneOnFailedApi:
             )
 
         assert result is None
+
+
+class TestStreamErrorRetry:
+    """Stream errors (HTTP/2 CANCEL) are retried like transient HTTP errors."""
+
+    def test_stream_error_retried_and_succeeds(self, mod, mock_subprocess):
+        """Stream error on first attempt, success on second."""
+        from subprocess import CalledProcessError
+
+        error = CalledProcessError(1, "gh")
+        error.stderr = "stream error: stream ID 1; CANCEL; received from peer"
+
+        success = MagicMock(stdout='{"data": "ok"}', stderr="", returncode=0)
+
+        mock_subprocess.side_effect = [error, success]
+        result = mod.run_gh_command(["api", "test"], parse_json=True)
+        assert result == {"data": "ok"}
+        assert mock_subprocess.call_count == 2
+
+    def test_stream_error_exhausts_retries(self, mod, mock_subprocess):
+        """Stream errors exhaust all retries and return None."""
+        from subprocess import CalledProcessError
+
+        error = CalledProcessError(1, "gh")
+        error.stderr = "stream error: stream ID 1; CANCEL"
+
+        mock_subprocess.side_effect = [error, error, error, error]
+        result = mod.run_gh_command(
+            ["api", "test"], parse_json=True, max_retries=3
+        )
+        assert result is None
+        assert mock_subprocess.call_count == 4
+
+
+class TestHttp403NotRateLimit:
+    """HTTP 403 without \'rate limit\' text is not misclassified."""
+
+    def test_plain_403_does_not_set_rate_limit_flag(self, mod):
+        """A 403 that says \'Forbidden\' is a regular error, not rate limit."""
+        from subprocess import CalledProcessError
+
+        error = CalledProcessError(1, "gh")
+        error.stderr = "HTTP 403: Resource not accessible by integration"
+
+        original = mod._rate_limit_hit
+        try:
+            with patch("subprocess.run", side_effect=error):
+                result = mod.run_gh_command(["api", "test"])
+            assert result is None
+            assert mod._rate_limit_hit is False
+        finally:
+            mod._rate_limit_hit = original
+
+    def test_403_with_rate_limit_text_still_detected(self, mod):
+        """A 403 that says \'rate limit\' IS detected as rate limit."""
+        from subprocess import CalledProcessError
+
+        error = CalledProcessError(1, "gh")
+        error.stderr = "HTTP 403: You have exceeded a secondary rate limit"
+
+        original = mod._rate_limit_hit
+        try:
+            with patch("subprocess.run", side_effect=error):
+                result = mod.run_gh_command(["api", "test"])
+            assert result is None
+            assert mod._rate_limit_hit is True
+        finally:
+            mod._rate_limit_hit = original
+
+
+class TestAutoDetectNeitherExhausted:
+    """get_rate_limit_reset_time returns None when no resource is exhausted."""
+
+    def test_both_resources_have_remaining(self, mod):
+        """Neither core nor graphql exhausted → (None, None)."""
+        import json
+
+        data = {
+            "core_remaining": 4825,
+            "core_reset": 1738200000,
+            "graphql_remaining": 4960,
+            "graphql_reset": 1738201000,
+        }
+        mock_result = MagicMock(stdout=json.dumps(data), returncode=0)
+        with patch("subprocess.run", return_value=mock_result):
+            reset_time, resource = mod.get_rate_limit_reset_time()
+
+        assert reset_time is None
+        assert resource is None

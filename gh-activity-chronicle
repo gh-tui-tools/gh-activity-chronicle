@@ -109,6 +109,12 @@ def get_rate_limit_reset_time(resource=None):
         core_rem = data["core_remaining"]
         gql_rem = data["graphql_remaining"]
 
+        # If neither is exhausted, this is likely a secondary/abuse rate
+        # limit (not reflected in primary counters).  Return None so that
+        # wait_for_rate_limit_reset falls back to a short 60 s wait.
+        if core_rem > 0 and gql_rem > 0:
+            return None, None
+
         # Pick the exhausted resource, or the one with fewer remaining
         if core_rem <= gql_rem:
             chosen = "core"
@@ -178,6 +184,8 @@ MAX_PARALLEL_WORKERS = 30  # Max threads for parallel API calls
 ACTIVITY_CHECK_WORKERS = 50  # Workers for activity checking (scraping)
 SCRAPE_MAX_RPS = 7  # Max scrape requests/sec (GitHub allows ~500/min)
 GRAPHQL_BATCH_SIZE = 10  # Users per GraphQL batch query
+PHASE2_WORKERS = 10  # Phase 2 workers (keeps concurrency low)
+PHASE2_MAX_RPS = 10  # Max API requests/sec during Phase 2 gathering
 API_PAGE_SIZE = 100  # Items per page for paginated API calls
 
 
@@ -1818,7 +1826,7 @@ def run_gh_command(
         RateLimitError: If rate limit exceeded and raise_on_rate_limit is True
     """
     # Transient HTTP errors that should be retried
-    transient_errors = ["HTTP 502", "HTTP 503", "HTTP 504"]
+    transient_errors = ["HTTP 502", "HTTP 503", "HTTP 504", "stream error"]
 
     for attempt in range(max_retries + 1):
         try:
@@ -1830,7 +1838,7 @@ def run_gh_command(
             return result.stdout.strip()
         except subprocess.CalledProcessError as e:
             # Check for rate limit error (primary or secondary)
-            if "rate limit" in e.stderr.lower() or "HTTP 403" in e.stderr:
+            if "rate limit" in e.stderr.lower():
                 set_rate_limit_hit()  # Set global flag
                 if raise_on_rate_limit:
                     raise RateLimitError(e.stderr)
@@ -2634,8 +2642,6 @@ def get_member_data_combined(username, since_date, until_date):
             createdAt
             additions
             deletions
-            reviews {{ totalCount }}
-            comments {{ totalCount }}
           }}
         }}
       }}
@@ -3738,12 +3744,11 @@ def gather_user_data_light(
     # Calculate additions/deletions from PRs (already in the PR data)
     total_additions = sum(pr.get("additions", 0) for pr in prs_nodes)
     total_deletions = sum(pr.get("deletions", 0) for pr in prs_nodes)
-    reviews_received = sum(
-        (pr.get("reviews") or {}).get("totalCount", 0) for pr in prs_nodes
-    )
-    pr_comments_received = sum(
-        (pr.get("comments") or {}).get("totalCount", 0) for pr in prs_nodes
-    )
+    # reviews/comments counts are not fetched in light mode to avoid
+    # nested connections in search() queries, which trigger GitHub’s
+    # secondary rate limits (abuse detection) regardless of request rate.
+    reviews_received = 0
+    pr_comments_received = 0
 
     # Reviewed PRs data
     reviewed_nodes = prs_reviewed if prs_reviewed else []
@@ -4264,7 +4269,10 @@ def gather_org_data_active_contributors(
     completed_count = [0]
     results_lock = threading.Lock()
 
+    api_limiter = _ScrapeRateLimiter(PHASE2_MAX_RPS)
+
     def gather_member(username):
+        api_limiter.wait()
         try:
             data = gather_user_data_light(
                 username, since_date, until_date, show_progress=False
@@ -4285,7 +4293,7 @@ def gather_org_data_active_contributors(
     progress.start(f"Gathering data for 0/{active_count} active members...")
 
     while members_to_process:
-        with ThreadPoolExecutor(max_workers=MAX_PARALLEL_WORKERS) as executor:
+        with ThreadPoolExecutor(max_workers=PHASE2_WORKERS) as executor:
             futures = {
                 executor.submit(gather_member, active_members[idx]): idx
                 for idx in members_to_process
@@ -4303,7 +4311,7 @@ def gather_org_data_active_contributors(
                     with results_lock:
                         completed_count[0] += 1
                         remaining = len(active_members) - completed_count[0]
-                        in_flight = min(MAX_PARALLEL_WORKERS, remaining)
+                        in_flight = min(PHASE2_WORKERS, remaining)
                         done = completed_count[0]
                         if 0 < in_flight <= 29:
                             pend = f"({in_flight} pending)"
@@ -4845,9 +4853,13 @@ def format_org_data_json(
 
 def _inline_markdown(text):
     """Convert inline markdown markup to HTML tags."""
-    # Links: [text](url) — allow one level of nested brackets in text
+    # Links: [text](url) — supports one level of nested brackets in text.
+    # Uses Friedl’s “unrolled loop” to avoid catastrophic backtracking:
+    # [^\[\]]* handles non-bracket runs, (?:\[[^\]]*\][^\[\]]*)* handles
+    # nested [...] pairs.  Each inner iteration must start with \[, so the
+    # outer * can never match empty — making backtracking O(n), not O(2^n).
     text = re.sub(
-        r"\[((?:[^\[\]]*|\[[^\]]*\])*)\]\(([^)]+)\)",
+        r"\[([^\[\]]*(?:\[[^\]]*\][^\[\]]*)*)\]\(([^)]+)\)",
         r'<a href="\2">\1</a>',
         text,
     )
@@ -5423,8 +5435,6 @@ def generate_org_report(
     ]
     total_additions = aggregated_data.get("total_additions", 0)
     total_deletions = aggregated_data.get("total_deletions", 0)
-    reviews_received = aggregated_data.get("reviews_received", 0)
-    pr_comments_received = aggregated_data.get("pr_comments_received", 0)
     test_commits = aggregated_data.get("test_commits", 0)
     repos_by_category = aggregated_data.get("repos_by_category", {})
     repo_line_stats = aggregated_data.get("repo_line_stats", {})
@@ -5680,15 +5690,6 @@ def generate_org_report(
     report.append(f"| Open | {len(open_prs)} |")
     report.append(f"| Closed (not merged) | {len(closed_prs)} |")
     report.append(f"| **Total** | **{len(prs_nodes)}** |")
-    report.append("")
-
-    report.append("### Reviews received (on created PRs)")
-    report.append("")
-    report.append("| Metric | Count |")
-    report.append("|--------|------:|")
-    report.append(f"| Reviews received | {format_number(reviews_received)} |")
-    pr_cmts = format_number(pr_comments_received)
-    report.append(f"| Review comments received | {pr_cmts} |")
     report.append("")
     report.append("</details>")
     report.append("")

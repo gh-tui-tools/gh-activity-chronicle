@@ -196,7 +196,7 @@ with ThreadPoolExecutor(max_workers=10) as executor:
     futures = [executor.submit(fetch_lang, repo) for repo in repos_needing_check]
 ```
 
-Worker counts are tuned to avoid GitHub’s secondary rate limits (abuse detection). 40+ workers triggers rate limiting; 30 is the practical maximum.
+Worker counts are tuned to avoid GitHub’s secondary rate limits (abuse detection). 40+ workers triggers rate limiting; 30 is the practical maximum. Phase 2 gathering (org mode) uses only 10 workers (`PHASE2_WORKERS`) and throttles API requests to 10/second (`PHASE2_MAX_RPS`) via a `_ScrapeRateLimiter` instance, because the combined per-member GraphQL query is complex enough (~500 potential nodes) to trigger secondary rate limits at higher concurrency or rates.
 
 Results: ~1000 commits in ~90 seconds.
 
@@ -468,7 +468,7 @@ Pre-computed structured sections, saving consumers from re-deriving the same com
 
 ### HTML
 
-Standalone HTML page with embedded CSS. Produced by converting the markdown output through `markdown_to_html()`, a bundled ~100-line regex-based converter that handles the exact markdown subset used in reports:
+Standalone HTML page with embedded CSS. Produced by converting the markdown output through `markdown_to_html()`, a bundled ~100-line regex-based converter that handles the exact markdown subset used in reports. The link regex uses Friedl’s “unrolled loop” technique (`[^\[\]]*(?:\[[^\]]*\][^\[\]]*)*`) to support one level of nested brackets (e.g., PR titles like “[Editorial] Fix...”) without catastrophic backtracking — the naïve `(?:[^\[\]]*|\[[^\]]*\])*` alternation causes O(2^n) backtracking on lines with `[` but no matching `]`, which hangs on large org reports:
 
 - `#` through `######` headings
 - `| table | rows |` with separator detection
@@ -768,7 +768,7 @@ The reset time is fetched from GitHub’s `rate_limit` API endpoint.
 - REST API (core): 5,000/hour
 - GraphQL: 5,000/hour (separate pool)
 
-The tool queries both pools and auto-detects which is exhausted (or has fewer remaining calls). This matters because different operations use different pools — REST pagination for member enumeration, GraphQL for contribution summaries. An optional `resource` parameter allows explicit selection when needed.
+The tool queries both pools and auto-detects which is exhausted. If neither pool has `remaining == 0` but a rate-limit error was received, the tool treats it as a secondary (abuse) rate limit and falls back to a short 60-second wait instead of waiting for the next primary reset window. An optional `resource` parameter allows explicit selection when needed.
 
 ### Rate limit warning (org mode)
 
@@ -867,13 +867,13 @@ The “Or wait another…” line shows how long until the rate limit window res
 
 ### Transient error handling
 
-**Problem**: GitHub’s API occasionally returns transient HTTP errors (502 Bad Gateway, 503 Service Unavailable, 504 Gateway Timeout) during high-load periods or brief service disruptions. A single failed request shouldn’t abort an entire report.
+**Problem**: GitHub’s API occasionally returns transient HTTP errors (502 Bad Gateway, 503 Service Unavailable, 504 Gateway Timeout) and HTTP/2 stream errors (“stream error: stream ID 1; CANCEL”) during high-load periods or brief service disruptions. Stream errors are especially common in org mode with 30 concurrent workers. A single failed request shouldn’t abort an entire report.
 
 **Solution**: Retry failed requests with exponential backoff:
 
 ```python
 def run_gh_command(args, parse_json=True, raise_on_rate_limit=False, max_retries=3):
-    transient_errors = ["HTTP 502", "HTTP 503", "HTTP 504"]
+    transient_errors = ["HTTP 502", "HTTP 503", "HTTP 504", "stream error"]
 
     for attempt in range(max_retries + 1):
         try:
@@ -1072,7 +1072,7 @@ Rate limit resilience is built into every stage of the pipeline:
 
 2. **Phase 1 fallback** (GraphQL batch queries): Uses a while loop that retries with only the remaining (unfetched) users after each rate limit wait. Avoids re-querying already-fetched users and loops until all users are checked.
 
-3. **Phase 2 gathering** (per-member data): Waits for reset on rate limit, caps generic (non-rate-limit) failures at 3 retries per member to prevent infinite loops from permanently-failing accounts.
+3. **Phase 2 gathering** (per-member data): Uses 10 workers (vs 30 elsewhere) and throttles to `PHASE2_MAX_RPS` (10/second) to proactively avoid secondary rate limits. If a secondary limit is still hit, falls back to a 60-second wait. Caps generic (non-rate-limit) failures at 3 retries per member to prevent infinite loops from permanently-failing accounts.
 
 When a `ProgressIndicator` is available (the normal case in org mode), rate limit waits are shown as a live spinner countdown that overwrites in place every 15 seconds (e.g., ’’Rate limit reached — resets at 14:32 (12m 45s remaining)’’). If the wait would exceed 1 hour, the tool shows the reset time and exits.
 
@@ -1092,6 +1092,9 @@ Another way to think about it: org mode captures **merged work** — commits fro
 - Commits on non-default branches of forks (work-in-progress for unmerged PRs)
 - Per-commit line stats (additions/deletions)
 - Test commit detection
+- Per-PR review/comment counts (“Reviews received” section shows 0 in org mode)
+
+The combined GraphQL query (`get_member_data_combined`) deliberately omits `reviews { totalCount }` and `comments { totalCount }` from its `search()` sub-query. These are nested connections inside a search query — a pattern that triggers GitHub’s secondary rate limits (abuse detection) regardless of request rate or throttling. This was identified empirically in [gh-reviewers-graph](https://github.com/nicolo-ribaudo/gh-reviewers-graph): the presence of nested connections in a `search()` query triggers abuse detection, not the data volume or request frequency. Removing them eliminates hours of 60-second secondary-rate-limit waits during large org runs.
 
 This tradeoff prioritizes API efficiency: full data gathering can require 100-1000+ API calls per member, while light mode requires only ~1–2 calls per member (a single combined GraphQL query, plus occasional review pagination). For an org with 40 members, this is the difference between 4,000–40,000 calls (likely hitting rate limits) vs ~40–80 calls (completing comfortably).
 
@@ -1489,7 +1492,7 @@ tests/
 ├── test_categorization.py   # 48 tests: pattern matching, repo categorization
 ├── test_rate_limit.py       # 19 tests: API call estimation, warning thresholds
 ├── test_aggregation.py      # 28 tests: data aggregation functions
-├── test_integration.py      # 147 tests: data flow with mocked API calls
+├── test_integration.py      # 152 tests: data flow with mocked API calls
 ├── test_regression.py       # 61 tests: output structure, section builders, JSON
 ├── test_snapshots.py        # 2 tests: golden file comparison
 ├── test_e2e.py              # 28 tests: end-to-end pipeline tests
@@ -1539,7 +1542,7 @@ tests/
 
 ### Coverage
 
-The test suite (499 tests) enforces a **99% coverage threshold** configured in `pyproject.toml`. Current coverage is ~99.6%. Genuinely untestable code (terminal I/O, threading callbacks, rate-limit recovery) is marked `# pragma: no cover`. The remaining ~8 uncovered lines are intentionally left without pragmas — they represent code where mock complexity outweighs testing value, and the coverage report serves as a living inventory of these gaps.
+The test suite (504 tests) enforces a **99% coverage threshold** configured in `pyproject.toml`. Current coverage is ~99.6%. Genuinely untestable code (terminal I/O, threading callbacks, rate-limit recovery) is marked `# pragma: no cover`. The remaining ~10 uncovered lines are intentionally left without pragmas — they represent code where mock complexity outweighs testing value, and the coverage report serves as a living inventory of these gaps.
 
 ### Running tests
 
